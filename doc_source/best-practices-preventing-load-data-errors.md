@@ -1,0 +1,3 @@
+# Use a Manifest File<a name="best-practices-preventing-load-data-errors"></a>
+
+Amazon S3 provides eventual consistency for some operations, so it is possible that new data will not be available immediately after the upload, which could result in an incomplete data load or loading stale data\. You can manage data consistency by using a manifest file to load data\. For more information, see [Managing Data Consistency](managing-data-consistency.md)\.
