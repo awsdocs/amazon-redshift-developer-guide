@@ -5,7 +5,7 @@
 + [Amazon Redshift Best Practices for Loading Data](c_loading-data-best-practices.md)
 + [Amazon Redshift Best Practices for Designing Queries](c_designing-queries-best-practices.md)
 
-This chapter presents best practices for designing tables, loading data into tables, and writing queries\. 
+This chapter presents best practices for designing tables, loading data into tables, and writing queries\.  
 
 Amazon Redshift is not the same as other SQL database systems\. To fully realize the benefits of the Amazon Redshift architecture, you must specifically design, build, and load your tables to leverage massively parallel processing, columnar data storage, and columnar data compression\. If your data loading and query execution times are longer than you expect, or longer than you want, you might be overlooking key information\. 
 
