@@ -112,6 +112,6 @@ The following tuning table shows the chosen distribution styles\.
 
 For more information, see [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)\.
 
-## Next Step<a name="w3ab1c13c19c19"></a>
+## Next Step<a name="next-step-compression"></a>
 
 [Step 5: Review Compression Encodings](tutorial-tuning-tables-compression.md)

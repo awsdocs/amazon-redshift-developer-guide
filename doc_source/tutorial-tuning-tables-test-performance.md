@@ -49,6 +49,14 @@ You will record your results using the following benchmarks table\.
 1. Test query performance\.
 
    The first time you run a query, Amazon Redshift compiles the code, and then sends compiled code to the compute nodes\. When you compare the execution times for queries, you should not use the results for the first time you execute the query\. Instead, compare the times for the second execution of each query\. For more information, see [Factors Affecting Query Performance](c-query-performance.md)\.
+**Note**  
+To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When result caching is enabled, subsequent queries run much faster, which invalidates performance comparisons\.
+
+   To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`, as shown following\.
+
+   ```
+   set enable_result_cache_for_session to off;
+   ```
 
    Run the following queries twice to eliminate compile time\. Record the second time for each query in the benchmarks table\. 
 
@@ -118,6 +126,6 @@ The following benchmarks table shows the example results for the cluster used in
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-test-performance.html)
 
-## Next Step<a name="w3ab1c13c15c14"></a>
+## Next Step<a name="next-step--sort-keys"></a>
 
 [Step 3: Select Sort Keys](tutorial-tuning-tables-sort-keys.md)

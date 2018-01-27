@@ -76,10 +76,10 @@ To view partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITI
 ROW FORMAT DELIMITED *rowformat*  
 A clause that specifies the format of the underlying data\. Possible values for *rowformat* are as follows:  
 
-+ FIELDS TERMINATED BY '*delimiter*' 
-
 + LINES TERMINATED BY '*delimiter*' 
-You can specify non\-printing ASCII characters using octal, in the format `'\`*`ddd`*`'` where *`d`* is an octal digit \(0–7\)\. The following example specifies the BEL \(bell\) character using octal\.   
+
++ FIELDS TERMINATED BY '*delimiter*' 
+Specify a single ASCII character for '*delimiter*'\. You can specify non\-printing ASCII characters using octal, in the format `'\`*`ddd`*`'` where *`d`* is an octal digit \(0–7\)\. The following example specifies the BEL \(bell\) character using octal\.   
 
 ```
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\007'
@@ -152,6 +152,32 @@ A property that sets number of rows to skip at the beginning of each source file
 
 You can't view details for Amazon Redshift Spectrum tables using the same resources you use for standard Amazon Redshift tables, such as [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md), [STV\_TBL\_PERM](r_STV_TBL_PERM.md), PG\_CLASS, or information\_schema\. If your business intelligence or analytics tool doesn't recognize Redshift Spectrum external tables, configure your application to query [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) and [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md)\.
 
+### Permissions to Create and Query External Tables<a name="r_CREATE_EXTERNAL_TABLE_usage-permissions"></a>
+
+To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md)\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
+
+```
+alter schema spectrum_schema owner to newowner;
+```
+
+To run a Redshift Spectrum query, you need the following permissions:
+
++ Usage permission on the schema 
+
++ Permission to create temporary tables in the current database 
+
+The following example grants usage permission on the schema `spectrum_schema` to the `spectrumusers` user group\.
+
+```
+grant usage on schema spectrum_schema to group spectrumusers;
+```
+
+The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
+
+```
+grant temp on database spectrumdb to group spectrumusers;
+```
+
 ### Pseudocolumns<a name="r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns"></a>
 
 By default, Amazon Redshift creates external tables with the pseudocolumns *$path* and *$size*\. Select these columns to view the path to the data files on Amazon S3 and the size of the data files for each row returned by a query\. The *$path* and *$size* column names must be delimited with double quotation marks\. A *SELECT \** clause doesn't return the pseudocolumns \. You must explicitly include the *$path* and *$size* column names in your query, as the following example shows\.
@@ -178,7 +204,7 @@ listid integer,
 sellerid integer,
 buyerid integer,
 eventid integer,
-dateid smallint,
+saledate date,
 qtysold smallint,
 pricepaid decimal(8,2),
 commission decimal(8,2),
@@ -222,21 +248,22 @@ spectrum   | sales_part           | s3://awssampledbuswest2/tickit/spectrum/sale
 The following example queries the SVV\_EXTERNAL\_COLUMNS view\. 
 
 ```
-select * from svv_external_columns where  schemaname like 'rsspectrum%' and tablename ='listing';
+select * from svv_external_columns where schemaname like 'spectrum%' and tablename ='sales';
 ```
 
 ```
-	 schemaname | tablename |   columnname   | external_type | part_key
-	------------+-----------+----------------+---------------+----------
-	 rsspectrum | listing   | dateid         | smallint      |        0
-	 rsspectrum | listing   | eventid        | int           |        0
-	 rsspectrum | listing   | listid         | int           |        0
-	 rsspectrum | listing   | listtime       | timestamp     |        0
-	 rsspectrum | listing   | numtickets     | smallint      |        0
-	 rsspectrum | listing   | priceperticket | decimal(8,2)  |        0
-	 rsspectrum | listing   | sellerid       | int           |        0
-	 rsspectrum | listing   | totalprice     | decimal(8,2)  |        0
-	(8 rows)
+schemaname | tablename | columnname | external_type | columnnum | part_key
+-----------+-----------+------------+---------------+-----------+---------
+spectrum   | sales     | salesid    | int           |         1 |        0
+spectrum   | sales     | listid     | int           |         2 |        0
+spectrum   | sales     | sellerid   | int           |         3 |        0
+spectrum   | sales     | buyerid    | int           |         4 |        0
+spectrum   | sales     | eventid    | int           |         5 |        0
+spectrum   | sales     | saledate   | date          |         6 |        0
+spectrum   | sales     | qtysold    | smallint      |         7 |        0
+spectrum   | sales     | pricepaid  | decimal(8,2)  |         8 |        0
+spectrum   | sales     | commission | decimal(8,2)  |         9 |        0
+spectrum   | sales     | saletime   | timestamp     |        10 |        0
 ```
 
 To view table partitions, use the following query\.
@@ -305,40 +332,40 @@ To add the partitions, run the following ALTER TABLE commands\.
 
 ```
 alter table spectrum.sales_part
-add partition(saledate='2008-01-01') 
+add partition if not exists (saledate='2008-01-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
 alter table spectrum.sales_part
-add partition(saledate='2008-02-01') 
+add partition if not exists (saledate='2008-02-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
 alter table spectrum.sales_part
-add partition(saledate='2008-03-01') 
+add partition if not exists (saledate='2008-03-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
 alter table spectrum.sales_part
-add partition(saledate='2008-04-01') 
+add partition if not exists (saledate='2008-04-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04/';
 alter table spectrum.sales_part
-add partition(saledate='2008-05-01') 
+add partition if not exists (saledate='2008-05-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05/';
 alter table spectrum.sales_part
-add partition(saledate='2008-06-01') 
+add partition if not exists (saledate='2008-06-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06/';
 alter table spectrum.sales_part
-add partition(saledate='2008-07-01') 
+add partition if not exists (saledate='2008-07-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07/';
 alter table spectrum.sales_part
-add partition(saledate='2008-08-01') 
+add partition if not exists (saledate='2008-08-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08/';
 alter table spectrum.sales_part
-add partition(saledate='2008-09-01') 
+add partition if not exists (saledate='2008-09-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09/';
 alter table spectrum.sales_part
-add partition(saledate='2008-10-01') 
+add partition if not exists (saledate='2008-10-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10/';
 alter table spectrum.sales_part
-add partition(saledate='2008-11-01') 
+add partition if not exists (saledate='2008-11-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11/';
 alter table spectrum.sales_part
-add partition(saledate='2008-12-01') 
+add partition if not exists (saledate='2008-12-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12/';
 ```
 

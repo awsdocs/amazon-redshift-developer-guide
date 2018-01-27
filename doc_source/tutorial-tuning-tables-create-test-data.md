@@ -172,6 +172,6 @@ The load operation will take about 10 to 15 minutes for all five tables\.
    The following results table shows the number of rows for each SSB table\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-create-test-data.html)
 
-## Next Step<a name="create-test-data-next-step"></a>
+## Next Step<a name="next-step-test-performance"></a>
 
 [Step 2: Test System Performance to Establish a Baseline](tutorial-tuning-tables-test-performance.md)

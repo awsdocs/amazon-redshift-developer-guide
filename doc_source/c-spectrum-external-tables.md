@@ -2,7 +2,29 @@
 
 Amazon Redshift Spectrum uses external tables to query data that is stored in Amazon S3\. You can query an external table using the same SELECT syntax you use with other Amazon Redshift tables\. External tables are read\-only\. You can't write to an external table\.
 
-You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. To grant usage of external tables in an external schema, grant usage on the schema to the users that need access\. For more information, see [GRANT](r_GRANT.md)\. 
+You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
+
+```
+alter schema spectrum_schema owner to newowner;
+```
+
+To run a Redshift Spectrum query, you need the following permissions:
+
++ Usage permission on the schema 
+
++ Permission to create temporary tables in the current database 
+
+The following example grants usage permission on the schema `spectrum_schema` to the `spectrumusers` user group\.
+
+```
+grant usage on schema spectrum_schema to group spectrumusers;
+```
+
+The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
+
+```
+grant temp on database spectrumdb to group spectrumusers;
+```
 
 You can create an external table in Amazon Redshift, AWS Glue, Amazon Athena, or an Apache Hive metastore\. For more information, see [Getting Started Using AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/getting-started.html) in the *AWS Glue Developer Guide*, [Getting Started](http://docs.aws.amazon.com/athena/latest/ug/getting-started.html) in the *Amazon Athena User Guide*, or [Apache Hive](http://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hive.html) in the *Amazon EMR Developer Guide*\. 
 

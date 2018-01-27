@@ -7,7 +7,7 @@ For more information, see [JSON Functions](json-functions.md)\.
 ## Syntax<a name="JSON_EXTRACT_PATH_TEXT-synopsis"></a>
 
 ```
-json_extract_path_text('json_string', 'path_elem' [,'path_elem'[, …]])
+json_extract_path_text('json_string', 'path_elem' [,'path_elem'[, …] ] [, null_if_invalid ] )
 ```
 
 ## Arguments<a name="JSON_EXTRACT_PATH_TEXT-arguments"></a>

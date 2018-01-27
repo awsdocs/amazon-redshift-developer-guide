@@ -58,10 +58,6 @@ Redshift Spectrum is available only in the following regions:
 
 Note the following considerations when you use Amazon Redshift Spectrum:
 
-+ Amazon Redshift Spectrum requires engine version 1\.0\.1294 or later\. To find the version number for your cluster, run the following command\.
-
-  To force your cluster to update to the latest cluster version, adjust your [maintenance window](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)\. 
-
 + The Amazon Redshift cluster and the Amazon S3 bucket must be in the same region\. 
 
 + Your cluster can't have [Enhanced VPC Routing](http://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html) enabled\. 
@@ -69,6 +65,14 @@ Note the following considerations when you use Amazon Redshift Spectrum:
 + External tables are read\-only\. You can't perform insert, update, or delete operations on external tables\. 
 
 + You can't control user permissions on an external table\. Instead, you can grant and revoke permissions on the external schema\. 
+
++ To run Redshift Spectrum queries, the database user must have permission to create temporary tables in the database\. The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
+
+  ```
+  grant temp on database spectrumdb to group spectrumusers;
+  ```
+
+  For more information, see [GRANT](r_GRANT.md)\.
 
 + Redshift Spectrum doesn't support nested data types, such as STRUCT, ARRAY, and MAP\.
 

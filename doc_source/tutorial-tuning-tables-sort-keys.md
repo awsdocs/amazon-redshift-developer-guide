@@ -36,6 +36,6 @@ The following tuning table shows the chosen sort keys\. You fill in the Distribu
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-sort-keys.html)
 
-## Next Step<a name="w3ab1c13c17c10"></a>
+## Next Step<a name="next-step-distribution"></a>
 
 [Step 4: Select Distribution Styles](tutorial-tuning-tables-distribution.md)

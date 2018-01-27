@@ -2,7 +2,7 @@
 
 A deep copy recreates and repopulates a table by using a bulk insert, which automatically sorts the table\. If a table has a large unsorted region, a deep copy is much faster than a vacuum\. The trade off is that you cannot make concurrent updates during a deep copy operation, which you can do during a vacuum\. 
 
-You can choose one of four methods to create a copy of the original table: 
+You can choose one of the following methods to create a copy of the original table: 
 
 + Use the original table DDL\. 
 

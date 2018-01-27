@@ -2,13 +2,16 @@
 
 Appends rows to a target table by moving data from an existing source table\. Data in the source table is moved to matching columns in the target table\. Column order doesn't matter\. After data is successfully appended to the target table, the source table is empty\. ALTER TABLE APPEND is usually much faster than a similar [CREATE TABLE AS](r_CREATE_TABLE_AS.md) or [INSERT](r_INSERT_30.md) INTO operation because data is moved, not duplicated\. 
 
+**Note**  
+ALTER TABLE APPEND moves data blocks between the source table and the target table\. To improve performance, ALTER TABLE APPEND doesn't compact storage as part of the append operation\. As a result, storage usage increases temporarily\. To reclaim the space, run a [VACUUM](r_VACUUM_command.md) operation\.
+
 Columns with the same names must also have identical column attributes\. If either the source table or the target table contains columns that don't exist in the other table, use the IGNOREEXTRA or FILLTARGET parameters to specify how extra columns should be managed\. 
 
 You cannot append an identity column\. If both tables include an identity column, the command fails\. If only one table has an identity column, include the FILLTARGET or IGNOREXTRA parameter\. For more information, see [ALTER TABLE APPEND Usage Notes](#r_ALTER_TABLE_APPEND_usage)\.
 
 Both the source table and the target table must be permanent tables\. Both tables must use the same distribution style and distribution key, if one was defined\. If the tables are sorted, both tables must use the same sort style and define the same columns as sort keys\.
 
-An ALTER TABLE APPEND command automatically commits immediately upon completion of the operation\. It cannot be rolled back\. You cannot run ALTER TABLE APPEND within a transaction block \(BEGIN \.\.\. END\)\. 
+An ALTER TABLE APPEND command automatically commits immediately upon completion of the operation\. It cannot be rolled back\. You can't run ALTER TABLE APPEND within a transaction block \(BEGIN \.\.\. END\)\. 
 
 ## Syntax<a name="r_ALTER_TABLE_APPEND-synopsis"></a>
 

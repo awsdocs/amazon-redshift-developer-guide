@@ -171,8 +171,9 @@ A property that sets number of rows to skip at the beginning of each source file
 PARTITION \( *partition\_column*=*partition\_value* \[, \.\.\.\] SET LOCATION \{ 's3://*bucket*/*folder*' | 's3://*bucket*/*manifest\_file*' \}  
 A clause that sets a new location for one or more partition columns\. 
 
-ADD PARTITION \( *partition\_column*=*partition\_value* \[, \.\.\.\] \) LOCATION \{ 's3://*bucket*/*folder*' | 's3://*bucket*/*manifest\_file*' \}  
-A clause that adds a partition\. Only one partition can be added in a single ALTER TABLE statement\.
+ADD PARTITION \[ IF NOT EXISTS \] \( *partition\_column*=*partition\_value* \[, \.\.\.\] \) LOCATION \{ 's3://*bucket*/*folder*' | 's3://*bucket*/*manifest\_file*' \}  
+A clause that adds a partition\. Only one partition can be added in a single ALTER TABLE statement\.  
+The IF NOT EXISTS clause indicates that if the specified partition already exists, the command should make no changes and return a message that the partition exists, rather than terminating with an error\. This clause is useful when scripting, so the script doesn’t fail if ALTER TABLE tries to add a partition that already exists\. 
 
 DROP PARTITION \(*partition\_column*=*partition\_value* \[, \.\.\.\] \)   
 A clause that drops the specified partition\. Dropping a partition alters only the external table metadata\. The data on Amazon S3 is not affected\.

@@ -157,6 +157,6 @@ You can apply compression encodings to columns in tables manually when you creat
 
    For more information, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.
 
-## Next Step<a name="w3ab1c13c21c11"></a>
+## Next Step<a name="next-step-recreate-data"></a>
 
 [Step 6: Recreate the Test Data Set](tutorial-tuning-tables-recreate-test-data.md)
