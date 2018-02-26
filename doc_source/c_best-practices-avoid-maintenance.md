@@ -1,3 +1,0 @@
-# Schedule Around Maintenance Windows<a name="c_best-practices-avoid-maintenance"></a>
-
-If a scheduled maintenance occurs while a query is running, the query is terminated and rolled back and you will need to restart it\. Schedule long\-running operations, such as large data loads or VACUUM operation, to avoid maintenance windows\. You can also minimize the risk, and make restarts easier when they are needed, by performing data loads in smaller increments and managing the size of your VACUUM operations\. For more information, see [Load Data in Sequential Blocks](c_best-practices-load-data-in-sequential-blocks.md) and [Vacuuming Tables](t_Reclaiming_storage_space202.md)\.
