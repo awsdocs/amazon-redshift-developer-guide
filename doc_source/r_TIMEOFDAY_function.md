@@ -1,0 +1,25 @@
+# TIMEOFDAY Function<a name="r_TIMEOFDAY_function"></a>
+
+TIMEOFDAY is a special alias used to return the weekday, date, and time as a string value\.
+
+## Syntax<a name="r_TIMEOFDAY_function-syntax"></a>
+
+```
+TIMEOFDAY()
+```
+
+## Return Type<a name="r_TIMEOFDAY_function-return-type"></a>
+
+VARCHAR
+
+## Examples<a name="r_TIMEOFDAY_function-examples"></a>
+
+Return the current date and time by using the TIMEOFDAY function: 
+
+```
+select timeofday();
+timeofday
+------------
+Thu Sep 19 22:53:50.333525 2013 UTC
+(1 row)
+```

@@ -1,0 +1,3 @@
+# LZO Encoding<a name="lzo-encoding"></a>
+
+LZO encoding provides a very high compression ratio with good performance\. LZO encoding works especially well for CHAR and VARCHAR columns that store very long character strings, especially free form text, such as product descriptions, user comments, or JSON strings\. LZO is the default encoding except for columns that are designated as sort keys and columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types\.
