@@ -11,6 +11,10 @@ To use Redshift Spectrum, you need an Amazon Redshift cluster and a SQL client t
 
 If you already have a cluster, your cluster needs to be version 1\.0\.1294 or later to use Amazon Redshift Spectrum\. To find the version number for your cluster, run the following command\.
 
+```
+select version();
+```
+
 To force your cluster to update to the latest cluster version, adjust your [maintenance window](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)\. 
 
 ## Steps<a name="c-getting-started-using-spectrum-steps"></a>

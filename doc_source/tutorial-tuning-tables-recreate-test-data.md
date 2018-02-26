@@ -145,6 +145,6 @@ The load operation will take about 10 to 15 minutes\. This might be a good time 
    1. Record the load time in the benchmarks table\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-recreate-test-data.html)
 
-## Next Step<a name="w3ab1c13c23b7"></a>
+## Next Step<a name="next-step-retest"></a>
 
 [Step 7: Retest System Performance After Tuning](tutorial-tuning-tables-retest.md)

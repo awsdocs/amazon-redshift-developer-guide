@@ -34,44 +34,44 @@ GRANT USAGE
 
 ## Parameters<a name="r_GRANT-parameters"></a>
 
-SELECT   
+SELECT   <a name="grant-select"></a>
 Grants privilege to select data from a table or view using a SELECT statement\. The SELECT privilege is also required to reference existing column values for UPDATE or DELETE operations\.
 
-INSERT   
+INSERT   <a name="grant-insert"></a>
 Grants privilege to load data into a table using an INSERT statement or a COPY statement\. 
 
-UPDATE   
+UPDATE   <a name="grant-update"></a>
 Grants privilege to update a table column using an UPDATE statement\. UPDATE operations also require the SELECT privilege, because they must reference table columns to determine which rows to update, or to compute new values for columns\.
 
-DELETE   
+DELETE   <a name="grant-delete"></a>
 Grants privilege to delete a data row from a table\. DELETE operations also require the SELECT privilege, because they must reference table columns to determine which rows to delete\.
 
-REFERENCES   
+REFERENCES   <a name="grant-references"></a>
 Grants privilege to create a foreign key constraint\. You need to grant this privilege on both the referenced table and the referencing table; otherwise, the user cannot create the constraint\. 
 
-ALL \[ PRIVILEGES \]   
+ALL \[ PRIVILEGES \]   <a name="grant-all"></a>
 Grants all available privileges at once to the specified user or user group\. The PRIVILEGES keyword is optional\.  
 GRANT ALL ON SCHEMA does not grant CREATE privileges for external schemas\.
 
-ON \[ TABLE \] *table\_name*   
+ON \[ TABLE \] *table\_name*   <a name="grant-on-table"></a>
 Grants the specified privileges on a table or a view\. The TABLE keyword is optional\. You can list multiple tables and views in one statement\.
 
-ON ALL TABLES IN SCHEMA *schema\_name*   
+ON ALL TABLES IN SCHEMA *schema\_name*   <a name="grant-all-tables"></a>
 Grants the specified privileges on all tables and views in the referenced schema\.
 
-TO *username*   
+TO *username*   <a name="grant-to"></a>
 Indicates the user receiving the privileges\.
 
-WITH GRANT OPTION   
+WITH GRANT OPTION   <a name="grant-with-grant"></a>
 Indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can not be granted to a group or to PUBLIC\.
 
-GROUP *group\_name*   
+GROUP *group\_name*   <a name="grant-group"></a>
 Grants the privileges to a user group\.
 
-PUBLIC   
+PUBLIC   <a name="grant-public"></a>
 Grants the specified privileges to all users, including users created later\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\.
 
-CREATE   
+CREATE   <a name="grant-create"></a>
 Depending on the database object, grants the following privileges to the user or user group:  
 
 + For databases, CREATE allows users to create schemas within the database\.
@@ -80,24 +80,24 @@ Depending on the database object, grants the following privileges to the user or
 
 + CREATE ON SCHEMA isn't supported for Amazon Redshift Spectrum external schemas\. To grant usage of external tables in an external schema, grant USAGE ON SCHEMA to the users that need access\. Only the owner of an external schema or a superuser is permitted to create external tables in the external schema\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. 
 
-TEMPORARY | TEMP   
-Grants the privilege to create temporary tables in the specified database\.  
+TEMPORARY | TEMP   <a name="grant-temporary"></a>
+Grants the privilege to create temporary tables in the specified database\. To run Amazon Redshift Spectrum queries, the database user must have permission to create temporary tables in the database\.   
 By default, users are granted permission to create temporary tables by their automatic membership in the PUBLIC group\. To remove the privilege for any users to create temporary tables, revoke the TEMP permission from the PUBLIC group and then explicitly grant the permission to create temporary tables to specific users or groups of users\.
 
-ON DATABASE *db\_name*   
+ON DATABASE *db\_name*   <a name="grant-database"></a>
 Grants the specified privileges on a database\.
 
-USAGE   
+USAGE   <a name="grant-usage"></a>
 Grants USAGE privilege on a specific schema, which makes objects in that schema accessible to users\. Specific actions on these objects must be granted separately \(for example, SELECT or UPDATE privileges on tables\)\. By default, all users have CREATE and USAGE privileges on the PUBLIC schema\. 
 
-ON SCHEMA *schema\_name*   
+ON SCHEMA *schema\_name*   <a name="grant-schema"></a>
 Grants the specified privileges on a schema\.  
 GRANT CREATE ON SCHEMA and the CREATE privilege in GRANT ALL ON SCHEMA aren't supported for Amazon Redshift Spectrum external schemas\. To grant usage of external tables in an external schema, grant USAGE ON SCHEMA to the users that need access\. Only the owner of an external schema or a superuser is permitted to create external tables in the external schema\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. 
 
-EXECUTE ON \[ FUNCTION \] *function\_name*   
+EXECUTE ON \[ FUNCTION \] *function\_name*   <a name="grant-function"></a>
 Grants the EXECUTE privilege on a specific function\. Because function names can be overloaded, you must include the argument list for the function\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.
 
-EXECUTE ON ALL FUNCTIONS IN SCHEMA *schema\_name*  
+EXECUTE ON ALL FUNCTIONS IN SCHEMA *schema\_name*  <a name="grant-all-functions"></a>
 Grants the specified privileges on all functions in the referenced schema\.
 
 USAGE ON LANGUAGE *language\_name*   

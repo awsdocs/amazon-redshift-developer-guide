@@ -2,6 +2,8 @@
 
 The QUOTE\_IDENT function returns the specified string as a double quoted string so that it can be used as an identifier in a SQL statement\. Appropriately doubles any embedded double quotes\. 
 
+QUOTE\_IDENT adds double quotes only where necessary to create a valid identifier, when the string contains non\-identifier characters or would otherwise be folded to lowercase\. To always return a single\-quoted string, use [QUOTE\_LITERAL](r_QUOTE_LITERAL.md)\.
+
 ## Syntax<a name="r_QUOTE_IDENT-synopsis"></a>
 
 ```

@@ -16,9 +16,9 @@ Use one of the following to provide authorization for the COPY command:
 
 + [ACCESS_KEY_ID and SECRET_ACCESS_KEY](#copy-access-key-id) parameters
 
-+ [CREDENTIALS](#copy-credentials) clause
++ [CREDENTIALS](#copy-credentials) clause<a name="copy-authorization-parameters-list"></a>
 
-IAM\_ROLE '*iam\-role\-arn*'  
+IAM\_ROLE '*iam\-role\-arn*'  <a name="copy-iam-role"></a>
 The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. If you specify IAM\_ROLE, you can't use ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, SESSION\_TOKEN, or CREDENTIALS\.  
 The following shows the syntax for the IAM\_ROLE parameter\.   
 
@@ -27,7 +27,7 @@ IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-name>'
 ```
 For more information, see [Role\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based)\. 
 
-ACCESS\_KEY\_ID '*access\-key\-id *' SECRET\_ACCESS\_KEY '*secret\-access\-key*'  
+ACCESS\_KEY\_ID '*access\-key\-id *' SECRET\_ACCESS\_KEY '*secret\-access\-key*'  <a name="copy-access-key-id"></a>
 The access key ID and secret access key for an IAM user that is authorized to access the AWS resources that contain the data\. ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY must be used together\. Optionally, you can provide temporary access credentials and also specify the [SESSION_TOKEN](#copy-token) parameter\.   
 The following shows the syntax for the ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY parameters\.   
 
@@ -39,7 +39,7 @@ For more information, see [Key\-Based Access Control](copy-usage_notes-access-pe
 If you specify ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, you can't use IAM\_ROLE or CREDENTIALS\.   
 Instead of providing access credentials as plain text, we strongly recommend using role\-based authentication by specifying the IAM\_ROLE parameter\. For more information, see [Role\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based)\. 
 
-SESSION\_TOKEN '*temporary\-token*'  
+SESSION\_TOKEN '*temporary\-token*'  <a name="copy-token"></a>
 The session token for use with temporary access credentials\. When SESSION\_TOKEN is specified, you must also use ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY to provide temporary access key credentials\. If you specify SESSION\_TOKEN you can't use IAM\_ROLE or CREDENTIALS\. For more information, see [Temporary Security Credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials) in the IAM User Guide\.  
 Instead of creating temporary security credentials, we strongly recommend using role\-based authentication\. When you authorize using an IAM role, Amazon Redshift automatically creates temporary user credentials for each session\. For more information, see [Role\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based)\. 
 The following shows the syntax for the SESSION\_TOKEN parameter with the ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY parameters\.   
@@ -51,7 +51,7 @@ SESSION_TOKEN '<temporary-token>';
 ```
 If you specify SESSION\_TOKEN you can't use CREDENTIALS or IAM\_ROLE\. 
 
-\[WITH\] CREDENTIALS \[AS\] '*credentials\-args*'  
+\[WITH\] CREDENTIALS \[AS\] '*credentials\-args*'  <a name="copy-credentials"></a>
 A clause that indicates the method your cluster will use when accessing other AWS resources that contain data files or manifest files\. You can't use the CREDENTIALS parameter with IAM\_ROLE or ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY\.  
 For increased flexibility, we recommend using the [IAM_ROLE](#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](#copy-access-key-id) parameters instead of the CREDENTIALS parameter\.
 Optionally, if the [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) parameter is used, the *credentials\-args* string also provides the encryption key\.  

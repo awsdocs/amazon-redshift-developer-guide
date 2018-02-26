@@ -1,6 +1,6 @@
 # Prerequisites<a name="c-dev-guide-prereqs"></a>
 
-Before you use this guide, you should complete these tasks\.
+Before you use this guide, you should complete these tasks\.<a name="ul_vpv_yd1_n3"></a>
 
 + Install a SQL client\.
 

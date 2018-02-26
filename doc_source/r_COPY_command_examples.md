@@ -597,7 +597,46 @@ In the following examples, you will load the CATEGORY table with the following d
 
 To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. However, when using the `'auto'` argument, order does not matter\. The following shows the schema for a file named `category_auto.avro`\.
 
+```
+{
+    "name": "category",
+    "type": "record",
+    "fields": [
+        {"name": "catid", "type": "int"},
+        {"name": "catdesc", "type": "string"},
+        {"name": "catname", "type": "string"},
+        {"name": "catgroup", "type": "string"},
+}
+```
+
 The data in an Avro file is in binary format, so it is not human\-readable\. The following shows a JSON representation of the data in the `category_auto.avro` file\. 
+
+```
+{
+   "catid": 1,
+   "catdesc": "Major League Baseball",
+   "catname": "MLB",
+   "catgroup": "Sports"
+}
+{
+   "catid": 2,
+   "catdesc": "National Hockey League",
+   "catname": "NHL",
+   "catgroup": "Sports"
+}
+{
+   "catid": 3,
+   "catdesc": "National Basketball Association",
+   "catname": "NBA",
+   "catgroup": "Sports"
+}
+{
+   "catid": 4,
+   "catdesc": "All symphony, concerto, and choir concerts",
+   "catname": "Classical",
+   "catgroup": "Concerts"
+}
+```
 
 To load from the Avro data file in the previous example, execute the following COPY command\.
 
@@ -614,7 +653,32 @@ If the field names in the Avro schema don't correspond directly to column names,
 
 Suppose you have a data file named `category_paths.avro` that contains the same data as in the previous example, but with the following schema\.
 
+```
+{
+    "name": "category",
+    "type": "record",
+    "fields": [
+        {"name": "id", "type": "int"},
+        {"name": "desc", "type": "string"},
+        {"name": "name", "type": "string"},
+        {"name": "group", "type": "string"},
+        {"name": "region", "type": "string"} 
+     ]
+}
+```
+
 The following JSONPaths file, named `category_path.avropath`, maps the source data to the table columns\.
+
+```
+{
+    "jsonpaths": [
+        "$['id']",
+        "$['group']",
+        "$['name']",
+        "$['desc']"
+    ]
+}
+```
 
 To load from the Avro data file in the previous example, execute the following COPY command\.
 

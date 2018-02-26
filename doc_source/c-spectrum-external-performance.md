@@ -61,7 +61,7 @@ Following are ways to improve Redshift Spectrum performance:
 
 + Use the fewest columns possible in your queries\.
 
-+ Use multiple files to optimize for parallel processing\. Keep your file sizes between 100 MB and 1 GB\. Avoid data size skew by keeping files about the same size\.
++ Use multiple files to optimize for parallel processing\. Keep your file sizes larger than 64 MB\. Avoid data size skew by keeping files about the same size\.
 
 + Put your large fact tables in Amazon S3 and keep your frequently used, smaller dimension tables in your local Amazon Redshift database\.
 

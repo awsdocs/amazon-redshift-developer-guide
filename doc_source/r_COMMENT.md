@@ -50,8 +50,6 @@ Data types of the arguments for a function\. Parameter of FUNCTION\.
 
 Comments on databases may only be applied to the current database\. A warning message is displayed if you attempt to comment on a different database\. The same warning is displayed for comments on databases that do not exist\.
 
-Comments cannot be retrieved directly by using SQL commands\. Comments can be viewed by using the PostgreSQL psql tool, using the `\d` family of commands\.
-
 ## Example<a name="r_COMMENT-example"></a>
 
 The following example adds a descriptive comment to the EVENT table: 
@@ -59,6 +57,20 @@ The following example adds a descriptive comment to the EVENT table:
 ```
 comment on table
 event is 'Contains listings of individual events.';
+```
+
+To view comments, query the PG\_DESCRIPTION system catalog\. The following example returns the description for the EVENT table\.
+
+```
+select * from pg_catalog.pg_description 
+where objoid =
+(select oid from pg_class where relname = 'event' 
+and relnamespace =
+(select oid from pg_catalog.pg_namespace where nspname = 'public') );
+
+objoid | classoid | objsubid | description                            
+-------+----------+----------+----------------------------------------
+116658 |     1259 |        0 | Contains listings of individual events.
 ```
 
 The following example uses the psql `\dd` command to view the comments\. Amazon Redshift does not support psql directly\. You must execute psql commands from the PostgreSQL psql client\. 

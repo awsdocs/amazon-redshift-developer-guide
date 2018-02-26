@@ -21,21 +21,21 @@ VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX ]
 
 ## Parameters<a name="r_VACUUM_command-parameters"></a>
 
-FULL   
+FULL   <a name="vacuum-full"></a>
 Sorts the specified table \(or all tables in the current database\) and reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations\. A full vacuum doesn't perform a reindex for interleaved tables\. To reindex interleaved tables followed by a full vacuum, use the [VACUUM REINDEX](#vacuum-reindex) option\.   
 By default, VACUUM FULL skips the sort phase for any table that is already at least 95 percent sorted\. If VACUUM is able to skip the sort phase, it performs a DELETE ONLY and reclaims space in the delete phase such that at least 95 percent of the remaining rows are not marked for deletion\.    
 If the sort threshold is not met \(for example, if 90 percent of rows are sorted\) and VACUUM performs a full sort, then it also performs a complete delete operation, recovering space from 100 percent of deleted rows\.   
 You can change the default vacuum threshold only for a single table\. To change the default vacuum threshold for a single table, include the table name and the TO *threshold* PERCENT parameter\. 
 
-SORT ONLY   
+SORT ONLY   <a name="vacuum-sort-only"></a>
 Sorts the specified table \(or all tables in the current database\) without reclaiming space freed by deleted rows\. This option is useful when reclaiming disk space is not important but resorting new rows is important\. A SORT ONLY vacuum reduces the elapsed time for vacuum operations when the unsorted region doesn't contain a large number of deleted rows and doesn't span the entire sorted region\. Applications that don't have disk space constraints but do depend on query optimizations associated with keeping table rows sorted can benefit from this kind of vacuum\.  
 By default, VACUUM SORT ONLY skips any table that is already at least 95 percent sorted\. To change the default sort threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
-DELETE ONLY   
+DELETE ONLY   <a name="vacuum-delete-only"></a>
 Reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations, and compacts the table to free up the consumed space\. A DELETE ONLY vacuum operation doesn't sort table data\. This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but resorting new rows is not important\. This option can also be useful when your query performance is already optimal, and resorting rows to optimize query performance is not a requirement\.  
 By default, VACUUM DELETE ONLY reclaims space such that at least 95 percent of the remaining rows are not marked for deletion\. To change the default delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\.  
 
-REINDEX  
+REINDEX  <a name="vacuum-reindex"></a>
 Analyzes the distribution of the values in interleaved sort key columns, then performs a full VACUUM operation\. VACUUM REINDEX takes significantly longer than VACUUM FULL because it makes an additional pass to analyze the interleaved sort keys\. The sort and merge operation can take longer for interleaved tables because the interleaved sort might need to rearrange more rows than a compound sort\.  
 If a VACUUM REINDEX operation terminates before it completes, the next VACUUM resumes the reindex operation before performing the full vacuum operation\.  
 VACUUM REINDEX is not supported with TO *threshold* PERCENT\.  

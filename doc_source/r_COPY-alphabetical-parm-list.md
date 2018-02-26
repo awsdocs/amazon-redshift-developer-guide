@@ -12,7 +12,7 @@ The following list provides links to each COPY command parameter description, so
 
 + [BLANKSASNULL](copy-parameters-data-conversion.md#copy-blanksasnull)
 
-+ [BZIP2](copy-parameters-data-format.md#copy-bzip2) 
++ [BZIP2](copy-parameters-file-compression.md#copy-bzip2) 
 
 + [COMPROWS](copy-parameters-data-load.md#copy-comprows)
 
@@ -46,7 +46,7 @@ The following list provides links to each COPY command parameter description, so
 
 + [FROM](copy-parameters-data-source-s3.md#copy-parameters-from)
 
-+ [GZIP](copy-parameters-data-format.md#copy-gzip)
++ [GZIP](copy-parameters-file-compression.md#copy-gzip)
 
 + [IGNOREBLANKLINES](copy-parameters-data-conversion.md#copy-ignoreblanklines)
 
@@ -54,7 +54,7 @@ The following list provides links to each COPY command parameter description, so
 
 + [JSON](copy-parameters-data-format.md#copy-json)
 
-+ [LZOP](copy-parameters-data-format.md#copy-lzop)
++ [LZOP](copy-parameters-file-compression.md#copy-lzop)
 
 + [MANIFEST](copy-parameters-data-source-s3.md#copy-manifest)
 

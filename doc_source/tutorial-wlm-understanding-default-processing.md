@@ -106,13 +106,21 @@ For this step, you will need two psql windows open:
 
    This query returns a self\-referential result\. The query that is currently executing is the SELECT statement from this view\. A query on this view will always return at least one result\. You’ll compare this result with the result that occurs after starting the long\-running query in the next step\.
 
-1. In psql window 2, run the following query from the TICKIT sample database\.
+1. In psql window 2, you'll run a query from the TICKIT sample database\. This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. If you find that the query does not run long enough for you to query both views, you can increase the value of the filter on `l.listid `to make it run longer\.
+**Note**  
+To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When result caching is enabled, subsequent queries run much faster\. To prevent the query from running to quickly, disable result caching for the current session\.
+
+   To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`, as shown following\.
 
    ```
-   select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
+   set enable_result_cache_for_session to off;
    ```
-**Note**  
-This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. If you find that the query does not run long enough for you to query both views, you can increase the value of l\.listid to make it run longer\.
+
+   In psql window 2, run the following query\.
+
+   ```
+   select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid < 100000;
+   ```
 
 1. In psql window 1, query WLM\_QUEUE\_STATE\_VW and WLM\_QUERY\_STATE\_VW and compare the results to your earlier results\.
 

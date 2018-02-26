@@ -14,6 +14,40 @@ ALTER TABLE locks the table for read and write operations until the ALTER TABLE 
 
 ## Syntax<a name="r_ALTER_TABLE-synopsis"></a>
 
+```
+ALTER TABLE table_name
+{
+ADD table_constraint |
+DROP CONSTRAINT constraint_name [ RESTRICT | CASCADE ] |
+OWNER TO new_owner |
+RENAME TO new_name |
+RENAME COLUMN column_name TO new_name |
+ADD [ COLUMN ] column_name column_type
+[ DEFAULT default_expr ]
+[ ENCODE encoding ]
+[ NOT NULL | NULL ] |
+DROP [ COLUMN ] column_name [ RESTRICT | CASCADE ] }
+
+where table_constraint is:
+
+[ CONSTRAINT constraint_name ]
+{ UNIQUE ( column_name [, ... ] )  |
+PRIMARY KEY ( column_name [, ... ] ) |
+FOREIGN KEY (column_name [, ... ] )
+REFERENCES  reftable [ ( refcolumn ) ]}
+
+The following options apply only to external tables:
+
+SET LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' } |
+SET FILE FORMAT format |
+SET TABLE PROPERTIES ('property_name'='property_value') |
+PARTITION ( partition_column=partition_value [, ...] ) 
+  SET LOCATION { 's3://bucket/folder' |'s3://bucket/manifest_file' } |
+ADD [IF NOT EXISTS] PARTITION ( partition_column=partition_value [, ...] ) 
+  LOCATION { 's3://bucket/folder' |'s3://bucket/manifest_file' } |
+DROP PARTITION ( partition_column=partition_value [, ...] )
+```
+
 ## Parameters<a name="r_ALTER_TABLE-parameters"></a>
 
  *table\_name*   
@@ -86,7 +120,7 @@ The data type of the column being added\. For CHAR and VARCHAR columns, you can 
 
 + TIMESTAMP
 
-DEFAULT *default\_expr*   
+DEFAULT *default\_expr*   <a name="alter-table-default"></a>
 A clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions are not allowed\.  
 The *default\_expr* is used in any INSERT operation that doesn't specify a value for the column\. If no default value is specified, the default value for the column is null\.  
 If a COPY operation encounters a null field on a column that has a DEFAULT value and a NOT NULL constraint, the COPY command inserts the value of the *default\_expr*\. 
@@ -144,7 +178,7 @@ When used with DROP COLUMN, removes the specified column and anything dependent 
 The following options apply only to external tables\.
 
 SET LOCATION \{ 's3://*bucket/folder*/' | 's3://*bucket/manifest\_file*' \}  
-The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same region as the Amazon Redshift cluster\. For a list of supported regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\. For more information about using a manifest file, see LOCATION in the CREATE EXTERNAL TABLE referencce\.
+The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same region as the Amazon Redshift cluster\. For a list of supported regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\. For more information about using a manifest file, see LOCATION in the CREATE EXTERNAL TABLE [Parameters](r_CREATE_EXTERNAL_TABLE.md#r_CREATE_EXTERNAL_TABLE-parameters) reference\.
 
 SET FILE FORMAT *format*  
 The file format for external data files\.  
@@ -171,8 +205,9 @@ A property that sets number of rows to skip at the beginning of each source file
 PARTITION \( *partition\_column*=*partition\_value* \[, \.\.\.\] SET LOCATION \{ 's3://*bucket*/*folder*' | 's3://*bucket*/*manifest\_file*' \}  
 A clause that sets a new location for one or more partition columns\. 
 
-ADD PARTITION \( *partition\_column*=*partition\_value* \[, \.\.\.\] \) LOCATION \{ 's3://*bucket*/*folder*' | 's3://*bucket*/*manifest\_file*' \}  
-A clause that adds a partition\. Only one partition can be added in a single ALTER TABLE statement\.
+ADD \[ IF NOT EXISTS \] PARTITION \( *partition\_column*=*partition\_value* \[, \.\.\.\] \) LOCATION \{ 's3://*bucket*/*folder*' | 's3://*bucket*/*manifest\_file*' \}  
+A clause that adds a partition\. Only one partition can be added in a single ALTER TABLE statement\.  
+The IF NOT EXISTS clause indicates that if the specified partition already exists, the command should make no changes and return a message that the partition exists, rather than terminating with an error\. This clause is useful when scripting, so the script doesn’t fail if ALTER TABLE tries to add a partition that already exists\. 
 
 DROP PARTITION \(*partition\_column*=*partition\_value* \[, \.\.\.\] \)   
 A clause that drops the specified partition\. Dropping a partition alters only the external table metadata\. The data on Amazon S3 is not affected\.

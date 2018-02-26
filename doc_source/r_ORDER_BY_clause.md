@@ -42,11 +42,11 @@ Option that defines the sort order for the expression, as follows:
 NULLS FIRST | NULLS LAST  
 Option that specifies whether NULL values should be ordered first, before non\-null values, or last, after non\-null values\. By default, NULL values are sorted and ranked last in ASC ordering, and sorted and ranked first in DESC ordering\.
 
-LIMIT *number* | ALL   
+LIMIT *number* | ALL   <a name="order-by-clause-limit"></a>
 Option that controls the number of sorted rows that the query returns\. The LIMIT number must be a positive integer; the maximum value is `2147483647`\.   
 LIMIT 0 returns no rows\. You can use this syntax for testing purposes: to check that a query runs \(without displaying any rows\) or to return a column list from a table\. An ORDER BY clause is redundant if you are using LIMIT 0 to return a column list\. The default is LIMIT ALL\. 
 
-OFFSET *start*   
+OFFSET *start*   <a name="order-by-clause-offset"></a>
 Option that specifies to skip the number of rows before *start* before beginning to return rows\. The OFFSET number must be a positive integer; the maximum value is `2147483647`\. When used with the LIMIT option, OFFSET rows are skipped before starting to count the LIMIT rows that are returned\. If the LIMIT option is not used, the number of rows in the result set is reduced by the number of rows that are skipped\. The rows skipped by an OFFSET clause still have to be scanned, so it might be inefficient to use a large OFFSET value\.
 
 ## Usage Notes<a name="r_ORDER_BY_usage_notes"></a>

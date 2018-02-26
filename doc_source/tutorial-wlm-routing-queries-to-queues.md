@@ -52,11 +52,13 @@ First, verify that the database has the WLM configuration that you expect\.
 
    The query was routed to the test query group, which is queue 1 now\.
 
-1. Select all from the other view as shown following, and you’ll see a result similar to the following\.
+1. Select all from the queue state view\.
 
    ```
    select * from wlm_queue_state_vw;
-   ```  
+   ```
+
+   You'll see a result similar to the following\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_090.png)
 
 1. Now, reset the query group and run the long query again:

@@ -1,6 +1,6 @@
 # REGEXP\_INSTR Function<a name="REGEXP_INSTR"></a>
 
-Searches a string for a regular expression pattern and returns an integer that indicates the beginning position of the matched substring\. If no match is found, then the function returns 0\. REGEXP\_INSTR is similar to the [POSITION Function](r_POSITION.md), but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX Operators](pattern-matching-conditions-posix.md)\.
+Searches a string for a regular expression pattern and returns an integer that indicates the beginning position or ending position of the matched substring\. If no match is found, then the function returns 0\. REGEXP\_INSTR is similar to the [POSITION](r_POSITION.md) function, but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX Operators](pattern-matching-conditions-posix.md)\.
 
 ## Syntax<a name="REGEXP_INSTR-synopsis"></a>
 

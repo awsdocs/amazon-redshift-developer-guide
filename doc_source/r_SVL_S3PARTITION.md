@@ -20,3 +20,10 @@ from svl_s3partition
 where query = pg_last_query_id() 
 order by query,segment,slice;
 ```
+
+```
+query | segment | node | slice | duration | assigned | qualified | assignment
+------+---------+------+-------+----------+----------+----------+-----------
+17223 |       2 |    0 |     0 |   302671 |       12 |        1 | f         
+17223 |       2 |    1 |     2 |   265677 |       12 |        1 | f
+```

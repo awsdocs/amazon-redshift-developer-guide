@@ -18,3 +18,12 @@ from svl_s3query_summary
 where query = pg_last_query_id() 
 order by query,segment;
 ```
+
+```
+query | segment | elapsed | s3_scanned_rows | s3_scanned_bytes | s3query_returned_rows | s3query_returned_bytes | files
+------+---------+---------+-----------------+------------------+-----------------------+------------------------+------
+ 4587 |       2 |   67811 |               0 |                0 |                     0 |                      0 |     0
+ 4587 |       2 |  591568 |          172462 |         11260097 |                  8513 |                 170260 |     1
+ 4587 |       2 |  216849 |               0 |                0 |                     0 |                      0 |     0
+ 4587 |       2 |  216671 |               0 |                0 |                     0 |                      0 |     0
+```

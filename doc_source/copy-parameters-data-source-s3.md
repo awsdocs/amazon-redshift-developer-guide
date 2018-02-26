@@ -43,15 +43,15 @@ manifest;
 
 ### Parameters<a name="copy-parameters-data-source-s3-parameters"></a>
 
-FROM  
+FROM  <a name="copy-parameters-from"></a>
 The source of the data to be loaded\. 
 
-'s3://*copy\_from\_s3\_objectpath*'   
+'s3://*copy\_from\_s3\_objectpath*'   <a name="copy-s3-objectpath"></a>
 Specifies the path to the Amazon S3 objects that contain the data—for example, `'s3://mybucket/custdata.txt'`\. The *s3://copy\_from\_s3\_objectpath* parameter can reference a single file or a set of objects or folders that have the same key prefix\. For example, the name `custdata.txt` is a key prefix that refers to a number of physical files: `custdata.txt`,`custdata.txt.1`, `custdata.txt.2`, `custdata.txt.bak`,and so on\. The key prefix can also reference a number of folders\. For example, `'s3://mybucket/custfolder'` refers to the folders `custfolder`, `custfolder_1`, `custfolder_2`, and so on\. If a key prefix references multiple folders, all of the files in the folders will be loaded\. If a key prefix matches a file as well as a folder, such as `custfolder.log`, COPY attempts to load the file also\. If a key prefix might result in COPY attempting to load unwanted files, use a manifest file\. For more information, see [copy_from_s3_manifest_file](#copy-manifest-file), following\.   
 If the S3 bucket that holds the data files does not reside in the same region as your cluster, you must use the [REGION](#copy-region) parameter to specify the region in which the data is located\.
 For more information, see [Loading Data from Amazon S3](t_Loading-data-from-S3.md)\.
 
-'s3://*copy\_from\_s3\_manifest\_file*'   
+'s3://*copy\_from\_s3\_manifest\_file*'   <a name="copy-manifest-file"></a>
 Specifies the Amazon S3 object key for a manifest file that lists the data files to be loaded\. The *'s3://*copy\_from\_s3\_manifest\_file'** argument must explicitly reference a single file—for example, `'s3://mybucket/manifest.txt'`\. It cannot reference a key prefix\.  
 The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
 
@@ -72,20 +72,20 @@ For more information, see [Loading Data from Amazon S3](t_Loading-data-from-S3.m
 *authorization*  
 The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for an IAM user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization Parameters](copy-parameters-authorization.md)\.
 
-MANIFEST  
+MANIFEST  <a name="copy-manifest"></a>
 Specifies that a manifest is used to identify the data files to be loaded from Amazon S3\. If the MANIFEST parameter is used, COPY loads data from the files listed in the manifest referenced by *'s3://copy\_from\_s3\_manifest\_file'*\. If the manifest file is not found, or is not properly formed, COPY fails\. For more information, see [Using a Manifest to Specify Data Files](loading-data-files-using-manifest.md)\.
 
-ENCRYPTED  
+ENCRYPTED  <a name="copy-encrypted"></a>
 A clause that specifies that the input files on Amazon S3 are encrypted using client\-side encryption with customer\-managed symmetric keys \(CSE\-CMK\)\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. Don't specify ENCRYPTED if the input files are encrypted using Amazon S3 server\-side encryption \(SSE\-KMS or SSE\-S3\)\. COPY reads server\-side encrypted files automatically\.  
 If you specify the ENCRYPTED parameter, you must also specify the [MASTER_SYMMETRIC_KEY](#copy-master-symmetric-key) parameter or include the **master\_symmetric\_key** value in the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) string\.  
 If the encrypted files are in compressed format, add the GZIP, LZOP, or BZIP2 parameter\.  
 Manifest files and JSONPaths files must not be encrypted, even if the ENCRYPTED option is specified\.
 
-MASTER\_SYMMETRIC\_KEY '*master\_key*'  
+MASTER\_SYMMETRIC\_KEY '*master\_key*'  <a name="copy-master-symmetric-key"></a>
 The master symmetric key that was used to encrypt data files on Amazon S3\. If MASTER\_SYMMETRIC\_KEY is specified, the [ENCRYPTED](#copy-encrypted) parameter must also be specified\. MASTER\_SYMMETRIC\_KEY can't be used with the CREDENTIALS parameter\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\.  
 If the encrypted files are in compressed format, add the GZIP, LZOP, or BZIP2 parameter\.
 
-REGION \[AS\] '*aws\-region*'  
+REGION \[AS\] '*aws\-region*'  <a name="copy-region"></a>
 Specifies the AWS region where the source data is located\. REGION is required for COPY from an Amazon S3 bucket or an DynamoDB table when the AWS resource that contains the data is not in the same region as the Amazon Redshift cluster\.   
 The value for *aws\_region* must match a region listed in the following table\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-source-s3.html)

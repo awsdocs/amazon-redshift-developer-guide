@@ -1,6 +1,6 @@
 # Step 4: Query Your Data in Amazon S3<a name="c-getting-started-using-spectrum-query-s3-data"></a>
 
-After your external tables are created, you can query them using the same SELECT statements that you use to query other Amazon Redshift tables\. These SELECT statement queries include joining tables, aggregating data, and filtering on predicates\. 
+After your external tables are created, you can query them using the same SELECT statements that you use to query other Amazon Redshift tables\. These SELECT statement queries include joining tables, aggregating data, and filtering on predicates\. <a name="spectrum-get-started-query-s3-data"></a>
 
 **To query your data in Amazon S3**
 
@@ -8,6 +8,12 @@ After your external tables are created, you can query them using the same SELECT
 
    ```
    select count(*) from spectrum.sales;
+   ```
+
+   ```
+   count 
+   ------
+   172462
    ```
 
 1. Keep your larger fact tables in Amazon S3 and your smaller dimension tables in Amazon Redshift, as a best practice\. If you loaded the sample data in [Getting Started with Amazon Redshift](http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html), you have a table named EVENT in your database\. If not, create the EVENT table by using the following command\.
@@ -38,6 +44,21 @@ After your external tables are created, you can query them using the same SELECT
    and spectrum.sales.pricepaid > 30
    group by spectrum.sales.eventid
    order by 2 desc;
+   ```
+
+   ```
+   eventid | sum     
+   --------+---------
+       289 | 51846.00
+      7895 | 51049.00
+      1602 | 50301.00
+       851 | 49956.00
+      7315 | 49823.00
+      6471 | 47997.00
+      2118 | 47863.00
+       984 | 46780.00
+      7851 | 46661.00
+      5638 | 46280.00
    ```
 
 1. View the query plan for the previous query\. Note the `S3 Seq Scan`, `S3 HashAggregate`, and `S3 Query Scan` steps that were executed against the data on Amazon S3\.

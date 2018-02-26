@@ -73,10 +73,10 @@ region 'us-west-2';
 
 For steps to create an IAM role, see [Step 2: Create an IAM Role](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-an-iam-role.html) in the Amazon Redshift Getting Started\. For complete instructions on how to use COPY commands to load sample data, including instructions for loading data from other AWS regions, see [Step 6: Load Sample Data from Amazon S3](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started\.\.
 
-*table\-name*  
+*table\-name*  <a name="r_COPY-syntax-overview-table-name"></a>
 The name of the target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\.
 
-FROM *data\-source*  
+FROM *data\-source*  <a name="r_COPY-syntax-overview-data-source"></a>
 The location of the source data to be loaded into the target table\.  
 The most commonly used data repository is an Amazon S3 bucket\. You can also load from data files located in an Amazon EMR cluster, an Amazon EC2 instance, or a remote host that your cluster can access using an SSH connection, or you can load directly from a DynamoDB table\.   
 
@@ -88,7 +88,7 @@ The most commonly used data repository is an Amazon S3 bucket\. You can also loa
 
 + [COPY from Amazon DynamoDB](copy-parameters-data-source-dynamodb.md)
 
-Authorization  
+Authorization  <a name="r_COPY-syntax-overview-credentials"></a>
 A clause that indicates the method that your cluster will use for authentication and authorization to access other AWS resources\. The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an IAM role that is attached to your cluster or by providing the access key ID and secret access key for an IAM user\.   
 
 + [Authorization Parameters](copy-parameters-authorization.md) 
@@ -137,11 +137,11 @@ By default, the COPY command expects the source data to be in character\-delimit
 
 + [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) 
 
-+ [BZIP2](copy-parameters-data-format.md#copy-bzip2) 
++ [BZIP2](copy-parameters-file-compression.md#copy-bzip2) 
 
-+ [GZIP](copy-parameters-data-format.md#copy-gzip) 
++ [GZIP](copy-parameters-file-compression.md#copy-gzip) 
 
-+ [LZOP](copy-parameters-data-format.md#copy-lzop) 
++ [LZOP](copy-parameters-file-compression.md#copy-lzop) 
 
 #### Data Conversion Parameters<a name="r_COPY-syntax-overview-data-conversion"></a>
 

@@ -2,7 +2,7 @@
 
 We recommend that at regular intervals you update the statistical metadata that the query planner uses to build and choose optimal plans\. To do so, you analyze your tables\.
 
-You can analyze a table explicitly by running the [ANALYZE](r_ANALYZE.md) command\. To view 
+You can analyze a table explicitly by running the [ANALYZE](r_ANALYZE.md) command\. 
 
 
 + [ANALYZE Command History](c_check_last_analyze.md)
@@ -66,7 +66,7 @@ analyze listing(listid, totalprice, listtime);
 ```
 
 If the sellers and events in the application are much more static, and the date IDs refer to a fixed set of days covering only two or three years, the unique values for these columns don't change significantly\. However, the number of instances of each unique value will increase steadily\. In addition, consider the case where the NUMTICKETS and PRICEPERTICKET measures are queried infrequently compared to the TOTALPRICE column\. In this case you can run the ANALYZE command on the whole table once every weekend to update statistics for the five columns that are not analyzed daily: 
-
+<a name="t_Analyzing_tables-predicate-columns"></a>
 **Predicate Columns**  
 As a convenient alternative to specifying a column list, you can choose to analyze only the columns that are likely to be used as predicates\. When you run a query, any columns that are used in a join, filter condition, or group by clause are marked as predicate columns in the system catalog\. When you run ANALYZE with the PREDICATE COLUMNS clause, the analyze operation includes only columns that meet the following criteria:
 
@@ -119,6 +119,19 @@ When you query the PREDICATE\_COLUMNS view, as shown in the following example, y
 ```
 select * from predicate_columns 
 where table_name = 'listing';
+```
+
+```
+schema_name | table_name | col_num | col_name       | is_predicate | first_predicate_use | last_analyze       
+------------+------------+---------+----------------+--------------+---------------------+--------------------
+public      | listing    |       1 | listid         | true         | 2017-05-05 19:27:59 | 2017-05-03 18:27:41
+public      | listing    |       2 | sellerid       | false        |                     | 2017-05-03 18:27:41
+public      | listing    |       3 | eventid        | true         | 2017-05-16 20:54:32 | 2017-05-03 18:27:41
+public      | listing    |       4 | dateid         | false        |                     | 2017-05-03 18:27:41
+public      | listing    |       5 | numtickets     | false        |                     | 2017-05-03 18:27:41
+public      | listing    |       6 | priceperticket | false        |                     | 2017-05-03 18:27:41
+public      | listing    |       7 | totalprice     | false        |                     | 2017-05-03 18:27:41
+public      | listing    |       8 | listtime       | true         | 2017-05-16 20:54:32 | 2017-05-03 18:27:41
 ```
 
 To maintain current statistics for tables, do the following:

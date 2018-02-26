@@ -2,7 +2,29 @@
 
 Amazon Redshift Spectrum uses external tables to query data that is stored in Amazon S3\. You can query an external table using the same SELECT syntax you use with other Amazon Redshift tables\. External tables are read\-only\. You can't write to an external table\.
 
-You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. To grant usage of external tables in an external schema, grant usage on the schema to the users that need access\. For more information, see [GRANT](r_GRANT.md)\. 
+You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
+
+```
+alter schema spectrum_schema owner to newowner;
+```
+
+To run a Redshift Spectrum query, you need the following permissions:
+
++ Usage permission on the schema 
+
++ Permission to create temporary tables in the current database 
+
+The following example grants usage permission on the schema `spectrum_schema` to the `spectrumusers` user group\.
+
+```
+grant usage on schema spectrum_schema to group spectrumusers;
+```
+
+The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
+
+```
+grant temp on database spectrumdb to group spectrumusers;
+```
 
 You can create an external table in Amazon Redshift, AWS Glue, Amazon Athena, or an Apache Hive metastore\. For more information, see [Getting Started Using AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/getting-started.html) in the *AWS Glue Developer Guide*, [Getting Started](http://docs.aws.amazon.com/athena/latest/ug/getting-started.html) in the *Amazon Athena User Guide*, or [Apache Hive](http://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hive.html) in the *Amazon EMR Developer Guide*\. 
 
@@ -112,6 +134,21 @@ The sample data for this example is located in an Amazon S3 buckets that gives r
 aws s3 ls s3://awssampledbuswest2/tickit/spectrum/sales_partition/
 ```
 
+```
+PRE saledate=2008-01/
+   PRE saledate=2008-02/
+   PRE saledate=2008-03/
+   PRE saledate=2008-04/
+   PRE saledate=2008-05/
+   PRE saledate=2008-06/
+   PRE saledate=2008-07/
+   PRE saledate=2008-08/
+   PRE saledate=2008-09/
+   PRE saledate=2008-10/
+   PRE saledate=2008-11/
+   PRE saledate=2008-12/
+```
+
 If you don't already have an external schema, run the following command, substituting the Amazon Resource Name \(ARN\) for your AWS Identity and Access Management \(IAM\) role\.
 
 ```
@@ -195,6 +232,21 @@ where spectrum.sales_part.eventid = event.eventid
   and saledate = '2008-12-01'
 group by spectrum.sales_part.eventid
 order by 2 desc;
+```
+
+```
+eventid | sum     
+--------+---------
+    914 | 36173.00
+   5478 | 27303.00
+   5061 | 26383.00
+   4406 | 26252.00
+   5324 | 24015.00
+   1829 | 23911.00
+   3601 | 23616.00
+   3665 | 23214.00
+   6069 | 22869.00
+   5638 | 22551.00
 ```
 
 To view external table partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) system view\.

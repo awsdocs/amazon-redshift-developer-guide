@@ -68,17 +68,17 @@ Unloads the data to a file where each column width is a fixed length, rather tha
 'colID1:colWidth1,colID2:colWidth2, ...'
 ```
 
-ENCRYPTED  
+ENCRYPTED  <a name="unload-parameters-encrypted"></a>
 A clause that specifies that the output files on Amazon S3 will be encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\), use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you UNLOAD data using KMS\_KEY\_ID, you can then COPY the same data without specifying a key\.   
 To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key using the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the **master\_symmetric\_key** portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, you must supply the same key when you COPY the encrypted data\.   
 UNLOAD does not support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
 To compress encrypted unload files, add the GZIP or BZIP2 parameter\. 
 
-KMS\_KEY\_ID '*key\-id*'  
+KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
 The key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](http://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
 
-MASTER\_SYMMETRIC\_KEY '*master\_key*'  
+MASTER\_SYMMETRIC\_KEY '*master\_key*'  <a name="unload-parameters-master-symmetric-key"></a>
 The master symmetric key to be used to encrypt data files on Amazon S3\. If you specify MASTER\_SYMMETRIC\_KEY, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. MASTER\_SYMMETRIC\_KEY can't be used with the CREDENTIALS parameter\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. 
 
 BZIP2   
@@ -122,10 +122,10 @@ For CHAR and VARCHAR columns in delimited unload files, an escape character \(`\
 + A quote character: `"` or `'` \(if both ESCAPE and ADDQUOTES are specified in the UNLOAD command\)\.
 If you loaded your data using a COPY with the ESCAPE option, you must also specify the ESCAPE option with your UNLOAD command to generate the reciprocal output file\. Similarly, if you UNLOAD using the ESCAPE option, you will need to use ESCAPE when you COPY the same data\.
 
-ALLOWOVERWRITE   
+ALLOWOVERWRITE   <a name="allowoverwrite"></a>
 By default, UNLOAD fails if it finds files that it would possibly overwrite\. If ALLOWOVERWRITE is specified, UNLOAD will overwrite existing files, including the manifest file\. 
 
-PARALLEL   
+PARALLEL   <a name="unload-parallel"></a>
 By default, UNLOAD writes data in parallel to multiple files, according to the number of slices in the cluster\. The default option is ON or TRUE\. If PARALLEL is OFF or FALSE, UNLOAD writes to one or more data files serially, sorted absolutely according to the ORDER BY clause, if one is used\. The maximum size for a data file is 6\.2 GB\. So, for example, if you unload 13\.4 GB of data, UNLOAD creates the following three files\.  
 
 ```
@@ -135,7 +135,7 @@ s3://mybucket/key002    1.0 GB
 ```
 The UNLOAD command is designed to use parallel processing\. We recommend leaving PARALLEL enabled for most cases, especially if the files will be used to load tables using a COPY command\.
 
-MAXFILESIZE AS max\-size \[ MB | GB \]   
+MAXFILESIZE AS max\-size \[ MB | GB \]   <a name="unload-maxfilesize"></a>
 The maximum size of files UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE is not specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, is not affected by MAXFILESIZE\.
 
 ## Usage Notes<a name="unload-usage-notes"></a>

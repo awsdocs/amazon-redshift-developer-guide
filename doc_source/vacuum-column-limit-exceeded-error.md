@@ -1,6 +1,26 @@
 # Vacuum Column Limit Exceeded Error<a name="vacuum-column-limit-exceeded-error"></a>
 
-If your vacuum fails with the message `ERROR: 1036 DETAIL: Vacuum column limit exceeded`, your table has more columns than VACUUM can process with the available memory\. The vacuum column limit is less than the maximum number of columns for a table, which is 1600\. The actual column limit for a vacuum varies depending on your cluster's configuration\. For example, on clusters with DC1 or DS1 node types, you can generally VACUUM tables with up to about 250 columns\. With the DS2 node type, the limit could be as high as 375 columns for DS2\.xlarge or 625 columns for a DS2\.8xlarge cluster\.
+If your vacuum fails with the message `ERROR: 1036 DETAIL: Vacuum column limit exceeded` or `ERROR: 1036: Detail: vacuum_max_buffer is too small to vacuum`, your table has more columns than VACUUM can process with the available memory\. The vacuum column limit is less than the column limit for CREATE TABLE, which is 1600\. The actual column limit for a vacuum depends on the type of vacuum operation and your cluster's configuration\. The column limit includes three hidden system columns in addition to the user\-defined columns\.
+
+If a vacuum operation that requires resorting \(VACUUM FULL, VACUUM REINDEX, and VACUUM SORT on tables with sort keys\) exceeds the column limit, the vacuum fails with the following error\.
+
+```
+ERROR: 1036 DETAIL: Vacuum column limit exceeded
+```
+
+The following table shows the approximate column limits for each node type when vacuuming requires resorting\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/vacuum-column-limit-exceeded-error.html)
+
+If the column limit is exceeded for a delete\-only vacuum operation, the vacuum fails with the following error\.
+
+```
+ERROR: 1036: Detail: vacuum_max_buffer is too small to vacuum
+```
+
+The following table shows the approximate column limits for each node type for a delete\-only vacuum operation\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/vacuum-column-limit-exceeded-error.html)
 
 You can increase the vacuum column limit by increasing the value of [wlm\_query\_slot\_count](r_wlm_query_slot_count.md), which increases the amount of memory available for the query\. The maximum value for `wlm_query_slot_count` is limited to the concurrency value for the queue\. For more information, see [Best Practices for Designing Queries](c_designing-queries-best-practices.md)\.
 

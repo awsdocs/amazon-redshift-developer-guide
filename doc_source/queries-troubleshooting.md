@@ -133,4 +133,4 @@ For the best performance, set the fetch size to the highest value that does not 
 **Note**  
 If you need to extract large datasets, we recommend using an [UNLOAD](r_UNLOAD.md) statement to transfer the data to Amazon S3\. When you use UNLOAD, the compute nodes work in parallel to speed up the transfer of data\.
 
-For more information about setting the JDBC fetch size parameter, go to [Getting results based on a cursor](http://jdbc.postgresql.org/documentation/head/query.html#query-with-cursor) in the PostgreSQL documentation\.
+For more information about setting the JDBC fetch size parameter, go to [Getting results based on a cursor](https://jdbc.postgresql.org/documentation/head/query.html#query-with-cursor) in the PostgreSQL documentation\.

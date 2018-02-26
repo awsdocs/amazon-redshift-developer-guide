@@ -15,10 +15,10 @@ COPY table_name [ column_list ] FROM data_source CREDENTIALS access_credentials 
 ```
 
 To execute a COPY command, you provide the following values\. 
-
+<a name="tutorial-loading-syntax-table-name"></a>
 **Table name**  
 The target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\. 
-
+<a name="tutorial-loading-syntax-column-list"></a>
 **Column list**  
 By default, COPY loads fields from the source data to the table columns in order\. You can optionally specify a *column list,* that is a comma\-separated list of column names, to map data fields to specific columns\. You will not use column lists in this tutorial\. For more information, see [Column List](copy-parameters-column-mapping.md#copy-column-list) in the COPY command reference\.
 
@@ -33,7 +33,7 @@ You can use the COPY command to load data from an Amazon S3 bucket, an Amazon EM
 + Manifest file
 
   If you need to load files with different prefixes, for example, from multiple buckets or folders, or if you need to exclude files that share a prefix, you can use a manifest file\. A *manifest file* explicitly lists each load file and its unique object key\. You will use a manifest file to load the PART table later in this tutorial\. 
-
+<a name="tutorial-loading-syntax-credentials"></a>
 **Credentials**  
 To access the AWS resources that contain the data to load, you must provide AWS access credentials \(that is, an access key ID and a secret access key\) for an AWS user or an IAM user with sufficient privileges\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing Access Permissions to Your Amazon S3 Resources](http://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you will need to get them\. For more information, go to [Administering Access Keys for IAM Users](http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
 
@@ -106,7 +106,7 @@ For each COPY command, do the following:
 In this step, you will use the CSV and NULL AS options to load the PART table\. 
 
 The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you will compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split Your Load Data into Multiple Files](c_best-practices-use-multiple-files.md)\. 
-
+<a name="tutorial-loading-key-prefix"></a>
 **Key Prefix**  
 You can load from multiple files by specifying a key prefix for the file set, or by explicitly listing the files in a manifest file\. In this step, you will use a key prefix\. In a later step, you will use a manifest file\. The key prefix `'s3://mybucket/load/part-csv.tbl'` loads the following set of the files in the `load` folder\. 
 
@@ -120,7 +120,7 @@ part-csv.tbl-005
 part-csv.tbl-006
 part-csv.tbl-007
 ```
-
+<a name="tutorial-loading-csv-format"></a>
 **CSV Format**  
 CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quote character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quote character by using the QUOTE AS option\. When you use the quote character within the field, escape the character with an additional quote character\.
 
@@ -178,7 +178,7 @@ limit 10;
 ------------------+------------+----------------------------------------------
  15,NUL next,     |            | Missing newline: Unexpected character 0x2c f
 ```
-
+<a name="tutorial-loading-null-as"></a>
 **NULL AS**  
 The `part-csv.tbl` data files use the NUL terminator character \(`\x000` or `\x0`\) to indicate NULL values\.
 
@@ -220,7 +220,7 @@ In this step you will use the DELIMITER and REGION options to load the SUPPLIER 
 
 **Note**  
 The files for loading the SUPPLIER table are provided in an AWS sample bucket\. You don't need to upload files for this step\.
-
+<a name="tutorial-loading-character-delimited-format"></a>
 **Character\-Delimited Format**  
 The fields in a character\-delimited file are separated by a specific character, such as a pipe character \( | \), a comma \( , \) or a tab \( \\t \)\. Character\-delimited files can use any single ASCII character, including one of the nonprinting ASCII characters, as the delimiter\. You specify the delimiter character by using the DELIMITER option\. The default delimiter is a pipe character \( | \)\. 
 
@@ -230,7 +230,7 @@ The following excerpt from the data for the SUPPLIER table uses pipe\-delimited 
 1|1|257368|465569|41365|19950218|2-HIGH|0|17|2608718|9783671|4|2504369|92072|2|19950331|TRUCK
 1|2|257368|201928|8146|19950218|2-HIGH|0|36|6587676|9783671|9|5994785|109794|6|19950416|MAIL
 ```
-
+<a name="tutorial-loading-region"></a>
 **REGION**  
 Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency, minimize eventual consistency issues, and avoid cross\-region data transfer costs\. For more information, see [Best Practices for Loading Data](c_loading-data-best-practices.md) 
 
@@ -261,7 +261,7 @@ region 'us-east-1';
 In this step, you will use the FIXEDWIDTH, MAXERROR, ACCEPTINVCHARS, and MANIFEST options to load the CUSTOMER table\.
 
 The sample data for this exercise contains characters that will cause errors when COPY attempts to load them\. You will use the MAXERRORS option and the STL\_LOAD\_ERRORS system table to troubleshoot the load errors and then use the ACCEPTINVCHARS and MANIFEST options to eliminate the errors\.
-
+<a name="tutorial-loading-fixed-width"></a>
 **Fixed\-Width Format**  
 Fixed\-width format defines each field as a fixed number of characters, rather than separating fields with a delimiter\. The following excerpt from the data for the CUSTOMER table uses fixed\-width format\.
 
@@ -303,7 +303,7 @@ Execution time: 2.95s
 
 1 statement(s) failed.
 ```
-
+<a name="tutorial-loading-maxerror"></a>
 **MAXERROR**  
 By default, the first time COPY encounters an error, the command fails and returns an error message\. To save time during testing, you can use the MAXERROR option to instruct COPY to skip a specified number of errors before it fails\. Because we expect errors the first time we test loading the CUSTOMER table data, add `maxerror 10` to the COPY command\. 
 
@@ -400,7 +400,7 @@ The rows should be unique, but there are duplicates\.
 Another way to check for unexpected results is to verify the number of rows that were loaded\. In our case, 100000 rows should have been loaded, but the load message reported loading 112497 records\. The extra rows were loaded because the COPY loaded an extraneous file, `customer-fw.tbl0000.bak`\. 
 
 In this exercise, you will use a manifest file to avoid loading the wrong files\. 
-
+<a name="tutorial-loading-acceptinvchars"></a>
 **ACCEPTINVCHARS**  
 By default, when COPY encounters a character that is not supported by the column's data type, it skips the row and returns an error\. For information about invalid UTF\-8 characters, see [Multibyte Character Load Errors](multi-byte-character-load-errors.md)\. 
 
@@ -413,7 +413,7 @@ COPY returns the number of rows that contained invalid UTF\-8 characters, and it
 ACCEPTINVCHARS is valid only for VARCHAR columns\. 
 
 For this step, you will add the ACCEPTINVCHARS with the replacement character `'^'`\. 
-
+<a name="tutorial-loading-manifest"></a>
 **MANIFEST**  
 When you COPY from Amazon S3 using a key prefix, there is a risk that you will load unwanted tables\. For example, the `'s3://mybucket/load/` folder contains eight data files that share the key prefix `customer-fw.tbl`: `customer-fw.tbl0000`, `customer-fw.tbl0001`, and so on\. However, the same folder also contains the extraneous files `customer-fw.tbl.log` and `customer-fw.tbl-0001.bak`\. 
 
@@ -470,7 +470,7 @@ The following excerpt shows date formats in the DWDATE table\. Notice that the d
 19920112	January 12, 1992	Monday		January	1992	199201	Jan1992	2	12	12	1...
 19920120	January 20, 1992	Tuesday	    January	1992	199201	Jan1992	3	20	20	1...
 ```
-
+<a name="tutorial-loading-dateformat"></a>
 **DATEFORMAT**  
 You can specify only one date format\. If the load data contains inconsistent formats, possibly in different columns, or if the format is not known at load time, you use DATEFORMAT with the `'auto'` argument\. When `'auto'` is specified, COPY will recognize any valid date or time format and convert it to the default format\. The `'auto'` option recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. 
 
@@ -491,13 +491,13 @@ In this exercise, you will load the LINEORDER table from a single data file, and
 
 **Note**  
 The files for loading the LINEORDER table are provided in an AWS sample bucket\. You don't need to upload files for this step\.
-
+<a name="tutorial-loading-gzip-lzop"></a>
 **GZIP, LZOP and BZIP2**  
 You can compress your files using either gzip, lzop, or bzip2 compression formats\. When loading from compressed files, COPY uncompresses the files during the load process\. Compressing your files saves storage space and shortens upload times\. 
-
+<a name="tutorial-loading-compupdate"></a>
 **COMPUPDATE**  
 When COPY loads an empty table with no compression encodings, it analyzes the load data to determine the optimal encodings\. It then alters the table to use those encodings before beginning the load\. This analysis process takes time, but it occurs, at most, once per table\. To save time, you can skip this step by turning COMPUPDATE off\. To enable an accurate evaluation of COPY times, you will turn COMPUPDATE off for this step\.
-
+<a name="tutorial-loading-multiple-files"></a>
 **Multiple Files**  
 The COPY command can load data very efficiently when it loads from multiple files in parallel instead of loading from a single file\. If you split your data into files so that the number of files is a multiple of the number of slices in your cluster, Amazon Redshift divides the workload and distributes the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For more information about the number of slices that each node size has, go to [About Clusters and Nodes](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 

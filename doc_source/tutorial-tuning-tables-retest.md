@@ -135,6 +135,12 @@ After recreating the test data set with the selected sort keys, distribution sty
 
 1. Run the same test queries again\.
 
+   If you reconnected to the database since your first set of tests, disable result caching for this session\. To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`, as shown following\.
+
+   ```
+   set enable_result_cache_for_session to off;
+   ```
+
    As you did earlier, run the following queries twice to eliminate compile time\. Record the second time for each query in the benchmarks table\.
 
    ```

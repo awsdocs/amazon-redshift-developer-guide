@@ -18,7 +18,7 @@ In addition to the Python Standard Library, the following modules are part of th
 
 + [numpy 1\.8\.2](http://www.numpy.org/)
 
-+ [pandas 0\.14\.1](http://pandas.pydata.org/)
++ [pandas 0\.14\.1](https://pandas.pydata.org/)
 
 + [python\-dateutil 2\.2](https://dateutil.readthedocs.org/en/latest/)
 

@@ -25,7 +25,7 @@ The following example adds one partition for the table SPECTRUM\.SALES\_PART\.
 
 ```
 alter table spectrum.sales_part
-add partition(saledate='2008-01-01') 
+add if not exists partition(saledate='2008-01-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
 ```
 
