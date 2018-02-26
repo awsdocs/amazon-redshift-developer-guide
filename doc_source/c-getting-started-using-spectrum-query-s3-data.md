@@ -1,6 +1,10 @@
 # Step 4: Query Your Data in Amazon S3<a name="c-getting-started-using-spectrum-query-s3-data"></a>
 
+<<<<<<< HEAD
 After your external tables are created, you can query them using the same SELECT statements that you use to query other Amazon Redshift tables\. These SELECT statement queries include joining tables, aggregating data, and filtering on predicates\. <a name="spectrum-get-started-query-s3-data"></a>
+=======
+After your external tables are created, you can query them using the same SELECT statements that you use to query other Amazon Redshift tables\. These SELECT statement queries include joining tables, aggregating data, and filtering on predicates\. 
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 **To query your data in Amazon S3**
 
@@ -10,12 +14,15 @@ After your external tables are created, you can query them using the same SELECT
    select count(*) from spectrum.sales;
    ```
 
+<<<<<<< HEAD
    ```
    count 
    ------
    172462
    ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 1. Keep your larger fact tables in Amazon S3 and your smaller dimension tables in Amazon Redshift, as a best practice\. If you loaded the sample data in [Getting Started with Amazon Redshift](http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html), you have a table named EVENT in your database\. If not, create the EVENT table by using the following command\.
 
    ```
@@ -46,6 +53,7 @@ After your external tables are created, you can query them using the same SELECT
    order by 2 desc;
    ```
 
+<<<<<<< HEAD
    ```
    eventid | sum     
    --------+---------
@@ -61,6 +69,8 @@ After your external tables are created, you can query them using the same SELECT
       5638 | 46280.00
    ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 1. View the query plan for the previous query\. Note the `S3 Seq Scan`, `S3 HashAggregate`, and `S3 Query Scan` steps that were executed against the data on Amazon S3\.
 
    ```

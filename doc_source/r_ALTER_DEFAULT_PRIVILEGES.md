@@ -47,6 +47,7 @@ REVOKE { EXECUTE | ALL [ PRIVILEGES ] }
 
 ## Parameters<a name="r_ALTER_DEFAULT_PRIVILEGES-parameters"></a>
 
+<<<<<<< HEAD
 FOR USER *target\_user*  <a name="default-for-user"></a>
 Optional\. The name of the user for which default privileges are defined\. Only a superuser can specify default privileges for other users\. The default value is the current user\.
 
@@ -69,6 +70,30 @@ GRANT OPTION FOR  <a name="default-revoke-option"></a>
  A clause that revokes only the option to grant a specified privilege to other users and doesn't revoke the privilege itself\. You cannot revoke GRANT OPTION from a group or from PUBLIC\. 
 
 FROM *user\_name* | GROUP *group\_name*  <a name="default-from"></a>
+=======
+FOR USER *target\_user*  
+Optional\. The name of the user for which default privileges are defined\. Only a superuser can specify default privileges for other users\. The default value is the current user\.
+
+IN SCHEMA *schema\_name*   
+Optional\. If an IN SCHEMA clause appears, the specified default privileges are applied to new objects created in the specified *schema\_name*\. In this case, the user or user group that is the target of ALTER DEFAULT PRIVILEGES must have CREATE privilege for the specified schema\. Default privileges that are specific to a schema are added to existing global default privileges\. By default, default privileges are applied globally to the entire database\. 
+
+GRANT   
+The set of privileges to grant to the specified users or groups for all new tables or functions created by the specified user\. You can set the same privileges and options with the GRANT clause that you can with the [GRANT](r_GRANT.md) command\. 
+
+WITH GRANT OPTION   
+A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. You cannot grant WITH GRANT OPTION to a group or to PUBLIC\. 
+
+TO *user\_name* | GROUP *group\_name*   
+The name of the user or user group to which the specified default privileges will be applied\.
+
+REVOKE   
+The set of privileges to revoke from the specified users or groups for all new tables or functions created by the specified user\. You can set the same privileges and options with the REVOKE clause that you can with the [REVOKE](r_REVOKE.md) command\. 
+
+GRANT OPTION FOR  
+ A clause that revokes only the option to grant a specified privilege to other users and doesn't revoke the privilege itself\. You cannot revoke GRANT OPTION from a group or from PUBLIC\. 
+
+FROM *user\_name* | GROUP *group\_name*  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 The name of the user or user group from which the specified privileges will be revoked by default\.
 
 ## Examples<a name="r_ALTER_DEFAULT_PRIVILEGES-examples"></a>

@@ -39,7 +39,11 @@ Interleaved sorts are most effective with highly selective queries that filter o
 An interleaved sort is more effective with large tables\. Sorting is applied on each slice, so an interleaved sort is most effective when a table is large enough to require multiple 1 MB blocks per slice and the query processor is able to skip a significant proportion of the blocks using restrictive predicates\. To view the number of blocks a table uses, query the [STV\_BLOCKLIST](r_STV_BLOCKLIST.md) system view\.
 
  When sorting on a single column, an interleaved sort might give better performance than a compound sort if the column values have a long common prefix\. For example, URLs commonly begin with "http://www"\. Compound sort keys use a limited number of characters from the prefix, which results in a lot of duplication of keys\. Interleaved sorts use an internal compression scheme for zone map values that enables them to better discriminate among column values that have a long common prefix\.
+<<<<<<< HEAD
 <a name="t_Sorting_data-interleaved-reindex"></a>
+=======
+
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 **VACUUM REINDEX**  
 As you add rows to a sorted table that already contains data, performance might deteriorate over time\. This deterioration occurs for both compound and interleaved sorts, but it has a greater effect on interleaved tables\. A VACUUM restores the sort order, but the operation can take longer for interleaved tables because merging new interleaved data might involve modifying every data block\.
 

@@ -102,6 +102,7 @@ When you query the SVV\_EXTERNAL\_TABLES system view, you see tables in the Athe
 select * from svv_external_tables;
 ```
 
+<<<<<<< HEAD
 ```
 schemaname    | tablename        | location                                               
 --------------+------------------+--------------------------------------------------------
@@ -112,6 +113,8 @@ spectrum      | sales            | s3://awssampledbuswest2/tickit/spectrum/sales
 spectrum      | sales_part       | s3://awssampledbuswest2/tickit/spectrum/sales_part
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 ### Registering an Apache Hive Metastore Database<a name="c-spectrum-hive-metastore"></a>
 
 If you create external tables in an Apache Hive metastore, you can use CREATE EXTERNAL SCHEMA to register those tables in Redshift Spectrum\. 

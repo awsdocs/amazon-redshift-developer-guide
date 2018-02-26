@@ -25,7 +25,11 @@ The following example adds one partition for the table SPECTRUM\.SALES\_PART\.
 
 ```
 alter table spectrum.sales_part
+<<<<<<< HEAD
 add if not exists partition(saledate='2008-01-01') 
+=======
+add partition if not exists (saledate='2008-01-01') 
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
 ```
 

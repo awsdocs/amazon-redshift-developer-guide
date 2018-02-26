@@ -49,7 +49,11 @@ select pg_timezone_names();
 select pg_timezone_abbrevs();
 ```
 
+<<<<<<< HEAD
 You can also find current information about time zones in the [IANA Time Zone Database](https://www.iana.org/time-zones)\.
+=======
+You can also find current information about time zones in the [IANA Time Zone Database](http://www.iana.org/time-zones)\.
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 The following table has examples of time zone formats\. 
 

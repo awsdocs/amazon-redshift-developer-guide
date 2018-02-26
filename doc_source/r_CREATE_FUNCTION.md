@@ -63,7 +63,11 @@ $$ my statement $$
 ```
 $test$ my statement $test$
 ```
+<<<<<<< HEAD
  For more information about dollar quoting, see *Dollar\-quoted String Constants* in the [ Lexical Structure](https://www.postgresql.org/docs/9.4/static/sql-syntax-lexical.html) section of the PostgreSQL manual\. 
+=======
+ For more information about dollar quoting, see *Dollar\-quoted String Constants* in the [ Lexical Structure](http://www.postgresql.org/docs/9.4/static/sql-syntax-lexical.html) section of the PostgreSQL manual\. 
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 *python\_program*   
 A valid executable Python program that returns a value\. The statement that you pass in with the function must conform to indentation requirements as specified in the [Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/#indentation) on the Python website\. For more information, see [Python Language Support for UDFs](udf-python-language-support.md)\.

@@ -29,7 +29,11 @@ Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL
 
 + Postgres system columns
 
+<<<<<<< HEAD
   Amazon Redshift SQL does not implicitly define system columns\. However, the PostgreSQL system column names cannot be used as names of user\-defined columns\. See [https://www\.postgresql\.org/docs/8\.0/static/ddl\-system\-columns\.html](https://www.postgresql.org/docs/8.0/static/ddl-system-columns.html) 
+=======
+  Amazon Redshift SQL does not implicitly define system columns\. However, the PostgreSQL system column names cannot be used as names of user\-defined columns\. See [http://www\.postgresql\.org/docs/8\.0/static/ddl\-system\-columns\.html](http://www.postgresql.org/docs/8.0/static/ddl-system-columns.html) 
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 + Indexes
 

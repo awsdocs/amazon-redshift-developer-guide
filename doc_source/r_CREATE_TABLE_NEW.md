@@ -103,12 +103,20 @@ The data type of the column being created\. For CHAR and VARCHAR columns, you ca
 
 + TIMESTAMPTZ
 
+<<<<<<< HEAD
 DEFAULT *default\_expr*   <a name="create-table-default"></a>
+=======
+DEFAULT *default\_expr*   
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 Clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions are not allowed\.  
 The *default\_expr* expression is used in any INSERT operation that does not specify a value for the column\. If no default value is specified, the default value for the column is null\.  
 If a COPY operation with a defined column list omits a column that has a DEFAULT value, the COPY command inserts the value of *default\_expr*\.
 
+<<<<<<< HEAD
 IDENTITY\(*seed*, *step*\)   <a name="identity-clause"></a>
+=======
+IDENTITY\(*seed*, *step*\)   
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 Clause that specifies that the column is an IDENTITY column\. An IDENTITY column contains unique auto\-generated values\. The data type for an IDENTITY column must be either INT or BIGINT\. When you add rows using an INSERT statement, these values start with the value specified as *seed* and increment by the number specified as *step\.* When you load the table using a COPY statement, an IDENTITY column might not be useful\. With a COPY operation, the data is loaded in parallel and distributed to the node slices\. To be sure that the identity values are unique, Amazon Redshift skips a number of values when creating the identity values\. As a result, identity values are unique and sequential, but not consecutive, and the order might not match the order in the source files\. 
 
 ENCODE*encoding*   
@@ -171,11 +179,19 @@ References *reftable* \[ \( *refcolumn* \) \]
 Clause that specifies a foreign key constraint, which implies that the column must contain only values that match values in the referenced column of some row of the referenced table\. The referenced columns should be the columns of a unique or primary key constraint in the referenced table\.   
  Foreign key constraints are informational only\. They are not enforced by the system, but they are used by the planner\. 
 
+<<<<<<< HEAD
 LIKE *parent\_table* \[ \{ INCLUDING | EXCLUDING \} DEFAULTS \]   <a name="create-table-like"></a>
 A clause that specifies an existing table from which the new table automatically copies column names, data types, and NOT NULL constraints\. The new table and the parent table are decoupled, and any changes made to the parent table are not applied to the new table\. Default expressions for the copied column definitions are copied only if INCLUDING DEFAULTS is specified\. The default behavior is to exclude default expressions, so that all columns of the new table have null defaults\.   
 Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you cannot explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
 
 BACKUP \{ YES | NO \}   <a name="create-table-backup"></a>
+=======
+LIKE *parent\_table* \[ \{ INCLUDING | EXCLUDING \} DEFAULTS \]   
+A clause that specifies an existing table from which the new table automatically copies column names, data types, and NOT NULL constraints\. The new table and the parent table are decoupled, and any changes made to the parent table are not applied to the new table\. Default expressions for the copied column definitions are copied only if INCLUDING DEFAULTS is specified\. The default behavior is to exclude default expressions, so that all columns of the new table have null defaults\.   
+Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you cannot explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
+
+BACKUP \{ YES | NO \}   
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that won't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
 
 DISTSTYLE \{ EVEN | KEY | ALL \}  

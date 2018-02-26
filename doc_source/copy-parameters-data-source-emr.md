@@ -32,7 +32,11 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 FROM  
 The source of the data to be loaded\. 
 
+<<<<<<< HEAD
  'emr://*emr\_cluster\_id*/*hdfs\_file\_path*'  <a name="copy-emr"></a>
+=======
+ 'emr://*emr\_cluster\_id*/*hdfs\_file\_path*'  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 The unique identifier for the Amazon EMR cluster and the HDFS file path that references the data files for the COPY command\. The HDFS data file names must not contain the wildcard characters asterisk \(\*\) and question mark \(?\)\.   
 The Amazon EMR cluster must continue running until the COPY operation completes\. If any of the HDFS data files are changed or deleted before the COPY operation completes, you might have unexpected results, or the COPY operation might fail\. 
 You can use the wildcard characters asterisk \(\*\) and question mark \(?\) as part of the *hdfs\_file\_path* argument to specify multiple files to be loaded\. For example, `'emr://j-SAMPLE2B500FC/myoutput/part*'` identifies the files `part-0000`, `part-0001`, and so on\. If the file path does not contain wildcard characters, it is treated as a string literal\. If you specify only a folder name, COPY attempts to load all files in the folder\.   

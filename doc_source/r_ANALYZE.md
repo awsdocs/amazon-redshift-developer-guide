@@ -46,7 +46,11 @@ Amazon Redshift automatically runs ANALYZE on tables that you create with the fo
  You can't analyze an external table\.
 
 You do not need to run the ANALYZE command on these tables when they are first created\. If you modify them, you should analyze them in the same way as other tables\.
+<<<<<<< HEAD
 <a name="r_ANALYZE-threshold"></a>
+=======
+
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 **Analyze Threshold**  
 To reduce processing time and improve overall system performance, Amazon Redshift skips ANALYZE for a table if the percentage of rows that have changed since the last ANALYZE command run is lower than the analyze threshold specified by the [analyze\_threshold\_percent](r_analyze_threshold_percent.md) parameter\. By default, `analyze_threshold_percent` is 10\. To change `analyze_threshold_percent` for the current session, execute the [SET](r_SET.md) command\. The following example changes `analyze_threshold_percent` to 20 percent\.
 

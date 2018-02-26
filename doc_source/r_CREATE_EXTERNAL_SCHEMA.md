@@ -17,6 +17,7 @@ To view details for external schemas, query the [SVV\_EXTERNAL\_SCHEMAS](r_SVV_E
 
 ## Syntax<a name="r_CREATE_EXTERNAL_SCHEMA-synopsis"></a>
 
+<<<<<<< HEAD
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] schema_name
 FROM { [ DATA CATALOG ] |  HIVE METASTORE }
@@ -28,6 +29,8 @@ IAM_ROLE 'iam-role-arn-string' ]
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 ## Parameters<a name="r_CREATE_EXTERNAL_SCHEMA-parameters"></a>
 
 IF NOT EXISTS  
@@ -48,12 +51,18 @@ If the external database is defined in an Athena data catalog, the region in whi
 URI '*hive\_metastore\_uri*' \[ PORT port\_number \]  
 If the database is in a Hive metastore, specify the URI and optionally the port number for the metastore\. The default port number is 9083\. 
 
+<<<<<<< HEAD
 IAM\_ROLE '*iam\-role\-arn\-string*'  
 The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
+=======
+IAM\_ROLE '*iam\-role\-arn*'   
+The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the S3 objects the bucket contains\. If the external database is defined in an Athena data catalog, the IAM role must have permission to access Athena\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter\.  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 ```
 IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-name>'
 ```
+<<<<<<< HEAD
 You can chain roles so that your cluster can assume another IAM role, possibly belonging to another account\. You can chain up to 10 roles\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.   
 The list of chained roles must not include spaces\.
 The following shows the syntax for chaining three roles\.  
@@ -77,6 +86,10 @@ CATALOG_ROLE 'arn:aws:iam::<aws-account-id>:role/<catalog-role-1-name>,arn:aws:i
 ```
 
 CREATE EXTERNAL DATABASE IF NOT EXISTS  
+=======
+
+ CREATE EXTERNAL DATABASE IF NOT EXISTS  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 A clause that creates an external database with the name specified by the DATABASE argument, if the specified external database doesn't exist\. If the specified external database exists, the command makes no changes\. In this case, the command returns a message that the external database exists, rather than terminating with an error\.  
 CREATE EXTERNAL DATABASE IF NOT EXISTS can't be used with HIVE METASTORE\.
 
@@ -124,6 +137,7 @@ from hive metastore
 database 'hive_db'
 uri '172.10.10.10' port 99
 iam_role 'arn:aws:iam::123456789012:role/MySpectrumRole';
+<<<<<<< HEAD
 ```
 
 The following example chains roles to use the role `myS3Role` for accessing Amazon S3 and uses `myAthenaRole` for data catalog access\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.
@@ -135,4 +149,6 @@ database 'spectrum_db'
 iam_role 'arn:aws:iam::123456789012:role/myRedshiftRole,arn:aws:iam::123456789012:role/myS3Role'
 catalog_role 'arn:aws:iam::123456789012:role/myAthenaRole'
 create external database if not exists;
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 ```

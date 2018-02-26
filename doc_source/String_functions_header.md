@@ -45,7 +45,11 @@
 String functions process and manipulate character strings or expressions that evaluate to character strings\. When the *string* argument in these functions is a literal value, it must be enclosed in single quotes\. Supported data types include CHAR and VARCHAR\. 
 
 The following section provides the function names, syntax, and descriptions for supported functions\. All offsets into strings are 1\-based\. 
+<<<<<<< HEAD
 <a name="string-functions-deprecated"></a>
+=======
+
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 **Deprecated Leader Node\-Only Functions**  
 The following string functions are deprecated because they execute only on the leader node\. For more information, see [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)
 

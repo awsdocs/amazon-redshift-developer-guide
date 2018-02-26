@@ -36,14 +36,22 @@ readratio 50;
 FROM  
 The source of the data to be loaded\. 
 
+<<<<<<< HEAD
 'dynamodb://*table\-name*'  <a name="copy-dynamodb"></a>
+=======
+'dynamodb://*table\-name*'  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 The name of the DynamoDB table that contains the data, for example `'dynamodb://ProductCatalog'`\. For details about how DynamoDB attributes are mapped to Amazon Redshift columns, see [Loading Data from an Amazon DynamoDB Table](t_Loading-data-from-dynamodb.md)\.  
 A DynamoDB table name is unique to an AWS account, which is identified by the AWS access credentials\.
 
 *authorization*  
 The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for an IAM user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization Parameters](copy-parameters-authorization.md)\.
 
+<<<<<<< HEAD
 READRATIO \[AS\] *ratio*  <a name="copy-readratio"></a>
+=======
+READRATIO \[AS\] *ratio*  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 The percentage of the DynamoDB table's provisioned throughput to use for the data load\. READRATIO is required for COPY from DynamoDB\. It cannot be used with COPY from Amazon S3\. We highly recommend setting the ratio to a value less than the average unused provisioned throughput\. Valid values are integers 1–200\.  
 Setting READRATIO to 100 or higher will enable Amazon Redshift to consume the entirety of the DynamoDB table's provisioned throughput, which will seriously degrade the performance of concurrent read operations against the same table during the COPY session\. Write traffic will be unaffected\. Values higher than 100 are allowed to troubleshoot rare scenarios when Amazon Redshift fails to fulfill the provisioned throughput of the table\. If you load data from DynamoDB to Amazon Redshift on an ongoing basis, consider organizing your DynamoDB tables as a time series to separate live traffic from the COPY operation\.
 

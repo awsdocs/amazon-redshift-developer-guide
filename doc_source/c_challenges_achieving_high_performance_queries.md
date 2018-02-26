@@ -75,7 +75,11 @@ userid | query  | elapsed  | source_query
    100 | 628891 | 58808694 |
 ```
 
+<<<<<<< HEAD
 For details about the queries used to create the results shown in the previous example, see [Step 2: Test System Performance to Establish a Baseline](tutorial-tuning-tables-test-performance.md) in the [Tuning Table Design](tutorial-tuning-tables.md) tutorial\.
+=======
+For details about the queries used to create the results shown in the previous example, see [Step 2: Test System Performance to Establish a Baseline](tutorial-tuning-tables-test-performance.md) in the Tuning Table Design tutorial\.
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 ## Compiled Code<a name="compiled-code"></a>
 

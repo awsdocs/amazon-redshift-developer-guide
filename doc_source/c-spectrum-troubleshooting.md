@@ -14,10 +14,13 @@ Following, you can find a quick reference for identifying and addressing some of
 
 If an Amazon Redshift Spectrum request times out, the request is canceled and resubmitted\. After five failed retries, the query fails with the following error\.
 
+<<<<<<< HEAD
 ```
 error:  S3Query Exception (Fetch), retries exceeded
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 Possible causes include the following: 
 
 + Large file sizes \(greater than 1 GB\)\. Check your file sizes in Amazon S3 and look for large files and file size skew\. Break up large files into smaller files, between 100 MB and 1 GB\. Try to make files about the same size\. 
@@ -55,6 +58,7 @@ order by query,segment,slice;
 
 The following is an example of a result that shows the full error message\.
 
+<<<<<<< HEAD
 ```
                             message
 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––-
@@ -64,6 +68,8 @@ Parquet schema for column ' s3bucket/location.col1'.
 Column type: VARCHAR, Parquet schema:\noptional int64 l_orderkey [i:0 d:1 r:0]\n
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 To correct the error, alter the external table to match the column type of the Parquet file\. 
 
 ## Syntax Error When Using Hive DDL in Amazon Redshift<a name="spectrum-troubleshooting-syntax-error-using-hive-ddl"></a>

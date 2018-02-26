@@ -17,6 +17,7 @@ select query, segment, slice, elapsed, s3_scanned_rows, s3_scanned_bytes, s3quer
 from svl_s3query 
 where query = pg_last_query_id() 
 order by query,segment,slice;
+<<<<<<< HEAD
 ```
 
 ```
@@ -26,4 +27,6 @@ query | segment | slice | elapsed | s3_scanned_rows | s3_scanned_bytes | s3query
  4587 |       2 |     1 |  591568 |          172462 |         11260097 |                  8513 |                 170260 |     1
  4587 |       2 |     2 |  216849 |               0 |                0 |                     0 |                      0 |     0
  4587 |       2 |     3 |  216671 |               0 |                0 |                     0 |                      0 |     0
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 ```

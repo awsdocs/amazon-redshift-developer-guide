@@ -134,6 +134,7 @@ The sample data for this example is located in an Amazon S3 buckets that gives r
 aws s3 ls s3://awssampledbuswest2/tickit/spectrum/sales_partition/
 ```
 
+<<<<<<< HEAD
 ```
 PRE saledate=2008-01/
    PRE saledate=2008-02/
@@ -149,6 +150,8 @@ PRE saledate=2008-01/
    PRE saledate=2008-12/
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 If you don't already have an external schema, run the following command, substituting the Amazon Resource Name \(ARN\) for your AWS Identity and Access Management \(IAM\) role\.
 
 ```
@@ -234,6 +237,7 @@ group by spectrum.sales_part.eventid
 order by 2 desc;
 ```
 
+<<<<<<< HEAD
 ```
 eventid | sum     
 --------+---------
@@ -249,6 +253,8 @@ eventid | sum
    5638 | 22551.00
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 To view external table partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) system view\.
 
 ```

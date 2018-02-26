@@ -597,6 +597,7 @@ In the following examples, you will load the CATEGORY table with the following d
 
 To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. However, when using the `'auto'` argument, order does not matter\. The following shows the schema for a file named `category_auto.avro`\.
 
+<<<<<<< HEAD
 ```
 {
     "name": "category",
@@ -638,6 +639,10 @@ The data in an Avro file is in binary format, so it is not human\-readable\. The
 }
 ```
 
+=======
+The data in an Avro file is in binary format, so it is not human\-readable\. The following shows a JSON representation of the data in the `category_auto.avro` file\. 
+
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 To load from the Avro data file in the previous example, execute the following COPY command\.
 
 ```
@@ -653,6 +658,7 @@ If the field names in the Avro schema don't correspond directly to column names,
 
 Suppose you have a data file named `category_paths.avro` that contains the same data as in the previous example, but with the following schema\.
 
+<<<<<<< HEAD
 ```
 {
     "name": "category",
@@ -680,6 +686,10 @@ The following JSONPaths file, named `category_path.avropath`, maps the source da
 }
 ```
 
+=======
+The following JSONPaths file, named `category_path.avropath`, maps the source data to the table columns\.
+
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 To load from the Avro data file in the previous example, execute the following COPY command\.
 
 ```

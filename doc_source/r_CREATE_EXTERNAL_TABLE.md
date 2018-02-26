@@ -14,6 +14,7 @@ You can't execute CREATE EXTERNAL TABLE inside a transaction \(BEGIN … END\)\.
 
 ## Syntax<a name="r_CREATE_EXTERNAL_TABLE-synopsis"></a>
 
+<<<<<<< HEAD
 ```
 CREATE EXTERNAL TABLE
 external_schema.table_name  
@@ -27,6 +28,8 @@ LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' }
 [ TABLE PROPERTIES ( 'property_name'='property_value' [, ...] ) ]
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 ## Parameters<a name="r_CREATE_EXTERNAL_TABLE-parameters"></a>
 
  *external\_schema\.table\_name*   
@@ -92,7 +95,11 @@ A clause that specifies the format of the underlying data\. Possible values for 
 + LINES TERMINATED BY '*delimiter*' 
 
 + FIELDS TERMINATED BY '*delimiter*' 
+<<<<<<< HEAD
 Specify a single ASCII character for '*delimiter*'\. You can specify non\-printing ASCII characters using octal, in the format `'\`*`ddd`*`'` where *`d`* is an octal digit \(0–7\) up to ‘\\177’\. The following example specifies the BEL \(bell\) character using octal\.   
+=======
+Specify a single ASCII character for '*delimiter*'\. You can specify non\-printing ASCII characters using octal, in the format `'\`*`ddd`*`'` where *`d`* is an octal digit \(0–7\)\. The following example specifies the BEL \(bell\) character using octal\.   
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 ```
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\007'
@@ -136,7 +143,11 @@ For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example
 'org.apache.hadoop.mapred.TextInputFormat'
 ```
 
+<<<<<<< HEAD
 LOCATION \{ 's3://*bucket/folder*/' | 's3://*bucket/manifest\_file*'  <a name="create-external-table-location"></a>
+=======
+LOCATION \{ 's3://*bucket/folder*/' | 's3://*bucket/manifest\_file*'  
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same region as the Amazon Redshift cluster\. For a list of supported regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
 If the path specifies a folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\.   
 If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example,`'s3://mybucket/manifest.txt'`\. It cannot reference a key prefix\.   
@@ -229,6 +240,7 @@ location 's3://awssampledbuswest2/tickit/spectrum/sales/'
 table properties ('numRows'='170000');
 ```
 
+<<<<<<< HEAD
 The following example creates a table that uses the JsonSerDe to reference data in JSON format\.
 
 ```
@@ -250,6 +262,8 @@ with serdeproperties (
 ) location ‘s3://mybucket/json/cloudtrail';
 ```
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 For a list of existing databases in the external data catalog, query the [SVV\_EXTERNAL\_DATABASES](r_SVV_EXTERNAL_DATABASES.md) system view\. 
 
 ```
@@ -366,6 +380,7 @@ To add the partitions, run the following ALTER TABLE commands\.
 
 ```
 alter table spectrum.sales_part
+<<<<<<< HEAD
 add if not exists partition (saledate='2008-01-01') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
 alter table spectrum.sales_part
@@ -400,6 +415,42 @@ add if not exists partition (saledate='2008-11-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11/';
 alter table spectrum.sales_part
 add if not exists partition (saledate='2008-12-01') 
+=======
+add partition if not exists (saledate='2008-01-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-02-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-03-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-04-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-05-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-06-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-07-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-08-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-09-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-10-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-11-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11/';
+alter table spectrum.sales_part
+add partition if not exists (saledate='2008-12-01') 
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12/';
 ```
 

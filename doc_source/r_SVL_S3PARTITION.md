@@ -19,6 +19,7 @@ qualified_partitions as qualified, assignment
 from svl_s3partition 
 where query = pg_last_query_id() 
 order by query,segment,slice;
+<<<<<<< HEAD
 ```
 
 ```
@@ -26,4 +27,6 @@ query | segment | node | slice | duration | assigned | qualified | assignment
 ------+---------+------+-------+----------+----------+----------+-----------
 17223 |       2 |    0 |     0 |   302671 |       12 |        1 | f         
 17223 |       2 |    1 |     2 |   265677 |       12 |        1 | f
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 ```

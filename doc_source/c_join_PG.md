@@ -35,6 +35,7 @@ The following catalog tables and views provide useful information that can be jo
 
 The following tables are completely accessible and contain no unsupported types or functions: 
 
+<<<<<<< HEAD
 +  [pg\_attribute](https://www.postgresql.org/docs/8.0/static/catalog-pg-attribute.html) 
 
 +  [pg\_cast ](https://www.postgresql.org/docs/8.0/static/catalog-pg-cast.html) 
@@ -76,6 +77,49 @@ The following tables are partially accessible and contain some unsupported types
 +  [pg\_user](https://www.postgresql.org/docs/8.0/static/view-pg-user.html) 
 
 +  [pg\_views](https://www.postgresql.org/docs/8.0/static/view-pg-views.html) 
+=======
++  [pg\_attribute](http://www.postgresql.org/docs/8.0/static/catalog-pg-attribute.html) 
+
++  [pg\_cast ](http://www.postgresql.org/docs/8.0/static/catalog-pg-cast.html) 
+
++  [pg\_depend](http://www.postgresql.org/docs/8.0/static/catalog-pg-depend.html) 
+
++  [pg\_description ](http://www.postgresql.org/docs/8.0/static/catalog-pg-description.html) 
+
++  [pg\_locks ](http://www.postgresql.org/docs/8.0/static/view-pg-locks.html) 
+
++  [pg\_opclass ](http://www.postgresql.org/docs/8.0/static/catalog-pg-opclass.html) 
+
+The following tables are partially accessible and contain some unsupported types, functions, and truncated text columns\. Values in text columns are truncated to varchar\(256\) values\. 
+
++  [pg\_class](http://www.postgresql.org/docs/8.0/static/catalog-pg-class.html) 
+
++  [pg\_constraint](http://www.postgresql.org/docs/8.0/static/catalog-pg-constraint.html) 
+
++  [pg\_database](http://www.postgresql.org/docs/8.0/static/catalog-pg-database.html) 
+
++  [pg\_group](http://www.postgresql.org/docs/8.0/static/catalog-pg-group.html) 
+
++  [pg\_language ](http://www.postgresql.org/docs/8.0/static/catalog-pg-language.html) 
+
++  [pg\_namespace](http://www.postgresql.org/docs/8.0/static/catalog-pg-namespace.html) 
+
++  [pg\_operator](http://www.postgresql.org/docs/8.0/static/catalog-pg-operator.html) 
+
++  [pg\_proc](http://www.postgresql.org/docs/8.0/static/catalog-pg-proc.html) 
+
++  [pg\_settings](http://www.postgresql.org/docs/8.0/static/view-pg-settings.html) 
+
++  [pg\_statistic](http://www.postgresql.org/docs/8.0/static/catalog-pg-statistic.html) 
+
++  [pg\_tables](http://www.postgresql.org/docs/8.0/static/view-pg-tables.html) 
+
++  [pg\_type ](http://www.postgresql.org/docs/8.0/static/catalog-pg-type.html) 
+
++  [pg\_user](http://www.postgresql.org/docs/8.0/static/view-pg-user.html) 
+
++  [pg\_views](http://www.postgresql.org/docs/8.0/static/view-pg-views.html) 
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 The catalog tables that are not listed here are either inaccessible or unlikely to be useful to Amazon Redshift administrators\. However, you can query any catalog table or view openly if your query does not involve a join to an Amazon Redshift table\.
 

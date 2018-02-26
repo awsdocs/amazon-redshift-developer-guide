@@ -53,12 +53,19 @@ Redshift Spectrum transparently decrypts data files that are encrypted using the
 
 Redshift Spectrum doesn't support Amazon S3 client\-side encryption\. For more information, see [Protecting Data Using Server\-Side Encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.
 
+<<<<<<< HEAD
 **Multiple files**
 
+=======
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 Amazon Redshift uses massively parallel processing \(MPP\) to achieve fast execution of complex queries operating on large amounts of data\. Redshift Spectrum extends the same principle to query external data, using multiple Redshift Spectrum instances as needed to scan files\. Place the files in a separate folder for each table\. 
 
 You can optimize your data for parallel processing by the following practices:
 
+<<<<<<< HEAD
 + Break large files into many smaller files\. We recommend using file sizes larger than 64 MB\. Store files for a table in the same folder\.
+=======
++ Break large files into many smaller files\. We recommend using file sizes between 100 MB and 1 GB\. Store files for a table in the same folder\.
+>>>>>>> d940ef9046cd1aeb28a5d74442d2035df797200d
 
 + Keep all the files about the same size\. If some files are much larger than others, Redshift Spectrum can't distribute the workload evenly\. 
