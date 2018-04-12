@@ -6,6 +6,8 @@ For a given percentile value P, PERCENTILE\_DISC sorts the values of the express
 
 You can specify only the PARTITION clause in the OVER clause\. 
 
+PERCENTILE\_DISC is a compute\-node only function\. The function returns an error if the query doesn't reference a user\-defined table or Amazon Redshift system table\.
+
 ## Syntax<a name="r_WF_PERCENTILE_DISC-synopsis"></a>
 
 ```

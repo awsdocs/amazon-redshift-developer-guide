@@ -1,6 +1,6 @@
 # COPY<a name="r_COPY"></a>
 
-Loads data into a table from data files or from an Amazon DynamoDB table\. The files can be located in an Amazon Simple Storage Service \(Amazon S3\) bucket, an Amazon EMR \(Amazon EMR\) cluster, or a remote host that is accessed using a Secure Shell \(SSH\) connection\.
+Loads data into a table from data files or from an Amazon DynamoDB table\. The files can be located in an Amazon Simple Storage Service \(Amazon S3\) bucket, an Amazon EMR cluster, or a remote host that is accessed using a Secure Shell \(SSH\) connection\.
 
 **Note**  
 Amazon Redshift Spectrum external tables are read\-only\. You can't COPY to an external table\.

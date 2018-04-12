@@ -80,3 +80,25 @@ The following tables are partially accessible and contain some unsupported types
 The catalog tables that are not listed here are either inaccessible or unlikely to be useful to Amazon Redshift administrators\. However, you can query any catalog table or view openly if your query does not involve a join to an Amazon Redshift table\.
 
 You can use the OID columns in the Postgres catalog tables as joining columns\. For example, the join condition `pg_database.oid = stv_tbl_perm.db_id` matches the internal database object ID for each PG\_DATABASE row with the visible DB\_ID column in the STV\_TBL\_PERM table\. The OID columns are internal primary keys that are not visible when you select from the table\. The catalog views do not have OID columns\.
+
+Some Amazon Redshift functions must execute only on the compute nodes\. If a query references a user\-created table, the SQL runs on the compute nodes\.
+
+A query that references only catalog tables \(tables with a PG prefix, such as PG\_TABLE\_DEF\) or that does not reference any tables, runs exclusively on the leader node\.
+
+If a query that uses a compute\-node function doesn't reference a user\-defined table or Amazon Redshift system table returns the following error\.
+
+```
+[Amazon](500310) Invalid operation: One or more of the used functions must be applied on at least one user created table.
+```
+
+The following Amazon Redshift functions are compute\-node only functions:
+
+System information functions
+
++ LISTAGG
+
++ MEDIAN
+
++ PERCENTILE\_CONT
+
++ PERCENTILE\_DISC and APPROXIMATE PERCENTILE\_DISC

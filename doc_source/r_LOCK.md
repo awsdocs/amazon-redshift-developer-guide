@@ -22,7 +22,7 @@ TABLE
 Optional keyword\.
 
  *table\_name*   
-Name of the table to lock\. You can lock more than one table by using a comma\-delimited list of table names\. You cannot lock views\. 
+Name of the table to lock\. You can lock more than one table by using a comma\-delimited list of table names\. You can't lock views\. 
 
 ## Example<a name="example2"></a>
 

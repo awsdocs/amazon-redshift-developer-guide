@@ -7,11 +7,11 @@ ALTER TABLE APPEND moves data blocks between the source table and the target tab
 
 Columns with the same names must also have identical column attributes\. If either the source table or the target table contains columns that don't exist in the other table, use the IGNOREEXTRA or FILLTARGET parameters to specify how extra columns should be managed\. 
 
-You cannot append an identity column\. If both tables include an identity column, the command fails\. If only one table has an identity column, include the FILLTARGET or IGNOREXTRA parameter\. For more information, see [ALTER TABLE APPEND Usage Notes](#r_ALTER_TABLE_APPEND_usage)\.
+You can't append an identity column\. If both tables include an identity column, the command fails\. If only one table has an identity column, include the FILLTARGET or IGNOREXTRA parameter\. For more information, see [ALTER TABLE APPEND Usage Notes](#r_ALTER_TABLE_APPEND_usage)\.
 
 Both the source table and the target table must be permanent tables\. Both tables must use the same distribution style and distribution key, if one was defined\. If the tables are sorted, both tables must use the same sort style and define the same columns as sort keys\.
 
-An ALTER TABLE APPEND command automatically commits immediately upon completion of the operation\. It cannot be rolled back\. You can't run ALTER TABLE APPEND within a transaction block \(BEGIN \.\.\. END\)\. 
+An ALTER TABLE APPEND command automatically commits immediately upon completion of the operation\. It can't be rolled back\. You can't run ALTER TABLE APPEND within a transaction block \(BEGIN \.\.\. END\)\. 
 
 ## Syntax<a name="r_ALTER_TABLE_APPEND-synopsis"></a>
 
@@ -29,10 +29,10 @@ The name of the table to which rows will be appended\. Either specify just the n
 The name of the table that provides the rows to be appended\. Either specify just the name of the table or use the format *schema\_name\.table\_name* to use a specific schema\. The source table must be an existing permanent table\.
 
 IGNOREEXTRA   
-A keyword that specifies that if the source table includes columns that are not present in the target table, data in the extra columns should be discarded\. You cannot use IGNOREEXTRA with FILLTARGET\. 
+A keyword that specifies that if the source table includes columns that are not present in the target table, data in the extra columns should be discarded\. You can't use IGNOREEXTRA with FILLTARGET\. 
 
 FILLTARGET   
-A keyword that specifies that if the target table includes columns that are not present in the source table, the columns should be filled with the [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) column value, if one was defined, or NULL\. You cannot use IGNOREEXTRA with FILLTARGET\. 
+A keyword that specifies that if the target table includes columns that are not present in the source table, the columns should be filled with the [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) column value, if one was defined, or NULL\. You can't use IGNOREEXTRA with FILLTARGET\. 
 
 ## ALTER TABLE APPEND Usage Notes<a name="r_ALTER_TABLE_APPEND_usage"></a>
 
@@ -44,7 +44,7 @@ ALTER TABLE APPEND moves only identical columns from the source table to the tar
 
 + If the target table contains columns that don't exist in the source table, include FILLTARGET\. The command fills the extra columns in the source table with either the default column value or IDENTITY value, if one was defined, or NULL\.
 
-+ If both the source table and the target table contain extra columns, the command fails\. You cannot use both FILLTARGET and IGNOREEXTRA\. 
++ If both the source table and the target table contain extra columns, the command fails\. You can't use both FILLTARGET and IGNOREEXTRA\. 
 
 If a column with the same name but different attributes exists in both tables, the command fails\. Like\-named columns must have the following attributes in common: 
 
@@ -64,7 +64,7 @@ If a column with the same name but different attributes exists in both tables, t
 
 + Distribution key columns
 
-You cannot append an identity column\. If both the source table and the target table have identity columns, the command fails\. If only the source table has an identity column, include the IGNOREEXTRA parameter so that the identity column is ignored\. If only the target table has an identity column, include the FILLTARGET parameter so that the identity column is populated according to the IDENTITY clause defined for the table\. For more information, see [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default)\. 
+You can't append an identity column\. If both the source table and the target table have identity columns, the command fails\. If only the source table has an identity column, include the IGNOREEXTRA parameter so that the identity column is ignored\. If only the target table has an identity column, include the FILLTARGET parameter so that the identity column is populated according to the IDENTITY clause defined for the table\. For more information, see [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default)\. 
 
 ## ALTER TABLE APPEND Examples<a name="r_ALTER_TABLE_APPEND_examples"></a>
 

@@ -113,14 +113,14 @@ insert into category_ident(catgroup,catname,catdesc)
 select catgroup,catname,catdesc from category;
 ```
 
-Note that you cannot insert specific integer values into the CATID IDENTITY column\. IDENTITY column values are automatically generated\.
+Note that you can't insert specific integer values into the CATID IDENTITY column\. IDENTITY column values are automatically generated\.
 
-The following example demonstrates that subqueries cannot be used as expressions in multiple\-row INSERT VALUES statements: 
+The following example demonstrates that subqueries can't be used as expressions in multiple\-row INSERT VALUES statements: 
 
 ```
 insert into category(catid) values
 ((select max(catid)+1 from category)),
 ((select max(catid)+2 from category));
 
-ERROR: cannot use subqueries in multi-row VALUES
+ERROR: can't use subqueries in multi-row VALUES
 ```

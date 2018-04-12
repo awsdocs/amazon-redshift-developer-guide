@@ -49,7 +49,7 @@ LOCAL
 Optional\. Although this keyword is accepted in the statement, it has no effect in Amazon Redshift\.
 
 TEMPORARY | TEMP   
-Keyword that creates a temporary table that is visible only within the current session\. The table is automatically dropped at the end of the session in which it is created\. The temporary table can have the same name as a permanent table\. The temporary table is created in a separate, session\-specific schema\. \(You cannot specify a name for this schema\.\) This temporary schema becomes the first schema in the search path, so the temporary table will take precedence over the permanent table unless you qualify the table name with the schema name to access the permanent table\. For more information about schemas and precedence, see [search\_path](r_search_path.md)\.  
+Keyword that creates a temporary table that is visible only within the current session\. The table is automatically dropped at the end of the session in which it is created\. The temporary table can have the same name as a permanent table\. The temporary table is created in a separate, session\-specific schema\. \(You can't specify a name for this schema\.\) This temporary schema becomes the first schema in the search path, so the temporary table will take precedence over the permanent table unless you qualify the table name with the schema name to access the permanent table\. For more information about schemas and precedence, see [search\_path](r_search_path.md)\.  
 By default, users have permission to create temporary tables by their automatic membership in the PUBLIC group\. To deny this privilege to a user, revoke the TEMP privilege from the PUBLIC group, and then explicitly grant the TEMP privilege only to specific users or groups of users\.
 
 IF NOT EXISTS  
@@ -63,13 +63,13 @@ If you specify a table name that begins with '\# ', the table will be created as
 ```
 create table #newtable (id int);
 ```
-The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 9,900 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit` , the schema name is `public`, and the table name is `test`\.   
+The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 20,000 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit` , the schema name is `public`, and the table name is `test`\.   
 
 ```
 create table tickit.public.test (c1 int);
 ```
-If the database or schema does not exist, the table is not created, and the statement returns an error\. You cannot create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
-If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created by using the current database schema\. If you are creating a temporary table, you cannot specify a schema name, because temporary tables exist in a special schema\.  
+If the database or schema does not exist, the table is not created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
+If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created by using the current database schema\. If you are creating a temporary table, you can't specify a schema name, because temporary tables exist in a special schema\.  
 Multiple temporary tables with the same name can exist at the same time in the same database if they are created in separate sessions because the tables are assigned to different schemas\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
 
  *column\_name*   
@@ -173,7 +173,7 @@ Clause that specifies a foreign key constraint, which implies that the column mu
 
 LIKE *parent\_table* \[ \{ INCLUDING | EXCLUDING \} DEFAULTS \]   <a name="create-table-like"></a>
 A clause that specifies an existing table from which the new table automatically copies column names, data types, and NOT NULL constraints\. The new table and the parent table are decoupled, and any changes made to the parent table are not applied to the new table\. Default expressions for the copied column definitions are copied only if INCLUDING DEFAULTS is specified\. The default behavior is to exclude default expressions, so that all columns of the new table have null defaults\.   
-Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you cannot explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
+Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you can't explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
 
 BACKUP \{ YES | NO \}   <a name="create-table-backup"></a>
 A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that won't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.

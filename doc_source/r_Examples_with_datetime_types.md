@@ -38,7 +38,7 @@ create table tstamp(timeofday timestamp, timeofdaytz timestamptz);
 
 insert into tstamp values('Jun 1,2008  09:59:59', 'Jun 1,2008 09:59:59 EST' );
 insert into tstamp values('Dec 31,2008 18:20','Dec 31,2008 18:20');
-insert into tstamp values('Jun 1,2008  09:59:59 EST', 'Jun 1,2008 09:59:59);
+insert into tstamp values('Jun 1,2008  09:59:59 EST', 'Jun 1,2008 09:59:59');
 
 timeofday
 ---------------------

@@ -45,7 +45,7 @@ A temporary name for the column that will be used in the final result set\. The 
 avg(datediff(day, listtime, saletime)) as avgwait
 ```
 If you do not specify an alias for an expression that is not a simple column name, the result set applies a default name to that column\.   
-The alias is not recognized until the entire target list has been parsed, which means that you cannot refer to the alias elsewhere within the target list\. For example, the following statement will fail:   
+The alias is not recognized until the entire target list has been parsed, which means that you can't refer to the alias elsewhere within the target list\. For example, the following statement will fail:   
 
 ```
 select (qtysold + 1) as q, sum(q) from sales group by 1;
@@ -63,4 +63,4 @@ q |  sum
 
 ## Usage Notes<a name="r_SELECT_list_usage_notes"></a>
 
-TOP is a SQL extension; it provides an alternative to the LIMIT behavior\. You cannot use TOP and LIMIT in the same query\.
+TOP is a SQL extension; it provides an alternative to the LIMIT behavior\. You can't use TOP and LIMIT in the same query\.

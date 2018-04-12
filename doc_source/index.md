@@ -400,6 +400,7 @@ Amazon's trademarks and trade dress may not be used in
       + [VACUUM](r_VACUUM_command.md)
    + [SQL Functions Reference](c_SQL_functions.md)
       + [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)
+      + [Compute Node–Only Functions](c_SQL_functions_compute_node_only.md)
       + [Aggregate Functions](c_Aggregate_Functions.md)
          + [APPROXIMATE PERCENTILE_DISC Function](r_APPROXIMATE_PERCENTILE_DISC.md)
          + [AVG Function](r_AVG.md)

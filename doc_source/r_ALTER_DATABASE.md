@@ -14,7 +14,7 @@ ALTER DATABASE database_name
 ## Parameters<a name="r_ALTER_DATABASE-parameters"></a>
 
  *database\_name*   
-Name of the database to alter\. Typically, you alter a database that you are not currently connected to; in any case, the changes take effect only in subsequent sessions\. You can change the owner of the current database, but you cannot rename it:  
+Name of the database to alter\. Typically, you alter a database that you are not currently connected to; in any case, the changes take effect only in subsequent sessions\. You can change the owner of the current database, but you can't rename it:  
 
 ```
 alter database tickit rename to newtickit;
@@ -22,7 +22,7 @@ ERROR:  current database may not be renamed
 ```
 
 RENAME TO   
-Renames the specified database\. For more information about valid names, see [Names and Identifiers](r_names.md)\. You cannot rename the dev, padb\_harvest, template0, or template1 databases, and you cannot rename the current database\. Only the database owner or a [superuser](r_superusers.md#def_superusers) can rename a database; non\-superuser owners must also have the CREATEDB privilege\.
+Renames the specified database\. For more information about valid names, see [Names and Identifiers](r_names.md)\. You can't rename the dev, padb\_harvest, template0, or template1 databases, and you can't rename the current database\. Only the database owner or a [superuser](r_superusers.md#def_superusers) can rename a database; non\-superuser owners must also have the CREATEDB privilege\.
 
  *new\_name*   
 New database name\.

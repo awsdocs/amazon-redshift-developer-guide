@@ -23,10 +23,10 @@ The following example deletes the GUEST user group:
 drop group guests;
 ```
 
-You cannot drop a group if the group has any privileges on an object\. If you attempt to drop such a group, you will receive the following error\.
+You can't drop a group if the group has any privileges on an object\. If you attempt to drop such a group, you will receive the following error\.
 
 ```
-ERROR: group "guest" cannot be dropped because the group has a privilege on some object
+ERROR: group "guest" can't be dropped because the group has a privilege on some object
 ```
 
 If the group has privileges for an object, first revoke the privileges before dropping the group\. The following example revokes all privileges on all tables in the `public` schema from the `GUEST` user group, and then drops the group\. 

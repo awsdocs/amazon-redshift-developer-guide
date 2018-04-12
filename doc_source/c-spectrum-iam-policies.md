@@ -37,7 +37,7 @@ The following policy grants GET and LIST access to any Amazon S3 bucket\. The po
 The following policy grants GET and LIST access to your Amazon S3 bucket named `myBucket`\.
 
 ```
-[{
+{
 	"Version": "2012-10-17",
 	"Statement": [{
 		"Effect": "Allow",

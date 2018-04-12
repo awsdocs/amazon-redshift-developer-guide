@@ -22,7 +22,7 @@ UPDATE table_name SET column = { expression | DEFAULT } [,...]
 ## Parameters<a name="r_UPDATE-parameters"></a>
 
  *table\_name*   
-A temporary or persistent table\. Only the owner of the table or a user with UPDATE privilege on the table may update rows\. If you use the FROM clause or select from tables in an expression or condition, you must have SELECT privilege on those tables\. You cannot give the table an alias here; however, you can specify an alias in the FROM clause\.   
+A temporary or persistent table\. Only the owner of the table or a user with UPDATE privilege on the table may update rows\. If you use the FROM clause or select from tables in an expression or condition, you must have SELECT privilege on those tables\. You can't give the table an alias here; however, you can specify an alias in the FROM clause\.   
 Amazon Redshift Spectrum external tables are read\-only\. You can't UPDATE an external table\.
 
 SET *column* =   

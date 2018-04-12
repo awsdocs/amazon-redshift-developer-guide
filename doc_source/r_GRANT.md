@@ -47,7 +47,7 @@ DELETE   <a name="grant-delete"></a>
 Grants privilege to delete a data row from a table\. DELETE operations also require the SELECT privilege, because they must reference table columns to determine which rows to delete\.
 
 REFERENCES   <a name="grant-references"></a>
-Grants privilege to create a foreign key constraint\. You need to grant this privilege on both the referenced table and the referencing table; otherwise, the user cannot create the constraint\. 
+Grants privilege to create a foreign key constraint\. You need to grant this privilege on both the referenced table and the referencing table; otherwise, the user can't create the constraint\. 
 
 ALL \[ PRIVILEGES \]   <a name="grant-all"></a>
 Grants all available privileges at once to the specified user or user group\. The PRIVILEGES keyword is optional\.  
@@ -120,7 +120,7 @@ For example, the following command gives the user HR the ability both to perform
 grant select on table employees to HR with grant option;
 ```
 
-Note that HR cannot grant privileges for any operation other than SELECT, or on any other table than employees\. 
+Note that HR can't grant privileges for any operation other than SELECT, or on any other table than employees\. 
 
 Having privileges granted on a view does not imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema does not imply having privileges on the tables in the schema\. You need to grant access to the underlying tables explicitly\.
 
@@ -184,7 +184,7 @@ count
 (1 row)
 ```
 
-The following sequence of commands shows how access to a view does not imply access to its underlying tables\. The user called VIEW\_USER cannot select from the DATE table, although this user has been granted all privileges on VIEW\_DATE\. 
+The following sequence of commands shows how access to a view does not imply access to its underlying tables\. The user called VIEW\_USER can't select from the DATE table, although this user has been granted all privileges on VIEW\_DATE\. 
 
 ```
 create user view_user password 'Abcd1234';

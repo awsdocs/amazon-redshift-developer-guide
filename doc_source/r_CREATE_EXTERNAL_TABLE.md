@@ -108,7 +108,11 @@ The name of the SerDe\. The following are supported:
 
 + com\.amazonaws\.glue\.serde\.GrokSerDe 
 
-+ org\.apache\.hadoop\.hive\.serde2\.OpenCSVSerde   
++ org\.apache\.hadoop\.hive\.serde2\.OpenCSVSerde 
+
++ org\.openx\.data\.jsonserde\.JsonSerDe
+
+  The JSON SERDE also supports Ion files\. Ion and JSON formats support only scalar data types\. Nested data types are not supported\.  
 WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 Optionally, specify property names and values, separated by commas\.
 If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' and LINES TERMINATED BY by '\\n'\.
@@ -139,7 +143,7 @@ For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example
 LOCATION \{ 's3://*bucket/folder*/' | 's3://*bucket/manifest\_file*'  <a name="create-external-table-location"></a>
 The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same region as the Amazon Redshift cluster\. For a list of supported regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
 If the path specifies a folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\.   
-If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example,`'s3://mybucket/manifest.txt'`\. It cannot reference a key prefix\.   
+If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example,`'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.   
 The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3 and the size of the file, in bytes\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
 
 ```
@@ -245,9 +249,9 @@ useragent varchar(max),
 recipientaccountid bigint) 
 row format serde 'org.openx.data.jsonserde.JsonSerDe'
 with serdeproperties (
-‘dots.in.keys’ = ‘true’,
-‘mapping.requesttime’ = ‘requesttimestamp’
-) location ‘s3://mybucket/json/cloudtrail';
+'dots.in.keys' = 'true',
+'mapping.requesttime' = 'requesttimestamp'
+) location 's3://mybucket/json/cloudtrail';
 ```
 
 For a list of existing databases in the external data catalog, query the [SVV\_EXTERNAL\_DATABASES](r_SVV_EXTERNAL_DATABASES.md) system view\. 

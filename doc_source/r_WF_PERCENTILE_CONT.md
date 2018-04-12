@@ -14,6 +14,8 @@ Otherwise the result is as follows:
 
 You can specify only the PARTITION clause in the OVER clause\. If PARTITION is specified, for each row, PERCENTILE\_CONT returns the value that would fall into the specified percentile among a set of values within a given partition\. 
 
+PERCENTILE\_CONT is a compute\-node only function\. The function returns an error if the query doesn't reference a user\-defined table or Amazon Redshift system table\.
+
 ## Syntax<a name="r_WF_PERCENTILE_CONT-synopsis"></a>
 
 ```
@@ -42,7 +44,7 @@ The return type is determined by the data type of the ORDER BY expression in the
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_PERCENTILE_CONT.html)
 
-## Usage Notes<a name="w3ab1c35c11c15c55c23"></a>
+## Usage Notes<a name="w3ab1c35c11c17c55c25"></a>
 
 If the ORDER BY expression is a DECIMAL data type defined with the maximum precision of 38 digits, it is possible that PERCENTILE\_CONT will return either an inaccurate result or an error\. If the return value of the PERCENTILE\_CONT function exceeds 38 digits, the result is truncated to fit, which causes a loss of precision\. If, during interpolation, an intermediate result exceeds the maximum precision, a numeric overflow occurs and the function returns an error\. To avoid these conditions, we recommend either using a data type with lower precision or casting the ORDER BY expression to a lower precision\. 
 

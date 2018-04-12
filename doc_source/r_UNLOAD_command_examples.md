@@ -201,7 +201,7 @@ The output data files look like this:
 
 ## Unload VENUE Using Temporary Credentials<a name="unload-venue-using-temporary-credentials"></a>
 
-You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and cannot be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary Security Credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials) in the usage notes for the COPY command\.
+You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and can't be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary Security Credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials) in the usage notes for the COPY command\.
 
 The following example unloads the LISTING table using temporary credentials:
 

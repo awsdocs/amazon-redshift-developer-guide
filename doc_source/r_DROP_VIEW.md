@@ -62,7 +62,7 @@ Notice that if you run this command in this case, you will get the following err
 
 ```
 drop view eventview;
-ERROR: cannot drop view eventview because other objects depend on it
+ERROR: can't drop view eventview because other objects depend on it
 HINT: Use DROP ... CASCADE to drop the dependent objects too.
 ```
 

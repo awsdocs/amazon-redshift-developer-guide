@@ -134,7 +134,7 @@ To revoke privileges from an object, you must meet one of the following criteria
   grant select on table employees to HR with grant option;
   ```
 
-  Note that HR cannot revoke privileges for any operation other than SELECT, or on any other table than employees\. 
+  Note that HR can't revoke privileges for any operation other than SELECT, or on any other table than employees\. 
 
 Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
 

@@ -110,6 +110,8 @@ The following tuning table shows the chosen distribution styles\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-distribution.html)
 
+You can find the steps for setting the distribution style in [Step 6: Recreate the Test Data Set](tutorial-tuning-tables-recreate-test-data.md)\.
+
 For more information, see [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)\.
 
 ## Next Step<a name="next-step-compression"></a>

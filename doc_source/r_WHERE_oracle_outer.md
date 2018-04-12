@@ -47,7 +47,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
 
 + You can only use the \(\+\) operator in the WHERE clause, and only in reference to columns from tables or views\. 
 
-+ You cannot apply the \(\+\) operator to expressions\. However, an expression can contain columns that use the \(\+\) operator\. For example, the following join condition returns a syntax error: 
++ You can't apply the \(\+\) operator to expressions\. However, an expression can contain columns that use the \(\+\) operator\. For example, the following join condition returns a syntax error: 
 
   ```
   event.eventid*10(+)=category.catid
@@ -59,7 +59,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   event.eventid(+)*10=category.catid
   ```
 
-+ You cannot use the \(\+\) operator in a query block that also contains FROM clause join syntax\. 
++ You can't use the \(\+\) operator in a query block that also contains FROM clause join syntax\. 
 
 + If two tables are joined over multiple join conditions, you must use the \(\+\) operator in all or none of these conditions\. A join with mixed syntax styles executes as an inner join, without warning\. 
 
@@ -78,7 +78,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   (1 row)
   ```
 
-+ You cannot combine a join condition that contains the \(\+\) operator with an OR condition or an IN condition\. For example: 
++ You can't combine a join condition that contains the \(\+\) operator with an OR condition or an IN condition\. For example: 
 
   ```
   select count(*) from sales, listing
@@ -86,7 +86,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   ERROR:  Outer join operator (+) not allowed in operand of OR or IN.
   ```
 
-+  In a WHERE clause that outer\-joins more than two tables, the \(\+\) operator can be applied only once to a given table\. In the following example, the SALES table cannot be referenced with the \(\+\) operator in two successive joins\. 
++  In a WHERE clause that outer\-joins more than two tables, the \(\+\) operator can be applied only once to a given table\. In the following example, the SALES table can't be referenced with the \(\+\) operator in two successive joins\. 
 
   ```
   select count(*) from sales, listing, event

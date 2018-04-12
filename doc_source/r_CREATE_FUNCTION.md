@@ -44,7 +44,7 @@ You will get the best optimization if you label your function with the strictest
 
 + IMMUTABLE
 VOLATILE  
-Given the same arguments, the function can return different results on successive calls, even for the rows in a single statement\. The query optimizer cannot make any assumptions about the behavior of a volatile function, so a query that uses a volatile function must reevaluate the function for every input row\.  
+Given the same arguments, the function can return different results on successive calls, even for the rows in a single statement\. The query optimizer can't make any assumptions about the behavior of a volatile function, so a query that uses a volatile function must reevaluate the function for every input row\.  
 STABLE  
 Given the same arguments, the function is guaranteed to return the same results for all rows processed within a single statement\. The function can return different results when called in different statements\. This category allows the optimizer to optimize multiple calls of the function within a single statement to a single call for the statement\.   
 IMMUTABLE  
@@ -58,7 +58,7 @@ Amazon Redshift requires you to enclose the statement in your function by using 
 ```
 $$ my statement $$
 ```
- Optionally, between the dollar signs in each pair, you can specify a string to help identify the statement\. The string that you use must be the same in both the start and the end of the enclosure pairs\. This string is case\-sensitive, and it follows the same constraints as an unquoted identifier except that it cannot contain dollar signs\. The following example uses the string `test`\.   
+ Optionally, between the dollar signs in each pair, you can specify a string to help identify the statement\. The string that you use must be the same in both the start and the end of the enclosure pairs\. This string is case\-sensitive, and it follows the same constraints as an unquoted identifier except that it can't contain dollar signs\. The following example uses the string `test`\.   
 
 ```
 $test$ my statement $test$

@@ -59,10 +59,10 @@ MANIFEST
 Creates a manifest file that explicitly lists the data files that are created by the UNLOAD process\. The manifest is a text file in JSON format that lists the URL of each file that was written to Amazon S3\. The manifest file is written to the same Amazon S3 path prefix as the unload files in the format` <object_path_prefix>manifest`\. For example, if the UNLOAD specifies the Amazon S3 path prefix '`s3://mybucket/venue_`', the manifest file location will be '`s3://mybucket/venue_manifest`'\.
 
 DELIMITER AS '*delimiter\_character*'   
-Single ASCII character that is used to separate fields in the output file, such as a pipe character \( | \), a comma \( , \), or a tab \( \\t \)\. The default delimiter is a pipe character\. The AS keyword is optional\. DELIMITER cannot be used with FIXEDWIDTH\. If the data contains the delimiter character, you will need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotes\. Alternatively, specify a delimiter that is not contained in the data\.
+Single ASCII character that is used to separate fields in the output file, such as a pipe character \( | \), a comma \( , \), or a tab \( \\t \)\. The default delimiter is a pipe character\. The AS keyword is optional\. DELIMITER can't be used with FIXEDWIDTH\. If the data contains the delimiter character, you will need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotes\. Alternatively, specify a delimiter that is not contained in the data\.
 
 FIXEDWIDTH '*fixedwidth\_spec*'   
-Unloads the data to a file where each column width is a fixed length, rather than separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies the number of columns and the width of the columns\. The AS keyword is optional\. FIXEDWIDTH cannot be used with DELIMITER\. Because FIXEDWIDTH does not truncate data, the specification for each column in the UNLOAD statement needs to be at least as long as the length of the longest entry for that column\. The format for *fixedwidth\_spec* is shown below:   
+Unloads the data to a file where each column width is a fixed length, rather than separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies the number of columns and the width of the columns\. The AS keyword is optional\. FIXEDWIDTH can't be used with DELIMITER\. Because FIXEDWIDTH does not truncate data, the specification for each column in the UNLOAD statement needs to be at least as long as the length of the longest entry for that column\. The format for *fixedwidth\_spec* is shown below:   
 
 ```
 'colID1:colWidth1,colID2:colWidth2, ...'
@@ -153,7 +153,7 @@ You might encounter loss of precision for floating\-point data that is successiv
 
 ### Limit Clause<a name="unload-usage-limit-clause"></a>
 
-The SELECT query cannot use a LIMIT clause in the outer SELECT\. For example, the following UNLOAD statement will fail:
+The SELECT query can't use a LIMIT clause in the outer SELECT\. For example, the following UNLOAD statement will fail:
 
 ```
 unload ('select * from venue limit 10') 

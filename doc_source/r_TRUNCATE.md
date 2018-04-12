@@ -22,7 +22,7 @@ After truncating a table, run the ANALYZE command against the table\. You do not
 
 ## Usage Notes<a name="r_TRUNCATE_usage_notes"></a>
 
-The TRUNCATE command commits the transaction in which it is run; therefore, you cannot roll back a TRUNCATE operation, and a TRUNCATE command may commit other operations when it commits itself\. 
+The TRUNCATE command commits the transaction in which it is run; therefore, you can't roll back a TRUNCATE operation, and a TRUNCATE command may commit other operations when it commits itself\. 
 
 ## Examples<a name="r_TRUNCATE-examples"></a>
 

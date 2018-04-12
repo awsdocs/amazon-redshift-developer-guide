@@ -97,7 +97,7 @@ Now that you have chosen the sort keys and distribution styles for each of the t
 
 1. Load the tables using the same sample data\. 
 
-   1. Open the `loadssb.sql` script that you created in the previous step\. 
+   1. Open the `loadssb.sql` script that you created in the first step\. 
 
    1. Delete `compupdate off` from each COPY statement\. This time, you will allow COPY to apply compression encodings\. 
 

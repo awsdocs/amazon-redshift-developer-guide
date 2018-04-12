@@ -1,6 +1,6 @@
 # DROP FUNCTION<a name="r_DROP_FUNCTION"></a>
 
-Removes a user\-defined function \(UDF\) from the database\. The function's signature, or list of argument data types, must be specified because multiple functions can exist with the same name but different signatures\. You cannot drop an Amazon Redshift built\-in function\.
+Removes a user\-defined function \(UDF\) from the database\. The function's signature, or list of argument data types, must be specified because multiple functions can exist with the same name but different signatures\. You can't drop an Amazon Redshift built\-in function\.
 
 This command is not reversible\.
 

@@ -19,7 +19,7 @@ If a view of the same name already exists, the view is replaced\. You can only r
  *name*   
 The name of the view\. If a schema name is given \(such as `myschema.myview`\) the view is created using the specified schema\. Otherwise, the view is created in the current schema\. The view name must be different from the name of any other view or table in the same schema\.   
 If you specify a view name that begins with '\# ', the view will be created as a temporary view that is visible only in the current session\.  
-For more information about valid names, see [Names and Identifiers](r_names.md)\. You cannot create tables or views in the system databases template0, template1, and padb\_harvest\.
+For more information about valid names, see [Names and Identifiers](r_names.md)\. You can't create tables or views in the system databases template0, template1, and padb\_harvest\.
 
  *column\_name*   
 Optional list of names to be used for the columns in the view\. If no column names are given, the column names are derived from the query\. The maximum number of columns you can define in a single view is 1,600\.
@@ -43,7 +43,7 @@ with no schema binding;
 ```
 
 **Note**  
-You cannot update, insert into, or delete from a view\. 
+You can't update, insert into, or delete from a view\. 
 
 ## Usage Notes<a name="r_CREATE_VIEW_usage_notes"></a>
 

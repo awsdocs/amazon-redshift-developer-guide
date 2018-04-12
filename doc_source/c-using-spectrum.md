@@ -38,6 +38,8 @@ Redshift Spectrum is available only in the following regions:
 
 + US West \(Oregon\) Region \(us\-west\-2\) 
 
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
+
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
 
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
@@ -53,6 +55,8 @@ Redshift Spectrum is available only in the following regions:
 + EU \(Ireland\) Region \(eu\-west\-1\)
 
 + EU \(London\) Region \(eu\-west\-2\)
+
++ South America \(São Paulo\) Region \(sa\-east\-1\)
 
 ### Amazon Redshift Spectrum Considerations<a name="c-spectrum-considerations"></a>
 

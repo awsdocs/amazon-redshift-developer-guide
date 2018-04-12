@@ -11,7 +11,7 @@ DATE_PART_YEAR(date)
 ## Argument<a name="r_DATE_PART_YEAR-argument"></a>
 
  *date*   
-A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
+A date column or an expression that implicitly converts to a date\.
 
 ## Return Type<a name="r_DATE_PART_YEAR-return-type"></a>
 

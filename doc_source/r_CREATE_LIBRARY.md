@@ -1,6 +1,6 @@
 # CREATE LIBRARY<a name="r_CREATE_LIBRARY"></a>
 
-Installs a Python library, which will be available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries cannot exceed 100 MB\. CREATE LIBRARY cannot be run inside a transaction block \(BEGIN … END\)\. For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\.
+Installs a Python library, which will be available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries can't exceed 100 MB\. CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\.
 
 Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
 
@@ -22,7 +22,7 @@ OR REPLACE
 Specifies that if a library with the same name as this one already exists, the existing library is replaced\. REPLACE commits immediately\. If a UDF that depends on the library is running concurrently, the UDF might fail or return unexpected results, even if the UDF is running within a transaction\. You must be the owner or a superuser to replace a library\.
 
  *library\_name*   
-The name of the library to be installed\. You cannot create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as the library to be installed , you must drop the existing library before installing the new library\. For more information, see [Python Language Support for UDFs](udf-python-language-support.md)\.
+The name of the library to be installed\. You can't create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as the library to be installed , you must drop the existing library before installing the new library\. For more information, see [Python Language Support for UDFs](udf-python-language-support.md)\.
 
 LANGUAGE plpythonu  
 The language to use\. Python \(plpythonu\) is the only supported language\. Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.

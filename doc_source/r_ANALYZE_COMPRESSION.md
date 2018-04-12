@@ -14,7 +14,7 @@ ANALYZE COMPRESSION
 ## Parameters<a name="r_ANALYZE_COMPRESSION-parameters"></a>
 
  *table\_name*   
-You can analyze compression for specific tables, including temporary tables\. You can qualify the table with its schema name\. You can optionally specify a *table\_name* to analyze a single table\. If you do not specify a *table\_name*, all of the tables in the currently connected database are analyzed\. You cannot specify more than one *table\_name* with a single ANALYZE COMPRESSION statement\.
+You can analyze compression for specific tables, including temporary tables\. You can qualify the table with its schema name\. You can optionally specify a *table\_name* to analyze a single table\. If you do not specify a *table\_name*, all of the tables in the currently connected database are analyzed\. You can't specify more than one *table\_name* with a single ANALYZE COMPRESSION statement\.
 
  *column\_name*   
 If you specify a *table\_name*, you can also specify one or more columns in the table \(as a column\-separated list within parentheses\)\.

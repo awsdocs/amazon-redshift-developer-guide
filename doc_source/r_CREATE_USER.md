@@ -5,9 +5,9 @@ Creates a new database user account\. You must be a database superuser to execut
 ## Syntax<a name="r_CREATE_USER-synopsis"></a>
 
 ```
-CREATE USER name
+CREATE USER name [ WITH ] 
 PASSWORD { 'password' | 'md5hash' | DISABLE }
-[ [ WITH] option [ ... ] ]
+[ option [ ... ] ]
 
 where option can be:
 
@@ -23,6 +23,9 @@ CREATEDB | NOCREATEDB
 
  *name*   
 The name of the user account to create\. The user name can't be `PUBLIC`\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+
+WITH  
+Optional keyword\. WITH is ignored by Amazon Redshift
 
 PASSWORD \{ '*password*' | '*md5hash*' | DISABLE \}  
 Sets the user's password\.   
@@ -62,9 +65,6 @@ To specify an MD5 password, follow these steps:
 1. Log on to the database using the user name and password\. 
 
    For this example, log on as `user1` with password `ez`\. 
-
-WITH  
-Optional keyword\. WITH is ignored by Amazon Redshift
 
 CREATEDB | NOCREATEDB   
 The CREATEDB option allows the new user account to create databases\. The default is NOCREATEDB\.

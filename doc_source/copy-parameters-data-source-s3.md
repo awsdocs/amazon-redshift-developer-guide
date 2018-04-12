@@ -87,8 +87,7 @@ If the encrypted files are in compressed format, add the GZIP, LZOP, or BZIP2 pa
 
 REGION \[AS\] '*aws\-region*'  <a name="copy-region"></a>
 Specifies the AWS region where the source data is located\. REGION is required for COPY from an Amazon S3 bucket or an DynamoDB table when the AWS resource that contains the data is not in the same region as the Amazon Redshift cluster\.   
-The value for *aws\_region* must match a region listed in the following table\.      
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-source-s3.html)
+The value for *aws\_region* must match a region listed in the [http://docs\.aws\.amazon\.com/general/latest/gr/rande\.html\#redshift\_region>Amazon Redshift regions and endpoints]() table\.  
 If the REGION parameter is specified, all resources, including a manifest file or multiple Amazon S3 buckets, must be located in the specified region\.   
 Transferring data across regions incurs additional charges against the Amazon S3 bucket or the DynamoDB table that contains the data\. For more information about pricing, see **Data Transfer OUT From Amazon S3 To Another AWS Region** on the [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/) page and **Data Transfer OUT** on the [Amazon DynamoDB Pricing](https://aws.amazon.com/dynamodb/pricing/) page\. 
 By default, COPY assumes that the data is located in the same region as the Amazon Redshift cluster\. 

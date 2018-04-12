@@ -80,7 +80,7 @@ Now, try to drop the FEEDBACK\_SCORE column from the USERS table\. This DROP sta
 alter table users drop column feedback_score;
 ```
 
-Amazon Redshift displays an error message that the column cannot be dropped because another object depends on it\. 
+Amazon Redshift displays an error message that the column can't be dropped because another object depends on it\. 
 
 Try dropping the FEEDBACK\_SCORE column again, this time specifying CASCADE to drop all dependent objects: 
 

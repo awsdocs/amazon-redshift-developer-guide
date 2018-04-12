@@ -2,6 +2,8 @@
 
 For each group in a query, the LISTAGG aggregate function orders the rows for that group according to the ORDER BY expression, then concatenates the values into a single string\. 
 
+LISTAGG is a compute\-node only function\. The function returns an error if the query doesn't reference a user\-defined table or Amazon Redshift system table\.
+
 ## Syntax<a name="r_LISTAGG-synopsis"></a>
 
 ```

@@ -19,7 +19,7 @@ with_subquery_table_name [ ( column_name [, ...] ) ] AS ( query )
 ## Parameters<a name="r_WITH_clause-parameters"></a>
 
  *with\_subquery\_table\_name*   
-A unique name for a temporary table that defines the results of a WITH clause subquery\. You cannot use duplicate names within a single WITH clause\. Each subquery must be given a table name that can be referenced in the [FROM Clause](r_FROM_clause30.md)\.
+A unique name for a temporary table that defines the results of a WITH clause subquery\. You can't use duplicate names within a single WITH clause\. Each subquery must be given a table name that can be referenced in the [FROM Clause](r_FROM_clause30.md)\.
 
  *column\_name*   
  An optional list of output column names for the WITH clause subquery, separated by commas\. The number of column names specified must be equal to or less than the number of columns defined by the subquery\. 
@@ -51,11 +51,11 @@ You can use a WITH clause in the following SQL statements:
 
 If the FROM clause of a query that contains a WITH clause does not reference any of the tables defined by the WITH clause, the WITH clause is ignored and the query executes as normal\.
 
-A table defined by a WITH clause subquery can be referenced only in the scope of the SELECT query that the WITH clause begins\. For example, you can reference such a table in the FROM clause of a subquery in the SELECT list, WHERE clause, or HAVING clause\. You cannot use a WITH clause in a subquery and reference its table in the FROM clause of the main query or another subquery\. This query pattern results in an error message of the form `relation table_name does not exist` for the WITH clause table\.
+A table defined by a WITH clause subquery can be referenced only in the scope of the SELECT query that the WITH clause begins\. For example, you can reference such a table in the FROM clause of a subquery in the SELECT list, WHERE clause, or HAVING clause\. You can't use a WITH clause in a subquery and reference its table in the FROM clause of the main query or another subquery\. This query pattern results in an error message of the form `relation table_name does not exist` for the WITH clause table\.
 
-You cannot specify another WITH clause inside a WITH clause subquery\.
+You can't specify another WITH clause inside a WITH clause subquery\.
 
-You cannot make forward references to tables defined by WITH clause subqueries\. For example, the following query returns an error because of the forward reference to table W2 in the definition of table W1: 
+You can't make forward references to tables defined by WITH clause subqueries\. For example, the following query returns an error because of the forward reference to table W2 in the definition of table W1: 
 
 ```
 with w1 as (select * from w2), w2 as (select * from w1)

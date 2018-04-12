@@ -24,7 +24,13 @@ Redshift Spectrum supports the following structured and semistructured data form
 
 + Grok
 
-+ OpenCSV
++ OpenCSV 
+
++ Ion 
+
++ JSON 
+
+Ion and JSON formats support only scalar data types\. Nested data types are not supported\. 
 
 **Note**  
 Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000`\.
@@ -49,7 +55,7 @@ Redshift Spectrum transparently decrypts data files that are encrypted using the
 
 + Server\-side encryption \(SSE\-S3\) using an AES\-256 encryption key managed by Amazon S3\.
 
-+ Server\-side encryption with keys managed by AWS Key Management Service \(SSE\-KMS\) using a default key\.
++ Server\-side encryption with keys managed by AWS Key Management Service \(SSE\-KMS\)\. 
 
 Redshift Spectrum doesn't support Amazon S3 client\-side encryption\. For more information, see [Protecting Data Using Server\-Side Encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.
 

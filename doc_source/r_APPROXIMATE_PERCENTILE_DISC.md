@@ -4,6 +4,8 @@ APPROXIMATE PERCENTILE\_DISC is an inverse distribution function that assumes a 
 
 For a given *percentile* value, APPROXIMATE PERCENTILE\_DISC uses a quantile summary algorithm to approximate the discrete percentile of the expression in the ORDER BY clause\. APPROXIMATE PERCENTILE\_DISC returns the value with the smallest cumulative distribution value \(with respect to the same sort specification\) that is greater than or equal to *percentile*\. 
 
+APPROXIMATE PERCENTILE\_DISC is a compute\-node only function\. The function returns an error if the query doesn't reference a user\-defined table or Amazon Redshift system table\.
+
 ## Syntax<a name="r_APPROXIMATE_PERCENTILE_DISC-synopsis"></a>
 
 ```
@@ -23,7 +25,7 @@ Clause that specifies numeric or date/time values to sort and compute the percen
 
 The same data type as the ORDER BY expression in the WITHIN GROUP clause\.
 
-## Usage Notes<a name="w3ab1c35c11c11c15c13"></a>
+## Usage Notes<a name="w3ab1c35c11c13c15c15"></a>
 
 If the APPROXIMATE PERCENTILE\_DISC statement includes a GROUP BY clause, the result set is limited\. The limit varies based on node type and the number of nodes\. If the limit is exceeded, the function fails and returns the following error\.
 

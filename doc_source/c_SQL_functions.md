@@ -2,6 +2,7 @@
 
 
 + [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)
++ [Compute Node–Only Functions](c_SQL_functions_compute_node_only.md)
 + [Aggregate Functions](c_Aggregate_Functions.md)
 + [Bit\-Wise Aggregate Functions](c_bitwise_aggregate_functions.md)
 + [Window Functions](c_Window_functions.md)

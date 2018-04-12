@@ -47,7 +47,7 @@ The maximum table name length is 127 bytes; longer names are truncated to 127 by
 create table tickit.public.test (c1) as select * from oldtable;
 ```
 In this example, `tickit` is the database name and `public` is the schema name\. If the database or schema does not exist, the statement returns an error\.  
-If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created using the current database schema\. If you are creating a temporary table, you cannot specify a schema name, since temporary tables exist in a special schema\.  
+If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created using the current database schema\. If you are creating a temporary table, you can't specify a schema name, since temporary tables exist in a special schema\.  
 Multiple temporary tables with the same name are allowed to exist at the same time in the same database if they are created in separate sessions\. These tables are assigned to different schemas\.
 
  *column\_name*   

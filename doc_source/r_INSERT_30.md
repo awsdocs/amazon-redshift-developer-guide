@@ -57,7 +57,7 @@ For a single\-row INSERT VALUES statement, you can use a scalar subquery as an e
 Subqueries are not supported as expressions for multiple\-row INSERT VALUES statements\. 
 
 DEFAULT   
-Use this keyword to insert the default value for a column, as defined when the table was created\. If no default value exists for a column, a null is inserted\. You cannot insert a default value into a column that has a NOT NULL constraint if that column does not have an explicit default value assigned to it in the CREATE TABLE statement\. 
+Use this keyword to insert the default value for a column, as defined when the table was created\. If no default value exists for a column, a null is inserted\. You can't insert a default value into a column that has a NOT NULL constraint if that column does not have an explicit default value assigned to it in the CREATE TABLE statement\. 
 
  *query*   
 Insert one or more rows into the table by defining any query\. All of the rows that the query produces are inserted into the table\. The query must return a column list that is compatible with the columns in the table, but the column names do not have to match\. 

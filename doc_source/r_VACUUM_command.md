@@ -22,7 +22,8 @@ VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX ]
 ## Parameters<a name="r_VACUUM_command-parameters"></a>
 
 FULL   <a name="vacuum-full"></a>
-Sorts the specified table \(or all tables in the current database\) and reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations\. A full vacuum doesn't perform a reindex for interleaved tables\. To reindex interleaved tables followed by a full vacuum, use the [VACUUM REINDEX](#vacuum-reindex) option\.   
+Sorts the specified table \(or all tables in the current database\) and reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations\. VACUUM FULL is the default\.  
+A full vacuum doesn't perform a reindex for interleaved tables\. To reindex interleaved tables followed by a full vacuum, use the [VACUUM REINDEX](#vacuum-reindex) option\.   
 By default, VACUUM FULL skips the sort phase for any table that is already at least 95 percent sorted\. If VACUUM is able to skip the sort phase, it performs a DELETE ONLY and reclaims space in the delete phase such that at least 95 percent of the remaining rows are not marked for deletion\.    
 If the sort threshold is not met \(for example, if 90 percent of rows are sorted\) and VACUUM performs a full sort, then it also performs a complete delete operation, recovering space from 100 percent of deleted rows\.   
 You can change the default vacuum threshold only for a single table\. To change the default vacuum threshold for a single table, include the table name and the TO *threshold* PERCENT parameter\. 
@@ -35,8 +36,9 @@ DELETE ONLY   <a name="vacuum-delete-only"></a>
 Reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations, and compacts the table to free up the consumed space\. A DELETE ONLY vacuum operation doesn't sort table data\. This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but resorting new rows is not important\. This option can also be useful when your query performance is already optimal, and resorting rows to optimize query performance is not a requirement\.  
 By default, VACUUM DELETE ONLY reclaims space such that at least 95 percent of the remaining rows are not marked for deletion\. To change the default delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\.  
 
-REINDEX  <a name="vacuum-reindex"></a>
-Analyzes the distribution of the values in interleaved sort key columns, then performs a full VACUUM operation\. VACUUM REINDEX takes significantly longer than VACUUM FULL because it makes an additional pass to analyze the interleaved sort keys\. The sort and merge operation can take longer for interleaved tables because the interleaved sort might need to rearrange more rows than a compound sort\.  
+REINDEX *tablename*  <a name="vacuum-reindex"></a>
+Analyzes the distribution of the values in interleaved sort key columns, then performs a full VACUUM operation\. If REINDEX is used, a table name is required\.  
+VACUUM REINDEX takes significantly longer than VACUUM FULL because it makes an additional pass to analyze the interleaved sort keys\. The sort and merge operation can take longer for interleaved tables because the interleaved sort might need to rearrange more rows than a compound sort\.  
 If a VACUUM REINDEX operation terminates before it completes, the next VACUUM resumes the reindex operation before performing the full vacuum operation\.  
 VACUUM REINDEX is not supported with TO *threshold* PERCENT\.  
 
@@ -57,7 +59,7 @@ For most Amazon Redshift applications, a full vacuum is recommended\. For more i
 
 Before running a vacuum operation, note the following behavior: 
 
-+ You cannot run VACUUM within a transaction block \(BEGIN \.\.\. END\)\. 
++ You can't run VACUUM within a transaction block \(BEGIN \.\.\. END\)\. 
 
 + You can run only one VACUUM command on a cluster at any given time\. If you attempt to run multiple vacuum operations concurrently, Amazon Redshift returns an error\.
 
@@ -65,7 +67,7 @@ Before running a vacuum operation, note the following behavior:
 
 + During vacuum operations, some degree of query performance degradation is expected\. Normal performance resumes as soon as the vacuum operation is complete\.
 
-+ Concurrent write operations proceed during vacuum operations, but we don’t recommended performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started cannot be vacuumed by that operation; in this case, a second vacuum operation will be necessary\.
++ Concurrent write operations proceed during vacuum operations, but we don’t recommended performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started can't be vacuumed by that operation; in this case, a second vacuum operation will be necessary\.
 
 + A vacuum operation might not be able to start if a load or insert operation is already in progress\. Vacuum operations temporarily require exclusive access to tables in order to start\. This exclusive access is required briefly, so vacuum operations don't block concurrent loads and inserts for any significant period of time\.
 
