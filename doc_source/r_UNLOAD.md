@@ -169,3 +169,5 @@ to 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedsh
 ```
 
 Alternatively, you could populate a table using SELECT…INTO or CREATE TABLE AS using a LIMIT clause, then unload from that table\.
+
+TOP is not currently support in UNLOAD statements\. Use LIMIT instead\.
