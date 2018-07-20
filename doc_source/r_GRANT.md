@@ -15,7 +15,7 @@ GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVIL
     ON { [ TABLE ] table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...] }
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
-GRANT { { CREATE | TEMPORARY | TEMP } [,...] | ALL [ PRIVILEGES ] ]
+GRANT { { CREATE | TEMPORARY | TEMP } [,...] | ALL [ PRIVILEGES ] }
     ON DATABASE db_name [, ...]
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
