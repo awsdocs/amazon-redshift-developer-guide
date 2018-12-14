@@ -10,7 +10,7 @@ Amazon Redshift integrates with various data loading and ETL \(extract, transfor
 
  **Connections** 
 
-Amazon Redshift communicates with client applications by using industry\-standard PostgreSQL JDBC and ODBC drivers\. For more information, see [Amazon Redshift and PostgreSQL JDBC and ODBC](c_redshift-postgres-jdbc.md)\.
+Amazon Redshift communicates with client applications by using industry\-standard JDBC and ODBC drivers for PostgreSQL\. For more information, see [Amazon Redshift and PostgreSQL JDBC and ODBC](c_redshift-postgres-jdbc.md)\.
 
  **Clusters** 
 
@@ -38,7 +38,7 @@ For a more detailed explanation of data warehouse clusters and nodes, see [Inter
 
 A compute node is partitioned into slices\. Each slice is allocated a portion of the node's memory and disk space, where it processes a portion of the workload assigned to the node\. The leader node manages distributing data to the slices and apportions the workload for any queries or other database operations to the slices\. The slices then work in parallel to complete the operation\.
 
-The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About Clusters and Nodes](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
 When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and execute queries efficiently\. For information about choosing a distribution key, see [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)\.
 

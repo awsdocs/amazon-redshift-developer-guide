@@ -10,27 +10,23 @@ One example in particular is the [VACUUM](r_VACUUM_command.md) command, which is
 Often, database management and administration features and tools are different as well\. For example, Amazon Redshift maintains a set of system tables and views that provide information about how the system is functioning\. See [System Tables and Views](c_intro_system_tables.md) for more information\.
 
 The following list includes some examples of SQL features that are implemented differently in Amazon Redshift\.
-
 +  [CREATE TABLE](r_CREATE_TABLE_NEW.md) 
 
   Amazon Redshift does not support tablespaces, table partitioning, inheritance, and certain constraints\. The Amazon Redshift implementation of CREATE TABLE enables you to define the sort and distribution algorithms for tables to optimize parallel processing\.
 
+  Amazon Redshift Spectrum supports table partitioning using the [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md) command\.
 +  [ALTER TABLE](r_ALTER_TABLE.md) 
 
   ALTER COLUMN actions are not supported\.
 
   ADD COLUMN supports adding only one column in each ALTER TABLE statement\.
-
 +  [COPY](r_COPY.md) 
 
   The Amazon Redshift COPY command is highly specialized to enable the loading of data from Amazon S3 buckets and Amazon DynamoDB tables and to facilitate automatic compression\. See the [Loading Data](t_Loading_data.md) section and the COPY command reference for details\.
-
 +  [INSERT](r_INSERT_30.md), [UPDATE](r_UPDATE.md), and [DELETE](r_DELETE.md) 
 
   WITH is not supported\.
-
 +  [VACUUM](r_VACUUM_command.md) 
 
   The parameters for VACUUM are entirely different\. For example, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for re\-use; however, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and resorts all rows\.
-
 + Trailing spaces in VARCHAR values are ignored when string values are compared\. For more information, see [Significance of Trailing Blanks](r_Character_types.md#r_Character_types-significance-of-trailing-blanks)\.

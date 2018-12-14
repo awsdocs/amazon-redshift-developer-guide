@@ -17,22 +17,14 @@ A simple expression that evaluates to a value\.
 
  *operator*   
  A compound arithmetic expression can be constructed using the following operators, in this order of precedence:  
-
 + \( \) : parentheses to control the order of evaluation
-
 + \+ , \- : positive and negative sign/operator
-
-+  ^ , |/ , ||/ : exponentiation, square root, cube root
-
++  ^ , \|/ , \|\|/ : exponentiation, square root, cube root
 + \* , / , % : multiplication, division, and modulo operators
-
 +  @ : absolute value
-
 + \+ , \- : addition and subtraction
-
-+ & , |, \#, \~, <<, >> : AND, OR, NOT, shift left, shift right bitwise operators
-
-+ ||: concatenation
++ & , \|, \#, \~, <<, >> : AND, OR, NOT, shift left, shift right bitwise operators
++ \|\|: concatenation
 
  *\(compound\_expression\)*   
 Compound expressions may be nested using parentheses\.

@@ -7,11 +7,8 @@ Identical database object names can be used in different schemas in the same dat
 By default, an object is created within the first schema in the search path of the database\. For information, see [Search Path](#c_Search_path) later in this section\.
 
 Schemas can help with organization and concurrency issues in a multi\-user environment in the following ways:
-
 + To allow many developers to work in the same database without interfering with each other\.
-
 + To organize database objects into logical groups to make them more manageable\.
-
 + To give applications the ability to put their objects into separate schemas so that their names will not collide with the names of objects used by other applications\.
 
 ## Creating, Altering, and Deleting Schemas<a name="r_Schemas_and_tables-creating-altering-and-deleting-schemas"></a>
@@ -19,13 +16,9 @@ Schemas can help with organization and concurrency issues in a multi\-user envir
 Any user can create schemas and alter or drop schemas they own\.
 
 You can perform the following actions:
-
 + To create a schema, use the [CREATE SCHEMA](r_CREATE_SCHEMA.md) command\.
-
 + To change the owner of a schema, use the [ALTER SCHEMA](r_ALTER_SCHEMA.md) command\.
-
 + To delete a schema and its objects, use the [DROP SCHEMA](r_DROP_SCHEMA.md) command\.
-
 + To create a table within a schema, create the table with the format *schema\_name\.table\_name*\. 
 
 To view a list of all schemas, query the PG\_NAMESPACE system catalog table:
@@ -54,9 +47,6 @@ For more information, see the [search\_path](r_search_path.md) description in th
 ## Schema\-Based Privileges<a name="r_Schemas_and_tables-schema-based-privileges"></a>
 
  Schema\-based privileges are determined by the owner of the schema: 
-
 + By default, all users have CREATE and USAGE privileges on the PUBLIC schema of a database\. To disallow users from creating objects in the PUBLIC schema of a database, use the [REVOKE](r_REVOKE.md) command to remove that privilege\.
-
 + Unless they are granted the USAGE privilege by the object owner, users cannot access any objects in schemas they do not own\. 
-
 + If users have been granted the CREATE privilege to a schema that was created by another user, those users can create objects in that schema\.

@@ -1,11 +1,8 @@
 # Step 2: Test System Performance to Establish a Baseline<a name="tutorial-tuning-tables-test-performance"></a>
 
 As you test system performance before and after tuning your tables, you will record the following details:
-
 + Load time 
-
 + Storage use 
-
 + Query performance 
 
 The examples in this tutorial are based on using a four\-node dw2\.large cluster\. Your results will be different, even if you use the same cluster configuration\. System performance is influenced by many factors, and no two systems will perform exactly the same\.

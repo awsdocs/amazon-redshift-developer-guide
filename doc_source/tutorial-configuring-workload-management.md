@@ -14,16 +14,11 @@ When you have several users running queries against the database, you might find
 
 ### Prerequisites<a name="tutorial-wlm-prereq"></a>
 
-You will need an Amazon Redshift cluster, the sample TICKIT database, and the psql client tool\. If you do not already have these set up, go to [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html) and [Connect to Your Cluster by Using the psql Tool](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-from-psql.html)\. 
+You will need an Amazon Redshift cluster, the sample TICKIT database, and the psql client tool\. If you do not already have these set up, go to [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html) and [Connect to Your Cluster by Using the psql Tool](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-from-psql.html)\. 
 
 ### Sections<a name="tutorial-wlm-steps"></a>
-
 + [Section 1: Understanding the Default Queue Processing Behavior](tutorial-wlm-understanding-default-processing.md)
-
 + [Section 2: Modifying the WLM Query Queue Configuration](tutorial-wlm-modifying-wlm-configuration.md)
-
 + [Section 3: Routing Queries to Queues Based on User Groups and Query Groups](tutorial-wlm-routing-queries-to-queues.md)
-
 + [Section 4: Using wlm\_query\_slot\_count to Temporarily Override Concurrency Level in a Queue](tutorial-wlm-query-slot-count.md)
-
 + [Section 5: Cleaning Up Your Resources](tutorial-wlm-cleaning-up-resources.md)

@@ -1,6 +1,6 @@
 # Managing Concurrent Write Operations<a name="c_Concurrent_writes"></a>
 
-
+**Topics**
 + [Serializable Isolation](c_serial_isolation.md)
 + [Write and Read\-Write Operations](c_write_readwrite.md)
 + [Concurrent Write Examples](r_Serializable_isolation_example.md)

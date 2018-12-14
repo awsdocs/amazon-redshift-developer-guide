@@ -1,6 +1,6 @@
-# || \(Concatenation\) Operator<a name="r_concat_op"></a>
+# \|\| \(Concatenation\) Operator<a name="r_concat_op"></a>
 
-Concatenates two strings on either side of the || symbol and returns the concatenated string\. 
+Concatenates two strings on either side of the \|\| symbol and returns the concatenated string\. 
 
 Similar to [CONCAT \(Oracle Compatibility Function\)](r_CONCAT.md)\. 
 
@@ -20,7 +20,7 @@ Both arguments can be fixed\-length or variable\-length character strings or exp
 
 ## Return Type<a name="r_concat_op-return-type"></a>
 
- The || operator returns a string\. The type of string is the same as the input arguments\. 
+ The \|\| operator returns a string\. The type of string is the same as the input arguments\. 
 
 ## Example<a name="r_concat_op-example"></a>
 

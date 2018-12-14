@@ -63,11 +63,8 @@ The following example shows the previous JSONPaths file using dot notation\.
 You cannot mix bracket notation and dot notation in the `jsonpaths` array\. Brackets can be used in both bracket notation and dot notation to reference an array element\. 
 
 When using dot notation, the JSONPath expressions must not contain the following characters: 
-
 + Single straight quotation mark \( ' \) 
-
 + Period, or dot \( \. \) 
-
 + Brackets \( \[ \] \) unless used to reference an array element 
 
 If the value in the name/value pair referenced by a JSONPath expression is an object or an array, the entire object or array is loaded as a string, including the braces or brackets\. For example, suppose your JSON data contains the following object\. 
@@ -150,3 +147,10 @@ select * from escapes;
                         :  is on two lines.
 (1 row)
 ```
+
+## Loss of numeric precision<a name="copy-usage-json-rounding"></a>
+
+You might lose precision when loading numbers from data files in JSON format to a column that is defined as a numeric data type\. Some floating point values are not represented exactly in computer systems\. As a result, data you copy from a JSON file might not be rounded as you expect\. To avoid a loss of precision, we recommend using one of the following alternatives:
++ Represent the number as a string by enclosing the value in double quotation characters\.
++ Use [ROUNDEC](copy-parameters-data-conversion.md#copy-roundec) to round the number instead of truncating\.
++ Instead of using JSON or Avro files, use CSV, character\-delimited, or fixed\-width text files\.

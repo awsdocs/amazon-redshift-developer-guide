@@ -2,7 +2,7 @@
 
 ## Limits<a name="r_CREATE_TABLE_usage-limits"></a>
 
-The maximum number of tables is 9,900 for large and xlarge cluster node types and 20,000 for 8xlarge cluster node types\. The limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views are not included in this limit\. For more information about cluster node types, see [Clusters and Nodes](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\. 
+The maximum number of tables is 9,900 for large and xlarge cluster node types and 20,000 for 8xlarge cluster node types\. The limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views are not included in this limit\. For more information about cluster node types, see [Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\. 
 
 The maximum number of characters for a table name is 127\.
 

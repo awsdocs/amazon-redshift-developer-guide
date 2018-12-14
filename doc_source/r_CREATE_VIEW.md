@@ -2,7 +2,7 @@
 
 Creates a view in a database\. The view is not physically materialized; the query that defines the view is run every time the view is referenced in a query\. To create a view with an external table, include the WITH NO SCHEMA BINDING clause\.
 
-Having ownership of a view, or having privileges granted on a view, does not imply access to the underlying tables\. You need to grant access to the underlying tables explicitly\. 
+To create a standard view, you need access to the underlying tables\. To query a standard view, you need select privileges for the view itself, but you don't need select privileges for the underlying tables\. To query a late binding view, you need select privileges for the late binding view itself\. You should also make sure the owner of the late binding view has select privileges to the referenced objects \(tables, views, or user\-defined functions\)\. For more information on Late Binding Views see, [Usage Notes](#r_CREATE_VIEW_usage_notes)\.
 
 ## Syntax<a name="r_CREATE_VIEW-synopsis"></a>
 
@@ -49,9 +49,11 @@ You can't update, insert into, or delete from a view\.
 
 ### Late\-Binding Views<a name="r_CREATE_VIEW_late-binding-views"></a>
 
-A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. 
+A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. If you drop underlying objects, queries to the late\-binding view will fail\. If the query to the late\-binding view references columns in the underlying object that are not present, the query will fail\. 
 
-To create a late\-binding view, include the WITH NO SCHEMA BINDING clause\. The following example creates a view with no schema binding\.
+ If you drop and then re\-create a late\-binding view's underlying table or view, the new object is created with default access permissions\. You might need to grant permissions to the underling objects for users who will query the view\. 
+
+To create a late\-binding view, include the WITH NO SCHEMA BINDING clause\. The following example creates a view with no schema binding\. 
 
 ```
 create view event_vw as select * from public.event

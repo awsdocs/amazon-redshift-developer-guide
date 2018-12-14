@@ -5,12 +5,12 @@ All external tables must be created in an external schema, which you create usin
 **Note**  
 Some applications use the term *database* and *schema* interchangeably\. In Amazon Redshift, we use the term *schema*\. 
 
-An Amazon Redshift external schema references an external database in an external data catalog\. You can create the external database in Amazon Redshift, in [Amazon Athena](http://docs.aws.amazon.com/athena/latest/ug/catalog.html), or in an Apache Hive metastore, such as [Amazon EMR](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html)\. If you create an external database in Amazon Redshift, the database resides in the Athena data catalog\. To create a database in a Hive metastore, you need to create the database in your Hive application\.
+An Amazon Redshift external schema references an external database in an external data catalog\. You can create the external database in Amazon Redshift, in [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/catalog.html), or in an Apache Hive metastore, such as [Amazon EMR](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html)\. If you create an external database in Amazon Redshift, the database resides in the Athena data catalog\. To create a database in a Hive metastore, you need to create the database in your Hive application\.
 
 Amazon Redshift needs authorization to access the data catalog in Athena and the data files in Amazon S3 on your behalf\. To provide that authorization, you first create an AWS Identity and Access Management \(IAM\) role\. Then you attach the role to your cluster and provide Amazon Resource Name \(ARN\) for the role in the Amazon Redshift `CREATE EXTERNAL SCHEMA` statement\. For more information about authorization, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.
 
 **Note**  
-If you currently have Redshift Spectrum external tables in the Athena data catalog, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](http://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
+If you currently have Redshift Spectrum external tables in the Athena data catalog, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. To use an AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
 
 To create an external database at the same time you create an external schema, specify `FROM DATA CATALOG` and include the `CREATE EXTERNAL DATABASE` clause in your `CREATE EXTERNAL SCHEMA` statement\. 
 
@@ -35,14 +35,11 @@ region 'us-east-2';
 ```
 
 **Note**  
-The region parameter references the region in which the Athena data catalog is located, not the location of the data files in Amazon S3\.
+The `region` parameter references the AWS Region in which the Athena data catalog is located, not the location of the data files in Amazon S3\.
 
 When using the Athena data catalog, the following limits apply:
-
 + A maximum of 100 databases per account\.
-
 + A maximum of 100 tables per database\.
-
 + A maximum of 20,000 partitions per table\.
 
 You can request a limit increase by contacting AWS Support\.
@@ -76,7 +73,7 @@ The metadata for Amazon Redshift Spectrum external databases and external tables
 You can also create and manage external databases and external tables using Hive data definition language \(DDL\) using Athena or a Hive metastore, such as Amazon EMR\. 
 
 **Note**  
-We recommend using Amazon Redshift to create and manage your Redshift Spectrum external databases and external tables\.
+We recommend using Amazon Redshift to create and manage external databases and external tables in Redshift Spectrum\.
 
 ### Viewing Redshift Spectrum Databases in Athena<a name="c-spectrum-athena-external-catalogs"></a>
 
@@ -96,7 +93,7 @@ iam_role 'arn:aws:iam::123456789012:role/mySpectrumRole'
 region 'us-east-1';
 ```
 
-When you query the SVV\_EXTERNAL\_TABLES system view, you see tables in the Athena `sampledb` database and also tables you created in Amazon Redshift\.
+When you query the SVV\_EXTERNAL\_TABLES system view, you see tables in the Athena `sampledb` database and also tables that you created in Amazon Redshift\.
 
 ```
 select * from svv_external_tables;
@@ -116,7 +113,7 @@ spectrum      | sales_part       | s3://awssampledbuswest2/tickit/spectrum/sales
 
 If you create external tables in an Apache Hive metastore, you can use CREATE EXTERNAL SCHEMA to register those tables in Redshift Spectrum\. 
 
-In the CREATE EXTERNAL SCHEMA statement, specify the FROM HIVE METASTORE clause and provide the Hive metastore URI and port number\. The IAM role must include permission to access Amazon S3 but does not need any Athena permissions\. The following example registers a Hive metastore\. 
+In the CREATE EXTERNAL SCHEMA statement, specify the FROM HIVE METASTORE clause and provide the Hive metastore URI and port number\. The IAM role must include permission to access Amazon S3 but doesn't need any Athena permissions\. The following example registers a Hive metastore\. 
 
 ```
 create external schema if not exists hive_schema

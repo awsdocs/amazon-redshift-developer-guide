@@ -13,11 +13,7 @@ If a query that uses a compute\-node function doesn't reference a user\-defined 
 The documentation for each compute\-node only function includes a note stating that the function will return an error if the query doesn't references a user\-defined table or Amazon Redshift system table\.
 
 The following SQL functions are compute\-node only functions:
-
 + LISTAGG
-
 + MEDIAN
-
 + PERCENTILE\_CONT
-
 + PERCENTILE\_DISC and APPROXIMATE PERCENTILE\_DISC

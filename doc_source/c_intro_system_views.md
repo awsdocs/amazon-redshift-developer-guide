@@ -7,7 +7,7 @@ These views provide quicker and easier access to commonly queried data found in 
 **Note**  
 The SVL\_QUERY\_SUMMARY view only contains information about queries executed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements executed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view
 
-
+**Topics**
 + [SVV\_COLUMNS](r_SVV_COLUMNS.md)
 + [SVL\_COMPILE](r_SVL_COMPILE.md)
 + [SVV\_DISKUSAGE](r_SVV_DISKUSAGE.md)
@@ -30,10 +30,12 @@ The SVL\_QUERY\_SUMMARY view only contains information about queries executed by
 + [SVL\_S3PARTITION](r_SVL_S3PARTITION.md)
 + [SVL\_S3QUERY](r_SVL_S3QUERY.md)
 + [SVL\_S3QUERY\_SUMMARY](r_SVL_S3QUERY_SUMMARY.md)
++ [SVL\_S3RETRIES](r_SVL_S3RETRIES.md)
 + [SVL\_STATEMENTTEXT](r_SVL_STATEMENTTEXT.md)
 + [SVV\_TABLES](r_SVV_TABLES.md)
 + [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)
 + [SVV\_TRANSACTIONS](r_SVV_TRANSACTIONS.md)
++ [SVL\_USER\_INFO](r_SVL_USER_INFO.md)
 + [SVL\_UDF\_LOG](r_SVL_UDF_LOG.md)
 + [SVV\_VACUUM\_PROGRESS](r_SVV_VACUUM_PROGRESS.md)
 + [SVV\_VACUUM\_SUMMARY](r_SVV_VACUUM_SUMMARY.md)

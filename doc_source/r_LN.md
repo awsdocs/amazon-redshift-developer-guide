@@ -16,28 +16,17 @@ LN(expression)
 The target column or expression that the function operates on\.   
 This function returns an error for some data types if the expression references an Amazon Redshift user\-created table or an Amazon Redshift STL or STV system table\. 
 Expressions with the following data types produce an error if they reference a user\-created or system table\. Expressions with these data types run exclusively on the leader node:   
-
 + BOOLEAN 
-
 + CHAR 
-
 + DATE 
-
 + DECIMAL or NUMERIC 
-
 + TIMESTAMP 
-
 + VARCHAR 
 Expressions with the following data types run successfully on user\-created tables and STL or STV system tables:   
-
 + BIGINT 
-
 + DOUBLE PRECISION 
-
 + INTEGER 
-
 + REAL 
-
 + SMALLINT 
 
 ## Return Type<a name="r_LN-return-type"></a>

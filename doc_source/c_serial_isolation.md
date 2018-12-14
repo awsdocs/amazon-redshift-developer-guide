@@ -6,19 +6,13 @@ Some applications require not only concurrent querying and loading, but also the
 Amazon Redshift supports a default *automatic commit* behavior in which each separately\-executed SQL command commits individually\. If you enclose a set of commands in a transaction block \(defined by [BEGIN](r_BEGIN.md) and [END](r_END.md) statements\), the block commits as one transaction, so you can roll it back if necessary\. An exception to this behavior is the TRUNCATE command, which automatically commits all outstanding changes made in the current transaction without requiring an END statement\.
 
 Concurrent write operations are supported in Amazon Redshift in a protective way, using write locks on tables and the principle of *serializable isolation*\. Serializable isolation preserves the illusion that a transaction running against a table is the only transaction that is running against that table\. For example, two concurrently running transactions, T1 and T2, must produce the same results as at least one of the following:
-
 + T1 and T2 run serially in that order
-
 + T2 and T1 run serially in that order
 
 Concurrent transactions are invisible to each other; they cannot detect each other's changes\. Each concurrent transaction will create a snapshot of the database at the beginning of the transaction\. A database snapshot is created within a transaction on the first occurrence of most SELECT statements, DML commands such as COPY, DELETE, INSERT, UPDATE, and TRUNCATE, and the following DDL commands :
-
 + ALTER TABLE \(to add or drop columns\)
-
 + CREATE TABLE
-
 + DROP TABLE
-
 + TRUNCATE TABLE
 
 If *any* serial execution of the concurrent transactions would produce the same results as their concurrent execution, those transactions are deemed "serializable" and can be run safely\. If no serial execution of those transactions would produce the same results, the transaction that executes a statement that would break serializability is aborted and rolled back\.

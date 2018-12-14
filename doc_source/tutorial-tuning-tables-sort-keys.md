@@ -3,11 +3,8 @@
 When you create a table, you can specify one or more columns as the sort key\. Amazon Redshift stores your data on disk in sorted order according to the sort key\. How your data is sorted has an important effect on disk I/O, columnar compression, and query performance\. 
 
 In this step, you choose sort keys for the SSB tables based on these best practices: 
-
 + If recent data is queried most frequently, specify the timestamp column as the leading column for the sort key\. 
-
 + If you do frequent range filtering or equality filtering on one column, specify that column as the sort key\. 
-
 + If you frequently join a \(dimension\) table, specify the join column as the sort key\. 
 
 ## To Select Sort Keys<a name="tutorial-tuning-tables-to-select-sort-keys"></a>

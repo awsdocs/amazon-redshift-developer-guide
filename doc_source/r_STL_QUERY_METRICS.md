@@ -7,11 +7,8 @@ Query metrics are sampled at one second intervals\. As a result, different runs 
 STL\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query Planning And Execution Workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data Warehouse System Architecture](c_high_level_system_architecture.md)\. 
 
 To determine the level at which the row reports metrics, examine the `segment` and `step_type` columns\.
-
 + If both `segment` and `step_type` are `-1`, then the row reports metrics at the query level\. 
-
 + If `segment` is not `-1` and `step_type` is `-1`, then the row reports metrics at the segment level\. 
-
 + If both `segment` and `step_type` are not `-1`, then the row reports metrics at the step level\. 
 
 The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view and the [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view aggregate the data in this table and present the information in a more accessible form\.

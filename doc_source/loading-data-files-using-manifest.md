@@ -28,7 +28,7 @@ For more information, see [Using a Manifest to Specify Data Files](r_COPY_comman
 
 ## Using a Manifest Created by UNLOAD<a name="loading-data-files-using-unload-manifest"></a>
 
-A manifest created by a [UNLOAD](r_UNLOAD.md) operation using the MANIFEST parameter might have keys that are not required for the COPY operation\. For example, the following UNLOAD manifest includes a `meta` key that is used by an Amazon Redshift Spectrum external table\. The COPY operation requires only the `url` key and an optional `mandatory` key\.
+A manifest created by a [UNLOAD](r_UNLOAD.md) operation using the MANIFEST parameter might have keys that are not required for the COPY operation\. For example, the following `UNLOAD` manifest includes a `meta` key that is required for an Amazon Redshift Spectrum external table and for loading datafiles in an `ORC` or `Parquet` file format\. The COPY operation requires only the `url` key and an optional `mandatory` key\.
 
 ```
 {

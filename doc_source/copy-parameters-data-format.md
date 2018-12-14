@@ -1,21 +1,23 @@
 # Data Format Parameters<a name="copy-parameters-data-format"></a>
 
-By default, the COPY command expects the source data to be character\-delimited UTF\-8 text\. The default delimiter is a pipe character \( | \)\. If the source data is in another format, use the following parameters to specify the data format\. 
-
+By default, the COPY command expects the source data to be character\-delimited UTF\-8 text\. The default delimiter is a pipe character \( \| \)\. If the source data is in another format, use the following parameters to specify the data format: 
 + [FORMAT](#copy-format)
-
 + [CSV](#copy-csv)
-
 + [DELIMITER](#copy-delimiter) 
-
 + [FIXEDWIDTH](#copy-fixedwidth) 
-
 + [AVRO](#copy-avro) 
++ [JSON](#copy-json) 
++ [PARQUET](#copy-parquet) 
++ [ORC](#copy-orc) 
 
-+ [JSON](#copy-json) <a name="copy-data-format-parameters"></a>Data Format Parameters
+In addition to the standard data formats, COPY supports the following columnar data formats for COPY from Amazon S3: 
++ [ORC](#copy-orc) 
++ [PARQUET](#copy-parquet) 
+
+COPY from columnar format is supported with certain restriction\. For more information, see [COPY from Columnar Data Formats](copy-usage_notes-copy-from-columnar.md)\. <a name="copy-data-format-parameters"></a>Data Format Parameters
 
 FORMAT \[AS\]  <a name="copy-format"></a>
-Optional\. Identifies data format keywords\. The FORMAT arguments are described following\.
+\(Optional\) Identifies data format keywords\. The FORMAT arguments are described following\.
 
 CSV \[ QUOTE \[AS\] *'quote\_character'* \]  <a name="copy-csv"></a>
 Enables use of CSV format in the input data\. To automatically escape delimiters, newline characters, and carriage returns, enclose the field in the character specified by the QUOTE parameter\. The default quote character is a double quotation mark \( " \)\. When the quote character is used within a field, escape the character with an additional quote character\. For example, if the quote character is a double quotation mark, to insert the string `A "quoted" word` the input file should include the string `"A ""quoted"" word"`\. When the CSV parameter is used, the default delimiter is a comma \( , \)\. You can specify a different delimiter by using the DELIMITER parameter\.   
@@ -25,7 +27,7 @@ QUOTE \[AS\] *'quote\_character'*  <a name="copy-csv-quote"></a>
 Optional\. Specifies the character to be used as the quote character when using the CSV parameter\. The default is a double quotation mark \( " \)\. If you use the QUOTE parameter to define a quote character other than double quotation mark, you don’t need to escape double quotation marks within the field\. The QUOTE parameter can be used only with the CSV parameter\. The AS keyword is optional\.
 
 DELIMITER \[AS\] \['*delimiter\_char*'\]   <a name="copy-delimiter"></a>
-Specifies the single ASCII character that is used to separate fields in the input file, such as a pipe character \( | \), a comma \( , \), or a tab \( \\t \)\. Non\-printing ASCII characters are supported\. ASCII characters can also be represented in octal, using the format '\\ddd', where 'd' is an octal digit \(0–7\)\. The default delimiter is a pipe character \( | \), unless the CSV parameter is used, in which case the default delimiter is a comma \( , \)\. The AS keyword is optional\. DELIMITER cannot be used with FIXEDWIDTH\.
+Specifies the single ASCII character that is used to separate fields in the input file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. Non\-printing ASCII characters are supported\. ASCII characters can also be represented in octal, using the format '\\ddd', where 'd' is an octal digit \(0–7\)\. The default delimiter is a pipe character \( \| \), unless the CSV parameter is used, in which case the default delimiter is a comma \( , \)\. The AS keyword is optional\. DELIMITER cannot be used with FIXEDWIDTH\.
 
 FIXEDWIDTH '*fixedwidth\_spec*'   <a name="copy-fixedwidth"></a>
 Loads the data from a file where each column width is a fixed length, rather than columns being separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies a user\-defined column label and column width\. The column label can be either a text string or an integer, depending on what the user chooses\. The column label has no relation to the column name\. The order of the label/width pairs must match the order of the table columns exactly\. FIXEDWIDTH cannot be used with CSV or DELIMITER\. In Amazon Redshift, the length of CHAR and VARCHAR columns is expressed in bytes, so be sure that the column width that you specify accommodates the binary length of multibyte characters when preparing the file to be loaded\. For more information, see [Character Types](r_Character_types.md)\.   
@@ -38,18 +40,13 @@ The format for *fixedwidth\_spec* is shown following:
 AVRO \[AS\] '*avro\_option*'  <a name="copy-avro"></a>
 Specifies that the source data is in Avro format\.   
 Avro format is supported for COPY from these services and protocols:  
-
 + Amazon S3 
-
 + Amazon EMR 
-
 + Remote hosts \(SSH\) 
 Avro is not supported for COPY from DynamoDB\.   
 Avro is a data serialization protocol\. An Avro source file includes a schema that defines the structure of the data\. The Avro schema type must be `record`\. COPY accepts Avro files creating using the default uncompressed codec as well as the `deflate` and `snappy` compression codecs\. For more information about Avro, go to [Apache Avro](https://avro.apache.org/)\.   
 Valid values for *avro\_option* are as follows:  
-
 + 'auto'
-
 + 's3://*jsonpaths\_file*' 
 The default is `'auto'`\.    
 'auto'  <a name="copy-avro-auto"></a>
@@ -80,22 +77,17 @@ With the default `'auto'` argument, COPY matches only the first\-level objects t
 If the value associated with a key is a complex Avro data type such as byte, array, record, map, or link, COPY loads the value as a string, where the string is the JSON representation of the data\. COPY loads Avro enum data types as strings, where the content is the name of the type\. For an example, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\.  
 The maximum size of the Avro file header, which includes the schema and file metadata, is 1 MB\.     
 The maximum size of a single Avro data block is 4 MB\. This is distinct from the maximum row size\. If the maximum size of a single Avro data block is exceeded, even if the resulting row size is less than the 4 MB row\-size limit, the COPY command fails\.   
-In calculating row size, Amazon Redshift internally counts pipe characters \( | \) twice\. If your input data contains a very large number of pipe characters, it is possible for row size to exceed 4 MB even if the data block is less than 4 MB\.
+In calculating row size, Amazon Redshift internally counts pipe characters \( \| \) twice\. If your input data contains a very large number of pipe characters, it is possible for row size to exceed 4 MB even if the data block is less than 4 MB\.
 
 JSON \[AS\] '*json\_option*'  <a name="copy-json"></a>
 The source data is in JSON format\.   
 JSON format is supported for COPY from these services and protocols:  
-
 + Amazon S3
-
 + COPY from Amazon EMR
-
 + COPY from SSH
 JSON is not supported for COPY from DynamoDB\.   
 Valid values for *json\_option* are as follows :  
-
 + 'auto'
-
 + 's3://*jsonpaths\_file*'
 The default is `'auto'`\.    
 'auto'  <a name="copy-json-auto"></a>
@@ -134,7 +126,7 @@ The JSON must be well\-formed\. For example, the objects or arrays cannot be sep
 
 The maximum size of a single JSON object or array, including braces or brackets, is 4 MB\. This is distinct from the maximum row size\. If the maximum size of a single JSON object or array is exceeded, even if the resulting row size is less than the 4 MB row\-size limit, the COPY command fails\. 
 
-In calculating row size, Amazon Redshift internally counts pipe characters \( | \) twice\. If your input data contains a very large number of pipe characters, it is possible for row size to exceed 4 MB even if the object size is less than 4 MB\.
+In calculating row size, Amazon Redshift internally counts pipe characters \( \| \) twice\. If your input data contains a very large number of pipe characters, it is possible for row size to exceed 4 MB even if the object size is less than 4 MB\.
 
 COPY loads `\n` as a newline character and loads `\t` as a tab character\. To load a backslash, escape it with a backslash \( `\\` \)\.
 
@@ -147,23 +139,14 @@ If IGNOREHEADER is specified, COPY ignores the specified number of lines in the 
 COPY loads empty strings as empty fields by default\. If EMPTYASNULL is specified, COPY loads empty strings for CHAR and VARCHAR fields as NULL\. Empty strings for other data types, such as INT, are always loaded with NULL\. 
 
 The following options are not supported with JSON: 
-
 + CSV
-
 + DELIMITER 
-
 + ESCAPE
-
 + FILLRECORD 
-
 + FIXEDWIDTH
-
 + IGNOREBLANKLINES
-
 + NULL AS
-
 + READRATIO
-
 + REMOVEQUOTES 
 
 For more information, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\. For more information about JSON data structures, go to [www\.json\.org](https://www.json.org/)\. 
@@ -194,13 +177,9 @@ If you are loading from Amazon S3 and the file specified by *jsonpaths\_file* ha
  If the key name is any string other than `"jsonpaths"`, the COPY command does not return an error, but it ignores *jsonpaths\_file* and uses the `'auto'` argument instead\. 
 
 If any of the following occurs, the COPY command fails:
-
 + The JSON is malformed\.
-
 + There is more than one JSON object\.
-
 + Any characters except white space exist outside the object\.
-
 + An array element is an empty string or is not a string\.
 
 MAXERROR does not apply to the JSONPaths file\. 
@@ -330,3 +309,13 @@ The Avro schema syntax requires using *inner fields* to define the structure of 
 "$.friends[0].id"
 "$.friends[0].name"
 ```
+
+## Columnar Data Format Parameters<a name="copy-parameters-columnar-data"></a>
+
+In addition to the standard data formats, COPY supports the following columnar data formats for COPY from Amazon S3\. COPY from columnar format is supported with certain restrictions\. For more information, see [COPY from Columnar Data Formats](copy-usage_notes-copy-from-columnar.md)\. 
+
+ORC  <a name="copy-orc"></a>
+Loads the data from a file that uses Optimized Row Columnar \(ORC\) file format\. 
+
+PARQUET  <a name="copy-parquet"></a>
+Loads the data from a file that uses Parquet file format\. For COPY from Parquet, the target table can't use a SMALLINT data type\. Instead, use INT\.

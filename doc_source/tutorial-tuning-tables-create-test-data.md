@@ -16,7 +16,7 @@ You will create a set of tables without sort keys, distribution styles, or compr
 
    If you already have a cluster that you want to use, you can skip this step\. Your cluster should have at least two nodes\. For the exercises in this tutorial, you will use a four\-node cluster\.
 
-   To launch a dc1\.large cluster with four nodes, follow the steps in [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/), but select **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
+   To launch a dc1\.large cluster with four nodes, follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but select **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
 
    Follow the steps to connect to your cluster from a SQL client and test a connection\. You do not need to complete the remaining steps to create tables, upload data, and try example queries\. 
 

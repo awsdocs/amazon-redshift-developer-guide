@@ -5,11 +5,9 @@ When you load data into a table, Amazon Redshift distributes the rows of the tab
 When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. Redistribution might involve either sending specific rows to nodes for joining or broadcasting an entire table to all of the nodes\. 
 
 You should assign distribution styles to achieve these goals\.
-
 + Collocate the rows from joining tables 
 
   When the rows for joining columns are on the same slices, less data needs to be moved during query execution\. 
-
 + Distribute data evenly among the slices in a cluster\. 
 
   If data is distributed evenly, workload can be allocated evenly to all the slices\. 

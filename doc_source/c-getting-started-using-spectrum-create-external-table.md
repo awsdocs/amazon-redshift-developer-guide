@@ -16,7 +16,7 @@ External tables must be created in an external schema\. The external schema refe
 
 1. To create an external table, run the following CREATE EXTERNAL TABLE command\.
 **Note**  
-The Amazon S3 bucket with the sample data for this example is located in the us\-west\-2 region\. Your cluster and the Redshift Spectrum files must be in the same region, so, for this example, your cluster must also be located in us\-west\-2\.
+The Amazon S3 bucket with the sample data for this example is located in the us\-west\-2 region\. Your cluster and the Redshift Spectrum files must be in the same AWS Region, so, for this example, your cluster must also be located in us\-west\-2\.
 
    ```
    create external table spectrum.sales(

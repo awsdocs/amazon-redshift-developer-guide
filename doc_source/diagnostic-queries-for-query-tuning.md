@@ -2,7 +2,7 @@
 
 Use the following queries to identify issues with queries or underlying tables that can affect query performance\. We recommend using these queries in conjunction with the query tuning processes discussed in [Analyzing and Improving Queries](c-query-tuning.md)\.
 
-
+**Topics**
 + [Identifying Queries That Are Top Candidates for Tuning](#identify-queries-that-are-top-candidates-for-tuning)
 + [Identifying Tables with Data Skew or Unsorted Rows](#identify-tables-with-data-skew-or-unsorted-rows)
 + [Identifying Queries with Nested Loops](#identify-queries-with-nested-loops)

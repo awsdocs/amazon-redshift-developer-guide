@@ -1,6 +1,6 @@
 # SELECT INTO<a name="r_SELECT_INTO"></a>
 
-Selects rows defined by any query and inserts them into a new temporary or persistent table\. 
+Selects rows defined by any query and inserts them into a new table\. You can specify whether to create a temporary or a persistent table\. 
 
 ## Syntax<a name="r_SELECT_INTO-synopsis"></a>
 

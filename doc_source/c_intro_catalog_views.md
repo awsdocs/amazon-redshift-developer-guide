@@ -1,6 +1,7 @@
 # System Catalog Tables<a name="c_intro_catalog_views"></a>
 
-
+**Topics**
++ [PG\_CLASS\_INFO](r_PG_CLASS_INFO.md)
 + [PG\_DEFAULT\_ACL](r_PG_DEFAULT_ACL.md)
 + [PG\_EXTERNAL\_SCHEMA](r_PG_EXTERNAL_SCHEMA.md)
 + [PG\_LIBRARY](r_PG_LIBRARY.md)

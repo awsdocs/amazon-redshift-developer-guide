@@ -1,6 +1,6 @@
 # Character Types<a name="r_Character_types"></a>
 
-
+**Topics**
 + [Storage and Ranges](#r_Character_types-storage-and-ranges)
 + [CHAR or CHARACTER](#r_Character_types-char-or-character)
 + [VARCHAR or CHARACTER VARYING](#r_Character_types-varchar-or-character-varying)

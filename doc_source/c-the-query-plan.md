@@ -3,15 +3,10 @@
 You can use the query plan to get information on the individual operations required to execute a query\. Before you work with a query plan, we recommend you first understand how Amazon Redshift handles processing queries and creating query plans\. For more information, see [Query Planning And Execution Workflow](c-query-planning.md)\.
 
 To create a query plan, run the [EXPLAIN](r_EXPLAIN.md) command followed by the actual query text\. The query plan gives you the following information:
-
 + What operations the execution engine will perform, reading the results from bottom to top\.
-
 + What type of step each operation performs\.
-
 + Which tables and columns are used in each operation\.
-
 + How much data is processed in each operation, in terms of number of rows and data width in bytes\.
-
 + The relative cost of the operation\. *Cost* is a measure that compares the relative execution times of the steps within a plan\. Cost does not provide any precise information about actual execution times or memory consumption, nor does it provide a meaningful comparison between execution plans\. It does give you an indication of which operations in a query are consuming the most resources\.
 
 The EXPLAIN command doesn't actually run the query\. It only shows the plan that Amazon Redshift will execute if the query is run under current operating conditions\. If you change the schema or data for a table and run [ANALYZE](r_ANALYZE.md) again to update the statistical metadata, the query plan might be different\.
@@ -52,15 +47,12 @@ The sequential scan operator \(Seq Scan\) indicates a table scan\. Seq Scan scan
 ### Join Operators<a name="join-operators"></a>
 
 Amazon Redshift selects join operators based on the physical design of the tables being joined, the location of the data required for the join, and the specific requirements of the query itself\.
-
 + **Nested Loop**
 
   The least optimal join, a nested loop is used mainly for cross\-joins \(Cartesian products\) and some inequality joins\.
-
 + **Hash Join and Hash**
 
   Typically faster than a nested loop join, a hash join and hash are used for inner joins and left and right outer joins\. These operators are used when joining tables where the join columns are not both distribution keys *and* sort keys\. The hash operator creates the hash table for the inner table in the join; the hash join operator reads the outer table, hashes the joining column, and finds matches in the inner hash table\.
-
 + **Merge Join**
 
   Typically the fastest join, a merge join is used for inner joins and outer joins\. The merge join is not used for full joins\. This operator is used when joining tables where the join columns are both distribution keys *and* sort keys, and when less than 20 percent of the joining tables are unsorted\. It reads two sorted tables in order and finds the matching rows\. To view the percent of unsorted rows, query the [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md) system table\.
@@ -68,15 +60,12 @@ Amazon Redshift selects join operators based on the physical design of the table
 ### Aggregate Operators<a name="aggregate-operators"></a>
 
 The query plan uses the following operators in queries that involve aggregate functions and GROUP BY operations\.
-
 + **Aggregate**
 
   Operator for scalar aggregate functions such as AVG and SUM\.
-
 + **HashAggregate**
 
   Operator for unsorted grouped aggregate functions\.
-
 + **GroupAggregate**
 
   Operator for sorted grouped aggregate functions\.
@@ -84,11 +73,9 @@ The query plan uses the following operators in queries that involve aggregate fu
 ### Sort Operators<a name="sort-operators"></a>
 
 The query plan uses the following operators when queries have to sort or merge result sets\.
-
 + **Sort**
 
   Evaluates the ORDER BY clause and other sort operations, such as sorts required by UNION queries and joins, SELECT DISTINCT queries, and window functions\.
-
 + **Merge**
 
   Produces final sorted results according to intermediate sorted results that derive from parallel operations\.
@@ -96,15 +83,12 @@ The query plan uses the following operators when queries have to sort or merge r
 ### UNION, INTERSECT, and EXCEPT Operators<a name="UNION-INTERSECT-and-EXCEPT-operators"></a>
 
 The query plan uses the following operators for queries that involve set operations with UNION, INTERSECT, and EXCEPT\.
-
 + **Subquery**
 
   Used to run UNION queries\.
-
 + **Hash Intersect Distinct and Hash Intersect All**
 
   Used to run INTERSECT and INTERSECT ALL queries\.
-
 + **SetOp Except**
 
   Used to run EXCEPT \(or MINUS\) queries\.
@@ -112,31 +96,24 @@ The query plan uses the following operators for queries that involve set operati
 ### Other Operators<a name="other-operators"></a>
 
 The following operators also appear frequently in EXPLAIN output for routine queries\.
-
 + **Unique**
 
   Eliminates duplicates for SELECT DISTINCT queries and UNION queries\.
-
 + **Limit**
 
   Processes the LIMIT clause\.
-
 + **Window**
 
   Runs window functions\.
-
 + **Result**
 
   Runs scalar functions that do not involve any table access\.
-
 + **Subplan**
 
   Used for certain subqueries\.
-
 + **Network**
 
   Sends intermediate results to the leader node for further processing\.
-
 + **Materialize**
 
   Saves rows for input to nested loop joins and some merge joins\.
@@ -230,31 +207,24 @@ The EXPLAIN output for joins also specifies a method for how data will be moved 
 The EXPLAIN output also references inner and outer tables\. The inner table is scanned first, and appears nearer the bottom of the query plan\. The inner table is the table that is probed for matches\. It is usually held in memory, is usually the source table for hashing, and if possible, is the smaller table of the two being joined\. The outer table is the source of rows to match against the inner table\. It is usually read from disk\. The query optimizer chooses the inner and outer table based on database statistics from the latest run of the ANALYZE command\. The order of tables in the FROM clause of a query doesn't determine which table is inner and which is outer\.
 
 Use the following attributes in query plans to identify how data will be moved to facilitate a query:
-
 + **DS\_BCAST\_INNER**
 
   A copy of the entire inner table is broadcast to all compute nodes\.
-
 + **DS\_DIST\_ALL\_NONE**
 
   No redistribution is required, because the inner table has already been distributed to every node using DISTSTYLE ALL\.
-
 + **DS\_DIST\_NONE**
 
   No tables are redistributed\. Collocated joins are possible because corresponding slices are joined without moving data between nodes\.
-
 + **DS\_DIST\_INNER**
 
   The inner table is redistributed\.
-
 + **DS\_DIST\_OUTER**
 
   The outer table is redistributed\.
-
 + **DS\_DIST\_ALL\_INNER**
 
   The entire inner table is redistributed to a single slice because the outer table uses DISTSTYLE ALL\.
-
 + **DS\_DIST\_BOTH**
 
   Both tables are redistributed\.

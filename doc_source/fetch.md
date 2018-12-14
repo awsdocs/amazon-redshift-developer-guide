@@ -24,7 +24,7 @@ Fetches the next row\. This is the default\.
 ALL  
 Fetches all remaining rows\. \(Same as FORWARD ALL\.\) ALL is not supported for single\-node clusters\.
 
-FORWARD \[ *count* | ALL \]   
+FORWARD \[ *count* \| ALL \]   
 Fetches the next *count* rows, or all remaining rows\. `FORWARD 0` fetches the current row\. For single\-node clusters, the maximum value for count is `1000`\. FORWARD ALL is not supported for single\-node clusters\. 
 
 *cursor*   

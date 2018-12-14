@@ -24,11 +24,8 @@ A positive integer that indicates which occurrence of the pattern to use\. REGEX
 
  *parameters*   
 One or more string literals that indicate how the function matches the pattern\. The possible values are the following:  
-
 + c – Perform case\-sensitive matching\. The default is to use case\-sensitive matching\. 
-
 + i – Perform case\-insensitive matching\. 
-
 + e – Extract a substring using a subexpression\. 
 
   If *pattern* includes a subexpression, REGEXP\_SUBSTR matches a substring using the first subexpression in *pattern*\. REGEXP\_SUBSTR considers only the first subexpression; additional subexpressions are ignored\. If the pattern doesn't have a subexpression, REGEXP\_SUBSTR ignores the 'e' parameter\. 

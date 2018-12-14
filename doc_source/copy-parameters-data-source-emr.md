@@ -2,7 +2,7 @@
 
 You can use the COPY command to load data in parallel from an Amazon EMR cluster configured to write text files to the cluster's Hadoop Distributed File System \(HDFS\) in the form of fixed\-width files, character\-delimited files, CSV files, JSON\-formatted files, or Avro files\.
 
-
+**Topics**
 + [Syntax](#copy-parameters-data-source-emr-syntax)
 + [Example](#copy-parameters-data-source-emr-example)
 + [Parameters](#copy-parameters-data-source-emr-parameters)
@@ -45,25 +45,16 @@ The COPY command needs authorization to access data in another AWS resource, inc
 ## Supported Parameters<a name="copy-parameters-data-source-emr-optional-parms"></a>
 
 You can optionally specify the following parameters with COPY from Amazon EMR: 
-
 + [Column Mapping Options](copy-parameters-column-mapping.md)
-
 + [Data Format Parameters](copy-parameters-data-format.md#copy-data-format-parameters)
-
 + [Data Conversion Parameters](copy-parameters-data-conversion.md)
-
 + [ Data Load Operations](copy-parameters-data-load.md)
 
 ## Unsupported Parameters<a name="copy-parameters-data-source-emr-unsupported-parms"></a>
 
 You cannot use the following parameters with COPY from Amazon EMR: 
-
 + ENCRYPTED
-
 + MANIFEST
-
 + REGION
-
 + READRATIO
-
 + SSH

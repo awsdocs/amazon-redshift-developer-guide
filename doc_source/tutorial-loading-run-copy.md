@@ -2,7 +2,7 @@
 
 You will run COPY commands to load each of the tables in the SSB schema\. The COPY command examples demonstrate loading from different file formats, using several COPY command options, and troubleshooting load errors\.
 
-
+**Topics**
 + [COPY Command Syntax](#tutorial-loading-data-copy-syntax)
 + [Loading the SSB Tables](#tutorial-loading-run-copy-load-tables)
 
@@ -25,44 +25,30 @@ By default, COPY loads fields from the source data to the table columns in order
 <a name="tutorial-loading-syntax-data-source.title"></a>Data source
 
 You can use the COPY command to load data from an Amazon S3 bucket, an Amazon EMR cluster, a remote host using an SSH connection, or an Amazon DynamoDB table\. For this tutorial, you will load from data files in an Amazon S3 bucket\. When loading from Amazon S3, you must provide the name of the bucket and the location of the data files, by providing either an object path for the data files or the location of a manifest file that explicitly lists each data file and its location\. 
-
 + Key prefix 
 
   An object stored in Amazon S3 is uniquely identified by an object key, which includes the bucket name, folder names, if any, and the object name\. A *key prefix *refers to a set of objects with the same prefix\. The object path is a key prefix that the COPY command uses to load all objects that share the key prefix\. For example, the key prefix `custdata.txt` can refer to a single file or to a set of files, including `custdata.txt.001`, `custdata.txt.002`, and so on\. 
-
 + Manifest file
 
   If you need to load files with different prefixes, for example, from multiple buckets or folders, or if you need to exclude files that share a prefix, you can use a manifest file\. A *manifest file* explicitly lists each load file and its unique object key\. You will use a manifest file to load the PART table later in this tutorial\. 
 <a name="tutorial-loading-syntax-credentials"></a>
 **Credentials**  
-To access the AWS resources that contain the data to load, you must provide AWS access credentials \(that is, an access key ID and a secret access key\) for an AWS user or an IAM user with sufficient privileges\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing Access Permissions to Your Amazon S3 Resources](http://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you will need to get them\. For more information, go to [Administering Access Keys for IAM Users](http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
+To access the AWS resources that contain the data to load, you must provide AWS access credentials \(that is, an access key ID and a secret access key\) for an AWS user or an IAM user with sufficient privileges\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing Access Permissions to Your Amazon S3 Resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you will need to get them\. For more information, go to [Administering Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
 
 <a name="tutorial-loading-syntax-options.title"></a>Options
 
 You can specify a number of parameters with the COPY command to specify file formats, manage data formats, manage errors, and control other features\. In this tutorial, you will use the following COPY command options and features: 
-
 + [Key Prefix](#tutorial-loading-key-prefix)
-
 + [CSV Format](#tutorial-loading-csv-format)
-
 + [NULL AS](#tutorial-loading-null-as)
-
 + [REGION](#tutorial-loading-region)
-
 + [Fixed\-Width Format](#tutorial-loading-fixed-width)
-
 + [MAXERROR](#tutorial-loading-maxerror)
-
 + [ACCEPTINVCHARS](#tutorial-loading-acceptinvchars)
-
 + [MANIFEST](#tutorial-loading-manifest)
-
 + [DATEFORMAT](#tutorial-loading-dateformat)
-
 + [GZIP, LZOP and BZIP2](#tutorial-loading-gzip-lzop)
-
 + [COMPUPDATE](#tutorial-loading-compupdate)
-
 + [Multiple Files](#tutorial-loading-multiple-files)
 
 ## Loading the SSB Tables<a name="tutorial-loading-run-copy-load-tables"></a>
@@ -185,7 +171,7 @@ The `part-csv.tbl` data files use the NUL terminator character \(`\x000` or `\x0
 **Note**  
 Despite very similar spelling, NUL and NULL are not the same\. NUL is a UTF\-8 character with codepoint `x000` that is often used to indicate end of record \(EOR\)\. NULL is a SQL value that represents an absence of data\. 
 
-,By default, COPY treats a NUL terminator character as an EOR character and terminates the record, which often results in unexpected results or an error\. Because there is no single standard method of indicating NULL in text data, the NULL AS COPY command option enables you to specify which character to substitute with NULL when loading the table\. In this example, you want COPY to treat the NUL terminator character as a NULL value\.
+By default, COPY treats a NUL terminator character as an EOR character and terminates the record, which often results in unexpected results or an error\. Because there is no single standard method of indicating NULL in text data, the NULL AS COPY command option enables you to specify which character to substitute with NULL when loading the table\. In this example, you want COPY to treat the NUL terminator character as a NULL value\.
 
 **Note**  
 The table column that receives the NULL value must be configured as *nullable\.* That is, it must not include the NOT NULL constraint in the CREATE TABLE specification\.
@@ -222,7 +208,7 @@ In this step you will use the DELIMITER and REGION options to load the SUPPLIER 
 The files for loading the SUPPLIER table are provided in an AWS sample bucket\. You don't need to upload files for this step\.
 <a name="tutorial-loading-character-delimited-format"></a>
 **Character\-Delimited Format**  
-The fields in a character\-delimited file are separated by a specific character, such as a pipe character \( | \), a comma \( , \) or a tab \( \\t \)\. Character\-delimited files can use any single ASCII character, including one of the nonprinting ASCII characters, as the delimiter\. You specify the delimiter character by using the DELIMITER option\. The default delimiter is a pipe character \( | \)\. 
+The fields in a character\-delimited file are separated by a specific character, such as a pipe character \( \| \), a comma \( , \) or a tab \( \\t \)\. Character\-delimited files can use any single ASCII character, including one of the nonprinting ASCII characters, as the delimiter\. You specify the delimiter character by using the DELIMITER option\. The default delimiter is a pipe character \( \| \)\. 
 
 The following excerpt from the data for the SUPPLIER table uses pipe\-delimited format\. 
 
@@ -232,7 +218,7 @@ The following excerpt from the data for the SUPPLIER table uses pipe\-delimited 
 ```
 <a name="tutorial-loading-region"></a>
 **REGION**  
-Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency, minimize eventual consistency issues, and avoid cross\-region data transfer costs\. For more information, see [Best Practices for Loading Data](c_loading-data-best-practices.md) 
+Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency, minimize eventual consistency issues, and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift Best Practices for Loading Data](c_loading-data-best-practices.md) 
 
 If you must load data from a different AWS region, use the REGION option to specify the AWS region in which the load data is located\. If you specify a region, all of the load data, including manifest files, must be in the named region\. For more information, see [REGION](copy-parameters-data-source-s3.md#copy-region)\. 
 
@@ -353,7 +339,6 @@ The results of the STL\_LOAD\_ERRORS query should look similar to the following\
 ```
 
 By examining the results, you can see that there are two messages in the `error_reasons` column:
-
 + 
 
   ```
@@ -361,7 +346,6 @@ By examining the results, you can see that there are two messages in the `error_
   ```
 
   These errors are caused by the `customer-fw.tbl.log` file\. The problem is that it is a log file, not a data file, and should not be loaded\. You can use a manifest file to avoid loading the wrong file\. 
-
 + 
 
   ```
@@ -499,7 +483,7 @@ You can compress your files using either gzip, lzop, or bzip2 compression format
 When COPY loads an empty table with no compression encodings, it analyzes the load data to determine the optimal encodings\. It then alters the table to use those encodings before beginning the load\. This analysis process takes time, but it occurs, at most, once per table\. To save time, you can skip this step by turning COMPUPDATE off\. To enable an accurate evaluation of COPY times, you will turn COMPUPDATE off for this step\.
 <a name="tutorial-loading-multiple-files"></a>
 **Multiple Files**  
-The COPY command can load data very efficiently when it loads from multiple files in parallel instead of loading from a single file\. If you split your data into files so that the number of files is a multiple of the number of slices in your cluster, Amazon Redshift divides the workload and distributes the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For more information about the number of slices that each node size has, go to [About Clusters and Nodes](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+The COPY command can load data very efficiently when it loads from multiple files in parallel instead of loading from a single file\. If you split your data into files so that the number of files is a multiple of the number of slices in your cluster, Amazon Redshift divides the workload and distributes the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For more information about the number of slices that each node size has, go to [About Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
 For example, the dc1\.large compute nodes used in this tutorial have two slices each, so the four\-node cluster has eight slices\. In previous steps, the load data was contained in eight files, even though the files are very small\. In this step, you will compare the time difference between loading from a single large file and loading from multiple files\. 
 

@@ -1,6 +1,6 @@
 # System Tables Reference<a name="cm_chap_system-tables"></a>
 
-
+**Topics**
 + [System Tables and Views](c_intro_system_tables.md)
 + [Types of System Tables and Views](c_types-of-system-tables-and-views.md)
 + [Visibility of Data in System Tables and Views](c_visibility-of-data.md)

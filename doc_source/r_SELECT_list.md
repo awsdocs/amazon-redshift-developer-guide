@@ -1,6 +1,6 @@
 # SELECT List<a name="r_SELECT_list"></a>
 
-
+**Topics**
 + [Syntax](#r_SELECT_list-synopsis)
 + [Parameters](#r_SELECT_list-parameters)
 + [Usage Notes](#r_SELECT_list_usage_notes)
@@ -45,21 +45,12 @@ A temporary name for the column that will be used in the final result set\. The 
 avg(datediff(day, listtime, saletime)) as avgwait
 ```
 If you do not specify an alias for an expression that is not a simple column name, the result set applies a default name to that column\.   
-The alias is not recognized until the entire target list has been parsed, which means that you can't refer to the alias elsewhere within the target list\. For example, the following statement will fail:   
+The alias is recognized right after it is defined in the target list\. You can use an alias in other expressions defined after it in the same target list\. The following example illustrates this\.   
 
 ```
-select (qtysold + 1) as q, sum(q) from sales group by 1;
-ERROR:  column "q" does not exist
+select clicks / impressions as probability, round(100 * probability, 1) as percentage from raw_data;                       
 ```
-You must use the same expression that was aliased to `q`:   
-
-```
-select (qtysold + 1) as q, sum(qtysold + 1) from sales group by 1;
-q |  sum
----+--------
-8 |    368
-...
-```
+The benefit of the lateral alias reference is you don't need to repeat the aliased expression when building more complex expressions in the same target list\. When Amazon Redshift parses this type of reference, it just inlines the previously defined aliases\. If there is a column with the same name defined in the `FROM` clause as the previously aliased expression, the column in the `FROM` clause takes priority\. For example, in the above query if there is a column named 'probability' in table raw\_data, the 'probability' in the second expression in the target list will refer to that column instead of the alias name 'probability'\. 
 
 ## Usage Notes<a name="r_SELECT_list_usage_notes"></a>
 

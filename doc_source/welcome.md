@@ -1,6 +1,6 @@
 # Welcome<a name="welcome"></a>
 
-
+**Topics**
 + [Are You a First\-Time Amazon Redshift User?](c-first-time-user.md)
 + [Are You a Database Developer?](c-who-should-use-this-guide.md)
 + [Prerequisites](c-dev-guide-prereqs.md)

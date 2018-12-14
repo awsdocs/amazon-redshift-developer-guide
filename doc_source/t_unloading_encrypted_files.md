@@ -1,6 +1,6 @@
 # Unloading Encrypted Data Files<a name="t_unloading_encrypted_files"></a>
 
-UNLOAD automatically creates files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can also specify server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\) or client\-side encryption with a customer\-managed key \(CSE\-CMK\)\. UNLOAD doesn't support Amazon S3 server\-side encryption using a customer\-supplied key \(SSE\-C\)\. For more information, see [ Protecting Data Using Server\-Side Encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\. 
+UNLOAD automatically creates files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can also specify server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\) or client\-side encryption with a customer\-managed key \(CSE\-CMK\)\. UNLOAD doesn't support Amazon S3 server\-side encryption using a customer\-supplied key \(SSE\-C\)\. For more information, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\. 
 
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key, use the KMS\_KEY\_ID parameter to provide the key ID as shown in the following example\.
 

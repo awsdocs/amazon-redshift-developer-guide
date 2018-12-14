@@ -1,6 +1,6 @@
 # Using the COPY Command to Load from Amazon S3<a name="t_loading-tables-from-s3"></a>
 
-
+**Topics**
 + [Using a Manifest to Specify Data Files](loading-data-files-using-manifest.md)
 + [Loading Compressed Data Files from Amazon S3](t_loading-gzip-compressed-data-files-from-S3.md)
 + [Loading Fixed\-Width Data from Amazon S3](t_loading_fixed_width_data.md)

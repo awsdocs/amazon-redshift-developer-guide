@@ -22,4 +22,6 @@
 
    If a table is largely denormalized and does not participate in joins, or if you don't have a clear choice for another distribution style, use EVEN distribution \(the default\)\. 
 
+To let Amazon Redshift choose the appropriate distribution style, don't explicitly specify a distribution style\.
+
  You cannot change the distribution style of a table after it is created\. To use a different distribution style, you can recreate the table and populate the new table with a deep copy\. For more information, see [Performing a Deep Copy](performing-a-deep-copy.md)\. 

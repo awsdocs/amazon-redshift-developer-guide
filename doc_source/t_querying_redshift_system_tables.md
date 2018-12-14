@@ -6,19 +6,15 @@ In addition to the tables that you create, your database contains a number of sy
 The description for each table in the System Tables Reference indicates whether a table is visible to all users or visible only to superusers\. You must be logged in as a superuser to query tables that are visible only to superusers\.
 
 Amazon Redshift provides access to the following types of system tables:
-
 +  [STL Tables for Logging](c_intro_STL_tables.md) 
 
   These system tables are generated from Amazon Redshift log files to provide a history of the system\. Logging tables have an STL prefix\.
-
 +  [STV Tables for Snapshot Data](c_intro_STV_tables.md) 
 
   These tables are virtual system tables that contain snapshots of the current system data\. Snapshot tables have an STV prefix\.
-
 +  [System Views](c_intro_system_views.md) 
 
   System views contain a subset of data found in several of the STL and STV system tables\. Systems views have an SVV or SVL prefix\.
-
 +  [System Catalog Tables](c_intro_catalog_views.md) 
 
   The system catalog tables store schema metadata, such as information about tables and columns\. System catalog tables have a PG prefix\.

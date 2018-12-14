@@ -1,6 +1,6 @@
 # Math Functions<a name="Math_functions"></a>
 
-
+**Topics**
 + [Mathematical Operator Symbols](r_OPERATOR_SYMBOLS.md)
 + [ABS Function](r_ABS.md)
 + [ACOS Function](r_ACOS.md)

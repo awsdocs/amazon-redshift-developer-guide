@@ -1,6 +1,6 @@
 # Amazon Redshift and PostgreSQL<a name="c_redshift-and-postgres-sql"></a>
 
-
+**Topics**
 + [Amazon Redshift and PostgreSQL JDBC and ODBC](c_redshift-postgres-jdbc.md)
 + [Features That Are Implemented Differently](c_redshift-sql-implementated-differently.md)
 + [Unsupported PostgreSQL Features](c_unsupported-postgresql-features.md)

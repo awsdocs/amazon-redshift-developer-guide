@@ -13,7 +13,7 @@ DATE_PART ( datepart, {date|timestamp} )
  *datepart*   
 The specific part of the date value \(year, month, or day, for example\) that the function operates on\. For more information, see [Dateparts for Date or Time Stamp Functions](r_Dateparts_for_datetime_functions.md)\. 
 
-\{*date*|*timestamp*\}  
+\{*date*\|*timestamp*\}  
 A date or timestamp column or an expression that implicitly converts to a date or time stamp\. The expression must be a date or time stamp expression that contains the specified datepart\. 
 
 ## Return Type<a name="r_DATE_PART_function-return-type"></a>

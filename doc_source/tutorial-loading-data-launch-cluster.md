@@ -2,7 +2,7 @@
 
 If you already have a cluster that you want to use, you can skip this step\. 
 
-For the exercises in this tutorial, you will use a four\-node cluster\. Follow the steps in [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/), but select **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
+For the exercises in this tutorial, you will use a four\-node cluster\. Follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but select **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/tutorial-optimize-tables-console-cluster-type.png)
 

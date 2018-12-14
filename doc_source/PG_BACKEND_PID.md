@@ -36,27 +36,15 @@ order by query desc;
 ```
 
 You can correlate PG\_BACKEND\_PID\(\) with the pid column in the following log tables \(exceptions are noted in parentheses\):
-
 + [STL\_CONNECTION\_LOG](r_STL_CONNECTION_LOG.md)
-
 + [STL\_DDLTEXT](r_STL_DDLTEXT.md)
-
 + [STL\_ERROR](r_STL_ERROR.md)
-
 + [STL\_QUERY](r_STL_QUERY.md)
-
 + [STL\_QUERYTEXT](r_STL_QUERYTEXT.md)
-
 + [STL\_SESSIONS](r_STL_SESSIONS.md) \(process\)
-
 + [STL\_TR\_CONFLICT](r_STL_TR_CONFLICT.md)
-
 + [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md)
-
 + [STV\_ACTIVE\_CURSORS](r_STV_ACTIVE_CURSORS.md)
-
 + [STV\_INFLIGHT](r_STV_INFLIGHT.md)
-
 + [STV\_LOCKS](r_STV_LOCKS.md) \(lock\_owner\_pid\)
-
 + [STV\_RECENTS](r_STV_RECENTS.md) \(process\_id\)

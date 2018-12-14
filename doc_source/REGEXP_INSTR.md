@@ -27,11 +27,8 @@ A value that indicates whether to return the position of the first character of 
 
  *parameters*   
 One or more string literals that indicate how the function matches the pattern\. The possible values are the following:  
-
 + c – Perform case\-sensitive matching\. The default is to use case\-sensitive matching\. 
-
 + i – Perform case\-insensitive matching\. 
-
 + e – Extract a substring using a subexpression\. 
 
   If *pattern* includes a subexpression, REGEXP\_INSTR matches a substring using the first subexpression in *pattern*\. REGEXP\_INSTR considers only the first subexpression; additional subexpressions are ignored\. If the pattern doesn't have a subexpression, REGEXP\_INSTR ignores the 'e' parameter\. 

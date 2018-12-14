@@ -1,6 +1,6 @@
 # Unloading Data in Delimited or Fixed\-Width Format<a name="t_unloading_fixed_width_data"></a>
 
-You can unload data in delimited format or fixed\-width format\. The default output is pipe\-delimited \(using the '|' character\)\.
+You can unload data in delimited format or fixed\-width format\. The default output is pipe\-delimited \(using the '\|' character\)\.
 
 The following example specifies a comma as the delimiter: 
 

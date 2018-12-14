@@ -4,4 +4,4 @@ Most of the examples in this guide use the TICKIT sample database\. If you want 
 
 The sample data for this tutorial is provided in Amazon S3 buckets that give read access to all authenticated AWS users, so any valid AWS credentials that permit access to Amazon S3 will work\. 
 
-To load the sample data for the TICKIT database, you will first create the tables, then use the COPY command to load the tables with sample data that is stored in an Amazon S3 bucket\. For steps to create tables and load sample data, see [Amazon Redshift Getting Started Guide](http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\.
+To load the sample data for the TICKIT database, you will first create the tables, then use the COPY command to load the tables with sample data that is stored in an Amazon S3 bucket\. For steps to create tables and load sample data, see [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\.

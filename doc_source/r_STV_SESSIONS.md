@@ -28,13 +28,16 @@ select *
 from stv_sessions;
 ```
 
-The sample query output below shows three active sessions currently running on Amazon Redshift:
+The following result shows four active sessions currently running on Amazon Redshift:
 
 ```
-       starttime       | process |user_name | db_name
------------------------+---------+----------+----------------
-2008-08-06 08:54:20.50 |   19829 | dwuser | dev
-2008-08-06 08:56:34.50 |   20279 | dwuser | dev
-2008-08-06 08:55:00.50 |   19996 | dwuser | tickit
+       starttime         | process |user_name                   | db_name
+-------------------------+---------+----------------------------+---------
+  2018-08-06 08:44:07.50 |   13779 | IAMA:aws_admin:admin_grp   | dev
+  2008-08-06 08:54:20.50 |   19829 | dwuser                     | dev
+  2008-08-06 08:56:34.50 |   20279 | dwuser                     | dev
+  2008-08-06 08:55:00.50 |   19996 | dwuser                     | tickit
 (3 rows)
 ```
+
+The user name prefixed with IAMA indicates that the user signed on using federated single sign\-on \(SSO\)\. For more information, see [Using IAM Authentication to Generate Database User Credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\.

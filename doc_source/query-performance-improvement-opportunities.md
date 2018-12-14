@@ -2,7 +2,7 @@
 
 Following are some common issues that affect query performance, with instructions on ways to diagnose and resolve them\.
 
-
+**Topics**
 + [Table Statistics Missing or Out of Date](#table-statistics-missing-or-out-of-date)
 + [Nested Loop](#nested-loop)
 + [Hash Join](#hash-join)
@@ -18,9 +18,7 @@ Following are some common issues that affect query performance, with instruction
 ## Table Statistics Missing or Out of Date<a name="table-statistics-missing-or-out-of-date"></a>
 
 If table statistics are missing or out of date, you might see the following:
-
 + A warning message in EXPLAIN command results\.
-
 + A missing statistics alert event in STL\_ALERT\_EVENT\_LOG\. For more information, see [Reviewing Query Alerts](c-reviewing-query-alerts.md)\.
 
 To fix this issue, run [ANALYZE](r_ANALYZE.md)\.
@@ -34,15 +32,11 @@ To fix this, review your query for cross\-joins and remove them if possible\. Cr
 ## Hash Join<a name="hash-join"></a>
 
 If a hash join is present, you might see the following:
-
 + Hash and hash join operations in the query plan\. For more information, see [Analyzing the Query Plan](c-analyzing-the-query-plan.md)\.
-
 + An HJOIN step in the segment with the highest maxtime value in SVL\_QUERY\_SUMMARY\. For more information, see [Using the SVL\_QUERY\_SUMMARY View](using-SVL-Query-Summary.md)\.
 
 To fix this issue, you can take a couple of approaches:
-
 + Rewrite the query to use a merge join if possible\. You can do this by specifying join columns that are both distribution keys and sort keys\.
-
 + If the HJOIN step in SVL\_QUERY\_SUMMARY has a very high value in the rows field compared to the rows value in the final RETURN step in the query, check whether you can rewrite the query to join on a unique column\. When a query does not join on a unique column, such as a primary key, that increases the number of rows involved in the join\.
 
 ## Ghost Rows or Uncommitted Rows<a name="ghost-rows-or-uncommitted-rows"></a>
@@ -50,9 +44,7 @@ To fix this issue, you can take a couple of approaches:
 If ghost rows or uncommitted rows are present, you might see an alert event in STL\_ALERT\_EVENT\_LOG that indicates excessive ghost rows\. For more information, see [Reviewing Query Alerts](c-reviewing-query-alerts.md)\.
 
 To fix this issue, you can take a couple of approaches:
-
 + Check the **Loads** tab of your Amazon Redshift console for active load operations on any of the query tables\. If you see active load operations, wait for those to complete before taking action\.
-
 + If there are no active load operations, run [VACUUM](r_VACUUM_command.md) on the query tables to remove deleted rows\.
 
 ## Unsorted or Missorted Rows<a name="unsorted-or-mis-sorted-rows"></a>
@@ -62,19 +54,14 @@ If unsorted or missorted rows are present, you might see a very selective filter
 You can also check to see if any of the tables in your query have large unsorted areas by running the query in [Identifying Tables with Data Skew or Unsorted Rows](diagnostic-queries-for-query-tuning.md#identify-tables-with-data-skew-or-unsorted-rows)\.
 
 To fix this issue, you can take a couple of approaches:
-
 + Run [VACUUM](r_VACUUM_command.md) on the query tables to re\-sort the rows\.
-
 + Review the sort keys on the query tables to see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Choosing Sort Keys](t_Sorting_data.md)\.
 
 ## Suboptimal Data Distribution<a name="suboptimal-data-distribution"></a>
 
 If data distribution is suboptimal, you might see the following:
-
 + A serial execution, large broadcast, or large distribution alert event appears in STL\_ALERT\_EVENT\_LOG\. For more information, see [Reviewing Query Alerts](c-reviewing-query-alerts.md)\.
-
 + Slices are not processing approximately the same number of rows for a given step\. For more information, see [Using the SVL\_QUERY\_REPORT View](using-SVL-Query-Report.md)\.
-
 + Slices are not taking approximately the same amount of time for a given step\. For more information, see [Using the SVL\_QUERY\_REPORT View](using-SVL-Query-Report.md)\.
 
 If none of the preceding is true, you can also see if any of the tables in your query have data skew by running the query in [Identifying Tables with Data Skew or Unsorted Rows](diagnostic-queries-for-query-tuning.md#identify-tables-with-data-skew-or-unsorted-rows)\.

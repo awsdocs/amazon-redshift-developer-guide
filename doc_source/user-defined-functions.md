@@ -6,7 +6,7 @@ For Python UDFs, in addition to using the standard Python functionality, you can
 
 By default, all users can execute UDFs\. For more information about privileges, see [UDF Security and Privileges](udf-security-and-privileges.md)\.
 
-
+**Topics**
 + [UDF Security and Privileges](udf-security-and-privileges.md)
 + [Creating a Scalar SQL UDF](udf-creating-a-scalar-sql-udf.md)
 + [Creating a Scalar Python UDF](udf-creating-a-scalar-udf.md)

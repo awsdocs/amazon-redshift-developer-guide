@@ -25,8 +25,8 @@ Name of the user to add to the group\.
 
 ## Examples<a name="r_CREATE_GROUP-examples"></a>
 
-The following example creates a user group named ADMIN\_GROUP with a single user ADMIN:
+The following example creates a user group named ADMIN\_GROUP with a two users, ADMIN1 and ADMIN2\.
 
 ```
-create group admin_group with user admin;
+create group admin_group with user admin1, admin2;
 ```

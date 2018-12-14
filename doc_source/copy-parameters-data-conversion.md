@@ -1,39 +1,22 @@
 # Data Conversion Parameters<a name="copy-parameters-data-conversion"></a>
 
 As it loads the table, COPY attempts to implicitly convert the strings in the source data to the data type of the target column\. If you need to specify a conversion that is different from the default behavior, or if the default conversion results in errors, you can manage data conversions by specifying the following parameters\. 
-
 + [ACCEPTANYDATE](#copy-acceptanydate) 
-
 + [ACCEPTINVCHARS](#copy-acceptinvchars) 
-
 + [BLANKSASNULL](#copy-blanksasnull) 
-
 + [DATEFORMAT](#copy-dateformat) 
-
 + [EMPTYASNULL](#copy-emptyasnull) 
-
 + [ENCODING](#copy-encoding) 
-
 + [ESCAPE](#copy-escape) 
-
 + [EXPLICIT_IDS](#copy-explicit-ids) 
-
 + [FILLRECORD](#copy-fillrecord) 
-
 + [IGNOREBLANKLINES](#copy-ignoreblanklines) 
-
 + [IGNOREHEADER](#copy-ignoreheader) 
-
 + [NULL AS](#copy-null-as) 
-
 + [REMOVEQUOTES](#copy-removequotes) 
-
 + [ROUNDEC](#copy-roundec) 
-
 + [TIMEFORMAT](#copy-timeformat) 
-
 + [TRIMBLANKS](#copy-trimblanks) 
-
 + [TRUNCATECOLUMNS](#copy-truncatecolumns) <a name="copy-data-conversion-parameters"></a>Data Conversion Parameters
 
 ACCEPTANYDATE   <a name="copy-acceptanydate"></a>
@@ -49,7 +32,7 @@ ACCEPTINVCHARS is valid only for VARCHAR columns\.
 BLANKSASNULL   <a name="copy-blanksasnull"></a>
 Loads blank fields, which consist of only white space characters, as NULL\. This option applies only to CHAR and VARCHAR columns\. Blank fields for other data types, such as INT, are always loaded with NULL\. For example, a string that contains three space characters in succession \(and no other characters\) is loaded as a NULL\. The default behavior, without this option, is to load the space characters as is\. 
 
-DATEFORMAT \[AS\] \{'*dateformat\_string*' | 'auto' \}  <a name="copy-dateformat"></a>
+DATEFORMAT \[AS\] \{'*dateformat\_string*' \| 'auto' \}  <a name="copy-dateformat"></a>
 If no DATEFORMAT is specified, the default format is `'YYYY-MM-DD'`\. For example, an alternative valid format is `'MM-DD-YYYY'`\.   
 If the COPY command does not recognize the format of your date or time values, or if your date or time values use different formats, use the `'auto'` argument with the DATEFORMAT or TIMEFORMAT parameter\. The `'auto'` argument recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. The `'auto'`' keyword is case\-sensitive\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\.   
 The date format can include time information \(hour, minutes, seconds\), but this information is ignored\. The AS keyword is optional\. For more information, see [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\.
@@ -60,31 +43,20 @@ Indicates that Amazon Redshift should load empty CHAR and VARCHAR fields as NULL
 ENCODING \[AS\] *file\_encoding*  <a name="copy-encoding"></a>
 Specifies the encoding type of the load data\. The COPY command converts the data from the specified encoding into UTF\-8 during loading\.   
 Valid values for *file\_encoding* are as follows:  
-
 + `UTF8` 
-
 + `UTF16` 
-
 + `UTF16LE` 
-
 + `UTF16BE` 
 The default is `UTF8`\.  
 Source file names must use UTF\-8 encoding\.  
 The following files must use UTF\-8 encoding, even if a different encoding is specified for the load data:  
-
 + Manifest files
-
 + JSONPaths files
 The argument strings provided with the following parameters must use UTF\-8:  
-
 + FIXEDWIDTH '*fixedwidth\_spec*'
-
 + ACCEPTINVCHARS '*replacement\_char*'
-
 + DATEFORMAT '*dateformat\_string*'
-
 + TIMEFORMAT '*timeformat\_string*'
-
 + NULL AS '*null\_string*'
 Fixed\-width data files must use UTF\-8 encoding\. The field widths are based on the number of characters, not the number of bytes\.   
 All load data must use the specified encoding\. If COPY encounters a different encoding, it skips the file and returns an error\.   
@@ -141,7 +113,7 @@ Removes surrounding quotation marks from strings in the incoming data\. All char
 ROUNDEC   <a name="copy-roundec"></a>
 Rounds up numeric values when the scale of the input value is greater than the scale of the column\. By default, COPY truncates values when necessary to fit the scale of the column\. For example, if a value of `20.259` is loaded into a DECIMAL\(8,2\) column, COPY truncates the value to `20.25` by default\. If ROUNDEC is specified, COPY rounds the value to `20.26`\. The INSERT command always rounds values when necessary to match the column's scale, so a COPY command with the ROUNDEC parameter behaves the same as an INSERT command\.
 
-TIMEFORMAT \[AS\] \{'*timeformat\_string*' | 'auto' | 'epochsecs' | 'epochmillisecs' \}  <a name="copy-timeformat"></a>
+TIMEFORMAT \[AS\] \{'*timeformat\_string*' \| 'auto' \| 'epochsecs' \| 'epochmillisecs' \}  <a name="copy-timeformat"></a>
 Specifies the time format\. If no TIMEFORMAT is specified, the default format is `YYYY-MM-DD HH:MI:SS` for TIMESTAMP columns or `YYYY-MM-DD HH:MI:SSOF` for TIMESTAMPTZ columns, where `OF` is the offset from Coordinated Universal Time \(UTC\)\. You can't include a time zone specifier in the *timeformat\_string*\. To load TIMESTAMPTZ data that is in a format different from the default format, specify 'auto'; for more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. For more information about *timeformat\_string*, see [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\.  
 The `'auto'` argument recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. If the COPY command does not recognize the format of your date or time values, or if your date and time values use formats different from each other, use the `'auto'` argument with the DATEFORMAT or TIMEFORMAT parameter\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\.   
 If your source data is represented as epoch time, that is the number of seconds or milliseconds since January 1, 1970, 00:00:00 UTC, specify `'epochsecs'` or `'epochmillisecs'`\.   

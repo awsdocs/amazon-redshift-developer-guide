@@ -1,6 +1,6 @@
 # Datetime Types<a name="r_Datetime_types"></a>
 
-
+**Topics**
 + [Storage and Ranges](#r_Datetime_types-storage-and-ranges)
 + [DATE](#r_Datetime_types-date)
 + [TIMESTAMP](#r_Datetime_types-timestamp)

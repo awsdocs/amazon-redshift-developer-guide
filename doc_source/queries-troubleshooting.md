@@ -2,7 +2,7 @@
 
 This section provides a quick reference for identifying and addressing some of the most common and most serious issues you are likely to encounter with Amazon Redshift queries\.
 
-
+**Topics**
 + [Connection Fails](#queries-troubleshooting-connection-fails)
 + [Query Hangs](#queries-troubleshooting-query-hangs)
 + [Query Takes Too Long](#queries-troubleshooting-query-takes-too-long)
@@ -12,15 +12,10 @@ This section provides a quick reference for identifying and addressing some of t
 + [Setting the JDBC Fetch Size Parameter](#set-the-JDBC-fetch-size-parameter)
 
 These suggestions give you a starting point for troubleshooting\. You can also refer to the following resources for more detailed information\.
-
-+ [Accessing Amazon Redshift Clusters and Databases](http://docs.aws.amazon.com/redshift/latest/mgmt/using-rs-tools.html)
-
++ [Accessing Amazon Redshift Clusters and Databases](https://docs.aws.amazon.com/redshift/latest/mgmt/using-rs-tools.html)
 + [Designing Tables](t_Creating_tables.md)
-
 + [Loading Data](t_Loading_data.md)
-
 + [Tutorial: Tuning Table Design](tutorial-tuning-tables.md)
-
 + [Tutorial: Loading Data from Amazon S3](tutorial-loading-data.md)
 
 ## Connection Fails<a name="queries-troubleshooting-connection-fails"></a>
@@ -28,36 +23,32 @@ These suggestions give you a starting point for troubleshooting\. You can also r
 Your query connection can fail for the following reasons; we suggest the following troubleshooting approaches\.
 
 **Client Cannot Connect to Server**  
-If you are using SSL or server certificates, first remove this complexity while you troubleshoot the connection issue\. Then add SSL or server certificates back when you have found a solution\. For more information, go to [Configure Security Options for Connections](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-ssl-support.html) in the *Amazon Redshift Cluster Management Guide\.*
+If you are using SSL or server certificates, first remove this complexity while you troubleshoot the connection issue\. Then add SSL or server certificates back when you have found a solution\. For more information, go to [Configure Security Options for Connections](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-ssl-support.html) in the *Amazon Redshift Cluster Management Guide\.*
 
 **Connection Is Refused**  
-Generally, when you receive an error message indicating that there is a failure to establish a connection, it means that there is an issue with the permission to access the cluster\. For more information, go to [The connection is refused or fails](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-refusal-failure-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Generally, when you receive an error message indicating that there is a failure to establish a connection, it means that there is an issue with the permission to access the cluster\. For more information, go to [The connection is refused or fails](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-refusal-failure-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
 
 ## Query Hangs<a name="queries-troubleshooting-query-hangs"></a>
 
 Your query can hang, or stop responding, for the following reasons; we suggest the following troubleshooting approaches\.
 
 **Connection to the Database Is Dropped**  
-Reduce the size of maximum transmission unit \(MTU\)\. The MTU size determines the maximum size, in bytes, of a packet that can be transferred in one Ethernet frame over your network connection\. For more information, go to [The connection to the database is dropped](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Reduce the size of maximum transmission unit \(MTU\)\. The MTU size determines the maximum size, in bytes, of a packet that can be transferred in one Ethernet frame over your network connection\. For more information, go to [The connection to the database is dropped](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
 
 **Connection to the Database Times Out**  
-Your client connection to the database appears to hang or timeout when running long queries, such as a COPY command\. In this case, you might observe that the Amazon Redshift console displays that the query has completed, but the client tool itself still appears to be running the query\. The results of the query might be missing or incomplete depending on when the connection stopped\. This effect happens when idle connections are terminated by an intermediate network component\. For more information, go to [Firewall Timeout Issue](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Your client connection to the database appears to hang or timeout when running long queries, such as a COPY command\. In this case, you might observe that the Amazon Redshift console displays that the query has completed, but the client tool itself still appears to be running the query\. The results of the query might be missing or incomplete depending on when the connection stopped\. This effect happens when idle connections are terminated by an intermediate network component\. For more information, go to [Firewall Timeout Issue](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html) in the *Amazon Redshift Cluster Management Guide\.* 
 
 **Client\-Side Out\-of\-Memory Error Occurs with ODBC**  
 If your client application uses an ODBC connection and your query creates a result set that is too large to fit in memory, you can stream the result set to your client application by using a cursor\. For more information, see [DECLARE](declare.md) and [Performance Considerations When Using Cursors](declare.md#declare-performance)\.
 
 **Client\-Side Out\-of\-Memory Error Occurs with JDBC**  
-When you attempt to retrieve large result sets over a JDBC connection, you might encounter client\-side out\-of\-memory errors\. For more information, see [Setting the JDBC fetch size parameter](http://docs.aws.amazon.com/redshift/latest/dg/jdbc-fetch-size-parameter.html)\.
+When you attempt to retrieve large result sets over a JDBC connection, you might encounter client\-side out\-of\-memory errors\. For more information, see [Setting the JDBC Fetch Size Parameter](#set-the-JDBC-fetch-size-parameter)\.
 
 **There Is a Potential Deadlock**  
 If there is a potential deadlock, try the following:
-
 + View the [STV\_LOCKS](r_STV_LOCKS.md) and [STL\_TR\_CONFLICT](r_STL_TR_CONFLICT.md) system tables to find conflicts involving updates to more than one table\.
-
 + Use the [PG\_CANCEL\_BACKEND](PG_CANCEL_BACKEND.md) function to cancel one or more conflicting queries\.
-
 + Use the [PG\_TERMINATE\_BACKEND](PG_TERMINATE_BACKEND.md) function to terminate a session, which forces any currently running transactions in the terminated session to release all locks and roll back the transaction\.
-
 + Schedule concurrent write operations carefully\. For more information, see [Managing Concurrent Write Operations](c_Concurrent_writes.md)\.
 
 ## Query Takes Too Long<a name="queries-troubleshooting-query-takes-too-long"></a>
@@ -106,7 +97,7 @@ Query STL\_LOAD\_ERRORS to discover the errors that occurred during specific loa
 Your load operation can take too long for the following reasons; we suggest the following troubleshooting approaches\.
 
 **COPY Loads Data from a Single File**  
-Split your load data into multiple files\. When you load all the data from a single large file, Amazon Redshift is forced to perform a serialized load, which is much slower\. The number of files should be a multiple of the number of slices in your cluster, and the files should be about equal size, between 1 MB and 1 GB after compression\. For more information, see [Best Practices for Designing Queries](c_designing-queries-best-practices.md)\.
+Split your load data into multiple files\. When you load all the data from a single large file, Amazon Redshift is forced to perform a serialized load, which is much slower\. The number of files should be a multiple of the number of slices in your cluster, and the files should be about equal size, between 1 MB and 1 GB after compression\. For more information, see [Amazon Redshift Best Practices for Designing Queries](c_designing-queries-best-practices.md)\.
 
 **Load Operation Uses Multiple COPY Commands**  
 If you use multiple concurrent COPY commands to load one table from multiple files, Amazon Redshift is forced to perform a serialized load, which is much slower\. In this case, use a single COPY command\.

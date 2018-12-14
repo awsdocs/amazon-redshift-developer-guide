@@ -6,7 +6,7 @@ The COPY command loads data from files on the Amazon EMR Hadoop Distributed File
 
 1. Create an Amazon EMR cluster in the same AWS region as the Amazon Redshift cluster\. 
 
-   If the Amazon Redshift cluster is in a VPC, the Amazon EMR cluster must be in the same VPC group\. If the Amazon Redshift cluster uses EC2\-Classic mode \(that is, it is not in a VPC\), the Amazon EMR cluster must also use EC2\-Classic mode\. For more information, see [Managing Clusters in Virtual Private Cloud \(VPC\)](http://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-vpc.html) in the *Amazon Redshift Cluster Management Guide*\.
+   If the Amazon Redshift cluster is in a VPC, the Amazon EMR cluster must be in the same VPC group\. If the Amazon Redshift cluster uses EC2\-Classic mode \(that is, it is not in a VPC\), the Amazon EMR cluster must also use EC2\-Classic mode\. For more information, see [Managing Clusters in Virtual Private Cloud \(VPC\)](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-vpc.html) in the *Amazon Redshift Cluster Management Guide*\.
 
 1. Configure the cluster to output data files to the cluster's HDFS\. The HDFS file names must not include asterisks \(\*\) or question marks \(?\)\.
 **Important**  

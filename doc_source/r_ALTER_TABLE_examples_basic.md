@@ -40,7 +40,7 @@ rename column venueseats to venuesize;
 
 ## Drop a Table Constraint<a name="r_ALTER_TABLE_examples_drop-constraint"></a>
 
-To drop a table constraint, such as a primary key, foreign key, or unique constraint, first find the internal name of the constraint, then specify the constraint name in the ALTER TABLE command\. The following example finds the constraints for the CATEGORY table, then drops the primary key with the name `category_pkey`\. 
+To drop a table constraint, such as a primary key, foreign key, or unique constraint, first find the internal name of the constraint\. Then specify the constraint name in the ALTER TABLE command\. The following example finds the constraints for the CATEGORY table, then drops the primary key with the name `category_pkey`\. 
 
 ```
 select constraint_name, constraint_type 

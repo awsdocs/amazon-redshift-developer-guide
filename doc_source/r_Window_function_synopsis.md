@@ -62,14 +62,12 @@ In any parallel system such as Amazon Redshift, when an ORDER BY clause does not
  *column\_name*   
 Name of a column to be partitioned by or ordered by\. 
 
-ASC | DESC   
+ASC \| DESC   
 Option that defines the sort order for the expression, as follows:   
-
 + ASC: ascending \(for example, low to high for numeric values and 'A' to 'Z' for character strings\)\. If no option is specified, data is sorted in ascending order by default\.
-
 + DESC: descending \(high to low for numeric values; 'Z' to 'A' for strings\)\. 
 
-NULLS FIRST | NULLS LAST  
+NULLS FIRST \| NULLS LAST  
 Option that specifies whether NULLS should be ordered first, before non\-null values, or last, after non\-null values\. By default, NULLS are sorted and ranked last in ASC ordering, and sorted and ranked first in DESC ordering\.
 
  *frame\_clause*   
@@ -96,7 +94,7 @@ AND
 | CURRENT ROW}
 ```
 UNBOUNDED PRECEDING indicates that the window starts at the first row of the partition; *offset* PRECEDING indicates that the window starts a number of rows equivalent to the value of offset before the current row\. UNBOUNDED PRECEDING is the default\.  
-CURRENT ROW indicates the window begins or ends at the current row\. RANGE CURRENT ROW includes all rows that have the same value as the current row according to the ORDER BY expression\.  
+CURRENT ROW indicates the window begins or ends at the current row\.   
 UNBOUNDED FOLLOWING indicates that the window ends at the last row of the partition; *offset* FOLLOWING indicates that the window ends a number of rows equivalent to the value of offset after the current row\.  
 *offset* identifies a physical number of rows before or after the current row\. In this case, *offset* must be a constant that evaluates to a positive numeric value\. For example, 5 FOLLOWING will end the frame 5 rows after the current row\.  
 Where BETWEEN is not specified, the frame is implicitly bounded by the current row\. For example `ROWS 5 PRECEDING` is equal to `ROWS BETWEEN 5 PRECEDING AND CURRENT ROW`, and `ROWS UNBOUNDED FOLLOWING` is equal to `ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING`\.  

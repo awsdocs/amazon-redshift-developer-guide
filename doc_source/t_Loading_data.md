@@ -1,6 +1,6 @@
 # Loading Data<a name="t_Loading_data"></a>
 
-
+**Topics**
 + [Using a COPY Command to Load Data](t_Loading_tables_with_the_COPY_command.md)
 + [Updating Tables with DML Commands](t_Updating_tables_with_DML_commands.md)
 + [Updating and Inserting New Data](t_updating-inserting-using-staging-tables-.md)

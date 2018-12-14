@@ -1,6 +1,6 @@
 # SQL Functions Reference<a name="c_SQL_functions"></a>
 
-
+**Topics**
 + [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)
 + [Compute Node–Only Functions](c_SQL_functions_compute_node_only.md)
 + [Aggregate Functions](c_Aggregate_Functions.md)

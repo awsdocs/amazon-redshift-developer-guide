@@ -1,12 +1,12 @@
 # ANALYZE Command History<a name="c_check_last_analyze"></a>
 
-It is useful to know when the last ANALYZE command was run on a table or database\. When an ANALYZE command is run, Amazon Redshift executes multiple queries that look like this: 
+It's useful to know when the last ANALYZE command was run on a table or database\. When an ANALYZE command is run, Amazon Redshift executes multiple queries that look like this: 
 
 ```
 padb_fetch_sample: select * from table_name
 ```
 
-Query STL\_ANALYZE to view the history of analyze operations\. The following example joins STV\_TBL\_PERM to show the table name and execution details\.
+Query STL\_ANALYZE to view the history of analyze operations\. If Amazon Redshift analyzes a table using automatic analyze, the `is_background` column is set to `t` \(true\)\. Otherwise, it is set to `f` \(false\)\. The following example joins STV\_TBL\_PERM to show the table name and execution details\.
 
 ```
 select distinct a.xid, trim(t.name) as name, a.status, a.rows, a.modified_rows, a.starttime, a.endtime

@@ -7,11 +7,8 @@ Query metrics are sampled at one second intervals\. As a result, different runs 
 STV\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query Planning And Execution Workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data Warehouse System Architecture](c_high_level_system_architecture.md)\. 
 
 To determine the level at which the row reports metrics, examine the `segment` and `step_type` columns:
-
 + If both `segment` and `step_type` are `-1`, then the row reports metrics at the query level\. 
-
 + If `segment` is not `-1` and `step_type` is `-1`, then the row reports metrics at the segment level\. 
-
 + If both `segment` and `step_type` are not `-1`, then the row reports metrics at the step level\. 
 
 This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.

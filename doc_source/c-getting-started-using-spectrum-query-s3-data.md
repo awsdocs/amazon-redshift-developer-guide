@@ -16,7 +16,7 @@ After your external tables are created, you can query them using the same SELECT
    172462
    ```
 
-1. Keep your larger fact tables in Amazon S3 and your smaller dimension tables in Amazon Redshift, as a best practice\. If you loaded the sample data in [Getting Started with Amazon Redshift](http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html), you have a table named EVENT in your database\. If not, create the EVENT table by using the following command\.
+1. Keep your larger fact tables in Amazon S3 and your smaller dimension tables in Amazon Redshift, as a best practice\. If you loaded the sample data in [Getting Started with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html), you have a table named EVENT in your database\. If not, create the EVENT table by using the following command\.
 
    ```
    create table event(
@@ -36,7 +36,7 @@ After your external tables are created, you can query them using the same SELECT
    delimiter '|' timeformat 'YYYY-MM-DD HH:MI:SS' region 'us-west-2';
    ```
 
-   The following example joins the external table SPECTRUM\.SALES with the local table EVENT to find the total sales for the top ten events\.
+   The following example joins the external table SPECTRUM\.SALES with the local table EVENT to find the total sales for the top 10 events\.
 
    ```
    select top 10 spectrum.sales.eventid, sum(spectrum.sales.pricepaid) from spectrum.sales, event

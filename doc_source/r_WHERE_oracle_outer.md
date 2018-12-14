@@ -44,9 +44,7 @@ and table1.col2 = table2.col2(+)
 ## Usage Notes<a name="r_WHERE_oracle_outer_usage_notes"></a>
 
 Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(\+\) operator in the WHERE clause\. Queries that contain the \(\+\) operator are subject to the following rules: 
-
 + You can only use the \(\+\) operator in the WHERE clause, and only in reference to columns from tables or views\. 
-
 + You can't apply the \(\+\) operator to expressions\. However, an expression can contain columns that use the \(\+\) operator\. For example, the following join condition returns a syntax error: 
 
   ```
@@ -58,13 +56,9 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   ```
   event.eventid(+)*10=category.catid
   ```
-
 + You can't use the \(\+\) operator in a query block that also contains FROM clause join syntax\. 
-
 + If two tables are joined over multiple join conditions, you must use the \(\+\) operator in all or none of these conditions\. A join with mixed syntax styles executes as an inner join, without warning\. 
-
 + The \(\+\) operator does not produce an outer join if you join a table in the outer query with a table that results from an inner query\. 
-
 + To use the \(\+\) operator to outer\-join a table to itself, you must define table aliases in the FROM clause and reference them in the join condition: 
 
   ```
@@ -77,7 +71,6 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   8798
   (1 row)
   ```
-
 + You can't combine a join condition that contains the \(\+\) operator with an OR condition or an IN condition\. For example: 
 
   ```
@@ -85,7 +78,6 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   where sales.listid(+)=listing.listid or sales.salesid=0;
   ERROR:  Outer join operator (+) not allowed in operand of OR or IN.
   ```
-
 +  In a WHERE clause that outer\-joins more than two tables, the \(\+\) operator can be applied only once to a given table\. In the following example, the SALES table can't be referenced with the \(\+\) operator in two successive joins\. 
 
   ```
@@ -93,7 +85,6 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   where sales.listid(+)=listing.listid and sales.dateid(+)=date.dateid;
   ERROR:  A table may be outer joined to at most one other table.
   ```
-
 +  If the WHERE clause outer\-join condition compares a column from TABLE2 with a constant, apply the \(\+\) operator to the column\. If you do not include the operator, the outer\-joined rows from TABLE1, which contain nulls for the restricted column, are eliminated\. See the Examples section below\. 
 
 ## Examples<a name="r_WHERE_oracle_outer-examples"></a>

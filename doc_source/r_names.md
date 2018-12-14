@@ -5,15 +5,10 @@ Names identify database objects, including tables and columns, as well as users 
 ## Standard Identifiers<a name="r_names-standard-identifiers"></a>
 
 Standard SQL identifiers adhere to a set of rules and must: 
-
 + Begin with an an ASCII single\-byte alphabetic character or underscore character, or a UTF\-8 multibyte character two to four bytes long\.
-
 + Subsequent characters can be ASCII single\-byte alphanumeric characters, underscores, or dollar signs, or UTF\-8 multibyte characters two to four bytes long\.
-
 + Be between 1 and 127 bytes in length, not including quotes for delimited identifiers\. 
-
 + Contain no quotation marks and no spaces\. 
-
 + Not be a reserved SQL key word\.
 
 ## Delimited Identifiers<a name="r_names-delimited-identifiers"></a>

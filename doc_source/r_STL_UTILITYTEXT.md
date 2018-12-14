@@ -3,29 +3,17 @@
 Captures the text of non\-SELECT SQL commands run on the database\.
 
 Query the STL\_UTILITYTEXT table to capture the following subset of SQL statements that were run on the system:
-
 + ABORT, BEGIN, COMMIT, END, ROLLBACK
-
 + CANCEL
-
 + COMMENT
-
 + CREATE, ALTER, DROP DATABASE
-
 + CREATE, ALTER, DROP USER
-
 + EXPLAIN
-
 + GRANT, REVOKE
-
 + LOCK
-
 + RESET
-
 + SET
-
 + SHOW
-
 + TRUNCATE
 
 See also [STL\_DDLTEXT](r_STL_DDLTEXT.md), [STL\_QUERYTEXT](r_STL_QUERYTEXT.md), and [SVL\_STATEMENTTEXT](r_SVL_STATEMENTTEXT.md)\.

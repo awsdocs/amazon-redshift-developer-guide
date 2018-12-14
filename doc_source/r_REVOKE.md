@@ -77,13 +77,11 @@ Revokes the specified privileges from all users\. PUBLIC represents a group that
 
 CREATE   
 Depending on the database object, revokes the following privileges from the user or group:  
-
 + For databases, using the CREATE clause for REVOKE prevents users from creating schemas within the database\.
-
 + For schemas, using the CREATE clause for REVOKE prevents users from creating objects within a schema\. To rename an object, the user must have the CREATE privilege and own the object to be renamed\. 
 By default, all users have CREATE and USAGE privileges on the PUBLIC schema\.
 
-TEMPORARY | TEMP   
+TEMPORARY \| TEMP   
 Revokes the privilege to create temporary tables in the specified database\.  
 By default, users are granted permission to create temporary tables by their automatic membership in the PUBLIC group\. To remove the privilege for any users to create temporary tables, revoke the TEMP permission from the PUBLIC group and then explicitly grant the permission to create temporary tables to specific users or groups of users\.
 
@@ -121,11 +119,8 @@ For more information, see [UDF Security and Privileges](udf-security-and-privile
 ## Usage Notes<a name="r_REVOKE-usage-notes"></a>
 
 To revoke privileges from an object, you must meet one of the following criteria:
-
 + Be the object owner\.
-
 + Be a superuser\.
-
 + Have a grant privilege for that object and privilege\.
 
   For example, the following command gives the user HR the ability both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users: 

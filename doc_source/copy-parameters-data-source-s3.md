@@ -5,7 +5,7 @@ To load data from files located in one or more S3 buckets, use the FROM clause t
 **Important**  
 If the Amazon S3 buckets that hold the data files do not reside in the same region as your cluster, you must use the [REGION](#copy-region) parameter to specify the region in which the data is located\. 
 
-
+**Topics**
 + [Syntax](#copy-parameters-data-source-s3-syntax)
 + [Examples](#copy-parameters-data-source-s3-examples)
 + [Optional Parameters](#copy-parameters-data-source-s3-optional-parms)
@@ -64,7 +64,29 @@ The manifest is a text file in JSON format that lists the URL of each file that 
   ]
 }
 ```
-The double quote characters are required, and must be simple quotation marks \(0x22\), not slanted or "smart" quotes\. Each entry in the manifest can optionally include a `mandatory` flag\. If `mandatory` is set to `true`, COPY terminates if it does not find the file for that entry; otherwise, COPY will continue\.   The default value for `mandatory` is `false`\.   
+The double quote characters are required, and must be simple quotation marks \(0x22\), not slanted or "smart" quotes\. Each entry in the manifest can optionally include a `mandatory` flag\. If `mandatory` is set to `true`, COPY terminates if it does not find the file for that entry; otherwise, COPY will continue\. The default value for `mandatory` is `false`\.   
+When loading from data files in ORC or Parquet format, a `meta` field is required, as shown in the following example\.  
+
+```
+{  
+   "entries":[  
+      {  
+         "url":"s3://mybucket-alpha/orc/2013-10-04-custdata",
+         "mandatory":true,
+         "meta":{  
+            "content_length":99
+         }
+      },
+      {  
+         "url":"s3://mybucket-beta/orc/2013-10-05-custdata",
+         "mandatory":true,
+         "meta":{  
+            "content_length":99
+         }
+      }
+   ]
+}
+```
 The manifest file must not be encrypted or compressed, even if the ENCRYPTED, GZIP, LZOP, or BZIP2 options are specified\. COPY returns an error if the specified manifest file is not found or the manifest file is not properly formed\.   
 If a manifest file is used, the MANIFEST parameter must be specified with the COPY command\. If the MANIFEST parameter is not specified, COPY assumes that the file specified with FROM is a data file\.   
 For more information, see [Loading Data from Amazon S3](t_Loading-data-from-S3.md)\.
@@ -87,7 +109,7 @@ If the encrypted files are in compressed format, add the GZIP, LZOP, or BZIP2 pa
 
 REGION \[AS\] '*aws\-region*'  <a name="copy-region"></a>
 Specifies the AWS region where the source data is located\. REGION is required for COPY from an Amazon S3 bucket or an DynamoDB table when the AWS resource that contains the data is not in the same region as the Amazon Redshift cluster\.   
-The value for *aws\_region* must match a region listed in the [http://docs\.aws\.amazon\.com/general/latest/gr/rande\.html\#redshift\_region>Amazon Redshift regions and endpoints]() table\.  
+The value for *aws\_region* must match a region listed in the [Amazon Redshift regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) table\.  
 If the REGION parameter is specified, all resources, including a manifest file or multiple Amazon S3 buckets, must be located in the specified region\.   
 Transferring data across regions incurs additional charges against the Amazon S3 bucket or the DynamoDB table that contains the data\. For more information about pricing, see **Data Transfer OUT From Amazon S3 To Another AWS Region** on the [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/) page and **Data Transfer OUT** on the [Amazon DynamoDB Pricing](https://aws.amazon.com/dynamodb/pricing/) page\. 
 By default, COPY assumes that the data is located in the same region as the Amazon Redshift cluster\. 
@@ -95,19 +117,13 @@ By default, COPY assumes that the data is located in the same region as the Amaz
 ## Optional Parameters<a name="copy-parameters-data-source-s3-optional-parms"></a>
 
 You can optionally specify the following parameters with COPY from Amazon S3: 
-
 + [Column Mapping Options](copy-parameters-column-mapping.md)
-
 + [Data Format Parameters](copy-parameters-data-format.md#copy-data-format-parameters)
-
 + [Data Conversion Parameters](copy-parameters-data-conversion.md)
-
 + [ Data Load Operations](copy-parameters-data-load.md)
 
 ## Unsupported Parameters<a name="copy-parameters-data-source-s3-unsupported-parms"></a>
 
 You cannot use the following parameters with COPY from Amazon S3: 
-
 + SSH
-
 + READRATIO

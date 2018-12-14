@@ -1,13 +1,9 @@
 # Write and Read\-Write Operations<a name="c_write_readwrite"></a>
 
 You can manage the specific behavior of concurrent write operations by deciding when and how to run different types of commands\. The following commands are relevant to this discussion: 
-
 + COPY commands, which perform loads \(initial or incremental\)
-
 + INSERT commands that append one or more rows at a time
-
 + UPDATE commands, which modify existing rows
-
 + DELETE commands, which remove rows 
 
 COPY and INSERT operations are pure write operations, but DELETE and UPDATE operations are read\-write operations\. \(In order for rows to be deleted or updated, they have to be read first\.\) The results of concurrent write operations depend on the specific commands that are being run concurrently\. COPY and INSERT operations against the same table are held in a wait state until the lock is released, then they proceed as normal\.

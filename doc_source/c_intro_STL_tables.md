@@ -6,7 +6,7 @@ These files reside on every node in the data warehouse cluster\. The STL tables 
 
 To manage disk space, the STL log tables only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
 
-
+**Topics**
 + [STL\_AGGR](r_STL_AGGR.md)
 + [STL\_ALERT\_EVENT\_LOG](r_STL_ALERT_EVENT_LOG.md)
 + [STL\_ANALYZE](r_STL_ANALYZE.md)
@@ -15,6 +15,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_CONNECTION\_LOG](r_STL_CONNECTION_LOG.md)
 + [STL\_DDLTEXT](r_STL_DDLTEXT.md)
 + [STL\_DELETE](r_STL_DELETE.md)
++ [STL\_DISK\_FULL\_DIAG](r_STL_DISK_FULL_DIAG.md)
 + [STL\_DIST](r_STL_DIST.md)
 + [STL\_ERROR](r_STL_ERROR.md)
 + [STL\_EXPLAIN](r_STL_EXPLAIN.md)

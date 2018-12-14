@@ -2,7 +2,7 @@
 
 To load data from an existing DynamoDB table, use the FROM clause to specify the DynamoDB table name\.
 
-
+**Topics**
 + [Syntax](#copy-parameters-data-source-dynamodb-syntax)
 + [Examples](#copy-parameters-data-source-dynamodb-examples)
 + [Optional Parameters](#copy-parameters-data-source-dynamodb-optional-parms)
@@ -50,49 +50,28 @@ Setting READRATIO to 100 or higher will enable Amazon Redshift to consume the en
 ## Optional Parameters<a name="copy-parameters-data-source-dynamodb-optional-parms"></a>
 
 You can optionally specify the following parameters with COPY from Amazon DynamoDB: 
-
 + [Column Mapping Options](copy-parameters-column-mapping.md)
-
 + The following data conversion parameters are supported:
-
   + [ACCEPTANYDATE](copy-parameters-data-conversion.md#copy-acceptanydate) 
-
   + [BLANKSASNULL](copy-parameters-data-conversion.md#copy-blanksasnull) 
-
   + [DATEFORMAT](copy-parameters-data-conversion.md#copy-dateformat) 
-
   + [EMPTYASNULL](copy-parameters-data-conversion.md#copy-emptyasnull) 
-
   + [ROUNDEC](copy-parameters-data-conversion.md#copy-roundec) 
-
   + [TIMEFORMAT](copy-parameters-data-conversion.md#copy-timeformat) 
-
   + [TRIMBLANKS](copy-parameters-data-conversion.md#copy-trimblanks) 
-
   + [TRUNCATECOLUMNS](copy-parameters-data-conversion.md#copy-truncatecolumns) 
-
 + [ Data Load Operations](copy-parameters-data-load.md)
 
 ## Unsupported Parameters<a name="copy-parameters-data-source-dynamodb-unsupported-parms"></a>
 
 You cannot use the following parameters with COPY from DynamoDB: 
-
 + All data format parameters
-
 + ESCAPE
-
 + FILLRECORD
-
 + IGNOREBLANKLINES
-
 + IGNOREHEADER
-
 + NULL
-
 + REMOVEQUOTES
-
 + ACCEPTINVCHARS
-
 + MANIFEST
-
 + ENCRYPTED

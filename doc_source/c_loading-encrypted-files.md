@@ -3,22 +3,16 @@
 You can use the COPY command to load data files that were uploaded to Amazon S3 using server\-side encryption, client\-side encryption, or both\. 
 
 The COPY command supports the following types of Amazon S3 encryption:
-
 + Server\-side encryption with Amazon S3\-managed keys \(SSE\-S3\)
-
 + Server\-side encryption with AWS KMS\-managed keys \(SSE\-KMS\)
-
 + Client\-side encryption using a client\-side symmetric master key
 
 The COPY command doesn't support the following types of Amazon S3 encryption:
-
 + Server\-side encryption with customer\-provided keys \(SSE\-C\)
-
 + Client\-side encryption using an AWS KMS\-managed customer master key
-
 + Client\-side encryption using a customer\-provided asymmetric master key
 
-For more information about Amazon S3 encryption, see [ Protecting Data Using Server\-Side Encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html) and [Protecting Data Using Client\-Side Encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html) in the Amazon Simple Storage Service Developer Guide\.
+For more information about Amazon S3 encryption, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html) and [Protecting Data Using Client\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html) in the Amazon Simple Storage Service Developer Guide\.
 
 The [UNLOAD](r_UNLOAD.md) command automatically encrypts files using SSE\-S3\. You can also unload using SSE\-KMS or client\-side encryption with a customer\-managed symmetric key\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)
 

@@ -19,7 +19,7 @@ One or more comma\-delimited expressions, or one or more sets of comma\-delimite
  *table\_subquery*   
 A subquery that evaluates to a table with one or more rows, but is limited to only one column in its select list\. 
 
-IN | NOT IN   
+IN \| NOT IN   
 IN returns true if the expression is a member of the expression list or query\. NOT IN returns true if the expression is not a member\. IN and NOT IN return NULL and no rows are returned in the following cases: If *expression* yields null; or if there are no matching *expr\_list* or *table\_subquery* values and at least one of these comparison rows yields null\. 
 
 ## Examples<a name="r_in_condition-examples"></a>

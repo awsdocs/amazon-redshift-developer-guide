@@ -38,11 +38,8 @@ If an ORDER BY clause is used for an aggregate function, an explicit frame claus
 The argument types supported by the SUM function are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, and DOUBLE PRECISION\.
 
 The return types supported by the SUM function are: 
-
 + BIGINT for SMALLINT or INTEGER arguments
-
 + NUMERIC for BIGINT arguments
-
 + DOUBLE PRECISION for floating\-point arguments
 
 ## Examples<a name="r_WF_SUM-examples"></a>

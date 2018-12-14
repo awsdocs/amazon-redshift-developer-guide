@@ -35,7 +35,7 @@ Floating\-point literals \(also referred to as decimal, numeric, or fractional l
 
 ## Arguments<a name="r_numeric_literals201-arguments"></a>
 
-e | E  
+e \| E  
 e or E indicates that the number is specified in scientific notation\.
 
 ## Examples<a name="r_numeric_literals201-examples2"></a>

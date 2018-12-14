@@ -1,6 +1,6 @@
 # Data Types<a name="c_Supported_data_types"></a>
 
-
+**Topics**
 + [Multibyte Characters](#c_Supported_data_types-multi-byte-characters)
 + [Numeric Types](r_Numeric_types201.md)
 + [Character Types](r_Character_types.md)
@@ -19,11 +19,9 @@ The following table lists the data types that you can use in Amazon Redshift tab
 The VARCHAR data type supports UTF\-8 multibyte characters up to a maximum of four bytes\. Five\-byte or longer characters are not supported\. To calculate the size of a VARCHAR column that contains multibyte characters, multiply the number of characters by the number of bytes per character\. For example, if a string has four Chinese characters, and each character is three bytes long, then you will need a VARCHAR\(12\) column to store the string\.
 
 VARCHAR does not support the following invalid UTF\-8 codepoints:
-
 + 0xD800 \- 0xDFFF
 
   \(Byte sequences: ED A0 80 \- ED BF BF\)
-
 + 0xFDD0 \- 0xFDEF, 0xFFFE, and 0xFFFF
 
    \(Byte sequences: EF B7 90 \- EF B7 AF, EF BF BE, and EF BF BF\)

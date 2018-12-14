@@ -10,7 +10,7 @@ LAST_DAY ( { date | timestamp } )
 
 ## Arguments<a name="r_LAST_DAY-arguments"></a>
 
-*date* | *timestamp*
+*date* \| *timestamp*
 
 A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
 

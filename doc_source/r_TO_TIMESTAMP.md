@@ -19,3 +19,16 @@ The format for the *timestamp* value\. Formats that include a time zone \(**TZ**
 ## Return Type<a name="r_TO_TIMESTAMP-return-type"></a>
 
 TIMESTAMPTZ
+
+## Examples<a name="r_TO_TIMESTAMP-examples"></a>
+
+The following example demonstrates using the T0\_TIMESTAMP function to convert a TIMESTAMP string to a TIMESTAMPTZ 
+
+```
+select sysdate,
+to_timestamp (sysdate, 'HH24:MI:SS') as seconds;
+
+timestamp          |seconds
+-------------------|----------------------
+2018-05-17 23:54:51|0001-03-24 18:05:17.0
+```

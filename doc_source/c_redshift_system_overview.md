@@ -1,6 +1,6 @@
 # Amazon Redshift System Overview<a name="c_redshift_system_overview"></a>
 
-
+**Topics**
 + [Data Warehouse System Architecture](c_high_level_system_architecture.md)
 + [Performance](c_challenges_achieving_high_performance_queries.md)
 + [Columnar Storage](c_columnar_storage_disk_mem_mgmnt.md)

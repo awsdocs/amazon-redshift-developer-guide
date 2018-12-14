@@ -15,7 +15,7 @@ GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVIL
     ON { [ TABLE ] table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...] }
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
-GRANT { { CREATE | TEMPORARY | TEMP } [,...] | ALL [ PRIVILEGES ] ]
+GRANT { { CREATE | TEMPORARY | TEMP } [,...] | ALL [ PRIVILEGES ] }
     ON DATABASE db_name [, ...]
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
@@ -43,7 +43,7 @@ Grants privilege to load data into a table using an INSERT statement or a COPY s
 UPDATE   <a name="grant-update"></a>
 Grants privilege to update a table column using an UPDATE statement\. UPDATE operations also require the SELECT privilege, because they must reference table columns to determine which rows to update, or to compute new values for columns\.
 
-DELETE   <a name="grant-delete"></a>
+DELETE  <a name="grant-delete"></a>
 Grants privilege to delete a data row from a table\. DELETE operations also require the SELECT privilege, because they must reference table columns to determine which rows to delete\.
 
 REFERENCES   <a name="grant-references"></a>
@@ -73,14 +73,11 @@ Grants the specified privileges to all users, including users created later\. PU
 
 CREATE   <a name="grant-create"></a>
 Depending on the database object, grants the following privileges to the user or user group:  
-
 + For databases, CREATE allows users to create schemas within the database\.
-
 + For schemas, CREATE allows users to create objects within a schema\. To rename an object, the user must have the CREATE privilege and own the object to be renamed\.
-
 + CREATE ON SCHEMA isn't supported for Amazon Redshift Spectrum external schemas\. To grant usage of external tables in an external schema, grant USAGE ON SCHEMA to the users that need access\. Only the owner of an external schema or a superuser is permitted to create external tables in the external schema\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. 
 
-TEMPORARY | TEMP   <a name="grant-temporary"></a>
+TEMPORARY \| TEMP   <a name="grant-temporary"></a>
 Grants the privilege to create temporary tables in the specified database\. To run Amazon Redshift Spectrum queries, the database user must have permission to create temporary tables in the database\.   
 By default, users are granted permission to create temporary tables by their automatic membership in the PUBLIC group\. To remove the privilege for any users to create temporary tables, revoke the TEMP permission from the PUBLIC group and then explicitly grant the permission to create temporary tables to specific users or groups of users\.
 
@@ -107,11 +104,8 @@ For Python UDFs, use `plpythonu` \. For SQL UDFs, use `sql` \.
 ## Usage Notes<a name="r_GRANT-usage-notes"></a>
 
 To grant privileges on an object, you must meet one of the following criteria:
-
 + Be the object owner\.
-
 + Be a superuser\.
-
 + Have a grant privilege for that object and privilege\.
 
 For example, the following command gives the user HR the ability both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users: 

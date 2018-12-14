@@ -3,15 +3,10 @@
 Captures the query text for SQL commands\.
 
 Query the STL\_QUERYTEXT table to capture the SQL that was logged for the following statements: 
-
 + SELECT, SELECT INTO
-
 + INSERT, UPDATE, DELETE
-
 + COPY
-
 + VACUUM, ANALYZE
-
 + CREATE TABLE AS \(CTAS\)
 
 To query activity for these statements over a given time period, join the STL\_QUERYTEXT and STL\_QUERY tables\.

@@ -6,6 +6,9 @@ The following format strings apply to functions such as TO\_CHAR\. These strings
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_FORMAT_strings.html)
 
+**Note**  
+You must surround datetime separators \(such as '\-', '/' or ':'\) with single quotation marks, but you must surround the "dateparts" and "timeparts" listed in the preceding table with double quotation marks\.
+
 The following example shows formatting for seconds, milliseconds, and microseconds\.
 
 ```

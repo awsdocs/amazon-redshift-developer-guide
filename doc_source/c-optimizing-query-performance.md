@@ -8,7 +8,7 @@ To understand how Amazon Redshift processes queries, use the [Query Processing](
 
 To identify and address some of the most common and most serious issues you are likely to encounter with Amazon Redshift queries, use the [Troubleshooting Queries](queries-troubleshooting.md) section\.
 
-
+**Topics**
 + [Query Processing](c-query-processing.md)
 + [Analyzing and Improving Queries](c-query-tuning.md)
 + [Troubleshooting Queries](queries-troubleshooting.md)

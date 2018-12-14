@@ -1,6 +1,6 @@
 # UNION, INTERSECT, and EXCEPT<a name="r_UNION"></a>
 
-
+**Topics**
 + [Syntax](#r_UNION-synopsis)
 + [Parameters](#r_UNION-parameters)
 + [Order of Evaluation for Set Operators](#r_UNION-order-of-evaluation-for-set-operators)
@@ -41,7 +41,7 @@ Set operation that returns rows from two query expressions, regardless of whethe
 INTERSECT   
 Set operation that returns rows that derive from two query expressions\. Rows that are not returned by both expressions are discarded\.
 
-EXCEPT | MINUS   
+EXCEPT \| MINUS   
 Set operation that returns rows that derive from one of two query expressions\. To qualify for the result, rows must exist in the first result table but not the second\. MINUS and EXCEPT are exact synonyms\. 
 
 ALL   
@@ -83,11 +83,8 @@ order by c1;
 ```
 
 ## Usage Notes<a name="r_UNION-usage-notes"></a>
-
 + The column names returned in the result of a set operation query are the column names \(or aliases\) from the tables in the first query expression\. Because these column names are potentially misleading, in that the values in the column derive from tables on either side of the set operator, you might want to provide meaningful aliases for the result set\.
-
 + A query expression that precedes a set operator should not contain an ORDER BY clause\. An ORDER BY clause produces meaningful sorted results only when it is used at the end of a query that contains set operators\. In this case, the ORDER BY clause applies to the final results of all of the set operations\. The outermost query can also contain standard LIMIT and OFFSET clauses\. 
-
 + The LIMIT and OFFSET clauses are not supported as a means of restricting the number of rows returned by an intermediate result of a set operation\. For example, the following query returns an error:
 
   ```
@@ -97,7 +94,6 @@ order by c1;
   select listid from sales;
   ERROR:  LIMIT may not be used within input to set operations.
   ```
-
 + When set operator queries return decimal results, the corresponding result columns are promoted to return the same precision and scale\. For example, in the following query, where T1\.REVENUE is a DECIMAL\(10,2\) column and T2\.REVENUE is a DECIMAL\(8,4\) column, the decimal result is promoted to DECIMAL\(12,4\): 
 
   ```
@@ -107,5 +103,4 @@ order by c1;
   The scale is `4` because that is the maximum scale of the two columns\. The precision is `12` because T1\.REVENUE requires 8 digits to the left of the decimal point \(12 \- 4 = 8\)\. This type promotion ensures that all values from both sides of the UNION fit in the result\. For 64\-bit values, the maximum result precision is 19 and the maximum result scale is 18\. For 128\-bit values, the maximum result precision is 38 and the maximum result scale is 37\.
 
   If the resulting data type exceeds Amazon Redshift precision and scale limits, the query returns an error\.
-
 + For set operations, two rows are treated as identical if, for each corresponding pair of columns, the two data values are either *equal* or *both NULL*\. For example, if tables T1 and T2 both contain one column and one row, and that row is NULL in both tables, an INTERSECT operation over those tables returns that row\.

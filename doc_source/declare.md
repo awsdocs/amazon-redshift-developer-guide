@@ -32,11 +32,8 @@ To enable cursors in ODBC for Microsoft Windows, enable the **Use Declare/Fetch*
 Because of the potential negative performance impact of using cursors, we recommend using alternative approaches whenever possible\. For more information, see [Performance Considerations When Using Cursors](#declare-performance)\.
 
 Amazon Redshift cursors are supported with the following limitations:
-
 + Only one cursor at a time can be open per session\. 
-
 + Cursors must be used within a transaction \(BEGIN … END\)\. 
-
 + The maximum cumulative result set size for all cursors is constrained based on the cluster node type\. If you need larger result sets, you can resize to an XL or 8XL node configuration\.
 
   For more information, see [Cursor Constraints](#declare-constraints)\. 
@@ -65,9 +62,7 @@ To view the active cursor configuration for a cluster, query the [STV\_CURSOR\_C
 ## Performance Considerations When Using Cursors<a name="declare-performance"></a>
 
 Because cursors materialize the entire result set on the leader node before beginning to return results to the client, using cursors with very large result sets can have a negative impact on performance\. We strongly recommend against using cursors with very large result sets\. In some cases, such as when your application uses an ODBC connection, cursors might be the only feasible solution\. If possible, we recommend using these alternatives:
-
 + Use [UNLOAD](r_UNLOAD.md) to export a large table\. When you use UNLOAD, the compute nodes work in parallel to transfer the data directly to data files on Amazon Simple Storage Service\. For more information, see [Unloading Data](c_unloading_data.md)\. 
-
 + Set the JDBC fetch size parameter in your client application\. If you use a JDBC connection and you are encountering client\-side out\-of\-memory errors, you can enable your client to retrieve result sets in smaller batches by setting the JDBC fetch size parameter\. For more information, see [Setting the JDBC Fetch Size Parameter](queries-troubleshooting.md#set-the-JDBC-fetch-size-parameter)\. 
 
 ## DECLARE CURSOR Example<a name="declare-example"></a>

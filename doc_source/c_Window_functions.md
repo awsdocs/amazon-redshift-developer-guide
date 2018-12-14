@@ -1,6 +1,6 @@
 # Window Functions<a name="c_Window_functions"></a>
 
-
+**Topics**
 + [Window Function Syntax Summary](r_Window_function_synopsis.md)
 + [AVG Window Function](r_WF_AVG.md)
 + [COUNT Window Function](r_WF_COUNT.md)
@@ -29,11 +29,8 @@
  Window functions provide application developers the ability to create analytic business queries more efficiently\. Window functions operate on a partition or "window" of a result set, and return a value for every row in that window\. In contrast, nonwindowed functions perform their calculations with respect to every row in the result set\. Unlike group functions that aggregate result rows, all rows in the table expression are retained\. 
 
  The values returned are calculated by utilizing values from the sets of rows in that window\. The window defines, for each row in the table, a set of rows that is used to compute additional attributes\. A window is defined using a window specification \(the OVER clause\), and is based on three main concepts: 
-
 +  *Window partitioning,* which forms groups of rows \(PARTITION clause\) 
-
 +  *Window ordering*, which defines an order or sequence of rows within each partition \(ORDER BY clause\) 
-
 +  *Window frames*, which are defined relative to each row to further restrict the set of rows \(ROWS specification\) 
 
 Window functions are the last set of operations performed in a query except for the final ORDER BY clause\. All joins and all WHERE, GROUP BY, and HAVING clauses are completed before the window functions are processed\. Therefore, window functions can appear only in the select list or ORDER BY clause\. Multiple window functions can be used within a single query with different frame clauses\. Window functions may be present in other scalar expressions, such as CASE\. 
@@ -41,53 +38,29 @@ Window functions are the last set of operations performed in a query except for 
 Amazon Redshift supports two types of window functions: aggregate and ranking\.
 
 These are the supported aggregate functions: 
-
 + AVG 
-
 + COUNT 
-
 + CUME\_DIST
-
 + FIRST\_VALUE 
-
 + LAG 
-
 + LAST\_VALUE 
-
 + LEAD 
-
 + MAX 
-
 + MEDIAN 
-
 + MIN 
-
 + NTH\_VALUE 
-
 + PERCENTILE\_CONT
-
 + PERCENTILE\_DISC
-
 + RATIO\_TO\_REPORT
-
 + STDDEV\_POP 
-
 + STDDEV\_SAMP \(synonym for STDDEV\) 
-
 + SUM 
-
 + VAR\_POP 
-
 + VAR\_SAMP \(synonym for VARIANCE\) 
 
  These are the supported ranking functions: 
-
 + DENSE\_RANK 
-
 + NTILE 
-
 + PERCENT\_RANK
-
 + RANK 
-
 + ROW\_NUMBER

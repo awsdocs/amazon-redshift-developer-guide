@@ -13,17 +13,20 @@ SVL\_S3PARTITION is visible to all users\. Superusers can see all rows; regular 
 The following example gets the partition details for the last query executed\.
 
 ```
-select query, segment, node, slice, duration,
-assigned_partitions as assigned, 
-qualified_partitions as qualified, assignment 
-from svl_s3partition 
-where query = pg_last_query_id() 
-order by query,segment,slice;
+SELECT query, segment,
+       MIN(starttime) AS starttime,
+       MAX(endtime) AS endtime,
+       datediff(ms,MIN(starttime),MAX(endtime)) AS dur_ms,
+       MAX(total_partitions) AS total_partitions,
+       MAX(qualified_partitions) AS qualified_partitions,
+       MAX(assignment) as assignment_type
+FROM svl_s3partition
+WHERE query=pg_last_query_id()
+GROUP BY query, segment
 ```
 
 ```
-query | segment | node | slice | duration | assigned | qualified | assignment
-------+---------+------+-------+----------+----------+----------+-----------
-17223 |       2 |    0 |     0 |   302671 |       12 |        1 | f         
-17223 |       2 |    1 |     2 |   265677 |       12 |        1 | f
+query | segment |           starttime           |           endtime           | dur_ms| total_partitions | qualified_partitions | assignment_type
+------+---------+-------------------------------+-----------------------------+-------+------------------+----------------------+----------------
+99232 |       0 | 2018-04-17 22:43:50.201515    | 2018-04-17 22:43:54.674595  |  4473 |       2526       |        334           | p
 ```

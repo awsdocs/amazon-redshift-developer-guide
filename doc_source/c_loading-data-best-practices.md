@@ -1,6 +1,6 @@
 # Amazon Redshift Best Practices for Loading Data<a name="c_loading-data-best-practices"></a>
 
-
+**Topics**
 + [Take the Loading Data Tutorial](c_best-practices-loading-take-loading-data-tutorial.md)
 + [Take the Tuning Table Design Tutorial](c_best-practices-loading-take-table-design-tutorial.md)
 + [Use a COPY Command to Load Data](c_best-practices-use-copy.md)
@@ -17,4 +17,4 @@
 + [Use a Staging Table to Perform a Merge \(Upsert\)](c_best-practices-upsert.md)
 + [Schedule Around Maintenance Windows](c_best-practices-avoid-maintenance.md)
 
-Loading very large data sets can take a long time and consume a lot of computing resources\. How your data is loaded can also affect query performance\. This section presents best practices for loading data efficiently using COPY commands, bulk inserts, and staging tables\. 
+Loading very large datasets can take a long time and consume a lot of computing resources\. How your data is loaded can also affect query performance\. This section presents best practices for loading data efficiently using COPY commands, bulk inserts, and staging tables\. 

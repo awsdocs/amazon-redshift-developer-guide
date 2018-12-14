@@ -1,6 +1,6 @@
 # Designing Tables<a name="t_Creating_tables"></a>
 
-
+**Topics**
 + [Choosing a Column Compression Type](t_Compressing_data_on_disk.md)
 + [Choosing a Data Distribution Style](t_Distributing_data.md)
 + [Choosing Sort Keys](t_Sorting_data.md)

@@ -8,7 +8,7 @@ For example, the following UNLOAD command sends the contents of the VENUE table 
 
 ```
 unload ('select * from venue')   
-to 's3://mybucket/tickit/unload/' 
+to 's3://mybucket/tickit/unload/venue_' 
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
@@ -64,7 +64,7 @@ session_token '<temporary-token>';
 ```
 
 **Important**  
-The temporary security credentials must be valid for the entire duration of the COPY statement\. If the temporary security credentials expire during the load process, the COPY will fail and the transaction will be rolled back\. For example, if temporary security credentials expire after 15 minutes and the COPY requires one hour, the COPY will fail before it completes\.
+The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD will fail and the transaction will be rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD will fail before it completes\.
 
 You can create a manifest file that lists the unload files by specifying the MANIFEST option in the UNLOAD command\. The manifest is a text file in JSON format that explicitly lists the URL of each file that was written to Amazon S3\. 
 

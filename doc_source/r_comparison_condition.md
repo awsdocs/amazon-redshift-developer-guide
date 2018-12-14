@@ -6,7 +6,7 @@ Comparison conditions state logical relationships between two values\. All compa
 
 ## Usage Notes<a name="r_comparison_condition_usage_notes"></a>
 
-= ANY | SOME   
+= ANY \| SOME   
 The ANY and SOME keywords are synonymous with the *IN* condition, and return true if the comparison is true for at least one value returned by a subquery that returns one or more values\. Amazon Redshift supports only the = \(equals\) condition for ANY and SOME\. Inequality conditions are not supported\.  
 The ALL predicate is not supported\.
 

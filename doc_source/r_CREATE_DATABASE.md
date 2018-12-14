@@ -27,18 +27,15 @@ Optional character\.
  *db\_owner*   
 Username for the database owner\.
 
-CONNECTION LIMIT \{ *limit* | UNLIMITED \}   
+CONNECTION LIMIT \{ *limit* \| UNLIMITED \}   
 The maximum number of database connections users are permitted to have open concurrently\. The limit is not enforced for super users\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\. The limit of concurrent connections for each cluster is 500\. A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
 ## CREATE DATABASE Limits<a name="r_CREATE_DATABASE-create-database-limits"></a>
 
 Amazon Redshift enforces these limits for databases\.
-
 + Maximum of 60 user\-defined databases per cluster\.
-
 + Maximum of 127 bytes for a database name\.
-
 + Cannot be a reserved word\.
 
 ## Examples<a name="r_CREATE_DATABASE-examples"></a>

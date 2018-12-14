@@ -187,6 +187,6 @@ The following benchmarks table shows the results based on the cluster used in th
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-retest.html)
 
-## Next Step<a name="w3ab1c13c25b7"></a>
+## Next Step<a name="w4aac15c25b7"></a>
 
 [Step 8: Evaluate the Results](tutorial-tuning-tables-evaluate.md)

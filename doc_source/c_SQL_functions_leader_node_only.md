@@ -13,43 +13,26 @@ For more information, see [SQL Functions Supported on the Leader Node](c_sql-fun
 The following SQL functions are leader\-node only functions and are not supported on the compute nodes:
 
 System information functions
-
 + CURRENT\_SCHEMA
-
 + CURRENT\_SCHEMAS
-
 + HAS\_DATABASE\_PRIVILEGE
-
 + HAS\_SCHEMA\_PRIVILEGE
-
 + HAS\_TABLE\_PRIVILEGE
 
 The following leader\-node only functions are deprecated:
 
 Date functions
-
 + AGE
-
 + CURRENT\_TIME
-
 + CURRENT\_TIMESTAMP
-
 + LOCALTIME
-
 + ISFINITE
-
 + NOW
 
 String functions
-
 + ASCII
-
 + GET\_BIT
-
 + GET\_BYTE
-
 + SET\_BIT
-
 + SET\_BYTE
-
 + TO\_ASCII

@@ -22,19 +22,13 @@ The value returned if *expression* evaluates to NULL\. The *null\_return\_value*
 ## Return Type<a name="r_NVL2-return-type"></a>
 
 The NVL2 return type is determined as follows:
-
 + If either *not\_null\_return\_value* or *null\_return\_value* is null, the data type of the not\-null expression is returned\.
 
 If both *not\_null\_return\_value* and *null\_return\_value* are not null:
-
 + If *not\_null\_return\_value* and *null\_return\_value* have the same data type, that data type is returned\.
-
 + If *not\_null\_return\_value* and *null\_return\_value* have different numeric data types, the smallest compatible numeric data type is returned\.
-
 + If *not\_null\_return\_value* and *null\_return\_value* have different datetime data types, a timestamp data type is returned\.
-
 + If *not\_null\_return\_value* and *null\_return\_value* have different character data types, the data type of *not\_null\_return\_value* is returned\.
-
 + If *not\_null\_return\_value* and *null\_return\_value* have mixed numeric and non\-numeric data types, the data type of *not\_null\_return\_value* is returned\.
 
 **Important**  

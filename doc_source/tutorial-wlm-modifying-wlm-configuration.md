@@ -27,11 +27,8 @@ In this step, you’ll modify the default settings of your new parameter group\.
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/console_param_group_list.png)
 
 1. Choose the **WLM** tab\. Click **Add New Queue** twice to add two new queues to this WLM configuration\. Configure the queues with the following values\.
-
    + For queue 1, type `2` in the **Concurrency** file, `test` in the **Query Groups** box, and `30` in the **% Memory** box\. Leave the other boxes empty\.
-
    + For queue 2, type `3` in the **Concurrency** box, `admin` in the **User Groups** box, and `40` in the **% Memory** box\. Leave the other boxes empty\.
-
    + Don't make any changes to the default queue\. WLM automatically assigns unallocated memory to the default queue\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/console_param_group_modify_wlm.png)
 

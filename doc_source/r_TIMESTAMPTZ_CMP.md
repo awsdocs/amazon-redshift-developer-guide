@@ -10,10 +10,10 @@ TIMESTAMPTZ_CMP(timestamptz1, timestamptz2)
 
 ## Arguments<a name="r_TIMESTAMPTZ_CMP-arguments"></a>
 
- *timestamp1*   
+ *timestamptz1*   
 A TIMESTAMPTZ column or an expression that implicitly converts to a time stamp with time zone\.
 
- *timestamp2*   
+ *timestamptz2*   
 A TIMESTAMPTZ column or an expression that implicitly converts to a time stamp with time zone\.
 
 ## Return Type<a name="r_TIMESTAMPTZ_CMP-return-type"></a>

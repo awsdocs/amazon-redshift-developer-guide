@@ -18,7 +18,7 @@ Optional keyword\.
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a superuser may truncate it\.   
 You can truncate any table, including tables that are referenced in foreign\-key constraints\.   
-After truncating a table, run the ANALYZE command against the table\. You do not need to vacuum a table after truncating it\. 
+You do not need to vacuum a table after truncating it\. 
 
 ## Usage Notes<a name="r_TRUNCATE_usage_notes"></a>
 

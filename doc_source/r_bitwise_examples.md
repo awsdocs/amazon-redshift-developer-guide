@@ -39,11 +39,8 @@ Santa Barbara |     192
 ```
 
 These results can be interpreted as follows:
-
 + The integer value `192` for Santa Barbara translates to the binary value `11000000`\. In other words, all users in this city like sports and theatre, but not all users like any other type of event\.
-
 + The integer `64` translates to `01000000`, so for users in San Jose, the only type of event that they all like is theatre\.
-
 + The values of `0` for the other three cities indicate that no "likes" are shared by all users in those cities\.
 
 If you apply the BIT\_OR function to the same data, the results are as follows:

@@ -1,6 +1,6 @@
 # Amazon Redshift SQL<a name="c_redshift-sql"></a>
 
-
+**Topics**
 + [SQL Functions Supported on the Leader Node](c_sql-functions-leader-node.md)
 + [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)
 

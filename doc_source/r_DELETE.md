@@ -23,9 +23,7 @@ To delete all the rows from a table, [TRUNCATE](r_TRUNCATE.md) the table\. TRUNC
 A temporary or persistent table\. Only the owner of the table or a user with DELETE privilege on the table may delete rows from the table\.  
 Consider using the TRUNCATE command for fast unqualified delete operations on large tables; see [TRUNCATE](r_TRUNCATE.md)\.  
 After deleting a large number of rows from a table:  
-
 + Vacuum the table to reclaim storage space and resort rows\.
-
 + Analyze the table to update statistics for the query planner\.
 
 USING *table\_name*, \.\.\.  

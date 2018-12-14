@@ -34,13 +34,9 @@ SET time zone time_zone
 ## Time Zone Formats<a name="r_timezone_config-formats"></a>
 
 Amazon Redshift supports the following time zone formats:
-
 + Time zone name
-
 + INTERVAL
-
 + POSIX\-style time zone specification
-
 + ISO\-8601 offset
 
 Because time zone abbreviations, such as PST or PDT, are defined as a fixed offset from UTC and don't include daylight savings time rules, the SET command doesn't support time zone abbreviations\.
@@ -50,13 +46,9 @@ For more details on time zone formats, see the following\.
 **Time Zone Name** – The full time zone name, such as America/New\_York\. Full time zone names can include daylight savings rules\.
 
 The following are examples of time zone names:
-
 + Etc/Greenwich
-
 + America/New\_York 
-
 + CST6CDT
-
 + GB
 
 **Note**  
@@ -71,11 +63,8 @@ select pg_timezone_names();
 **INTERVAL** – An offset from UTC\. For example, PST is –8:00 or –8 hours\.
 
 The following are examples of INTERVAL time zone offsets:
-
 + –8:00
-
 + –8 hours
-
 + 30 minutes
 
 **POSIX\-Style Format** – A time zone specification in the form *STDoffset* or *STDoffsetDST*, where *STD* is a time zone abbreviation, *offset* is the numeric offset in hours west from UTC, and *DST* is an optional daylight\-savings zone abbreviation\. Daylight savings time is assumed to be one hour ahead of the given offset\.
@@ -83,13 +72,9 @@ The following are examples of INTERVAL time zone offsets:
 POSIX\-style time zone formats use positive offsets west of Greenwich, in contrast to the ISO\-8601 convention, which uses positive offsets east of Greenwich\.
 
 The following are examples of POSIX\-style time zones:
-
 +  PST8
-
 +  PST8PDT
-
 +  EST5
-
 +  EST5EDT
 
 **Note**  
@@ -102,9 +87,7 @@ set timezone to ‘xxx36’;
 **ISO\-8601 Offset** – The offset from UTC in the form `±[hh]:[mm]`\.
 
 The following are examples of ISO\-8601 offsets:
-
 + \-8:00
-
 + \+7:30
 
 ## Examples<a name="r_timezone_config-examples"></a>

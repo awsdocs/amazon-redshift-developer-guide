@@ -4,7 +4,7 @@ You can use the COPY command to load data in parallel from one or more remote ho
 
 Use the FROM clause to specify the Amazon S3 object key for the manifest file that provides the information COPY will use to open SSH connections and execute the remote commands\. 
 
-
+**Topics**
 + [Syntax](#copy-parameters-data-source-ssh-syntax)
 + [Examples](#copy-parameters-data-source-ssh-examples)
 + [Parameters](#copy-parameters-data-source-ssh-parameters)
@@ -85,28 +85,20 @@ For detailed procedures for using COPY from SSH, see [Loading Data from Remote H
 The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for an IAM user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization Parameters](copy-parameters-authorization.md)\.
 
 SSH  <a name="copy-ssh"></a>
-A clause that specifies that data is to be loaded from a remote host using the SSH protocol\. If you specify SSH, you must also provide a manifest file using the [s3://copy_from_ssh_manifest_file](#copy-ssh-manifest) argument\. 
+A clause that specifies that data is to be loaded from a remote host using the SSH protocol\. If you specify SSH, you must also provide a manifest file using the [s3://copy_from_ssh_manifest_file](#copy-ssh-manifest) argument\.   
+If you are using SSH to copy from a host using a private IP address in a remote VPC, the VPC must have enhanced VPC routing enabled\. For more information about Enhanced VPC routing, see [Amazon Redshift Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html)\.
 
 ## Optional Parameters<a name="copy-parameters-data-source-ssh-optional-parms"></a>
 
 You can optionally specify the following parameters with COPY from SSH: 
-
 + [Column Mapping Options](copy-parameters-column-mapping.md)
-
 + [Data Format Parameters](copy-parameters-data-format.md#copy-data-format-parameters)
-
 + [Data Conversion Parameters](copy-parameters-data-conversion.md)
-
 + [ Data Load Operations](copy-parameters-data-load.md)
 
 ## Unsupported Parameters<a name="copy-parameters-data-source-ssh-unsupported-parms"></a>
 
 You cannot use the following parameters with COPY from SSH: 
-
 + ENCRYPTED
-
 + MANIFEST
-
 + READRATIO
-
-+ REGION

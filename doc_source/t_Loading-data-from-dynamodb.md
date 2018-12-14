@@ -13,13 +13,9 @@ When the COPY command reads data from the Amazon DynamoDB table, the resulting d
 To avoid consuming excessive amounts of provisioned read throughput, we recommend that you not load data from Amazon DynamoDB tables that are in production environments\. If you do load data from production tables, we recommend that you set the READRATIO option much lower than the average percentage of unused provisioned throughput\. A low READRATIO setting will help minimize throttling issues\. To use the entire provisioned throughput of an Amazon DynamoDB table, set READRATIO to 100\.
 
 The COPY command matches attribute names in the items retrieved from the DynamoDB table to column names in an existing Amazon Redshift table by using the following rules:
-
 + Amazon Redshift table columns are case\-insensitively matched to Amazon DynamoDB item attributes\. If an item in the DynamoDB table contains multiple attributes that differ only in case, such as Price and PRICE, the COPY command will fail\.
-
 + Amazon Redshift table columns that do not match an attribute in the Amazon DynamoDB table are loaded as either NULL or empty, depending on the value specified with the EMPTYASNULL option in the [COPY](r_COPY.md) command\.
-
 + Amazon DynamoDB attributes that do not match a column in the Amazon Redshift table are discarded\. Attributes are read before they are matched, and so even discarded attributes consume part of that table's provisioned throughput\.
-
 + Only Amazon DynamoDB attributes with scalar STRING and NUMBER data types are supported\. The Amazon DynamoDB BINARY and SET data types are not supported\. If a COPY command tries to load an attribute with an unsupported data type, the command will fail\. If the attribute does not match an Amazon Redshift table column, COPY does not attempt to load it, and it does not raise an error\.
 
 The COPY command uses the following syntax to load data from an Amazon DynamoDB table:

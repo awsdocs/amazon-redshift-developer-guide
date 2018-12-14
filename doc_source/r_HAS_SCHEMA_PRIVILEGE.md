@@ -21,9 +21,7 @@ Schema associated with the privilege\.
 
  *privilege*   
 Privilege to check\. Valid values are:   
-
 + CREATE
-
 + USAGE
 
 ## Return Type<a name="r_HAS_SCHEMA_PRIVILEGE-return-type"></a>

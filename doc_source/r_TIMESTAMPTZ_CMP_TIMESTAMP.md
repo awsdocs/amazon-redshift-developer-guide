@@ -13,7 +13,7 @@ TIMESTAMPTZ_CMP_TIMESTAMP(timestamptz, timestamp)
  *timestamptz*   
 A TIMESTAMPTZ column or an expression that implicitly converts to a time stamp with a time zone\.
 
- *timestamptz*   
+ *timestamp*   
 A TIMESTAMP column or an expression that implicitly converts to a time stamp\.
 
 ## Return Type<a name="r_TIMESTAMPTZ_CMP_TIMESTAMP-return-type"></a>

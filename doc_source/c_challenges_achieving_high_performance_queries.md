@@ -2,7 +2,7 @@
 
 Amazon Redshift achieves extremely fast query execution by employing these performance features\.
 
-
+**Topics**
 + [Massively Parallel Processing](#massively-parallel-processing)
 + [Columnar Data Storage](#columnar-data-storage)
 + [Data Compression](#data-compression)
@@ -16,7 +16,7 @@ Massively parallel processing \(MPP\) enables fast execution of the most complex
 
 Amazon Redshift distributes the rows of a table to the compute nodes so that the data can be processed in parallel\. By selecting an appropriate distribution key for each table, you can optimize the distribution of data to balance the workload and minimize movement of data from node to node\. For more information, see [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)\.
 
-Loading data from flat files takes advantage of parallel processing by spreading the workload across multiple nodes while simultaneously reading from multiple files\. For more information about how to load data into tables, see [Best Practices for Loading Data](c_loading-data-best-practices.md)\.
+Loading data from flat files takes advantage of parallel processing by spreading the workload across multiple nodes while simultaneously reading from multiple files\. For more information about how to load data into tables, see [Amazon Redshift Best Practices for Loading Data](c_loading-data-best-practices.md)\.
 
 ## Columnar Data Storage<a name="columnar-data-storage"></a>
 
@@ -39,15 +39,11 @@ To reduce query execution time and improve system performance, Amazon Redshift c
 Result caching is enabled by default\. To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`\.
 
 Amazon Redshift uses cached results for a new query when all of the following are true:
-
 + The user submitting the query has access privilege to the objects used in the query\.
-
 + The table or views in the query haven't been modified\.
-
 + The query doesn't use a function that must be evaluated each time it's run, such as GETDATE\.
-
++ The query doesn't reference Amazon Redshift Spectrum external tables\.
 + Configuration parameters that might affect query results are unchanged\.
-
 + The query syntactically matches the cached query\.
 
 To maximize cache effectiveness and efficient use of resources, Amazon Redshift doesn't cache some large query result sets\. Amazon Redshift determines whether to cache query results based on a number of factors\. These factors include the number of entries in the cache and the instance type of your Amazon Redshift cluster\. 

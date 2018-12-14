@@ -13,11 +13,8 @@ The maximum number of columns you can define in a single table is 1,600\.
 CREATE TABLE AS \(CTAS\) tables don't inherit constraints, identity columns, default column values, or the primary key from the table that they were created from\. 
 
 You can't specify column compression encodings for CTAS tables\. Amazon Redshift automatically assigns compression encoding as follows:
-
 + Columns that are defined as sort keys are assigned RAW compression\.
-
 + Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
-
 + All other columns are assigned LZO compression\.
 
 For more information, see [Compression Encodings](c_Compression_encodings.md) and [Data Types](c_Supported_data_types.md)\. 
@@ -36,15 +33,10 @@ For best performance with large data sets or complex queries, we recommend testi
 You can often predict which distribution key and sort key CTAS will choose by examining the query plan to see which columns, if any, the query optimizer chooses for sorting and distributing data\. If the top node of the query plan is a simple sequential scan from a single table \(XN Seq Scan\), then CTAS generally uses the source table's distribution style and sort key\. If the top node of the query plan is anything other a sequential scan \(such as XN Limit, XN Sort, XN HashAggregate, and so on\), CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\.
 
 For example, suppose you create five tables using the following types of SELECT clauses:
-
 + A simple select statement 
-
 + A limit clause 
-
 + An order by clause using LISTID 
-
 + An order by clause using QTYSOLD 
-
 + A SUM aggregate function with a group by clause\.
 
 The following examples show the query plan for each CTAS statement\.

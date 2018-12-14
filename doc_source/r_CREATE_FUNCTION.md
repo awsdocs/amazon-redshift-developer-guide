@@ -26,7 +26,7 @@ The name of the function\. If you specify a schema name \(such as `myschema.myfu
 We recommend that you prefix all UDF names with `f_`\. Amazon Redshift reserves the `f_` prefix for UDF names, so by using the `f_` prefix, you ensure that your UDF name will not conflict with any existing or future Amazon Redshift built\-in SQL function names\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.  
 You can define more than one function with the same function name if the data types for the input arguments are different\. In other words, the function name will be overloaded\. For more information, see [Overloading Function Names](udf-naming-udfs.md#udf-naming-overloading-function-names)\.
 
- *py\_arg\_name py\_arg\_data\_type | sql\_arg\_data type*   
+ *py\_arg\_name py\_arg\_data\_type \| sql\_arg\_data type*   
 For a Python UDF, a list of input argument names and data types\. For a SQL UDF, a list of data types, without argument names\. In a Python UDF, refer to arguments using the argument names\. In a SQL UDF, refer to arguments using $1, $2, and so on, based on the order of the arguments in the argument list\.   
 For a SQL UDF, the input and return data types can be any standard Amazon Redshift data type\. For a Python UDF, the input and return data types can be any standard Amazon Redshift data type except TIMESTAMP WITH TIME ZONE \(TIMESTAMPTZ\)\. In addition, Python UDFs support a data type of ANYELEMENT\. This is automatically converted to a standard data type based on the data type of the corresponding argument supplied at run time\. If multiple arguments use ANYELEMENT, they will all resolve to the same data type at run time, based on the first ANYELEMENT argument in the list\. For more information, see [Python UDF Data Types](udf-data-types.md) and [Data Types](c_Supported_data_types.md)\.  
 You can specify a maximum of 32 arguments\.
@@ -34,14 +34,11 @@ You can specify a maximum of 32 arguments\.
  RETURNS *data\_type*   
 The data type of the value returned by the function\. The RETURNS data type can be any standard Amazon Redshift data type\. In addition, Python UDFs can use a data type of ANYELEMENT, which is automatically converted to a standard data type based on the argument supplied at run time\. If you specify ANYELEMENT for the return data type, at least one argument must use ANYELEMENT\. The actual return data type will match the data type supplied for the ANYELEMENT argument when the function is called\. For more information, see [Python UDF Data Types](udf-data-types.md)\.
 
- VOLATILE | STABLE | IMMUTABLE   
+ VOLATILE \| STABLE \| IMMUTABLE   
 Informs the query optimizer about the volatility of the function\.   
-You will get the best optimization if you label your function with the strictest volatility category that is valid for it\. However, if the category is too strict, there is a risk that the optimizer will erroneously skip some calls, resulting in an incorrect result set\. In order of strictness, beginning with the least strict, the volatility categories are:  
-
+You will get the best optimization if you label your function with the strictest volatility category that is valid for it\. However, if the category is too strict, there is a risk that the optimizer will erroneously skip some calls, resulting in an incorrect result set\. In order of strictness, beginning with the least strict, the volatility categories are as follows:  
 + VOLATILE
-
 + STABLE
-
 + IMMUTABLE
 VOLATILE  
 Given the same arguments, the function can return different results on successive calls, even for the rows in a single statement\. The query optimizer can't make any assumptions about the behavior of a volatile function, so a query that uses a volatile function must reevaluate the function for every input row\.  
@@ -71,20 +68,14 @@ A valid executable Python program that returns a value\. The statement that you 
 *SQL\_clause*   
 A SQL SELECT clause\.  
 The SELECT clause can't include any of the following types of clauses:  
-
 + FROM
-
 + INTO
-
 + WHERE
-
 + GROUP BY
-
 + ORDER BY
-
 + LIMIT
 
-LANGUAGE \{ plpythonu | sql \}   
+LANGUAGE \{ plpythonu \| sql \}   
 For Python, specify `plpythonu`\. For SQL, specify `sql`\. You must have permission for usage on language for SQL or plpythonu\. For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.
 
 ## Usage Notes<a name="r_CREATE_FUNCTION-usage-notes"></a>

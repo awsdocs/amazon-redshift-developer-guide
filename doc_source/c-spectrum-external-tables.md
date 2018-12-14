@@ -9,9 +9,7 @@ alter schema spectrum_schema owner to newowner;
 ```
 
 To run a Redshift Spectrum query, you need the following permissions:
-
 + Usage permission on the schema 
-
 + Permission to create temporary tables in the current database 
 
 The following example grants usage permission on the schema `spectrum_schema` to the `spectrumusers` user group\.
@@ -26,10 +24,7 @@ The following example grants temporary permission on the database `spectrumdb` t
 grant temp on database spectrumdb to group spectrumusers;
 ```
 
-You can create an external table in Amazon Redshift, AWS Glue, Amazon Athena, or an Apache Hive metastore\. For more information, see [Getting Started Using AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/getting-started.html) in the *AWS Glue Developer Guide*, [Getting Started](http://docs.aws.amazon.com/athena/latest/ug/getting-started.html) in the *Amazon Athena User Guide*, or [Apache Hive](http://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hive.html) in the *Amazon EMR Developer Guide*\. 
-
-**Important**  
-Redshift Spectrum doesn't support nested data types, such as STRUCT, ARRAY, and MAP\.
+You can create an external table in Amazon Redshift, AWS Glue, Amazon Athena, or an Apache Hive metastore\. For more information, see [Getting Started Using AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/getting-started.html) in the *AWS Glue Developer Guide*, [Getting Started](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html) in the *Amazon Athena User Guide*, or [Apache Hive](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hive.html) in the *Amazon EMR Developer Guide*\. 
 
 If your external table is defined in AWS Glue, Athena, or a Hive metastore, you first create an external schema that references the external database\. Then you can reference the external table in your SELECT statement by prefixing the table name with the schema name, without needing to create the table in Amazon Redshift\. For more information, see [Creating External Schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\. 
 
@@ -77,7 +72,7 @@ where saledate = '2008-12-01';
 You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to false\. 
 
 **Important**  
-Selecting $size or $path incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
+Selecting `$size` or `$path` incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
 
 ### Pseudocolumns Example<a name="c-spectrum-external-tables-pseudocolumns-example"></a>
 
@@ -91,12 +86,14 @@ from spectrum.sales_part;
 ---------------------------------------+-------
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/ |  1616
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
+s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/ |  1644
 ```
 
 ## Partitioning Redshift Spectrum External Tables<a name="c-spectrum-external-tables-partitioning"></a>
 
-When you partition your data, you can restrict the amount of data Redshift Spectrum scans by filtering on the partition key\. You can partition your data by any key\. A common practice is to partition the data based on time\. For example, you might choose to partition by year, month, date, and hour\. If you have data coming from multiple sources, you might partition by a data source identifier and date\. 
+When you partition your data, you can restrict the amount of data that Redshift Spectrum scans by filtering on the partition key\. You can partition your data by any key\. 
+
+A common practice is to partition the data based on time\. For example, you might choose to partition by year, month, date, and hour\. If you have data coming from multiple sources, you might partition by a data source identifier and date\. 
 
 The following procedure describes how to partition your data\.
 
@@ -112,23 +109,23 @@ The following procedure describes how to partition your data\.
 
 1. Add the partitions\. 
 
-   Using [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION, add each partition, specifying the partition column and key value, and the location of the partition folder in Amazon S3\. You can add only one partition in each ALTER TABLE statement\. The following example adds partitions for '2008\-01\-01' and '2008\-02\-01'\.
+   Using [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION, add each partition, specifying the partition column and key value, and the location of the partition folder in Amazon S3\. You can add multiple partitions in a single ALTER TABLE … ADD statement\. The following example adds partitions for `'2008-01-01'` and `'2008-02-01'`\.
 
    ```
-   alter table spectrum.sales_part
-   add partition(saledate='2008-01-01') 
+   alter table spectrum.sales_part add
+   partition(saledate='2008-01-01') 
    location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
-   
-   alter table spectrum.sales_part
-   add partition(saledate='2008-02-01') 
+   partition(saledate='2008-02-01') 
    location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
    ```
+**Note**  
+If you use the AWS Glue catalog, you can add up to 100 partitions using a single ALTER TABLE statement\.
 
-### Partitioning Data Example<a name="c-spectrum-external-tables-partitioning-example"></a>
+### Partitioning Data Examples<a name="c-spectrum-external-tables-partitioning-example"></a>
 
-In this example, you'll create an external table that is partitioned by month\.
+In this example, you create an external table that is partitioned by a single partition key and an external table that is partitioned by two partition keys\.
 
-The sample data for this example is located in an Amazon S3 buckets that gives read access to all authenticated AWS users\. Your cluster and your external data files must be in the same region\. The sample data bucket is in the US West \(Oregon\) Region \(us\-west\-2\)\. To access the data using Redshift Spectrum, your cluster must also be in us\-west\-2\. To list the folders in Amazon S3, run the following command\.
+The sample data for this example is located in an Amazon S3 bucket that gives read access to all authenticated AWS users\. Your cluster and your external data files must be in the same AWS Region\. The sample data bucket is in the US West \(Oregon\) Region \(us\-west\-2\)\. To access the data using Redshift Spectrum, your cluster must also be in us\-west\-2\. To list the folders in Amazon S3, run the following command\.
 
 ```
 aws s3 ls s3://awssampledbuswest2/tickit/spectrum/sales_partition/
@@ -136,20 +133,11 @@ aws s3 ls s3://awssampledbuswest2/tickit/spectrum/sales_partition/
 
 ```
 PRE saledate=2008-01/
-   PRE saledate=2008-02/
-   PRE saledate=2008-03/
-   PRE saledate=2008-04/
-   PRE saledate=2008-05/
-   PRE saledate=2008-06/
-   PRE saledate=2008-07/
-   PRE saledate=2008-08/
-   PRE saledate=2008-09/
-   PRE saledate=2008-10/
-   PRE saledate=2008-11/
-   PRE saledate=2008-12/
+PRE saledate=2008-02/
+PRE saledate=2008-03/
 ```
 
-If you don't already have an external schema, run the following command, substituting the Amazon Resource Name \(ARN\) for your AWS Identity and Access Management \(IAM\) role\.
+If you don't already have an external schema, run the following command\. Substitute the Amazon Resource Name \(ARN\) for your AWS Identity and Access Management \(IAM\) role\.
 
 ```
 create external schema spectrum
@@ -159,7 +147,11 @@ iam_role 'arn:aws:iam::123456789012:role/myspectrumrole'
 create external database if not exists;
 ```
 
-To create an external table partitioned by date, run the following command\.
+#### Example 1: Partitioning with a Single Partition Key<a name="c-spectrum-external-tables-single-partition-example"></a>
+
+In the following example, you create an external table that is partitioned by month\.
+
+To create an external table partitioned by month, run the following command\.
 
 ```
 create external table spectrum.sales_part(
@@ -173,7 +165,7 @@ qtysold smallint,
 pricepaid decimal(8,2),
 commission decimal(8,2),
 saletime timestamp)
-partitioned by (saledate date)
+partitioned by (saledate char(10))
 row format delimited
 fields terminated by '|'
 stored as textfile
@@ -184,52 +176,25 @@ table properties ('numRows'='172000');
 To add the partitions, run the following ALTER TABLE commands\.
 
 ```
-alter table spectrum.sales_part
-add partition(saledate='2008-01-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
-alter table spectrum.sales_part
-add partition(saledate='2008-02-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
-alter table spectrum.sales_part
-add partition(saledate='2008-03-01') 
+alter table spectrum.sales_part add
+partition(saledate='2008-01') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/'
+
+partition(saledate='2008-02') 
+location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/'
+
+partition(saledate='2008-03') 
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
-alter table spectrum.sales_part
-add partition(saledate='2008-04-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04/';
-alter table spectrum.sales_part
-add partition(saledate='2008-05-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05/';
-alter table spectrum.sales_part
-add partition(saledate='2008-06-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06/';
-alter table spectrum.sales_part
-add partition(saledate='2008-07-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07/';
-alter table spectrum.sales_part
-add partition(saledate='2008-08-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08/';
-alter table spectrum.sales_part
-add partition(saledate='2008-09-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09/';
-alter table spectrum.sales_part
-add partition(saledate='2008-10-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10/';
-alter table spectrum.sales_part
-add partition(saledate='2008-11-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11/';
-alter table spectrum.sales_part
-add partition(saledate='2008-12-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12/';
 ```
 
 Run the following query to select data from the partitioned table\.
 
 ```
-select top 10 spectrum.sales_part.eventid, sum(spectrum.sales_part.pricepaid) 
+select top 5 spectrum.sales_part.eventid, sum(spectrum.sales_part.pricepaid) 
 from spectrum.sales_part, event
 where spectrum.sales_part.eventid = event.eventid
   and spectrum.sales_part.pricepaid > 30
-  and saledate = '2008-12-01'
+  and saledate = '2008-01'
 group by spectrum.sales_part.eventid
 order by 2 desc;
 ```
@@ -237,16 +202,11 @@ order by 2 desc;
 ```
 eventid | sum     
 --------+---------
-    914 | 36173.00
-   5478 | 27303.00
-   5061 | 26383.00
-   4406 | 26252.00
-   5324 | 24015.00
-   1829 | 23911.00
-   3601 | 23616.00
-   3665 | 23214.00
-   6069 | 22869.00
-   5638 | 22551.00
+   4124 | 21179.00
+   1924 | 20569.00
+   2294 | 18830.00
+   2260 | 17669.00
+   6032 | 17265.00
 ```
 
 To view external table partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) system view\.
@@ -257,18 +217,180 @@ where tablename = 'sales_part';
 ```
 
 ```
-schemaname | tablename  | values         | location                                         
------------+------------+----------------+--------------------------------------------------
-spectrum   | sales_part | ["2008-01-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
-spectrum   | sales_part | ["2008-02-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
-spectrum   | sales_part | ["2008-03-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03
-spectrum   | sales_part | ["2008-04-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04
-spectrum   | sales_part | ["2008-05-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05
-spectrum   | sales_part | ["2008-06-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06
-spectrum   | sales_part | ["2008-07-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07
-spectrum   | sales_part | ["2008-08-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08
-spectrum   | sales_part | ["2008-09-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09
-spectrum   | sales_part | ["2008-10-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10
-spectrum   | sales_part | ["2008-11-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11
-spectrum   | sales_part | ["2008-12-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12
+schemaname | tablename  | values      | location                                                                
+-----------+------------+-------------+-------------------------------------------------------------------------
+spectrum   | sales_part | ["2008-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
+spectrum   | sales_part | ["2008-02"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
+spectrum   | sales_part | ["2008-03"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03
 ```
+
+#### Example 2: Partitioning with a Multiple Partition Key<a name="c-spectrum-external-tables-multi-partition-example"></a>
+
+To create an external table partitioned by `date` and `eventid`, run the following command\.
+
+```
+create external table spectrum.sales_event(
+salesid integer,
+listid integer,
+sellerid integer,
+buyerid integer,
+eventid integer,
+dateid smallint,
+qtysold smallint,
+pricepaid decimal(8,2),
+commission decimal(8,2),
+saletime timestamp)
+partitioned by (salesmonth char(10), event integer)
+row format delimited
+fields terminated by '|'
+stored as textfile
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/'
+table properties ('numRows'='172000');
+```
+
+To add the partitions, run the following ALTER TABLE commands\.
+
+```
+alter table spectrum.sales_event add
+partition(salesmonth='2008-01', event='101') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=101/';
+
+partition(salesmonth='2008-01', event='102') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=102/'
+
+partition(salesmonth='2008-01', event='103') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=103/'
+
+partition(salesmonth='2008-02', event='101') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-02/event=101/'
+
+partition(salesmonth='2008-02', event='102') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-02/event=102/'
+
+partition(salesmonth='2008-02', event='103') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-02/event=103/'
+
+partition(salesmonth='2008-03', event='101') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=101/'
+
+partition(salesmonth='2008-03', event='102') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=102/';
+
+partition(salesmonth='2008-03', event='103') 
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=103/';
+```
+
+Run the following query to select data from the partitioned table\.
+
+```
+select spectrum.sales_event.salesmonth, event.eventname, sum(spectrum.sales_event.pricepaid) 
+from spectrum.sales_event, event
+where spectrum.sales_event.eventid = event.eventid
+  and salesmonth = '2008-02'
+	and (event = '101'
+	or event = '102'
+	or event = '103')
+group by event.eventname, spectrum.sales_event.salesmonth
+order by 3 desc;
+```
+
+```
+salesmonth | eventname       | sum    
+-----------+-----------------+--------
+2008-02    | The Magic Flute | 5062.00
+2008-02    | La Sonnambula   | 3498.00
+2008-02    | Die Walkure     |  534.00
+```
+
+## Mapping External Table Columns to ORC Columns<a name="c-spectrum-column-mapping-orc"></a>
+
+You use Amazon Redshift Spectrum external tables to query data from files in ORC format\. Optimized row columnar \(ORC\) format is a columnar storage file format that supports nested data structures\. For more information about querying nested data, see [Querying Nested Data with Amazon Redshift Spectrum](tutorial-query-nested-data.md#tutorial-nested-data-overview)\. 
+
+When you create an external table that references data in an ORC file, you map each column in the external table to a column in the ORC data\. To do so, you use one of the following methods:
++ [Mapping by position](#orc-mapping-by-position)
++ [Mapping by column name](#orc-mapping-by-name) 
+
+Mapping by column name is the default\. 
+
+### Mapping by Position<a name="orc-mapping-by-position"></a>
+
+With position mapping, the first column defined in the external table maps to the first column in the ORC data file, the second to the second, and so on\. Mapping by position requires that the order of columns in the external table and in the ORC file match\. If the order of the columns doesn't match, then you can map the columns by name\. 
+
+**Important**  
+In earlier releases, Redshift Spectrum used position mapping by default\. If you need to continue using position mapping for existing tables, set the table property `orc.schema.resolution` to `position`, as the following example shows\.   
+
+```
+alter table spectrum.orc_example 
+set table properties('orc.schema.resolution'='position');
+```
+
+For example, the table `SPECTRUM.ORC_EXAMPLE` is defined as follows\. 
+
+```
+create external table spectrum.orc_example(
+int_col int,
+float_col float,
+nested_col struct<
+  "int_col" : int,
+  "map_col" : map<int, array<float >>
+   >
+) stored as orc
+location 's3://example/orc/files/';
+```
+
+The table structure can be abstracted as follows\. 
+
+```
+• 'int_col' : int
+• 'float_col' : float
+• 'nested_col' : struct
+   o 'int_col' : int
+   o 'map_col' : map
+      - key : int
+      - value : array
+         - value : float
+```
+
+The underlying ORC file has the following file structure\.
+
+```
+• ORC file root(id = 0)
+   o 'int_col' : int (id = 1)
+   o 'float_col' : float (id = 2)
+   o 'nested_col' : struct (id = 3)
+      - 'int_col' : int (id = 4)
+      - 'map_col' : map (id = 5)
+         - key : int (id = 6)
+         - value : array (id = 7)
+            - value : float (id = 8)
+```
+
+In this example, you can map each column in the external table to a column in ORC file strictly by position\. The following shows the mapping\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-tables.html)
+
+### Mapping by Column Name<a name="orc-mapping-by-name"></a>
+
+Using name mapping, you map columns in an external table to named columns in ORC files on the same level, with the same name\. 
+
+For example, suppose that you want to map the table from the previous example, `SPECTRUM.ORC_EXAMPLE`, with an ORC file that uses the following file structure\.
+
+```
+• ORC file root(id = 0)
+   o 'nested_col' : struct (id = 1)
+      - 'map_col' : map (id = 2)
+         - key : int (id = 3)
+         - value : array (id = 4)
+            - value : float (id = 5)
+      - 'int_col' : int (id = 6)
+   o 'int_col' : int (id = 7)
+   o 'float_col' : float (id = 8)
+```
+
+Using position mapping, Redshift Spectrum attempts the following mapping\. 
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-tables.html)
+
+When you query a table with the preceding position mapping, the SELECT command fails on type validation because the structures are different\. 
+
+You can map the same external table to both file structures shown in the previous examples by using column name mapping\. The table columns `int_col`, `float_col`, and `nested_col` map by column name to columns with the same names in the ORC file\. The column named `nested_col` in the external table is a `struct` column with subcolumns named `map_col` and `int_col`\. The subcolumns also map correctly to the corresponding columns in the ORC file by column name\. 

@@ -1,7 +1,6 @@
 # Modifying the Server Configuration<a name="t_Modifying_the_default_settings"></a>
 
 You can make changes to the server configuration in the following ways: 
-
 + By using a [SET](r_SET.md) command to override a setting for the duration of the current session only\.
 
   For example: 
@@ -9,9 +8,7 @@ You can make changes to the server configuration in the following ways:
   ```
   set extra_float_digits to 2;
   ```
-
-+ By modifying the parameter group settings for the cluster\. The parameter group settings include additional parameters that you can configure\. For more information, see [Amazon Redshift Parameter Groups](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html) in the *Amazon Redshift Cluster Management Guide*\.
-
++ By modifying the parameter group settings for the cluster\. The parameter group settings include additional parameters that you can configure\. For more information, see [Amazon Redshift Parameter Groups](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html) in the *Amazon Redshift Cluster Management Guide*\.
 + By using the [ALTER USER](r_ALTER_USER.md) command to set a configuration parameter to a new value for all sessions run by the specified user\.
 
   ```

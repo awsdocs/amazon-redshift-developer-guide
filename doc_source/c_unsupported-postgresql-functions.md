@@ -8,147 +8,76 @@ Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL
  For more information, see [SQL Functions Supported on the Leader Node](c_sql-functions-leader-node.md)\.
 
 These PostgreSQL functions are not supported in Amazon Redshift\.
-
 + Access privilege inquiry functions
-
 + Advisory lock functions
-
 + Aggregate functions
-
   + STRING\_AGG\(\)
-
   + ARRAY\_AGG\(\)
-
   + EVERY\(\)
-
   + XML\_AGG\(\)
-
   + CORR\(\)
-
   + COVAR\_POP\(\)
-
   + COVAR\_SAMP\(\)
-
   + REGR\_AVGX\(\), REGR\_AVGY\(\)
-
   + REGR\_COUNT\(\)
-
   + REGR\_INTERCEPT\(\)
-
   + REGR\_R2\(\)
-
   + REGR\_SLOPE\(\)
-
   + REGR\_SXX\(\), REGR\_SXY\(\), REGR\_SYY\(\)
-
 + Array functions and operators
-
 + Backup control functions
-
 + Comment information functions
-
 + Database object location functions
-
 + Database object size functions
-
 + Date/Time functions and operators
-
   + CLOCK\_TIMESTAMP\(\)
-
   + JUSTIFY\_DAYS\(\), JUSTIFY\_HOURS\(\), JUSTIFY\_INTERVAL\(\)
-
   + PG\_SLEEP\(\)
-
   + TRANSACTION\_TIMESTAMP\(\)
-
 + ENUM support functions
-
 + Geometric functions and operators
-
 + Generic file access functions
-
 + IS DISTINCT FROM
-
 + Network address functions and operators
-
 + Mathematical functions
-
   + DIV\(\)
-
   + SETSEED\(\)
-
   + WIDTH\_BUCKET\(\)
-
 + Set returning functions
-
   + GENERATE\_SERIES\(\)
-
   + GENERATE\_SUBSCRIPTS\(\)
-
 + Range functions and operators
-
 + Recovery control functions
-
 + Recovery information functions
-
 + ROLLBACK TO SAVEPOINT function
-
 + Schema visibility inquiry functions
-
 + Server signaling functions
-
 + Snapshot synchronization functions
-
 + Sequence manipulation functions
-
 + String functions
-
   + BIT\_LENGTH\(\)
-
   + OVERLAY\(\)
-
   + CONVERT\(\), CONVERT\_FROM\(\), CONVERT\_TO\(\)
-
   + ENCODE\(\)
-
   + FORMAT\(\)
-
   + QUOTE\_NULLABLE\(\)
-
   + REGEXP\_MATCHES\(\)
-
   + REGEXP\_SPLIT\_TO\_ARRAY\(\)
-
   + REGEXP\_SPLIT\_TO\_TABLE\(\)
-
 + System catalog information functions
-
 + System information functions
-
   + CURRENT\_CATALOG CURRENT\_QUERY\(\)
-
   + INET\_CLIENT\_ADDR\(\)
-
   + INET\_CLIENT\_PORT\(\)
-
   + INET\_SERVER\_ADDR\(\) INET\_SERVER\_PORT\(\)
-
   + PG\_CONF\_LOAD\_TIME\(\)
-
   + PG\_IS\_OTHER\_TEMP\_SCHEMA\(\)
-
   + PG\_LISTENING\_CHANNELS\(\)
-
   + PG\_MY\_TEMP\_SCHEMA\(\)
-
   + PG\_POSTMASTER\_START\_TIME\(\)
-
   + PG\_TRIGGER\_DEPTH\(\)
-
+  + SHOW VERSION\(\)
 + Text search functions and operators
-
 + Transaction IDs and snapshots functions
-
 + Trigger functions
-
 + XML functions

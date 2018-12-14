@@ -13,9 +13,6 @@ select * from pg_group;
 Only a superuser can create, alter, or drop groups\.
 
 You can perform the following actions:
-
 + To create a group, use the [CREATE GROUP](r_CREATE_GROUP.md) command\.
-
 + To add users to or remove users from an existing group, use the [ALTER GROUP](r_ALTER_GROUP.md) command\.
-
 + To delete a group, use the [DROP GROUP](r_DROP_GROUP.md) command\. This command only drops the group, not its member users\.

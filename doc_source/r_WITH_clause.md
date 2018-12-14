@@ -30,23 +30,14 @@ A unique name for a temporary table that defines the results of a WITH clause su
 ## Usage Notes<a name="r_WITH_clause-usage-notes"></a>
 
 You can use a WITH clause in the following SQL statements: 
-
 + SELECT \(including subqueries within SELECT statements\)
-
 + SELECT INTO
-
 + CREATE TABLE AS
-
 + CREATE VIEW
-
 + DECLARE
-
 + EXPLAIN
-
 + INSERT INTO\.\.\.SELECT 
-
 + PREPARE
-
 + UPDATE \(within a WHERE clause subquery\)
 
 If the FROM clause of a query that contains a WITH clause does not reference any of the tables defined by the WITH clause, the WITH clause is ignored and the query executes as normal\.

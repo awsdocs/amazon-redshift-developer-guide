@@ -6,7 +6,7 @@ SVL\_QUERY\_SUMMARY provides query statistics by stream\. You can use the inform
 
 The SVL\_QUERY\_REPORT system view allows you to see information similar to that for SVL\_QUERY\_SUMMARY, only by compute node slice rather than by stream\. You can use the slice\-level information for detecting uneven data distribution across the cluster \(also known as data distribution skew\), which forces some nodes to do more work than others and impairs query performance\.
 
-
+**Topics**
 + [Using the SVL\_QUERY\_SUMMARY View](using-SVL-Query-Summary.md)
 + [Using the SVL\_QUERY\_REPORT View](using-SVL-Query-Report.md)
 + [Mapping the Query Plan to the Query Summary](query-plan-summary-map.md)

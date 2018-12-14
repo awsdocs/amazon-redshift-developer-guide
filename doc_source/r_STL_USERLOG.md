@@ -1,13 +1,9 @@
 # STL\_USERLOG<a name="r_STL_USERLOG"></a>
 
 Records details for the following changes to a database user:
-
 + Create user
-
 + Drop user
-
 + Alter user \(rename\)
-
 + Alter user \(alter properties\)
 
 This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.

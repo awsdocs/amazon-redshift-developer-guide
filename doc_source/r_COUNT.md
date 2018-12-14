@@ -15,7 +15,7 @@ The COUNT function has three variations\. COUNT \( \* \) counts all the rows in 
  *expression *   
 The target column or expression that the function operates on\.
 
-DISTINCT | ALL  
+DISTINCT \| ALL  
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before doing the count\. With the argument ALL, the function retains all duplicate values from the expression for counting\. ALL is the default\.
 
 APPROXIMATE  

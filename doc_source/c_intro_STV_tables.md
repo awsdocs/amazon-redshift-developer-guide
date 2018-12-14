@@ -2,7 +2,7 @@
 
 STV tables are actually virtual system tables that contain snapshots of the current system data\.
 
-
+**Topics**
 + [STV\_ACTIVE\_CURSORS](r_STV_ACTIVE_CURSORS.md)
 + [STV\_BLOCKLIST](r_STV_BLOCKLIST.md)
 + [STV\_CURSOR\_CONFIGURATION](r_STV_CURSOR_CONFIGURATION.md)

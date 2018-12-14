@@ -1,6 +1,6 @@
 # Numeric Types<a name="r_Numeric_types201"></a>
 
-
+**Topics**
 + [Integer Types](#r_Numeric_types201-integer-types)
 + [DECIMAL or NUMERIC Type](#r_Numeric_types201-decimal-or-numeric-type)
 + [Notes About Using 128\-bit DECIMAL or NUMERIC Columns](#r_Numeric_types201-notes-about-using-128-bit-decimal-or-numeric-columns)

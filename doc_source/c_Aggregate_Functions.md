@@ -1,6 +1,6 @@
 # Aggregate Functions<a name="c_Aggregate_Functions"></a>
 
-
+**Topics**
 + [APPROXIMATE PERCENTILE\_DISC Function](r_APPROXIMATE_PERCENTILE_DISC.md)
 + [AVG Function](r_AVG.md)
 + [COUNT Function](r_COUNT.md)

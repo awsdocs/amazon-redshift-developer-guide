@@ -39,29 +39,18 @@ A keyword that specifies that if the target table includes columns that are not 
 ALTER TABLE APPEND moves only identical columns from the source table to the target table\. Column order doesn't matter\. 
 
  If either the source table or the target tables contains extra columns, use either FILLTARGET or IGNOREEXTRA according to the following rules: 
-
 + If the source table contains columns that don't exist in the target table, include IGNOREEXTRA\. The command ignores the extra columns in the source table\.
-
-+ If the target table contains columns that don't exist in the source table, include FILLTARGET\. The command fills the extra columns in the source table with either the default column value or IDENTITY value, if one was defined, or NULL\.
-
++ If the target table contains columns that don't exist in the source table, include FILLTARGET\. The command fills the extra columns in the target table with either the default column value or IDENTITY value, if one was defined, or NULL\.
 + If both the source table and the target table contain extra columns, the command fails\. You can't use both FILLTARGET and IGNOREEXTRA\. 
 
 If a column with the same name but different attributes exists in both tables, the command fails\. Like\-named columns must have the following attributes in common: 
-
 + Data type
-
 + Column size
-
 + Compression encoding
-
 + Not null
-
 + Sort style
-
 + Sort key columns
-
 + Distribution style
-
 + Distribution key columns
 
 You can't append an identity column\. If both the source table and the target table have identity columns, the command fails\. If only the source table has an identity column, include the IGNOREEXTRA parameter so that the identity column is ignored\. If only the target table has an identity column, include the FILLTARGET parameter so that the identity column is populated according to the IDENTITY clause defined for the table\. For more information, see [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default)\. 

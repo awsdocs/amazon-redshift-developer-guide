@@ -69,9 +69,7 @@ Result = DECIMAL(15,3)
 For division operations, divide\-by\-zero conditions return errors\. 
 
 The scale limit of 100 is applied after the precision and scale are calculated\. If the calculated result scale is greater than 100, division results are scaled as follows:
-
 + Precision = ` precision - (scale - max_scale)` 
-
 + Scale = ` max_scale ` 
 
 If the calculated precision is greater than the maximum precision \(38\), the precision is reduced to 38, and the scale becomes the result of: `max(38 + scale - precision), min(4, 100))` 
@@ -79,7 +77,6 @@ If the calculated precision is greater than the maximum precision \(38\), the pr
 ## Overflow Conditions<a name="r_numeric_computations201-overflow-conditions"></a>
 
 Overflow is checked for all numeric computations\. DECIMAL data with a precision of 19 or less is stored as 64\-bit integers\. DECIMAL data with a precision that is greater than 19 is stored as 128\-bit integers\. The maximum precision for all DECIMAL values is 38, and the maximum scale is 37\. Overflow errors occur when a value exceeds these limits, which apply to both intermediate and final result sets: 
-
 + Explicit casting results in run\-time overflow errors when specific data values do not fit the requested precision or scale specified by the cast function\. For example, you cannot cast all values from the PRICEPAID column in the SALES table \(a DECIMAL\(8,2\) column\) and return a DECIMAL\(7,3\) result: 
 
   ```
@@ -88,17 +85,13 @@ Overflow is checked for all numeric computations\. DECIMAL data with a precision
   ```
 
   This error occurs because *some* of the larger values in the PRICEPAID column cannot be cast\.
-
 + Multiplication operations produce results in which the result scale is the sum of the scale of each operand\. If both operands have a scale of 4, for example, the result scale is 8, leaving only 10 digits for the left side of the decimal point\. Therefore, it is relatively easy to run into overflow conditions when multiplying two large numbers that both have significant scale\.
 
 ## Numeric Calculations with INTEGER and DECIMAL Types<a name="r_numeric_computations201-numeric-calculations-with-integer-and-decimal-types"></a>
 
 When one of the operands in a calculation has an INTEGER data type and the other operand is DECIMAL, the INTEGER operand is implicitly cast as a DECIMAL: 
-
 + INT2 \(SMALLINT\) is cast as DECIMAL\(5,0\) 
-
 + INT4 \(INTEGER\) is cast as DECIMAL\(10,0\) 
-
 + INT8 \(BIGINT\) is cast as DECIMAL\(19,0\) 
 
 For example, if you multiply SALES\.COMMISSION, a DECIMAL\(8,2\) column, and SALES\.QTYSOLD, a SMALLINT column, this calculation is cast as: 

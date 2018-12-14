@@ -2,7 +2,7 @@
 
 Retrieving information from an Amazon Redshift data warehouse involves executing complex queries on extremely large amounts of data, which can take a long time to process\. To ensure queries process as quickly as possible, there are a number of tools you can use to identify potential performance issues\.
 
-
+**Topics**
 + [Query Analysis Workflow](c-query-analysis-process.md)
 + [Reviewing Query Alerts](c-reviewing-query-alerts.md)
 + [Analyzing the Query Plan](c-analyzing-the-query-plan.md)

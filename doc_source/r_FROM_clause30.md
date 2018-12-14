@@ -47,15 +47,10 @@ If a NATURAL join is specified but no identically named pairs of columns exist i
 
  *join\_type*   
 Specify one of the following types of join:   
-
 + \[INNER\] JOIN 
-
 + LEFT \[OUTER\] JOIN 
-
 + RIGHT \[OUTER\] JOIN 
-
 + FULL \[OUTER\] JOIN 
-
 + CROSS JOIN 
 
 ON *join\_condition*   

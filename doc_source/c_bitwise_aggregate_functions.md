@@ -1,6 +1,6 @@
 # Bit\-Wise Aggregate Functions<a name="c_bitwise_aggregate_functions"></a>
 
-
+**Topics**
 + [BIT\_AND and BIT\_OR](#c_bitwise_aggregate_functions-bit_and-and-bit_or)
 + [BOOL\_AND and BOOL\_OR](#c_bitwise_aggregate_functions-bool_and-and-bool_or)
 + [NULLs in Bit\-Wise Aggregations](#c_bitwise_aggregate_functions-nulls-in-bit-wise-aggregations)
@@ -12,13 +12,9 @@
 + [Bit\-Wise Function Examples](r_bitwise_examples.md)
 
 Amazon Redshift supports the following bit\-wise aggregate functions:
-
 + BIT\_AND
-
 + BIT\_OR
-
 + BOOL\_AND
-
 + BOOL\_OR
 
 ## BIT\_AND and BIT\_OR<a name="c_bitwise_aggregate_functions-bit_and-and-bit_or"></a>
@@ -38,9 +34,7 @@ If you apply the BIT\_OR function to the same set of integer values, the operati
 ## BOOL\_AND and BOOL\_OR<a name="c_bitwise_aggregate_functions-bool_and-and-bool_or"></a>
 
 The BOOL\_AND and BOOL\_OR functions operate on a single Boolean or integer column or expression\. These functions apply similar logic to the BIT\_AND and BIT\_OR functions\. For these functions, the return type is a Boolean value \(`true` or `false`\):
-
 + If all values in a set are true, the BOOL\_AND function returns `true` \(`t`\)\. If any value is false, the function returns `false` \(`f`\)\.
-
 + If any value in a set is `true`, the BOOL\_OR function returns `true` \(`t`\)\. If no value in a set is `true`, the function returns `false` \(`f`\)\.
 
 ## NULLs in Bit\-Wise Aggregations<a name="c_bitwise_aggregate_functions-nulls-in-bit-wise-aggregations"></a>

@@ -1,33 +1,20 @@
 # Python Language Support for UDFs<a name="udf-python-language-support"></a>
 
 You can create a custom UDF based on the Python programming language\. The [Python 2\.7 Standard Library](https://docs.python.org/2/library/index.html) is available for use in UDFs, with the exception of the following modules:
-
 + ScrolledText
-
 + Tix
-
 + Tkinter
-
 + tk
-
 + turtle
-
 + smtpd
 
 In addition to the Python Standard Library, the following modules are part of the Amazon Redshift implementation:
-
 + [numpy 1\.8\.2](http://www.numpy.org/)
-
 + [pandas 0\.14\.1](https://pandas.pydata.org/)
-
 + [python\-dateutil 2\.2](https://dateutil.readthedocs.org/en/latest/)
-
-+ [pytz 2015\.7](https://pypi.python.org/pypi/pytz/)
-
++ [pytz 2014\.7](https://pypi.org/project/pytz/2014.7/)
 + [scipy 0\.12\.1](https://www.scipy.org/)
-
 + [six 1\.3\.0](https://pythonhosted.org/six/)
-
 + [wsgiref 0\.1\.2](https://pypi.python.org/pypi/wsgiref)
 
 You can also import your own custom Python modules and make them available for use in UDFs by executing a [CREATE LIBRARY](r_CREATE_LIBRARY.md) command\. For more information, see [Importing Custom Python Library Modules](#udf-importing-custom-python-library-modules)\.
@@ -45,7 +32,7 @@ You must be a superuser or have `USAGE ON LANGUAGE plpythonu` privilege to insta
 
 ### To Import a Custom Python Module into Your Cluster<a name="udf-import-custom-python-module-procedure"></a>
 
-This section provides an example of importing a custom Python module into your cluster\. To perform the steps in this section, you must have an Amazon S3 bucket, where you upload the library package\. You then install the package in your cluster\. For more information about creating buckets, go to [ Creating a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service Console User Guide*\.
+This section provides an example of importing a custom Python module into your cluster\. To perform the steps in this section, you must have an Amazon S3 bucket, where you upload the library package\. You then install the package in your cluster\. For more information about creating buckets, go to [ Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 In this example, let's suppose that you create UDFs to work with positions and distances in your data\. Connect to your Amazon Redshift cluster from a SQL client tool, and run the following commands to create the functions\. 
 

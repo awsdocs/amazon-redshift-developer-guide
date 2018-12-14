@@ -1,6 +1,6 @@
 # UPDATE<a name="r_UPDATE"></a>
 
-
+**Topics**
 + [Syntax](#r_UPDATE-synopsis)
 + [Parameters](#r_UPDATE-parameters)
 + [Usage Notes](#r_UPDATE_usage_notes)
@@ -44,9 +44,7 @@ You can name any table in the subquery, including the target table for the UPDAT
 ## Usage Notes<a name="r_UPDATE_usage_notes"></a>
 
 After updating a large number of rows in a table: 
-
 + Vacuum the table to reclaim storage space and resort rows\. 
-
 + Analyze the table to update statistics for the query planner\. 
 
 Left, right, and full outer joins are not supported in the FROM clause of an UPDATE statement; they return the following error: 

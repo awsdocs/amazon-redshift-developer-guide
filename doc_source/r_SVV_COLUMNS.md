@@ -1,6 +1,6 @@
 # SVV\_COLUMNS<a name="r_SVV_COLUMNS"></a>
 
-Use SVV\_COLUMNS to view catalog information about the columns of local and external tables and views\.
+Use SVV\_COLUMNS to view catalog information about the columns of local and external tables and views, including [late\-binding views](r_CREATE_VIEW.md#r_CREATE_VIEW_late-binding-views)\.
 
 SVV\_COLUMNS is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\. 
 

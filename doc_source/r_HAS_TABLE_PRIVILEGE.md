@@ -21,15 +21,10 @@ Table associated with the privilege\.
 
  *privilege*   
 Privilege to check\. Valid values are:   
-
 + SELECT
-
 + INSERT
-
 + UPDATE
-
 + DELETE
-
 + REFERENCES
 
 ## Return Type<a name="r_HAS_TABLE_PRIVILEGE-return-type"></a>

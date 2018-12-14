@@ -10,7 +10,7 @@ ADD_MONTHS( {date | timestamp}, integer)
 
 ## Arguments<a name="r_ADD_MONTHS-arguments"></a>
 
- *date* | *timestamp*   
+ *date* \| *timestamp*   
 A date or timestamp column or an expression that implicitly converts to a date or time stamp\. If the date is the last day of the month, or if the resulting month is shorter, the function returns the last day of the month in the result\. For other dates, the result contains the same day number as the date expression\. 
 
  *integer*   

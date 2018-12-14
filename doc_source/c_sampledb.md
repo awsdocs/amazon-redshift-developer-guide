@@ -1,6 +1,6 @@
 # Sample Database<a name="c_sampledb"></a>
 
-
+**Topics**
 + [CATEGORY Table](r_categorytable.md)
 + [DATE Table](r_datetable.md)
 + [EVENT Table](r_eventtable.md)
@@ -9,7 +9,7 @@
 + [LISTING Table](r_listingtable.md)
 + [SALES Table](r_salestable.md)
 
-Most of the examples in the Amazon Redshift documentation use a sample database called TICKIT\. This small database consists of seven tables: two fact tables and five dimensions\. You can load the TICKIT dataset by following the steps in [Step 6: Load Sample Data from Amazon S3](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started\.
+Most of the examples in the Amazon Redshift documentation use a sample database called TICKIT\. This small database consists of seven tables: two fact tables and five dimensions\. You can load the TICKIT dataset by following the steps in [Step 6: Load Sample Data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/tickitdb.png)
 
@@ -42,9 +42,6 @@ sellerid | username |       name        |   city    | sum
 The database used for the examples in this guide contains a small data set; the two fact tables each contain less than 200,000 rows, and the dimensions range from 11 rows in the CATEGORY table up to about 50,000 rows in the USERS table\.
 
 In particular, the database examples in this guide demonstrate the key features of Amazon Redshift table design: 
-
 + Data distribution
-
 + Data sort
-
 + Columnar compression

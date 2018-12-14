@@ -1,9 +1,7 @@
 # Column Mapping Options<a name="copy-parameters-column-mapping"></a>
 
 By default, COPY inserts values into the target table's columns in the same order as fields occur in the data files\. If the default column order will not work, you can specify a column list or use JSONPath expressions to map source data fields to the target columns\. 
-
 + [Column List](#copy-column-list)
-
 + [JSONPaths File](#copy-column-mapping-jsonpaths)
 
 ## Column List<a name="copy-column-list"></a>

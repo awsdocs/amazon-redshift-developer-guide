@@ -39,6 +39,110 @@ venue_pipe_0002_part_00
 venue_pipe_0003_part_00
 ```
 
+## Unload VENUE with a Manifest File<a name="unload-examples-manifest"></a>
+
+To create a manifest file, include the MANIFEST option\. The following example unloads the VENUE table and writes a manifest file along with the data files to s3://mybucket/venue\_pipe\_: 
+
+**Important**  
+If you unload files with the MANIFEST option, you should use the MANIFEST option with the COPY command when you load the files\. If you use the same prefix to load the files and do not specify the MANIFEST option, COPY fails because it assumes the manifest file is a data file\.
+
+```
+unload ('select * from venue')
+to 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+manifest;
+```
+
+The result is these five files:
+
+```
+s3://mybucket/venue_pipe_0000_part_00 
+s3://mybucket/venue_pipe_0001_part_00 
+s3://mybucket/venue_pipe_0002_part_00 
+s3://mybucket/venue_pipe_0003_part_00
+s3://mybucket/venue_pipe_manifest
+```
+
+The following shows the contents of the manifest file\. 
+
+```
+{
+  "entries": [
+    {"url":"s3://mybucket/tickit/venue_0000_part_00"},
+    {"url":"s3://mybucket/tickit/venue_0001_part_00"},
+    {"url":"s3://mybucket/tickit/venue_0002_part_00"},
+    {"url":"s3://mybucket/tickit/venue_0003_part_00"}
+  ]
+}
+```
+
+## Unload VENUE with MANIFEST VERBOSE<a name="unload-examples-manifest-verbose"></a>
+
+When you specify the MANIFEST VERBOSE option, the manifest file includes the following sections: 
++ The `entries` section lists Amazon S3 path, file size, and row count for each file\. 
++ The `schema` section lists the column names, data types, and dimension for each column\. 
++ The `meta` section shows the total file size and row count for all files\. 
+
+The following example unloads the VENUE table using the MANIFEST VERBOSE option\. 
+
+```
+unload ('select * from venue')
+to 's3://mybucket/unload_venue_folder/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+manifest verbose;
+```
+
+The following shows the contents of the manifest file\.
+
+```
+{
+  "entries": [
+    {"url":"s3://mybucket/venue_pipe_0000_part_00", "meta": { "content_length": 32295, "record_count": 10 }},
+    {"url":"s3://mybucket/venue_pipe_0001_part_00", "meta": { "content_length": 32771, "record_count": 20 }},
+    {"url":"s3://mybucket/venue_pipe_0002_part_00", "meta": { "content_length": 32302, "record_count": 10 }},
+    {"url":"s3://mybucket/venue_pipe_0003_part_00", "meta": { "content_length": 31810, "record_count": 15 }}
+  ],
+  "schema": {
+    "elements": [
+      {"name": "venueid", "type": { "base": "integer" }},
+      {"name": "venuename", "type": { "base": "character varying", 25 }},
+      {"name": "venuecity", "type": { "base": "character varying", 25 }},
+      {"name": "venuestate", "type": { "base": "character varying", 25 }},
+      {"name": "venueseats", "type": { "base": "character varying", 25 }}
+    ]
+  },
+  "meta": {
+    "content_length": 129178,
+    "record_count": 55
+  },
+  "author": {
+    "name": "Amazon Redshift",
+    "version": "1.0.0"
+  }
+}
+```
+
+## Unload VENUE with a Header<a name="unload-examples-header"></a>
+
+The following example unloads VENUE with a header row\.
+
+```
+unload ('select * from venue where venueseats > 75000')
+to 's3://mybucket/unload/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+header
+parallel off;
+```
+
+The following shows the contents of the output file with a header row\.
+
+```
+venueid|venuename|venuecity|venuestate|venueseats
+6|New York Giants Stadium|East Rutherford|NJ|80242
+78|INVESCO Field|Denver|CO|76125
+83|FedExField|Landover|MD|91704
+79|Arrowhead Stadium|Kansas City|MO|79451
+```
+
 ## Unload VENUE to Smaller Files<a name="unload-examples-maxfilesize"></a>
 
 By default, the maximum file size is 6\.2 GB\. If the unload data is larger than 6\.2 GB, UNLOAD creates a new file for each 6\.2 GB data segment\. To create smaller files, include the MAXFILESIZE parameter\. Assuming the size of the data in the previous example was 20 GB, the following UNLOAD command creates 20 files, each 1 GB in size\.
@@ -52,7 +156,7 @@ maxfilesize 1 gb;
 
 ## Unload VENUE Serially<a name="unload-examples-serial"></a>
 
-To unload serially, specify PARALLEL OFF\. UNLOAD will then write one file at a time, up to a maximum of 6\.2 GB per file\. 
+To unload serially, specify PARALLEL OFF\. UNLOAD then writes one file at a time, up to a maximum of 6\.2 GB per file\. 
 
 The following example unloads the VENUE table and writes the data serially to `s3://mybucket/unload/`\. 
 
@@ -100,29 +204,6 @@ venue_pipe_0002_part_00
 venue_pipe_0003_part_00
 ```
 
-## Unload VENUE with a Manifest File<a name="unload-examples-manifest"></a>
-
-To create a manifest file, include the MANIFEST option\. The following example unloads the VENUE table and writes a manifest file along with the data files to s3://mybucket/venue\_pipe\_: 
-
-**Important**  
-If you unload files with the MANIFEST option, you should use the MANIFEST option with the COPY command when you load the files\. If you use the same prefix to load the files and do not specify the MANIFEST option, COPY will fail because it assumes the manifest file is a data file\.
-
-```
-unload ('select * from venue')
-to 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
-manifest;
-```
-
-The result is these five files:
-
-```
-s3://mybucket/venue_pipe_0000_part_00 
-s3://mybucket/venue_pipe_0001_part_00 
-s3://mybucket/venue_pipe_0002_part_00 
-s3://mybucket/venue_pipe_0003_part_00
-s3://mybucket/venue_pipe_manifest
-```
-
 ## Load VENUE from Unload Files<a name="unload-examples-load"></a>
 
 To load a table from a set of unload files, simply reverse the process by using a COPY command\. The following example creates a new table, LOADVENUE, and loads the table from the data files created in the previous example\.
@@ -133,7 +214,7 @@ create table loadvenue (like venue);
 copy loadvenue from 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-If you used the MANIFEST option to create a manifest file with your unload files, you can load the data using the same manifest file with a COPY command with the MANIFEST option\. The following example loads data using a manifest file\.
+If you used the MANIFEST option to create a manifest file with your unload files, you can load the data using the same manifest file\. You do so with a COPY command with the MANIFEST option\. The following example loads data using a manifest file\.
 
 ```
 copy loadvenue 
@@ -166,7 +247,7 @@ encrypted;
 
 ## Load VENUE from Encrypted Files<a name="unload-examples-load-encrypted"></a>
 
-To load tables from a set of files that were created by using UNLOAD with the ENCRYPT option, reverse the process by using a COPY command with the ENCRYPTED option and specify the same master symmetric key that was used for the UNLOAD command\. The following example loads the LOADVENUE table from the encrypted data files created in the previous example\.
+To load tables from a set of files that were created by using UNLOAD with the ENCRYPT option, reverse the process by using a COPY command\. With that command, use the ENCRYPTED option and specify the same master symmetric key that was used for the UNLOAD command\. The following example loads the LOADVENUE table from the encrypted data files created in the previous example\.
 
 ```
 create table loadvenue (like venue);
@@ -213,7 +294,7 @@ delimiter as '\t';
 ```
 
 **Important**  
-The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD will fail and the transaction will be rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD will fail before it completes\.
+The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD fails and the transaction is rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD fails before it completes\.
 
 ## Unload VENUE to a Fixed\-Width Data File<a name="unload-venue-fixed-width"></a>
 
@@ -224,7 +305,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 fixedwidth as 'venueid:3,venuename:39,venuecity:16,venuestate:2,venueseats:6';
 ```
 
-The output data files will look like the following: 
+The output data files look like the following\. 
 
 ```
 1  Toyota Park              Bridgeview  IL0
@@ -306,7 +387,7 @@ Atlanta|GA|2008-01-11|268.00|7630.00
 
 UNLOAD outputs null values as empty strings by default\. The following examples show how to use NULL AS to substitute a text string for nulls\.
 
-For these examples, we will add some null values to the VENUE table\.
+For these examples, we add some null values to the VENUE table\.
 
 ```
 update venue set venuestate = NULL
@@ -353,7 +434,7 @@ The following sample from the unload file shows that null values were replaced w
 To load a table from the unload files, use a COPY command with the same NULL AS option\. 
 
 **Note**  
-If you attempt to load nulls into a column defined as NOT NULL, the COPY command will fail\.
+If you attempt to load nulls into a column defined as NOT NULL, the COPY command fails\.
 
 ```
 create table loadvenuenulls (like venue);

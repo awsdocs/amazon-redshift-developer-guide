@@ -31,11 +31,8 @@ To analyze query summary information by stream, do the following:
 1. Review the `maxtime` value for each segment \(it is the same across all steps in the segment\)\. Identify the segment with the highest `maxtime` value and review the steps in this segment for the following operators\.
 **Note**  
 A high `maxtime` value doesn't necessarily indicate a problem with the segment\. Despite a high value, the segment might not have taken a long time to process\. All segments in a stream start getting timed in unison\. However, some downstream segments might not be able to run until they get data from upstream ones\. This effect might make them seem to have taken a long time because their `maxtime` value will include both their waiting time and their processing time\. 
-
    + **BCAST or DIST**: In these cases, the high `maxtime` value might be the result of redistributing a large number of rows\. For recommended solutions, see [Suboptimal Data Distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.
-
    + **HJOIN \(hash join\)**: If the step in question has a very high value in the `rows` field compared to the `rows` value in the final RETURN step in the query, see [Hash Join](query-performance-improvement-opportunities.md#hash-join) for recommended solutions\.
-
    + **SCAN/SORT**: Look for a SCAN, SORT, SCAN, MERGE sequence of steps just prior to a join step\. This pattern indicates that unsorted data is being scanned, sorted, and then merged with the sorted area of the table\.
 
      See if the rows value for the SCAN step has a very high value compared to the rows value in the final RETURN step in the query\. This pattern indicates that the execution engine is scanning rows that are later discarded, which is inefficient\. For recommended solutions, see [Insufficiently Restrictive Predicate](query-performance-improvement-opportunities.md#insufficiently-restrictive-predicate)\. 

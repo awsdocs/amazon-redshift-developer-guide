@@ -6,7 +6,7 @@ You add the cluster public key to each host's authorized keys file so that the h
 
 1. Access the host using an SSH connection\. 
 
-   For information about connecting to an instance using SSH, see [Connect to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html) in the *Amazon EC2 User Guide*\. 
+   For information about connecting to an instance using SSH, see [Connect to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html) in the *Amazon EC2 User Guide*\. 
 
 1. Copy the Amazon Redshift public key from the console or from the CLI response text\. 
 

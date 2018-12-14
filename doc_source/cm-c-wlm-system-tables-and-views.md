@@ -3,11 +3,8 @@
 WLM configures query queues according to internally\-defined WLM *service classes*\. Amazon Redshift creates several internal queues according to these service classes along with the queues defined in the WLM configuration\. The terms *queue* and *service class* are often used interchangeably in the system tables\. The superuser queue uses service class 5\. User\-defined queues use service class 6 and greater\.
 
 You can view the status of queries, queues, and service classes by using WLM\-specific system tables\. Query the following system tables to do the following:
-
 + View which queries are being tracked and what resources are allocated by the workload manager\.
-
 + See which queue a query has been assigned to\.
-
 + View the status of a query that is currently being tracked by the workload manager\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-system-tables-and-views.html)

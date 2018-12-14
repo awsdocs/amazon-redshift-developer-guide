@@ -12,7 +12,7 @@ To define a sort type, use either the INTERLEAVED or COMPOUND keyword with your 
 
 To view the sort keys for a table, query the [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md) system view\.
 
-
+**Topics**
 + [Compound Sort Key](#t_Sorting_data-compound)
 + [Interleaved Sort Key](#t_Sorting_data-interleaved)
 + [Comparing Sort Styles](t_Sorting_data-compare-sort-styles.md)

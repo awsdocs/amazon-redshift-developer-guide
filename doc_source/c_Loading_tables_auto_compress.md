@@ -1,6 +1,6 @@
 # Loading Tables with Automatic Compression<a name="c_Loading_tables_auto_compress"></a>
 
-
+**Topics**
 + [How Automatic Compression Works](#c_Loading_tables_auto_compress-how-automatic-compression-works)
 + [Automatic Compression Example](#r_COPY_COMPRESS_examples)
 

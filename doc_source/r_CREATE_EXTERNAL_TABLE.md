@@ -51,29 +51,28 @@ If you are creating a "wide table," make sure that your list of columns doesn't 
 
  *data\_type*   
 The following [data types](c_Supported_data_types.md) are supported:  
-
 + SMALLINT \(INT2\)
-
 + INTEGER \(INT, INT4\)
-
 + BIGINT \(INT8\)
-
 + DECIMAL \(NUMERIC\)
-
 + REAL \(FLOAT4\)
-
 + DOUBLE PRECISION \(FLOAT8\)
-
 + BOOLEAN \(BOOL\)
-
 + CHAR \(CHARACTER\)
-
 + VARCHAR \(CHARACTER VARYING\)
-
-+ DATE \(DATE data type can be used only with text or ORC data files, or as a partition column\)
-
++ DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
 + TIMESTAMP
-Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.
+Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
+The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and Ranges](r_Character_types.md#r_Character_types-storage-and-ranges)   
+For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the OCTET\_LENGTH function\. The following example returns the maximum size of values in the email column\.  
+
+```
+select max(octet_length(email)) from users;
+
+max
+---
+ 62
+```
 
 PARTITIONED BY \(*col\_name* *data\_type* \[, … \] \)  
 A clause that defines a partitioned table with one or more partition columns\. A separate data directory is used for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself\. If you use a value for *col\_name* that is the same as a table column, you get an error\.   
@@ -88,9 +87,7 @@ To view partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITI
 
 ROW FORMAT DELIMITED *rowformat*  
 A clause that specifies the format of the underlying data\. Possible values for *rowformat* are as follows:  
-
 + LINES TERMINATED BY '*delimiter*' 
-
 + FIELDS TERMINATED BY '*delimiter*' 
 Specify a single ASCII character for '*delimiter*'\. You can specify non\-printing ASCII characters using octal, in the format `'\`*`ddd`*`'` where *`d`* is an octal digit \(0–7\) up to ‘\\177’\. The following example specifies the BEL \(bell\) character using octal\.   
 
@@ -103,16 +100,20 @@ ROW FORMAT SERDE '*serde\_name*' \[WITH SERDEPROPERTIES \( '*property\_name*' = 
 A clause that specifies the SERDE format for the underlying data\.     
 '*serde\_name*'  
 The name of the SerDe\. The following are supported:  
-
 + org\.apache\.hadoop\.hive\.serde2\.RegexSerDe 
-
 + com\.amazonaws\.glue\.serde\.GrokSerDe 
-
 + org\.apache\.hadoop\.hive\.serde2\.OpenCSVSerde 
-
 + org\.openx\.data\.jsonserde\.JsonSerDe
+  + The JSON SERDE also supports Ion files\. 
+  + The JSON must be well\-formed\. 
+  + Timestamps in Ion and JSON must use ISO8601 format\.
+  + The following SerDe property is supported for the JsonSerDe: 
 
-  The JSON SERDE also supports Ion files\. Ion and JSON formats support only scalar data types\. Nested data types are not supported\.  
+    ```
+    'strip.outer.array'='true' 
+    ```
+
+    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\.   
 WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 Optionally, specify property names and values, separated by commas\.
 If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' and LINES TERMINATED BY by '\\n'\.
@@ -120,19 +121,12 @@ If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '
 STORED AS *file\_format*  
 The file format for data files\.   
 Valid formats are as follows:  
-
 + PARQUET
-
 + RCFILE \(for data using ColumnarSerDe only, not LazyBinaryColumnarSerDe\)
-
 + SEQUENCEFILE
-
 + TEXTFILE 
-
 + ORC 
-
 + AVRO 
-
 + INPUTFORMAT '*input\_format\_classname*' OUTPUTFORMAT '*output\_format\_classname*' 
 For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example shows:   
 
@@ -140,11 +134,11 @@ For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example
 'org.apache.hadoop.mapred.TextInputFormat'
 ```
 
-LOCATION \{ 's3://*bucket/folder*/' | 's3://*bucket/manifest\_file*'  <a name="create-external-table-location"></a>
-The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same region as the Amazon Redshift cluster\. For a list of supported regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
-If the path specifies a folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\.   
+LOCATION \{ 's3://*bucket/folder*/' \| 's3://*bucket/manifest\_file*'  <a name="create-external-table-location"></a>
+The path to the Amazon S3 bucket or folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
+If the path specifies a bucket or folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified bucket or folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period or underscore\.   
 If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example,`'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.   
-The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3 and the size of the file, in bytes\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
+The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3 and the size of the file, in bytes\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same AWS Region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
 
 ```
 {
@@ -158,12 +152,27 @@ The manifest is a text file in JSON format that lists the URL of each file that 
 To reference files created using UNLOAD, you can use the manifest created using [UNLOAD](r_UNLOAD.md) with the MANIFEST parameter\. The manifest file is compatible with a manifest file for [COPY from Amazon S3](copy-parameters-data-source-s3.md), but uses different keys\. Keys that aren't used are ignored\. 
 
 TABLE PROPERTIES \( '*property\_name*'='*property\_value*' \[, \.\.\.\] \)   
-A clause that sets table properties table definition\.   
+A clause that sets the table definition for table properties\.   
 Table properties are case\-sensitive\.  
+ 'compression\_type'='*value*'   
+ A property that sets the type of compression to use if the file name does not contain an extension\. If you set this property and there is a file extension, the extension is ignored and the value set by the property is used\. Valid values for compression type are as follows:  
++ bzip2
++ gzip
++ none
++ snappy  
 'numRows'='*row\_count*'   
 A property that sets the numRows value for the table definition\. To explicitly update an external table's statistics, set the numRows property to indicate the size of the table\. Amazon Redshift doesn't analyze external tables to generate the table statistics that the query optimizer uses to generate a query plan\. If table statistics are not set for an external table, Amazon Redshift generates a query execution plan based on an assumption that external tables are the larger tables and local tables are the smaller tables\.  
 'skip\.header\.line\.count'='*line\_count*'  
-A property that sets number of rows to skip at the beginning of each source file\.
+A property that sets number of rows to skip at the beginning of each source file\.  
+'serialization\.null\.format'=' '  
+A property that specifies Spectrum should return a `NULL` value when there is an exact match with the text supplied in a field\.  
+'orc\.schema\.resolution'='mapping\_type'  
+A property that sets the column mapping type for tables that use ORC data format\. This property is ignored for other data formats\.  
+Valid values for column mapping type are as follows:   
++ name 
++ position 
+If the *orc\.schema\.resolution* property is omitted, columns are mapped by name by default\. If *orc\.schema\.resolution* is set to any value other than *'name'* or *'position'*, columns are mapped by position\. For more information about column mapping, see [Mapping External Table Columns to ORC Columns](c-spectrum-external-tables.md#c-spectrum-column-mapping-orc)  
+The COPY command maps to ORC data files only by position\. The *orc\.schema\.resolution* table property has no effect on COPY command behavior\. 
 
 ## Usage Notes<a name="r_CREATE_EXTERNAL_TABLE_usage"></a>
 
@@ -178,9 +187,7 @@ alter schema spectrum_schema owner to newowner;
 ```
 
 To run a Redshift Spectrum query, you need the following permissions:
-
 + Usage permission on the schema 
-
 + Permission to create temporary tables in the current database 
 
 The following example grants usage permission on the schema `spectrum_schema` to the `spectrumusers` user group\.
@@ -504,25 +511,4 @@ row format serde 'com.amazonaws.glue.serde.GrokSerDe'
 with serdeproperties ('input.format'='[DFEWI], \\[%{TIMESTAMP_ISO8601:timestamp} #%{POSINT:pid:int}\\] *(?<loglevel>:DEBUG|FATAL|ERROR|WARN|INFO) -- +%{DATA:progname}: %{GREEDYDATA:message}')
 stored as textfile
 location 's3://mybucket/grok/logs';
-```
-
-The following shows an example of specifying the file format parameters INPUTFORMAT and OUTPUTFORMAT\.
-
-```
-create external table spectrum.sales(
-salesid integer,
-listid integer,
-sellerid integer,
-buyerid integer,
-eventid integer,
-dateid smallint,
-qtysold smallint,
-pricepaid decimal(8,2),
-commission decimal(8,2),
-saletime timestamp)
-row format serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
-stored as
-inputformat 'org.apache.hadoop.mapred.TextInputFormat'
-outputformat 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-location 's3://awssampledbuswest2/tickit/spectrum/sales/';
 ```

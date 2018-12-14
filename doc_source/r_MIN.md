@@ -13,7 +13,7 @@ MIN ( [ DISTINCT | ALL ] expression )
  *expression *   
 The target column or expression that the function operates on\.
 
-DISTINCT | ALL  
+DISTINCT \| ALL  
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before calculating the minimum\. With the argument ALL, the function retains all duplicate values from the expression for calculating the minimum\. ALL is the default\.
 
 ## Data Types<a name="c_Supported_data_types_min"></a>

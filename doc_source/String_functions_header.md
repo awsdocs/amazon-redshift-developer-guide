@@ -1,7 +1,7 @@
 # String Functions<a name="String_functions_header"></a>
 
-
-+ [|| \(Concatenation\) Operator](r_concat_op.md)
+**Topics**
++ [\|\| \(Concatenation\) Operator](r_concat_op.md)
 + [BPCHARCMP Function](r_BPCHARCMP.md)
 + [BTRIM Function](r_BTRIM.md)
 + [BTTEXT\_PATTERN\_CMP Function](r_BTTEXT_PATTERN_CMP.md)
@@ -48,15 +48,9 @@ The following section provides the function names, syntax, and descriptions for 
 <a name="string-functions-deprecated"></a>
 **Deprecated Leader Node\-Only Functions**  
 The following string functions are deprecated because they execute only on the leader node\. For more information, see [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)
-
 + ASCII
-
 + GET\_BIT
-
 + GET\_BYTE
-
 + SET\_BIT
-
 + SET\_BYTE
-
 + TO\_ASCII

@@ -1,6 +1,6 @@
 # Using a COPY Command to Load Data<a name="t_Loading_tables_with_the_COPY_command"></a>
 
-
+**Topics**
 + [Credentials and Access Permissions](loading-data-access-permissions.md)
 + [Preparing Your Input Data](t_preparing-input-data.md)
 + [Loading Data from Amazon S3](t_Loading-data-from-S3.md)

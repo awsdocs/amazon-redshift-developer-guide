@@ -1,6 +1,6 @@
 # Data Type Formatting Functions<a name="r_Data_type_formatting"></a>
 
-
+**Topics**
 + [CAST and CONVERT Functions](r_CAST_function.md)
 + [TO\_CHAR](r_TO_CHAR.md)
 + [TO\_DATE](r_TO_DATE_function.md)

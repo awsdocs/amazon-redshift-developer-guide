@@ -1,6 +1,6 @@
 # Configuration Reference<a name="cm_chap_ConfigurationRef"></a>
 
-
+**Topics**
 + [Modifying the Server Configuration](t_Modifying_the_default_settings.md)
 + [analyze\_threshold\_percent](r_analyze_threshold_percent.md)
 + [datestyle](r_datestyle.md)

@@ -1,6 +1,6 @@
 # Window Function Examples<a name="r_Window_function_examples"></a>
 
-
+**Topics**
 + [AVG Window Function Examples](r_Examples_of_avg_WF.md)
 + [COUNT Window Function Examples](r_Examples_of_count_WF.md)
 + [CUME\_DIST Window Function Examples](r_Examples_of_CUME_DIST_WF.md)

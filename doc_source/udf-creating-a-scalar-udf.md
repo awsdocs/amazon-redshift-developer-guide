@@ -1,11 +1,8 @@
 # Creating a Scalar Python UDF<a name="udf-creating-a-scalar-udf"></a>
 
 A scalar Python UDF incorporates a Python program that executes when the function is called and returns a single value\. The [CREATE FUNCTION](r_CREATE_FUNCTION.md) command defines the following parameters:
-
 + \(Optional\) Input arguments\. Each argument must have a name and a data type\. 
-
 + One return data type\.
-
 + One executable Python program\.
 
 The input and return data types can be any standard Amazon Redshift data type except TIMESTAMP WITH TIME ZONE \(TIMESTAMPTZ\)\. In addition, Python UDFs can use the data type ANYELEMENT, which Amazon Redshift automatically converts to a standard data type based on the arguments supplied at run time\. For more information, see [ANYELEMENT Data Type](#udf-anyelement-data-type)

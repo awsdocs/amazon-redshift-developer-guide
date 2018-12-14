@@ -47,7 +47,7 @@ ERROR: S3ServiceException:The bucket you are attempting to access must be addres
 
 You can create an Amazon S3 bucket in a specific region either by selecting the region when you create the bucket by using the Amazon S3 Management Console, or by specifying an endpoint when you create the bucket using the Amazon S3 API or CLI\. For more information, see [Uploading Files to Amazon S3](t_uploading-data-to-S3.md)\.
 
-For more information about Amazon S3 regions, see [Accessing a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro) in the *Amazon Simple Storage Service Developer Guide*\.
+For more information about Amazon S3 regions, see [Accessing a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro) in the *Amazon Simple Storage Service Developer Guide*\.
 
 Alternatively, you can specify the region using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\.
 
@@ -59,4 +59,4 @@ The user account identified by the credentials must have LIST and GET access to 
 ERROR: S3ServiceException:Access Denied,Status 403,Error AccessDenied
 ```
 
-For information about managing user access to buckets, see [Access Control](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAuthAccess.html) in the *Amazon S3 Developer Guide*\.
+For information about managing user access to buckets, see [Access Control](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAuthAccess.html) in the *Amazon S3 Developer Guide*\.

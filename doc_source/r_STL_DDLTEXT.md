@@ -3,11 +3,8 @@
 Captures the following DDL statements that were run on the system\.
 
 These DDL statements include the following queries and objects: 
-
 + CREATE SCHEMA, TABLE, VIEW
-
 + DROP SCHEMA, TABLE, VIEW
-
 + ALTER SCHEMA, TABLE
 
 See also [STL\_QUERYTEXT](r_STL_QUERYTEXT.md), [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md), and [SVL\_STATEMENTTEXT](r_SVL_STATEMENTTEXT.md)\. These tables provide a timeline of the SQL commands that are executed on the system; this history is useful for troubleshooting purposes and for creating an audit trail of all system activities\.

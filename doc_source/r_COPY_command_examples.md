@@ -3,12 +3,13 @@
 **Note**  
 These examples contain line breaks for readability\. Do not include line breaks or spaces in your *credentials\-args* string\.
 
-
+**Topics**
 + [Load FAVORITEMOVIES from an DynamoDB Table](#r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table)
 + [Load LISTING from an Amazon S3 Bucket](#r_COPY_command_examples-load-listing-from-an-amazon-s3-bucket)
 + [Load LISTING from an Amazon EMR Cluster](#copy-command-examples-emr)
 + [Example: COPY from Amazon S3 using a manifest](#copy-command-examples-manifest)
 + [Load LISTING from a Pipe\-Delimited File \(Default Delimiter\)](#r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter)
++ [Load LISTING Using Columnar Data in Parquet Format](#r_COPY_command_examples-load-listing-from-parquet)
 + [Load LISTING Using Temporary Credentials](#sub-example-load-favorite-movies)
 + [Load EVENT with Options](#r_COPY_command_examples-load-event-with-options)
 + [Load VENUE from a Fixed\-Width Data File](#r_COPY_command_examples-load-venue-from-a-fixed-width-data-file)
@@ -24,7 +25,7 @@ These examples contain line breaks for readability\. Do not include line breaks 
 
 ## Load FAVORITEMOVIES from an DynamoDB Table<a name="r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table"></a>
 
-The AWS SDKs include a simple example of creating a DynamoDB table called *Movies*\. \(For this example, see [Getting Started with DynamoDB](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html)\.\) The following example loads the Amazon Redshift MOVIES table with data from the DynamoDB table\. The Amazon Redshift table must already exist in the database\.
+The AWS SDKs include a simple example of creating a DynamoDB table called *Movies*\. \(For this example, see [Getting Started with DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html)\.\) The following example loads the Amazon Redshift MOVIES table with data from the DynamoDB table\. The Amazon Redshift table must already exist in the database\.
 
 ```
 copy favoritemovies from 'dynamodb://Movies'
@@ -79,18 +80,50 @@ If only two of the files exist because of an error, COPY will load only those tw
 To ensure that all of the required files are loaded and to prevent unwanted files from being loaded, you can use a manifest file\. The manifest is a JSON\-formatted text file that lists the files to be processed by the COPY command\. For example, the following manifest loads the three files in the previous example\.
 
 ```
-{
-  "entries": [
-    {"url":"s3://mybucket/custdata.1","mandatory":true},
-    {"url":"s3://mybucket/custdata.2","mandatory":true},
-    {"url":"s3://mybucket/custdata.3","mandatory":true}
+{  
+   "entries":[  
+      {  
+         "url":"s3://mybucket/custdata.1",
+         "mandatory":true
+      },
+      {  
+         "url":"s3://mybucket/custdata.2",
+         "mandatory":true
+      },
+      {  
+         "url":"s3://mybucket/custdata.3",
+         "mandatory":true
+      }
    ]
 }
 ```
 
 The optional `mandatory` flag indicates whether COPY should terminate if the file does not exist\. The default is `false`\. Regardless of any mandatory settings, COPY will terminate if no files are found\. In this example, COPY will return an error if any of the files is not found\. Unwanted files that might have been picked up if you specified only a key prefix, such as `custdata.backup`, are ignored, because they are not on the manifest\. 
 
-The following example uses the manifest in the previous example, which is named `cust.manifest`\. 
+When loading from data files in ORC or Parquet format, a `meta` field is required, as shown in the following example\.
+
+```
+{  
+   "entries":[  
+      {  
+         "url":"s3://mybucket-alpha/orc/2013-10-04-custdata",
+         "mandatory":true,
+         "meta":{  
+            "content_length":99
+         }
+      },
+      {  
+         "url":"s3://mybucket-beta/orc/2013-10-05-custdata",
+         "mandatory":true,
+         "meta":{  
+            "content_length":99
+         }
+      }
+   ]
+}
+```
+
+The following example uses a manifest named `cust.manifest`\. 
 
 ```
 copy customer
@@ -126,12 +159,23 @@ The manifest can list files that are in different buckets, as long as the bucket
 
 ## Load LISTING from a Pipe\-Delimited File \(Default Delimiter\)<a name="r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter"></a>
 
-The following example is a very simple case in which no options are specified and the input file contains the default delimiter, a pipe character \('|'\)\. 
+The following example is a very simple case in which no options are specified and the input file contains the default delimiter, a pipe character \('\|'\)\. 
 
 ```
 copy listing 
 from 's3://mybucket/data/listings_pipe.txt' 
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
+```
+
+## Load LISTING Using Columnar Data in Parquet Format<a name="r_COPY_command_examples-load-listing-from-parquet"></a>
+
+The following example loads data from a folder on Amazon S3 named parquet\. 
+
+```
+copy listing 
+from 's3://mybucket/data/listings/parquet/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+format as parquet;
 ```
 
 ## Load LISTING Using Temporary Credentials<a name="sub-example-load-favorite-movies"></a>
@@ -149,13 +193,9 @@ session_token '<temporary-token>';
 ## Load EVENT with Options<a name="r_COPY_command_examples-load-event-with-options"></a>
 
 The following example loads pipe\-delimited data into the EVENT table and applies the following rules: 
-
 + If pairs of quotation marks are used to surround any character strings, they are removed\.
-
 + Both empty strings and strings that contain blanks are loaded as NULL values\.
-
 + The load will fail if more than 5 errors are returned\.
-
 + Timestamp values must comply with the specified format; for example, a valid timestamp is `2008-09-26 05:43:12`\.
 
 ```
@@ -407,7 +447,7 @@ delimiter '|';
 
 ## COPY Data with the ESCAPE Option<a name="r_COPY_command_examples-copy-data-with-the-escape-option"></a>
 
-The following example shows how to load characters that match the delimiter character \(in this case, the pipe character\)\. In the input file, make sure that all of the pipe characters \(|\) that you want to load are escaped with the backslash character \(\\\)\. Then load the file with the ESCAPE parameter\. 
+The following example shows how to load characters that match the delimiter character \(in this case, the pipe character\)\. In the input file, make sure that all of the pipe characters \(\|\) that you want to load are escaped with the backslash character \(\\\)\. Then load the file with the ESCAPE parameter\. 
 
 ```
 $ more redshiftinfo.txt
@@ -439,7 +479,7 @@ In the following examples, you will load the CATEGORY table with the following d
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html)
 
-
+**Topics**
 + [Load from JSON Data Using the 'auto' Option](#copy-from-json-examples-using-auto)
 + [Load from JSON Data Using a JSONPaths file](#copy-from-json-examples-using-jsonpaths)
 + [Load from JSON Arrays Using a JSONPaths file](#copy-from-json-examples-using-jsonpaths-arrays)
@@ -589,7 +629,7 @@ In the following examples, you will load the CATEGORY table with the following d
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html)
 
-
+**Topics**
 + [Load from Avro Data Using the 'auto' Option](#copy-from-avro-examples-using-auto)
 + [Load from Avro Data Using a JSONPaths File](#copy-from-avro-examples-using-avropaths)
 

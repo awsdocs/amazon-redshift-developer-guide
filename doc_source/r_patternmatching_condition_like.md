@@ -2,7 +2,7 @@
 
 The LIKE operator compares a string expression, such as a column name, with a pattern that uses the wildcard characters % \(percent\) and \_ \(underscore\)\. LIKE pattern matching always covers the entire string\. To match a sequence anywhere within a string, the pattern must start and end with a percent sign\. 
 
-LIKE is case\-sensitive; ILIKE is case\-insensitive\. 
+LIKE is case\-sensitive; ILIKE is case\-insensitive\.
 
 ## Syntax<a name="r_patternmatching_condition_like-synopsis"></a>
 
@@ -15,8 +15,9 @@ expression [ NOT ] LIKE | ILIKE pattern [ ESCAPE 'escape_char' ]
  *expression*   
 A valid UTF\-8 character expression, such as a column name\. 
 
-LIKE | ILIKE   
-LIKE performs a case\-sensitive pattern match\. ILIKE performs a case\-insensitive pattern match for single\-byte characters\. Both LIKE and ILIKE perform a case\-insensitive pattern match for multibyte characters\.
+LIKE \| ILIKE   
+LIKE performs a case\-sensitive pattern match\. ILIKE performs a case\-insensitive pattern match for single\-byte UTF\-8 \(ASCII\) characters\. To perform a case\-insensitive pattern match for multibyte characters, use the [LOWER](r_LOWER.md) function on *expression* and *pattern* with a LIKE condition\.  
+In contrast to comparison predicates, such as = and <>, LIKE and ILIKE predicates do not implicitly ignore trailing spaces\. To ignore trailing spaces, use RTRIM or explicitly cast a CHAR column to VARCHAR\.
 
  *pattern*   
 A valid UTF\-8 character expression with the pattern to be matched\. 

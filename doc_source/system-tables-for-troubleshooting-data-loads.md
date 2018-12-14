@@ -1,11 +1,8 @@
 # System Tables for Troubleshooting Data Loads<a name="system-tables-for-troubleshooting-data-loads"></a>
 
 The following Amazon Redshift system tables can be helpful in troubleshooting data load issues:
-
 + Query [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md) to discover the errors that occurred during specific loads\.
-
 + Query [STL\_FILE\_SCAN](r_STL_FILE_SCAN.md) to view load times for specific files or to see if a specific file was even read\.
-
 + Query [STL\_S3CLIENT\_ERROR](r_STL_S3CLIENT_ERROR.md) to find details for errors encountered while transferring data from Amazon S3\.
 
 **To find and diagnose load errors**
@@ -40,15 +37,9 @@ The following Amazon Redshift system tables can be helpful in troubleshooting da
    ```
 
 1. Fix the problem in the input file or the load script, based on the information that the view returns\. Some typical load errors to watch for include: 
-
    + Mismatch between data types in table and values in input data fields\.
-
    + Mismatch between number of columns in table and number of fields in input data\.
-
    + Mismatched quotes\. Amazon Redshift supports both single and double quotes; however, these quotes must be balanced appropriately\.
-
    + Incorrect format for date/time data in input files\.
-
    + Out\-of\-range values in input files \(for numeric columns\)\.
-
    + Number of distinct values for a column exceeds the limitation for its compression encoding\.

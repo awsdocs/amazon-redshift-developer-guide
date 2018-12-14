@@ -1,6 +1,6 @@
 # INSERT<a name="r_INSERT_30"></a>
 
-
+**Topics**
 + [Syntax](#r_INSERT_30-synopsis)
 + [Parameters](#r_INSERT_30-parameters)
 + [Usage Notes](#r_INSERT_30_usage_notes)
@@ -43,9 +43,7 @@ Use this keyword to insert one or more rows, each row consisting of one or more 
 
  *expression*   
 A single value or an expression that evaluates to a single value\. Each value must be compatible with the data type of the column where it is being inserted\. If possible, a value whose data type does not match the column's declared data type is automatically converted to a compatible data type\. For example:   
-
 + A decimal value `1.1` is inserted into an INT column as `1`\. 
-
 + A decimal value `100.8976` is inserted into a DEC\(5,2\) column as `100.90`\. 
 You can explicitly convert a value to a compatible data type by including type cast syntax in the expression\. For example, if column COL1 in table T1 is a CHAR\(3\) column:   
 
@@ -70,9 +68,7 @@ We strongly encourage you to use the [COPY](r_COPY.md) command to load large amo
 The data format for the inserted values must match the data format specified by the CREATE TABLE definition\. 
 
  After inserting a large number of new rows into a table: 
-
 + Vacuum the table to reclaim storage space and resort rows\. 
-
 + Analyze the table to update statistics for the query planner\. 
 
 When values are inserted into DECIMAL columns and they exceed the specified scale, the loaded values are rounded up as appropriate\. For example, when a value of `20.259` is inserted into a DECIMAL\(8,2\) column, the value that is stored is `20.26`\. 

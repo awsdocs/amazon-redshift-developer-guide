@@ -3,13 +3,9 @@
 Mostly encodings are useful when the data type for a column is larger than most of the stored values require\. By specifying a mostly encoding for this type of column, you can compress the majority of the values in the column to a smaller standard storage size\. The remaining values that cannot be compressed are stored in their raw form\. For example, you can compress a 16\-bit column, such as an INT2 column, to 8\-bit storage\.
 
 In general, the mostly encodings work with the following data types:
-
 + SMALLINT/INT2 \(16\-bit\)
-
 + INTEGER/INT \(32\-bit\)
-
 + BIGINT/INT8 \(64\-bit\)
-
 + DECIMAL/NUMERIC \(64\-bit\)
 
 Choose the appropriate variation of the mostly encoding to suit the size of the data type for the column\. For example, apply MOSTLY8 to a column that is defined as a 16\-bit integer column\. Applying MOSTLY16 to a column with a 16\-bit data type or MOSTLY32 to a column with a 32\-bit data type is disallowed\.

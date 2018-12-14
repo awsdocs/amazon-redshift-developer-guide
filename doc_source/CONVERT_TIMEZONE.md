@@ -54,13 +54,9 @@ A POSIX\-style time zone specification is in the form *STDoffset* or *STDoffsetD
 POSIX\-style time zone formats use positive offsets west of Greenwich, in contrast to the ISO\-8601 convention, which uses positive offsets east of Greenwich\.
 
 The following are examples of POSIX\-style time zones:
-
 +  PST8
-
 +  PST8PDT
-
 +  EST5
-
 +  EST5EDT
 
 **Note**  

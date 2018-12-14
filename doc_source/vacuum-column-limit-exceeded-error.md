@@ -22,7 +22,7 @@ The following table shows the approximate column limits for each node type for a
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/vacuum-column-limit-exceeded-error.html)
 
-You can increase the vacuum column limit by increasing the value of [wlm\_query\_slot\_count](r_wlm_query_slot_count.md), which increases the amount of memory available for the query\. The maximum value for `wlm_query_slot_count` is limited to the concurrency value for the queue\. For more information, see [Best Practices for Designing Queries](c_designing-queries-best-practices.md)\.
+You can increase the vacuum column limit by increasing the value of [wlm\_query\_slot\_count](r_wlm_query_slot_count.md), which increases the amount of memory available for the query\. The maximum value for `wlm_query_slot_count` is limited to the concurrency value for the queue\. For more information, see [Amazon Redshift Best Practices for Designing Queries](c_designing-queries-best-practices.md)\.
 
 If increasing the value of wlm\_query\_slot\_count is not an option, or if it doesn't solve the problem, you can avoid needing to vacuum by performing a deep copy\. To perform a deep copy, you create a copy of the table, insert the rows from the original table into the copy, drop the original table, and then rename the copy\. A deep copy is often much faster than a vacuum\. For more information, see [Performing a Deep Copy](performing-a-deep-copy.md)\.
 

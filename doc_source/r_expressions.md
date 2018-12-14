@@ -1,6 +1,6 @@
 # Expressions<a name="r_expressions"></a>
 
-
+**Topics**
 + [Simple Expressions](#r_expressions-simple-expressions)
 + [Compound Expressions](r_compound_expressions.md)
 + [Expression Lists](r_expression_lists.md)
@@ -12,17 +12,11 @@ An expression is a combination of one or more values, operators, or functions th
 ## Simple Expressions<a name="r_expressions-simple-expressions"></a>
 
 A simple expression is one of the following: 
-
 + A constant or literal value 
-
 + A column name or column reference 
-
 + A scalar function 
-
 + An aggregate \(set\) function 
-
 + A window function 
-
 + A scalar subquery 
 
 Examples of simple expressions include: 

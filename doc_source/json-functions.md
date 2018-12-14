@@ -1,6 +1,6 @@
 # JSON Functions<a name="json-functions"></a>
 
-
+**Topics**
 + [IS\_VALID\_JSON Function](IS_VALID_JSON.md)
 + [IS\_VALID\_JSON\_ARRAY Function](IS_VALID_JSON_ARRAY.md)
 + [JSON\_ARRAY\_LENGTH Function](JSON_ARRAY_LENGTH.md)
@@ -16,35 +16,22 @@ We recommend using JSON sparingly\. JSON is not a good choice for storing larger
 JSON uses UTF\-8 encoded text strings, so JSON strings can be stored as CHAR or VARCHAR data types\. Use VARCHAR if the strings include multi\-byte characters\.
 
 JSON strings must be properly formatted JSON, according to the following rules: 
-
 + The root level JSON can either be a JSON object or a JSON array\. A JSON object is an unordered set of comma\-separated key:value pairs enclosed by curly braces\. 
 
   For example, `{"one":1, "two":2} `
-
 + A JSON array is an ordered set of comma\-separated values enclosed by square brackets\. 
 
   For example, `["first", {"one":1}, "second", 3, null] `
-
 + JSON arrays use a zero\-based index; the first element in an array is at position 0\. In a JSON key:value pair, the key is a double quoted string\. 
-
 + A JSON value can be any of: 
-
   + JSON object 
-
   + JSON array 
-
   + string \(double quoted\) 
-
   + number \(integer and float\) 
-
   + boolean
-
   + null 
-
 + Empty objects and empty arrays are valid JSON values\.
-
 + JSON fields are case sensitive\. 
-
 + White space between JSON structural elements \(such as `{ }, [ ]`\) is ignored\. 
 
 The Amazon Redshift JSON functions and the Amazon Redshift COPY command use the same methods to work with JSON\-formatted data\. For more information about working with JSON, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)

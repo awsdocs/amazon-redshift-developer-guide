@@ -1,21 +1,15 @@
 # Authorization Parameters<a name="copy-parameters-authorization"></a>
 
-The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an [AWS Identity and Access Management \(IAM\) role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that is attached to your cluster \(*role\-based access control*\) or by providing the access credentials for an IAM user \(*key\-based access control*\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. COPY can also use temporary credentials to limit access to your load data, and you can encrypt your load data on Amazon S3\. 
+The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an [AWS Identity and Access Management \(IAM\) role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that is attached to your cluster \(*role\-based access control*\) or by providing the access credentials for an IAM user \(*key\-based access control*\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. COPY can also use temporary credentials to limit access to your load data, and you can encrypt your load data on Amazon S3\. 
 
 The following topics provide more details and examples of authentication options:
-
 + [IAM Permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)
-
 + [Role\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based)
-
 + [Key\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based)
 
 Use one of the following to provide authorization for the COPY command: 
-
 + [IAM_ROLE](#copy-iam-role) parameter
-
 + [ACCESS_KEY_ID and SECRET_ACCESS_KEY](#copy-access-key-id) parameters
-
 + [CREDENTIALS](#copy-credentials) clause<a name="copy-authorization-parameters-list"></a>
 
 IAM\_ROLE '*iam\-role\-arn*'  <a name="copy-iam-role"></a>

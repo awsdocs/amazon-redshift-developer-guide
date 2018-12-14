@@ -5,45 +5,24 @@ Generally, if a query attempts to use an unsupported data type, including explic
  For a list of the supported data types, see [Data Types](c_Supported_data_types.md)\.
 
 These PostgreSQL data types are not supported in Amazon Redshift\.
-
 + Arrays
-
 + BIT, BIT VARYING
-
 + BYTEA
-
 + Composite Types
-
 + Date/Time Types
-
   +  INTERVAL
-
   + TIME
-
 + Enumerated Types
-
 + Geometric Types
-
 + JSON
-
 + Network Address Types
-
 + Numeric Types
-
   + SERIAL, BIGSERIAL, SMALLSERIAL
-
   + MONEY
-
 + Object Identifier Types
-
 + Pseudo\-Types
-
 + Range Types
-
 + Text Search Types
-
 + TXID\_SNAPSHOT
-
 + UUID
-
 + XML

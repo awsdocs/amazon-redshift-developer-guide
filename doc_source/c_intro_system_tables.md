@@ -1,13 +1,9 @@
 # System Tables and Views<a name="c_intro_system_tables"></a>
 
 Amazon Redshift has many system tables and views that contain information about how the system is functioning\. You can query these system tables and views the same way that you would query any other database tables\. This section shows some sample system table queries and explains: 
-
 + How different types of system tables and views are generated
-
 + What types of information you can obtain from these tables
-
 + How to join Amazon Redshift system tables to catalog tables
-
 + How to manage the growth of system table log files
 
 Some system tables can only be used by AWS staff for diagnostic purposes\. The following sections discuss the system tables that can be queried for useful information by system administrators or other database users\. 

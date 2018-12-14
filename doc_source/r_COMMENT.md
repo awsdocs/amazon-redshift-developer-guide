@@ -20,15 +20,10 @@ IS 'text'
 
  *object\_name*   
 Name of the database object being commented on\. You can add a comment to the following objects:  
-
 + TABLE
-
 + COLUMN \(also takes a *column\_name*\)\.
-
 + CONSTRAINT \(also takes a *constraint\_name* and *table\_name*\)\.
-
 + DATABASE
-
 + VIEW
 
 IS '*text'*'   

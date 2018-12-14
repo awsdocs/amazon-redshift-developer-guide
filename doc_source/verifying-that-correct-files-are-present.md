@@ -8,4 +8,4 @@ copy venue from 's3://mybucket/venue' … ;
 
 If you want to control specifically which files are loaded, you can use a manifest file to explicitly list the data files\. For more information about using a manifest file, see the [copy_from_s3_manifest_file](copy-parameters-data-source-s3.md#copy-manifest-file) option for the COPY command and [Using a Manifest to Specify Data Files](r_COPY_command_examples.md#copy-command-examples-manifest) in the COPY examples\. 
 
-For more information about listing the contents of the bucket, see [Listing Object Keys](http://docs.aws.amazon.com/AmazonS3/latest/dev/ListingKeysUsingAPIs.html) in the *Amazon S3 Developer Guide*\.
+For more information about listing the contents of the bucket, see [Listing Object Keys](https://docs.aws.amazon.com/AmazonS3/latest/dev/ListingKeysUsingAPIs.html) in the *Amazon S3 Developer Guide*\.

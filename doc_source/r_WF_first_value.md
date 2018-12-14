@@ -33,9 +33,7 @@ Defines the window for the function in terms of one or more expressions\.
 ORDER BY *order\_list*   
 Sorts the rows within each partition\. If no PARTITION BY clause is specified, ORDER BY sorts the entire table\. If you specify an ORDER BY clause, you must also specify a *frame\_clause*\.   
 The results of the FIRST\_VALUE and LAST\_VALUE functions depend on the ordering of the data\. The results are nondeterministic in the following cases:   
-
 + When no ORDER BY clause is specified and a partition contains two different values for an expression 
-
 + When the expression evaluates to different values that correspond to the same value in the ORDER BY list\. 
 
  *frame\_clause*   

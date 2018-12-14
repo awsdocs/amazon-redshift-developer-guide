@@ -42,11 +42,10 @@ create table feedback(a int);
 drop table feedback;
 ```
 
- If a table contains any columns that are references to other tables, Amazon Redshift displays a message such as the following, advising you to use the CASCADE option to also drop dependent objects: 
+ If a table contains columns that are referenced by views or other tables, Amazon Redshift displays a message such as the following\. 
 
 ```
-ERROR:  can't drop table category because other objects depend on it
-HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+Invalid operation: cannot drop table feedback because other objects depend on it
 ```
 
  **Dropping Two Tables Simultaneously** 

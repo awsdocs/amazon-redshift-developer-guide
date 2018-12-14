@@ -100,17 +100,11 @@ You can apply compression encodings to columns in tables manually when you creat
       ```
 
       The columns show the results for the following encodings: 
-
       + Raw 
-
       + Bytedict 
-
       + LZO 
-
       + Runlength 
-
       + Text255 
-
       + Text32K 
 
       You can see that Bytedict encoding on the second column produced the best results for this data set, with a compression ratio of better than 8:1\. Different data sets will produce different results, of course\. 

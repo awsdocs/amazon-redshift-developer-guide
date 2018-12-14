@@ -1,6 +1,6 @@
 # SELECT<a name="r_SELECT_synopsis"></a>
 
-
+**Topics**
 + [Syntax](#r_SELECT_synopsis-synopsis)
 + [WITH Clause](r_WITH_clause.md)
 + [SELECT List](r_SELECT_list.md)

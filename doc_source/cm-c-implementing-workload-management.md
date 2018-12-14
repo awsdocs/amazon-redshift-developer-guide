@@ -11,7 +11,7 @@ You can configure up to eight query queues and set the number of queries that ca
 **Note**  
 We recommend configuring your WLM query queues with a total of 15 or fewer query slots\. For more information, see [Concurrency Level](cm-c-defining-query-queues.md#cm-c-defining-query-queues-concurrency-level)
 
-
+**Topics**
 + [Defining Query Queues](cm-c-defining-query-queues.md)
 + [WLM Query Queue Hopping](wlm-queue-hopping.md)
 + [Short Query Acceleration](wlm-short-query-acceleration.md)

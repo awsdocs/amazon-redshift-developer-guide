@@ -21,17 +21,11 @@ Query statement to explain\. The query can be a SELECT, INSERT, CREATE TABLE AS,
 EXPLAIN performance is sometimes influenced by the time it takes to create temporary tables\. For example, a query that uses the common subexpression optimization requires temporary tables to be created and analyzed in order to return the EXPLAIN output\. The query plan depends on the schema and statistics of the temporary tables\. Therefore, the EXPLAIN command for this type of query might take longer to run than expected\.
 
 You can use EXPLAIN only for the following commands:
-
 + SELECT
-
 + SELECT INTO
-
 + CREATE TABLE AS
-
 + INSERT
-
 + UPDATE
-
 + DELETE
 
 The EXPLAIN command will fail if you use it for other SQL commands, such as data definition language \(DDL\) or database operations\.

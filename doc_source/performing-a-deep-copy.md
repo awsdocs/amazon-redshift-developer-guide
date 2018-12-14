@@ -1,19 +1,16 @@
 # Performing a Deep Copy<a name="performing-a-deep-copy"></a>
 
-A deep copy recreates and repopulates a table by using a bulk insert, which automatically sorts the table\. If a table has a large unsorted region, a deep copy is much faster than a vacuum\. The trade off is that you cannot make concurrent updates during a deep copy operation, which you can do during a vacuum\. 
+A deep copy recreates and repopulates a table by using a bulk insert, which automatically sorts the table\. If a table has a large unsorted region, a deep copy is much faster than a vacuum\. The trade off is that you should not make concurrent updates during a deep copy operation unless you can track it and move the delta updates into the new table after the process has completed\. A VACUUM operation supports concurrent updates automatically\.
 
 You can choose one of the following methods to create a copy of the original table: 
-
 + Use the original table DDL\. 
 
   If the CREATE TABLE DDL is available, this is the fastest and preferred method\. If you create a new table, you can specify all table and column attributes, including primary key and foreign keys\.
 **Note**  
 If the original DDL is not available, you might be able to recreate the DDL by running a script called `v_generate_tbl_ddl`\. You can download the script from [amazon\-redshift\-utils](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql), which is part of the [Amazon Web Services \- Labs](https://github.com/awslabs) git hub repository\.
-
 + Use CREATE TABLE LIKE\. 
 
   If the original DDL is not available, you can use CREATE TABLE LIKE to recreate the original table\. The new table inherits the encoding, distkey, sortkey, and notnull attributes of the parent table\. The new table doesn't inherit the primary key and foreign key attributes of the parent table, but you can add them using [ALTER TABLE](r_ALTER_TABLE.md)\.
-
 + Create a temporary table and truncate the original table\. 
 
   If you need to retain the primary key and foreign key attributes of the parent table, or if the parent table has dependencies, you can use CREATE TABLE \.\.\. AS \(CTAS\) to create a temporary table, then truncate the original table and populate it from the temporary table\. 

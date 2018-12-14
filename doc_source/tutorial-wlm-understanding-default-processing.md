@@ -5,11 +5,8 @@ Before you start to configure WLM, it’s useful to understand the default behav
 ## Step 1: Create the WLM\_QUEUE\_STATE\_VW View<a name="tutorial-wlm-create-queue-state-view"></a>
 
 In this step, you’ll create a view called WLM\_QUEUE\_STATE\_VW\. This view returns information from the following system tables\.
-
 + [STV\_WLM\_CLASSIFICATION\_CONFIG](r_STV_WLM_CLASSIFICATION_CONFIG.md)
-
 + [STV\_WLM\_SERVICE\_CLASS\_CONFIG](r_STV_WLM_SERVICE_CLASS_CONFIG.md)
-
 + [STV\_WLM\_SERVICE\_CLASS\_STATE](r_STV_WLM_SERVICE_CLASS_STATE.md)
 
 You’ll use this view throughout the tutorial to monitor what happens to queues after you change the WLM configuration\. The following table describes the data that the WLM\_QUEUE\_STATE\_VW view returns\. 
@@ -86,9 +83,7 @@ You’ll use this view throughout the tutorial to monitor the queries that are r
 In this step, you’ll run queries from multiple connections in psql and review the system tables to determine how the queries were routed for processing\. 
 
 For this step, you will need two psql windows open: 
-
 + In psql window 1, you’ll run queries that monitor the state of the queues and queries using the views you already created in this tutorial\.
-
 + In psql window 2, you’ll run long\-running queries to change the results you find in psql window 1\.
 
 ### To Run the Test Queries<a name="how-to-wlm-run-test-queries"></a>
@@ -134,11 +129,8 @@ To reduce query execution time and improve system performance, Amazon Redshift c
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_050.png)
 
 Note the following differences between your previous queries and the results in this step:
-
 + There are two rows now in WLM\_QUERY\_STATE\_VW\. One result is the self\-referential query for running a SELECT operation on this view\. The second result is the long\-running query from the previous step\.
-
 + The executing column in WLM\_QUEUE\_STATE\_VW has increased from 1 to 2\. This column entry means that there are two queries running in the queue\.
-
 + The executed column is incremented each time you run a query in the queue\.
 
 The WLM\_QUEUE\_STATE\_VW view is useful for getting an overall view of the queues and how many queries are being processed in each queue\. The WLM\_QUERY\_STATE\_VW view is useful for getting a more detailed view of the individual queries that are currently running\.

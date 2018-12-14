@@ -58,4 +58,4 @@ aws redshift describe-clusters --cluster-identifier <cluster-identifier>
 }
 ```
 
-To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift API, use the DescribeClusters action\. For more information, see [describe\-clusters](http://docs.aws.amazon.com/cli/latest/reference/redshift/describe-clusters.html) in the *Amazon Redshift CLI Guide* or [DescribeClusters](http://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) in the Amazon Redshift API Guide\. 
+To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift API, use the DescribeClusters action\. For more information, see [describe\-clusters](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-clusters.html) in the *Amazon Redshift CLI Guide* or [DescribeClusters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) in the Amazon Redshift API Guide\. 
