@@ -160,6 +160,7 @@ The following policy grants the minimum permissions required to use Redshift Spe
             ]
         }
     ]
+}
 ```
 
 If you use Athena for your data catalog instead of AWS Glue, the policy requires full Athena access\. The following policy grants access to Athena resources\. If your external database is in a Hive metastore, you don't need Athena access\.
