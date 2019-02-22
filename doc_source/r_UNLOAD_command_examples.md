@@ -39,6 +39,35 @@ venue_pipe_0002_part_00
 venue_pipe_0003_part_00
 ```
 
+## Unload VENUE to a CSV file<a name="unload-examples-csv"></a>
+
+The following example unloads the VENUE table and writes the data in CSV format to `s3://mybucket/unload/`\.
+
+```
+unload ('select * from venue')
+to 's3://mybucket/unload/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+CSV;
+```
+
+Suppose the VENUE table contains the following rows\.
+
+```
+venueid | venuename                  | venuecity       | venuestate | venueseats
+--------+----------------------------+-----------------+------------+-----------
+      1 | Pinewood Racetrack         | Akron           | OH         |          0
+      2 | Columbus "Crew" Stadium    | Columbus        | OH         |          0
+      4 | Community, Ballpark, Arena | Kansas City     | KS         |          0
+```
+
+The unload file would look similar to the following\.
+
+```
+1,Pinewood Racetrack,Akron,OH,0
+2,"Columbus ""Crew"" Stadium",Columbus,OH,0
+4,"Community, Ballpark, Arena",Kansas City,KS,0
+```
+
 ## Unload VENUE with a Manifest File<a name="unload-examples-manifest"></a>
 
 To create a manifest file, include the MANIFEST option\. The following example unloads the VENUE table and writes a manifest file along with the data files to s3://mybucket/venue\_pipe\_: 

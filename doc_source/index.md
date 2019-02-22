@@ -1,7 +1,7 @@
 # Amazon Redshift Database Developer Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -202,7 +202,6 @@ Amazon's trademarks and trade dress may not be used in
          + [Managing the Volume of Merged Rows](vacuum-managing-volume-of-unmerged-rows.md)
          + [Loading Your Data in Sort Key Order](vacuum-load-in-sort-key-order.md)
          + [Using Time Series Tables](vacuum-time-series-tables.md)
-      + [Vacuum Column Limit Exceeded Error](vacuum-column-limit-exceeded-error.md)
    + [Managing Concurrent Write Operations](c_Concurrent_writes.md)
       + [Serializable Isolation](c_serial_isolation.md)
       + [Write and Read-Write Operations](c_write_readwrite.md)
@@ -751,6 +750,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Configuration Reference](cm_chap_ConfigurationRef.md)
    + [Modifying the Server Configuration](t_Modifying_the_default_settings.md)
    + [analyze_threshold_percent](r_analyze_threshold_percent.md)
+   + [auto_analyze](r_auto_analyze.md)
    + [datestyle](r_datestyle.md)
    + [describe_field_name_in_uppercase](r_describe_field_name_in_uppercase.md)
    + [enable_result_cache_for_session](r_enable_result_cache_for_session.md)

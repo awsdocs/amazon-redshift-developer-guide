@@ -7,6 +7,10 @@ Only the table owner or a superuser can effectively vacuum a table\. If VACUUM i
 
 By default, VACUUM skips the sort phase for any table where more than 95 percent of the table's rows are already sorted\. Skipping the sort phase can significantly improve VACUUM performance\. To change the default sort or delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
+Users can access tables while they are being vacuumed\. You can perform queries and write operations while a table is being vacuumed, but when data manipulation language \(DML\) commands and a vacuum run concurrently, both might take longer\. If you execute UPDATE and DELETE statements during a vacuum, system performance might be reduced\. VACUUM DELETE temporarily blocks update and delete operations\. 
+
+Amazon Redshift automatically performs a DELETE ONLY vacuum in the background\. Automatic vacuum operation pauses when users run data definition language \(DDL\) operations, such as ALTER TABLE\.
+
 **Note**  
 The Amazon Redshift VACUUM command syntax and behavior are substantially different from the PostgreSQL VACUUM operation\. For example, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and resorts all rows\. In contrast, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for reuse\.
 
@@ -33,10 +37,11 @@ Sorts the specified table \(or all tables in the current database\) without recl
 By default, VACUUM SORT ONLY skips any table that is already at least 95 percent sorted\. To change the default sort threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
 DELETE ONLY   <a name="vacuum-delete-only"></a>
-Reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations, and compacts the table to free up the consumed space\. A DELETE ONLY vacuum operation doesn't sort table data\. Amazon Redshift automatically performs a DELETE ONLY vacuum in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\.  
+Amazon Redshift automatically performs a DELETE ONLY vacuum in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\.  
+A VACUUM DELETE reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations, and compacts the table to free up the consumed space\. A DELETE ONLY vacuum operation doesn't sort table data\.   
 This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but resorting new rows is not important\. This option can also be useful when your query performance is already optimal, and resorting rows to optimize query performance is not a requirement\.  
 By default, VACUUM DELETE ONLY reclaims space such that at least 95 percent of the remaining rows are not marked for deletion\. To change the default delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\.    
-Some operations, such as `ALTER TABLE APPEND`, can cause tables to be fragmented\. When you use the `DELETE ONLY `clause the vacuum operation reclaims space from fragmented tables\. The same threshold value of 95 percent applies to the defragmentation operation\. 
+Some operations, such as `ALTER TABLE APPEND`, can cause tables to be fragmented\. When you use the `DELETE ONLY` clause the vacuum operation reclaims space from fragmented tables\. The same threshold value of 95 percent applies to the defragmentation operation\. 
 
 REINDEX *tablename*  <a name="vacuum-reindex"></a>
 Analyzes the distribution of the values in interleaved sort key columns, then performs a full VACUUM operation\. If REINDEX is used, a table name is required\.  

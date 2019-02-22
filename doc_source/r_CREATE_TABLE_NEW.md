@@ -39,7 +39,7 @@ and table_constraints  are:
 
 
 and table_attributes are:
-  [ DISTSTYLE { EVEN | KEY | ALL } ] 
+  [ DISTSTYLE { AUTO | EVEN | KEY | ALL } ] 
   [ DISTKEY ( column_name ) ]
   [ [COMPOUND | INTERLEAVED ] SORTKEY ( column_name [, ...] ) ]
 ```
@@ -151,10 +151,10 @@ Tables created with the LIKE option don't inherit primary and foreign key constr
 BACKUP \{ YES \| NO \}   <a name="create-table-backup"></a>
 A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that won't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
 
-DISTSTYLE \{ EVEN \| KEY \| ALL \}  
-Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\.  
-By default, Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if no distribution style is specified, Amazon Redshift initially assigns ALL distribution to a small table, then changes the table to EVEN distribution when the table grows larger\. The change in distribution occurs in the background, in a few seconds\. Amazon Redshift never changes the distribution style from EVEN to ALL\. To view the distribution style applied to a table, query the PG\_CLASS system catalog table\. For more information, see [Viewing Distribution Styles](viewing-distribution-styles.md)\.  
+DISTSTYLE \{ AUTO \| EVEN \| KEY \| ALL \}  
+Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\. The default is AUTO\.  
 The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a Data Distribution Style](t_Distributing_data.md)\. Possible distribution styles are as follows:  
++ AUTO: Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns ALL distribution to a small table, then changes the table to EVEN distribution when the table grows larger\. The change in distribution occurs in the background, in a few seconds\. Amazon Redshift never changes the distribution style from EVEN to ALL\. To view the distribution style applied to a table, query the PG\_CLASS system catalog table\. For more information, see [Viewing Distribution Styles](viewing-distribution-styles.md)\. 
 + EVEN: The data in the table is spread evenly across the nodes in a cluster in a round\-robin distribution\. Row IDs are used to determine the distribution, and roughly the same number of rows are distributed to each node\. 
 + KEY: The data is distributed by the values in the DISTKEY column\. When you set the joining columns of joining tables as distribution keys, the joining rows from both tables are collocated on the compute nodes\. When data is collocated, the optimizer can perform joins more efficiently\. If you specify DISTSTYLE KEY, you must name a DISTKEY column, either for the table or as part of the column definition\. For more information, see the DISTKEY parameter earlier in this topic\.
 +  ALL: A copy of the entire table is distributed to every node\. This distribution style ensures that all the rows required for any join are available on every node, but it multiplies storage requirements and increases the load and maintenance times for the table\. ALL distribution can improve execution time when used with certain dimension tables where KEY distribution is not appropriate, but performance improvements must be weighed against maintenance costs\. 

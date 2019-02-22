@@ -17,7 +17,6 @@ When a table is sorted using an interleaved sort key, Amazon Redshift analyzes t
 + [Vacuum Threshold](#vacuum-sort-threshold)
 + [Vacuum Types](#vacuum-types)
 + [Managing Vacuum Times](vacuum-managing-vacuum-times.md)
-+ [Vacuum Column Limit Exceeded Error](vacuum-column-limit-exceeded-error.md)
 
 ## VACUUM Frequency<a name="vacuum-frequency"></a>
 

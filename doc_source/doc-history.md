@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: December 3, 2018** 
+ **Latest documentation update: February 20, 2019** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,10 +12,14 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [UNLOAD to CSV](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to unload to a file formatted as comma\-separated value \(CSV\) text\. | February 20, 2019 | 
+| [ALTER COLUMN](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) | You can use an ALTER TABLE command with ALTER COLUMN to increase the size of a VARCHAR column\. | February 20, 2019 | 
+| [AUTO distribution style](https://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html) | To enable automatic distribution, you can specify the AUTO distribution style with a [CREATE TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) statement\. When you enable automatic distribution, Amazon Redshift assigns an optimal distribution style based on the table data\. The change in distribution occurs in the background, in a few seconds\. | January 23, 2019 | 
+| [COPY from Parquet supports SMALLINT](#doc-history) | COPY now supports loading from Parquet formatted files into columns that use the SMALLINT data type\. For more information, see [COPY from Columnar Data Formats](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-columnar)  | January 2, 2019 | 
 | [DROP EXTERNAL DATABASE](https://docs.aws.amazon.com/redshift/latest/dg/r_DROP_SCHEMA.html) | You can drop an external database by including the DROP EXTERNAL DATABASE clause with a [DROP SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_DROP_SCHEMA.html) command\.  | December 3, 2018 | 
-| [Cross\-region UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can UNLOAD to an Amazon S3 in another AWS Region by specifying the REGION parameter\. | October 31, 2018 | 
-| [Automatic Vacuum Delete](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) | Amazon Redshift automatically runs a [VACUUM DELETE](https://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) operation in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\. Amazon Redshift schedules the VACUUM DELETE to run during periods of reduced load and pauses the operation during periods of high load\.  | October 31, 2018 | 
-| [Automatic Distribution](https://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html) | When you don't specify a distribution style with a [CREATE TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) statement, Amazon Redshift assigns an optimal distribution style based on the table data\. The change in distribution occurs in the background, in a few seconds\. | October 31, 2018 | 
+| [Cross\-region UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can UNLOAD to an Amazon S3 bucket in another AWS Region by specifying the REGION parameter\. | October 31, 2018 | 
+| [Automatic vacuum delete](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) | Amazon Redshift automatically runs a [VACUUM DELETE](https://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) operation in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\. Amazon Redshift schedules the VACUUM DELETE to run during periods of reduced load and pauses the operation during periods of high load\.  | October 31, 2018 | 
+| [Automatic distribution](https://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html) | When you don't specify a distribution style with a [CREATE TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) statement, Amazon Redshift assigns an optimal distribution style based on the table data\. The change in distribution occurs in the background, in a few seconds\. | October 31, 2018 | 
 | [Fine grained access control for the AWS Glue Data Catalog ](https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-iam-policies.html#c-spectrum-glue-acess) | You can now specify levels of access to data stored in the AWS Glue data catalog\. | October 15, 2018 | 
 | [UNLOAD with data types](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can specify the MANIFEST VERBOSE option with an [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) command to add metadata to the manifest file, including the names and data types of columns, file sizes, and row counts\. | October 10, 2018 | 
 | [Add multiple partitions using a single ALTER TABLE statement](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) | For Redshift Spectrum external tables, you can combine multiple PARTITION clauses in a single [ ALTER TABLE ADD](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) statement\. For more information, see [Alter External Table Examples](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE_external-table.html)\. | October 10, 2018 | 
@@ -38,6 +42,7 @@ The following table describes the important changes in each release of the *Amaz
 
 | Change | Description | Date Changed | 
 | --- | --- | --- | 
+| COPY from Parquet includes SMALLINT | COPY now supports loading from Parquet formatted files into columns that use the SMALLINT data type\. For more information, see [COPY from Columnar Data Formats](copy-usage_notes-copy-from-columnar.md) | January 2, 2019 | 
 | COPY from columnar formats | COPY now supports loading from files on Amazon S3 that use Parquet and ORC columnar data formats\. For more information, see [COPY from Columnar Data Formats](copy-usage_notes-copy-from-columnar.md) | May 17, 2018 | 
 | Dynamic maximum run time for SQA | By default, workload management \(WLM\) now dynamically assigns a value for the short query acceleration \(SQA\) maximum run time based on analysis of your cluster's workload\. For more information, see [Maximum Run Time for Short Queries](wlm-short-query-acceleration.md#wlm-sqa-max-run-time)\.  | May 17, 2018 | 
 | New column in STL\_LOAD\_COMMITS | The [STL\_LOAD\_COMMITS](r_STL_LOAD_COMMITS.md) system table has a new column, `file_format`\. | May 10, 2018 | 

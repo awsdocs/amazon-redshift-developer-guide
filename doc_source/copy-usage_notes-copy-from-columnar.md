@@ -32,7 +32,6 @@ COPY supports columnar formatted data with the following restrictions:
 + If COPY encounters an error while loading, the command fails\. ACCEPTANYDATE, ACCEPTINVCHARS, and MAXERROR aren't supported for columnar data types\.
 + Error messages are sent only to the SQL client\. Errors are not logged in STL\_LOAD\_ERRORS\.
 + COPY inserts values into the target table's columns in the same order as the columns occur in the columnar data files\. The number of columns in the target table and the number of columns in the data file must match\.
-+ For COPY from Parquet, the target table can't use a SMALLINT data type\. Instead, use INT\. 
 + If the file you specify for the COPY operation includes one of the following extensions we will decompress the data without the need for adding any parameters: 
   + `.gz`
   + `.snappy`

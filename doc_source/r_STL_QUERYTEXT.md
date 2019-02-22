@@ -6,6 +6,7 @@ Query the STL\_QUERYTEXT table to capture the SQL that was logged for the follow
 + SELECT, SELECT INTO
 + INSERT, UPDATE, DELETE
 + COPY
++ UNLOAD
 + VACUUM, ANALYZE
 + CREATE TABLE AS \(CTAS\)
 

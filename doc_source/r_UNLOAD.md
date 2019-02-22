@@ -16,6 +16,7 @@ where option is
 
 { MANIFEST [ VERBOSE ] 
 | HEADER
+| [ FORMAT [AS] ] CSV 
 | DELIMITER [ AS ] 'delimiter-char' 
 | FIXEDWIDTH [ AS ] 'fixedwidth-spec' }  
 | ENCRYPTED
@@ -33,7 +34,7 @@ where option is
 ## Parameters<a name="unload-parameters"></a>
 
 \('*select\-statement*'\)   
-A SELECT query\. The results of the query are unloaded\. In most cases, it is worthwhile to unload data in sorted order by specifying an ORDER BY clause in the query\. This approach saves the time required to sort the data when it is reloaded\.   
+A SELECT query\. The results of the query are unloaded\. In most cases, it is worthwhile to unload data in sorted order by specifying an ORDER BY clause in the query\. This approach saves the time required to sort the data when it is reloaded\. TOP is not supported in the SELECT clause\. Use LIMIT instead\.  
 The query must be enclosed in single quotes as shown following:   
 
 ```
@@ -68,7 +69,11 @@ You can specify VERBOSE only following MANIFEST\.
 The manifest file is written to the same Amazon S3 path prefix as the unload files in the format `<object_path_prefix>manifest`\. For example, if UNLOAD specifies the Amazon S3 path prefix '`s3://mybucket/venue_`', the manifest file location is '`s3://mybucket/venue_manifest`'\.
 
 HEADER  
-Adds a header line containing column names at the top of each output file\. Text transformation options, such as DELIMITER, ADDQUOTES, and ESCAPE, also apply to the header line\. HEADER can't be used with FIXEDWIDTH\.
+Adds a header line containing column names at the top of each output file\. Text transformation options, such as CSV, DELIMITER, ADDQUOTES, and ESCAPE, also apply to the header line\. HEADER can't be used with FIXEDWIDTH\.
+
+\[ FORMAT \[AS\] \] CSV  <a name="unload-csv"></a>
+Unloads to a text file in CSV format using a comma \( , \) character as the delimiter\. If a field contains commas, double quotes, newlines, or carriage returns, then the field in the unloaded file is enclosed in double quotes\. A double quote character within a data field is escaped by an additional double quote character\.   
+The FORMAT and AS keywords are optional\. CSV can't be used with DELIMITER or FIXEDWIDTH\. 
 
 DELIMITER AS '*delimiter\_character*'   
 Single ASCII character that is used to separate fields in the output file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. The default delimiter is a pipe character\. The AS keyword is optional\. DELIMITER can't be used with FIXEDWIDTH\. If the data contains the delimiter character, you need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotes\. Alternatively, specify a delimiter that is not contained in the data\.

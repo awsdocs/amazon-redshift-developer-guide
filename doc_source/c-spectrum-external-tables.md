@@ -101,7 +101,7 @@ The following procedure describes how to partition your data\.
 
 1. Store your data in folders in Amazon S3 according to your partition key\. 
 
-   Create one folder for each partition value and name the folder with the partition key and value\. For example, if you partition by date, you might have folders named `saledate=2017-04-31`, `saledate=2017-04-30`, and so on\. Redshift Spectrum scans the files in the partition folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\. 
+   Create one folder for each partition value and name the folder with the partition key and value\. For example, if you partition by date, you might have folders named `saledate=2017-04-30`, `saledate=2017-04-30`, and so on\. Redshift Spectrum scans the files in the partition folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\. 
 
 1. Create an external table and specify the partition key in the PARTITIONED BY clause\. 
 

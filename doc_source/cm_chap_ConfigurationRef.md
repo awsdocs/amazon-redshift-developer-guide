@@ -3,6 +3,7 @@
 **Topics**
 + [Modifying the Server Configuration](t_Modifying_the_default_settings.md)
 + [analyze\_threshold\_percent](r_analyze_threshold_percent.md)
++ [auto\_analyze](r_auto_analyze.md)
 + [datestyle](r_datestyle.md)
 + [describe\_field\_name\_in\_uppercase](r_describe_field_name_in_uppercase.md)
 + [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md)

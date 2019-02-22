@@ -318,4 +318,4 @@ ORC  <a name="copy-orc"></a>
 Loads the data from a file that uses Optimized Row Columnar \(ORC\) file format\. 
 
 PARQUET  <a name="copy-parquet"></a>
-Loads the data from a file that uses Parquet file format\. For COPY from Parquet, the target table can't use a SMALLINT data type\. Instead, use INT\.
+Loads the data from a file that uses Parquet file format\. 

@@ -24,7 +24,7 @@ At a minimum, your cluster needs GET and LIST access to your Amazon S3 bucket\. 
 **Note**  
 The Amazon S3 bucket can't use a bucket policy that restricts access only from specific VPC endpoints\.
 
-The following policy grants GET and LIST access to any Amazon S3 bucket\. The policy allows access to Amazon S3 buckets for Redshift Spectrum as well as COPY and UNLOAD operations\.
+The following policy grants GET and LIST access to any Amazon S3 bucket\. The policy allows access to Amazon S3 buckets for Redshift Spectrum as well as COPY operations\.
 
 ```
 {
@@ -82,7 +82,7 @@ To grant Redshift Spectrum permission to access data in an Amazon S3 bucket that
 
 ## Policies to Grant or Restrict Redshift Spectrum Access<a name="spectrum-iam-policies-spectrum-only"></a>
 
-To grant access to an Amazon S3 bucket only using Redshift Spectrum, include a condition that allows access for the user agent `AWS Redshift/Spectrum`\. The following policy allows access to Amazon S3 buckets only for Redshift Spectrum\. It excludes other access, such as COPY and UNLOAD operations\.
+To grant access to an Amazon S3 bucket only using Redshift Spectrum, include a condition that allows access for the user agent `AWS Redshift/Spectrum`\. The following policy allows access to Amazon S3 buckets only for Redshift Spectrum\. It excludes other access, such as COPY operations\.
 
 ```
 {
@@ -96,7 +96,7 @@ To grant access to an Amazon S3 bucket only using Redshift Spectrum, include a c
 }
 ```
 
-Similarly, you might want to create an IAM role that allows access for COPY and UNLOAD operations, but excludes Redshift Spectrum access\. To do so, include a condition that denies access for the user agent "AWS Redshift/Spectrum"\. The following policy allows access to an Amazon S3 bucket with the exception of Redshift Spectrum\.
+Similarly, you might want to create an IAM role that allows access for COPY operations, but excludes Redshift Spectrum access\. To do so, include a condition that denies access for the user agent "AWS Redshift/Spectrum"\. The following policy allows access to an Amazon S3 bucket with the exception of Redshift Spectrum\.
 
 ```
 {

@@ -16,8 +16,8 @@ The new table is loaded with data defined by the query in the command\. The tabl
 CREATE [ [LOCAL ] { TEMPORARY | TEMP } ]
 TABLE table_name     
 [ ( column_name [, ... ] ) ]
-[ table_attributes ]   
 [ BACKUP { YES | NO } ]
+[ table_attributes ]   
 AS query 
 
 where table_attributes are:  
@@ -53,6 +53,9 @@ Multiple temporary tables with the same name are allowed to exist at the same ti
  *column\_name*   
 The name of a column in the new table\. If no column names are provided, the column names are taken from the output column names of the query\. Default column names are used for expressions\.
 
+BACKUP \{ YES \| NO \}   
+A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that won't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in the event of a node failure\. The default is BACKUP YES\.
+
 DISTSTYLE \{ EVEN \| KEY \| ALL \}  
 Defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according the distribution style specified for the table\.  
 The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a Data Distribution Style](t_Distributing_data.md)\.  
@@ -77,9 +80,6 @@ Specifies that the data is sorted using a compound key made up of all of the lis
 INTERLEAVED  
 Specifies that the data is sorted using an interleaved sort key\. A maximum of eight columns can be specified for an interleaved sort key\.   
 An interleaved sort gives equal weight to each column, or subset of columns, in the sort key, so queries do not depend on the order of the columns in the sort key\. When a query uses one or more secondary sort columns, interleaved sorting significantly improves query performance\. Interleaved sorting carries a small overhead cost for data loading and vacuuming operations\. 
-
-BACKUP \{ YES \| NO \}   
-A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that won't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in the event of a node failure\. The default is BACKUP YES\.
 
 AS *query*   
 Any query \(SELECT statement\) that Amazon Redshift supports\.
