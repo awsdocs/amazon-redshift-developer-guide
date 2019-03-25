@@ -123,6 +123,7 @@ By default, the COPY command expects the source data to be in character\-delimit
 + [LZOP](copy-parameters-file-compression.md#copy-lzop) 
 + [PARQUET](copy-parameters-data-format.md#copy-parquet) 
 + [ORC](copy-parameters-data-format.md#copy-orc) 
++ [ZSTD](copy-parameters-file-compression.md#copy-zstd) 
 
 #### Data Conversion Parameters<a name="r_COPY-syntax-overview-data-conversion"></a>
 

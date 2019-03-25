@@ -54,7 +54,7 @@ Suppose the VENUE table contains the following rows\.
 
 ```
 venueid | venuename                  | venuecity       | venuestate | venueseats
---------+----------------------------+-----------------+------------+-----------
+-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-
       1 | Pinewood Racetrack         | Akron           | OH         |          0
       2 | Columbus "Crew" Stadium    | Columbus        | OH         |          0
       4 | Community, Ballpark, Arena | Kansas City     | KS         |          0

@@ -16,7 +16,9 @@ where option is
 
 { MANIFEST [ VERBOSE ] 
 | HEADER
-| [ FORMAT [AS] ] CSV 
+
+            
+| [ FORMAT [AS] ] CSV
 | DELIMITER [ AS ] 'delimiter-char' 
 | FIXEDWIDTH [ AS ] 'fixedwidth-spec' }  
 | ENCRYPTED
@@ -40,10 +42,10 @@ The query must be enclosed in single quotes as shown following:
 ```
 ('select * from venue order by venueid')
 ```
-If your query contains quotes \(enclosing literal values, for example\), or backslashes \(\\\), you need to escape them in the query text as shown following:   
+If your query contains quotes \(for example to enclose literal values\), put the literal between two sets of single quotation marks—you must also enclose the query between single quotation marks:   
 
 ```
-('select * from venue where venuestate=\'NV\'')
+('select * from venue where venuestate=''NV''')
 ```
 
 TO 's3://*object\-path/name\-prefix*'   

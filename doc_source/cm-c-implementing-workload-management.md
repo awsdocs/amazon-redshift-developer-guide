@@ -8,11 +8,14 @@ You can improve system performance and your users’ experience by modifying you
 
 You can configure up to eight query queues and set the number of queries that can run in each of those queues concurrently\. You can set up rules to route queries to particular queues based on the user running the query or labels that you specify\. You can also configure the amount of memory allocated to each queue, so that large queries run in queues with more memory than other queues\. You can also configure the WLM timeout property to limit long\-running queries\. 
 
+With Concurrency Scaling, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. 
+
 **Note**  
 We recommend configuring your WLM query queues with a total of 15 or fewer query slots\. For more information, see [Concurrency Level](cm-c-defining-query-queues.md#cm-c-defining-query-queues-concurrency-level)
 
 **Topics**
 + [Defining Query Queues](cm-c-defining-query-queues.md)
++ [Concurrency Scaling](concurrency-scaling.md)
 + [WLM Query Queue Hopping](wlm-queue-hopping.md)
 + [Short Query Acceleration](wlm-short-query-acceleration.md)
 + [Modifying the WLM Configuration](cm-c-modifying-wlm-configuration.md)

@@ -7,7 +7,7 @@ ALTER TABLE APPEND moves data blocks between the source table and the target tab
 
 Columns with the same names must also have identical column attributes\. If either the source table or the target table contains columns that don't exist in the other table, use the IGNOREEXTRA or FILLTARGET parameters to specify how extra columns should be managed\. 
 
-You can't append an identity column\. If both tables include an identity column, the command fails\. If only one table has an identity column, include the FILLTARGET or IGNOREXTRA parameter\. For more information, see [ALTER TABLE APPEND Usage Notes](#r_ALTER_TABLE_APPEND_usage)\.
+You can't append an identity column\. If both tables include an identity column, the command fails\. If only one table has an identity column, include the FILLTARGET or IGNOREEXTRA parameter\. For more information, see [ALTER TABLE APPEND Usage Notes](#r_ALTER_TABLE_APPEND_usage)\.
 
 Both the source table and the target table must be permanent tables\. Both tables must use the same distribution style and distribution key, if one was defined\. If the tables are sorted, both tables must use the same sort style and define the same columns as sort keys\.
 

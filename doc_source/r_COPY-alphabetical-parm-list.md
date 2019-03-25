@@ -43,3 +43,4 @@ The following list provides links to each COPY command parameter description, so
 + [SESSION_TOKEN](copy-parameters-authorization.md#copy-token)
 + [TRIMBLANKS](copy-parameters-data-conversion.md#copy-trimblanks)
 + [TRUNCATECOLUMNS](copy-parameters-data-conversion.md#copy-truncatecolumns)
++ [ZSTD](copy-parameters-file-compression.md#copy-zstd)

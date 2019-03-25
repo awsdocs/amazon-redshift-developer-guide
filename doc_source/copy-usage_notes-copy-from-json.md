@@ -30,7 +30,7 @@ The following shows the same data as two JSON arrays\.
 ]
 ```
 
-You can let COPY automatically load fields from the JSON file by specifying the 'auto' option, or you can specifiy a JSONPaths file that COPY will use to parse the JSON source data\. A *JSONPaths file* is a text file that contains a single JSON object with the name `"jsonpaths"` paired with an array of JSONPath expressions\. If the name is any string other than `"jsonpaths"`, COPY uses the `'auto'` argument instead of using the JSONPaths file\.
+You can let COPY automatically load fields from the JSON file by specifying the 'auto' option, or you can specify a JSONPaths file that COPY will use to parse the JSON source data\. A *JSONPaths file* is a text file that contains a single JSON object with the name `"jsonpaths"` paired with an array of JSONPath expressions\. If the name is any string other than `"jsonpaths"`, COPY uses the `'auto'` argument instead of using the JSONPaths file\.
 
 In the Amazon Redshift COPY syntax, a JSONPath expression specifies the explicit path to a single name element in a JSON hierarchical data structure, using either bracket notation or dot notation\. Amazon Redshift does not support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\. As a result, Amazon Redshift can't parse complex, multi\-level data structures\.
 

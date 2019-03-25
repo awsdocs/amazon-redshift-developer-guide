@@ -64,7 +64,7 @@ The following [data types](c_Supported_data_types.md) are supported:
 + TIMESTAMP
 Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
 The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and Ranges](r_Character_types.md#r_Character_types-storage-and-ranges)   
-For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the OCTET\_LENGTH function\. The following example returns the maximum size of values in the email column\.  
+For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\. The following example returns the maximum size of values in the email column\.  
 
 ```
 select max(octet_length(email)) from users;

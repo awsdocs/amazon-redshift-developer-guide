@@ -13,6 +13,7 @@ By default, Amazon Redshift configures the following query queues:
 Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, see [Modifying the WLM Configuration](cm-c-modifying-wlm-configuration.md)\.
 
 You can add additional query queues to the default WLM configuration, up to a total of eight user queues\. You can configure the following for each query queue: 
++ Concurrency Scaling mode 
 + Concurrency level 
 + User groups 
 + Query groups 
@@ -21,12 +22,18 @@ You can add additional query queues to the default WLM configuration, up to a to
 + WLM query queue hopping
 + Query monitoring rules
 
+## Concurrency Scaling Mode<a name="concurrency-scaling-mode"></a>
+
+When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a Concurrency Scaling cluster\. 
+
+You manage which queries are sent to the Concurrency Scaling cluster by configuring WLM queues\. When you enable Concurrency Scaling for a queue, eligible queries are sent to the Concurrency Scaling cluster instead of waiting in line\. For more information, see [Concurrency Scaling](concurrency-scaling.md)\.
+
 ## Concurrency Level<a name="cm-c-defining-query-queues-concurrency-level"></a>
 
-Queries in a queue run concurrently until they reach the WLM query slot count, or* concurrency* level, defined for that queue\. Subsequent queries then wait in the queue\. 
+Queries in a queue run concurrently until they reach the WLM query slot count, or *concurrency* level, defined for that queue\. Subsequent queries then wait in the queue\. 
 
 **Note**  
-WLM concurrency level is different from the number of concurrent user connections that can be made to a cluster\. The maximum number of concurrent user connections is 500\. For more information, see [Connecting to a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Cluster Management Guide*\.
+WLM concurrency level is different from the number of concurrent user connections that can be made to a cluster\.  For more information, see [Connecting to a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Cluster Management Guide*\.
 
 Each queue can be configured with up to 50 query slots\. The maximum WLM query slot count for all user\-defined queues is 50\. The limit includes the default queue, but doesn't include the reserved Superuser queue\. Amazon Redshift allocates, by default, an equal, fixed share of available memory to each queue, and an equal, fixed share of a queue's memory to each query slot in the queue\. The proportion of memory allocated to each queue is defined in the WLM configuration using the `memory_percent_to_use` property\. At run time, you can temporarily override the amount of memory assigned to a query by setting the `wlm_query_slot_count` parameter to specify the number of slots allocated to the query\.
 

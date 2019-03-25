@@ -4,6 +4,8 @@ System views contain a subset of data found in several of the STL and STV system
 
 These views provide quicker and easier access to commonly queried data found in those tables\.
 
+System views with the prefix SVCS provide details about queries on both the main and Concurrency Scaling clusters\. The views are similar to the views with the prefix SVL except that the SVL views provide information only for queries run on the main cluster\. 
+
 **Note**  
 The SVL\_QUERY\_SUMMARY view only contains information about queries executed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements executed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view
 
@@ -40,3 +42,10 @@ The SVL\_QUERY\_SUMMARY view only contains information about queries executed by
 + [SVV\_VACUUM\_PROGRESS](r_SVV_VACUUM_PROGRESS.md)
 + [SVV\_VACUUM\_SUMMARY](r_SVV_VACUUM_SUMMARY.md)
 + [SVL\_VACUUM\_PERCENTAGE](r_SVL_VACUUM_PERCENTAGE.md)
++ [SVCS\_ALERT\_EVENT\_LOG](r_SVCS_ALERT_EVENT_LOG.md)
++ [SVCS\_COMPILE](r_SVCS_COMPILE.md)
++ [SVCS\_EXPLAIN](r_SVCS_EXPLAIN.md)
++ [SVCS\_PLAN\_INFO](r_SVCS_PLAN_INFO.md)
++ [SVCS\_QUERY\_SUMMARY](r_SVCS_QUERY_SUMMARY.md)
++ [SVCS\_STREAM\_SEGS](r_SVCS_STREAM_SEGS.md)
++ [SVCS\_CONCURRENCY\_SCALING\_USAGE](r_SVCS_CONCURRENCY_SCALING_USAGE.md)

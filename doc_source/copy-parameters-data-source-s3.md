@@ -87,7 +87,7 @@ When loading from data files in ORC or Parquet format, a `meta` field is require
    ]
 }
 ```
-The manifest file must not be encrypted or compressed, even if the ENCRYPTED, GZIP, LZOP, or BZIP2 options are specified\. COPY returns an error if the specified manifest file is not found or the manifest file is not properly formed\.   
+The manifest file must not be encrypted or compressed, even if the ENCRYPTED, GZIP, LZOP, BZIP2, or ZSTD options are specified\. COPY returns an error if the specified manifest file is not found or the manifest file is not properly formed\.   
 If a manifest file is used, the MANIFEST parameter must be specified with the COPY command\. If the MANIFEST parameter is not specified, COPY assumes that the file specified with FROM is a data file\.   
 For more information, see [Loading Data from Amazon S3](t_Loading-data-from-S3.md)\.
 
@@ -100,12 +100,12 @@ Specifies that a manifest is used to identify the data files to be loaded from A
 ENCRYPTED  <a name="copy-encrypted"></a>
 A clause that specifies that the input files on Amazon S3 are encrypted using client\-side encryption with customer\-managed symmetric keys \(CSE\-CMK\)\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. Don't specify ENCRYPTED if the input files are encrypted using Amazon S3 server\-side encryption \(SSE\-KMS or SSE\-S3\)\. COPY reads server\-side encrypted files automatically\.  
 If you specify the ENCRYPTED parameter, you must also specify the [MASTER_SYMMETRIC_KEY](#copy-master-symmetric-key) parameter or include the **master\_symmetric\_key** value in the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) string\.  
-If the encrypted files are in compressed format, add the GZIP, LZOP, or BZIP2 parameter\.  
+If the encrypted files are in compressed format, add the GZIP, LZOP, BZIP2, or ZSTD parameter\.  
 Manifest files and JSONPaths files must not be encrypted, even if the ENCRYPTED option is specified\.
 
 MASTER\_SYMMETRIC\_KEY '*master\_key*'  <a name="copy-master-symmetric-key"></a>
 The master symmetric key that was used to encrypt data files on Amazon S3\. If MASTER\_SYMMETRIC\_KEY is specified, the [ENCRYPTED](#copy-encrypted) parameter must also be specified\. MASTER\_SYMMETRIC\_KEY can't be used with the CREDENTIALS parameter\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\.  
-If the encrypted files are in compressed format, add the GZIP, LZOP, or BZIP2 parameter\.
+If the encrypted files are in compressed format, add the GZIP, LZOP, BZIP2, or ZSTD parameter\.
 
 REGION \[AS\] '*aws\-region*'  <a name="copy-region"></a>
 Specifies the AWS region where the source data is located\. REGION is required for COPY from an Amazon S3 bucket or an DynamoDB table when the AWS resource that contains the data is not in the same region as the Amazon Redshift cluster\.   

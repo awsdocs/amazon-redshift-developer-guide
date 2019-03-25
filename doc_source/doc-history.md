@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: February 20, 2019** 
+ **Latest documentation update: March 21, 2019** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,10 +12,11 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [UNLOAD to CSV](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to unload to a file formatted as comma\-separated value \(CSV\) text\. | February 20, 2019 | 
+| [Concurrency Scaling](https://docs.aws.amazon.com/redshift/latest/dg/concurrency-scaling.html) | When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. | March 21, 2019 | 
+| [UNLOAD to CSV](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to unload to a file formatted as comma\-separated value \(CSV\) text\. | March 13, 2019 | 
 | [ALTER COLUMN](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) | You can use an ALTER TABLE command with ALTER COLUMN to increase the size of a VARCHAR column\. | February 20, 2019 | 
 | [AUTO distribution style](https://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html) | To enable automatic distribution, you can specify the AUTO distribution style with a [CREATE TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) statement\. When you enable automatic distribution, Amazon Redshift assigns an optimal distribution style based on the table data\. The change in distribution occurs in the background, in a few seconds\. | January 23, 2019 | 
-| [COPY from Parquet supports SMALLINT](#doc-history) | COPY now supports loading from Parquet formatted files into columns that use the SMALLINT data type\. For more information, see [COPY from Columnar Data Formats](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-columnar)  | January 2, 2019 | 
+| [COPY from Parquet supports SMALLINT](#doc-history) | COPY now supports loading from Parquet formatted files into columns that use the SMALLINT data type\. For more information, see [COPY from Columnar Data Formats](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-columnar.html)  | January 2, 2019 | 
 | [DROP EXTERNAL DATABASE](https://docs.aws.amazon.com/redshift/latest/dg/r_DROP_SCHEMA.html) | You can drop an external database by including the DROP EXTERNAL DATABASE clause with a [DROP SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_DROP_SCHEMA.html) command\.  | December 3, 2018 | 
 | [Cross\-region UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can UNLOAD to an Amazon S3 bucket in another AWS Region by specifying the REGION parameter\. | October 31, 2018 | 
 | [Automatic vacuum delete](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) | Amazon Redshift automatically runs a [VACUUM DELETE](https://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) operation in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\. Amazon Redshift schedules the VACUUM DELETE to run during periods of reduced load and pauses the operation during periods of high load\.  | October 31, 2018 | 

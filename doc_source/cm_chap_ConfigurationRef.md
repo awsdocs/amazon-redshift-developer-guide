@@ -8,6 +8,7 @@
 + [describe\_field\_name\_in\_uppercase](r_describe_field_name_in_uppercase.md)
 + [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md)
 + [extra\_float\_digits](r_extra_float_digits.md)
++ [max\_concurrency\_scaling\_clusters](r_max_concurrency_scaling_clusters.md)
 + [max\_cursor\_result\_set\_size](max_cursor_result_set_size.md)
 + [query\_group](r_query_group.md)
 + [search\_path](r_search_path.md)
