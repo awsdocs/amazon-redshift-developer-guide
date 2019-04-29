@@ -24,12 +24,12 @@ PARTITION BY *expr\_list*
 Optional\. One or more expressions that define the ROW\_NUMBER function\. 
 
 ORDER BY *order\_list*   
-Optional\. The expression that defines the columns on which the row numbers are based\. If no PARTITION BY is specified, ORDER BY uses the entire table\. If ORDER BY is omitted, the return value is 1 through the total number of rows\.   
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
+Optional\. The expression that defines the columns on which the row numbers are based\. If no PARTITION BY is specified, ORDER BY uses the entire table\.    
+If ORDER BY does not produce a unique ordering or is omitted, the order of the rows is nondeterministic\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
 
 ## Return Type<a name="c_Supported_data_types_r_WF_ROW_NUMBER"></a>
 
-INTEGER
+BIGINT
 
 ## Examples<a name="r_WF_ROW_NUMBER-examples"></a>
 

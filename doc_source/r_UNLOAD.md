@@ -23,7 +23,8 @@ where option is
 | FIXEDWIDTH [ AS ] 'fixedwidth-spec' }  
 | ENCRYPTED
 | BZIP2  
-| GZIP     
+| GZIP 
+| ZSTD
 | ADDQUOTES 
 | NULL [ AS ] 'null-string'
 | ESCAPE
@@ -93,7 +94,7 @@ A clause that specifies that the output files on Amazon S3 are encrypted using A
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\), use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you UNLOAD data using KMS\_KEY\_ID, you can then COPY the same data without specifying a key\.   
 To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key using the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the **master\_symmetric\_key** portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, you must supply the same key when you COPY the encrypted data\.   
 UNLOAD does not support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
-To compress encrypted unload files, add the GZIP or BZIP2 parameter\. 
+To compress encrypted unload files, add the BZIP2, GZIP, or ZSTD parameter\. 
 
 KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
 The key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
@@ -106,6 +107,9 @@ Unloads data to one or more bzip2\-compressed files per slice\. Each resulting f
 
 GZIP   
 Unloads data to one or more gzip\-compressed files per slice\. Each resulting file is appended with a `.gz` extension\. 
+
+ZSTD   
+Unloads data to one or more Zstandard\-compressed files per slice\. Each resulting file is appended with a `.zst` extension\. 
 
 ADDQUOTES   
 Places quotation marks around each unloaded data field, so that Amazon Redshift can unload data values that contain the delimiter itself\. For example, if the delimiter is a comma, you could unload and reload the following data successfully:   

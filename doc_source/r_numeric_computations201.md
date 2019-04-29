@@ -77,7 +77,7 @@ If the calculated precision is greater than the maximum precision \(38\), the pr
 ## Overflow Conditions<a name="r_numeric_computations201-overflow-conditions"></a>
 
 Overflow is checked for all numeric computations\. DECIMAL data with a precision of 19 or less is stored as 64\-bit integers\. DECIMAL data with a precision that is greater than 19 is stored as 128\-bit integers\. The maximum precision for all DECIMAL values is 38, and the maximum scale is 37\. Overflow errors occur when a value exceeds these limits, which apply to both intermediate and final result sets: 
-+ Explicit casting results in run\-time overflow errors when specific data values do not fit the requested precision or scale specified by the cast function\. For example, you cannot cast all values from the PRICEPAID column in the SALES table \(a DECIMAL\(8,2\) column\) and return a DECIMAL\(7,3\) result: 
++ Explicit casting results in runtime overflow errors when specific data values do not fit the requested precision or scale specified by the cast function\. For example, you cannot cast all values from the PRICEPAID column in the SALES table \(a DECIMAL\(8,2\) column\) and return a DECIMAL\(7,3\) result: 
 
   ```
   select pricepaid::decimal(7,3) from sales;

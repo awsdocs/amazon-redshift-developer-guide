@@ -2,7 +2,7 @@
 
  You can use query plans to identify candidates for optimizing the distribution style\. 
 
-After making your initial design decisions, create your tables, load them with data, and test them\. Use a test data set that is as close as possible to the real data\. Measure load times to use as a baseline for comparisons\. 
+After making your initial design decisions, create your tables, load them with data, and test them\. Use a test dataset that is as close as possible to the real data\. Measure load times to use as a baseline for comparisons\. 
 
  Evaluate queries that are representative of the most costly queries you expect to execute; specifically, queries that use joins and aggregations\. Compare execution times for various design options\. When you compare execution times, do not count the first time the query is executed, because the first run time includes the compilation time\. 
 

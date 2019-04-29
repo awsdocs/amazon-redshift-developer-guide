@@ -29,7 +29,6 @@ Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL
   + Subscripted expressions
   + Array constructors
   + Row constructors
-+ Stored procedures
 + Triggers
 + Management of External Data \(SQL/MED\)
 + Table functions

@@ -10,7 +10,7 @@ For more information, see [DECLARE](declare.md), [FETCH](fetch.md)\.
 CLOSE cursor
 ```
 
-## Parameters<a name="w4aac39b9c39b9"></a>
+## Parameters<a name="w4aac41b9c43b9"></a>
 
 *cursor*   
 Name of the cursor to close\. 

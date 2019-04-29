@@ -12,7 +12,7 @@ This table is visible to all users\. Superusers can see all rows; regular users 
 
  **View Average Query Time in Queues and Executing** 
 
-Service classes 1 \- 4 are used internally by Amazon Redshift, and service class 5 is reserved for the dedicated superuser queue\. The following queries display the current configuration for service classes greater than 4, which include the superuser and WLM query queues\. 
+The following queries display the current configuration for service classes greater than 4\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\.
 
 The following query returns the average time \(in microseconds\) that each query spent in query queues and executing for each service class\. 
 

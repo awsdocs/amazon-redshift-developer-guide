@@ -24,7 +24,7 @@ If your access key id does not exist, you will receive the following error messa
 [Amazon](500310) Invalid operation: S3ServiceException:The AWS Access Key Id you provided does not exist in our records.
 ```
 
-This is often a copy and paste error\. Verify that the access key ID was entered correctly\. 
+This is often a copy and paste error\. Verify that the access key ID was entered correctly\. Also, if you are using temporary session keys, check that the value for `token` is set\.
 
 ## Invalid Secret Access Key<a name="invalid-secret-access-key-error"></a>
 

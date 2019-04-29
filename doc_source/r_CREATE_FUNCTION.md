@@ -28,11 +28,11 @@ You can define more than one function with the same function name if the data ty
 
  *py\_arg\_name py\_arg\_data\_type \| sql\_arg\_data type*   
 For a Python UDF, a list of input argument names and data types\. For a SQL UDF, a list of data types, without argument names\. In a Python UDF, refer to arguments using the argument names\. In a SQL UDF, refer to arguments using $1, $2, and so on, based on the order of the arguments in the argument list\.   
-For a SQL UDF, the input and return data types can be any standard Amazon Redshift data type\. For a Python UDF, the input and return data types can be any standard Amazon Redshift data type except TIMESTAMP WITH TIME ZONE \(TIMESTAMPTZ\)\. In addition, Python UDFs support a data type of ANYELEMENT\. This is automatically converted to a standard data type based on the data type of the corresponding argument supplied at run time\. If multiple arguments use ANYELEMENT, they will all resolve to the same data type at run time, based on the first ANYELEMENT argument in the list\. For more information, see [Python UDF Data Types](udf-data-types.md) and [Data Types](c_Supported_data_types.md)\.  
+For a SQL UDF, the input and return data types can be any standard Amazon Redshift data type\. For a Python UDF, the input and return data types can be any standard Amazon Redshift data type except TIMESTAMP WITH TIME ZONE \(TIMESTAMPTZ\)\. In addition, Python UDFs support a data type of ANYELEMENT\. This is automatically converted to a standard data type based on the data type of the corresponding argument supplied at runtime\. If multiple arguments use ANYELEMENT, they will all resolve to the same data type at runtime, based on the first ANYELEMENT argument in the list\. For more information, see [Python UDF Data Types](udf-data-types.md) and [Data Types](c_Supported_data_types.md)\.  
 You can specify a maximum of 32 arguments\.
 
  RETURNS *data\_type*   
-The data type of the value returned by the function\. The RETURNS data type can be any standard Amazon Redshift data type\. In addition, Python UDFs can use a data type of ANYELEMENT, which is automatically converted to a standard data type based on the argument supplied at run time\. If you specify ANYELEMENT for the return data type, at least one argument must use ANYELEMENT\. The actual return data type will match the data type supplied for the ANYELEMENT argument when the function is called\. For more information, see [Python UDF Data Types](udf-data-types.md)\.
+The data type of the value returned by the function\. The RETURNS data type can be any standard Amazon Redshift data type\. In addition, Python UDFs can use a data type of ANYELEMENT, which is automatically converted to a standard data type based on the argument supplied at runtime\. If you specify ANYELEMENT for the return data type, at least one argument must use ANYELEMENT\. The actual return data type will match the data type supplied for the ANYELEMENT argument when the function is called\. For more information, see [Python UDF Data Types](udf-data-types.md)\.
 
  VOLATILE \| STABLE \| IMMUTABLE   
 Informs the query optimizer about the volatility of the function\.   
@@ -49,8 +49,8 @@ Given the same arguments, the function always returns the same result, forever\.
 
 AS $$ *statement* $$  
  A construct that encloses the statement to be executed\. The literal keywords `AS $$` and `$$` are required\.   
-Amazon Redshift requires you to enclose the statement in your function by using a format called *dollar quoting*\. Anything within the enclosure is passed exactly as is\. You don't need to escape any special characters because the contents of the string are written literally\.   
- With dollar quoting, you use a pair of dollar signs \($$\) to signify the start and the end of the statement to execute, as shown in the following example\.   
+Amazon Redshift requires you to enclose the statement in your function by using a format called dollar quoting\. Anything within the enclosure is passed exactly as is\. You don't need to escape any special characters because the contents of the string are written literally\.   
+ With *dollar quoting, *you use a pair of dollar signs \($$\) to signify the start and the end of the statement to execute, as shown in the following example\.   
 
 ```
 $$ my statement $$
@@ -60,7 +60,7 @@ $$ my statement $$
 ```
 $test$ my statement $test$
 ```
- For more information about dollar quoting, see *Dollar\-quoted String Constants* in the [ Lexical Structure](https://www.postgresql.org/docs/9.4/static/sql-syntax-lexical.html) section of the PostgreSQL manual\. 
+For more information about dollar quoting, see "Dollar\-quoted String Constants" under [ Lexical Structure](https://www.postgresql.org/docs/9.4/static/sql-syntax-lexical.html) in the PostgreSQL documentation\. 
 
 *python\_program*   
 A valid executable Python program that returns a value\. The statement that you pass in with the function must conform to indentation requirements as specified in the [Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/#indentation) on the Python website\. For more information, see [Python Language Support for UDFs](udf-python-language-support.md)\.
@@ -82,7 +82,7 @@ For Python, specify `plpythonu`\. For SQL, specify `sql`\. You must have permiss
 
 ### Nested Functions<a name="r_CREATE_FUNCTION-usage-notes-nested-functions"></a>
 
-You can call another SQL UDF from within a SQL UDF\. The nested function must exist when you run the CREATE FUNCTION command\. Amazon Redshift doesn't track dependencies for UDFs, so if you drop the nested function, Amazon Redshift doesn't return an error\. However, the UDF will fail if the nested function doesn't exist\. For example, the following function calls the `f_sql_greater `function in the SELECT clause\.
+You can call another SQL user\-defined function \(UDF\) from within a SQL UDF\. The nested function must exist when you run the CREATE FUNCTION command\. Amazon Redshift doesn't track dependencies for UDFs, so if you drop the nested function, Amazon Redshift doesn't return an error\. However, the UDF will fail if the nested function doesn't exist\. For example, the following function calls the `f_sql_greater `function in the SELECT clause\.
 
 ```
 create function f_sql_commission (float, float )

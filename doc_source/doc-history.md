@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: March 21, 2019** 
+ **Latest documentation update: April 24, 2019** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,9 +12,11 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Concurrency Scaling](https://docs.aws.amazon.com/redshift/latest/dg/concurrency-scaling.html) | When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. | March 21, 2019 | 
-| [UNLOAD to CSV](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to unload to a file formatted as comma\-separated value \(CSV\) text\. | March 13, 2019 | 
-| [ALTER COLUMN](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) | You can use an ALTER TABLE command with ALTER COLUMN to increase the size of a VARCHAR column\. | February 20, 2019 | 
+| [Support for stored procedures](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html) | You can define PL/pgSQL stored procedures in Amazon Redshift\. | April 24, 2019 | 
+| [Support for an automatic WLM configuration](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html) | You can enable Amazon Redshift to run with automatic WLM\. | April 24, 2019 | 
+| [UNLOAD to Zstandard](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to apply Zstandard compression to text and comma\-separated value \(CSV\) files unloaded to Amazon S3\. | April 3, 2019 | 
+| [Concurrency scaling](https://docs.aws.amazon.com/redshift/latest/dg/concurrency-scaling.html) | When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. | March 21, 2019 | 
+| [UNLOAD to CSV](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to unload to a file formatted as CSV text\. | March 13, 2019 | 
 | [AUTO distribution style](https://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html) | To enable automatic distribution, you can specify the AUTO distribution style with a [CREATE TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) statement\. When you enable automatic distribution, Amazon Redshift assigns an optimal distribution style based on the table data\. The change in distribution occurs in the background, in a few seconds\. | January 23, 2019 | 
 | [COPY from Parquet supports SMALLINT](#doc-history) | COPY now supports loading from Parquet formatted files into columns that use the SMALLINT data type\. For more information, see [COPY from Columnar Data Formats](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-columnar.html)  | January 2, 2019 | 
 | [DROP EXTERNAL DATABASE](https://docs.aws.amazon.com/redshift/latest/dg/r_DROP_SCHEMA.html) | You can drop an external database by including the DROP EXTERNAL DATABASE clause with a [DROP SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_DROP_SCHEMA.html) command\.  | December 3, 2018 | 
@@ -147,7 +149,7 @@ The following table describes the important changes in each release of the *Amaz
 | IF EXISTS clause for DROP SCHEMA, DROP TABLE, DROP USER, and DROP VIEW commands | The [DROP SCHEMA](r_DROP_SCHEMA.md), [DROP TABLE](r_DROP_TABLE.md), [DROP USER](r_DROP_USER.md), and [DROP VIEW](r_DROP_VIEW.md) commands have been updated with an IF EXISTS clause\. This clause causes the command to make no changes and return a message rather than terminating with an error if the specified object doesn’t exist\.  | October 16, 2014 | 
 | IF NOT EXISTS clause for CREATE SCHEMA and CREATE TABLE commands | The [CREATE SCHEMA](r_CREATE_SCHEMA.md) and [CREATE TABLE](r_CREATE_TABLE_NEW.md) commands have been updated with an IF NOT EXISTS clause\. This clause causes the command to make no changes and return a message rather than terminating with an error if the specified object already exists\.  | October 16, 2014 | 
 | COPY support for UTF\-16 encoding | The COPY command now supports loading from data files that use UTF\-16 encoding as well as UTF\-8 encoding\. For more information, see [ENCODING](copy-parameters-data-conversion.md#copy-encoding)\.  | September 29, 2014 | 
-| New Workload Management Tutorial | [Tutorial: Configuring Workload Management \(WLM\) Queues to Improve Query Processing](tutorial-configuring-workload-management.md) walks you through the process of configuring Workload Management \(WLM\) queues to improve query processing and resource allocation\. | September 25, 2014 | 
+| New Workload Management Tutorial | [Tutorial: Configuring Manual Workload Management \(WLM\) Queues](tutorial-configuring-workload-management.md) walks you through the process of configuring Workload Management \(WLM\) queues to improve query processing and resource allocation\. | September 25, 2014 | 
 | AES 128\-bit Encryption | The COPY command now supports AES 128\-bit encryption as well as AES 256\-bit encryption when loading from data files encrypted using Amazon S3 client\-side encryption\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. | September 29, 2014 | 
 | PG\_LAST\_UNLOAD\_COUNT function | The PG\_LAST\_UNLOAD\_COUNT function returns the number of rows that were processed in the most recent UNLOAD operation\. For more information, see [PG\_LAST\_UNLOAD\_COUNT](PG_LAST_UNLOAD_COUNT.md)\. | September 15, 2014 | 
 | New Troubleshooting Queries section | [Troubleshooting Queries](queries-troubleshooting.md) provides a quick reference for identifying and addressing some of the most common and most serious issues you are likely to encounter with Amazon Redshift queries\.  | July 7, 2014 | 

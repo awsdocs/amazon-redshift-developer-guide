@@ -1,15 +1,15 @@
 # Section 1: Understanding the Default Queue Processing Behavior<a name="tutorial-wlm-understanding-default-processing"></a>
 
-Before you start to configure WLM, it’s useful to understand the default behavior of queue processing in Amazon Redshift\. In this section, you’ll create two database views that return information from several system tables\. Then you’ll run some test queries to see how queries are routed by default\. For more information about system tables, see [System Tables Reference](cm_chap_system-tables.md)\. 
+Before you start to configure manual WLM, it’s useful to understand the default behavior of queue processing in Amazon Redshift\. In this section, you create two database views that return information from several system tables\. Then you run some test queries to see how queries are routed by default\. For more information about system tables, see [System Tables Reference](cm_chap_system-tables.md)\. 
 
 ## Step 1: Create the WLM\_QUEUE\_STATE\_VW View<a name="tutorial-wlm-create-queue-state-view"></a>
 
-In this step, you’ll create a view called WLM\_QUEUE\_STATE\_VW\. This view returns information from the following system tables\.
+In this step, you create a view called WLM\_QUEUE\_STATE\_VW\. This view returns information from the following system tables\.
 + [STV\_WLM\_CLASSIFICATION\_CONFIG](r_STV_WLM_CLASSIFICATION_CONFIG.md)
 + [STV\_WLM\_SERVICE\_CLASS\_CONFIG](r_STV_WLM_SERVICE_CLASS_CONFIG.md)
 + [STV\_WLM\_SERVICE\_CLASS\_STATE](r_STV_WLM_SERVICE_CLASS_STATE.md)
 
-You’ll use this view throughout the tutorial to monitor what happens to queues after you change the WLM configuration\. The following table describes the data that the WLM\_QUEUE\_STATE\_VW view returns\. 
+You use this view throughout the tutorial to monitor what happens to queues after you change the WLM configuration\. The following table describes the data that the WLM\_QUEUE\_STATE\_VW view returns\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-wlm-understanding-default-processing.html)
 
@@ -53,9 +53,9 @@ You’ll use this view throughout the tutorial to monitor what happens to queues
 
 ## Step 2: Create the WLM\_QUERY\_STATE\_VW View<a name="tutorial-wlm-create-query-state-view"></a>
 
-In this step, you’ll create a view called WLM\_QUERY\_STATE\_VW\. This view returns information from the [STV\_WLM\_QUERY\_STATE](r_STV_WLM_QUERY_STATE.md) system table\.
+In this step, you create a view called WLM\_QUERY\_STATE\_VW\. This view returns information from the [STV\_WLM\_QUERY\_STATE](r_STV_WLM_QUERY_STATE.md) system table\.
 
-You’ll use this view throughout the tutorial to monitor the queries that are running\. The following table describes the data that the WLM\_QUERY\_STATE\_VW view returns\.
+You use this view throughout the tutorial to monitor the queries that are running\. The following table describes the data that the WLM\_QUERY\_STATE\_VW view returns\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-wlm-understanding-default-processing.html)
 
@@ -80,11 +80,11 @@ You’ll use this view throughout the tutorial to monitor the queries that are r
 
 ## Step 3: Run Test Queries<a name="tutorial-wlm-run-test-queries"></a>
 
-In this step, you’ll run queries from multiple connections in psql and review the system tables to determine how the queries were routed for processing\. 
+In this step, you run queries from multiple connections in psql and review the system tables to determine how the queries were routed for processing\. 
 
-For this step, you will need two psql windows open: 
-+ In psql window 1, you’ll run queries that monitor the state of the queues and queries using the views you already created in this tutorial\.
-+ In psql window 2, you’ll run long\-running queries to change the results you find in psql window 1\.
+For this step, you need two psql windows open: 
++ In psql window 1, you run queries that monitor the state of the queues and queries using the views you already created in this tutorial\.
++ In psql window 2, you run long\-running queries to change the results you find in psql window 1\.
 
 ### To Run the Test Queries<a name="how-to-wlm-run-test-queries"></a>
 
@@ -99,9 +99,9 @@ For this step, you will need two psql windows open:
    The following is an example result\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_030.png)
 
-   This query returns a self\-referential result\. The query that is currently executing is the SELECT statement from this view\. A query on this view will always return at least one result\. You’ll compare this result with the result that occurs after starting the long\-running query in the next step\.
+   This query returns a self\-referential result\. The query that is currently executing is the SELECT statement from this view\. A query on this view always returns at least one result\. Compare this result with the result that occurs after starting the long\-running query in the next step\.
 
-1. In psql window 2, you'll run a query from the TICKIT sample database\. This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. If you find that the query does not run long enough for you to query both views, you can increase the value of the filter on `l.listid `to make it run longer\.
+1. In psql window 2, run a query from the TICKIT sample database\. This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. In some cases, you might find that the query doesn't run long enough for you to query both views\. In these cases, you can increase the value of the filter on `l.listid `to make it run longer\.
 **Note**  
 To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When result caching is enabled, subsequent queries run much faster\. To prevent the query from running to quickly, disable result caching for the current session\.
 

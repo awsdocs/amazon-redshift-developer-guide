@@ -10,7 +10,7 @@ STV\_WLM\_QMR\_CONFIG is visible only to superusers\. For more information, see 
 
 ## Sample Query<a name="r_STV_WLM_QMR_CONFIG-sample-query2"></a>
 
-To view the QMR rule definitions for all user\-defined queues \(service classes greater than 5\), run the following query\.
+To view the QMR rule definitions for all service classes greater than 5 \(which includes user\-defined queues\), run the following query\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\.
 
 ```
 Select *

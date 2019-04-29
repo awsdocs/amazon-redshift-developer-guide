@@ -10,7 +10,7 @@ STV\_WLM\_QUERY\_TASK\_STATE is visible to all users\. Superusers can see all ro
 
 ## Sample Query<a name="r_STV_WLM_QUERY_TASK_STATE-sample-query"></a>
 
-Service classes 1 \- 4 are used internally by Amazon Redshift, and service class 5 is reserved for the dedicated superuser queue\. The following query displays the current state of queries in service classes greater than 4, which are the superuser queue and the WLM query queues\. 
+The following query displays the current state of queries in service classes greater than 4\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\.
 
 ```
 select * from stv_wlm_query_task_state

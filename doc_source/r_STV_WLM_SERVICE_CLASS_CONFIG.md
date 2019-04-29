@@ -10,7 +10,7 @@ STV\_WLM\_SERVICE\_CLASS\_CONFIG is visible only to superusers\. For more inform
 
 ## Sample Query<a name="r_STV_WLM_SERVICE_CLASS_CONFIG-sample-query2"></a>
 
-Service classes 1 \- 4 are used internally by Amazon Redshift, and service class 5 is reserved for the dedicated superuser queue\. The first user\-defined service class is service class 6, which is named Service class \#1\. The following query displays the current configuration for service classes greater than 4, which are the WLM query queues\. 
+The first user\-defined service class is service class 6, which is named Service class \#1\. The following query displays the current configuration for service classes greater than 4\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\. 
 
 ```
 select rtrim(name) as name, 

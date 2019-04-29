@@ -71,7 +71,7 @@ To test compression encodings:
    order by col;
    ```
 
-   The query returns the following results\. The columns are numbered beginning with zero\. Depending on how your cluster is configured, your result might have different numbers, but the relative sizes should be similar\. You can see that BYTEDICT encoding on the second column produced the best results for this data set, with a compression ratio of better than 20:1\. LZO and ZSTD encoding also produced excellent results\. Different data sets will produce different results, of course\. When a column contains longer text strings, LZO often produces the best compression results\.
+   The query returns the following results\. The columns are numbered beginning with zero\. Depending on how your cluster is configured, your result might have different numbers, but the relative sizes should be similar\. You can see that BYTEDICT encoding on the second column produced the best results for this dataset, with a compression ratio of better than 20:1\. LZO and ZSTD encoding also produced excellent results\. Different data sets will produce different results, of course\. When a column contains longer text strings, LZO often produces the best compression results\.
 
    ```
     col | max

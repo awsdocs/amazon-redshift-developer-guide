@@ -1,6 +1,6 @@
 # CAST and CONVERT Functions<a name="r_CAST_function"></a>
 
-You can do run\-time conversions between compatible data types by using the CAST and CONVERT functions\. 
+You can do runtime conversions between compatible data types by using the CAST and CONVERT functions\. 
 
 Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using the CAST or CONVERT function\. See [Type Compatibility and Conversion](r_Type_conversion.md)\. 
 

@@ -19,9 +19,9 @@ JSON strings must be properly formatted JSON, according to the following rules:
 + The root level JSON can either be a JSON object or a JSON array\. A JSON object is an unordered set of comma\-separated key:value pairs enclosed by curly braces\. 
 
   For example, `{"one":1, "two":2} `
-+ A JSON array is an ordered set of comma\-separated values enclosed by square brackets\. 
++ A JSON array is an ordered set of comma\-separated values enclosed by brackets\. 
 
-  For example, `["first", {"one":1}, "second", 3, null] `
+  An example is the following: `["first", {"one":1}, "second", 3, null] `
 + JSON arrays use a zero\-based index; the first element in an array is at position 0\. In a JSON key:value pair, the key is a double quoted string\. 
 + A JSON value can be any of: 
   + JSON object 

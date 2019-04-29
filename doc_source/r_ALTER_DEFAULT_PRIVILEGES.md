@@ -27,6 +27,10 @@ GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVIL
 GRANT { EXECUTE | ALL [ PRIVILEGES ] } 
 	ON FUNCTIONS 
 	TO { user_name [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+            
+GRANT { EXECUTE | ALL [ PRIVILEGES ] } 
+	ON PROCEDURES 
+	TO { user_name [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]            
 
 REVOKE [ GRANT OPTION FOR ] { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] } 
 	ON TABLES 
@@ -42,6 +46,14 @@ REVOKE [ GRANT OPTION FOR ] { EXECUTE | ALL [ PRIVILEGES ] }
 
 REVOKE { EXECUTE | ALL [ PRIVILEGES ] } 
 	ON FUNCTIONS 
+	FROM { GROUP group_name | PUBLIC } [, ...] [ CASCADE | RESTRICT ]       
+
+REVOKE [ GRANT OPTION FOR ] { EXECUTE | ALL [ PRIVILEGES ] } 
+	ON PROCEDURES 
+	FROM user_name [, ...] [ CASCADE | RESTRICT ]            
+
+REVOKE { EXECUTE | ALL [ PRIVILEGES ] } 
+	ON PROCEDURES 
 	FROM { GROUP group_name | PUBLIC } [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -54,7 +66,7 @@ IN SCHEMA *schema\_name*   <a name="default-in-schema"></a>
 Optional\. If an IN SCHEMA clause appears, the specified default privileges are applied to new objects created in the specified *schema\_name*\. In this case, the user or user group that is the target of ALTER DEFAULT PRIVILEGES must have CREATE privilege for the specified schema\. Default privileges that are specific to a schema are added to existing global default privileges\. By default, default privileges are applied globally to the entire database\. 
 
 GRANT   <a name="default-grant"></a>
-The set of privileges to grant to the specified users or groups for all new tables or functions created by the specified user\. You can set the same privileges and options with the GRANT clause that you can with the [GRANT](r_GRANT.md) command\. 
+The set of privileges to grant to the specified users or groups for all new tables, functions, or stored procedures created by the specified user\. You can set the same privileges and options with the GRANT clause that you can with the [GRANT](r_GRANT.md) command\. 
 
 WITH GRANT OPTION   <a name="default-grant-option"></a>
 A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. You can't grant WITH GRANT OPTION to a group or to PUBLIC\. 
@@ -63,7 +75,7 @@ TO *user\_name* \| GROUP *group\_name*   <a name="default-to"></a>
 The name of the user or user group to which the specified default privileges will be applied\.
 
 REVOKE   <a name="default-revoke"></a>
-The set of privileges to revoke from the specified users or groups for all new tables or functions created by the specified user\. You can set the same privileges and options with the REVOKE clause that you can with the [REVOKE](r_REVOKE.md) command\. 
+The set of privileges to revoke from the specified users or groups for all new tables, functions, or stored procedures created by the specified user\. You can set the same privileges and options with the REVOKE clause that you can with the [REVOKE](r_REVOKE.md) command\. 
 
 GRANT OPTION FOR  <a name="default-revoke-option"></a>
  A clause that revokes only the option to grant a specified privilege to other users and doesn't revoke the privilege itself\. You can't revoke GRANT OPTION from a group or from PUBLIC\. 

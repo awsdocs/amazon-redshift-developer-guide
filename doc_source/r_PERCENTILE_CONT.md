@@ -35,7 +35,7 @@ The return type is determined by the data type of the ORDER BY expression in the
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PERCENTILE_CONT.html)
 
-## Usage Notes<a name="w4aac39c11c13c31c23"></a>
+## Usage Notes<a name="w4aac41c11c13c31c23"></a>
 
 If the ORDER BY expression is a DECIMAL data type defined with the maximum precision of 38 digits, it is possible that PERCENTILE\_CONT will return either an inaccurate result or an error\. If the return value of the PERCENTILE\_CONT function exceeds 38 digits, the result is truncated to fit, which causes a loss of precision\.\. If, during interpolation, an intermediate result exceeds the maximum precision, a numeric overflow occurs and the function returns an error\. To avoid these conditions, we recommend either using a data type with lower precision or casting the ORDER BY expression to a lower precision\.
 

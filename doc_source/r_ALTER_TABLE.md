@@ -22,7 +22,7 @@ ADD table_constraint
 | OWNER TO new_owner 
 | RENAME TO new_name 
 | RENAME COLUMN column_name TO new_name 
-| ALTER COLUMN column_name TYPE new_data_type 
+
 | ADD [ COLUMN ] column_name column_type
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
@@ -80,9 +80,6 @@ RENAME TO *new\_name*
 A clause that renames a table \(or view\) to the value specified in *new\_name*\. The maximum table name length is 127 bytes; longer names are truncated to 127 bytes\.  
 You can't rename a permanent table to a name that begins with '\#'\. A table name beginning with '\#' indicates a temporary table\.  
 You can't rename an external table\.
-
-ALTER COLUMN *column\_name* TYPE *new\_data\_type*   
-A clause that increases the size of a column that uses a VARCHAR data type\. You can use ALTER COLUMN only with VARCHAR\. You can increase the size of the VARCHAR column, but you can't decrease it\. You can't alter a column that has primary key, foreign key, or unique constraints\. You can alter only one column in each ALTER TABLE command\. You can't use ALTER COLUMN in a transaction block \(BEGIN \.\.\. END\)\.
 
 RENAME COLUMN *column\_name* TO *new\_name*   
 A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and Identifiers](r_names.md)\.

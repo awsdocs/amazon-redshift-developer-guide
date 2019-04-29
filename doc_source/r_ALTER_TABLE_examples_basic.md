@@ -55,19 +55,3 @@ category_pkey   | PRIMARY KEY
 alter table category
 drop constraint category_pkey;
 ```
-
-## Alter a VARCHAR Column<a name="r_ALTER_TABLE_examples_alter-column"></a>
-
-To conserve storage, you can define a table initially with VARCHAR columns with the minimum size needed for your current data requirements\. If later you need to accommodate longer strings, you can alter the table to increase the size of the column\. To protect existing data, you can't decrease column size\.
-
-The following example changes the size of the EVENTNAME column to VARCHAR\(300\)\. 
-
-```
-alter table event alter column eventname type varchar(300);
-```
-
-The following command fails because it attempts to decrease the size of the EVENTNAME column\. 
-
-```
-alter table event alter column eventname type varchar(100);
-```

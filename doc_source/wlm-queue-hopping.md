@@ -2,7 +2,7 @@
 
 A query can be hopped due to a [WLM timeout](cm-c-defining-query-queues.md#wlm-timeout) or a [query monitoring rule \(QMR\) hop action](cm-c-wlm-query-monitoring-rules.md#cm-c-wlm-defining-query-monitoring-rules)\.
 
-When a query is hopped, WLM attempts to route the query to the next matching queue based on the [ WLM queue assignment rules](cm-c-wlm-queue-assignment-rules.md)\. If the query doesn't match any other queue definition, the query is canceled\. It’s not assigned to the default queue\. 
+When a query is hopped, WLM attempts to route the query to the next matching queue based on the [WLM queue assignment rules](cm-c-wlm-queue-assignment-rules.md)\. If the query doesn't match any other queue definition, the query is canceled\. It's not assigned to the default queue\. 
 
 ## WLM Timeout Queue Hopping<a name="wlm-timeout-queue-hopping"></a>
 
@@ -11,12 +11,12 @@ WLM hops the following types of queries when they time out:
 + CREATE TABLE AS \(CTAS\) statements\. WLM queue hopping supports both user\-defined and system\-generated CTAS statements\. 
 + SELECT INTO statements\.
 
-Queries that aren't subject to WLM timeout continue running in the original queue until completion\. The following types of queries aren’t subject to WLM timeout:
+Queries that aren't subject to WLM timeout continue running in the original queue until completion\. The following types of queries aren't subject to WLM timeout:
 + COPY statements
 + Maintenance operations, such as ANALYZE and VACUUM
 + Read\-only queries, such as SELECT statements, that have reached a WLM state of `returning`\. To find the WLM state of a query, view the STATE column on the [STV\_WLM\_QUERY\_STATE](r_STV_WLM_QUERY_STATE.md) system table\. 
 
-Queries that aren’t eligible for hopping by WLM timeout are canceled when they time out\. The following types of queries are not eligible for hopping by a WLM timeout:
+Queries that aren't eligible for hopping by WLM timeout are canceled when they time out\. The following types of queries are not eligible for hopping by a WLM timeout:
 + INSERT, UPDATE, and DELETE statements
 + UNLOAD statements
 + User\-defined functions \(UDFs\)
@@ -25,7 +25,7 @@ Queries that aren’t eligible for hopping by WLM timeout are canceled when they
 
 When a query is hopped and no matching queue is found, the query is canceled\.
 
-When a query is hopped and a matching queue is found, WLM attempts to reassign the query to the new queue\. If a query can't be reassigned, it’s restarted in the new queue, as described following\.
+When a query is hopped and a matching queue is found, WLM attempts to reassign the query to the new queue\. If a query can't be reassigned, it's restarted in the new queue, as described following\.
 
 A query is reassigned only if all of the following are true:
 + A matching queue is found\.
@@ -44,7 +44,7 @@ A QMR hop action hops the following types of queries:
 + CREATE TABLE AS \(CTAS\) statements\. WLM queue hopping supports both user\-defined and system\-generated CTAS statements\. 
 + SELECT INTO statements\.
 
-Queries that are not subject to a QMR hop action continue running in the original queue until completion\. The following types of queries aren’t subject to a QMR hop action:
+Queries that are not subject to a QMR hop action continue running in the original queue until completion\. The following types of queries aren't subject to a QMR hop action:
 + COPY statements\.
 + UNLOAD statements\.
 + User\-defined functions \(UDFs\)\.
@@ -54,7 +54,7 @@ Queries that are not subject to a QMR hop action continue running in the origina
 
 When a query is hopped and no matching queue is found, the query is canceled\.
 
-When a query is hopped and a matching queue is found, WLM attempts to reassign the query to the new queue\. If a query can't be reassigned, it’s restarted in the new queue or continues execution in the original queue, as described following\.
+When a query is hopped and a matching queue is found, WLM attempts to reassign the query to the new queue\. If a query can't be reassigned, it's restarted in the new queue or continues execution in the original queue, as described following\.
 
 A query is reassigned only if all of the following are true:
 + A matching queue is found\.

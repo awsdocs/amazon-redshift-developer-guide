@@ -62,7 +62,7 @@ The following table lists available templates\.
 
 ## System Tables and Views for Query Monitoring Rules<a name="cm-c-wlm-qmr-tables-and-views"></a>
 
-When all of a rule's predicates are met, WLM writes a row to the [STL\_WLM\_RULE\_ACTION](r_STL_WLM_RULE_ACTION.md) system table with details for the query that triggered the rule and the resulting action\. 
+When all of a rule's predicates are met, WLM writes a row to the [STL\_WLM\_RULE\_ACTION](r_STL_WLM_RULE_ACTION.md) system table\. This row contains details for the query that triggered the rule and the resulting action\. 
 
 In addition, Amazon Redshift records query metrics to two system tables\.
 + [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) displays the metrics for currently running queries\.

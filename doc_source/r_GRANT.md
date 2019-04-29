@@ -6,6 +6,8 @@ Privileges include access options such as being able to read data in tables and 
 
 You can't GRANT or REVOKE permissions on an external table\. Instead, grant or revoke the permissions on the external schema\.
 
+For stored procedures, the only privilege that can be granted is EXECUTE\.
+
 ## Syntax<a name="r_GRANT-synopsis"></a>
 
   
@@ -23,8 +25,12 @@ GRANT { { CREATE | USAGE } [,...] | ALL [ PRIVILEGES ] }
     ON SCHEMA schema_name [, ...]
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
-GRANT EXECUTE 
-    ON { [ FUNCTION ] function_name ( [ [ argname ] argtype [, ...] ] ) [, ...] | ALL FUNCTIONS IN SCHEMA schema_name [, ...] }
+GRANT { EXECUTE | ALL [ PRIVILEGES ] }
+    ON { FUNCTION function_name ( [ [ argname ] argtype [, ...] ] ) [, ...] | ALL FUNCTIONS IN SCHEMA schema_name [, ...] }
+    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+
+GRANT { EXECUTE | ALL [ PRIVILEGES ] }
+    ON { PROCEDURE procedure_name ( [ [ argname ] argtype [, ...] ] ) [, ...] | ALL PROCEDURES IN SCHEMA schema_name [, ...] }
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
 GRANT USAGE 
@@ -91,15 +97,23 @@ ON SCHEMA *schema\_name*   <a name="grant-schema"></a>
 Grants the specified privileges on a schema\.  
 GRANT CREATE ON SCHEMA and the CREATE privilege in GRANT ALL ON SCHEMA aren't supported for Amazon Redshift Spectrum external schemas\. To grant usage of external tables in an external schema, grant USAGE ON SCHEMA to the users that need access\. Only the owner of an external schema or a superuser is permitted to create external tables in the external schema\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. 
 
-EXECUTE ON \[ FUNCTION \] *function\_name*   <a name="grant-function"></a>
+EXECUTE ON FUNCTION *function\_name*   <a name="grant-function"></a>
 Grants the EXECUTE privilege on a specific function\. Because function names can be overloaded, you must include the argument list for the function\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.
 
 EXECUTE ON ALL FUNCTIONS IN SCHEMA *schema\_name*  <a name="grant-all-functions"></a>
 Grants the specified privileges on all functions in the referenced schema\.
 
+EXECUTE ON PROCEDURE *procedure\_name*   <a name="grant-procedure"></a>
+Grants the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming Stored Procedures](stored-procedure-naming.md)\.
+
+EXECUTE ON ALL PROCEDURES IN SCHEMA *schema\_name*  <a name="grant-all-procedures"></a>
+Grants the specified privileges on all stored procedures in the referenced schema\.
+
 USAGE ON LANGUAGE *language\_name*   
-Grants the USAGE privilege on a language\. The USAGE ON LANGUAGE privilege is required to create UDFs by executing the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.  
-For Python UDFs, use `plpythonu` \. For SQL UDFs, use `sql` \.
+Grants the USAGE privilege on a language\.   
+The USAGE ON LANGUAGE privilege is required to create user\-defined functions \(UDFs\) by running the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.   
+The USAGE ON LANGUAGE privilege is required to create stored procedures by running the [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) command\. For more information, see [Security and Privileges for Stored Procedures ](stored-procedure-security-and-privileges.md)\.  
+For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.
 
 ## Usage Notes<a name="r_GRANT-usage-notes"></a>
 
@@ -108,15 +122,15 @@ To grant privileges on an object, you must meet one of the following criteria:
 + Be a superuser\.
 + Have a grant privilege for that object and privilege\.
 
-For example, the following command gives the user HR the ability both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users: 
+For example, the following command enables the user HR both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users\.
 
 ```
 grant select on table employees to HR with grant option;
 ```
 
-Note that HR can't grant privileges for any operation other than SELECT, or on any other table than employees\. 
+HR can't grant privileges for any operation other than SELECT, or on any other table than employees\. 
 
-Having privileges granted on a view does not imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema does not imply having privileges on the tables in the schema\. You need to grant access to the underlying tables explicitly\.
+Having privileges granted on a view doesn't imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema doesn't imply having privileges on the tables in the schema\. You need to grant access to the underlying tables explicitly\.
 
 Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
 
@@ -147,7 +161,7 @@ The following example grants all privileges on the SALES table in the QA\_TICKIT
 grant all on table qa_tickit.sales to group qa_users;
 ```
 
-The following sequence of commands shows how access to a schema does not grant privileges on a table in the schema\. 
+The following sequence of commands shows how access to a schema doesn't grant privileges on a table in the schema\. 
 
 ```
 create user schema_user in group qa_users password 'Abcd1234';
@@ -178,7 +192,7 @@ count
 (1 row)
 ```
 
-The following sequence of commands shows how access to a view does not imply access to its underlying tables\. The user called VIEW\_USER can't select from the DATE table, although this user has been granted all privileges on VIEW\_DATE\. 
+The following sequence of commands shows how access to a view doesn't imply access to its underlying tables\. The user called VIEW\_USER can't select from the DATE table, although this user has been granted all privileges on VIEW\_DATE\. 
 
 ```
 create user view_user password 'Abcd1234';

@@ -4,6 +4,7 @@ Captures the text of non\-SELECT SQL commands run on the database\.
 
 Query the STL\_UTILITYTEXT table to capture the following subset of SQL statements that were run on the system:
 + ABORT, BEGIN, COMMIT, END, ROLLBACK
++ CALL
 + CANCEL
 + COMMENT
 + CREATE, ALTER, DROP DATABASE

@@ -16,7 +16,7 @@ RESET { parameter_name | ALL }
 Name of the parameter to reset\. See [Modifying the Server Configuration](t_Modifying_the_default_settings.md) for more documentation about parameters\.
 
 ALL   
-Resets all run\-time parameters\.
+Resets all runtime parameters\.
 
 ## Examples<a name="r_RESET-examples"></a>
 
@@ -26,7 +26,7 @@ The following example resets the `query_group` parameter to its default value:
 reset query_group;
 ```
 
-The following example resets all run\-time parameters to their default values: 
+The following example resets all runtime parameters to their default values\. 
 
 ```
 reset all;

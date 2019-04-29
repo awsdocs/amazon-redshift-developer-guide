@@ -1,6 +1,6 @@
 # Section 3: Routing Queries to Queues Based on User Groups and Query Groups<a name="tutorial-wlm-routing-queries-to-queues"></a>
 
-Now that you have your cluster associated with a new parameter group, and you have configured WLM, you’ll run some queries to see how Amazon Redshift routes queries into queues for processing\.
+Now you have your cluster associated with a new parameter group and you've configured WLM\. Next, run some queries to see how Amazon Redshift routes queries into queues for processing\.
 
 ## Step 1: View Query Queue Configuration in the Database<a name="tutorial-wlm-view-query-config"></a>
 
@@ -8,7 +8,7 @@ First, verify that the database has the WLM configuration that you expect\.
 
 ### To View the Query Queue Configuration<a name="how-to-wlm-view-query-config"></a>
 
-1. Open psql and run the following query\. The query uses the WLM\_QUEUE\_STATE\_VW view you created in [Step 1: Create the WLM\_QUEUE\_STATE\_VW View](tutorial-wlm-understanding-default-processing.md#tutorial-wlm-create-queue-state-view)\. If you already had a session connected to the database prior to the cluster reboot, you’ll need to reconnect\.
+1. Open psql and run the following query\. The query uses the WLM\_QUEUE\_STATE\_VW view you created in [Step 1: Create the WLM\_QUEUE\_STATE\_VW View](tutorial-wlm-understanding-default-processing.md#tutorial-wlm-create-queue-state-view)\. If you already had a session connected to the database prior to the cluster reboot, you need to reconnect\.
 
    ```
    select * from wlm_queue_state_vw;
@@ -19,7 +19,7 @@ First, verify that the database has the WLM configuration that you expect\.
 
    Compare these results to the results you received in [Step 1: Create the WLM\_QUEUE\_STATE\_VW View](tutorial-wlm-understanding-default-processing.md#tutorial-wlm-create-queue-state-view)\. Notice that there are now two additional queues\. Queue 1 is now the queue for the test query group, and queue 2 is the queue for the admin user group\.
 
-   Queue 3 is now the default queue\. The last queue in the list is always the default queue, and that is the queue to which queries are routed by default if no user group or query group is specified in a query\.
+   Queue 3 is now the default queue\. The last queue in the list is always the default queue\. That's the queue to which queries are routed by default if no user group or query group is specified in a query\.
 
 1. Run the following query to confirm that your query now runs in queue 3\.
 
@@ -58,7 +58,7 @@ First, verify that the database has the WLM configuration that you expect\.
    select * from wlm_queue_state_vw;
    ```
 
-   You'll see a result similar to the following\.  
+   You see a result similar to the following\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_090.png)
 
 1. Now, reset the query group and run the long query again:
@@ -83,7 +83,7 @@ First, verify that the database has the WLM configuration that you expect\.
 
 ## Step 3: Create a Database User and Group<a name="tutorial-wlm-create-db-user-and-group"></a>
 
-In [Step 1: Create a Parameter Group](tutorial-wlm-modifying-wlm-configuration.md#tutorial-wlm-create-parameter-group), you configured one of your query queues with a user group named `admin`\. Before you can run any queries in this queue, you need to create the user group in the database and add a user to the group\. Then you’ll log on with psql using the new user’s credentials and run queries\. You need to run queries as a superuser, such as the masteruser, to create database users\.
+In [Step 1: Create a Parameter Group](tutorial-wlm-modifying-wlm-configuration.md#tutorial-wlm-create-parameter-group), you configured one of your query queues with a user group named `admin`\. Before you can run any queries in this queue, you need to create the user group in the database and add a user to the group\. Then you log on with psql using the new user’s credentials and run queries\. You need to run queries as a superuser, such as the masteruser, to create database users\.
 
 ### To Create a New Database User and User Group<a name="how-to-wlm-create-db-user-and-group"></a>
 
@@ -102,7 +102,7 @@ In [Step 1: Create a Parameter Group](tutorial-wlm-modifying-wlm-configuration.m
 
 ## Step 4: Run a Query Using the User Group Queue<a name="tutorial-wlm-user-group-query"></a>
 
-Next you’ll run a query and route it to the user group queue\. You do this when you want to route your query to a queue that is configured to handle the type of query you want to run\.
+Next you run a query and route it to the user group queue\. You do this when you want to route your query to a queue that is configured to handle the type of query you want to run\.
 
 ### To Run a Query Using the User Group Queue<a name="how-to-wlm-user-group-query"></a>
 
@@ -124,7 +124,7 @@ Next you’ll run a query and route it to the user group queue\. You do this whe
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_120.png)  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_130.png)
 
-   Note that the queue this query ran in is queue 2, the `admin` user queue\. Any time you run queries logged in as this user, they will run in queue 2 unless you specify a different query group to use\.
+   The queue that this query ran in is queue 2, the `admin` user queue\. Any time you run queries logged in as this user, they run in queue 2 unless you specify a different query group to use\.
 
 1. Now run the following query from psql window 2\.
 

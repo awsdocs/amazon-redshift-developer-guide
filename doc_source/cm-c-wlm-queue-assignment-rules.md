@@ -6,7 +6,7 @@ When a user runs a query, WLM assigns the query to the first matching queue, bas
 
 1. If a user is logged in as a superuser and runs a query in the query group labeled superuser, the query is assigned to the Superuser queue\.
 
-1. If a user belongs to a listed user group or if a user runs a query within a listed query group, the query is assigned to the first matching queue\.
+1. If a user belongs to a listed user group or runs a query within a listed query group, the query is assigned to the first matching queue\.
 
 1. If a query doesn't meet any criteria, the query is assigned to the default queue, which is the last queue defined in the WLM configuration\.
 

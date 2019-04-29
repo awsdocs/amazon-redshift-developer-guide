@@ -113,7 +113,7 @@ select * from pg_user_info;
 -----------+----------+-------------+----------+-----------+----------+----------+-----------+-------------
  rdsdb     |        1 | true        | true     | true      | ******** | infinity |           |             
  adminuser |      100 | true        | true     | false     | ******** |          |           | UNLIMITED   
- danny     |      102 | true        | false    | false     | ******** |          |           | 30
+ dbuser    |      102 | true        | false    | false     | ******** |          |           | 30
 ```
 
 In the following example, the account password is valid until June 10, 2017\.

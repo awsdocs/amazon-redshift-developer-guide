@@ -4,7 +4,7 @@ The following examples assign queries to queues according to user groups and que
 
 ## Assigning Queries to Queues Based on User Groups<a name="cm-c-executing-queries-assigning-queries-to-queues-based-on-user-groups"></a>
 
-If a user group name is listed in a queue definition, queries run by members of that user group will be assigned to the corresponding queue\. The following example creates user groups and adds users to groups by using the SQL commands [CREATE USER](r_CREATE_USER.md), [CREATE GROUP](r_CREATE_GROUP.md), and [ALTER GROUP](r_ALTER_GROUP.md)\.
+If a user group name is listed in a queue definition, queries run by members of that user group are assigned to the corresponding queue\. The following example creates user groups and adds users to groups by using the SQL commands [CREATE USER](r_CREATE_USER.md), [CREATE GROUP](r_CREATE_GROUP.md), and [ALTER GROUP](r_ALTER_GROUP.md)\.
 
 ```
 create group admin_group with user admin246, admin135, sec555;
@@ -22,7 +22,7 @@ SET query_group TO group_label
 
 Here, **group\_label* *is a query group label that is listed in the WLM configuration\.
 
-All queries that you run after the `SET query_group` command will run as members of the specified query group until you either reset the query group or end your current login session\. For information about setting and resetting Amazon Redshift objects, see [SET](r_SET.md) and [RESET](r_RESET.md) in the SQL Command Reference\.
+All queries that you run after the `SET query_group` command run as members of the specified query group until you either reset the query group or end your current login session\. For information about setting and resetting Amazon Redshift objects, see [SET](r_SET.md) and [RESET](r_RESET.md) in the SQL Command Reference\.
 
 The query group labels that you specify must be included in the current WLM configuration; otherwise, the *SET query\_group* command has no effect on query queues\.
 

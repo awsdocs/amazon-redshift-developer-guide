@@ -4,6 +4,8 @@ Removes access privileges, such as privileges to create or update tables, from a
 
 You can't GRANT or REVOKE permissions on an external table\. Instead, grant or revoke the permissions on the external schema\.
 
+For stored procedures, USAGE ON LANGUAGE plpgsql is granted to PUBLIC by default\. EXECUTE ON PROCEDURE is granted only to the owner and superusers by default\.
+
 Specify in the REVOKE statement the privileges that you want to remove\. To give privileges, use the [GRANT](r_GRANT.md) command\. 
 
 ## Syntax<a name="r_REVOKE-synopsis"></a>
@@ -30,6 +32,12 @@ FROM { username | GROUP group_name | PUBLIC } [, ...]
 REVOKE [ GRANT OPTION FOR ]
 EXECUTE 
     ON FUNCTION function_name ( [ [ argname ] argtype [, ...] ] ) [, ...]
+    FROM { username | GROUP group_name | PUBLIC } [, ...]
+[ CASCADE | RESTRICT ]
+
+REVOKE [ GRANT OPTION FOR ]
+{ { EXECUTE } [,...] | ALL [ PRIVILEGES ] }
+    ON PROCEDURE procedure_name ( [ [ argname ] argtype [, ...] ] ) [, ...]
     FROM { username | GROUP group_name | PUBLIC } [, ...]
 [ CASCADE | RESTRICT ]
 
@@ -105,16 +113,23 @@ Revokes only those privileges that the user directly granted\. This behavior is 
 EXECUTE ON FUNCTION *function\_name*   
 Revokes the EXECUTE privilege on a specific function\. Because function names can be overloaded, you must include the argument list for the function\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.
 
+EXECUTE ON PROCEDURE *procedure\_name*   
+Revokes the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming Stored Procedures](stored-procedure-naming.md)\.
+
+EXECUTE ON ALL PROCEDURES IN SCHEMA *procedure\_name*   
+Revokes the specified privileges on all procedures in the referenced schema\.
+
 USAGE ON LANGUAGE *language\_name*   
-Revokes the USAGE privilege on a language\. For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\.  
-To create a UDF, you must have permission for usage on language for SQL or plpythonu \(Python\)\. By default, USAGE ON LANGUAGE SQL is granted to PUBLIC, but you must explicitly grant USAGE ON LANGUAGE PLPYTHONU to specific users or groups\.   
-To revoke usage for SQL, first revoke usage from PUBLIC, then grant usage on SQL only to the specific users or groups permitted to create SQL UDFs\. The following example revokes usage on SQL from PUBLIC then grants usage to the user group `udf_devs`\.   
+Revokes the USAGE privilege on a language\. For Python user\-defined functions \(UDFs\), use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.   
+To create a UDF, you must have permission for usage on language for SQL or `plpythonu` \(Python\)\. By default, USAGE ON LANGUAGE SQL is granted to PUBLIC\. However, you must explicitly grant USAGE ON LANGUAGE PLPYTHONU to specific users or groups\.   
+To revoke usage for SQL, first revoke usage from PUBLIC\. Then grant usage on SQL only to the specific users or groups permitted to create SQL UDFs\. The following example revokes usage on SQL from PUBLIC then grants usage to the user group `udf_devs`\.   
 
 ```
 revoke usage on language sql from PUBLIC;
 grant usage on language sql to group udf_devs;
 ```
-For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\. 
+For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.   
+To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then grant usage on `plpgsql` only to the specific users or groups permitted to create stored procedures\. For more information, see [Security and Privileges for Stored Procedures ](stored-procedure-security-and-privileges.md)\. 
 
 ## Usage Notes<a name="r_REVOKE-usage-notes"></a>
 
@@ -123,13 +138,13 @@ To revoke privileges from an object, you must meet one of the following criteria
 + Be a superuser\.
 + Have a grant privilege for that object and privilege\.
 
-  For example, the following command gives the user HR the ability both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users: 
+  For example, the following command enables the user HR both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users\.
 
   ```
   grant select on table employees to HR with grant option;
   ```
 
-  Note that HR can't revoke privileges for any operation other than SELECT, or on any other table than employees\. 
+  HR can't revoke privileges for any operation other than SELECT, or on any other table than employees\. 
 
 Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
 

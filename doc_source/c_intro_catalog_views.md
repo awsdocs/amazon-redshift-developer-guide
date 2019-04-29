@@ -5,6 +5,7 @@
 + [PG\_DEFAULT\_ACL](r_PG_DEFAULT_ACL.md)
 + [PG\_EXTERNAL\_SCHEMA](r_PG_EXTERNAL_SCHEMA.md)
 + [PG\_LIBRARY](r_PG_LIBRARY.md)
++ [PG\_PROC\_INFO](r_PG_PROC_INFO.md)
 + [PG\_STATISTIC\_INDICATOR](r_PG_STATISTIC_INDICATOR.md)
 + [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md)
 + [Querying the Catalog Tables](c_join_PG.md)

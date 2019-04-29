@@ -256,7 +256,7 @@ The following IAM policy gives the minimum permissions required to list the curr
         {
             "Effect": "Allow",
             "Action": [
-                "glue:GetDatabases",
+                "glue:GetDatabases"
             ],
             "Resource": [
                 "arn:aws:glue:us-west-2:redshift-account:database/example_db1",
@@ -368,7 +368,7 @@ The following IAM policy gives the minimum permissions required to alter an exis
             ],
             "Resource": [
                 "arn:aws:glue:us-west-2:redshift-account:catalog",
-                "arn:aws:glue:us-west-2:redshift-account:database/example_db"
+                "arn:aws:glue:us-west-2:redshift-account:database/example_db",
                 "arn:aws:glue:us-west-2:redshift-account:table/example_db/example_tbl0"
 
             ]
@@ -396,7 +396,7 @@ The following IAM policy gives the minimum permissions required to drop an exist
             ],
             "Resource": [
                 "arn:aws:glue:us-west-2:redshift-account:catalog",
-                "arn:aws:glue:us-west-2:redshift-account:database/example_db"
+                "arn:aws:glue:us-west-2:redshift-account:database/example_db",
                 "arn:aws:glue:us-west-2:redshift-account:table/example_db/example_tbl0"
             ]
         }
@@ -431,7 +431,7 @@ The following IAM policy gives the minimum permissions required to create a part
             ],
             "Resource": [
                 "arn:aws:glue:us-west-2:redshift-account:catalog",
-                "arn:aws:glue:us-west-2:redshift-account:database/example_db"
+                "arn:aws:glue:us-west-2:redshift-account:database/example_db",
                 "arn:aws:glue:us-west-2:redshift-account:table/example_db/example_tbl0"
             ]
         }

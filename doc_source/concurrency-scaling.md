@@ -1,32 +1,32 @@
 # Concurrency Scaling<a name="concurrency-scaling"></a>
 
-With Concurrency Scaling, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a Concurrency Scaling cluster\. You're charged for Concurrency Scaling clusters only for the time they’re in use\. For more information about pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. You manage which queries are sent to the Concurrency Scaling cluster by configuring WLM queues\. When you enable Concurrency Scaling for a queue, eligible queries are sent to the Concurrency Scaling cluster instead of waiting in line\. 
+With Concurrency Scaling, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. You're charged for concurrency scaling clusters only for the time they're in use\. For more information about pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable Concurrency Scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. 
 
 ## Concurrency Scaling Candidates<a name="concurrency-scaling-candidates"></a>
 
-Queries are routed to the Concurrency Scaling cluster only when the main cluster meets the following requirements:
+Queries are routed to the concurrency scaling cluster only when the main cluster meets the following requirements:
 + EC2\-VPC platform 
 + Node type must be dc2\.8xlarge, ds2\.8xlarge, dc2\.large, or ds2\.xlarge 
 + Maximum of 32 compute nodes 
 + Not a single\-node cluster 
 
-The following types of queries are candidates for Concurrency Scaling: 
-+ Read\-only queries, Data manipulation language \(DML\) queries are not supported\. 
-+ Queries that don't reference tables that use an [interleaved sort key](t_Sorting_data.md#t_Sorting_data-interleaved)\. 
+A query must meet all the following criteria to be a candidate for Concurrency Scaling: 
++ The query must be a read\-only query\. 
++ The query doesn't reference tables that use an [interleaved sort key](t_Sorting_data.md#t_Sorting_data-interleaved)\. 
 + The query doesn't use Amazon Redshift Spectrum to reference external tables\. 
-+ The query must encounter queueing to be routed to a Concurrency Scaling cluster\. 
-
-Routing queries to the Concurrency Scaling cluster carries a small overhead, so very short\-running queries run on the main cluster\. Very short\-running queries are identified using the [Short Query Acceleration](wlm-short-query-acceleration.md) \(SQA\) algorithm\. 
++ The query doesn't reference user\-defined temporary tables\. 
 
 ## Configuring Concurrency Scaling Queues<a name="concurrency-scaling-queues"></a>
 
-You route queries to Concurrency Scaling clusters by enabling a workload manager \(WLM\) queue as a Concurrency Scaling queue\. To enable Concurrency Scaling on a queue, set Concurrency Scaling mode to auto\. When the number of queries routed to a Concurrency Scaling queue exceeds the queue's configured concurrency, eligible queries are sent to the Concurrency Scaling cluster\. When slots become available, queries are run on the main cluster\. The number of queues is limited only by the number of queues permitted per cluster\. As with any WLM queue, you route queries to a Concurrency Scaling queue based on user groups or by labeling queries with query group labels\. You can also route queries by defining [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. For example, you might route all queries that take longer than 5 seconds to a Concurrency Scaling queue\. 
+You route queries to concurrency scaling clusters by enabling a workload manager \(WLM\) queue as a concurrency scaling queue\. To enable Concurrency Scaling on a queue, set the **Concurrency Scaling mode** value to **auto**\. 
+
+When the number of queries routed to a concurrency scaling queue exceeds the queue's configured concurrency, eligible queries are sent to the concurrency scaling cluster\. When slots become available, queries are run on the main cluster\. The number of queues is limited only by the number of queues permitted per cluster\. As with any WLM queue, you route queries to a concurrency scaling queue based on user groups or by labeling queries with query group labels\. You can also route queries by defining [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. For example, you might route all queries that take longer than 5 seconds to a concurrency scaling queue\. 
 
 ## Monitoring Concurrency Scaling<a name="concurrency-scaling-monitoring"></a>
 
-You can see whether a query is running on the main cluster or a Concurrency Scaling cluster by viewing the Amazon Redshift console, navigating to **Cluster**, and choosing a cluster\. Then choose the **Queries** tab and view the values in the column **Executed on** to determine the cluster where the query ran\.
+You can see whether a query is running on the main cluster or a concurrency scaling cluster by viewing the Amazon Redshift console, navigating to **Cluster**, and choosing a cluster\. Then choose the **Queries** tab and view the values in the column **Executed on** to determine the cluster where the query ran\.
 
-To find execution times, query the STL\_QUERY table and filter on the `concurrency_scaling_status` column\. The following query compares the queue time and execution time for queries run on the Concurrency Scaling cluster and queries run on the main cluster\.
+To find execution times, query the STL\_QUERY table and filter on the `concurrency_scaling_status` column\. The following query compares the queue time and execution time for queries run on the concurrency scaling cluster and queries run on the main cluster\.
 
 ```
 SELECT w.service_class AS queue
@@ -47,7 +47,7 @@ ORDER BY 1,2;
 
 ## Concurrency Scaling System Views<a name="concurrency-scaling-monitoring-system-views"></a>
 
-A set of system views with the prefix SVCS provide details from the system log tables about queries on both the main and Concurrency Scaling clusters\. 
+A set of system views with the prefix SVCS provide details from the system log tables about queries on both the main and concurrency scaling clusters\. 
 
 The following views have similar information as the corresponding STL tables or SVL views: 
 + [SVCS\_ALERT\_EVENT\_LOG](r_SVCS_ALERT_EVENT_LOG.md) 
@@ -59,8 +59,6 @@ The following views have similar information as the corresponding STL tables or 
 
 The following views are specific to Concurrency Scaling\. 
 + [SVCS\_CONCURRENCY\_SCALING\_USAGE](r_SVCS_CONCURRENCY_SCALING_USAGE.md) 
-
-## Related Information<a name="concurrency-scaling-related-information"></a>
 
 For more information about Concurrency Scaling, see the following topics in the *Amazon Redshift Cluster Management Guide*\.
 + [Viewing Concurrency Scaling Data](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-concurrency-scaling.html) 

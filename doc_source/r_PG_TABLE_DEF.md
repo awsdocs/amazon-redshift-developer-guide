@@ -48,7 +48,7 @@ lo_orderdate | integer | delta    | false   |      -5 | true
 (5 rows)
 ```
 
-PG\_TABLE\_DEF will only return information for tables in schemas that are included in the search path\. See [search\_path](r_search_path.md)\.
+PG\_TABLE\_DEF will only return information for tables in schemas that are included in the search path\. For more information, see [search\_path](r_search_path.md)\.
 
 For example, suppose you create a new schema and a new table, then query PG\_TABLE\_DEF\.
 

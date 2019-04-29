@@ -10,7 +10,7 @@ STV\_WLM\_SERVICE\_CLASS\_STATE is visible only to superusers\. For more informa
 
 ## Sample Query<a name="r_STV_WLM_SERVICE_CLASS_STATE-sample-query2"></a>
 
-Service classes 1 \- 4 are used internally by Amazon Redshift, and service class 5 is reserved for the dedicated superuser queue\. The following query displays the state for service classes greater than 5, which are the WLM query queues\. 
+The following query displays the state for service classes greater than 5\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\.
 
 ```
 select service_class, num_executing_queries, 

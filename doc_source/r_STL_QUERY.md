@@ -51,7 +51,7 @@ order by date_diff desc;
 (189 rows)
 ```
 
-The following query shows the queue time and execution time for queries\. Queries with `concurrency_scaling_status = 0` ran on a concurrency scaling cluster\. All other queries ran on the main cluster\.
+The following query shows the queue time and execution time for queries\. Queries with `concurrency_scaling_status = 1` ran on a concurrency scaling cluster\. All other queries ran on the main cluster\.
 
 ```
 SELECT w.service_class AS queue

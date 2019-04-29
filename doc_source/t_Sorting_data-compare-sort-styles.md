@@ -2,13 +2,13 @@
 
 This section compares the performance differences when using a single\-column sort key, a compound sort key, and an interleaved sort key for different types of queries\. 
 
-For this example, you'll create a denormalized table named CUST\_SALES, using data from the CUSTOMER and LINEORDER tables\. CUSTOMER and LINEORDER are part of the SSB data set, which is used in the [Tutorial: Tuning Table Design](tutorial-tuning-tables.md)\.
+For this example, you'll create a denormalized table named CUST\_SALES, using data from the CUSTOMER and LINEORDER tables\. CUSTOMER and LINEORDER are part of the SSB dataset, which is used in the [Tutorial: Tuning Table Design](tutorial-tuning-tables.md)\.
 
 The new CUST\_SALES table has 480 million rows, which is not large by Amazon Redshift standards, but it is large enough to show the performance differences\. Larger tables will tend to show greater differences, especially for interleaved sorting\. 
 
 To compare the three sort methods, perform the following steps: 
 
-1. Create the SSB data set\.
+1. Create the SSB dataset\.
 
 1. Create the CUST\_SALES\_DATE table\. 
 
@@ -16,9 +16,9 @@ To compare the three sort methods, perform the following steps:
 
 1. Execute queries and compare the results\. 
 
-## Create the SSB Data Set<a name="t_Sorting_data-compare-sort-styles-create-ssb"></a>
+## Create the SSB Dataset<a name="t_Sorting_data-compare-sort-styles-create-ssb"></a>
 
-If you haven't already done so, follow the steps in [Step 1: Create a Test Data Set](tutorial-tuning-tables-create-test-data.md) in the Tuning Table Design tutorial to create the tables in the SSB data set and load them with data\. The data load will take about 10 to 15 minutes\.
+If you haven't already done so, follow the steps in [Step 1: Create a Test Data Set](tutorial-tuning-tables-create-test-data.md) in the Tuning Table Design tutorial to create the tables in the SSB dataset and load them with data\. The data load will take about 10 to 15 minutes\.
 
 The example in the Tuning Table Design tutorial uses a four\-node cluster\. The comparisons in this example use a two\-node cluster\. Your results will vary with different cluster configurations\. 
 

@@ -2,11 +2,11 @@
 
 Sometimes, users might temporarily need more resources for a particular query\. If so, they can use the wlm\_query\_slot\_count configuration setting to temporarily override the way slots are allocated in a query queue\. *Slots* are units of memory and CPU that are used to process queries\. You might override the slot count when you have occasional queries that take a lot of resources in the cluster, such as when you perform a VACUUM operation in the database\. 
 
-If you find that users often need to set wlm\_query\_slot\_count for certain types of queries, you should consider adjusting the WLM configuration and giving users a queue that better suits the needs of their queries\. For more information about temporarily overriding the concurrency level by using slot count, see [wlm\_query\_slot\_count](r_wlm_query_slot_count.md)\.
+You might find that users often need to set wlm\_query\_slot\_count for certain types of queries\. If so, consider adjusting the WLM configuration and giving users a queue that better suits the needs of their queries\. For more information about temporarily overriding the concurrency level by using slot count, see [wlm\_query\_slot\_count](r_wlm_query_slot_count.md)\.
 
 ## Step 1: Override the Concurrency Level Using wlm\_query\_slot\_count<a name="tutorial-wlm-override-slot-count"></a>
 
-For the purposes of this tutorial, we’ll run the same long\-running SELECT query\. We’ll run it as the `adminwlm` user using wlm\_query\_slot\_count to increase the number of slots available for the query\.
+For the purposes of this tutorial, we run the same long\-running SELECT query\. We run it as the `adminwlm` user using wlm\_query\_slot\_count to increase the number of slots available for the query\.
 
 ### To Override the Concurrency Level Using wlm\_query\_slot\_count<a name="how-to-wlm-override-slot-count"></a>
 
@@ -68,7 +68,7 @@ Next, run queries from different sessions\.
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. As the long\-running query is still going in psql window 1, run the following to increase the slot count to use all the slots for the queue and then start running the long\-running query\.
+1. As the long\-running query is still going in psql window 1, run the following\. These commands increase the slot count to use all the slots for the queue and then start running the long\-running query\.
 
    ```
    set wlm_query_slot_count to 2;
@@ -86,4 +86,4 @@ Next, run queries from different sessions\.
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_200.png)  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_210.png)
 
-   Notice that the first query is using one of the slots allocated to queue 1 to run the query, and that there is one query that is waiting in the queue \(where `queued` is `1` and `state` is `QueuedWaiting`\)\. Once the first query completes, the second one will begin executing\. This execution happens because both queries are routed to the `test` query group, and the second query must wait for enough slots to begin processing\.
+   Notice that the first query is using one of the slots allocated to queue 1 to run the query\. In addition, notice that there is one query that is waiting in the queue \(where `queued` is `1` and `state` is `QueuedWaiting`\)\. After the first query completes, the second one begins running\. This execution happens because both queries are routed to the `test` query group, and the second query must wait for enough slots to begin processing\.

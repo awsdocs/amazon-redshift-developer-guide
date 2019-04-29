@@ -8,7 +8,7 @@
 
 1.  **Distribute the fact table and its largest dimension table on their common columns\.** 
 
-   Choose the largest dimension based on the size of data set that participates in the most common join, not just the size of the table\. If a table is commonly filtered, using a WHERE clause, only a portion of its rows participate in the join\. Such a table has less impact on redistribution than a smaller table that contributes more data\. Designate both the dimension table's primary key and the fact table's corresponding foreign key as DISTKEY\. If multiple tables use the same distribution key, they will also be collocated with the fact table\. Your fact table can have only one distribution key\. Any tables that join on another key will not be collocated with the fact table\. 
+   Choose the largest dimension based on the size of dataset that participates in the most common join, not just the size of the table\. If a table is commonly filtered, using a WHERE clause, only a portion of its rows participate in the join\. Such a table has less impact on redistribution than a smaller table that contributes more data\. Designate both the dimension table's primary key and the fact table's corresponding foreign key as DISTKEY\. If multiple tables use the same distribution key, they will also be collocated with the fact table\. Your fact table can have only one distribution key\. Any tables that join on another key will not be collocated with the fact table\. 
 
 1.  **Designate distribution keys for the other dimension tables\.** 
 

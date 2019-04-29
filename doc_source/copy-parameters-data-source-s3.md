@@ -44,7 +44,7 @@ manifest;
 ### Parameters<a name="copy-parameters-data-source-s3-parameters"></a>
 
 FROM  <a name="copy-parameters-from"></a>
-The source of the data to be loaded\. 
+The source of the data to be loaded\. For more information about the encoding of the Amazon S3 file, see [Data Conversion Parameters](copy-parameters-data-conversion.md)\.
 
 's3://*copy\_from\_s3\_objectpath*'   <a name="copy-s3-objectpath"></a>
 Specifies the path to the Amazon S3 objects that contain the data—for example, `'s3://mybucket/custdata.txt'`\. The *s3://copy\_from\_s3\_objectpath* parameter can reference a single file or a set of objects or folders that have the same key prefix\. For example, the name `custdata.txt` is a key prefix that refers to a number of physical files: `custdata.txt`,`custdata.txt.1`, `custdata.txt.2`, `custdata.txt.bak`,and so on\. The key prefix can also reference a number of folders\. For example, `'s3://mybucket/custfolder'` refers to the folders `custfolder`, `custfolder_1`, `custfolder_2`, and so on\. If a key prefix references multiple folders, all of the files in the folders will be loaded\. If a key prefix matches a file as well as a folder, such as `custfolder.log`, COPY attempts to load the file also\. If a key prefix might result in COPY attempting to load unwanted files, use a manifest file\. For more information, see [copy_from_s3_manifest_file](#copy-manifest-file), following\.   
