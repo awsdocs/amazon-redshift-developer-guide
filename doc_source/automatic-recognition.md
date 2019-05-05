@@ -3,12 +3,25 @@
 If you specify `'auto'` as the argument for the DATEFORMAT or TIMEFORMAT parameter, Amazon Redshift will automatically recognize and convert the date format or time format in your source data\. The following shows an example\.
 
 ```
-copy favoritemovies from 'dynamodb://ProductCatalog' 
+copy favoritemovies from 'dynamodb://ProductCatalog'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 dateformat 'auto';
 ```
 
 When used with the `'auto'` argument for DATEFORMAT and TIMEFORMAT, COPY recognizes and converts the date and time formats listed in the table in [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\. In addition, the `'auto'` argument recognizes the following formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\.
+
+| Format                    | Example of Valid Input String |
+| ------------------------- | ----------------------------- |
+| Julian                    | J2451187                      |
+| BC                        | Jan-08-95 BC                  |
+| YYYYMMDD HHMISS           | 19960108 040809               |
+| YYMMDD HHMISS             | 960108 040809                 |
+| YYYY.DDD                  | 1996.008                      |
+| YYYY-MM-DD HH:MI:SS.SSS   | 1996-01-08 04:05:06.789       |
+| DD Mon HH:MI:SS YYYY TZ   | 17 Dec 07:37:16 1997 PST      |
+| MM/DD/YYYY HH:MI:SS.SS TZ | 12/17/1997 07:37:16.00 PST    |
+| YYYY-MM-DD HH:MI:SS+/-TZ  | 1997-12-17 07:37:16-08        |
+| DD.MM.YYYY HH:MI:SS TZ    | 12.17.1997 07:37:16.00 PST    |
 
 Automatic recognition does not support epochsecs and epochmillisecs\.
 
