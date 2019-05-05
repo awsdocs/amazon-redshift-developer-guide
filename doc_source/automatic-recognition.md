@@ -10,8 +10,6 @@ dateformat 'auto';
 
 When used with the `'auto'` argument for DATEFORMAT and TIMEFORMAT, COPY recognizes and converts the date and time formats listed in the table in [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\. In addition, the `'auto'` argument recognizes the following formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\.
 
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/automatic-recognition.html)
-
 Automatic recognition does not support epochsecs and epochmillisecs\.
 
 To test whether a date or timestamp value will be automatically converted, use a CAST function to attempt to convert the string to a date or timestamp value\. For example, the following commands test the timestamp value `'J2345678 04:05:06.789'`:
