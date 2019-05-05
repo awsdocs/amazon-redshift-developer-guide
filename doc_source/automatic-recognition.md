@@ -12,6 +12,7 @@ When used with the `'auto'` argument for DATEFORMAT and TIMEFORMAT, COPY recogni
 
 | Format                    | Example of Valid Input String |
 | ------------------------- | ----------------------------- |
+| ISO 8601                  | 2019-02-11T05:09:12.195Z      |
 | Julian                    | J2451187                      |
 | BC                        | Jan-08-95 BC                  |
 | YYYYMMDD HHMISS           | 19960108 040809               |
