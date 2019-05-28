@@ -27,6 +27,9 @@ TIMESTAMP
 
 Either *source\_timezone* or *target\_timezone* can be specified as a time zone name \(such as 'Africa/Kampala' or 'Singapore'\) or as a time zone abbreviation \(such as 'UTC' or 'PDT'\)\. 
 
+**Note**  
+The results of using a time zone name or a time zone abbreviation can be different due to local seasonal time, such as, Daylight Saving Time\. 
+
 To view a list of supported time zone names, execute the following command\. 
 
 ```

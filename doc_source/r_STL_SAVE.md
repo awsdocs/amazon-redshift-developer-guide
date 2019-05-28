@@ -6,7 +6,7 @@ A query consists of multiple segments, and each segment consists of one or more 
 
 STL\_SAVE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="w4aac43c11c85b9"></a>
+## Table Columns<a name="w4aac43c11c89b9"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_SAVE.html)
 

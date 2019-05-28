@@ -1,5 +1,10 @@
 # Implementing Workload Management<a name="cm-c-implementing-workload-management"></a>
 
+
+|  | 
+| --- |
+|  Currently, **Automatic WLM** is not available in all Amazon Redshift Regions\. Automatic WLM and associated Amazon Redshift console changes will be deployed to additional AWS Regions in the upcoming releases\.  | 
+
 You can use workload management \(WLM\) to define multiple query queues and to route queries to the appropriate queues at run time\.
 
 In some cases, you might have multiple sessions or users running queries at the same time\. In these cases, some queries might consume cluster resources for long periods of time and affect the performance of other queries\. For example, suppose that one group of users submits occasional complex, long\-running queries that select and sort rows from several large tables\. Another group frequently submits short queries that select only a few rows from one or two tables and run in a few seconds\. In this situation, the short\-running queries might have to wait in a queue for a long\-running query to complete\. 

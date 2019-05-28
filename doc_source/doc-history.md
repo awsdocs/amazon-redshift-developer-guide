@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: April 24, 2019** 
+ **Latest documentation update: May 22, 2019** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,6 +12,7 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [ALTER COLUMN](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) | You can use an ALTER TABLE command with ALTER COLUMN to increase the size of a VARCHAR column\. | May 22, 2019 | 
 | [Support for stored procedures](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html) | You can define PL/pgSQL stored procedures in Amazon Redshift\. | April 24, 2019 | 
 | [Support for an automatic WLM configuration](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html) | You can enable Amazon Redshift to run with automatic WLM\. | April 24, 2019 | 
 | [UNLOAD to Zstandard](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | You can use the UNLOAD command to apply Zstandard compression to text and comma\-separated value \(CSV\) files unloaded to Amazon S3\. | April 3, 2019 | 

@@ -1,6 +1,6 @@
 # Examples with ORDER BY<a name="r_Examples_with_ORDER_BY"></a>
 
-Return all 11 rows from the CATEGORY table, ordered by the second column, CATGROUP\. For results that have the same CATGROUP value, order the CATDESC column values by the length of the character string\. The other two columns, CATID and CATNAME, do not influence the order of results\. 
+Return all 11 rows from the CATEGORY table, ordered by the second column, CATGROUP\. For results that have the same CATGROUP value, order the CATDESC column values by the length of the character string\. Then order by columns CATID and CATNAME\. 
 
 ```
 select * from category order by 2, length(catdesc), 1, 3;

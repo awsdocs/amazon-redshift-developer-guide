@@ -13,7 +13,6 @@ Queries are routed to the concurrency scaling cluster only when the main cluster
 A query must meet all the following criteria to be a candidate for Concurrency Scaling: 
 + The query must be a read\-only query\. 
 + The query doesn't reference tables that use an [interleaved sort key](t_Sorting_data.md#t_Sorting_data-interleaved)\. 
-+ The query doesn't use Amazon Redshift Spectrum to reference external tables\. 
 + The query doesn't reference user\-defined temporary tables\. 
 
 ## Configuring Concurrency Scaling Queues<a name="concurrency-scaling-queues"></a>

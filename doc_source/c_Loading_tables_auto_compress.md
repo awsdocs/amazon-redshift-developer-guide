@@ -4,7 +4,7 @@
 + [How Automatic Compression Works](#c_Loading_tables_auto_compress-how-automatic-compression-works)
 + [Automatic Compression Example](#r_COPY_COMPRESS_examples)
 
-You can apply compression encodings to columns in tables manually, based on your own evaluation of the data, or you can use the COPY command to analyze and apply compression automatically\. We strongly recommend using the COPY command to apply automatic compression\.
+You can apply compression encodings to columns in tables manually, based on your own evaluation of the data, or you can use the COPY command with COMPUPDATE set to ON to analyze and apply compression automatically based on sample data\. 
 
 You can use automatic compression when you create and load a brand new table\. The COPY command will perform a compression analysis\. You can also perform a compression analysis without loading data or changing the compression on a table by running the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command against an already populated table\. For example, you can run the ANALYZE COMPRESSION command when you want to analyze compression on a table for future use, while preserving the existing DDL\.
 
@@ -12,7 +12,7 @@ Automatic compression balances overall performance when choosing compression enc
 
 ## How Automatic Compression Works<a name="c_Loading_tables_auto_compress-how-automatic-compression-works"></a>
 
-By default, the COPY command applies automatic compression whenever you run the COPY command with an empty target table and all of the table columns either have RAW encoding or no encoding\.
+When the COMPUPDATE parameter is ON, the COPY command applies automatic compression whenever you run the COPY command with an empty target table and all of the table columns either have RAW encoding or no encoding\.
 
 To apply automatic compression to an empty table, regardless of its current compression encodings, run the COPY command with the COMPUPDATE option set to ON\. To disable automatic compression, run the COPY command with the COMPUPDATE option set to OFF\.
 

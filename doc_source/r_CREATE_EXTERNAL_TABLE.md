@@ -94,7 +94,7 @@ Specify a single ASCII character for '*delimiter*'\. You can specify non\-printi
 ```
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\007'
 ```
-If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' and LINES TERMINATED BY '\\n'\.
+If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' \(start of heading\) and LINES TERMINATED BY '\\n' \(newline\)\. 
 
 ROW FORMAT SERDE '*serde\_name*' \[WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 A clause that specifies the SERDE format for the underlying data\.     
@@ -116,7 +116,7 @@ The name of the SerDe\. The following are supported:
     Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\.   
 WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 Optionally, specify property names and values, separated by commas\.
-If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' and LINES TERMINATED BY by '\\n'\.
+If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' \(start of heading\) and LINES TERMINATED BY '\\n' \(newline\)\. 
 
 STORED AS *file\_format*  
 The file format for data files\.   

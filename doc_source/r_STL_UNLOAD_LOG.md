@@ -14,12 +14,12 @@ This table is visible to all users\. Superusers can see all rows; regular users 
 
 To get a list of the files that were written to Amazon S3 by an UNLOAD command, you can call an Amazon S3 list operation after the UNLOAD completes; however, depending on how quickly you issue the call, the list might be incomplete because an Amazon S3 list operation is eventually consistent\. To get a complete, authoritative list immediately, query STL\_UNLOAD\_LOG\.
 
-The following query returns the pathname for files that were created by an UNLOAD with query ID 2320:
+The following query returns the pathname for files that were created by an UNLOAD for the last query executed:
 
 ```
 select query, substring(path,0,40) as path
 from stl_unload_log
-where query=2320
+where query = pg_last_query_id() 
 order by path;
 ```
 

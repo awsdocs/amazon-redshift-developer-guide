@@ -105,6 +105,12 @@ The following command creates a view called* myuser* from a table called USERS\.
 create view myuser as select lastname from users;
 ```
 
+The following command creates or replaces a view called* myuser* from a table called USERS\. 
+
+```
+create or replace view myuser as select lastname from users;
+```
+
 The following example creates a view with no schema binding\. 
 
 ```

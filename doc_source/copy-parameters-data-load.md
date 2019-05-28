@@ -14,10 +14,9 @@ If the COMPROWS number is greater than the number of rows in the input file, the
 
 COMPUPDATE \[ \{ ON \| TRUE \} \| \{ OFF \| FALSE \} \]  <a name="copy-compupdate"></a>
 Controls whether compression encodings are automatically applied during a COPY\.   
-The COPY command will automatically choose the optimal compression encodings for each column in the target table based on a sample of the input data\. For more information, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.  
-If COMPUPDATE is omitted, COPY applies automatic compression only if the target table is empty and all the table columns either have RAW encoding or no encoding\. This behavior is the default\.  
-With COMPUPDATE ON \(or TRUE\), COPY applies automatic compression if the table is empty, even if the table columns already have encodings other than RAW\. Existing encodings are replaced\. If COMPUPDATE is specified, this behavior is the default\.  
-With COMPUPDATE OFF \(or FALSE\), automatic compression is disabled\. 
+When COMPUPDATE is omitted, the COPY command chooses the compression encoding for each column only if the target table is empty and you have not specified an encoding for any of the columns\. The encoding for each column is determined by Amazon Redshift\. No data is sampled\.   
+When COMPUPDATE is ON \(or TRUE\), or COMPUPDATE is specified without an option, the COPY command applies automatic compression if the table is empty, even if the table columns already have encodings other than RAW\. Currently specified column encodings can be replaced\. Encoding for each column is based on an analysis of sample data\. For more information, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.  
+When COMPUPDATE is OFF \(or FALSE\), automatic compression is disabled\. Column encodings aren't changed\.
 
 MAXERROR \[AS\] *error\_count*   <a name="copy-maxerror"></a>
 If the load returns the *error\_count* number of errors or greater, the load fails\. If the load returns fewer errors, it continues and returns an INFO message that states the number of rows that could not be loaded\. Use this parameter to allow loads to continue when certain rows fail to load into the table because of formatting errors or other inconsistencies in the data\.   

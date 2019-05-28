@@ -4,24 +4,24 @@
 
 Amazon Redshift Spectrum supports querying nested data in Parquet, ORC, JSON, and Ion file formats\. Redshift Spectrum accesses the data using external tables\. You can create external tables that use the complex data types `struct`, `array`, and `map`\.
 
-For example, suppose that your data file contains the following data in Amazon S3 in a folder named `customers`\.
+For example, suppose that your data file contains the following data in Amazon S3 in a folder named `customers`\. Although there isn't a single root element, each JSON object in this sample data represents a row in a table\. 
 
 ```
-{ Id: 1,
-  Name:   {Given:"John", Family:"Smith"},
-  Phones: ["123-457789"],
-  Orders: [ {Date: "Mar 1,2018 11:59:59", Price: 100.50}
-            {Date: "Mar 1,2018 09:10:00", Price: 99.12} ]
+{"id": 1,
+ "name": {"given": "John", "family": "Smith"},
+ "phones": ["123-457789"],
+ "orders": [{"shipdate": "2018-03-01T11:59:59.000Z", "price": 100.50},
+            {"shipdate": "2018-03-01T09:10:00.000Z", "price": 99.12}]
 }
-{ Id: 2,
-  Name:   {Given:"Jenny", Family:"Doe"},
-  Phones: ["858-8675309", "415-9876543"],
-  Orders: [ ] 
+{"id": 2,
+ "name": {"given": "Jenny", "family": "Doe"},
+ "phones": ["858-8675309", "415-9876543"],
+ "orders": []
 }
-{ Id: 3,
-  Name: {Given:"Andy", Family:"Jones"},
-  Phones: [ ]
-  Orders: [ {Date: "Mar 2,2018 08:02:15", Price: 13.50} ] 
+{"id": 3,
+ "name": {"given": "Andy", "family": "Jones"},
+ "phones": [],
+ "orders": [{"shipdate": "2018-03-02T08:02:15.000Z", "price": 13.50}]
 }
 ```
 

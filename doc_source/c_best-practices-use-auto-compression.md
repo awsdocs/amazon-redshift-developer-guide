@@ -1,6 +1,6 @@
 # Let COPY Choose Compression Encodings<a name="c_best-practices-use-auto-compression"></a>
 
-You can specify compression encodings when you create a table, but in most cases, automatic compression produces the best results\.
+You can specify compression encodings when you create a table, but in most cases,  automatic compression produces the best results\.
 
 The COPY command analyzes your data and applies compression encodings to an empty table automatically as part of the load operation\. 
 

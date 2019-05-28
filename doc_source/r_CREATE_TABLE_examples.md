@@ -88,7 +88,7 @@ primary key(venueid))
 diststyle all;
 ```
 
-## Create a Table with Default EVEN Distribution<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-even-distribution"></a>
+## Create a Table with EVEN Distribution<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-even-distribution"></a>
 
 The following example creates a table called MYEVENT with three columns\. 
 
@@ -96,10 +96,11 @@ The following example creates a table called MYEVENT with three columns\.
 create table myevent(
 eventid int,
 eventname varchar(200),
-eventcity varchar(30));
+eventcity varchar(30))
+diststyle even;
 ```
 
-By default, the table is distributed evenly and is not sorted\. The table has no declared DISTKEY or SORTKEY columns\. 
+The table is distributed evenly and is not sorted\. The table has no declared DISTKEY or SORTKEY columns\. 
 
 ```
 select "column", type, encoding, distkey, sortkey
