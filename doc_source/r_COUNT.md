@@ -55,18 +55,17 @@ Count the number of times each seller listed batches of more than four tickets f
 
 ```
 select count(*), sellerid from listing 
+where numtickets > 4
 group by sellerid
-having min(numtickets)>4
 order by 1 desc, 2;
 
 count | sellerid
 -------+----------
-12 |    17304
+12 |    6386
+11 |    17304
+11 |    20123
 11 |    25428
-11 |    48950
-11 |    49585
 ...
-(16840 rows)
 ```
 
 The following examples compare the return values and execution times for COUNT and APPROXIMATE COUNT\. 

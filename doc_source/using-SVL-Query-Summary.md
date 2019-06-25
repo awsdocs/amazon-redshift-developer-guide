@@ -11,7 +11,7 @@ To analyze query summary information by stream, do the following:
    desc limit 5;
    ```
 
-   Examine the truncated query text in the `substring` field to determine which `query` value represents your query\. If you have run the query more than once, use the `query` value from the row with the lower `elapsed` value\. That is the row for the compiled version\. If you have been running many queries, you can raise the value used by the LIMIT clause used to make sure your query is included\.
+   Examine the truncated query text in the `substring` field to determine which `query` value represents your query\. If you have run the query more than once, use the `query` value from the row with the lower `elapsed` value\. That is the row for the compiled version\. If you have been running many queries, you can raise the value used by the LIMIT clause used to make sure that your query is included\.
 
 1. Select rows from SVL\_QUERY\_SUMMARY for your query\. Order the results by stream, segment, and step:
 
@@ -30,7 +30,7 @@ To analyze query summary information by stream, do the following:
 
 1. Review the `maxtime` value for each segment \(it is the same across all steps in the segment\)\. Identify the segment with the highest `maxtime` value and review the steps in this segment for the following operators\.
 **Note**  
-A high `maxtime` value doesn't necessarily indicate a problem with the segment\. Despite a high value, the segment might not have taken a long time to process\. All segments in a stream start getting timed in unison\. However, some downstream segments might not be able to run until they get data from upstream ones\. This effect might make them seem to have taken a long time because their `maxtime` value will include both their waiting time and their processing time\. 
+A high `maxtime` value doesn't necessarily indicate a problem with the segment\. Despite a high value, the segment might not have taken a long time to process\. All segments in a stream start getting timed in unison\. However, some downstream segments might not be able to run until they get data from upstream ones\. This effect might make them seem to have taken a long time because their `maxtime` value includes both their waiting time and their processing time\. 
    + **BCAST or DIST**: In these cases, the high `maxtime` value might be the result of redistributing a large number of rows\. For recommended solutions, see [Suboptimal Data Distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.
    + **HJOIN \(hash join\)**: If the step in question has a very high value in the `rows` field compared to the `rows` value in the final RETURN step in the query, see [Hash Join](query-performance-improvement-opportunities.md#hash-join) for recommended solutions\.
    + **SCAN/SORT**: Look for a SCAN, SORT, SCAN, MERGE sequence of steps just prior to a join step\. This pattern indicates that unsorted data is being scanned, sorted, and then merged with the sorted area of the table\.

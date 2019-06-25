@@ -2,7 +2,7 @@
 
 You can use the COPY command to load data in parallel from one or more remote hosts, such Amazon Elastic Compute Cloud \(Amazon EC2\) instances or other computers\. COPY connects to the remote hosts using Secure Shell \(SSH\) and executes commands on the remote hosts to generate text output\. The remote host can be an EC2 Linux instance or another Unix or Linux computer configured to accept SSH connections\. Amazon Redshift can connect to multiple hosts, and can open multiple SSH connections to each host\. Amazon Redshift sends a unique command through each connection to generate text output to the host's standard output, which Amazon Redshift then reads as it does a text file\.
 
-Use the FROM clause to specify the Amazon S3 object key for the manifest file that provides the information COPY will use to open SSH connections and execute the remote commands\. 
+Use the FROM clause to specify the Amazon S3 object key for the manifest file that provides the information COPY uses to open SSH connections and execute the remote commands\. 
 
 **Topics**
 + [Syntax](#copy-parameters-data-source-ssh-syntax)
@@ -12,7 +12,7 @@ Use the FROM clause to specify the Amazon S3 object key for the manifest file th
 + [Unsupported Parameters](#copy-parameters-data-source-ssh-unsupported-parms)
 
 **Important**  
- If the S3 bucket that holds the manifest file does not reside in the same region as your cluster, you must use the REGION parameter to specify the region in which the bucket is located\. 
+ If the S3 bucket that holds the manifest file does not reside in the same Region as your cluster, you must use the REGION parameter to specify the Region in which the bucket is located\. 
 
 ## Syntax<a name="copy-parameters-data-source-ssh-syntax"></a>
 
@@ -40,7 +40,7 @@ FROM
 The source of the data to be loaded\. 
 
 's3://*copy\_from\_ssh\_manifest\_file*'  <a name="copy-ssh-manifest"></a>
-The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY executes a command through each host connection, and then loads the output from the commands in parallel into the table\. The *s3://copy\_from\_ssh\_manifest\_file* argument specifies the Amazon S3 object key for the manifest file that provides the information COPY will use to open SSH connections and execute the remote commands\.  
+The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY executes a command through each host connection, and then loads the output from the commands in parallel into the table\. The *s3://copy\_from\_ssh\_manifest\_file* argument specifies the Amazon S3 object key for the manifest file that provides the information COPY uses to open SSH connections and execute the remote commands\.  
 The *s3://copy\_from\_ssh\_manifest\_file* argument must explicitly reference a single file; it cannot be a key prefix\. The following shows an example:  
 
 ```

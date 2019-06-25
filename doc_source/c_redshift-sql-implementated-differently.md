@@ -17,7 +17,7 @@ The following list includes some examples of SQL features that are implemented d
   Amazon Redshift Spectrum supports table partitioning using the [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md) command\.
 +  [ALTER TABLE](r_ALTER_TABLE.md) 
 
-  ALTER COLUMN actions are not supported\.
+  Only a subset of ALTER COLUMN actions are supported\.
 
   ADD COLUMN supports adding only one column in each ALTER TABLE statement\.
 +  [COPY](r_COPY.md) 

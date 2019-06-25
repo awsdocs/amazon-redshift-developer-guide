@@ -45,7 +45,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 
 ## Load LISTING from an Amazon EMR Cluster<a name="copy-command-examples-emr"></a>
 
-The following example loads the SALES table with tab\-delimited data from lzop\-compressed files in an Amazon EMR cluster\. COPY will load every file in the `myoutput/` folder that begins with `part-`\.
+The following example loads the SALES table with tab\-delimited data from lzop\-compressed files in an Amazon EMR cluster\. COPY loads every file in the `myoutput/` folder that begins with `part-`\.
 
 ```
 copy sales
@@ -54,7 +54,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter '\t' lzop;
 ```
 
-The following example loads the SALES table with JSON formatted data in an Amazon EMR cluster\. COPY will load every file in the `myoutput/json/` folder\.
+The following example loads the SALES table with JSON formatted data in an Amazon EMR cluster\. COPY loads every file in the `myoutput/json/` folder\.
 
 ```
 copy sales
@@ -67,7 +67,7 @@ JSON 's3://mybucket/jsonpaths.txt';
 
 You can use a manifest to ensure that your COPY command loads all of the required files, and only the required files, from Amazon S3\. You can also use a manifest when you need to load multiple files from different buckets or files that do not share the same prefix\. 
 
-For example, suppose you need to load the following three files: `custdata1.txt`, `custdata2.txt`, and `custdata3.txt`\. You could use the following command to load all of the files in `mybucket` that begin with `custdata` by specifying a prefix: 
+For example, suppose that you need to load the following three files: `custdata1.txt`, `custdata2.txt`, and `custdata3.txt`\. You could use the following command to load all of the files in `mybucket` that begin with `custdata` by specifying a prefix: 
 
 ```
 copy category
@@ -75,7 +75,7 @@ from 's3://mybucket/custdata'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-If only two of the files exist because of an error, COPY will load only those two files and finish successfully, resulting in an incomplete data load\. If the bucket also contains an unwanted file that happens to use the same prefix, such as a file named `custdata.backup` for example, COPY will load that file as well, resulting in unwanted data being loaded\.
+If only two of the files exist because of an error, COPY loads only those two files and finish successfully, resulting in an incomplete data load\. If the bucket also contains an unwanted file that happens to use the same prefix, such as a file named `custdata.backup` for example, COPY loads that file as well, resulting in unwanted data being loaded\.
 
 To ensure that all of the required files are loaded and to prevent unwanted files from being loaded, you can use a manifest file\. The manifest is a JSON\-formatted text file that lists the files to be processed by the COPY command\. For example, the following manifest loads the three files in the previous example\.
 
@@ -98,7 +98,7 @@ To ensure that all of the required files are loaded and to prevent unwanted file
 }
 ```
 
-The optional `mandatory` flag indicates whether COPY should terminate if the file does not exist\. The default is `false`\. Regardless of any mandatory settings, COPY will terminate if no files are found\. In this example, COPY will return an error if any of the files is not found\. Unwanted files that might have been picked up if you specified only a key prefix, such as `custdata.backup`, are ignored, because they are not on the manifest\. 
+The optional `mandatory` flag indicates whether COPY should terminate if the file does not exist\. The default is `false`\. Regardless of any mandatory settings, COPY terminates if no files are found\. In this example, COPY returns an error if any of the files is not found\. Unwanted files that might have been picked up if you specified only a key prefix, such as `custdata.backup`, are ignored, because they are not on the manifest\. 
 
 When loading from data files in ORC or Parquet format, a `meta` field is required, as shown in the following example\.
 
@@ -145,7 +145,7 @@ You can use a manifest to load files from different buckets or files that do not
 }
 ```
 
-The manifest can list files that are in different buckets, as long as the buckets are in the same region as the cluster\. 
+The manifest can list files that are in different buckets, as long as the buckets are in the same Region as the cluster\. 
 
 ```
 {
@@ -195,7 +195,7 @@ session_token '<temporary-token>';
 The following example loads pipe\-delimited data into the EVENT table and applies the following rules: 
 + If pairs of quotation marks are used to surround any character strings, they are removed\.
 + Both empty strings and strings that contain blanks are loaded as NULL values\.
-+ The load will fail if more than 5 errors are returned\.
++ The load fails if more than 5 errors are returned\.
 + Timestamp values must comply with the specified format; for example, a valid timestamp is `2008-09-26 05:43:12`\.
 
 ```
@@ -244,7 +244,7 @@ The following example shows the contents of a text file with the field values se
 15,Concerts,Classical,All symphony, concerto, and choir concerts
 ```
 
-If you load the file using the DELIMITER parameter to specify comma\-delimited input, the COPY command will fail because some input fields contain commas\. You can avoid that problem by using the CSV parameter and enclosing the fields that contain commas in quote characters\. If the quote character appears within a quoted string, you need to escape it by doubling the quote character\. The default quote character is a double quotation mark, so you will need to escape each double quotation mark with an additional double quotation mark\. Your new input file will look something like this\. 
+If you load the file using the DELIMITER parameter to specify comma\-delimited input, the COPY command fails because some input fields contain commas\. You can avoid that problem by using the CSV parameter and enclosing the fields that contain commas in quote characters\. If the quote character appears within a quoted string, you need to escape it by doubling the quote character\. The default quote character is a double quotation mark, so you need to escape each double quotation mark with an additional double quotation mark\. Your new input file looks something like this\. 
 
 ```
 12,Shows,Musicals,Musical theatre
@@ -398,7 +398,7 @@ For the following example, in addition to assuming that no VENUESEATS data is in
 10||Frisco|TX|
 ```
 
- Using the same table definition, the following COPY statement will fail because no DEFAULT value was specified for VENUENAME, and VENUENAME is a NOT NULL column: 
+ Using the same table definition, the following COPY statement fails because no DEFAULT value was specified for VENUENAME, and VENUENAME is a NOT NULL column: 
 
 ```
 copy venue(venueid, venuecity, venuestate) 
@@ -418,7 +418,7 @@ venuestate char(2),
 venueseats integer not null default '1000');
 ```
 
-As with the previous example, assume that the VENUESEATS column has no corresponding values in the source file\. The following COPY statement will successfully load the table, including the predefined IDENTITY data values instead of autogenerating those values: 
+As with the previous example, assume that the VENUESEATS column has no corresponding values in the source file\. The following COPY statement successfully loads the table, including the predefined IDENTITY data values instead of autogenerating those values: 
 
 ```
 copy venue(venueid, venuename, venuecity, venuestate) 
@@ -471,11 +471,11 @@ infoid |       tableinfo
 Without the ESCAPE parameter, this COPY command fails with an `Extra column(s) found` error\.
 
 **Important**  
-If you load your data using a COPY with the ESCAPE parameter, you must also specify the ESCAPE parameter with your UNLOAD command to generate the reciprocal output file\. Similarly, if you UNLOAD using the ESCAPE parameter, you will need to use ESCAPE when you COPY the same data\.
+If you load your data using a COPY with the ESCAPE parameter, you must also specify the ESCAPE parameter with your UNLOAD command to generate the reciprocal output file\. Similarly, if you UNLOAD using the ESCAPE parameter, you need to use ESCAPE when you COPY the same data\.
 
 ## Copy from JSON Examples<a name="r_COPY_command_examples-copy-from-json"></a>
 
-In the following examples, you will load the CATEGORY table with the following data\. 
+In the following examples, you load the CATEGORY table with the following data\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html)
 
@@ -532,7 +532,7 @@ json 'auto';
 
 ### Load from JSON Data Using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths"></a>
 
-If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. Again, the order does not matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose you have the following data file, named `category_object_paths.json`\.
+If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. Again, the order does not matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose that you have the following data file, named `category_object_paths.json`\.
 
 ```
 {
@@ -591,7 +591,7 @@ json 's3://mybucket/category_jsonpath.json';
 
 ### Load from JSON Arrays Using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths-arrays"></a>
 
-To load from JSON data that consists of a set of arrays, you must use a JSONPaths file to map the array elements to columns\. Suppose you have the following data file, named `category_array_data.json`\.
+To load from JSON data that consists of a set of arrays, you must use a JSONPaths file to map the array elements to columns\. Suppose that you have the following data file, named `category_array_data.json`\.
 
 ```
 [1,"Sports","MLB","Major League Baseball"]
@@ -625,7 +625,7 @@ json 's3://mybucket/category_array_jsonpath.json';
 
 ## Copy from Avro Examples<a name="r_COPY_command_examples-copy-from-avro"></a>
 
-In the following examples, you will load the CATEGORY table with the following data\. 
+In the following examples, you load the CATEGORY table with the following data\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html)
 
@@ -691,7 +691,7 @@ format as avro 'auto';
 
 If the field names in the Avro schema don't correspond directly to column names, you can use a JSONPaths file to map the schema elements to columns\. The order of the JSONPaths file expressions must match the column order\. 
 
-Suppose you have a data file named `category_paths.avro` that contains the same data as in the previous example, but with the following schema\.
+Suppose that you have a data file named `category_paths.avro` that contains the same data as in the previous example, but with the following schema\.
 
 ```
 {
@@ -731,9 +731,9 @@ format avro 's3://mybucket/category_path.avropath ';
 
 ## Preparing Files for COPY with the ESCAPE Option<a name="r_COPY_preparing_data"></a>
 
-The following example describes how you might prepare data to "escape" newline characters before importing the data into an Amazon Redshift table using the COPY command with the ESCAPE parameter\. Without preparing the data to delimit the newline characters, Amazon Redshift will return load errors when you run the COPY command, because the newline character is normally used as a record separator\. 
+The following example describes how you might prepare data to "escape" newline characters before importing the data into an Amazon Redshift table using the COPY command with the ESCAPE parameter\. Without preparing the data to delimit the newline characters, Amazon Redshift returns load errors when you run the COPY command, because the newline character is normally used as a record separator\. 
 
-For example, consider a file or a column in an external table that you want to copy into an Amazon Redshift table\. If the file or column contains XML\-formatted content or similar data, you will need to make sure that all of the newline characters \(\\n\) that are part of the content are escaped with the backslash character \(\\\)\. 
+For example, consider a file or a column in an external table that you want to copy into an Amazon Redshift table\. If the file or column contains XML\-formatted content or similar data, you need to make sure that all of the newline characters \(\\n\) that are part of the content are escaped with the backslash character \(\\\)\. 
 
 A good thing about a file or table containing embedded newlines characters is that it provides a relatively easy pattern to match\. Each embedded newline character most likely always follows a `>` character with potentially some white space characters \(`' '` or tab\) in between, as you can see in the following example of a text file named `nlTest1.txt`\. 
 
@@ -760,7 +760,7 @@ Similarly, you can use Perl to perform a similar operation:
 cat nlTest1.txt | perl -p -e 's/>\s*\n/>\\\n/g' > nlTest2.txt
 ```
 
-To accommodate loading the data from the `nlTest2.txt` file into Amazon Redshift, we created a two\-column table in Amazon Redshift\. The first column c1, is a character column that will hold XML\-formatted content from the `nlTest2.txt` file\. The second column c2 holds integer values loaded from the same file\. 
+To accommodate loading the data from the `nlTest2.txt` file into Amazon Redshift, we created a two\-column table in Amazon Redshift\. The first column c1, is a character column that holds XML\-formatted content from the `nlTest2.txt` file\. The second column c2 holds integer values loaded from the same file\. 
 
 After running the `sed` command, you can correctly load data from the `nlTest2.txt` file into an Amazon Redshift table using the ESCAPE parameter\. 
 

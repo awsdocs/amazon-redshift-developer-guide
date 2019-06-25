@@ -29,7 +29,7 @@ Alternatively, you can run a more complex query that returns all the statements 
 
 ```
 select xid, to_char(starttime, 'HH24:MM:SS.MS') as starttime,
-date_diff('sec',starttime,endtime ) as secs, substring(text, 1, 40)
+datediff(sec,starttime,endtime ) as secs, substring(text, 1, 40)
 from svl_statementtext
 where sequence = 0
 and xid in (select xid from svl_statementtext s where s.text like 'padb_fetch_sample%' )

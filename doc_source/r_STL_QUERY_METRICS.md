@@ -4,7 +4,7 @@ Contains metrics information, such as the number of rows processed, CPU usage, i
 
 Query metrics are sampled at one second intervals\. As a result, different runs of the same query might return slightly different times\. Also, query segments that run in less than one second might not be recorded\. 
 
-STL\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query Planning And Execution Workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data Warehouse System Architecture](c_high_level_system_architecture.md)\. 
+STL\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query Planning and Execution Workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data Warehouse System Architecture](c_high_level_system_architecture.md)\. 
 
 To determine the level at which the row reports metrics, examine the `segment` and `step_type` columns\.
 + If both `segment` and `step_type` are `-1`, then the row reports metrics at the query level\. 

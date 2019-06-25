@@ -39,7 +39,7 @@ avg(datediff(day, listtime, saletime))
 ```
 
 AS *column\_alias*   
-A temporary name for the column that will be used in the final result set\. The AS keyword is optional\. For example:   
+A temporary name for the column that is used in the final result set\. The AS keyword is optional\. For example:   
 
 ```
 avg(datediff(day, listtime, saletime)) as avgwait
@@ -50,7 +50,7 @@ The alias is recognized right after it is defined in the target list\. You can u
 ```
 select clicks / impressions as probability, round(100 * probability, 1) as percentage from raw_data;                       
 ```
-The benefit of the lateral alias reference is you don't need to repeat the aliased expression when building more complex expressions in the same target list\. When Amazon Redshift parses this type of reference, it just inlines the previously defined aliases\. If there is a column with the same name defined in the `FROM` clause as the previously aliased expression, the column in the `FROM` clause takes priority\. For example, in the above query if there is a column named 'probability' in table raw\_data, the 'probability' in the second expression in the target list will refer to that column instead of the alias name 'probability'\. 
+The benefit of the lateral alias reference is you don't need to repeat the aliased expression when building more complex expressions in the same target list\. When Amazon Redshift parses this type of reference, it just inlines the previously defined aliases\. If there is a column with the same name defined in the `FROM` clause as the previously aliased expression, the column in the `FROM` clause takes priority\. For example, in the above query if there is a column named 'probability' in table raw\_data, the 'probability' in the second expression in the target list refers to that column instead of the alias name 'probability'\. 
 
 ## Usage Notes<a name="r_SELECT_list_usage_notes"></a>
 

@@ -38,9 +38,9 @@ When the hash distribution scheme of the incoming data matches that of the targe
 
 ## Wide Tables<a name="r_CREATE_TABLE_usage-wide-tables"></a>
 
-You might be able to create a very wide table but be unable to perform query processing, such as INSERT or SELECT statements, on the table\. The maximum width of a table with fixed width columns, such as CHAR, is 64KB \- 1 \(or 65535 bytes\)\. If at table includes VARCHAR columns, the table can have a larger declared width without returning an error because VARCHARS columns do not contribute their full declared width to the calculated query\-processing limit\. The effective query\-processing limit with VARCHAR columns will vary based on a number of factors\.
+You might be able to create a very wide table but be unable to perform query processing, such as INSERT or SELECT statements, on the table\. The maximum width of a table with fixed width columns, such as CHAR, is 64KB \- 1 \(or 65535 bytes\)\. If a table includes VARCHAR columns, the table can have a larger declared width without returning an error because VARCHARS columns do not contribute their full declared width to the calculated query\-processing limit\. The effective query\-processing limit with VARCHAR columns will vary based on a number of factors\.
 
-If a table is too wide for inserting or selecting, you will receive the following error\.
+If a table is too wide for inserting or selecting, you receive the following error\.
 
 ```
 ERROR:  8001

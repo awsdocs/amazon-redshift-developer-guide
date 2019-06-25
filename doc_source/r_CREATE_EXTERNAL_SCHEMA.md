@@ -4,7 +4,7 @@ Creates a new external schema in the current database\. The owner of this schema
 
 You can't use the GRANT or REVOKE commands for permissions on an external table\. Instead, grant or revoke the permissions on the external schema\. 
 
-An Amazon Redshift external schema references a database in an external data catalog in AWS Glue or in Amazon Athena or a database in an Apache Hive metastore, such as Amazon EMR\. 
+An Amazon Redshift external schema references a database in an external Data Catalog in AWS Glue or in Amazon Athena or a database in an Apache Hive metastore, such as Amazon EMR\. 
 
 **Note**  
 If you currently have Redshift Spectrum external tables in the Athena data catalog, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
@@ -38,18 +38,18 @@ The name of the new external schema\. For more information about valid names, se
 
 FROM \[ DATA CATALOG \] \| HIVE METASTORE   
 A keyword that indicates where the external database is located\.   
-DATA CATALOG indicates that the external database is defined in the Athena data catalog\.   
-If the external database is defined in an Athena data catalog in a different AWS Region, the REGION parameter is required\. DATA CATALOG is the default\.  
+DATA CATALOG indicates that the external database is defined in the Athena data catalog or the AWS Glue Data Catalog\.   
+If the external database is defined in an external Data Catalog in a different AWS Region, the REGION parameter is required\. DATA CATALOG is the default\.  
 HIVE METASTORE indicates that the external database is defined in a Hive metastore\. If HIVE METASTORE, is specified, URI is required\. 
 
 REGION '*aws\-region*'  
-If the external database is defined in an Athena data catalog, the AWS Region in which the database is located\. This parameter is required if the database is defined in an Athena data catalog\. 
+If the external database is defined in an Athena data catalog or or the AWS Glue Data Catalog, the AWS Region in which the database is located\. This parameter is required if the database is defined in an external Data Catalog\. 
 
 URI '*hive\_metastore\_uri*' \[ PORT port\_number \]  
 If the database is in a Hive metastore, specify the URI and optionally the port number for the metastore\. The default port number is 9083\. 
 
 IAM\_ROLE '*iam\-role\-arn\-string*'  
-The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
+The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or the AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
 
 ```
 IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-name>'
@@ -63,7 +63,7 @@ IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-1-name>,arn:aws:iam::<aws-acc
 ```
 
 CATALOG\_ROLE '*catalog\-role\-arn\-string*'  
-The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization for the data catalog\. If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the data catalog in AWS Glue or Athena\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
+The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization for the data catalog\. If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the Data Catalog in AWS Glue or Athena\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
 
 ```
 CATALOG_ROLE 'arn:aws:iam::<aws-account-id>:role/<catalog-role>'
@@ -82,12 +82,9 @@ CREATE EXTERNAL DATABASE IF NOT EXISTS can't be used with HIVE METASTORE\.
 
 ## Usage Notes<a name="r_CREATE_EXTERNAL_SCHEMA_usage"></a>
 
-When using the Athena data catalog, the following limits apply:
-+ A maximum of 100 databases per account\.
-+ A maximum of 100 tables per database\.
-+ A maximum of 20,000 partitions per table\.
+For limits when using the Athena data catalog, see [Athena Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#amazon-athena-limits) in the AWS General Reference\.
 
-You can request a limit increase by contacting AWS Support\.
+For limits when using the AWS Glue Data Catalog, see [AWS Glue Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_glue) in the AWS General Reference\.
 
 These limits don’t apply to a Hive metastore\.
 

@@ -1,6 +1,6 @@
 # EXP Function<a name="r_EXP"></a>
 
- The EXP function returns the exponential value in scientific notation for a numeric expression\. 
+The EXP function implements the exponential function for a numeric expression, or the base of the natural logarithm, `e`, raised to the power of expression\. The EXP function is the inverse of [LN Function](r_LN.md)\. 
 
 ## Syntax<a name="r_EXP-synopsis"></a>
 
@@ -24,9 +24,9 @@ Use the EXP function to forecast ticket sales based on a continuous growth patte
 ```
 select (select sum(qtysold) from sales, date
 where sales.dateid=date.dateid
-and year=2008) * exp((7::float/100)*10) qty2010;
+and year=2008) * exp((7::float/100)*10) qty2018;
 
-qty2010
+qty2018
 ------------------
 695447.483772222
 (1 row)

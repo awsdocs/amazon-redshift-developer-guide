@@ -12,7 +12,7 @@ With AUTO distribution, Amazon Redshift assigns an optimal distribution style ba
 
  The leader node distributes the rows across the slices in a round\-robin fashion, regardless of the values in any particular column\. EVEN distribution is appropriate when a table does not participate in joins or when there is not a clear choice between KEY distribution and ALL distribution\.
 
- **Key distribution** 
+ **KEY distribution** 
 
  The rows are distributed according to the values in one column\. The leader node places matching values on the same node slice\. If you distribute a pair of tables on the joining keys, the leader node collocates the rows on the slices according to the values in the joining columns so that matching values from the common columns are physically stored together\. 
 
@@ -25,4 +25,4 @@ With AUTO distribution, Amazon Redshift assigns an optimal distribution style ba
 **Note**  
  After you have specified a distribution style for a column, Amazon Redshift handles data distribution at the cluster level\. Amazon Redshift does not require or support the concept of partitioning data within database objects\. You do not need to create table spaces or define partitioning schemes for tables\. 
 
-You can't change the distribution style of a table after it's created\. To use a different distribution style, you can recreate the table and populate the new table with a deep copy\. For more information, see [Performing a Deep Copy](performing-a-deep-copy.md)
+In certain scenarios, you can change the distribution style of a table after it is created\. For more information, see [ALTER TABLE](r_ALTER_TABLE.md)\. For scenarios when you can't change the distribution style of a table after it's created, you can recreate the table and populate the new table with a deep copy\. For more information, see [Performing a Deep Copy](performing-a-deep-copy.md)

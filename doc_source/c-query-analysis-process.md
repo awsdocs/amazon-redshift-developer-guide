@@ -8,9 +8,9 @@ If a query is taking longer than expected, use the following steps to identify a
 
 1. Run the [VACUUM](r_VACUUM_command.md) command on the tables in the query to reclaim space and re\-sort rows\. Running VACUUM helps if the unsorted region is large and the query uses the sort key in a join or in the predicate\.
 
-1. Run the [ANALYZE](r_ANALYZE.md) command on the tables in the query to make sure statistics are up to date\. Running ANALYZE helps if any of the tables in the query have recently changed a lot in size\. If running a full ANALYZE command will take too long, run ANALYZE on a single column to reduce processing time\. This approach will still update the table size statistics; table size is a significant factor in query planning\.
+1. Run the [ANALYZE](r_ANALYZE.md) command on the tables in the query to make sure statistics are up to date\. Running ANALYZE helps if any of the tables in the query have recently changed a lot in size\. If running a full ANALYZE command will take too long, run ANALYZE on a single column to reduce processing time\. This approach still updates the table size statistics; table size is a significant factor in query planning\.
 
-1. Make sure your query has been run once for each type of client \(based on what type of connection protocol the client uses\) so that the query is compiled and cached\. This approach will speed up subsequent runs of the query\. For more information, see [Factors Affecting Query Performance](c-query-performance.md)\.
+1. Make sure that your query has been run once for each type of client \(based on what type of connection protocol the client uses\) so that the query is compiled and cached\. This approach speeds up subsequent runs of the query\. For more information, see [Factors Affecting Query Performance](c-query-performance.md)\.
 
 1. Check the [STL\_ALERT\_EVENT\_LOG](r_STL_ALERT_EVENT_LOG.md) table to identify and correct possible issues with your query\. For more information, see [Reviewing Query Alerts](c-reviewing-query-alerts.md)\.
 

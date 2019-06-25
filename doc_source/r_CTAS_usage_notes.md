@@ -30,7 +30,7 @@ For complex queries, such as queries that include joins, aggregations, an order 
 **Note**  
 For best performance with large data sets or complex queries, we recommend testing using typical data sets\.
 
-You can often predict which distribution key and sort key CTAS will choose by examining the query plan to see which columns, if any, the query optimizer chooses for sorting and distributing data\. If the top node of the query plan is a simple sequential scan from a single table \(XN Seq Scan\), then CTAS generally uses the source table's distribution style and sort key\. If the top node of the query plan is anything other a sequential scan \(such as XN Limit, XN Sort, XN HashAggregate, and so on\), CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\.
+You can often predict which distribution key and sort key CTAS chooses by examining the query plan to see which columns, if any, the query optimizer chooses for sorting and distributing data\. If the top node of the query plan is a simple sequential scan from a single table \(XN Seq Scan\), then CTAS generally uses the source table's distribution style and sort key\. If the top node of the query plan is anything other a sequential scan \(such as XN Limit, XN Sort, XN HashAggregate, and so on\), CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\.
 
 For example, suppose you create five tables using the following types of SELECT clauses:
 + A simple select statement 

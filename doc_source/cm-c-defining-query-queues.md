@@ -87,6 +87,8 @@ For example, if you configure four queues, you can allocate memory as follows: 2
 
 ## WLM Timeout<a name="wlm-timeout"></a>
 
+WLM timeout \(`max_execution_time`\) is deprecated\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. 
+
 To limit the amount of time that queries in a given WLM queue are permitted to use, you can set the WLM timeout value for each queue\. The timeout parameter specifies the amount of time, in milliseconds, that Amazon Redshift waits for a query to execute before either canceling or hopping the query\. The timeout is based on query execution time and doesn't include time spent waiting in a queue\. 
 
 WLM attempts to hop [CREATE TABLE AS](r_CREATE_TABLE_AS.md) \(CTAS\) statements and read\-only queries, such as SELECT statements\. Queries that can't be hopped are canceled\. For more information, see [WLM Query Queue Hopping](wlm-queue-hopping.md)\.

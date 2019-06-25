@@ -1,6 +1,6 @@
 # CREATE LIBRARY<a name="r_CREATE_LIBRARY"></a>
 
-Installs a Python library, which will be available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries can't exceed 100 MB\. CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\.
+Installs a Python library, which is available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries can't exceed 100 MB\. CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\.
 
 Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
 
@@ -47,7 +47,7 @@ If you specify an Amazon S3 bucket, you must also provide credentials for an AWS
  If the Amazon S3 bucket does not reside in the same AWS Region as your Amazon Redshift cluster, you must use the REGION option to specify the AWS Region in which the data is located\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.
 
 *authorization*   
-A clause that indicates the method your cluster will use for authentication and authorization to access the Amazon S3 bucket that contains the library file\. Your cluster must have permission to access the Amazon S3 with the LIST and GET actions\.  
+A clause that indicates the method your cluster uses for authentication and authorization to access the Amazon S3 bucket that contains the library file\. Your cluster must have permission to access the Amazon S3 with the LIST and GET actions\.  
 The syntax for authorization is the same as for the COPY command authorization\. For more information, see [Authorization Parameters](copy-parameters-authorization.md)\.  
 To specify an IAM role, replace *<account\-id>* and *<role\-name>* with the account ID and role name in the CREDENTIALS *credentials\-args* string, as shown following:  
 

@@ -49,7 +49,7 @@ To reduce processing time and improve overall system performance, Amazon Redshif
 set analyze_threshold_percent to 20;
 ```
 
-To analyze tables when only a small number of rows have changed, set `analyze_threshold_percent` to an arbitrarily small number\. For example, if you set `analyze_threshold_percent` to 0\.01, then a table with 100,000,000 rows will not be skipped if at least 10,000 rows have changed\. 
+To analyze tables when only a small number of rows have changed, set `analyze_threshold_percent` to an arbitrarily small number\. For example, if you set `analyze_threshold_percent` to 0\.01, then a table with 100,000,000 rows are not skipped if at least 10,000 rows have changed\. 
 
 ```
 set analyze_threshold_percent to 0.01;

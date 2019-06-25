@@ -59,7 +59,7 @@ This clause is useful when scripting, so the script doesn’t fail if CREATE TAB
 
  *table\_name*   
 Name of the table to be created\.  
-If you specify a table name that begins with '\# ', the table will be created as a temporary table\. The following is an example:  
+If you specify a table name that begins with '\# ', the table is created as a temporary table\. The following is an example:  
 
 ```
 create table #newtable (id int);
@@ -149,7 +149,7 @@ A clause that specifies an existing table from which the new table automatically
 Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you can't explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
 
 BACKUP \{ YES \| NO \}   <a name="create-table-backup"></a>
-A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that won't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
+A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that don't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
 
 DISTSTYLE \{ AUTO \| EVEN \| KEY \| ALL \}  
 Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\. The default is AUTO\.  

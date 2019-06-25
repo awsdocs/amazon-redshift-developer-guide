@@ -6,7 +6,7 @@ Sorting enables efficient handling of range\-restricted predicates\. Amazon Reds
 
 You can specify either a compound or interleaved sort key\. A compound sort key is more efficient when query predicates use a *prefix*, which is a subset of the sort key columns in order\. An interleaved sort key gives equal weight to each column in the sort key, so query predicates can use any subset of the columns that make up the sort key, in any order\. For examples of using compound sort keys and interleaved sort keys, see [Comparing Sort Styles](t_Sorting_data-compare-sort-styles.md)\.
 
-To understand the impact of the chosen sort key on query performance, use the [EXPLAIN](r_EXPLAIN.md) command\. For more information, see [Query Planning And Execution Workflow](c-query-planning.md) 
+To understand the impact of the chosen sort key on query performance, use the [EXPLAIN](r_EXPLAIN.md) command\. For more information, see [Query Planning and Execution Workflow](c-query-planning.md) 
 
 To define a sort type, use either the INTERLEAVED or COMPOUND keyword with your CREATE TABLE or CREATE TABLE AS statement\. The default is COMPOUND\. An INTERLEAVED sort key can use a maximum of eight columns\.
 

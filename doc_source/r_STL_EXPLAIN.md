@@ -37,9 +37,9 @@ where query=10 order by 1,2;
 query| nodeid |parentid|           substring            |    substring
 -----+--------+--------+--------------------------------+-------------------
 10   |      1 |      0 |XN Aggregate  (cost=6717.61..6  |
-10   |      2 |      1 |  -> XN Merge Join DS_DIST_NO| Merge Cond:("outer"
-10   |      3 |      2 |       -> XN Seq Scan on lis |
-10   |      4 |      2 |       -> XN Seq Scan on sal |
+10   |      2 |      1 |  -> XN Merge Join DS_DIST_NO   | Merge Cond:("outer"
+10   |      3 |      2 |       -> XN Seq Scan on lis    |
+10   |      4 |      2 |       -> XN Seq Scan on sal    |
 (4 rows)
 ```
 

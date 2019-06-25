@@ -36,7 +36,7 @@ Creates a temporary table\. A temporary table is automatically dropped at the en
 
  *table\_name*   
 The name of the table to be created\.  
-If you specify a table name that begins with '\# ', the table will be created as a temporary table\. For example:  
+If you specify a table name that begins with '\# ', the table is created as a temporary table\. For example:  
 
 ```
 create table #newtable (id) as select * from oldtable;

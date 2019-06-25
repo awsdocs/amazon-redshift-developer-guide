@@ -58,10 +58,62 @@ drop constraint category_pkey;
 
 ## Alter a VARCHAR Column<a name="r_ALTER_TABLE_examples_alter-column"></a>
 
-To conserve storage, you can define a table initially with VARCHAR columns with the minimum size needed for your current data requirements\. If later you need to accommodate longer strings, you can alter the table to increase the size of the column\. 
+To conserve storage, you can define a table initially with VARCHAR columns with the minimum size needed for your current data requirements\. Later, to accommodate longer strings, you can alter the table to increase the size of the column\. 
 
 The following example increases the size of the EVENTNAME column to VARCHAR\(300\)\. 
 
 ```
 alter table event alter column eventname type varchar(300);
+```
+
+## Alter a DISTSTYLE KEY DISTKEY Column<a name="r_ALTER_TABLE_examples_alter-distkey"></a>
+
+The following examples show how to change the DISTSTYLE and DISTKEY of a table\.
+
+Create a table with an EVEN distribution style\. The SVV\_TABLE\_INFO view shows that the DISTSTYLE is EVEN\. 
+
+```
+create table inventory(
+  inv_date_sk int4 not null , 
+  inv_item_sk int4 not null ,
+  inv_warehouse_sk int4 not null ,
+  inv_quantity_on_hand int4
+) diststyle even;
+
+Insert into inventory values(1,1,1,1);
+
+select "table", "diststyle" from svv_table_info;
+   table   |   diststyle
+-----------+----------------
+inventory  |     EVEN
+(1 row)
+```
+
+Alter the table DISTKEY to `inv_item_sk` and then to `inv_warehouse_sk` within a BEGIN…COMMIT block\. The SVV\_TABLE\_INFO view shows the `inv_warehouse_sk` column as the resulting distribution key\. 
+
+```
+begin;
+alter table inventory alter distkey inv_item_sk;
+alter table inventory alter distkey inv_warehouse_sk;
+commit;
+
+select "table", "diststyle" from svv_table_info;
+   table   |       diststyle
+-----------+-----------------------
+inventory | KEY(inv_warehouse_sk)
+(1 row)
+```
+
+Alter the DISTKEY on a table and abort the transaction\. The distribution key doesn't change\.
+
+```
+begin;
+alter table inventory alter distkey inv_item_sk;
+abort;
+select "table", "diststyle" from svv_table_info;
+
+   table   |       diststyle
+-----------+----------------------
+inventory  | KEY(inv_warehouse_sk)
+(1 row)
 ```

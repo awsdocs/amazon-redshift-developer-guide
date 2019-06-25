@@ -490,7 +490,7 @@ select * from loadvenuenulls where venuestate is null or venueseats is null;
 ...
 ```
 
-You can UNLOAD a table that contains nulls using the default NULL AS behavior and then COPY the data back into a table using the default NULL AS behavior; however, any non\-numeric fields in the target table will contain empty strings, not nulls\. By default UNLOAD converts nulls to empty strings \(white space or zero\-length\)\. COPY converts empty strings to NULL for numeric columns, but inserts empty strings into non\-numeric columns\. The following example shows how to perform an UNLOAD followed by a COPY using the default NULL AS behavior\. 
+You can UNLOAD a table that contains nulls using the default NULL AS behavior and then COPY the data back into a table using the default NULL AS behavior; however, any non\-numeric fields in the target table contain empty strings, not nulls\. By default UNLOAD converts nulls to empty strings \(white space or zero\-length\)\. COPY converts empty strings to NULL for numeric columns, but inserts empty strings into non\-numeric columns\. The following example shows how to perform an UNLOAD followed by a COPY using the default NULL AS behavior\. 
 
 ```
 unload ('select * from venue') 
@@ -545,7 +545,7 @@ select * from loadvenuenulls where venuestate is null or venueseats is null;
 
 ## ALLOWOVERWRITE Example<a name="unload-examples-allowoverwrite"></a>
 
-By default, UNLOAD will not overwrite existing files in the destination bucket\. For example, if you run the same UNLOAD statement twice without modifying the files in the destination bucket, the second UNLOAD will fail\. To overwrite the existing files, including the manifest file, specify the ALLOWOVERWRITE option\.
+By default, UNLOAD does not overwrite existing files in the destination bucket\. For example, if you run the same UNLOAD statement twice without modifying the files in the destination bucket, the second UNLOAD fails\. To overwrite the existing files, including the manifest file, specify the ALLOWOVERWRITE option\.
 
 ```
 unload ('select * from venue')

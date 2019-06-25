@@ -1,10 +1,10 @@
-# Query Planning And Execution Workflow<a name="c-query-planning"></a>
+# Query Planning and Execution Workflow<a name="c-query-planning"></a>
 
 The following illustration provides a high\-level view of the query planning and execution workflow\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/07-QueryPlanning.png)
 
-The query planning and execution workflow follows these steps:
+The query planning and execution workflow follow these steps:
 
 1. The leader node receives the query and parses the SQL\.
 

@@ -18,7 +18,7 @@ The value of the input argument\. This parameter can also be a function name, fo
 
 ## Usage Notes<a name="r_CALL_procedure-usage-notes"></a>
 
-Amazon Redshift stored procedures support nested and recursive calls, as described following\. In addition, make sure your driver support is up to date, also described following
+Amazon Redshift stored procedures support nested and recursive calls, as described following\. In addition, make sure your driver support is up\-to\-date, also described following\.
 
 **Topics**
 + [Nested Calls](#r_CALL_procedure-nested-calls)

@@ -27,7 +27,7 @@ To fix this issue, run [ANALYZE](r_ANALYZE.md)\.
 
 If a nested loop is present, you might see a nested loop alert event in STL\_ALERT\_EVENT\_LOG\. You can also identify this type of event by running the query at [Identifying Queries with Nested Loops](diagnostic-queries-for-query-tuning.md#identify-queries-with-nested-loops)\. For more information, see [Reviewing Query Alerts](c-reviewing-query-alerts.md)\.
 
-To fix this, review your query for cross\-joins and remove them if possible\. Cross\-joins are joins without a join condition that result in the Cartesian product of two tables\. They are typically executed as nested loop joins, which are the slowest of the possible join types\.
+To fix this, review your query for cross\-joins and remove them if possible\. Cross\-joins are joins without a join condition that result in the cartesian product of two tables\. They are typically executed as nested loop joins, which are the slowest of the possible join types\.
 
 ## Hash Join<a name="hash-join"></a>
 
@@ -78,7 +78,7 @@ To fix this issue, allocate more memory to the query by temporarily increasing t
 
 If your WHERE clause causes excessive table scans, you might see a SCAN step in the segment with the highest `maxtime` value in SVL\_QUERY\_SUMMARY\. For more information, see [Using the SVL\_QUERY\_SUMMARY View](using-SVL-Query-Summary.md)\.
 
-To fix this issue, add a WHERE clause to the query based on the primary sort column of the largest table\. This approach will help minimize scanning time\. For more information, see [Amazon Redshift Best Practices for Designing Tables](c_designing-tables-best-practices.md)\.
+To fix this issue, add a WHERE clause to the query based on the primary sort column of the largest table\. This approach helps minimize scanning time\. For more information, see [Amazon Redshift Best Practices for Designing Tables](c_designing-tables-best-practices.md)\.
 
 ## Insufficiently Restrictive Predicate<a name="insufficiently-restrictive-predicate"></a>
 
@@ -88,7 +88,7 @@ To fix this issue, try adding a predicate to the query or making the existing pr
 
 ## Very Large Result Set<a name="very-large-result-set"></a>
 
-If your query returns a very large result set, consider rewriting the query to use [UNLOAD](r_UNLOAD.md) to write the results to Amazon S3\. This approach will improve the performance of the RETURN step by taking advantage of parallel processing\. For more information on checking for a very large result set, see [Using the SVL\_QUERY\_SUMMARY View](using-SVL-Query-Summary.md)\.
+If your query returns a very large result set, consider rewriting the query to use [UNLOAD](r_UNLOAD.md) to write the results to Amazon S3\. This approach improves the performance of the RETURN step by taking advantage of parallel processing\. For more information on checking for a very large result set, see [Using the SVL\_QUERY\_SUMMARY View](using-SVL-Query-Summary.md)\.
 
 ## Large SELECT List<a name="large-SELECT-list"></a>
 

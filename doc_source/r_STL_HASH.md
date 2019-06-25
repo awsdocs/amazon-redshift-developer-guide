@@ -13,16 +13,16 @@ This table is visible to all users\. Superusers can see all rows; regular users 
 The following example returns information about the number of partitions that were used in a hash for query 720, and indicates that none of the steps ran on disk\. 
 
 ```
-select slice, rows, bytes, occupied, workmem, num_parts, est_rows, num_blocks_permitted
+select slice, rows, bytes, occupied, workmem, num_parts, est_rows, num_blocks_permitted, is_diskbased
 from stl_hash
 where query=720 and segment=5
 order by slice;
 ```
 
 ```
- slice | rows | bytes  | occupied | workmem  | num_parts | est_rows | num_blocks_permitted
--------+------+--------+----------+----------+-----------+----------+----------------------
-     0 |  145 | 585800 |        1 | 88866816 |        16 |        1 |                   52
-     1 |    0 |      0 |        0 |        0 |        16 |        1 |                   52
+ slice | rows | bytes  | occupied | workmem  | num_parts | est_rows | num_blocks_permitted | is_diskbased
+-------+------+--------+----------+----------+-----------+----------+----------------------+--------------
+     0 |  145 | 585800 |        1 | 88866816 |        16 |        1 |                   52              f
+     1 |    0 |      0 |        0 |        0 |        16 |        1 |                   52              f
 (2 rows)
 ```

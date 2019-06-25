@@ -148,7 +148,7 @@ s3://mybucket/key000    6.2 GB
 s3://mybucket/key001    6.2 GB
 s3://mybucket/key002    1.0 GB
 ```
-The UNLOAD command is designed to use parallel processing\. We recommend leaving PARALLEL enabled for most cases, especially if the files will be used to load tables using a COPY command\.
+The UNLOAD command is designed to use parallel processing\. We recommend leaving PARALLEL enabled for most cases, especially if the files are used to load tables using a COPY command\.
 
 MAXFILESIZE AS max\-size \[ MB \| GB \]   <a name="unload-maxfilesize"></a>
 The maximum size of files UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE is not specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, is not affected by MAXFILESIZE\.

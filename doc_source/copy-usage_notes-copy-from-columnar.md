@@ -20,7 +20,7 @@ COPY supports columnar formatted data with the following restrictions:
   + EU \(Ireland\) Region \(eu\-west\-1\)
   + EU \(London\) Region \(eu\-west\-2\)
   + South America \(São Paulo\) Region \(sa\-east\-1\)
-+ The Amazon S3 bucket must be in the same region as the Amazon Redshift cluster\. 
++ The Amazon S3 bucket must be in the same Region as the Amazon Redshift cluster\. 
 + COPY command credentials must be supplied using an AWS Identity and Access Management \(IAM\) role as an argument for the [IAM\_ROLE](copy-parameters-authorization.md#copy-iam-role) parameter or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\. 
 + COPY doesn't automatically apply compression encodings\. 
 + Only the following COPY parameters are supported: 
@@ -32,7 +32,7 @@ COPY supports columnar formatted data with the following restrictions:
 + If COPY encounters an error while loading, the command fails\. ACCEPTANYDATE, ACCEPTINVCHARS, and MAXERROR aren't supported for columnar data types\.
 + Error messages are sent only to the SQL client\. Errors are not logged in STL\_LOAD\_ERRORS\.
 + COPY inserts values into the target table's columns in the same order as the columns occur in the columnar data files\. The number of columns in the target table and the number of columns in the data file must match\.
-+ If the file you specify for the COPY operation includes one of the following extensions we will decompress the data without the need for adding any parameters: 
++ If the file you specify for the COPY operation includes one of the following extensions, we decompress the data without the need for adding any parameters: 
   + `.gz`
   + `.snappy`
   + `.bz2`

@@ -11,7 +11,7 @@ To analyze query summary information by slice, do the following:
    desc limit 5;
    ```
 
-   Examine the truncated query text in the `substring` field to determine which `query` value represents your query\. If you have run the query more than once, use the `query` value from the row with the lower `elapsed` value\. That is the row for the compiled version\. If you have been running many queries, you can raise the value used by the LIMIT clause used to make sure your query is included\.
+   Examine the truncated query text in the `substring` field to determine which `query` value represents your query\. If you have run the query more than once, use the `query` value from the row with the lower `elapsed` value\. That is the row for the compiled version\. If you have been running many queries, you can raise the value used by the LIMIT clause used to make sure that your query is included\.
 
 1. Select rows from SVL\_QUERY\_REPORT for your query\. Order the results by segment, step, elapsed\_time, and rows:
 

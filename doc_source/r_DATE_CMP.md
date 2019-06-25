@@ -11,10 +11,10 @@ DATE_CMP(date1, date2)
 ## Arguments<a name="r_DATE_CMP-arguments"></a>
 
  *date1*   
-A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
+A date column or an expression that implicitly converts to a date\.
 
  *date2*   
-A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
+A date column or an expression that implicitly converts to a date\.
 
 ## Return Type<a name="r_DATE_CMP-return-type"></a>
 

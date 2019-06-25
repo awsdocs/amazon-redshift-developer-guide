@@ -27,6 +27,31 @@ To define a query monitoring rule, you specify the following elements:
   + Hop – Log the action and hop the query to the next matching queue\. If there isn't another matching queue, the query is canceled\. QMR hops only [CREATE TABLE AS](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_AS.html) \(CTAS\) statements and read\-only queries, such as SELECT statements\. For more information, see [WLM Query Queue Hopping](wlm-queue-hopping.md)\. 
   + Abort – Log the action and terminate the query\. QMR doesn't abort COPY statements and maintenance operations, such as ANALYZE and VACUUM\. 
 
+To limit the runtime of queries, we recommend creating a query monitoring rule instead of using WLM timeout\. For example, instead of setting `max_execution_time` to 50000 milliseconds as shown in this JSON snippet:
+
+```
+"max_execution_time": 50000
+```
+
+Define an equivalent query monitoring rule that sets `query_execution_time` to 50 seconds as shown in this JSON snippet:
+
+```
+"rules": 
+[
+    {
+        "rule_name": "rule_query_execution",
+        "predicate": [
+            {
+                "metric_name": "query_execution_time",
+                "operator": ">",
+                "value": 50
+            }
+        ],
+        "action": "abort"
+    }            
+]
+```
+
 For steps to create or modify a query monitoring rule, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Properties in the wlm\_json\_configuration Parameter](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html#wlm-json-config-properties) in the *Amazon Redshift Cluster Management Guide*\.
 
 You can find more information about query monitoring rules in the following topics: 
@@ -40,7 +65,7 @@ You can find more information about query monitoring rules in the following topi
 
 The following table describes the metrics used in query monitoring rules\. \(These metrics are distinct from the metrics stored in the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) and [STL\_QUERY\_METRICS](r_STL_QUERY_METRICS.md) system tables\.\) 
 
-For a given metric, the performance threshold is tracked either at the query level or the segment level\. For more information about segments and steps, see [Query Planning And Execution Workflow](c-query-planning.md)\.
+For a given metric, the performance threshold is tracked either at the query level or the segment level\. For more information about segments and steps, see [Query Planning and Execution Workflow](c-query-planning.md)\.
 
 **Note**  
 The [WLM Timeout](cm-c-defining-query-queues.md#wlm-timeout) parameter is distinct from query monitoring rules\.

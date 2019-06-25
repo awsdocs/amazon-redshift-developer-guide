@@ -120,7 +120,7 @@ The following procedure describes how to partition your data\.
    ```
    alter table spectrum.sales_part add
    partition(saledate='2008-01-01') 
-   location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
+   location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/'
    partition(saledate='2008-02-01') 
    location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
    ```
@@ -179,7 +179,7 @@ location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/'
 table properties ('numRows'='172000');
 ```
 
-To add the partitions, run the following ALTER TABLE commands\.
+To add the partitions, run the following ALTER TABLE command\.
 
 ```
 alter table spectrum.sales_part add
@@ -254,12 +254,12 @@ location 's3://awssampledbuswest2/tickit/spectrum/salesevent/'
 table properties ('numRows'='172000');
 ```
 
-To add the partitions, run the following ALTER TABLE commands\.
+To add the partitions, run the following ALTER TABLE command\.
 
 ```
 alter table spectrum.sales_event add
 partition(salesmonth='2008-01', event='101') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=101/';
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=101/'
 
 partition(salesmonth='2008-01', event='102') 
 location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=102/'
@@ -280,7 +280,7 @@ partition(salesmonth='2008-03', event='101')
 location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=101/'
 
 partition(salesmonth='2008-03', event='102') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=102/';
+location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=102/'
 
 partition(salesmonth='2008-03', event='103') 
 location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=103/';

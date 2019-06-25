@@ -10,6 +10,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_AGGR](r_STL_AGGR.md)
 + [STL\_ALERT\_EVENT\_LOG](r_STL_ALERT_EVENT_LOG.md)
 + [STL\_ANALYZE](r_STL_ANALYZE.md)
++ [STL\_ANALYZE\_COMPRESSION](r_STL_ANALYZE_COMPRESSION.md)
 + [STL\_BCAST](r_STL_BCAST.md)
 + [STL\_COMMIT\_STATS](r_STL_COMMIT_STATS.md)
 + [STL\_CONNECTION\_LOG](r_STL_CONNECTION_LOG.md)

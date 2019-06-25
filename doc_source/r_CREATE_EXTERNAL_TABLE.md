@@ -512,3 +512,34 @@ with serdeproperties ('input.format'='[DFEWI], \\[%{TIMESTAMP_ISO8601:timestamp}
 stored as textfile
 location 's3://mybucket/grok/logs';
 ```
+
+The following shows an example of defining an Amazon S3 server access log in an S3 bucket\. You can use Redshift Spectrum to query Amazon S3 access logs\.
+
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS spectrum.mybucket_s3_logs(
+bucketowner varchar(255),
+bucket varchar(255),
+requestdatetime varchar(2000),
+remoteip varchar(255),
+requester varchar(255),
+requested varchar(255),
+operation varchar(255),
+key varchar(255),
+requesturi_operation varchar(255),
+requesturi_key varchar(255),
+requesturi_httpprotoversion varchar(255),
+httpstatus varchar(255),
+errorcode varchar(255),
+bytessent bigint,
+objectsize bigint,
+totaltime varchar(255),
+turnaroundtime varchar(255),
+referrer varchar(255),
+useragent varchar(255),
+versionid varchar(255)
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+'input.regex' = '([^ ]*) ([^ ]*) \\[(.*?)\\] ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) \"([^ ]*)\\s*([^ ]*)\\s*([^ ]*)\" (- |[^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\") ([^ ]*).*$')
+LOCATION 's3://mybucket/s3logs’;
+```

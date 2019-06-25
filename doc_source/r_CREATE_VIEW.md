@@ -2,7 +2,7 @@
 
 Creates a view in a database\. The view is not physically materialized; the query that defines the view is run every time the view is referenced in a query\. To create a view with an external table, include the WITH NO SCHEMA BINDING clause\.
 
-To create a standard view, you need access to the underlying tables\. To query a standard view, you need select privileges for the view itself, but you don't need select privileges for the underlying tables\. To query a late binding view, you need select privileges for the late binding view itself\. You should also make sure the owner of the late binding view has select privileges to the referenced objects \(tables, views, or user\-defined functions\)\. For more information on Late Binding Views see, [Usage Notes](#r_CREATE_VIEW_usage_notes)\.
+To create a standard view, you need access to the underlying tables\. To query a standard view, you need select privileges for the view itself, but you don't need select privileges for the underlying tables\. To query a late binding view, you need select privileges for the late binding view itself\. You should also make sure the owner of the late binding view has select privileges to the referenced objects \(tables, views, or user\-defined functions\)\. For more information about Late Binding Views, see [Usage Notes](#r_CREATE_VIEW_usage_notes)\.
 
 ## Syntax<a name="r_CREATE_VIEW-synopsis"></a>
 
@@ -18,7 +18,7 @@ If a view of the same name already exists, the view is replaced\. You can only r
 
  *name*   
 The name of the view\. If a schema name is given \(such as `myschema.myview`\) the view is created using the specified schema\. Otherwise, the view is created in the current schema\. The view name must be different from the name of any other view or table in the same schema\.   
-If you specify a view name that begins with '\# ', the view will be created as a temporary view that is visible only in the current session\.  
+If you specify a view name that begins with '\# ', the view is created as a temporary view that is visible only in the current session\.  
 For more information about valid names, see [Names and Identifiers](r_names.md)\. You can't create tables or views in the system databases template0, template1, and padb\_harvest\.
 
  *column\_name*   

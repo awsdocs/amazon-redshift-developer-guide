@@ -87,14 +87,14 @@ The most commonly used data repository is an Amazon S3 bucket\. You can also loa
 + [COPY from Amazon DynamoDB](copy-parameters-data-source-dynamodb.md)
 
 Authorization  <a name="r_COPY-syntax-overview-credentials"></a>
-A clause that indicates the method that your cluster will use for authentication and authorization to access other AWS resources\. The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an IAM role that is attached to your cluster or by providing the access key ID and secret access key for an IAM user\.   
+A clause that indicates the method that your cluster uses for authentication and authorization to access other AWS resources\. The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an IAM role that is attached to your cluster or by providing the access key ID and secret access key for an IAM user\.   
 + [Authorization Parameters](copy-parameters-authorization.md) 
 + [Role\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based) 
 + [Key\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based) 
 
 ### Optional Parameters<a name="r_COPY-syntax-overview-optional-parameters"></a>
 
-You can optionally specify how COPY will map field data to columns in the target table, define source data attributes to enable the COPY command to correctly read and parse the source data, and manage which operations the COPY command performs during the load process\. 
+You can optionally specify how COPY maps field data to columns in the target table, define source data attributes to enable the COPY command to correctly read and parse the source data, and manage which operations the COPY command performs during the load process\. 
 + [Column Mapping Options](copy-parameters-column-mapping.md)
 + [Data Format Parameters](#r_COPY-syntax-overview-data-format)
 + [Data Conversion Parameters](#r_COPY-syntax-overview-data-conversion)

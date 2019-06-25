@@ -43,7 +43,7 @@ This example is equivalent to the following\.
 ALTER PROCEDURE first_quarter_revenue(bigint, numeric) RENAME TO quarterly_revenue;
 ```
 
-The following example change the owner of a procedure to `etl_user`\.
+The following example changes the owner of a procedure to `etl_user`\.
 
 ```
 ALTER PROCEDURE quarterly_revenue(bigint, numeric) OWNER TO etl_user;

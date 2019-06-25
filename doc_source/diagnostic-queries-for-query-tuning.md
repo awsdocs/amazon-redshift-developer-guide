@@ -49,7 +49,7 @@ A low `skew` value indicates that table data is properly distributed\. If a tabl
 
 If a table has a `pct_unsorted` value greater than 20 percent, consider running the [VACUUM](r_VACUUM_command.md) command\. For more information, see [Unsorted or Missorted Rows](query-performance-improvement-opportunities.md#unsorted-or-mis-sorted-rows)\.
 
-You should also review the `mbytes` and `pct_of_total` values for each table\. These columns identify the size of the table and what percentage of raw disk space the table consumes\. The raw disk space includes space that is reserved by Amazon Redshift for internal use, so it is larger than the nominal disk capacity, which is the amount of disk space available to the user\. Use this information to ensure that you have free disk space equal to at least 2\.5 times the size of your largest table\. Having this space available enables the system to write intermediate results to disk when processing complex queries\. 
+Also review the `mbytes` and `pct_of_total` values for each table\. These columns identify the size of the table and what percentage of raw disk space the table consumes\. The raw disk space includes space that is reserved by Amazon Redshift for internal use, so it is larger than the nominal disk capacity, which is the amount of disk space available to the user\. Use this information to ensure that you have free disk space equal to at least 2\.5 times the size of your largest table\. Having this space available enables the system to write intermediate results to disk when processing complex queries\. 
 
 ```
 select trim(pgn.nspname) as schema, 

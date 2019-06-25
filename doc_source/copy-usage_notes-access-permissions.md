@@ -10,7 +10,7 @@ To get authorization to access the resource, your cluster must be authenticated\
 
 With <a name="copy-usage_notes-access-role-based.phrase"></a>role\-based access control, your cluster temporarily assumes an IAM role on your behalf\. Then, based on the authorizations granted to the role, your cluster can access the required AWS resources\.
 
-An IAM *role* is similar to an IAM user, in that it is an AWS identity with permission policies that determine what the identity can and cannot do in AWS\. However, instead of being uniquely associated with one user, a role can be assumed by any entity that needs it\. Also, a role doesn’t have any credentials \(a password or access keys\) associated with it\. Instead, if a role is associated with a cluster, access keys are created dynamically and provided to the cluster\.
+An IAM *role* is similar to an IAM user, in that it is an AWS identity with permissions policies that determine what the identity can and cannot do in AWS\. However, instead of being uniquely associated with one user, a role can be assumed by any entity that needs it\. Also, a role doesn’t have any credentials \(a password or access keys\) associated with it\. Instead, if a role is associated with a cluster, access keys are created dynamically and provided to the cluster\.
 
 We recommend using role\-based access control because it provides more secure, fine\-grained control of access to AWS resources and sensitive user data, in addition to safeguarding your AWS credentials\.
 
@@ -140,7 +140,7 @@ The IAM role or IAM user referenced by the CREDENTIALS parameter must have, at a
 + For COPY from Amazon S3, Amazon EMR, and remote hosts \(SSH\) with JSON\-formatted data, permission to LIST and GET the JSONPaths file on Amazon S3, if one is used\. 
 + For COPY from DynamoDB, permission to SCAN and DESCRIBE the DynamoDB table that is being loaded\. 
 + For COPY from an Amazon EMR cluster, permission for the `ListInstances` action on the Amazon EMR cluster\. 
-+ For UNLOAD to Amazon S3, GET, LIST and PUT permissions for the Amazon S3 bucket to which the data files are being unloaded\.
++ For UNLOAD to Amazon S3, GET, LIST, and PUT permissions for the Amazon S3 bucket to which the data files are being unloaded\.
 + For CREATE LIBRARY from Amazon S3, permission to LIST the Amazon S3 bucket and GET the Amazon S3 objects being imported\.
 
 **Note**  

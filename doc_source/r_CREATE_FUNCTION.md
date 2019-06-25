@@ -19,12 +19,12 @@ $$ LANGUAGE { plpythonu | sql }
 
 OR REPLACE  
 Specifies that if a function with the same name and input argument data types, or *signature*, as this one already exists, the existing function is replaced\. You can only replace a function with a new function that defines an identical set of data types\. You must be a superuser to replace a function\.  
-If you define a function with the same name as an existing function but a different signature, you will create a new function\. In other words, the function name will be overloaded\. For more information, see [Overloading Function Names](udf-naming-udfs.md#udf-naming-overloading-function-names)\.
+If you define a function with the same name as an existing function but a different signature, you create a new function\. In other words, the function name is overloaded\. For more information, see [Overloading Function Names](udf-naming-udfs.md#udf-naming-overloading-function-names)\.
 
  *f\_function\_name*   
 The name of the function\. If you specify a schema name \(such as `myschema.myfunction`\), the function is created using the specified schema\. Otherwise, the function is created in the current schema\. For more information about valid names, see [Names and Identifiers](r_names.md)\.  
 We recommend that you prefix all UDF names with `f_`\. Amazon Redshift reserves the `f_` prefix for UDF names, so by using the `f_` prefix, you ensure that your UDF name will not conflict with any existing or future Amazon Redshift built\-in SQL function names\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.  
-You can define more than one function with the same function name if the data types for the input arguments are different\. In other words, the function name will be overloaded\. For more information, see [Overloading Function Names](udf-naming-udfs.md#udf-naming-overloading-function-names)\.
+You can define more than one function with the same function name if the data types for the input arguments are different\. In other words, the function name is overloaded\. For more information, see [Overloading Function Names](udf-naming-udfs.md#udf-naming-overloading-function-names)\.
 
  *py\_arg\_name py\_arg\_data\_type \| sql\_arg\_data type*   
 For a Python UDF, a list of input argument names and data types\. For a SQL UDF, a list of data types, without argument names\. In a Python UDF, refer to arguments using the argument names\. In a SQL UDF, refer to arguments using $1, $2, and so on, based on the order of the arguments in the argument list\.   
@@ -32,7 +32,7 @@ For a SQL UDF, the input and return data types can be any standard Amazon Redshi
 You can specify a maximum of 32 arguments\.
 
  RETURNS *data\_type*   
-The data type of the value returned by the function\. The RETURNS data type can be any standard Amazon Redshift data type\. In addition, Python UDFs can use a data type of ANYELEMENT, which is automatically converted to a standard data type based on the argument supplied at runtime\. If you specify ANYELEMENT for the return data type, at least one argument must use ANYELEMENT\. The actual return data type will match the data type supplied for the ANYELEMENT argument when the function is called\. For more information, see [Python UDF Data Types](udf-data-types.md)\.
+The data type of the value returned by the function\. The RETURNS data type can be any standard Amazon Redshift data type\. In addition, Python UDFs can use a data type of ANYELEMENT, which is automatically converted to a standard data type based on the argument supplied at runtime\. If you specify ANYELEMENT for the return data type, at least one argument must use ANYELEMENT\. The actual return data type matches the data type supplied for the ANYELEMENT argument when the function is called\. For more information, see [Python UDF Data Types](udf-data-types.md)\.
 
  VOLATILE \| STABLE \| IMMUTABLE   
 Informs the query optimizer about the volatility of the function\.   

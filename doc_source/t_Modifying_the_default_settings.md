@@ -1,6 +1,6 @@
 # Modifying the Server Configuration<a name="t_Modifying_the_default_settings"></a>
 
-You can make changes to the server configuration in the following ways: 
+You can change the server configuration in the following ways: 
 + By using a [SET](r_SET.md) command to override a setting for the duration of the current session only\.
 
   For example: 

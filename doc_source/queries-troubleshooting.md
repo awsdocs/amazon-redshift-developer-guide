@@ -36,7 +36,7 @@ Your query can hang, or stop responding, for the following reasons; we suggest t
 Reduce the size of maximum transmission unit \(MTU\)\. The MTU size determines the maximum size, in bytes, of a packet that can be transferred in one Ethernet frame over your network connection\. For more information, go to [The connection to the database is dropped](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
 
 **Connection to the Database Times Out**  
-Your client connection to the database appears to hang or timeout when running long queries, such as a COPY command\. In this case, you might observe that the Amazon Redshift console displays that the query has completed, but the client tool itself still appears to be running the query\. The results of the query might be missing or incomplete depending on when the connection stopped\. This effect happens when idle connections are terminated by an intermediate network component\. For more information, go to [Firewall Timeout Issue](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Your client connection to the database appears to hang or time out when running long queries, such as a COPY command\. In this case, you might observe that the Amazon Redshift console displays that the query has completed, but the client tool itself still appears to be running the query\. The results of the query might be missing or incomplete depending on when the connection stopped\. This effect happens when idle connections are terminated by an intermediate network component\. For more information, go to [Firewall Timeout Issue](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html) in the *Amazon Redshift Cluster Management Guide\.* 
 
 **Client\-Side Out\-of\-Memory Error Occurs with ODBC**  
 If your client application uses an ODBC connection and your query creates a result set that is too large to fit in memory, you can stream the result set to your client application by using a cursor\. For more information, see [DECLARE](declare.md) and [Performance Considerations When Using Cursors](declare.md#declare-performance)\.
@@ -78,16 +78,16 @@ Run the VACUUM command whenever you add, delete, or modify a large number of row
 Your data load can fail for the following reasons; we suggest the following troubleshooting approaches\.
 
 **Data Source Is in a Different Region**  
-By default, the Amazon S3 bucket or Amazon DynamoDB table specified in the COPY command must be in the same region as the cluster\. If your data and your cluster are in different regions, you will receive an error similar to the following: 
+By default, the Amazon S3 bucket or Amazon DynamoDB table specified in the COPY command must be in the same Region as the cluster\. If your data and your cluster are in different Regions, you receive an error similar to the following: 
 
 ```
 The bucket you are attempting to access must be addressed using the specified endpoint.
 ```
 
-If at all possible, make sure your cluster and your data source are the same region\. You can specify a different region by using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
+If at all possible, make sure your cluster and your data source are the same Region\. You can specify a different Region by using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
 
 **Note**  
-If your cluster and your data source are in different AWS regions, you will incur data transfer costs\. You will also have higher latency and more issues with eventual consistency\.
+If your cluster and your data source are in different AWS Regions, you incur data transfer costs\. You also have higher latency and more issues with eventual consistency\.
 
 **COPY Command Fails**  
 Query STL\_LOAD\_ERRORS to discover the errors that occurred during specific loads\. For more information, see [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md)\.
@@ -119,7 +119,7 @@ By default, the JDBC driver collects all the results for a query at one time\. A
 **Note**  
 Fetch size is not supported for ODBC\.
 
-For the best performance, set the fetch size to the highest value that does not lead to out of memory errors\. A lower fetch size value results in more server trips, which prolongs execution times\. The server reserves resources, including the WLM query slot and associated memory, until the client retrieves the entire result set or the query is canceled\. When you tune the fetch size appropriately, those resources are released more quickly, making them available to other queries\.
+For the best performance, set the fetch size to the highest value that does not lead to out of memory errors\. A lower fetch size value results in more server trips, which prolong execution times\. The server reserves resources, including the WLM query slot and associated memory, until the client retrieves the entire result set or the query is canceled\. When you tune the fetch size appropriately, those resources are released more quickly, making them available to other queries\.
 
 **Note**  
 If you need to extract large datasets, we recommend using an [UNLOAD](r_UNLOAD.md) statement to transfer the data to Amazon S3\. When you use UNLOAD, the compute nodes work in parallel to speed up the transfer of data\.

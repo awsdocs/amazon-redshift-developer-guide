@@ -33,7 +33,7 @@ Keyword that indicates not to drop a schema or external database if it contains 
 
 ## Example<a name="r_DROP_SCHEMA-example"></a>
 
-The following example deletes a schema named S\_SALES\. This example uses RESTRICT as a safety mechanism so that the schema will not be deleted if it contains any objects\. In this case, you would need to delete the schema objects before deleting the schema\.
+The following example deletes a schema named S\_SALES\. This example uses RESTRICT as a safety mechanism so that the schema is not deleted if it contains any objects\. In this case, you need to delete the schema objects before deleting the schema\.
 
 ```
 drop schema s_sales restrict;

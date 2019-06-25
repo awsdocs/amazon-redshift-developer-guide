@@ -23,7 +23,7 @@ ALTER TABLE target_table_name APPEND FROM source_table_name
 ## Parameters<a name="r_ALTER_TABLE_APPEND-parameters"></a>
 
  *target\_table\_name*   
-The name of the table to which rows will be appended\. Either specify just the name of the table or use the format *schema\_name\.table\_name* to use a specific schema\. The target table must be an existing permanent table\.
+The name of the table to which rows are appended\. Either specify just the name of the table or use the format *schema\_name\.table\_name* to use a specific schema\. The target table must be an existing permanent table\.
 
  FROM *source\_table\_name*   
 The name of the table that provides the rows to be appended\. Either specify just the name of the table or use the format *schema\_name\.table\_name* to use a specific schema\. The source table must be an existing permanent table\.

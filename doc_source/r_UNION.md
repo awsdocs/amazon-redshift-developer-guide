@@ -60,7 +60,7 @@ select * from t3
 order by c1;
 ```
 
-The INTERSECT operator takes precedence over the UNION and EXCEPT operators when a combination of operators is used in the same query\. For example, the following query will evaluate the intersection of T2 and T3, then union the result with T1: 
+The INTERSECT operator takes precedence over the UNION and EXCEPT operators when a combination of operators is used in the same query\. For example, the following query evaluates the intersection of T2 and T3, then union the result with T1: 
 
 ```
 select * from t1

@@ -36,7 +36,7 @@ where (category.catid=event.catid) and category.catid in(6,7,8)
 
 ## Usage Notes<a name="r_WHERE_clause_usage_notes"></a>
 
-You can't use aliases in the WHERE clause to reference select list expressions\. 
+You can use aliases in the WHERE clause to reference select list expressions\. 
 
 You can't restrict the results of aggregate functions in the WHERE clause; use the HAVING clause for this purpose\. 
 

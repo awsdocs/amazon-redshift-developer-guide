@@ -65,6 +65,14 @@ The SET clause causes the specified `configuration_parameter` to be set to the s
 
 ## Examples<a name="r_CREATE_PROCEDURE-examples"></a>
 
+**Note**  
+If when running these examples you encounter an error similar to:  
+
+```
+ERROR: 42601: unterminated dollar-quoted string at or near "$$
+```
+See [Overview of Stored Procedures in Amazon Redshift](stored-procedure-create.md)\. 
+
 The following example creates a procedure with two input parameters\.
 
 ```

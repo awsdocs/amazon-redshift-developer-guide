@@ -72,7 +72,7 @@ WITH GRANT OPTION   <a name="default-grant-option"></a>
 A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. You can't grant WITH GRANT OPTION to a group or to PUBLIC\. 
 
 TO *user\_name* \| GROUP *group\_name*   <a name="default-to"></a>
-The name of the user or user group to which the specified default privileges will be applied\.
+The name of the user or user group to which the specified default privileges are applied\.
 
 REVOKE   <a name="default-revoke"></a>
 The set of privileges to revoke from the specified users or groups for all new tables, functions, or stored procedures created by the specified user\. You can set the same privileges and options with the REVOKE clause that you can with the [REVOKE](r_REVOKE.md) command\. 
@@ -81,7 +81,7 @@ GRANT OPTION FOR  <a name="default-revoke-option"></a>
  A clause that revokes only the option to grant a specified privilege to other users and doesn't revoke the privilege itself\. You can't revoke GRANT OPTION from a group or from PUBLIC\. 
 
 FROM *user\_name* \| GROUP *group\_name*  <a name="default-from"></a>
-The name of the user or user group from which the specified privileges will be revoked by default\.
+The name of the user or user group from which the specified privileges are revoked by default\.
 
 ## Examples<a name="r_ALTER_DEFAULT_PRIVILEGES-examples"></a>
 

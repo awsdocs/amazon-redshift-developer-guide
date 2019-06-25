@@ -58,7 +58,7 @@ To delete the *eventview* view, the obvious command to use is the following:
 drop view eventview;
 ```
 
-Notice that if you run this command in this case, you will get the following error:
+Notice that if you run this command in this case, you get the following error:
 
 ```
 drop view eventview;

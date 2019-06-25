@@ -22,7 +22,9 @@ ADD table_constraint
 | OWNER TO new_owner 
 | RENAME TO new_name 
 | RENAME COLUMN column_name TO new_name            
-| ALTER COLUMN column_name TYPE new_data_type 
+| ALTER COLUMN column_name TYPE new_data_type              
+| ALTER DISTKEY column_name 
+| ALTER DISTSTYLE KEY DISTKEY column_name   
 | ADD [ COLUMN ] column_name column_type
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
@@ -82,11 +84,24 @@ You can't rename a permanent table to a name that begins with '\#'\. A table nam
 You can't rename an external table\.
 
 ALTER COLUMN *column\_name* TYPE *new\_data\_type*   
-A clause that increases the size of a column defined as a VARCHAR data type\. Consider the following limitations:  
+A clause that changes the size of a column defined as a VARCHAR data type\. Consider the following limitations:  
 + You can’t alter a column with compression encodings BYTEDICT, RUNLENGTH, TEXT255, or TEXT32K\. 
++ You can't decrease the size less than maximum size of existing data\. 
 + You can't alter columns with default values\. 
 + You can't alter columns with UNIQUE, PRIMARY KEY, or FOREIGN KEY\. 
 + You can't alter columns inside a multi\-statement block \(BEGIN\.\.\.END\)\. 
+
+ALTER DISTKEY *column\_name* or ALTER DISTSTYLE KEY DISTKEY *column\_name*  
+A clause that changes the column used as the distribution key of a table\. Consider the following:  
++ You can only alter the DISTKEY of tables whose original DISTSTYLE is EVEN or KEY\.
++ VACUUM and ALTER DISTKEY cannot run concurrently on the same table\. 
+  + If VACUUM is already running, then ALTER DISTKEY returns an error\.
+  + If ALTER DISTKEY is running, then background vacuum does not start on a table\.
+  + If ALTER DISTKEY is running, then foreground vacuum returns an error\.
++ You can only run one ALTER DISTKEY command on a table at a time\. 
++ After ALTER DISTKEY runs, for tables with a SORTKEY defined, we recommend that you run a VACUUM \[FULL\|SORT ONLY\] command to re\-sort the table\. For more information, see [VACUUM](r_VACUUM_command.md)\. 
+Currently, Amazon Redshift Advisor recommendations are only generated for tables without sort keys\.
+When specifying DISTSTYLE KEY, the data is distributed by the values in the DISTKEY column\. For more information about DISTSTYLE, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 RENAME COLUMN *column\_name* TO *new\_name*   
 A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
