@@ -53,11 +53,11 @@
    where stage.primarykey = target.primarykey;
    ```
 
-1. Insert the remaining rows from the staging table\. Use the same column list in the VALUES clause that you used in the UPDATE statement in step two\. 
+1. Insert the remaining rows from the staging table\. Use the same column list in the VALUES clause that you used in the UPDATE statement in step three\. 
 
    ```
    insert into target
-   (select col1, col2, 'expression')
+   select col1, col2, 'expression'
    from stage;
    
    end transaction;
