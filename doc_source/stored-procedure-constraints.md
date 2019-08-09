@@ -6,7 +6,6 @@ The following constraints apply when you use Amazon Redshift stored procedures\.
 
  The following are differences between stored procedure support in Amazon Redshift and PostgreSQL:
 + Amazon Redshift doesn't support subtransactions, and hence has limited support for exception handling blocks\.
-+ Amazon Redshift doesn't support SQL transaction commands COMMIT and ROLLBACK in a stored procedure\.
 
 ## Limits<a name="stored-procedure-limits"></a>
 

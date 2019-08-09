@@ -1,23 +1,27 @@
 # Managing Transactions<a name="stored-procedure-transaction-management"></a>
 
-The default automatic commit behavior causes each separately\-executed SQL command to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable Isolation](c_serial_isolation.md)\.
+The default automatic commit behavior causes each SQL command that runs separately to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable Isolation](c_serial_isolation.md)\.
 
 However, when you call a stored procedure from within a user specified transaction block \(defined by BEGIN\.\.\.COMMIT\), all statements in the stored procedure run in the context of the user specified transaction\. The procedure doesn't commit implicitly on exit\. The caller controls the procedure commit or rollback\.
 
 If any error is encountered while running a stored procedure, all changes made in the current transaction are rolled back\.
 
-An exception to this behavior is the TRUNCATE command\. In Amazon Redshift, TRUNCATE issues a commit implicitly\. This behavior stays the same in the context of stored procedures\. When a TRUNCATE statement is issued from within a stored procedure, it commits the current transaction and begins a new one\. All statements that follow the TRUNCATE statement run in the context of this new transaction till another TRUNCATE statement is encountered or the stored procedure exits\.
+You can use the following transaction control statements in a stored procedure:
++ COMMIT – commits all work done in the current transaction and implicitly begins a new transaction\. For more information, see [COMMIT](r_COMMIT.md)\. 
++ ROLLBACK – rolls back the work done in the current transaction and implicitly begins a new transaction\. For more information, see [ROLLBACK](r_ROLLBACK.md)\. 
 
-When you use TRUNCATE from within a stored procedure, the following constraints apply:
-+ If the stored procedure is called from within a transaction block, it can't issue a TRUNCATE statement from within its own body or any nested procedure call\.
-+ If the stored procedure is created with `SET config` options, it can't issue a TRUNCATE statement from within its own body or from any nested procedure call\. 
-+ Any cursor that is open \(explicitly or implicitly\) is closed automatically when a TRUNCATE statement is processed\. For constraints on explicit and implicit cursors, see [Limits and Differences for Stored Procedure Support](stored-procedure-constraints.md)\.
+TRUNCATE is another statement that you can issue from within a stored procedure and influences transaction management\. In Amazon Redshift, TRUNCATE issues a commit implicitly\. This behavior stays the same in the context of stored procedures\. When a TRUNCATE statement is issued from within a stored procedure, it commits the current transaction and begins a new one\. For more information, see [TRUNCATE](r_TRUNCATE.md)\. 
 
-For more information, see [TRUNCATE](r_TRUNCATE.md)\.
+All statements that follow a COMMIT, ROLLBACK, or TRUNCATE statement run in the context of a new transaction\. They do so until a COMMIT, ROLLBACK, or TRUNCATE statement is encountered or the stored procedure exits\.
 
-When working with stored procedures consider the following:
-+ The BEGIN and END statements in PL/pgSQL are only for grouping\. They don't start or end a transaction\. For more information, see [Block](c_PLpgSQL-structure.md#r_PLpgSQL-block)\. 
-+ Transaction control statements, such as COMMIT and ROLLBACK, aren't supported from within a stored procedure\. For more information, see [Limits and Differences for Stored Procedure Support](stored-procedure-constraints.md)\.
+When you use a COMMIT, ROLLBACK, or TRUNCATE statement from within a stored procedure, the following constraints apply:
++ If the stored procedure is called from within a transaction block, it can't issue a COMMIT, ROLLBACK, or TRUNCATE statement\. This restriction applies within the stored procedure's own body and within any nested procedure call\.
++ If the stored procedure is created with `SET config` options, it can't issue a COMMIT, ROLLBACK, or TRUNCATE statement\. This restriction applies within the stored procedure's own body and within any nested procedure call\. 
++ Any cursor that is open \(explicitly or implicitly\) is closed automatically when a COMMIT, ROLLBACK, or TRUNCATE statement is processed\. For constraints on explicit and implicit cursors, see [Limits and Differences for Stored Procedure Support](stored-procedure-constraints.md)\.
+
+Additionally, you can't run COMMIT or ROLLBACK using dynamic SQL\. However, you can run TRUNCATE using dynamic SQL\. For more information, see [Dynamic SQL](c_PLpgSQL-statements.md#r_PLpgSQL-dynamic-sql)\. 
+
+When working with stored procedures, consider that the BEGIN and END statements in PL/pgSQL are only for grouping\. They don't start or end a transaction\. For more information, see [Block](c_PLpgSQL-structure.md#r_PLpgSQL-block)\. 
 
 The following example demonstrates transaction behavior when calling a stored procedure from within an explicit transaction block\. The two insert statements issued from outside the stored procedure and the one from within it are all part of the same transaction \(3382\)\. The transaction is committed when the user issues the explicit commit\.
 
@@ -48,7 +52,7 @@ from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , s
     103 | 3382 | 599 | UTILITY | COMMIT
 ```
 
-When the same statements are issued from outside of an explicit transaction block, and the session has autocommit set to ON, each statement executes in its own transaction\.
+In contrast, take an example when the same statements are issued from outside of an explicit transaction block and the session has autocommit set to ON\. In this case, each statement runs in its own transaction\.
 
 ```
 insert into test_table_a values (1);
@@ -177,4 +181,63 @@ HINT: Try calling the procedure as a top-level call i.e. not from within an expl
 Or, if this procedure (or one of its ancestors in the call chain) was created with SET config options, recreate the procedure without them.
 CONTEXT: SQL statement "TRUNCATE test_table_b"
 PL/pgSQL function "sp_truncate_atomic" line 2 at SQL statement
+```
+
+The following example issues COMMIT twice\. The first COMMIT commits all work done in transaction 10363 and implicitly starts transaction 10364\. Transaction 10364 is committed by the second COMMIT statement\. 
+
+```
+CREATE OR REPLACE PROCEDURE sp_commit(a int, b int) LANGUAGE plpgsql
+AS $$
+BEGIN
+  INSERT INTO test_table values (a);
+  COMMIT;
+  INSERT INTO test_table values (b);
+  COMMIT;
+END;
+$$;
+
+call sp_commit(1,2);
+
+select userid, xid, pid, type, trim(text) as stmt_text
+from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , sequence;
+ userid |  xid  | pid  |  type   |                                                                                    stmt_text
+--------+-------+------+---------+-----------------------------------------------------------------------------------------------------------------
+    100 | 10363 | 3089 | UTILITY | call sp_commit(1,2);
+    100 | 10363 | 3089 | QUERY   | INSERT INTO test_table values ( $1 )
+    100 | 10363 | 3089 | UTILITY | COMMIT
+    100 | 10364 | 3089 | QUERY   | INSERT INTO test_table values ( $1 )
+    100 | 10364 | 3089 | UTILITY | COMMIT
+```
+
+The following example issues a ROLLBACK statement if `sum_vals` is greater than 2\. The first ROLLBACK statement rolls back all the work done in transaction 10377 and starts a new transaction 10378\. Transaction 10378 is committed when the procedure exits\. 
+
+```
+CREATE OR REPLACE PROCEDURE sp_rollback(a int, b int) LANGUAGE plpgsql
+AS $$
+DECLARE
+  sum_vals int;
+BEGIN
+  INSERT INTO test_table values (a);
+  SELECT sum(c1) into sum_vals from test_table;
+  IF sum_vals > 2 THEN
+    ROLLBACK;
+  END IF;
+  
+  INSERT INTO test_table values (b);
+END;
+$$;
+
+call sp_rollback(1, 2);
+
+select userid, xid, pid, type, trim(text) as stmt_text
+from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , sequence;
+
+userid |  xid  | pid  |  type   |                                                                                    stmt_text
+--------+-------+------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    100 | 10377 | 3089 | UTILITY | call sp_rollback(1, 2);
+    100 | 10377 | 3089 | QUERY   | INSERT INTO test_table values ( $1 )
+    100 | 10377 | 3089 | QUERY   | SELECT sum(c1) from test_table
+    100 | 10377 | 3089 | QUERY   | Undoing 1 transactions on table 133646 with current xid 10377 : 10377
+    100 | 10378 | 3089 | QUERY   | INSERT INTO test_table values ( $1 )
+    100 | 10378 | 3089 | UTILITY | COMMIT
 ```

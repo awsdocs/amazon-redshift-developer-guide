@@ -14,6 +14,9 @@ The following table lists the data types that you can use in Amazon Redshift tab
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html)
 
+**Note**  
+For information about unsupported data types, such as "char" \(notice that char is enclosed in quotation marks\), see [Unsupported PostgreSQL Data Types](c_unsupported-postgresql-datatypes.md)\.
+
 ## Multibyte Characters<a name="c_Supported_data_types-multi-byte-characters"></a>
 
 The VARCHAR data type supports UTF\-8 multibyte characters up to a maximum of four bytes\. Five\-byte or longer characters are not supported\. To calculate the size of a VARCHAR column that contains multibyte characters, multiply the number of characters by the number of bytes per character\. For example, if a string has four Chinese characters, and each character is three bytes long, then you will need a VARCHAR\(12\) column to store the string\.

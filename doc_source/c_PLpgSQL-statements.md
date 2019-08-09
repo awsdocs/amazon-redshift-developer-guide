@@ -13,6 +13,7 @@
 + [Loops](#r_PLpgSQL-loops)
 + [Cursors](#r_PLpgSQL-cursors)
 + [RAISE](#r_PLpgSQL-messages-errors)
++ [Transaction Control](#r_PLpgSQL-transaction-control)
 
 ## Assignment<a name="r_PLpgSQL-assignment"></a>
 
@@ -92,6 +93,9 @@ EXECUTE command-string [ INTO target ];
 ```
 
 In the preceding, *command\-string* is an expression yielding a string \(of type text\) that contains the command to be run\. This *command\-string* value is sent to the SQL engine\. No substitution of PL/pgSQL variables is done on the command string\. The values of variables must be inserted in the command string as it is constructed\.
+
+**Note**  
+You can't use COMMIT and ROLLBACK statements from within dynamic SQL\. For information about using COMMIT and ROLLBACK statements within a stored procedure, see [Managing Transactions](stored-procedure-transaction-management.md)\. 
 
 When working with dynamic commands, you often have to handle escaping of single quotation marks\. We recommend enclosing fixed text in quotation marks in your function body using dollar quoting\. Dynamic values to insert into a constructed query require special handling because they might themselves contain quotation marks\. The following example assumes dollar quoting for the function as a whole, so the quotation marks don't need to be doubled\.
 
@@ -565,3 +569,7 @@ In the following example, the value of `v_job_id` replaces the % in the string\.
 ```
 RAISE NOTICE ’Calling cs_create_job(%)’, v_job_id;
 ```
+
+## Transaction Control<a name="r_PLpgSQL-transaction-control"></a>
+
+You can work with transaction control statements in the PL/pgSQL language that Amazon Redshift uses\. For information about using the statements COMMIT, ROLLBACK, and TRUNCATE within a stored procedure, see [Managing Transactions](stored-procedure-transaction-management.md)\. 

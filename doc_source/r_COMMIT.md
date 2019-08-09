@@ -11,10 +11,12 @@ COMMIT [ WORK | TRANSACTION ]
 ## Parameters<a name="r_COMMIT-parameters"></a>
 
 WORK  
-Optional keyword\.
+Optional keyword\. This keyword isn't supported within a stored procedure\. 
 
 TRANSACTION  
-Optional keyword; WORK and TRANSACTION are synonyms\.
+Optional keyword\. WORK and TRANSACTION are synonyms\. Neither is supported within a stored procedure\. 
+
+For information about using COMMIT within a stored procedure, see [Managing Transactions](stored-procedure-transaction-management.md)\. 
 
 ## Examples<a name="r_COMMIT-examples"></a>
 

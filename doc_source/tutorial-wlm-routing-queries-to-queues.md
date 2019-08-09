@@ -124,7 +124,7 @@ Next you run a query and route it to the user group queue\. You do this when you
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_120.png)  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_130.png)
 
-   The queue that this query ran in is queue 2, the `admin` user queue\. Any time you run queries logged in as this user, they run in queue 2 unless you specify a different query group to use\.
+   The queue that this query ran in is queue 2, the `admin` user queue\. Anytime you run queries logged in as this user, they run in queue 2 unless you specify a different query group to use\.  The chosen queue depends on the queue assignment rules\. For more information, see [WLM Queue Assignment Rules](cm-c-wlm-queue-assignment-rules.md)\. 
 
 1. Now run the following query from psql window 2\.
 

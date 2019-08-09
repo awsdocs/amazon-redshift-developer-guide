@@ -4,9 +4,9 @@ Defines access privileges for a user or user group\.
 
 Privileges include access options such as being able to read data in tables and views, write data, and create tables\. Use this command to give specific privileges for a table, database, schema, or function\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. 
 
-You can't GRANT or REVOKE permissions on an external table\. Instead, grant or revoke the permissions on the external schema\.
+You can only GRANT or REVOKE USAGE permissions on an external schema to database users and user groups that use the ON SCHEMA syntax\. When using ON EXTERNAL SCHEMA with AWS Lake Formation, you can only GRANT and REVOKE privileges to an AWS Identity and Access Management \(IAM\) role\. For the list of privileges, see the syntax\.
 
-For stored procedures, the only privilege that can be granted is EXECUTE\.
+For stored procedures, the only privilege that you can grant is EXECUTE\.
 
 ## Syntax<a name="r_GRANT-synopsis"></a>
 
@@ -38,6 +38,22 @@ GRANT USAGE
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
+The following syntax is for Redshift Spectrum integration with Lake Formation\. 
+
+```
+GRANT { SELECT | ALL [ PRIVILEGES ] }
+    ON EXTERNAL TABLE schema_name.table_name ( column_list ) [, ...] 
+    TO { IAM_ROLE iam_role } [, ...] [ WITH GRANT OPTION ] 
+
+GRANT { { SELECT | ALTER | DROP | DELETE | INSERT }  [, ...] | ALL [ PRIVILEGES ] }
+    ON EXTERNAL TABLE schema_name.table_name [, ...] 
+    TO { { IAM_ROLE iam_role } [, ...] | PUBLIC } [ WITH GRANT OPTION ]
+        
+GRANT { { CREATE | ALTER | DROP }  [, ...] | ALL [ PRIVILEGES ] }
+    ON EXTERNAL SCHEMA schema_name [, ...] 
+    TO { IAM_ROLE iam_role } [, ...] [ WITH GRANT OPTION ]
+```
+
 ## Parameters<a name="r_GRANT-parameters"></a>
 
 SELECT   <a name="grant-select"></a>
@@ -57,7 +73,14 @@ Grants privilege to create a foreign key constraint\. You need to grant this pri
 
 ALL \[ PRIVILEGES \]   <a name="grant-all"></a>
 Grants all available privileges at once to the specified user or user group\. The PRIVILEGES keyword is optional\.  
-GRANT ALL ON SCHEMA does not grant CREATE privileges for external schemas\.
+GRANT ALL ON SCHEMA doesn't grant CREATE privileges for external schemas\.  
+You can grant ALL privilege to a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. In this case, individual privileges \(such as SELECT, ALTER, and so on\) are recorded in the Data Catalog\. 
+
+ALTER  <a name="grant-alter"></a>
+Grants privilege to alter a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
+
+DROP  <a name="grant-drop"></a>
+Grants privilege to drop a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
 
 ON \[ TABLE \] *table\_name*   <a name="grant-on-table"></a>
 Grants the specified privileges on a table or a view\. The TABLE keyword is optional\. You can list multiple tables and views in one statement\.
@@ -65,8 +88,20 @@ Grants the specified privileges on a table or a view\. The TABLE keyword is opti
 ON ALL TABLES IN SCHEMA *schema\_name*   <a name="grant-all-tables"></a>
 Grants the specified privileges on all tables and views in the referenced schema\.
 
+ON EXTERNAL TABLE *schema\_name\.table\_name* \( *column\_list* \)   <a name="grant-external-table-column"></a>
+Grants the specified privileges to an IAM role on the specified Lake Formation tables \(and columns\) in the referenced schema\.
+
+ON EXTERNAL TABLE *schema\_name\.table\_name*   <a name="grant-external-table"></a>
+Grants the specified privileges to an IAM role on the specified Lake Formation tables in the referenced schema\.
+
+ON EXTERNAL SCHEMA *schema\_name*   <a name="grant-external-schema"></a>
+Grants the specified privileges to an IAM role on the referenced schema\.
+
 TO *username*   <a name="grant-to"></a>
 Indicates the user receiving the privileges\.
+
+TO IAM\_ROLE *iam\_role*   <a name="grant-to-iam-role"></a>
+Indicates the IAM role receiving the privileges\.
 
 WITH GRANT OPTION   <a name="grant-with-grant"></a>
 Indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can not be granted to a group or to PUBLIC\.
@@ -75,7 +110,8 @@ GROUP *group\_name*   <a name="grant-group"></a>
 Grants the privileges to a user group\.
 
 PUBLIC   <a name="grant-public"></a>
-Grants the specified privileges to all users, including users created later\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\.
+Grants the specified privileges to all users, including users created later\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\.  
+Granting PUBLIC to a Lake Formation EXTERNAL TABLE results in granting the privilege to the Lake Formation *everyone* group\.
 
 CREATE   <a name="grant-create"></a>
 Depending on the database object, grants the following privileges to the user or user group:  
@@ -131,6 +167,30 @@ grant select on table employees to HR with grant option;
 HR can't grant privileges for any operation other than SELECT, or on any other table than employees\. 
 
 Having privileges granted on a view doesn't imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema doesn't imply having privileges on the tables in the schema\. You need to grant access to the underlying tables explicitly\.
+
+To grant privileges to an AWS Lake Formation table, the IAM role associated with the table's external schema must have permission to grant privileges to the external table\. The following example creates an external schema with an associated IAM role `myGrantor`\. The IAM role `myGrantor` has the permission to grant permissions to others\. The GRANT command uses the permission of the IAM role `myGrantor` that is associated with the external schema to grant permission to the IAM role `myGrantee`\.
+
+```
+create external schema mySchema
+from data catalog
+database 'spectrum_db'
+iam_role 'arn:aws:iam::123456789012:role/myGrantor'
+create external database if not exists;
+```
+
+```
+grant select 
+on external table mySchema.mytable
+to iam_role 'arn:aws:iam::123456789012:role/myGrantee';
+```
+
+If you GRANT ALL privileges to an IAM role, individual privileges are granted in the related Lake Formation–enabled Data Catalog\. For example, the following GRANT ALL results in the granted individual privileges \(SELECT, ALTER, DROP, DELETE, and INSERT\) showing in the Lake Formation console\.
+
+```
+grant all 
+on external table mySchema.mytable
+to iam_role 'arn:aws:iam::123456789012:role/myGrantee';
+```
 
 Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
 

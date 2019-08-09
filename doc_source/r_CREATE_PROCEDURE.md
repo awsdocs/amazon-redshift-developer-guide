@@ -69,7 +69,7 @@ The SET clause causes the specified `configuration_parameter` to be set to the s
 If when running these examples you encounter an error similar to:  
 
 ```
-ERROR: 42601: unterminated dollar-quoted string at or near "$$
+ERROR: 42601: [Amazon](500310) unterminated dollar-quoted string at or near "$$
 ```
 See [Overview of Stored Procedures in Amazon Redshift](stored-procedure-create.md)\. 
 
@@ -93,10 +93,9 @@ $$ LANGUAGE plpgsql;
 The following example creates a procedure with one IN parameter, one OUT parameter, and one INOUT parameter\.
 
 ```
-CREATE OR REPLACE PROCEDURE test_sp2(f1 int, f2 INOUT varchar, OUT varchar)
+CREATE OR REPLACE PROCEDURE test_sp2(f1 IN int, f2 INOUT varchar(256), out_var OUT varchar(256))
 AS $$
 DECLARE
-  out_var alias for $3;
   loop_var int;
 BEGIN
   IF f1 is null OR f2 is null THEN
@@ -104,10 +103,10 @@ BEGIN
   END IF;
   DROP TABLE if exists my_etl;
   CREATE TEMP TABLE my_etl(a int, b varchar);
-  FOR loop_var IN 1..f1 LOOP
-    insert into my_etl values (loop_var, f2);
-    f2 := f2 || '+' || f2;
-  END LOOP;
+    FOR loop_var IN 1..f1 LOOP
+        insert into my_etl values (loop_var, f2);
+        f2 := f2 || '+' || f2;
+    END LOOP;
   SELECT INTO out_var count(*) from my_etl;
 END;
 $$ LANGUAGE plpgsql;

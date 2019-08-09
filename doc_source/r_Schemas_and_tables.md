@@ -1,6 +1,6 @@
 # Schemas<a name="r_Schemas_and_tables"></a>
 
-A database contains one or more named schemas\. Each schema in a database contains tables and other kinds of named objects\. By default, a database has a single schema, which is named PUBLIC\. You can use schemas to group database objects under a common name\. Schemas are similar to operating system directories, except that schemas cannot be nested\.
+A database contains one or more named schemas\. Each schema in a database contains tables and other kinds of named objects\. By default, a database has a single schema, which is named PUBLIC\. You can use schemas to group database objects under a common name\. Schemas are similar to file system directories, except that schemas cannot be nested\.
 
 Identical database object names can be used in different schemas in the same database without conflict\. For example, both MY\_SCHEMA and YOUR\_SCHEMA can contain a table named MYTABLE\. Users with the necessary privileges can access objects across multiple schemas in a database\.
 

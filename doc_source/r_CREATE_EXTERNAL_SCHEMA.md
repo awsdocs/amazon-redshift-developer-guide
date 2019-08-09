@@ -7,7 +7,7 @@ You can't use the GRANT or REVOKE commands for permissions on an external table\
 An Amazon Redshift external schema references a database in an external Data Catalog in AWS Glue or in Amazon Athena or a database in an Apache Hive metastore, such as Amazon EMR\. 
 
 **Note**  
-If you currently have Redshift Spectrum external tables in the Athena data catalog, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
+If you currently have Redshift Spectrum external tables in the Athena data catalog, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your AWS Identity and Access Management \(IAM\) policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
 
 All external tables must be created in an external schema\. You can't create local tables in external schemas\. For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\. 
 
@@ -43,7 +43,7 @@ If the external database is defined in an external Data Catalog in a different A
 HIVE METASTORE indicates that the external database is defined in a Hive metastore\. If HIVE METASTORE, is specified, URI is required\. 
 
 REGION '*aws\-region*'  
-If the external database is defined in an Athena data catalog or or the AWS Glue Data Catalog, the AWS Region in which the database is located\. This parameter is required if the database is defined in an external Data Catalog\. 
+If the external database is defined in an Athena data catalog or the AWS Glue Data Catalog, the AWS Region in which the database is located\. This parameter is required if the database is defined in an external Data Catalog\. 
 
 URI '*hive\_metastore\_uri*' \[ PORT port\_number \]  
 If the database is in a Hive metastore, specify the URI and optionally the port number for the metastore\. The default port number is 9083\. 
@@ -78,7 +78,8 @@ CATALOG_ROLE 'arn:aws:iam::<aws-account-id>:role/<catalog-role-1-name>,arn:aws:i
 
 CREATE EXTERNAL DATABASE IF NOT EXISTS  
 A clause that creates an external database with the name specified by the DATABASE argument, if the specified external database doesn't exist\. If the specified external database exists, the command makes no changes\. In this case, the command returns a message that the external database exists, rather than terminating with an error\.  
-CREATE EXTERNAL DATABASE IF NOT EXISTS can't be used with HIVE METASTORE\.
+You can't use CREATE EXTERNAL DATABASE IF NOT EXISTS with HIVE METASTORE\.  
+To use CREATE EXTERNAL DATABASE IF NOT EXISTS with a Data Catalog enabled for AWS Lake Formation, you need `CREATE_DATABASE` permission on the Data Catalog\. 
 
 ## Usage Notes<a name="r_CREATE_EXTERNAL_SCHEMA_usage"></a>
 

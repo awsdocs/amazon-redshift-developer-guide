@@ -6,6 +6,7 @@ Using Amazon Redshift Spectrum, you can efficiently query and retrieve structure
 + [Amazon Redshift Spectrum Overview](#c-spectrum-overview)
 + [Getting Started with Amazon Redshift Spectrum](c-getting-started-using-spectrum.md)
 + [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)
++ [Using Redshift Spectrum with AWS Lake Formation](spectrum-lake-formation.md)
 + [Creating Data Files for Queries in Amazon Redshift Spectrum](c-spectrum-data-files.md)
 + [Creating External Schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)
 + [Creating External Tables for Amazon Redshift Spectrum](c-spectrum-external-tables.md)
@@ -52,7 +53,7 @@ Note the following considerations when you use Amazon Redshift Spectrum:
 + The Amazon Redshift cluster and the Amazon S3 bucket must be in the same AWS Region\. 
 + If your cluster uses Enhanced VPC Routing, you might need to perform additional configuration steps\. For more information, see [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html)\. 
 + External tables are read\-only\. You can't perform insert, update, or delete operations on external tables\. 
-+ You can't control user permissions on an external table\. Instead, you can grant and revoke permissions on the external schema\. 
++ Unless you are using an AWS Glue Data Catalog that is enabled for AWS Lake Formation, you can't control user permissions on an external table\. Instead, you can grant and revoke permissions on the external schema\. For more information about working with Lake Formation, see [Using Redshift Spectrum with AWS Lake Formation](spectrum-lake-formation.md)\.
 + To run Redshift Spectrum queries, the database user must have permission to create temporary tables in the database\. The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
 
   ```

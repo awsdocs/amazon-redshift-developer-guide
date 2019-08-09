@@ -1,10 +1,5 @@
 # Automatic Workload Management \(WLM\)<a name="automatic-wlm"></a>
 
-
-|  | 
-| --- |
-|  Currently, **Automatic WLM** is not available in all Amazon Redshift Regions\. Automatic WLM and associated Amazon Redshift console changes will be deployed to additional AWS Regions in the upcoming releases\.  | 
-
 With automatic workload management \(WLM\), Amazon Redshift manages query concurrency and memory allocation\. One query queue is created with the service class ID 100\. 
 
 In contrast, manual WLM requires you to specify values for query concurrency and memory allocation\. The default for manual WLM is concurrency of five queries, and memory is divided equally between all five\. Automatic workload management determines the amount of resources that queries need, and adjusts the concurrency based on the workload\. When queries requiring large amounts of resources are in the system \(for example, hash joins between large tables\), the concurrency is lower\. When lighter queries \(such as inserts, deletes, scans, or simple aggregations\) are submitted, concurrency is higher\. 

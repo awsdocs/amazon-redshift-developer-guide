@@ -50,7 +50,7 @@ from pg_namespace, pg_user
 where pg_namespace.nspowner = pg_user.usesysid
 and pg_user.usename ='dwuser';
 
-   name   |  owner
+   schema |  owner
 ----------+----------
  us_sales | dwuser
 (1 row)

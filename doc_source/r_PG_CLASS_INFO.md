@@ -22,3 +22,28 @@ The following table gives the distribution style for each value in RELEFFECTIVED
 | 8 | ALL | 
 | 10 | AUTO \(ALL\) | 
 | 11 | AUTO \(EVEN\) | 
+
+## Example<a name="r_PG_CLASS_INFO-example"></a>
+
+The following query returns the current distribution style of tables in the catalog\. 
+
+```
+select reloid as tableid,trim(nspname) as schemaname,trim(relname) as tablename,reldiststyle,releffectivediststyle, 
+CASE WHEN "reldiststyle" = 0 THEN 'EVEN'::text 
+     WHEN "reldiststyle" = 1 THEN 'KEY'::text 
+     WHEN "reldiststyle" = 8 THEN 'ALL'::text 
+     WHEN "releffectivediststyle" = 10 THEN 'AUTO(ALL)'::text 
+     WHEN "releffectivediststyle" = 11 THEN 'AUTO(EVEN)'::text ELSE '<<UNKNOWN>>'::text END as diststyle,relcreationtime 
+from pg_class_info a left join pg_namespace b on a.relnamespace=b.oid;
+```
+
+```
+ tableid | schemaname | tablename | reldiststyle | releffectivediststyle | diststyle  |      relcreationtime       
+---------+------------+-----------+--------------+-----------------------+------------+----------------------------
+ 3638033 | public     | customer  |            0 |                     0 | EVEN       | 2019-06-13 15:02:50.666718
+ 3638037 | public     | sales     |            1 |                     1 | KEY        | 2019-06-13 15:03:29.595007
+ 3638035 | public     | lineitem  |            8 |                     8 | ALL        | 2019-06-13 15:03:01.378538
+ 3638039 | public     | product   |            9 |                    10 | AUTO(ALL)  | 2019-06-13 15:03:42.691611
+ 3638041 | public     | shipping  |            9 |                    11 | AUTO(EVEN) | 2019-06-13 15:03:53.69192
+(5 rows)
+```

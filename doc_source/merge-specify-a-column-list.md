@@ -57,8 +57,8 @@
 
    ```
    insert into target
-   (select col1, col2, 'expression')
-   from stage;
+   (select col1, col2, 'expression'
+   from stage);
    
    end transaction;
    ```

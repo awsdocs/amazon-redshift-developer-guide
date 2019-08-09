@@ -14,6 +14,7 @@ These PostgreSQL data types are not supported in Amazon Redshift\.
   + TIME
 + Enumerated Types
 + Geometric Types
++ HSTORE
 + JSON
 + Network Address Types
 + Numeric Types
@@ -22,6 +23,11 @@ These PostgreSQL data types are not supported in Amazon Redshift\.
 + Object Identifier Types
 + Pseudo\-Types
 + Range Types
++ Special Character Types
+  + "char" – A single\-byte internal type \(where the data type named char is enclosed in quotation marks\)\.
+  + name – An internal type for object names\.
+
+  For more information about these types, see [Special Character Types](https://www.postgresql.org/docs/8.0/datatype-character.html) in the PostgreSQL documentation\. 
 + Text Search Types
 + TXID\_SNAPSHOT
 + UUID

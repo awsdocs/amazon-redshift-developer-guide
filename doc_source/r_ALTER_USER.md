@@ -44,7 +44,7 @@ For more information, see [Visibility of Data in System Tables and Views](c_visi
 
 PASSWORD \{ '*password*' \| '*md5hash*' \| DISABLE \}  
 Sets the user's password\.   
-By default, users can change their own passwords, unless the password is disabled\. To disable a user's password, specify DISABLE\. When a user's password is disabled, the password is deleted from the system and the user can log on only using temporary IAM user credentials\. For more information, see [Using IAM Authentication to Generate Database User Credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. Only a superuser can enable or disable passwords\. You can't disable a superuser's password\. To enable a password, run ALTER USER and specify a password\.  
+By default, users can change their own passwords, unless the password is disabled\. To disable a user's password, specify DISABLE\. When a user's password is disabled, the password is deleted from the system and the user can log on only using temporary AWS Identity and Access Management \(IAM\) user credentials\. For more information, see [Using IAM Authentication to Generate Database User Credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. Only a superuser can enable or disable passwords\. You can't disable a superuser's password\. To enable a password, run ALTER USER and specify a password\.  
 You can specify the password in clear text or as an MD5 hash string\.   
 For clear text, the password must meet the following constraints:  
 + It must be 8 to 64 characters in length\.
@@ -112,7 +112,7 @@ Sets the configuration parameter to the default value for all sessions run by th
 
 ## Usage Notes<a name="r_ALTER_USER_usage_notes"></a>
 
-When using IAM authentication to create database user credentials, you might want to create a superuser that is able to log on only using temporary credentials\. You can't disable a superuser's password, but you can create an unknown password using a randomly generated MD5 hash string\.
+When using IAM \(IAM\) authentication to create database user credentials, you might want to create a superuser that is able to log on only using temporary credentials\. You can't disable a superuser's password, but you can create an unknown password using a randomly generated MD5 hash string\.
 
 ```
 alter user iam_superuser password 'mdA51234567890123456780123456789012';

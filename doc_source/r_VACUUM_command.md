@@ -69,10 +69,15 @@ Before running a vacuum operation, note the following behavior:
 + You can run only one VACUUM command on a cluster at any given time\. If you attempt to run multiple vacuum operations concurrently, Amazon Redshift returns an error\.
 + Some amount of table growth might occur when tables are vacuumed\. This behavior is expected when there are no deleted rows to reclaim or the new sort order of the table results in a lower ratio of data compression\.
 + During vacuum operations, some degree of query performance degradation is expected\. Normal performance resumes as soon as the vacuum operation is complete\.
-+ Concurrent write operations proceed during vacuum operations, but we don’t recommended performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started can't be vacuumed by that operation; in this case, a second vacuum operation will be necessary\.
++ Concurrent write operations proceed during vacuum operations, but we don’t recommended performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started can't be vacuumed by that operation; in this case, a second vacuum operation is necessary\.
 + A vacuum operation might not be able to start if a load or insert operation is already in progress\. Vacuum operations temporarily require exclusive access to tables in order to start\. This exclusive access is required briefly, so vacuum operations don't block concurrent loads and inserts for any significant period of time\.
 + Vacuum operations are skipped when there is no work to do for a particular table; however, there is some overhead associated with discovering that the operation can be skipped\. If you know that a table is pristine or doesn't meet the vacuum threshold, don't run a vacuum operation against it\.
 + A DELETE ONLY vacuum operation on a small table might not reduce the number of blocks used to store the data, especially when the table has a large number of columns or the cluster uses a large number of slices per node\. These vacuum operations add one block per column per slice to account for concurrent inserts into the table, and there is potential for this overhead to outweigh the reduction in block count from the reclaimed disk space\. For example, if a 10\-column table on an 8\-node cluster occupies 1000 blocks before a vacuum, the vacuum does not reduce the actual block count unless more than 80 blocks of disk space are reclaimed because of deleted rows\. \(Each data block uses 1 MB\.\)
+
+Automatic vacuum operations pause if any of the following conditions are met: 
++ A user runs a data definition language \(DDL\) operation, such as ALTER TABLE, that requires an exclusive lock on a table that automatic vacuum is currently working on\. 
++ A user triggers VACUUM on any table in the cluster \(only one VACUUM can run at a time\)\. 
++ A period of high cluster load\.
 
 ## Examples<a name="r_VACUUM_command-examples"></a>
 

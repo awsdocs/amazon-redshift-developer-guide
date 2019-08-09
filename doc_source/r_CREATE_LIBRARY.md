@@ -49,18 +49,18 @@ If you specify an Amazon S3 bucket, you must also provide credentials for an AWS
 *authorization*   
 A clause that indicates the method your cluster uses for authentication and authorization to access the Amazon S3 bucket that contains the library file\. Your cluster must have permission to access the Amazon S3 with the LIST and GET actions\.  
 The syntax for authorization is the same as for the COPY command authorization\. For more information, see [Authorization Parameters](copy-parameters-authorization.md)\.  
-To specify an IAM role, replace *<account\-id>* and *<role\-name>* with the account ID and role name in the CREDENTIALS *credentials\-args* string, as shown following:  
+To specify an AWS Identity and Access Management \(IAM\) role, replace *<account\-id>* and *<role\-name>* with the account ID and role name in the CREDENTIALS *credentials\-args* string\. An example is shown following\.  
 
 ```
 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 ```
 Optionally, if the Amazon S3 bucket uses server\-side encryption, provide the encryption key in the credentials\-args string\. If you use temporary security credentials, provide the temporary token in the *credentials\-args* string\.  
-To specify key\-based access control, provide the *credentials\-args* in the following format:  
+To specify key\-based access control, provide the *credentials\-args* in the following format\.  
 
 ```
 'aws_access_key_id=<access-key-id>;aws_secret_access_key=<secret-access-key>'
 ```
-To use temporary token credentials, you must provide the temporary access key ID, the temporary secret access key, and the temporary token\. The *credentials\-args* string is in the following format:   
+To use temporary token credentials, you must provide the temporary access key ID, the temporary secret access key, and the temporary token\. The *credentials\-args* string is in the following format\.   
 
 ```
 WITH CREDENTIALS AS 

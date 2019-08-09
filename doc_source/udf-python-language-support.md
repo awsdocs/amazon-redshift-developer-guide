@@ -14,7 +14,7 @@ In addition to the Python Standard Library, the following modules are part of th
 + [python\-dateutil 2\.2](https://dateutil.readthedocs.org/en/latest/)
 + [pytz 2014\.7](https://pypi.org/project/pytz/2014.7/)
 + [scipy 0\.12\.1](https://www.scipy.org/)
-+ [six 1\.3\.0](https://pythonhosted.org/six/)
++ [six 1\.3\.0](https://pypi.org/project/six/1.3.0/)
 + [wsgiref 0\.1\.2](https://pypi.python.org/pypi/wsgiref)
 
 You can also import your own custom Python modules and make them available for use in UDFs by executing a [CREATE LIBRARY](r_CREATE_LIBRARY.md) command\. For more information, see [Importing Custom Python Library Modules](#udf-importing-custom-python-library-modules)\.

@@ -12,6 +12,7 @@ Amazon Redshift Advisor offers recommendations about how to optimize your Amazon
 + [Update Table Statistics](#update-table-statistics-recommendation)
 + [Enable Short Query Acceleration](#enable-sqa-recommendation)
 + [Replace Single\-Column Interleaved Sort Keys](#single-column-interleaved-sort-recommendation)
++ [Alter Distribution Keys on Tables](#alter-diststyle-distkey-recommendation)
 
 ## Compress Table Data<a name="cluster-compression-recommendation"></a>
 
@@ -385,3 +386,27 @@ WHERE table_id IN (
 ```
 
 For additional information about choosing the best sort style, see the AWS Big Data Blog post [Amazon Redshift Engineering's Advanced Table Design Playbook: Compound and Interleaved Sort Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-compound-and-interleaved-sort-keys/)\. 
+
+## Alter Distribution Keys on Tables<a name="alter-diststyle-distkey-recommendation"></a>
+
+Amazon Redshift distributes table rows throughout the cluster according to the table distribution style\. Tables with KEY distribution require a column as the distribution key \(DISTKEY\)\. A table row is assigned to a node slice of a cluster based on its DISTKEY column value\. 
+
+An appropriate DISTKEY places a similar number of rows on each node slice and is frequently referenced in join conditions\. An optimized join occurs when tables are joined on their DISTKEY columns, accelerating query performance\.
+
+**Analysis**
+
+Advisor analyzes your cluster’s workload to identify the most appropriate distribution key for the tables that can significantly benefit from a KEY distribution style\. 
+
+**Recommendation**
+
+Advisor provides [ALTER TABLE](r_ALTER_TABLE.md) statements that alter the DISTSTYLE and DISTKEY of a table based on its analysis\. To realize a significant performance benefit, all SQL statements within a recommendation group must be implemented\. 
+
+Redistributing a large table with ALTER TABLE consumes cluster resources and requires temporary table locks at various times\. Implement each recommendation group when other cluster workload is light\. More details on optimizing table distribution properties can be found in the [Amazon Redshift Engineering's Advanced Table Design Playbook: Distribution Styles and Distribution Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-distribution-styles-and-distribution-keys/)\. 
+
+For more information about ALTER DISTSYLE and DISTKEY, see [ALTER TABLE](r_ALTER_TABLE.md)\. 
+
+**Note**  
+Currently, Advisor recommendations are only generated for tables without sort keys\. 
+The absence of recommendations does not necessarily imply that the current distribution styles are the most appropriate\. Instead, Advisor refrains from recommendations when there is not enough data or the expected benefit of redistribution is small\. 
+Advisor recommendations apply to a particular table and don't necessarily apply to a table that contains a column with the same name\. Tables that share a column name can still have different characteristics for those columns unless data inside the tables is the same\. 
+If you see recommendations for staging tables that are created or dropped by ETL jobs, modify your ETL processes to use the Advisor recommended distribution keys\. 

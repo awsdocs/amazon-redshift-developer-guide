@@ -27,3 +27,50 @@ starttime                  | type |              rtrim
 2009-06-16 15:02:25.536655 | DDL  | drop table event;
 ...
 ```
+
+### Reconstructing Stored SQL<a name="r_SVL_STATEMENTTEXT-reconstruct-sql"></a>
+
+To reconstruct the SQL stored in the `text` column of SVL\_STATEMENTTEXT, run a SELECT statement to create SQL from 1 or more parts in the `text` column\. Before running the reconstructed SQL, replace any \(`\n`\) special characters with a new line\. The result of the following SELECT statement is rows of reconstructed SQL in the `query_statement` field\.
+
+```
+select LISTAGG(CASE WHEN LEN(RTRIM(text)) = 0 THEN text ELSE RTRIM(text) END, '') within group (order by sequence) AS query_statement 
+from SVL_STATEMENTTEXT where pid=pg_backend_pid();
+```
+
+For example, the following query selects 3 columns\. The query itself is longer than 200 characters and is stored in parts in SVL\_STATEMENTTEXT\.
+
+```
+select
+1 AS a0123456789012345678901234567890123456789012345678901234567890,
+2 AS b0123456789012345678901234567890123456789012345678901234567890,
+3 AS b012345678901234567890123456789012345678901234
+FROM stl_querytext;
+```
+
+In this example, the query is stored in 2 parts \(rows\) in the `text` column of SVL\_STATEMENTTEXT\.
+
+```
+select sequence, text from SVL_STATEMENTTEXT where pid = pg_backend_pid() order by starttime, sequence;
+```
+
+```
+ sequence |                                                                                             text                                                                                                   
+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        0 | select\n1 AS a0123456789012345678901234567890123456789012345678901234567890,\n2 AS b0123456789012345678901234567890123456789012345678901234567890,\n3 AS b012345678901234567890123456789012345678901234
+        1 | \nFROM stl_querytext;
+```
+
+To reconstruct the SQL stored in STL\_STATEMENTTEXT, run the following SQL\. 
+
+```
+select LISTAGG(CASE WHEN LEN(RTRIM(text)) = 0 THEN text ELSE RTRIM(text) END, '') within group (order by sequence) AS text 
+from SVL_STATEMENTTEXT where pid=pg_backend_pid();
+```
+
+To use the resulting reconstructed SQL in your client, replace any \(`\n`\) special characters with a new line\. 
+
+```
+                                                                                                             text                                                                                                             
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ select\n1 AS a0123456789012345678901234567890123456789012345678901234567890,\n2 AS b0123456789012345678901234567890123456789012345678901234567890,\n3 AS b012345678901234567890123456789012345678901234\nFROM stl_querytext;
+```

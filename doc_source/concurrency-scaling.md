@@ -2,6 +2,20 @@
 
 With Concurrency Scaling, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. You're charged for concurrency scaling clusters only for the time they're in use\. For more information about pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable Concurrency Scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. 
 
+## Concurrency Scaling Regions<a name="concurrency-scaling-regions"></a>
+
+Concurrency Scaling is available only in the following AWS Regions: 
++ US East \(N\. Virginia\) Region \(us\-east\-1\)
++ US East \(Ohio\) Region \(us\-east\-2\)
++ US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
++ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
++ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
++ Canada \(Central\) Region \(ca\-central\-1\)
++ EU \(Frankfurt\) Region \(eu\-central\-1\)
++ EU \(Ireland\) Region \(eu\-west\-1\)
+
 ## Concurrency Scaling Candidates<a name="concurrency-scaling-candidates"></a>
 
 Queries are routed to the concurrency scaling cluster only when the main cluster meets the following requirements:

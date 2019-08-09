@@ -43,3 +43,51 @@ order by query desc;
  28240 | select query, substring(text,1,40) from stl_querytext where 
 (6 rows)
 ```
+
+### Reconstructing Stored SQL<a name="r_STL_QUERYTEXT-reconstruct-sql"></a>
+
+To reconstruct the SQL stored in the `text` column of STL\_QUERYTEXT, run a SELECT statement to create SQL from 1 or more parts in the `text` column\. Before running the reconstructed SQL, replace any \(`\n`\) special characters with a new line\. The result of the following SELECT statement is rows of reconstructed SQL in the `query_statement` field\.
+
+```
+SELECT query, LISTAGG(CASE WHEN LEN(RTRIM(text)) = 0 THEN text ELSE RTRIM(text) END) WITHIN GROUP (ORDER BY sequence) as query_statement, COUNT(*) as row_count 
+FROM stl_querytext GROUP BY query ORDER BY query desc;
+```
+
+For example, the following query selects 3 columns\. The query itself is longer than 200 characters and is stored in parts in STL\_QUERYTEXT\.
+
+```
+select
+1 AS a0123456789012345678901234567890123456789012345678901234567890,
+2 AS b0123456789012345678901234567890123456789012345678901234567890,
+3 AS b012345678901234567890123456789012345678901234
+FROM stl_querytext;
+```
+
+In this example, the query is stored in 2 parts \(rows\) in the `text` column of STL\_QUERYTEXT\.
+
+```
+select query, sequence, text
+from stl_querytext where query=pg_last_query_id() order by query desc, sequence limit 10;
+```
+
+```
+query  | sequence |                                                                                             text                                                                                                   
+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    45 |        0 | select\n1 AS a0123456789012345678901234567890123456789012345678901234567890,\n2 AS b0123456789012345678901234567890123456789012345678901234567890,\n3 AS b012345678901234567890123456789012345678901234
+    45 |        1 | \nFROM stl_querytext;
+```
+
+To reconstruct the SQL stored in STL\_QUERYTEXT, run the following SQL\. 
+
+```
+select LISTAGG(CASE WHEN LEN(RTRIM(text)) = 0 THEN text ELSE RTRIM(text) END, '') within group (order by sequence) AS text 
+from stl_querytext where query=pg_last_query_id();
+```
+
+To use the resulting reconstructed SQL in your client, replace any \(`\n`\) special characters with a new line\. 
+
+```
+                                                                                                             text                                                                                                             
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ select\n1 AS a0123456789012345678901234567890123456789012345678901234567890,\n2 AS b0123456789012345678901234567890123456789012345678901234567890,\n3 AS b012345678901234567890123456789012345678901234\nFROM stl_querytext;
+```
