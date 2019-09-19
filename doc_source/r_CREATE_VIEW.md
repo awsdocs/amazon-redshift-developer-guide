@@ -1,6 +1,6 @@
 # CREATE VIEW<a name="r_CREATE_VIEW"></a>
 
-Creates a view in a database\. The view is not physically materialized; the query that defines the view is run every time the view is referenced in a query\. To create a view with an external table, include the WITH NO SCHEMA BINDING clause\.
+Creates a view in a database\. The view isn't physically materialized; the query that defines the view is run every time the view is referenced in a query\. To create a view with an external table, include the WITH NO SCHEMA BINDING clause\.
 
 To create a standard view, you need access to the underlying tables\. To query a standard view, you need select privileges for the view itself, but you don't need select privileges for the underlying tables\. To query a late binding view, you need select privileges for the late binding view itself\. You should also make sure the owner of the late binding view has select privileges to the referenced objects \(tables, views, or user\-defined functions\)\. For more information about Late Binding Views, see [Usage Notes](#r_CREATE_VIEW_usage_notes)\.
 
@@ -28,7 +28,7 @@ Optional list of names to be used for the columns in the view\. If no column nam
 A query \(in the form of a SELECT statement\) that evaluates to a table\. This table defines the columns and rows in the view\. 
 
  WITH NO SCHEMA BINDING   
-Clause that specifies that the view is not bound to the underlying database objects, such as tables and user\-defined functions\. As a result, there is no dependency between the view and the objects it references\. You can create a view even if the referenced objects don't exist\. Because there is no dependency, you can drop or alter a referenced object without affecting the view\. Amazon Redshift doesn't check for dependencies until the view is queried\. To view details about late binding views, run the [PG\_GET\_LATE\_BINDING\_VIEW\_COLS](PG_GET_LATE_BINDING_VIEW_COLS.md) function\.  
+Clause that specifies that the view isn't bound to the underlying database objects, such as tables and user\-defined functions\. As a result, there is no dependency between the view and the objects it references\. You can create a view even if the referenced objects don't exist\. Because there is no dependency, you can drop or alter a referenced object without affecting the view\. Amazon Redshift doesn't check for dependencies until the view is queried\. To view details about late binding views, run the [PG\_GET\_LATE\_BINDING\_VIEW\_COLS](PG_GET_LATE_BINDING_VIEW_COLS.md) function\.  
 When you include the WITH NO SCHEMA BINDING clause, tables and views referenced in the SELECT statement must be qualified with a schema name\. The schema must exist when the view is created, even if the referenced table doesn't exist\. For example, the following statement returns an error\.   
 
 ```
@@ -49,7 +49,7 @@ You can't update, insert into, or delete from a view\.
 
 ### Late\-Binding Views<a name="r_CREATE_VIEW_late-binding-views"></a>
 
-A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. If you drop underlying objects, queries to the late\-binding view will fail\. If the query to the late\-binding view references columns in the underlying object that are not present, the query will fail\. 
+A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. If you drop underlying objects, queries to the late\-binding view will fail\. If the query to the late\-binding view references columns in the underlying object that aren't present, the query will fail\. 
 
  If you drop and then re\-create a late\-binding view's underlying table or view, the new object is created with default access permissions\. You might need to grant permissions to the underling objects for users who will query the view\. 
 

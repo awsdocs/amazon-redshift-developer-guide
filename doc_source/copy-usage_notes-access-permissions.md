@@ -18,7 +18,7 @@ Role\-based authentication delivers the following benefits:
 + You can use AWS standard IAM tools to define an IAM role and associate the role with multiple clusters\. When you modify the access policy for a role, the changes are applied automatically to all clusters that use the role\.
 + You can define fine\-grained IAM policies that grant permissions for specific clusters and database users to access specific AWS resources and actions\.
 + Your cluster obtains temporary session credentials at run time and refreshes the credentials as needed until the operation completes\. If you use key\-based temporary credentials, the operation fails if the temporary credentials expire before it completes\.
-+ Your access key ID and secret access key ID are not stored or transmitted in your SQL code\.
++ Your access key ID and secret access key ID aren't stored or transmitted in your SQL code\.
 
 To use role\-based access control, you must first create an IAM role using the Amazon Redshift service role type, and then attach the role to your cluster\. The role must have, at a minimum, the permissions listed in [IAM Permissions for COPY, UNLOAD, and CREATE LIBRARY](#copy-usage_notes-iam-permissions)\. For steps to create an IAM role and attach it to your cluster, see [Authorizing Amazon Redshift to Access Other AWS Services On Your Behalf](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) in the *Amazon Redshift Cluster Management Guide*\.
 

@@ -46,7 +46,7 @@ Legally Blonde   |  804583.00
 (6 rows)
 ```
 
-The following query calculates a similar result set\. In this case, however, the HAVING condition is applied to an aggregate that is not specified in the select list: `sum(qtysold)`\. Events that did not sell more than 2,000 tickets are eliminated from the final result\.
+The following query calculates a similar result set\. In this case, however, the HAVING condition is applied to an aggregate that isn't specified in the select list: `sum(qtysold)`\. Events that did not sell more than 2,000 tickets are eliminated from the final result\.
 
 ```
 select eventname, sum(pricepaid)

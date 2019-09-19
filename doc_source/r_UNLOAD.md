@@ -37,7 +37,7 @@ where option is
 ## Parameters<a name="unload-parameters"></a>
 
 \('*select\-statement*'\)   
-A SELECT query\. The results of the query are unloaded\. In most cases, it is worthwhile to unload data in sorted order by specifying an ORDER BY clause in the query\. This approach saves the time required to sort the data when it is reloaded\. TOP is not supported in the SELECT clause\. Use LIMIT instead\.  
+A SELECT query\. The results of the query are unloaded\. In most cases, it is worthwhile to unload data in sorted order by specifying an ORDER BY clause in the query\. This approach saves the time required to sort the data when it is reloaded\. TOP isn't supported in the SELECT clause\. Use LIMIT instead\.  
 The query must be enclosed in single quotes as shown following:   
 
 ```
@@ -56,7 +56,7 @@ If MANIFEST is specified, the manifest file is written as follows:
 `<object_path>/<name_prefix>manifest`\.   
 UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption \(SSE\), including the manifest file if MANIFEST is used\. The COPY command automatically reads server\-side encrypted files during the load operation\. You can transparently download server\-side encrypted files from your bucket using either the Amazon S3 Management Console or API\. For more information, go to [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.   
 To use Amazon S3 client\-side encryption, specify the ENCRYPTED option\.  
-REGION is required when the Amazon S3 bucket is not in the same AWS Region as the Amazon Redshift cluster\. 
+REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. 
 
 Authorization  
 The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD command uses the same parameters the COPY command uses for authorization\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command syntax reference\.
@@ -79,10 +79,10 @@ Unloads to a text file in CSV format using a comma \( , \) character as the deli
 The FORMAT and AS keywords are optional\. CSV can't be used with DELIMITER or FIXEDWIDTH\. 
 
 DELIMITER AS '*delimiter\_character*'   
-Single ASCII character that is used to separate fields in the output file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. The default delimiter is a pipe character\. The AS keyword is optional\. DELIMITER can't be used with FIXEDWIDTH\. If the data contains the delimiter character, you need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotes\. Alternatively, specify a delimiter that is not contained in the data\.
+Single ASCII character that is used to separate fields in the output file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. The default delimiter is a pipe character\. The AS keyword is optional\. DELIMITER can't be used with FIXEDWIDTH\. If the data contains the delimiter character, you need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotes\. Alternatively, specify a delimiter that isn't contained in the data\.
 
 FIXEDWIDTH '*fixedwidth\_spec*'   
-Unloads the data to a file where each column width is a fixed length, rather than separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies the number of columns and the width of the columns\. The AS keyword is optional\. Because FIXEDWIDTH does not truncate data, the specification for each column in the UNLOAD statement needs to be at least as long as the length of the longest entry for that column\. The format for *fixedwidth\_spec* is shown below:   
+Unloads the data to a file where each column width is a fixed length, rather than separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies the number of columns and the width of the columns\. The AS keyword is optional\. Because FIXEDWIDTH doesn't truncate data, the specification for each column in the UNLOAD statement needs to be at least as long as the length of the longest entry for that column\. The format for *fixedwidth\_spec* is shown below:   
 
 ```
 'colID1:colWidth1,colID2:colWidth2, ...'
@@ -93,7 +93,7 @@ ENCRYPTED  <a name="unload-parameters-encrypted"></a>
 A clause that specifies that the output files on Amazon S3 are encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\), use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you UNLOAD data using KMS\_KEY\_ID, you can then COPY the same data without specifying a key\.   
 To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key using the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the **master\_symmetric\_key** portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, you must supply the same key when you COPY the encrypted data\.   
-UNLOAD does not support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
+UNLOAD doesn't support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
 To compress encrypted unload files, add the BZIP2, GZIP, or ZSTD parameter\. 
 
 KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
@@ -121,7 +121,7 @@ Without the added quotes, the string `Hello, World` would be parsed as two separ
 If you use ADDQUOTES, you must specify REMOVEQUOTES in the COPY if you reload the data\.
 
 NULL AS '*null\-string*'   
-Specifies a string that represents a null value in unload files\. If this option is used, all output files contain the specified string in place of any null values found in the selected data\. If this option is not specified, null values are unloaded as:   
+Specifies a string that represents a null value in unload files\. If this option is used, all output files contain the specified string in place of any null values found in the selected data\. If this option isn't specified, null values are unloaded as:   
 + Zero\-length strings for delimited output 
 + Whitespace strings for fixed\-width output
 If a null string is specified for a fixed\-width unload and the width of an output column is less than the width of the null string, the following behavior occurs:   
@@ -151,10 +151,10 @@ s3://mybucket/key002    1.0 GB
 The UNLOAD command is designed to use parallel processing\. We recommend leaving PARALLEL enabled for most cases, especially if the files are used to load tables using a COPY command\.
 
 MAXFILESIZE AS max\-size \[ MB \| GB \]   <a name="unload-maxfilesize"></a>
-The maximum size of files UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE is not specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, is not affected by MAXFILESIZE\.
+The maximum size of files UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE isn't specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, isn't affected by MAXFILESIZE\.
 
 REGION \[AS\] '*aws\-region*'  <a name="unload-region"></a>
-The AWS Region where the target Amazon S3 bucket is located\. REGION is required for UNLOAD to an Amazon S3 bucket that is not in the same AWS Region as the Amazon Redshift cluster\.   
+The AWS Region where the target Amazon S3 bucket is located\. REGION is required for UNLOAD to an Amazon S3 bucket that isn't in the same AWS Region as the Amazon Redshift cluster\.   
 The value for *aws\_region* must match an AWS Region listed in the [Amazon Redshift regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) table in the *AWS General Reference*\.  
 By default, UNLOAD assumes that the target Amazon S3 bucket is located in the same AWS Region as the Amazon Redshift cluster\.
 
@@ -162,10 +162,10 @@ By default, UNLOAD assumes that the target Amazon S3 bucket is located in the sa
 
 ### Using ESCAPE for All Delimited UNLOAD Operations<a name="unload-usage-escape"></a>
 
-When you UNLOAD using a delimiter, your data can include that delimiter or any of the characters listed in the ESCAPE option description\. In this case, you must use the ESCAPE option with the UNLOAD statement\. If you do not use the ESCAPE option with the UNLOAD, subsequent COPY operations using the unloaded data might fail\.
+When you UNLOAD using a delimiter, your data can include that delimiter or any of the characters listed in the ESCAPE option description\. In this case, you must use the ESCAPE option with the UNLOAD statement\. If you don't use the ESCAPE option with the UNLOAD, subsequent COPY operations using the unloaded data might fail\.
 
 **Important**  
-We strongly recommend that you always use ESCAPE with both UNLOAD and COPY statements\. The exception is if you are certain that your data does not contain any delimiters or other characters that might need to be escaped\. 
+We strongly recommend that you always use ESCAPE with both UNLOAD and COPY statements\. The exception is if you are certain that your data doesn't contain any delimiters or other characters that might need to be escaped\. 
 
 ### Loss of Floating\-Point Precision<a name="unload-usage-floating-point-precision"></a>
 

@@ -2,6 +2,7 @@
 
 **Topics**
 + [Raw Encoding](c_Raw_encoding.md)
++ [AZ64](az64-encoding.md)
 + [Byte\-Dictionary Encoding](c_Byte_dictionary_encoding.md)
 + [Delta Encoding](c_Delta_encoding.md)
 + [LZO](lzo-encoding.md)

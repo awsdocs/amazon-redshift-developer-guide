@@ -86,9 +86,9 @@ The query plan uses the following operators for queries that involve set operati
 + **Subquery**
 
   Used to run UNION queries\.
-+ **Hash Intersect Distinct and Hash Intersect All**
++ **Hash Intersect Distinct **
 
-  Used to run INTERSECT and INTERSECT ALL queries\.
+  Used to run INTERSECT  queries\.
 + **SetOp Except**
 
   Used to run EXCEPT \(or MINUS\) queries\.

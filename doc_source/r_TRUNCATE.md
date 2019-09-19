@@ -2,7 +2,7 @@
 
 Deletes all of the rows from a table without doing a table scan: this operation is a faster alternative to an unqualified DELETE operation\. To execute a TRUNCATE command, you must be the owner of the table or a superuser\.
 
-TRUNCATE is much more efficient than DELETE and does not require a VACUUM and ANALYZE\. However, be aware that TRUNCATE commits the transaction in which it is run\.
+TRUNCATE is much more efficient than DELETE and doesn't require a VACUUM and ANALYZE\. However, be aware that TRUNCATE commits the transaction in which it is run\.
 
 ## Syntax<a name="r_TRUNCATE-synopsis"></a>
 
@@ -18,7 +18,7 @@ Optional keyword\.
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a superuser may truncate it\.   
 You can truncate any table, including tables that are referenced in foreign\-key constraints\.   
-You do not need to vacuum a table after truncating it\. 
+You don't need to vacuum a table after truncating it\. 
 
 ## Usage Notes<a name="r_TRUNCATE_usage_notes"></a>
 

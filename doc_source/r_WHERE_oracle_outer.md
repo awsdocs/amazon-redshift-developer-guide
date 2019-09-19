@@ -1,6 +1,6 @@
 # Oracle\-Style Outer Joins in the WHERE Clause<a name="r_WHERE_oracle_outer"></a>
 
-For Oracle compatibility, Amazon Redshift supports the Oracle outer\-join operator \(\+\) in WHERE clause join conditions\. This operator is intended for use only in defining outer\-join conditions; do not try to use it in other contexts\. Other uses of this operator are silently ignored in most cases\. 
+For Oracle compatibility, Amazon Redshift supports the Oracle outer\-join operator \(\+\) in WHERE clause join conditions\. This operator is intended for use only in defining outer\-join conditions; don't try to use it in other contexts\. Other uses of this operator are silently ignored in most cases\. 
 
 An outer join returns all of the rows that the equivalent inner join would return, plus non\-matching rows from one or both tables\. In the FROM clause, you can specify left, right, and full outer joins\. In the WHERE clause, you can specify left and right outer joins only\. 
 
@@ -58,7 +58,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   ```
 + You can't use the \(\+\) operator in a query block that also contains FROM clause join syntax\. 
 + If two tables are joined over multiple join conditions, you must use the \(\+\) operator in all or none of these conditions\. A join with mixed syntax styles executes as an inner join, without warning\. 
-+ The \(\+\) operator does not produce an outer join if you join a table in the outer query with a table that results from an inner query\. 
++ The \(\+\) operator doesn't produce an outer join if you join a table in the outer query with a table that results from an inner query\. 
 + To use the \(\+\) operator to outer\-join a table to itself, you must define table aliases in the FROM clause and reference them in the join condition: 
 
   ```
@@ -85,7 +85,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   where sales.listid(+)=listing.listid and sales.dateid(+)=date.dateid;
   ERROR:  A table may be outer joined to at most one other table.
   ```
-+  If the WHERE clause outer\-join condition compares a column from TABLE2 with a constant, apply the \(\+\) operator to the column\. If you do not include the operator, the outer\-joined rows from TABLE1, which contain nulls for the restricted column, are eliminated\. See the Examples section below\. 
++  If the WHERE clause outer\-join condition compares a column from TABLE2 with a constant, apply the \(\+\) operator to the column\. If you don't include the operator, the outer\-joined rows from TABLE1, which contain nulls for the restricted column, are eliminated\. See the Examples section below\. 
 
 ## Examples<a name="r_WHERE_oracle_outer-examples"></a>
 
@@ -114,7 +114,7 @@ count
 (1 row)
 ```
 
-The SALES table does not contain records for all listings in the LISTING table because not all listings result in sales\. The following query outer\-joins SALES and LISTING and returns rows from LISTING even when the SALES table reports no sales for a given list ID\. The PRICE and COMM columns, derived from the SALES table, contain nulls in the result set for those non\-matching rows\. 
+The SALES table doesn't contain records for all listings in the LISTING table because not all listings result in sales\. The following query outer\-joins SALES and LISTING and returns rows from LISTING even when the SALES table reports no sales for a given list ID\. The PRICE and COMM columns, derived from the SALES table, contain nulls in the result set for those non\-matching rows\. 
 
 ```
 select listing.listid, sum(pricepaid) as price,
@@ -133,7 +133,7 @@ listid | price  |  comm
 (5 rows)
 ```
 
-Note that when the WHERE clause join operator is used, the order of the tables in the FROM clause does not matter\. 
+Note that when the WHERE clause join operator is used, the order of the tables in the FROM clause doesn't matter\. 
 
 An example of a more complex outer join condition in the WHERE clause is the case where the condition consists of a comparison between two table columns *and* a comparison with a constant: 
 

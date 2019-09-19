@@ -58,7 +58,7 @@ select eventid, venueid, dateid, eventname
 from event;
 ```
 
-The following statement applies even distribution to the table but does not define an explicit sort key: 
+The following statement applies even distribution to the table but doesn't define an explicit sort key\. 
 
 ```
 create table eventdisteven
@@ -68,7 +68,7 @@ select eventid, venueid, dateid, eventname
 from event;
 ```
 
-The table does not inherit the sort key from the EVENT table \(EVENTID\) because EVEN distribution is specified for the new table\. The new table has no sort key and no distribution key\. 
+The table doesn't inherit the sort key from the EVENT table \(EVENTID\) because EVEN distribution is specified for the new table\. The new table has no sort key and no distribution key\. 
 
 ```
 select "column", type, encoding, distkey, sortkey
@@ -103,7 +103,7 @@ dateid    | smallint               | none     | f       | 0
 eventname | character varying(200) | none     | f       | 0
 ```
 
-The following statement redistributes the EVENT table on a different key column from the incoming data, which is sorted on the EVENTID column, and defines no SORTKEY column; therefore the table is not sorted\. 
+The following statement redistributes the EVENT table on a different key column from the incoming data, which is sorted on the EVENTID column, and defines no SORTKEY column; therefore the table isn't sorted\. 
 
 ```
 create table venuedistevent distkey(venueid)

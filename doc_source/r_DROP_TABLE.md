@@ -25,7 +25,7 @@ Name of the table to drop\.
 
 CASCADE   
 Clause that indicates to automatically drop objects that depend on the table, such as views\.   
-To create a view that is not dependent on a table referenced by the view, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
+To create a view that isn't dependent on a table referenced by the view, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
 RESTRICT   
 Clause that indicates not to drop the table if any objects depend on it\. This action is the default\.
@@ -136,7 +136,7 @@ This query returns the following dependencies, showing that the SALES\_VIEW view
 
  **Dropping a Table Using IF EXISTS** 
 
-The following example either drops the FEEDBACK table if it exists, or does nothing and returns a message if it does not: 
+The following example either drops the FEEDBACK table if it exists, or does nothing and returns a message if it doesn't: 
 
 ```
 drop table if exists feedback;

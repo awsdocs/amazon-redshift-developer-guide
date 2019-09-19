@@ -44,7 +44,7 @@ The path to a single Amazon S3 object that contains the library file\. The follo
 's3://mybucket/my-pylib.zip'
 ```
 If you specify an Amazon S3 bucket, you must also provide credentials for an AWS user that has permission to download the file\.   
- If the Amazon S3 bucket does not reside in the same AWS Region as your Amazon Redshift cluster, you must use the REGION option to specify the AWS Region in which the data is located\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.
+ If the Amazon S3 bucket doesn't reside in the same AWS Region as your Amazon Redshift cluster, you must use the REGION option to specify the AWS Region in which the data is located\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.
 
 *authorization*   
 A clause that indicates the method your cluster uses for authentication and authorization to access the Amazon S3 bucket that contains the library file\. Your cluster must have permission to access the Amazon S3 with the LIST and GET actions\.  
@@ -69,7 +69,7 @@ WITH CREDENTIALS AS
 For more information, see [Temporary Security Credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)
 
  REGION \[AS\] *aws\_region*   
-The AWS Region where the Amazon S3 bucket is located\. REGION is required when the Amazon S3 bucket is not in the same AWS Region as the Amazon Redshift cluster\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.  
+The AWS Region where the Amazon S3 bucket is located\. REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.  
 By default, CREATE LIBRARY assumes that the Amazon S3 bucket is located in the same AWS Region as the Amazon Redshift cluster\.
 
 ## Examples<a name="r_CREATE_LIBRARY-examples"></a>

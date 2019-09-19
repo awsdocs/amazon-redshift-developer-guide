@@ -38,8 +38,8 @@ where s.listid=l.listid
 Temporary alternative name for a column in a table or view\. 
 
  *subquery*   
-A query expression that evaluates to a table\. The table exists only for the duration of the query and is typically given a name or *alias*; however, an alias is not required\. You can also define column names for tables that derive from subqueries\. Naming column aliases is important when you want to join the results of subqueries to other tables and when you want to select or constrain those columns elsewhere in the query\.   
-A subquery may contain an ORDER BY clause, but this clause may have no effect if a LIMIT or OFFSET clause is not also specified\. 
+A query expression that evaluates to a table\. The table exists only for the duration of the query and is typically given a name or *alias*\. However, an alias isn't required\. You can also define column names for tables that derive from subqueries\. Naming column aliases is important when you want to join the results of subqueries to other tables and when you want to select or constrain those columns elsewhere in the query\.   
+A subquery may contain an ORDER BY clause, but this clause may have no effect if a LIMIT or OFFSET clause isn't also specified\. 
 
 NATURAL   
 Defines a join that automatically uses all pairs of identically named columns in the two tables as the joining columns\. No explicit join condition is required\. For example, if the CATEGORY and EVENT tables both have columns named CATID, a natural join of those tables is a join over their CATID columns\.   

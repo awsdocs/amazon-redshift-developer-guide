@@ -2,7 +2,7 @@
 
 Removes a user\-defined function \(UDF\) from the database\. The function's signature, or list of argument data types, must be specified because multiple functions can exist with the same name but different signatures\. You can't drop an Amazon Redshift built\-in function\.
 
-This command is not reversible\.
+This command isn't reversible\.
 
 ## Syntax<a name="r_DROP_FUNCTION-synopsis"></a>
 
@@ -25,7 +25,7 @@ The data type of the input argument\. You can supply a comma\-separated list wit
 
  CASCADE   
 Keyword specifying to automatically drop objects that depend on the function, such as views\.   
-To create a view that is not dependent on a function, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
+To create a view that isn't dependent on a function, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
  RESTRICT   
 Keyword specifying that if any objects depend on depend on the function, do not drop the function and return a message\. This action is the default\.

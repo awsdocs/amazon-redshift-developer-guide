@@ -41,8 +41,8 @@ GRANT USAGE
 The following syntax is for Redshift Spectrum integration with Lake Formation\. 
 
 ```
-GRANT { SELECT | ALL [ PRIVILEGES ] }
-    ON EXTERNAL TABLE schema_name.table_name ( column_list ) [, ...] 
+GRANT { SELECT | ALL [ PRIVILEGES ] } ( column_list )
+    ON EXTERNAL TABLE schema_name.table_name 
     TO { IAM_ROLE iam_role } [, ...] [ WITH GRANT OPTION ] 
 
 GRANT { { SELECT | ALTER | DROP | DELETE | INSERT }  [, ...] | ALL [ PRIVILEGES ] }
@@ -88,8 +88,8 @@ Grants the specified privileges on a table or a view\. The TABLE keyword is opti
 ON ALL TABLES IN SCHEMA *schema\_name*   <a name="grant-all-tables"></a>
 Grants the specified privileges on all tables and views in the referenced schema\.
 
-ON EXTERNAL TABLE *schema\_name\.table\_name* \( *column\_list* \)   <a name="grant-external-table-column"></a>
-Grants the specified privileges to an IAM role on the specified Lake Formation tables \(and columns\) in the referenced schema\.
+\( *column\_list* \) ON EXTERNAL TABLE *schema\_name\.table\_name*   <a name="grant-external-table-column"></a>
+Grants the specified privileges to an IAM role on the specified columns of the Lake Formation table in the referenced schema\.
 
 ON EXTERNAL TABLE *schema\_name\.table\_name*   <a name="grant-external-table"></a>
 Grants the specified privileges to an IAM role on the specified Lake Formation tables in the referenced schema\.
@@ -208,7 +208,7 @@ The following example grants the SELECT privilege on all tables in the QA\_TICKI
 grant select on all tables in schema qa_tickit to fred;
 ```
 
-The following example grants all schema privileges on the schema QA\_TICKIT to the user group QA\_USERS\. Schema privileges are CREATE and USAGE\. USAGE grants users access to the objects in the schema, but does not grant privileges such as INSERT or SELECT on those objects\. Privileges must be granted on each object separately\.
+The following example grants all schema privileges on the schema QA\_TICKIT to the user group QA\_USERS\. Schema privileges are CREATE and USAGE\. USAGE grants users access to the objects in the schema, but doesn't grant privileges such as INSERT or SELECT on those objects\. Privileges must be granted on each object separately\.
 
 ```
 create group qa_users;

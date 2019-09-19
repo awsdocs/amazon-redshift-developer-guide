@@ -17,7 +17,7 @@ DELETE [ FROM ] table_name
 
 FROM  
 The FROM keyword is optional, except when the USING clause is specified\. The statements `delete from event;` and `delete event;` are equivalent operations that remove all of the rows from the EVENT table\.  
-To delete all the rows from a table, [TRUNCATE](r_TRUNCATE.md) the table\. TRUNCATE is much more efficient than DELETE and does not require a VACUUM and ANALYZE\. However, be aware that TRUNCATE commits the transaction in which it is run\.
+To delete all the rows from a table, [TRUNCATE](r_TRUNCATE.md) the table\. TRUNCATE is much more efficient than DELETE and doesn't require a VACUUM and ANALYZE\. However, be aware that TRUNCATE commits the transaction in which it is run\.
 
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a user with DELETE privilege on the table may delete rows from the table\.  
@@ -58,7 +58,7 @@ delete from category
 where catid between 0 and 9;
 ```
 
-Delete rows from the LISTING table whose SELLERID values do not exist in the SALES table:
+Delete rows from the LISTING table whose SELLERID values don't exist in the SALES table:
 
 ```
 delete from listing

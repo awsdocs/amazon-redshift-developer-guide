@@ -28,7 +28,7 @@ Optional character\.
 Username for the database owner\.
 
 CONNECTION LIMIT \{ *limit* \| UNLIMITED \}   
-The maximum number of database connections users are permitted to have open concurrently\. The limit is not enforced for super users\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
+The maximum number of database connections users are permitted to have open concurrently\. The limit isn't enforced for super users\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
 ## CREATE DATABASE Limits<a name="r_CREATE_DATABASE-create-database-limits"></a>

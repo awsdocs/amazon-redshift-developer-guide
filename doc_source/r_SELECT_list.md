@@ -20,10 +20,10 @@ SELECT
 ## Parameters<a name="r_SELECT_list-parameters"></a>
 
 TOP *number*   
-TOP takes a positive integer as its argument, which defines the number of rows that are returned to the client\. The behavior with the TOP clause is the same as the behavior with the LIMIT clause\. The number of rows that is returned is fixed, but the set of rows is not; to return a consistent set of rows, use TOP or LIMIT in conjunction with an ORDER BY clause\. 
+TOP takes a positive integer as its argument, which defines the number of rows that are returned to the client\. The behavior with the TOP clause is the same as the behavior with the LIMIT clause\. The number of rows that is returned is fixed, but the set of rows isn't\. To return a consistent set of rows, use TOP or LIMIT in conjunction with an ORDER BY clause\. 
 
 ALL   
-A redundant keyword that defines the default behavior if you do not specify DISTINCT\. `SELECT ALL *` means the same as `SELECT *` \(select all rows for all columns and retain duplicates\)\. 
+A redundant keyword that defines the default behavior if you don't specify DISTINCT\. `SELECT ALL *` means the same as `SELECT *` \(select all rows for all columns and retain duplicates\)\. 
 
 DISTINCT   
 Option that eliminates duplicate rows from the result set, based on matching values in one or more columns\. 
@@ -44,7 +44,7 @@ A temporary name for the column that is used in the final result set\. The AS ke
 ```
 avg(datediff(day, listtime, saletime)) as avgwait
 ```
-If you do not specify an alias for an expression that is not a simple column name, the result set applies a default name to that column\.   
+If you don't specify an alias for an expression that isn't a simple column name, the result set applies a default name to that column\.   
 The alias is recognized right after it is defined in the target list\. You can use an alias in other expressions defined after it in the same target list\. The following example illustrates this\.   
 
 ```

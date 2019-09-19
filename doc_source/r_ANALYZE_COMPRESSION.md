@@ -14,13 +14,13 @@ ANALYZE COMPRESSION
 ## Parameters<a name="r_ANALYZE_COMPRESSION-parameters"></a>
 
  *table\_name*   
-You can analyze compression for specific tables, including temporary tables\. You can qualify the table with its schema name\. You can optionally specify a *table\_name* to analyze a single table\. If you do not specify a *table\_name*, all of the tables in the currently connected database are analyzed\. You can't specify more than one *table\_name* with a single ANALYZE COMPRESSION statement\.
+You can analyze compression for specific tables, including temporary tables\. You can qualify the table with its schema name\. You can optionally specify a *table\_name* to analyze a single table\. If you don't specify a *table\_name*, all of the tables in the currently connected database are analyzed\. You can't specify more than one *table\_name* with a single ANALYZE COMPRESSION statement\.
 
  *column\_name*   
 If you specify a *table\_name*, you can also specify one or more columns in the table \(as a column\-separated list within parentheses\)\.
 
 COMPROWS  
-Number of rows to be used as the sample size for compression analysis\. The analysis is run on rows from each data slice\. For example, if you specify COMPROWS 1000000 \(1,000,000\) and the system contains 4 total slices, no more than 250,000 rows per slice are read and analyzed\. If COMPROWS is not specified, the sample size defaults to 100,000 per slice\. Values of COMPROWS lower than the default of 100,000 rows per slice are automatically upgraded to the default value\. However, compression analysis doesn't produce recommendations if the amount of data in the table is insufficient to produce a meaningful sample\. If the COMPROWS number is greater than the number of rows in the table, the ANALYZE COMPRESSION command still proceeds and runs the compression analysis against all of the available rows\.
+Number of rows to be used as the sample size for compression analysis\. The analysis is run on rows from each data slice\. For example, if you specify COMPROWS 1000000 \(1,000,000\) and the system contains 4 total slices, no more than 250,000 rows per slice are read and analyzed\. If COMPROWS isn't specified, the sample size defaults to 100,000 per slice\. Values of COMPROWS lower than the default of 100,000 rows per slice are automatically upgraded to the default value\. However, compression analysis doesn't produce recommendations if the amount of data in the table is insufficient to produce a meaningful sample\. If the COMPROWS number is greater than the number of rows in the table, the ANALYZE COMPRESSION command still proceeds and runs the compression analysis against all of the available rows\.
 
  *numrows*   
 Number of rows to be used as the sample size for compression analysis\. The accepted range for *numrows* is a number between 1000 and 1000000000 \(1,000,000,000\)\.

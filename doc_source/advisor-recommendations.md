@@ -139,7 +139,7 @@ GROUP BY database;
 
 ## Reallocate Workload Management \(WLM\) Memory<a name="reallocate-wlm-recommendation"></a>
 
-Amazon Redshift routes user queries to [Defining Query Queues](cm-c-defining-query-queues.md) for processing\. Workload management \(WLM\) defines how those queries are routed to the queues\. Amazon Redshift allocates each queue a portion of the cluster's available memory\. A queue's memory is divided among the queue's query slots\. 
+Amazon Redshift routes user queries to [Implementing Manual WLM](cm-c-defining-query-queues.md) for processing\. Workload management \(WLM\) defines how those queries are routed to the queues\. Amazon Redshift allocates each queue a portion of the cluster's available memory\. A queue's memory is divided among the queue's query slots\. 
 
 When a queue is configured with more slots than the workload requires, the memory allocated to these unused slots goes underutilized\. Reducing the configured slots to match the peak workload requirements redistributes the underutilized memory to active slots, and can result in improved query performance\. 
 
@@ -329,7 +329,7 @@ For more information, see [Analyzing Tables](t_Analyzing_tables.md)\.
 
 Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA executes short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. SQA only prioritizes queries that are short\-running and are in a user\-defined queue\. With SQA, short\-running queries begin running more quickly and users see results sooner\. 
 
-If you enable SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Short Query Acceleration](wlm-short-query-acceleration.md)\. 
+If you enable SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Working with Short Query Acceleration](wlm-short-query-acceleration.md)\. 
 
 **Analysis**
 
@@ -406,7 +406,6 @@ Redistributing a large table with ALTER TABLE consumes cluster resources and req
 For more information about ALTER DISTSYLE and DISTKEY, see [ALTER TABLE](r_ALTER_TABLE.md)\. 
 
 **Note**  
-Currently, Advisor recommendations are only generated for tables without sort keys\. 
 The absence of recommendations does not necessarily imply that the current distribution styles are the most appropriate\. Instead, Advisor refrains from recommendations when there is not enough data or the expected benefit of redistribution is small\. 
 Advisor recommendations apply to a particular table and don't necessarily apply to a table that contains a column with the same name\. Tables that share a column name can still have different characteristics for those columns unless data inside the tables is the same\. 
 If you see recommendations for staging tables that are created or dropped by ETL jobs, modify your ETL processes to use the Advisor recommended distribution keys\. 

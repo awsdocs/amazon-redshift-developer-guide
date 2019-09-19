@@ -9,7 +9,7 @@
 + [CHARACTER\_LENGTH Function](r_CHARACTER_LENGTH.md)
 + [CHARINDEX Function](r_CHARINDEX.md)
 + [CHR Function](r_CHR.md)
-+ [CONCAT \(Oracle Compatibility Function\)](r_CONCAT.md)
++ [CONCAT](r_CONCAT.md)
 + [CRC32 Function](crc32-function.md)
 + [FUNC\_SHA1 Function](FUNC_SHA1.md)
 + [INITCAP Function](r_INITCAP.md)

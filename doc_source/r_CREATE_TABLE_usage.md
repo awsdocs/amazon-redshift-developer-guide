@@ -2,7 +2,7 @@
 
 ## Limits<a name="r_CREATE_TABLE_usage-limits"></a>
 
-The maximum number of tables is 9,900 for large and xlarge cluster node types and 20,000 for 8xlarge cluster node types\. The limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views are not included in this limit\. For more information about cluster node types, see [Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\. 
+The maximum number of tables is 9,900 for large and xlarge cluster node types and 20,000 for 8xlarge cluster node types\. The limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\. For more information about cluster node types, see [Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\. 
 
 The maximum number of characters for a table name is 127\.
 
@@ -38,7 +38,7 @@ When the hash distribution scheme of the incoming data matches that of the targe
 
 ## Wide Tables<a name="r_CREATE_TABLE_usage-wide-tables"></a>
 
-You might be able to create a very wide table but be unable to perform query processing, such as INSERT or SELECT statements, on the table\. The maximum width of a table with fixed width columns, such as CHAR, is 64KB \- 1 \(or 65535 bytes\)\. If a table includes VARCHAR columns, the table can have a larger declared width without returning an error because VARCHARS columns do not contribute their full declared width to the calculated query\-processing limit\. The effective query\-processing limit with VARCHAR columns will vary based on a number of factors\.
+You might be able to create a very wide table but be unable to perform query processing, such as INSERT or SELECT statements, on the table\. The maximum width of a table with fixed width columns, such as CHAR, is 64KB \- 1 \(or 65535 bytes\)\. If a table includes VARCHAR columns, the table can have a larger declared width without returning an error because VARCHARS columns don't contribute their full declared width to the calculated query\-processing limit\. The effective query\-processing limit with VARCHAR columns will vary based on a number of factors\.
 
 If a table is too wide for inserting or selecting, you receive the following error\.
 

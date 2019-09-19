@@ -3,7 +3,7 @@
 The DATEFORMAT and TIMEFORMAT options in the COPY command take format strings\. These strings can contain datetime separators \(such as '`-`', '`/`', or '`:`'\) and the following "dateparts" and "timeparts"\. 
 
 **Note**  
-If the COPY command does not recognize the format of your date or time values, or if your date and time values use formats different from each other, use the `'auto'` argument with the TIMEFORMAT parameter\. The `'auto'` argument recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\.
+If the COPY command doesn't recognize the format of your date or time values, or if your date and time values use formats different from each other, use the `'auto'` argument with the TIMEFORMAT parameter\. The `'auto'` argument recognizes several formats that aren't supported when using a DATEFORMAT and TIMEFORMAT string\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_DATEFORMAT_and_TIMEFORMAT_strings.html)
 

@@ -102,7 +102,7 @@ order by starttime desc;
 
 ## Reviewing Queue Wait Times for Queries<a name="review-queue-wait-times-for-queries"></a>
 
-The following query shows how long recent queries waited for an open slot in a query queue before being executed\. If you see a trend of high wait times, you might want to modify your query queue configuration for better throughput\. For more information, see [Defining Query Queues](cm-c-defining-query-queues.md)\.
+The following query shows how long recent queries waited for an open slot in a query queue before being executed\. If you see a trend of high wait times, you might want to modify your query queue configuration for better throughput\. For more information, see [Implementing Manual WLM](cm-c-defining-query-queues.md)\.
 
 ```
 select trim(database) as DB , w.query, 

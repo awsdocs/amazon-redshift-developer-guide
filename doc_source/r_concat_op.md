@@ -2,7 +2,7 @@
 
 Concatenates two strings on either side of the \|\| symbol and returns the concatenated string\. 
 
-Similar to [CONCAT \(Oracle Compatibility Function\)](r_CONCAT.md)\. 
+Similar to [CONCAT](r_CONCAT.md)\. 
 
 **Note**  
 For both the CONCAT function and the concatenation operator, if one or both strings is null, the result of the concatenation is null\. 

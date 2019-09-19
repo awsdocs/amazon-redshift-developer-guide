@@ -52,8 +52,8 @@ The following syntax is for Redshift Spectrum integration with Lake Formation\.
 
 ```
 REVOKE [ GRANT OPTION FOR ]
-{ SELECT | ALL [ PRIVILEGES ] }
-    ON EXTERNAL TABLE schema_name.table_name ( column_list ) [, ...] 
+{ SELECT | ALL [ PRIVILEGES ] } ( column_list )
+    ON EXTERNAL TABLE schema_name.table_name 
     FROM { IAM_ROLE iam_role } [, ...]  
 
 REVOKE [ GRANT OPTION FOR ]
@@ -102,8 +102,8 @@ Revokes the specified privileges on a table or a view\. The TABLE keyword is opt
 ON ALL TABLES IN SCHEMA *schema\_name*   
 Revokes the specified privileges on all tables in the referenced schema\.
 
-ON EXTERNAL TABLE *schema\_name\.table\_name* \( *column\_list* \)   <a name="revoke-external-table-column"></a>
-Revokes the specified privileges from an IAM role on the specified Lake Formation tables \(and columns\) in the referenced schema\.
+\( *column\_list* \) ON EXTERNAL TABLE *schema\_name\.table\_name*   <a name="revoke-external-table-column"></a>
+Revokes the specified privileges from an IAM role on the specified columns of the Lake Formation table in the referenced schema\.
 
 ON EXTERNAL TABLE *schema\_name\.table\_name*   <a name="revoke-external-table"></a>
 Revokes the specified privileges from an IAM role on the specified Lake Formation tables in the referenced schema\.

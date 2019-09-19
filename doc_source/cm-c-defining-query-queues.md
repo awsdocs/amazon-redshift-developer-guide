@@ -1,8 +1,10 @@
-# Defining Query Queues<a name="cm-c-defining-query-queues"></a>
+# Implementing Manual WLM<a name="cm-c-defining-query-queues"></a>
 
-When users run queries in Amazon Redshift, the queries are routed to query queues\. Each query queue contains a number of query slots\. Each queue is allocated a portion of the cluster's available memory\. A queue's memory is divided among the queue's query slots\. You can enable Amazon Redshift to manage query concurrency with automatic WLM\. For more information, see [Automatic Workload Management \(WLM\)](automatic-wlm.md)\.
+With manual WLM, you can manage system performance and your users' experience by modifying your WLM configuration to create separate queues for the long\-running queries and the short\-running queries\.
 
-Or, you can configure WLM properties for each query queue to specify the way that memory is allocated among slots and how queries can be routed to specific queues at run time\. You can also configure WLM properties to cancel long\-running queries\. In addition, you can use the `wlm_query_slot_count` parameter, which is separate from the WLM properties\. This parameter can temporarily enable queries to use more memory by allocating multiple slots\. 
+When users run queries in Amazon Redshift, the queries are routed to query queues\. Each query queue contains a number of query slots\. Each queue is allocated a portion of the cluster's available memory\. A queue's memory is divided among the queue's query slots\. You can enable Amazon Redshift to manage query concurrency with automatic WLM\. For more information, see [Implementing Automatic WLM](automatic-wlm.md)\.
+
+Or you can configure WLM properties for each query queue\. You do so to specify the way that memory is allocated among slots and how queries can be routed to specific queues at run\. You can also configure WLM properties to cancel long\-running queries\. In addition, you can use the `wlm_query_slot_count` parameter, which is separate from the WLM properties\. This parameter can temporarily enable queries to use more memory by allocating multiple slots\. 
 
 By default, Amazon Redshift configures the following query queues:
 +  **One superuser queue** 
@@ -12,10 +14,10 @@ By default, Amazon Redshift configures the following query queues:
 
   The default queue is initially configured to run five queries concurrently\. You can change the concurrency, timeout, and memory allocation properties for the default queue, but you cannot specify user groups or query groups\. The default queue must be the last queue in the WLM configuration\. Any queries that are not routed to other queues run in the default queue\. 
 
-Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, see [Modifying the WLM Configuration](cm-c-modifying-wlm-configuration.md)\.
+Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.  
 
 You can add additional query queues to the default WLM configuration, up to a total of eight user queues\. You can configure the following for each query queue: 
-+ Concurrency Scaling mode 
++ Concurrency scaling mode 
 + Concurrency level 
 + User groups 
 + Query groups 
@@ -26,9 +28,9 @@ You can add additional query queues to the default WLM configuration, up to a to
 
 ## Concurrency Scaling Mode<a name="concurrency-scaling-mode"></a>
 
-When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
+When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
 
-You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable Concurrency Scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. For more information, see [Concurrency Scaling](concurrency-scaling.md)\.
+You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. For more information, see [Working with Concurrency Scaling](concurrency-scaling.md)\.
 
 ## Concurrency Level<a name="cm-c-defining-query-queues-concurrency-level"></a>
 
@@ -37,14 +39,14 @@ Queries in a queue run concurrently until they reach the WLM query slot count, 
 **Note**  
 WLM concurrency level is different from the number of concurrent user connections that can be made to a cluster\.  For more information, see [Connecting to a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Cluster Management Guide*\.
 
-In an automatic WLM configuration, the concurrency level is set to **auto**\. For more information, see [Automatic Workload Management \(WLM\)](automatic-wlm.md)\. 
+In an automatic WLM configuration, the concurrency level is set to **Auto**\. For more information, see [Implementing Automatic WLM](automatic-wlm.md)\. 
 
-In a manual WLM configuration, each queue can be configured with up to 50 query slots\. The maximum WLM query slot count for all user\-defined queues is 50\. The limit includes the default queue, but doesn't include the reserved Superuser queue\. By default, Amazon Redshift allocates an equal, fixed share of available memory to each queue\. Amazon Redshift also allocates by default an equal, fixed share of a queue's memory to each query slot in the queue\. The proportion of memory allocated to each queue is defined in the WLM configuration using the `memory_percent_to_use` property\. At run time, you can temporarily override the amount of memory assigned to a query by setting the `wlm_query_slot_count` parameter to specify the number of slots allocated to the query\.
+In a manual WLM configuration, each queue can be configured with up to 50 query slots\. The maximum WLM query slot count for all user\-defined queues is 50\. The limit includes the default queue, but doesn't include the reserved Superuser queue\. By default, Amazon Redshift allocates an equal, fixed share of available memory to each queue\. Amazon Redshift also allocates by default an equal, fixed share of a queue's memory to each query slot in the queue\. The proportion of memory allocated to each queue is defined in the WLM configuration using the `memory_percent_to_use` property\. At runtime, you can temporarily override the amount of memory assigned to a query by setting the `wlm_query_slot_count` parameter to specify the number of slots allocated to the query\.
 
 By default, WLM queues have a concurrency level of 5\. Your workload might benefit from a higher concurrency level in certain cases, such as the following:
 + If many small queries are forced to wait for long\-running queries, create a separate queue with a higher slot count and assign the smaller queries to that queue\. A queue with a higher concurrency level has less memory allocated to each query slot, but the smaller queries require less memory\.
 **Note**  
-If you enable short\-query acceleration \(SQA\), WLM automatically prioritizes short queries over longer\-running queries, so you don't need a separate queue for short queries for most workflows\. For more information, see [Short Query Acceleration](wlm-short-query-acceleration.md)
+If you enable short\-query acceleration \(SQA\), WLM automatically prioritizes short queries over longer\-running queries, so you don't need a separate queue for short queries for most workflows\. For more information, see [Working with Short Query Acceleration](wlm-short-query-acceleration.md)
 + If you have multiple queries that each access data on a single slice, set up a separate WLM queue to execute those queries concurrently\. Amazon Redshift assigns concurrent queries to separate slices, which allows multiple queries to execute in parallel on multiple slices\. For example, if a query is a simple aggregate with a predicate on the distribution key, the data for the query is located on a single slice\. 
 
 As a best practice, we recommend using a total query slot count of 15 or lower\. All of the compute nodes in a cluster, and all of the slices on the nodes, participate in parallel query execution\. By increasing concurrency, you increase the contention for system resources and limit the overall throughput\. 
@@ -67,7 +69,7 @@ You can assign a set of user groups to a queue by specifying each user group nam
 
 ## Query Groups<a name="cm-c-defining-query-queues-query-groups"></a>
 
-You can assign a set of query groups to a queue by specifying each query group name or by using wildcards\. A query group is simply a label\. At run time, you can assign the query group label to a series of queries\. Any queries that are assigned to a listed query group runs in the corresponding queue\. There is no set limit to the number of query groups that can be assigned to a queue\. For more information, see [Wildcards](#wlm-wildcards)
+You can assign a set of query groups to a queue by specifying each query group name or by using wildcards\. A query group is simply a label\. At runtime, you can assign the query group label to a series of queries\. Any queries that are assigned to a listed query group run in the corresponding queue\. There is no set limit to the number of query groups that can be assigned to a queue\. For more information, see [Wildcards](#wlm-wildcards)
 
 ## Wildcards<a name="wlm-wildcards"></a>
 
@@ -79,7 +81,7 @@ Wildcards are disabled by default\.
 
 ## WLM Memory Percent to Use<a name="wlm-memory-percent"></a>
 
-In an automatic WLM configuration, memory percent is set to **auto**\. For more information, see [Automatic Workload Management \(WLM\)](automatic-wlm.md)\. 
+In an automatic WLM configuration, memory percent is set to **auto**\. For more information, see [Implementing Automatic WLM](automatic-wlm.md)\. 
 
 In a manual WLM configuration, to specify the amount of available memory that is allocated to a query, you can set the `WLM Memory Percent to Use` parameter\. By default, each user\-defined queue is allocated an equal portion of the memory that is available for user\-defined queries\. For example, if you have four user\-defined queues, each queue is allocated 25 percent of the available memory\. The superuser queue has its own allocated memory and cannot be modified\. To change the allocation, you assign an integer percentage of memory to each queue, up to a total of 100 percent\. Any unallocated memory is managed by Amazon Redshift and can be temporarily given to a queue if the queue requests additional memory for processing\. 
 

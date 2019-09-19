@@ -18,7 +18,7 @@ The name of the prepared statement to deallocate\.
 
 ## Usage Notes<a name="r_DEALLOCATE_usage_notes"></a>
 
-DEALLOCATE is used to deallocate a previously prepared SQL statement\. If you do not explicitly deallocate a prepared statement, it is deallocated when the current session ends\. For more information on prepared statements, see [PREPARE](r_PREPARE.md)\.
+DEALLOCATE is used to deallocate a previously prepared SQL statement\. If you don't explicitly deallocate a prepared statement, it is deallocated when the current session ends\. For more information on prepared statements, see [PREPARE](r_PREPARE.md)\.
 
 ## See Also<a name="r_DEALLOCATE-see-also"></a>
 

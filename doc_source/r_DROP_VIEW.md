@@ -1,6 +1,6 @@
 # DROP VIEW<a name="r_DROP_VIEW"></a>
 
-Removes a view from the database\. Multiple views can be dropped with a single DROP VIEW command\. This command is not reversible\.
+Removes a view from the database\. Multiple views can be dropped with a single DROP VIEW command\. This command isn't reversible\.
 
 ## Syntax<a name="r_DROP_VIEW-synopsis"></a>
 
@@ -19,7 +19,7 @@ Name of the view to be removed\.
 
 CASCADE  
 Clause that indicates to automatically drop objects that depend on the view, such as other views\.  
-To create a view that is not dependent on other database objects, such as views and tables, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
+To create a view that isn't dependent on other database objects, such as views and tables, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
 RESTRICT  
 Clause that indicates not to drop the view if any objects depend on it\. This action is the default\.
@@ -74,7 +74,7 @@ drop view eventview cascade;
 
 Both *eventview* and *myeventview* have now been dropped successfully\.
 
-The following example either drops the *eventview* view if it exists, or does nothing and returns a message if it does not:
+The following example either drops the *eventview* view if it exists, or does nothing and returns a message if it doesn't
 
 ```
 drop view if exists eventview;

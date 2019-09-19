@@ -1,6 +1,6 @@
 # CREATE EXTERNAL TABLE<a name="r_CREATE_EXTERNAL_TABLE"></a>
 
-Creates a new external table in the specified schema\. All external tables must be created in an external schema\. Search path is not supported for external schemas and external tables\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.
+Creates a new external table in the specified schema\. All external tables must be created in an external schema\. Search path isn't supported for external schemas and external tables\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.
 
 To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use ALTER SCHEMA to change the owner\. Access to external tables is controlled by access to the external schema\. You can't [GRANT](r_GRANT.md) or [REVOKE](r_REVOKE.md) permissions on an external table\. Instead, grant or revoke USAGE on the external schema\.
 
@@ -38,7 +38,7 @@ create external table spectrum_db.spectrum_schema.test (c1 int)
 stored as textfile 
 location 's3://mybucket/myfolder/';
 ```
-If the database or schema specified doesn't exist, the table is not created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
+If the database or schema specified doesn't exist, the table isn't created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
 The table name must be a unique name for the specified schema\.   
 For more information about valid names, see [Names and Identifiers](r_names.md)\.
 
@@ -46,7 +46,7 @@ For more information about valid names, see [Names and Identifiers](r_names.md)\
 The name and data type of each column being created\.  
 The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. You can't specify column names `"$path"` or `"$size"`\. For more information about valid names, see [Names and Identifiers](r_names.md)\.  
 By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [Pseudocolumns ](#r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns)\.  
-If pseudocolumns are enabled, the maximum number of columns you can define in a single table is 1,598\. If pseudocolumns are not enabled, the maximum number of columns you can define in a single table is 1,600\.   
+If pseudocolumns are enabled, the maximum number of columns you can define in a single table is 1,598\. If pseudocolumns aren't enabled, the maximum number of columns you can define in a single table is 1,600\.   
 If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage Notes](r_CREATE_TABLE_usage.md)\.
 
  *data\_type*   
@@ -155,13 +155,13 @@ TABLE PROPERTIES \( '*property\_name*'='*property\_value*' \[, \.\.\.\] \)
 A clause that sets the table definition for table properties\.   
 Table properties are case\-sensitive\.  
  'compression\_type'='*value*'   
- A property that sets the type of compression to use if the file name does not contain an extension\. If you set this property and there is a file extension, the extension is ignored and the value set by the property is used\. Valid values for compression type are as follows:  
+ A property that sets the type of compression to use if the file name doesn't contain an extension\. If you set this property and there is a file extension, the extension is ignored and the value set by the property is used\. Valid values for compression type are as follows:  
 + bzip2
 + gzip
 + none
 + snappy  
 'numRows'='*row\_count*'   
-A property that sets the numRows value for the table definition\. To explicitly update an external table's statistics, set the numRows property to indicate the size of the table\. Amazon Redshift doesn't analyze external tables to generate the table statistics that the query optimizer uses to generate a query plan\. If table statistics are not set for an external table, Amazon Redshift generates a query execution plan based on an assumption that external tables are the larger tables and local tables are the smaller tables\.  
+A property that sets the numRows value for the table definition\. To explicitly update an external table's statistics, set the numRows property to indicate the size of the table\. Amazon Redshift doesn't analyze external tables to generate the table statistics that the query optimizer uses to generate a query plan\. If table statistics aren't set for an external table, Amazon Redshift generates a query execution plan based on an assumption that external tables are the larger tables and local tables are the smaller tables\.  
 'skip\.header\.line\.count'='*line\_count*'  
 A property that sets number of rows to skip at the beginning of each source file\.  
 'serialization\.null\.format'=' '  

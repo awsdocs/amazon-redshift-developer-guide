@@ -35,7 +35,7 @@ The source of the data to be loaded\.
  'emr://*emr\_cluster\_id*/*hdfs\_file\_path*'  <a name="copy-emr"></a>
 The unique identifier for the Amazon EMR cluster and the HDFS file path that references the data files for the COPY command\. The HDFS data file names must not contain the wildcard characters asterisk \(\*\) and question mark \(?\)\.   
 The Amazon EMR cluster must continue running until the COPY operation completes\. If any of the HDFS data files are changed or deleted before the COPY operation completes, you might have unexpected results, or the COPY operation might fail\. 
-You can use the wildcard characters asterisk \(\*\) and question mark \(?\) as part of the *hdfs\_file\_path* argument to specify multiple files to be loaded\. For example, `'emr://j-SAMPLE2B500FC/myoutput/part*'` identifies the files `part-0000`, `part-0001`, and so on\. If the file path does not contain wildcard characters, it is treated as a string literal\. If you specify only a folder name, COPY attempts to load all files in the folder\.   
+You can use the wildcard characters asterisk \(\*\) and question mark \(?\) as part of the *hdfs\_file\_path* argument to specify multiple files to be loaded\. For example, `'emr://j-SAMPLE2B500FC/myoutput/part*'` identifies the files `part-0000`, `part-0001`, and so on\. If the file path doesn't contain wildcard characters, it is treated as a string literal\. If you specify only a folder name, COPY attempts to load all files in the folder\.   
 If you use wildcard characters or use only the folder name, verify that no unwanted files will be loaded\. For example, some processes might write a log file to the output folder\.
 For more information, see [Loading Data from Amazon EMR](loading-data-from-emr.md)\.
 

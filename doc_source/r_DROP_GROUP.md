@@ -1,6 +1,6 @@
 # DROP GROUP<a name="r_DROP_GROUP"></a>
 
-Deletes a user group\. This command is not reversible\. This command does not delete the individual users in a group\.
+Deletes a user group\. This command isn't reversible\. This command doesn't delete the individual users in a group\.
 
 See DROP USER to delete an individual user\.
 

@@ -70,19 +70,11 @@ The `AmazonS3ReadOnlyAccess` policy gives your cluster read\-only access to all 
            {
                "Sid": "RedshiftPolicyForLF",
                "Effect": "Allow",
-               "Action": "glue:*",
-               "Action": "lakeformation:GetDataAccess",            
-               "Resource": "*"
-           },  
-           {
                "Action": [
-                   "lakeformation:GetDataLakeSettings",
-                   "lakeformation:PutDataLakeSettings"
+                   "glue:*",
+                   "lakeformation:GetDataAccess"
                ],
-               "Effect": "Deny",
-               "Resource": [
-                   "*"
-               ]
+               "Resource": "*"
            }
        ]
    }

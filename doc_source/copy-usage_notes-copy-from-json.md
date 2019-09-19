@@ -32,7 +32,7 @@ The following shows the same data as two JSON arrays\.
 
 You can let COPY automatically load fields from the JSON file by specifying the 'auto' option, or you can specify a JSONPaths file that COPY uses to parse the JSON source data\. A *JSONPaths file* is a text file that contains a single JSON object with the name `"jsonpaths"` paired with an array of JSONPath expressions\. If the name is any string other than `"jsonpaths"`, COPY uses the `'auto'` argument instead of using the JSONPaths file\.
 
-In the Amazon Redshift COPY syntax, a JSONPath expression specifies the explicit path to a single name element in a JSON hierarchical data structure, using either bracket notation or dot notation\. Amazon Redshift does not support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\. As a result, Amazon Redshift can't parse complex, multi\-level data structures\.
+In the Amazon Redshift COPY syntax, a JSONPath expression specifies the explicit path to a single name element in a JSON hierarchical data structure, using either bracket notation or dot notation\. Amazon Redshift doesn't support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\. As a result, Amazon Redshift can't parse complex, multi\-level data structures\.
 
 The following is an example of a JSONPaths file with JSONPath expressions using bracket notation\. The dollar sign \($\) represents the root\-level structure\. 
 
@@ -150,7 +150,7 @@ select * from escapes;
 
 ## Loss of numeric precision<a name="copy-usage-json-rounding"></a>
 
-You might lose precision when loading numbers from data files in JSON format to a column that is defined as a numeric data type\. Some floating point values are not represented exactly in computer systems\. As a result, data you copy from a JSON file might not be rounded as you expect\. To avoid a loss of precision, we recommend using one of the following alternatives:
+You might lose precision when loading numbers from data files in JSON format to a column that is defined as a numeric data type\. Some floating point values aren't represented exactly in computer systems\. As a result, data you copy from a JSON file might not be rounded as you expect\. To avoid a loss of precision, we recommend using one of the following alternatives:
 + Represent the number as a string by enclosing the value in double quotation characters\.
 + Use [ROUNDEC](copy-parameters-data-conversion.md#copy-roundec) to round the number instead of truncating\.
 + Instead of using JSON or Avro files, use CSV, character\-delimited, or fixed\-width text files\.

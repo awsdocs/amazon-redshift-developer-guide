@@ -26,3 +26,63 @@ Transactions for updates to these tables run in a *read committed* isolation mod
 ## Serializable Isolation for System Tables and Catalog Tables<a name="c_serial_isolation-serializable-isolation-for-tables"></a>
 
 A database snapshot is also created in a transaction for any SELECT query that references a user\-created table or Amazon Redshift system table \(STL or STV\)\. SELECT queries that do not reference any table will not create a new transaction database snapshot, nor will any INSERT, DELETE, or UPDATE statements that operate solely on system catalog tables \(PG\)\.
+
+## How to Fix Serializable Isolation Errors<a name="c_serial_isolation-serializable-isolation-troubleshooting"></a>
+
+When Amazon Redshift detects a serializable isolation error, you see an error message such as the following\.
+
+```
+ERROR:1023 DETAIL: Serializable isolation violation on table in Redshift
+```
+
+To address a serializable isolation error, you can try the following methods:
++ Move any operations that don't have to be in the same atomic transaction outside of the transaction\.
+
+  This method applies when individual operations inside two transactions cross\-reference each other in a way that can affect the outcome of the other transaction\. For example, the following two sessions each start a transaction\.  
+
+  ```
+  Session1_Redshift=# begin;
+  ```
+
+  ```
+  Session2_Redshift=# begin;
+  ```
+
+  The result of a SELECT statement in each transaction might be affected by an INSERT statement in the other\. In other words, suppose that you run the following statements serially, in any order\. In every case, the result is one of the SELECT statements returning one more row than if the transactions were run concurrently\. There is no order in which the operations can run serially that produces the same result as when run concurrently\. Thus, the last operation that is run results in a serializable isolation error\.
+
+  ```
+  Session1_Redshift=# select * from tab1;
+  Session1_Redshift=# insert into tab2 values (1);
+  ```
+
+  ```
+  Session2_Redshift=# insert into tab1 values (1);
+  Session1_Redshift=# select * from tab2;
+  ```
+
+  In many cases, the result of the SELECT statements isn't important\. In other words, the atomicity of the operations in the transactions isn't important\. In these cases, move the SELECT statements outside of their transactions, as shown in the following examples\.
+
+  ```
+  Session1_Redshift=# begin;
+  Session1_Redshift=# insert into tab1 values (1)
+  Session1_Redshift=# end;
+  Session1_Redshift=# select * from tab2;
+  ```
+
+  ```
+  Session2_Redshift # select * from tab1;
+  Session2_Redshift=# begin;
+  Session2_Redshift=# insert into tab2 values (1)
+  Session2_Redshift=# end;
+  ```
+
+  In these examples, there are no cross\-references in the transactions\. The two INSERT statements don't affect each other\. In these examples, there is at least one order in which the transactions can run serially and produce the same result as if run concurrently\. This means that the transactions are serializable\.
++ Force serialization by locking all tables in each session\.
+
+  The [LOCK](r_LOCK.md) command blocks operations that can result in serializable isolation errors\. When you use the LOCK command, be sure to do the following:
+  + Lock all tables affected by the transaction, including those affected by read\-only SELECT statements inside the transaction\.
+  + Lock tables in the same order, regardless of the order that operations are performed in\.
+  + Lock all tables at the beginning of the transaction, before performing any operations\.
++ Retry the aborted transaction\.
+
+  A transaction can encounter a serializable isolation error if it conflicts with operations performed by another concurrent transaction\. If the conflicting transactions don't need to run at the same time, simply retrying the aborted transaction might succeed\. If the issue persists, try one of the other methods\.

@@ -18,7 +18,7 @@ The delimiter string\.
 If *delimiter* is a literal, enclose it in single quotes\. 
 
  *part*   
-Position of the portion to return \(counting from 1\)\. Must be an integer greater than 0\. If *part* is larger than the number of string portions, SPLIT\_PART returns an empty string\.
+Position of the portion to return \(counting from 1\)\. Must be an integer greater than 0\. If *part* is larger than the number of string portions, SPLIT\_PART returns an empty string\. If *delimiter* is not found in *string*, then the returned value contains the contents of the specified part, which might be the entire *string* or an empty value\.
 
 ## Return Type<a name="SPLIT_PART-return-type"></a>
 

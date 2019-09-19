@@ -65,7 +65,7 @@ JSON 's3://mybucket/jsonpaths.txt';
 
 ## Using a Manifest to Specify Data Files<a name="copy-command-examples-manifest"></a>
 
-You can use a manifest to ensure that your COPY command loads all of the required files, and only the required files, from Amazon S3\. You can also use a manifest when you need to load multiple files from different buckets or files that do not share the same prefix\. 
+You can use a manifest to ensure that your COPY command loads all of the required files, and only the required files, from Amazon S3\. You can also use a manifest when you need to load multiple files from different buckets or files that don't share the same prefix\. 
 
 For example, suppose that you need to load the following three files: `custdata1.txt`, `custdata2.txt`, and `custdata3.txt`\. You could use the following command to load all of the files in `mybucket` that begin with `custdata` by specifying a prefix: 
 
@@ -98,7 +98,7 @@ To ensure that all of the required files are loaded and to prevent unwanted file
 }
 ```
 
-The optional `mandatory` flag indicates whether COPY should terminate if the file does not exist\. The default is `false`\. Regardless of any mandatory settings, COPY terminates if no files are found\. In this example, COPY returns an error if any of the files is not found\. Unwanted files that might have been picked up if you specified only a key prefix, such as `custdata.backup`, are ignored, because they are not on the manifest\. 
+The optional `mandatory` flag indicates whether COPY should terminate if the file doesn't exist\. The default is `false`\. Regardless of any mandatory settings, COPY terminates if no files are found\. In this example, COPY returns an error if any of the files isn't found\. Unwanted files that might have been picked up if you specified only a key prefix, such as `custdata.backup`, are ignored, because they aren't on the manifest\. 
 
 When loading from data files in ORC or Parquet format, a `meta` field is required, as shown in the following example\.
 
@@ -132,7 +132,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 manifest;
 ```
 
-You can use a manifest to load files from different buckets or files that do not share the same prefix\. The following example shows the JSON to load data with files whose names begin with a date stamp\.
+You can use a manifest to load files from different buckets or files that don't share the same prefix\. The following example shows the JSON to load data with files whose names begin with a date stamp\.
 
 ```
 {
@@ -145,7 +145,7 @@ You can use a manifest to load files from different buckets or files that do not
 }
 ```
 
-The manifest can list files that are in different buckets, as long as the buckets are in the same Region as the cluster\. 
+The manifest can list files that are in different buckets, as long as the buckets are in the same AWS Region as the cluster\. 
 
 ```
 {
@@ -282,7 +282,7 @@ csv quote as '%';
 
 ## Load VENUE with Explicit Values for an IDENTITY Column<a name="r_COPY_command_examples-load-venue-with-explicit-values-for-an-identity-column"></a>
 
-The following example assumes that when the VENUE table was created that at least one column \(such as the `venueid` column\) was specified to be an IDENTITY column\. This command overrides the default IDENTITY behavior of auto\-generating values for an IDENTITY column and instead loads the explicit values from the venue\.txt file\.
+The following example assumes that when the VENUE table was created that at least one column \(such as the `venueid` column\) was specified to be an IDENTITY column\. This command overrides the default IDENTITY behavior of autogenerating values for an IDENTITY column and instead loads the explicit values from the venue\.txt file\.
 
 ```
 copy venue
@@ -427,7 +427,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter '|' explicit_ids;
 ```
 
-This statement fails because it does not include the IDENTITY column \(VENUEID is missing from the column list\) yet includes an EXPLICIT\_IDS parameter: 
+This statement fails because it doesn't include the IDENTITY column \(VENUEID is missing from the column list\) yet includes an EXPLICIT\_IDS parameter: 
 
 ```
 copy venue(venuename, venuecity, venuestate) 
@@ -436,7 +436,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter '|' explicit_ids;
 ```
 
-This statement fails because it does not include an EXPLICIT\_IDS parameter: 
+This statement fails because it doesn't include an EXPLICIT\_IDS parameter: 
 
 ```
 copy venue(venueid, venuename, venuecity, venuestate)
@@ -486,7 +486,7 @@ In the following examples, you load the CATEGORY table with the following data\.
 
 ### Load from JSON Data Using the 'auto' Option<a name="copy-from-json-examples-using-auto"></a>
 
-To load from JSON data using the `'auto'` argument, the JSON data must consist of a set of objects\. The key names must match the column names, but in this case, order does not matter\. The following shows the contents of a file named `category_object_auto.json`\.
+To load from JSON data using the `'auto'` argument, the JSON data must consist of a set of objects\. The key names must match the column names, but in this case, order doesn't matter\. The following shows the contents of a file named `category_object_auto.json`\.
 
 ```
 {
@@ -532,7 +532,7 @@ json 'auto';
 
 ### Load from JSON Data Using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths"></a>
 
-If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. Again, the order does not matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose that you have the following data file, named `category_object_paths.json`\.
+If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. Again, the order doesn't matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose that you have the following data file, named `category_object_paths.json`\.
 
 ```
 {
@@ -635,7 +635,7 @@ In the following examples, you load the CATEGORY table with the following data\.
 
 ### Load from Avro Data Using the 'auto' Option<a name="copy-from-avro-examples-using-auto"></a>
 
-To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. However, when using the `'auto'` argument, order does not matter\. The following shows the schema for a file named `category_auto.avro`\.
+To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. However, when using the `'auto'` argument, order doesn't matter\. The following shows the schema for a file named `category_auto.avro`\.
 
 ```
 {
@@ -649,7 +649,7 @@ To load from Avro data using the `'auto'` argument, field names in the Avro sche
 }
 ```
 
-The data in an Avro file is in binary format, so it is not human\-readable\. The following shows a JSON representation of the data in the `category_auto.avro` file\. 
+The data in an Avro file is in binary format, so it isn't human\-readable\. The following shows a JSON representation of the data in the `category_auto.avro` file\. 
 
 ```
 {

@@ -1,6 +1,6 @@
 # CLOSE<a name="close"></a>
 
-\(Optional\) Closes all of the free resources that are associated with an open cursor\. [COMMIT](r_COMMIT.md), [END](r_END.md), and [ROLLBACK](r_ROLLBACK.md) automatically close the cursor, so it is not necessary to use the CLOSE command to explicitly close the cursor\. 
+\(Optional\) Closes all of the free resources that are associated with an open cursor\. [COMMIT](r_COMMIT.md), [END](r_END.md), and [ROLLBACK](r_ROLLBACK.md) automatically close the cursor, so it isn't necessary to use the CLOSE command to explicitly close the cursor\. 
 
 For more information, see [DECLARE](declare.md), [FETCH](fetch.md)\. 
 

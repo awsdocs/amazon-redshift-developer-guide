@@ -2,7 +2,7 @@
 
 A WITH clause is an optional clause that precedes the SELECT list in a query\. The WITH clause defines one or more subqueries\. Each subquery defines a temporary table, similar to a view definition\. These temporary tables can be referenced in the FROM clause and are used only during the execution of the query to which they belong\. Each subquery in the WITH clause specifies a table name, an optional list of column names, and a query expression that evaluates to a table \(a SELECT statement\)\. 
 
-WITH clause subqueries are an efficient way of defining tables that can be used throughout the execution of a single query\. In all cases, the same results can be achieved by using subqueries in the main body of the SELECT statement, but WITH clause subqueries may be simpler to write and read\. Where possible, WITH clause subqueries that are referenced multiple times are optimized as common subexpressions; that is, it may be possible to evaluate a WITH subquery once and reuse its results\. \(Note that common subexpressions are not limited to those defined in the WITH clause\.\)
+WITH clause subqueries are an efficient way of defining tables that can be used throughout the execution of a single query\. In all cases, the same results can be achieved by using subqueries in the main body of the SELECT statement, but WITH clause subqueries may be simpler to write and read\. Where possible, WITH clause subqueries that are referenced multiple times are optimized as common subexpressions; that is, it may be possible to evaluate a WITH subquery once and reuse its results\. \(Note that common subexpressions aren't limited to those defined in the WITH clause\.\)
 
 ## Syntax<a name="r_WITH_clause-synopsis"></a>
 
@@ -40,9 +40,9 @@ You can use a WITH clause in the following SQL statements:
 + PREPARE
 + UPDATE \(within a WHERE clause subquery\)
 
-If the FROM clause of a query that contains a WITH clause does not reference any of the tables defined by the WITH clause, the WITH clause is ignored and the query executes as normal\.
+If the FROM clause of a query that contains a WITH clause doesn't reference any of the tables defined by the WITH clause, the WITH clause is ignored and the query executes as normal\.
 
-A table defined by a WITH clause subquery can be referenced only in the scope of the SELECT query that the WITH clause begins\. For example, you can reference such a table in the FROM clause of a subquery in the SELECT list, WHERE clause, or HAVING clause\. You can't use a WITH clause in a subquery and reference its table in the FROM clause of the main query or another subquery\. This query pattern results in an error message of the form `relation table_name does not exist` for the WITH clause table\.
+A table defined by a WITH clause subquery can be referenced only in the scope of the SELECT query that the WITH clause begins\. For example, you can reference such a table in the FROM clause of a subquery in the SELECT list, WHERE clause, or HAVING clause\. You can't use a WITH clause in a subquery and reference its table in the FROM clause of the main query or another subquery\. This query pattern results in an error message of the form `relation table_name doesn't exist` for the WITH clause table\.
 
 You can't specify another WITH clause inside a WITH clause subquery\.
 

@@ -1,6 +1,6 @@
 # SVCS\_CONCURRENCY\_SCALING\_USAGE<a name="r_SVCS_CONCURRENCY_SCALING_USAGE"></a>
 
-Records the usage periods for Concurrency Scaling\. Each usage period is a consecutive duration where an individual Concurrency Scaling cluster is actively processing queries\.
+Records the usage periods for concurrency scaling\. Each usage period is a consecutive duration where an individual concurrency scaling cluster is actively processing queries\.
 
 By default, this view is visible by a superuser only\. The database superuser can choose to open it up to all users\. 
 

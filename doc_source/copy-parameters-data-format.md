@@ -21,7 +21,7 @@ FORMAT \[AS\]  <a name="copy-format"></a>
 
 CSV \[ QUOTE \[AS\] *'quote\_character'* \]  <a name="copy-csv"></a>
 Enables use of CSV format in the input data\. To automatically escape delimiters, newline characters, and carriage returns, enclose the field in the character specified by the QUOTE parameter\. The default quote character is a double quotation mark \( " \)\. When the quote character is used within a field, escape the character with an additional quote character\. For example, if the quote character is a double quotation mark, to insert the string `A "quoted" word` the input file should include the string `"A ""quoted"" word"`\. When the CSV parameter is used, the default delimiter is a comma \( , \)\. You can specify a different delimiter by using the DELIMITER parameter\.   
-When a field is enclosed in quotes, white space between the delimiters and the quote characters is ignored\. If the delimiter is a white space character, such as a tab, the delimiter is not treated as white space\.  
+When a field is enclosed in quotes, white space between the delimiters and the quote characters is ignored\. If the delimiter is a white space character, such as a tab, the delimiter isn't treated as white space\.  
 CSV cannot be used with FIXEDWIDTH, REMOVEQUOTES, or ESCAPE\.     
 QUOTE \[AS\] *'quote\_character'*  <a name="copy-csv-quote"></a>
 Optional\. Specifies the character to be used as the quote character when using the CSV parameter\. The default is a double quotation mark \( " \)\. If you use the QUOTE parameter to define a quote character other than double quotation mark, you don’t need to escape double quotation marks within the field\. The QUOTE parameter can be used only with the CSV parameter\. The AS keyword is optional\.
@@ -43,17 +43,17 @@ Avro format is supported for COPY from these services and protocols:
 + Amazon S3 
 + Amazon EMR 
 + Remote hosts \(SSH\) 
-Avro is not supported for COPY from DynamoDB\.   
+Avro isn't supported for COPY from DynamoDB\.   
 Avro is a data serialization protocol\. An Avro source file includes a schema that defines the structure of the data\. The Avro schema type must be `record`\. COPY accepts Avro files creating using the default uncompressed codec as well as the `deflate` and `snappy` compression codecs\. For more information about Avro, go to [Apache Avro](https://avro.apache.org/)\.   
 Valid values for *avro\_option* are as follows:  
 + 'auto'
 + 's3://*jsonpaths\_file*' 
 The default is `'auto'`\.    
 'auto'  <a name="copy-avro-auto"></a>
-COPY automatically maps the data elements in the Avro source data to the columns in the target table by matching field names in the Avro schema to column names in the target table\. The matching is case\-sensitive\. Column names in Amazon Redshift tables are always lowercase, so when you use the ‘auto’ option, matching field names must also be lowercase\. If the field names are not all lowercase, you can use a [JSONPaths file](#copy-json-jsonpaths) to explicitly map column names to Avro field names\.With the default `'auto'` argument, COPY recognizes only the first level of fields, or *outer fields*, in the structure\.   
+COPY automatically maps the data elements in the Avro source data to the columns in the target table by matching field names in the Avro schema to column names in the target table\. The matching is case\-sensitive\. Column names in Amazon Redshift tables are always lowercase, so when you use the ‘auto’ option, matching field names must also be lowercase\. If the field names aren't all lowercase, you can use a [JSONPaths file](#copy-json-jsonpaths) to explicitly map column names to Avro field names\.With the default `'auto'` argument, COPY recognizes only the first level of fields, or *outer fields*, in the structure\.   
 By default, COPY attempts to match all columns in the target table to Avro field names\. To load a subset of the columns, you can optionally specify a column list\.   
-If a column in the target table is omitted from the column list, then COPY loads the target column's [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) expression\. If the target column does not have a default, then COPY attempts to load NULL\.  
-If a column is included in the column list and COPY does not find a matching field in the Avro data, then COPY attempts to load NULL to the column\.   
+If a column in the target table is omitted from the column list, then COPY loads the target column's [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) expression\. If the target column doesn't have a default, then COPY attempts to load NULL\.  
+If a column is included in the column list and COPY doesn't find a matching field in the Avro data, then COPY attempts to load NULL to the column\.   
 If COPY attempts to assign NULL to a column that is defined as NOT NULL, the COPY command fails\.   
 's3://*jsonpaths\_file*'  <a name="copy-avro-pathfile"></a>
 To explicitly map Avro data elements to columns, you can use an *JSONPaths* file\. For more information about using a JSONPaths file to map Avro data, see [JSONPaths file](#copy-json-jsonpaths)\.
@@ -72,7 +72,7 @@ An Avro source data file includes a schema that defines the structure of the dat
 }
 ```
 The Avro schema is defined using JSON format\. The top\-level JSON object contains three name/value pairs with the names, or *keys*, `"name"`, `"type"`, and `"fields"`\.   
-The `"fields"` key pairs with an array of objects that define the name and data type of each field in the data structure\. By default, COPY automatically matches the field names to column names\. Column names are always lowercase, so matching field names must also be lowercase\. Any field names that don't match a column name are ignored\. Order does not matter\. In the previous example, COPY maps to the column names `id`, `guid`, `name`, and `address`\.   
+The `"fields"` key pairs with an array of objects that define the name and data type of each field in the data structure\. By default, COPY automatically matches the field names to column names\. Column names are always lowercase, so matching field names must also be lowercase\. Any field names that don't match a column name are ignored\. Order doesn't matter\. In the previous example, COPY maps to the column names `id`, `guid`, `name`, and `address`\.   
 With the default `'auto'` argument, COPY matches only the first\-level objects to columns\. To map to deeper levels in the schema, or if field names and column names don't match, use a JSONPaths file to define the mapping\. For more information, see [JSONPaths file](#copy-json-jsonpaths)\.   
 If the value associated with a key is a complex Avro data type such as byte, array, record, map, or link, COPY loads the value as a string, where the string is the JSON representation of the data\. COPY loads Avro enum data types as strings, where the content is the name of the type\. For an example, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\.  
 The maximum size of the Avro file header, which includes the schema and file metadata, is 1 MB\.     
@@ -85,16 +85,16 @@ JSON format is supported for COPY from these services and protocols:
 + Amazon S3
 + COPY from Amazon EMR
 + COPY from SSH
-JSON is not supported for COPY from DynamoDB\.   
+JSON isn't supported for COPY from DynamoDB\.   
 Valid values for *json\_option* are as follows :  
 + 'auto'
 + 's3://*jsonpaths\_file*'
 The default is `'auto'`\.    
 'auto'  <a name="copy-json-auto"></a>
-COPY maps the data elements in the JSON source data to the columns in the target table by matching *object keys*, or names, in the source name/value pairs to the names of columns in the target table\. The matching is case\-sensitive\. Column names in Amazon Redshift tables are always lowercase, so when you use the ‘auto’ option, matching JSON field names must also be lowercase\. If the JSON field name keys are not all lowercase, you can use a [JSONPaths file](#copy-json-jsonpaths) to explicitly map column names to JSON field name keys\.  
+COPY maps the data elements in the JSON source data to the columns in the target table by matching *object keys*, or names, in the source name/value pairs to the names of columns in the target table\. The matching is case\-sensitive\. Column names in Amazon Redshift tables are always lowercase, so when you use the ‘auto’ option, matching JSON field names must also be lowercase\. If the JSON field name keys aren't all lowercase, you can use a [JSONPaths file](#copy-json-jsonpaths) to explicitly map column names to JSON field name keys\.  
 By default, COPY attempts to match all columns in the target table to JSON field name keys\. To load a subset of the columns, you can optionally specify a column list\.   
-If a column in the target table is omitted from the column list, then COPY loads the target column's [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) expression\. If the target column does not have a default, then COPY attempts to load NULL\.  
-If a column is included in the column list and COPY does not find a matching field in the JSON data, then COPY attempts to load NULL to the column\.   
+If a column in the target table is omitted from the column list, then COPY loads the target column's [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) expression\. If the target column doesn't have a default, then COPY attempts to load NULL\.  
+If a column is included in the column list and COPY doesn't find a matching field in the JSON data, then COPY attempts to load NULL to the column\.   
 If COPY attempts to assign NULL to a column that is defined as NOT NULL, the COPY command fails\.   
 's3://*jsonpaths\_file*'  <a name="copy-json-pathfile"></a>
 COPY uses the named JSONPaths file to map the data elements in the JSON source data to the columns in the target table\. The *`s3://jsonpaths_file`* argument must be an Amazon S3 object key that explicitly references a single file, such as `'s3://mybucket/jsonpaths.txt`'; it can't be a key prefix\. For more information about using a JSONPaths file, see [JSONPaths file](#copy-json-jsonpaths)\.
@@ -106,7 +106,7 @@ The JSON data file contains a set of either objects or arrays\. COPY loads each 
 
 A JSON *object* begins and ends with braces  \( \{ \} \) and contains an unordered collection of name/value pairs\. Each paired name and value are separated by a colon, and the pairs are separated by commas\. By default, the *object key*, or name, in the name/value pairs must match the name of the corresponding column in the table\. Column names in Amazon Redshift tables are always lowercase, so matching JSON field name keys must also be lowercase\. If your column names and JSON keys don't match, use a [JSONPaths file](#copy-json-jsonpaths) to explicitly map columns to keys\. 
 
-Order in a JSON object does not matter\. Any names that don't match a column name are ignored\. The following shows the structure of a simple JSON object\.
+Order in a JSON object doesn't matter\. Any names that don't match a column name are ignored\. The following shows the structure of a simple JSON object\.
 
 ```
 {
@@ -138,7 +138,7 @@ If IGNOREHEADER is specified, COPY ignores the specified number of lines in the 
 
 COPY loads empty strings as empty fields by default\. If EMPTYASNULL is specified, COPY loads empty strings for CHAR and VARCHAR fields as NULL\. Empty strings for other data types, such as INT, are always loaded with NULL\. 
 
-The following options are not supported with JSON: 
+The following options aren't supported with JSON: 
 + CSV
 + DELIMITER 
 + ESCAPE
@@ -174,15 +174,15 @@ The `s3://jsonpaths_file` argument must be an Amazon S3 object key that explicit
 If you are loading from Amazon S3 and the file specified by *jsonpaths\_file* has the same prefix as the path specified by *copy\_from\_s3\_objectpath* for the data files, COPY reads the JSONPaths file as a data file and returns errors\. For example, if your data files use the object path `s3://mybucket/my_data.json` and your JSONPaths file is `s3://mybucket/my_data.jsonpaths`, COPY attempts to load `my_data.jsonpaths` as a data file\.
 
 **Note**  
- If the key name is any string other than `"jsonpaths"`, the COPY command does not return an error, but it ignores *jsonpaths\_file* and uses the `'auto'` argument instead\. 
+ If the key name is any string other than `"jsonpaths"`, the COPY command doesn't return an error, but it ignores *jsonpaths\_file* and uses the `'auto'` argument instead\. 
 
 If any of the following occurs, the COPY command fails:
 + The JSON is malformed\.
 + There is more than one JSON object\.
 + Any characters except white space exist outside the object\.
-+ An array element is an empty string or is not a string\.
++ An array element is an empty string or isn't a string\.
 
-MAXERROR does not apply to the JSONPaths file\. 
+MAXERROR doesn't apply to the JSONPaths file\. 
 
 The JSONPaths file must not be encrypted, even if the [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) option is specified\.
 
@@ -194,9 +194,9 @@ The JSONPaths file uses JSONPath expressions to map data fields to target column
 
 The double quote characters are required as shown, both for the field names and the values\. The quote characters must be simple quotation marks \(0x22\), not slanted or "smart" quotation marks\.
 
-If an object element referenced by a JSONPath expression is not found in the JSON data, COPY attempts to load a NULL value\. If the referenced object is malformed, COPY returns a load error\. 
+If an object element referenced by a JSONPath expression isn't found in the JSON data, COPY attempts to load a NULL value\. If the referenced object is malformed, COPY returns a load error\. 
 
-If an array element referenced by a JSONPath expression is not found in the JSON or Avro data, COPY fails with the following error: `Invalid JSONPath format: Not an array or index out of range.` Remove any array elements from the JSONPaths that don't exist in the source data and verify that the arrays in the source data are well formed\.  
+If an array element referenced by a JSONPath expression isn't found in the JSON or Avro data, COPY fails with the following error: `Invalid JSONPath format: Not an array or index out of range.` Remove any array elements from the JSONPaths that don't exist in the source data and verify that the arrays in the source data are well formed\.  
 
 The JSONPath expressions can use either bracket notation or dot notation, but you cannot mix notations\. The following example shows JSONPath expressions using bracket notation\. 
 
@@ -224,7 +224,7 @@ The following example shows JSONPath expressions using dot notation\.
 }
 ```
 
-In the context of Amazon Redshift COPY syntax, a JSONPath expression must specify the explicit path to a single name element in a JSON or Avro hierarchical data structure\. Amazon Redshift does not support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\.
+In the context of Amazon Redshift COPY syntax, a JSONPath expression must specify the explicit path to a single name element in a JSON or Avro hierarchical data structure\. Amazon Redshift doesn't support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\.
 
 For more information, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\. 
 

@@ -14,7 +14,7 @@ alter group admin_group add user analyst44, analyst45, analyst46;
 
 ## Assigning a Query to a Query Group<a name="cm-c-executing-queries-assigning-a-query-to-a-query-group"></a>
 
-You can assign a query to a queue at run time by assigning your query to the appropriate query group\. Use the SET command to begin a query group\.
+You can assign a query to a queue at runtime by assigning your query to the appropriate query group\. Use the SET command to begin a query group\.
 
 ```
 SET query_group TO group_label             
@@ -39,9 +39,9 @@ reset query_group;
 
 ## Assigning Queries to the Superuser Queue<a name="cm-c-executing-queries-assigning-superuser-queue"></a>
 
-To assign a query to the Superuser queue, log on to Amazon Redshift as a superuser and then run the query in the superuser group\. When you are done, reset the query group so that subsequent queries do not run in the Superuser queue\.
+To assign a query to the superuser queue, log on to Amazon Redshift as a superuser and then run the query in the superuser group\. When you are done, reset the query group so that subsequent queries do not run in the superuser queue\.
 
-The following example assigns two commands to run in the Superuser queue\.
+The following example assigns two commands to run in the superuser queue\.
 
 ```
 set query_group to 'superuser';

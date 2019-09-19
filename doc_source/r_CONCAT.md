@@ -1,4 +1,4 @@
-# CONCAT \(Oracle Compatibility Function\)<a name="r_CONCAT"></a>
+# CONCAT<a name="r_CONCAT"></a>
 
 The CONCAT function concatenates two character strings and returns the resulting string\. To concatenate more than two strings, use nested CONCAT functions\. The concatenation operator \(`||`\) between two strings produces the same results as the CONCAT function\. 
 

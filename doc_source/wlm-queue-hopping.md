@@ -1,6 +1,6 @@
 # WLM Query Queue Hopping<a name="wlm-queue-hopping"></a>
 
-A query can be hopped due to a [WLM timeout](cm-c-defining-query-queues.md#wlm-timeout) or a [query monitoring rule \(QMR\) hop action](cm-c-wlm-query-monitoring-rules.md#cm-c-wlm-defining-query-monitoring-rules)\.
+A query can be hopped due to a [WLM timeout](cm-c-defining-query-queues.md#wlm-timeout) or a [query monitoring rule \(QMR\) hop action](cm-c-wlm-query-monitoring-rules.md#cm-c-wlm-defining-query-monitoring-rules)\. You can only hop queries in a manual WLM configuration\. 
 
 When a query is hopped, WLM attempts to route the query to the next matching queue based on the [WLM queue assignment rules](cm-c-wlm-queue-assignment-rules.md)\. If the query doesn't match any other queue definition, the query is canceled\. It's not assigned to the default queue\. 
 

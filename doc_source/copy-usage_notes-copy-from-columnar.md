@@ -30,7 +30,7 @@ COPY supports columnar formatted data with the following restrictions:
   + [STATUPDATE ](copy-parameters-data-load.md#copy-statupdate)
   + [MANIFEST](copy-parameters-data-source-s3.md#copy-manifest)
 + If COPY encounters an error while loading, the command fails\. ACCEPTANYDATE, ACCEPTINVCHARS, and MAXERROR aren't supported for columnar data types\.
-+ Error messages are sent only to the SQL client\. Errors are not logged in STL\_LOAD\_ERRORS\.
++ Error messages are sent only to the SQL client\. Errors aren't logged in STL\_LOAD\_ERRORS\.
 + COPY inserts values into the target table's columns in the same order as the columns occur in the columnar data files\. The number of columns in the target table and the number of columns in the data file must match\.
 + If the file you specify for the COPY operation includes one of the following extensions, we decompress the data without the need for adding any parameters: 
   + `.gz`

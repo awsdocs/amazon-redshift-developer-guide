@@ -28,35 +28,35 @@ VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX ]
 FULL   <a name="vacuum-full"></a>
 Sorts the specified table \(or all tables in the current database\) and reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations\. VACUUM FULL is the default\.  
 A full vacuum doesn't perform a reindex for interleaved tables\. To reindex interleaved tables followed by a full vacuum, use the [VACUUM REINDEX](#vacuum-reindex) option\.   
-By default, VACUUM FULL skips the sort phase for any table that is already at least 95 percent sorted\. If VACUUM is able to skip the sort phase, it performs a DELETE ONLY and reclaims space in the delete phase such that at least 95 percent of the remaining rows are not marked for deletion\.    
-If the sort threshold is not met \(for example, if 90 percent of rows are sorted\) and VACUUM performs a full sort, then it also performs a complete delete operation, recovering space from 100 percent of deleted rows\.   
+By default, VACUUM FULL skips the sort phase for any table that is already at least 95 percent sorted\. If VACUUM is able to skip the sort phase, it performs a DELETE ONLY and reclaims space in the delete phase such that at least 95 percent of the remaining rows aren't marked for deletion\.    
+If the sort threshold isn't met \(for example, if 90 percent of rows are sorted\) and VACUUM performs a full sort, then it also performs a complete delete operation, recovering space from 100 percent of deleted rows\.   
 You can change the default vacuum threshold only for a single table\. To change the default vacuum threshold for a single table, include the table name and the TO *threshold* PERCENT parameter\. 
 
 SORT ONLY   <a name="vacuum-sort-only"></a>
-Sorts the specified table \(or all tables in the current database\) without reclaiming space freed by deleted rows\. This option is useful when reclaiming disk space is not important but resorting new rows is important\. A SORT ONLY vacuum reduces the elapsed time for vacuum operations when the unsorted region doesn't contain a large number of deleted rows and doesn't span the entire sorted region\. Applications that don't have disk space constraints but do depend on query optimizations associated with keeping table rows sorted can benefit from this kind of vacuum\.  
+Sorts the specified table \(or all tables in the current database\) without reclaiming space freed by deleted rows\. This option is useful when reclaiming disk space isn't important but resorting new rows is important\. A SORT ONLY vacuum reduces the elapsed time for vacuum operations when the unsorted region doesn't contain a large number of deleted rows and doesn't span the entire sorted region\. Applications that don't have disk space constraints but do depend on query optimizations associated with keeping table rows sorted can benefit from this kind of vacuum\.  
 By default, VACUUM SORT ONLY skips any table that is already at least 95 percent sorted\. To change the default sort threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
 DELETE ONLY   <a name="vacuum-delete-only"></a>
 Amazon Redshift automatically performs a DELETE ONLY vacuum in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\.  
 A VACUUM DELETE reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations, and compacts the table to free up the consumed space\. A DELETE ONLY vacuum operation doesn't sort table data\.   
-This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but resorting new rows is not important\. This option can also be useful when your query performance is already optimal, and resorting rows to optimize query performance is not a requirement\.  
-By default, VACUUM DELETE ONLY reclaims space such that at least 95 percent of the remaining rows are not marked for deletion\. To change the default delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\.    
+This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but resorting new rows isn't important\. This option can also be useful when your query performance is already optimal, and resorting rows to optimize query performance isn't a requirement\.  
+By default, VACUUM DELETE ONLY reclaims space such that at least 95 percent of the remaining rows aren't marked for deletion\. To change the default delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\.    
 Some operations, such as `ALTER TABLE APPEND`, can cause tables to be fragmented\. When you use the `DELETE ONLY` clause the vacuum operation reclaims space from fragmented tables\. The same threshold value of 95 percent applies to the defragmentation operation\. 
 
 REINDEX *tablename*  <a name="vacuum-reindex"></a>
 Analyzes the distribution of the values in interleaved sort key columns, then performs a full VACUUM operation\. If REINDEX is used, a table name is required\.  
 VACUUM REINDEX takes significantly longer than VACUUM FULL because it makes an additional pass to analyze the interleaved sort keys\. The sort and merge operation can take longer for interleaved tables because the interleaved sort might need to rearrange more rows than a compound sort\.  
 If a VACUUM REINDEX operation terminates before it completes, the next VACUUM resumes the reindex operation before performing the full vacuum operation\.  
-VACUUM REINDEX is not supported with TO *threshold* PERCENT\.  
+VACUUM REINDEX isn't supported with TO *threshold* PERCENT\.  
 
  *table\_name*   
-The name of a table to vacuum\. If you don't specify a table name, the vacuum operation applies to all tables in the current database\. You can specify any permanent or temporary user\-created table\. The command is not meaningful for other objects, such as views and system tables\.  
+The name of a table to vacuum\. If you don't specify a table name, the vacuum operation applies to all tables in the current database\. You can specify any permanent or temporary user\-created table\. The command isn't meaningful for other objects, such as views and system tables\.  
  If you include the TO *threshold* PERCENT parameter, a table name is required\.
 
  TO *threshold* PERCENT   
 A clause that specifies the threshold above which VACUUM skips the sort phase and the target threshold for reclaiming space in the delete phase\. The *sort threshold* is the percentage of total rows that are already in sort order for the specified table prior to vacuuming\.  The *delete threshold* is the minimum percentage of total rows not marked for deletion after vacuuming\.   
-Because VACUUM resorts the rows only when the percent of sorted rows in a table is less than the sort threshold, Amazon Redshift can often reduce VACUUM times significantly\. Similarly, when VACUUM is not constrained to reclaim space from 100 percent of rows marked for deletion, it is often able to skip rewriting blocks that contain only a few deleted rows\.  
-For example, if you specify 75 for *threshold*, VACUUM skips the sort phase if 75 percent or more of the table's rows are already in sort order\. For the delete phase, VACUUMS sets a target of reclaiming disk space such that at least 75 percent of the table's rows are not marked for deletion following the vacuum\. The *threshold* value must be an integer between 0 and 100\. The default is 95\. If you specify a value of 100, VACUUM always sorts the table unless it's already fully sorted and reclaims space from all rows marked for deletion\. If you specify a value of 0, VACUUM never sorts the table and never reclaims space\.  
+Because VACUUM resorts the rows only when the percent of sorted rows in a table is less than the sort threshold, Amazon Redshift can often reduce VACUUM times significantly\. Similarly, when VACUUM isn't constrained to reclaim space from 100 percent of rows marked for deletion, it is often able to skip rewriting blocks that contain only a few deleted rows\.  
+For example, if you specify 75 for *threshold*, VACUUM skips the sort phase if 75 percent or more of the table's rows are already in sort order\. For the delete phase, VACUUMS sets a target of reclaiming disk space such that at least 75 percent of the table's rows aren't marked for deletion following the vacuum\. The *threshold* value must be an integer between 0 and 100\. The default is 95\. If you specify a value of 100, VACUUM always sorts the table unless it's already fully sorted and reclaims space from all rows marked for deletion\. If you specify a value of 0, VACUUM never sorts the table and never reclaims space\.  
 If you include the TO *threshold* PERCENT parameter, you must also specify a table name\. If a table name is omitted, VACUUM fails\.   
 The TO *threshold* PERCENT parameter can't be used with REINDEX\. 
 
@@ -72,7 +72,7 @@ Before running a vacuum operation, note the following behavior:
 + Concurrent write operations proceed during vacuum operations, but we don’t recommended performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started can't be vacuumed by that operation; in this case, a second vacuum operation is necessary\.
 + A vacuum operation might not be able to start if a load or insert operation is already in progress\. Vacuum operations temporarily require exclusive access to tables in order to start\. This exclusive access is required briefly, so vacuum operations don't block concurrent loads and inserts for any significant period of time\.
 + Vacuum operations are skipped when there is no work to do for a particular table; however, there is some overhead associated with discovering that the operation can be skipped\. If you know that a table is pristine or doesn't meet the vacuum threshold, don't run a vacuum operation against it\.
-+ A DELETE ONLY vacuum operation on a small table might not reduce the number of blocks used to store the data, especially when the table has a large number of columns or the cluster uses a large number of slices per node\. These vacuum operations add one block per column per slice to account for concurrent inserts into the table, and there is potential for this overhead to outweigh the reduction in block count from the reclaimed disk space\. For example, if a 10\-column table on an 8\-node cluster occupies 1000 blocks before a vacuum, the vacuum does not reduce the actual block count unless more than 80 blocks of disk space are reclaimed because of deleted rows\. \(Each data block uses 1 MB\.\)
++ A DELETE ONLY vacuum operation on a small table might not reduce the number of blocks used to store the data, especially when the table has a large number of columns or the cluster uses a large number of slices per node\. These vacuum operations add one block per column per slice to account for concurrent inserts into the table, and there is potential for this overhead to outweigh the reduction in block count from the reclaimed disk space\. For example, if a 10\-column table on an 8\-node cluster occupies 1000 blocks before a vacuum, the vacuum doesn't reduce the actual block count unless more than 80 blocks of disk space are reclaimed because of deleted rows\. \(Each data block uses 1 MB\.\)
 
 Automatic vacuum operations pause if any of the following conditions are met: 
 + A user runs a data definition language \(DDL\) operation, such as ALTER TABLE, that requires an exclusive lock on a table that automatic vacuum is currently working on\. 
@@ -105,7 +105,7 @@ Resort rows in the SALES table only if fewer than 75 percent of rows are already
  vacuum sort only sales to 75 percent;
 ```
 
-Reclaim space in the SALES table such that at least 75 percent of the remaining rows are not marked for deletion following the vacuum\. 
+Reclaim space in the SALES table such that at least 75 percent of the remaining rows aren't marked for deletion following the vacuum\. 
 
 ```
 vacuum delete only sales to 75 percent;

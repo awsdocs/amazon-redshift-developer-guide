@@ -6,6 +6,20 @@ Advisor bases its recommendations on observations regarding performance statisti
 
 For example, suppose that your data warehouse contains a large number of uncompressed table columns\. In this case, you can save on cluster storage costs by rebuilding tables using the `ENCODE` parameter to specify column compression\. In another example, suppose that Advisor observes that your cluster contains a significant amount of data in uncompressed table data\. In this case, it provides you with the SQL code block to find the table columns that are candidates for compression and resources that describe how to compress those columns\. 
 
+## Amazon Redshift Regions<a name="advisor-regions"></a>
+
+The Amazon Redshift Advisor feature is available only in the following AWS Regions: 
++ US East \(N\. Virginia\) Region \(us\-east\-1\)
++ US West \(N\. California\) Region \(us\-west\-1\)
++ US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
++ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
++ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
++ EU \(Frankfurt\) Region \(eu\-central\-1\)
++ EU \(Ireland\) Region \(eu\-west\-1\)
+
 **Topics**
++ [Amazon Redshift Regions](#advisor-regions)
 + [Viewing Amazon Redshift Advisor Recommendations in the Console](access-advisor.md)
 + [Amazon Redshift Advisor Recommendations](advisor-recommendations.md)

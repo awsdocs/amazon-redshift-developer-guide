@@ -43,7 +43,7 @@ Data types of the arguments for a function\. Parameter of FUNCTION\.
 
 ## Usage Notes<a name="r_COMMENT-usage-notes"></a>
 
-Comments on databases may only be applied to the current database\. A warning message is displayed if you attempt to comment on a different database\. The same warning is displayed for comments on databases that do not exist\.
+Comments on databases may only be applied to the current database\. A warning message is displayed if you attempt to comment on a different database\. The same warning is displayed for comments on databases that don't exist\.
 
 ## Example<a name="r_COMMENT-example"></a>
 
@@ -68,7 +68,7 @@ objoid | classoid | objsubid | description
 116658 |     1259 |        0 | Contains listings of individual events.
 ```
 
-The following example uses the psql `\dd` command to view the comments\. Amazon Redshift does not support psql directly\. You must execute psql commands from the PostgreSQL psql client\. 
+The following example uses the psql `\dd` command to view the comments\. Amazon Redshift doesn't support psql directly\. You must execute psql commands from the PostgreSQL psql client\. 
 
 **Note**  
 The `\dd` command returns comments only with the psql 8\.x versions\. 

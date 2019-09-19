@@ -1,10 +1,10 @@
-# Concurrency Scaling<a name="concurrency-scaling"></a>
+# Working with Concurrency Scaling<a name="concurrency-scaling"></a>
 
-With Concurrency Scaling, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. When Concurrency Scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. You're charged for concurrency scaling clusters only for the time they're in use\. For more information about pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable Concurrency Scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. 
+With the Concurrency Scaling feature, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users always see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. You're charged for concurrency scaling clusters only for the time they're in use\. For more information about pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. 
 
 ## Concurrency Scaling Regions<a name="concurrency-scaling-regions"></a>
 
-Concurrency Scaling is available only in the following AWS Regions: 
+The Concurrency Scaling feature is available only in the following AWS Regions: 
 + US East \(N\. Virginia\) Region \(us\-east\-1\)
 + US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
@@ -20,18 +20,18 @@ Concurrency Scaling is available only in the following AWS Regions:
 
 Queries are routed to the concurrency scaling cluster only when the main cluster meets the following requirements:
 + EC2\-VPC platform 
-+ Node type must be dc2\.8xlarge, ds2\.8xlarge, dc2\.large, or ds2\.xlarge 
-+ Maximum of 32 compute nodes 
++ Node type must be `dc2.8xlarge`, `ds2.8xlarge`, `dc2.large`, or `ds2.xlarge` 
++ Maximum of 32 compute nodes for clusters with `8xlarge` node types 
 + Not a single\-node cluster 
 
-A query must meet all the following criteria to be a candidate for Concurrency Scaling: 
+A query must meet all the following criteria to be a candidate for concurrency scaling: 
 + The query must be a read\-only query\. 
 + The query doesn't reference tables that use an [interleaved sort key](t_Sorting_data.md#t_Sorting_data-interleaved)\. 
 + The query doesn't reference user\-defined temporary tables\. 
 
 ## Configuring Concurrency Scaling Queues<a name="concurrency-scaling-queues"></a>
 
-You route queries to concurrency scaling clusters by enabling a workload manager \(WLM\) queue as a concurrency scaling queue\. To enable Concurrency Scaling on a queue, set the **Concurrency Scaling mode** value to **auto**\. 
+You route queries to concurrency scaling clusters by enabling a workload manager \(WLM\) queue as a concurrency scaling queue\. To enable concurrency scaling on a queue, set the **Concurrency Scaling mode** value to **auto**\. 
 
 When the number of queries routed to a concurrency scaling queue exceeds the queue's configured concurrency, eligible queries are sent to the concurrency scaling cluster\. When slots become available, queries are run on the main cluster\. The number of queues is limited only by the number of queues permitted per cluster\. As with any WLM queue, you route queries to a concurrency scaling queue based on user groups or by labeling queries with query group labels\. You can also route queries by defining [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. For example, you might route all queries that take longer than 5 seconds to a concurrency scaling queue\. 
 
@@ -60,7 +60,7 @@ ORDER BY 1,2;
 
 ## Concurrency Scaling System Views<a name="concurrency-scaling-monitoring-system-views"></a>
 
-A set of system views with the prefix SVCS provide details from the system log tables about queries on both the main and concurrency scaling clusters\. 
+A set of system views with the prefix SVCS provides details from the system log tables about queries on both the main and concurrency scaling clusters\. 
 
 The following views have similar information as the corresponding STL tables or SVL views: 
 + [SVCS\_ALERT\_EVENT\_LOG](r_SVCS_ALERT_EVENT_LOG.md) 
@@ -70,10 +70,10 @@ The following views have similar information as the corresponding STL tables or 
 + [SVCS\_QUERY\_SUMMARY](r_SVCS_QUERY_SUMMARY.md) 
 + [SVCS\_STREAM\_SEGS](r_SVCS_STREAM_SEGS.md) 
 
-The following views are specific to Concurrency Scaling\. 
+The following views are specific to concurrency scaling\. 
 + [SVCS\_CONCURRENCY\_SCALING\_USAGE](r_SVCS_CONCURRENCY_SCALING_USAGE.md) 
 
-For more information about Concurrency Scaling, see the following topics in the *Amazon Redshift Cluster Management Guide*\.
+For more information about concurrency scaling, see the following topics in the *Amazon Redshift Cluster Management Guide*\.
 + [Viewing Concurrency Scaling Data](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-concurrency-scaling.html) 
 + [Viewing Cluster Performance During Query Execution](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-query-cluster.html) 
 + [Viewing Query Details](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-query-execution-details.html) 

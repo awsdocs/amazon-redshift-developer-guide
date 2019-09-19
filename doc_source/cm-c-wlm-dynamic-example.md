@@ -1,10 +1,10 @@
 # Dynamic WLM Example<a name="cm-c-wlm-dynamic-example"></a>
 
-Suppose your cluster WLM is configured with two queues, using the following dynamic properties\. 
+Suppose that your cluster WLM is configured with two queues, using the following dynamic properties\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-example.html)
 
-Now suppose your cluster has 200 GB of memory available for query processing\. \(This number is arbitrary and used for illustration only\.\) As the following equation shows, each slot is allocated 25 GB\. 
+Now suppose that your cluster has 200 GB of memory available for query processing\. \(This number is arbitrary and used for illustration only\.\) As the following equation shows, each slot is allocated 25 GB\. 
 
 ```
 (200 GB * 50% ) / 4 slots  = 25 GB
@@ -20,7 +20,7 @@ As the following equation shows, the new memory allocation for each slot in queu
 (200 GB * 75% ) / 3 slots = 50 GB 
 ```
 
-Suppose queries A1, A2, A3, and A4 are running when the new configuration is applied, and queries B1, B2, B3, and B4 are queued\. WLM dynamically reconfigures the query slots as follows\. 
+Suppose that queries A1, A2, A3, and A4 are running when the new configuration is applied, and queries B1, B2, B3, and B4 are queued\. WLM dynamically reconfigures the query slots as follows\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-example.html)
 

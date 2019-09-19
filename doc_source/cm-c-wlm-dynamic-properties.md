@@ -1,22 +1,32 @@
 # WLM Dynamic and Static Configuration Properties<a name="cm-c-wlm-dynamic-properties"></a>
 
-The WLM configuration properties are either dynamic or static\. If you change any of the dynamic properties, you don't need to reboot your cluster for the changes to take effect\. While dynamic changes are being applied, your cluster status is modifying\. If you add or remove query queues, switch to automatic or manual WLM, or change any static properties, restart your cluster\. You need to perform this restart before any WLM parameter changes take effect, including changes to dynamic properties\. 
+The WLM configuration properties are either dynamic or static\. You can apply dynamic properties to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. However, if you change dynamic and static properties at the same time, then you must reboot the cluster for all the property changes to take effect\. This is true whether the changed properties are dynamic or static\. 
 
-The following WLM properties are static: 
-+ Query group wildcard 
-+ Query groups 
-+ User group wildcard 
-+ User groups 
+While dynamic properties are being applied, your cluster status is `modifying`\. Switching between automatic WLM and manual WLM is a static change and requires a cluster reboot to take effect\.
 
-The following WLM properties are dynamic: 
-+ Concurrency
-+ Concurrency Scaling mode
-+ Enable short query acceleration
-+ Maximum run time for short queries
-+ Percent of memory to use
-+ Timeout
+The following table indicates which WLM properties are dynamic or static when using automatic WLM or manual WLM\.
 
-If the timeout value is changed, the new value is applied to any query that begins execution after the value is changed\. If the concurrency or percent of memory to use are changed, Amazon Redshift transitions to the new configuration dynamically\. Thus, currently running queries aren't affected by the change\. For more information, see [WLM Dynamic Memory Allocation](cm-c-wlm-dynamic-memory-allocation.md)\.
+
+****  
+
+| WLM Property | Automatic WLM | Manual WLM | 
+| --- | --- | --- | 
+| Query groups | Dynamic | Static | 
+| Query group wildcard | Dynamic | Static | 
+| User groups | Dynamic | Static | 
+| User group wildcard | Dynamic | Static | 
+| Concurrency on main | Not applicable | Dynamic | 
+| Concurrency Scaling mode | Dynamic | Dynamic | 
+| Enable short query acceleration | Not applicable | Dynamic | 
+| Maximum runtime for short queries | Dynamic | Dynamic | 
+| Percent of memory to use | Not applicable | Dynamic | 
+| Timeout | Not applicable | Dynamic | 
+| Priority | Dynamic | Not applicable | 
+| Adding or removing queues | Dynamic  | Static | 
+
+**Note**  
+When using manual WLM, if the timeout value is changed, the new value is applied to any query that begins running after the value is changed\. If the concurrency or percent of memory to use are changed, Amazon Redshift changes to the new configuration dynamically\. Thus, currently running queries aren't affected by the change\. For more information, see [WLM Dynamic Memory Allocation\.](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-memory-allocation.html)  
+When using automatic WLM, timeout is ignored\.
 
 **Topics**
 + [WLM Dynamic Memory Allocation](cm-c-wlm-dynamic-memory-allocation.md)

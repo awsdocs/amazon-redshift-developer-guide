@@ -20,13 +20,13 @@ As it loads the table, COPY attempts to implicitly convert the strings in the so
 + [TRUNCATECOLUMNS](#copy-truncatecolumns) <a name="copy-data-conversion-parameters"></a>Data Conversion Parameters
 
 ACCEPTANYDATE   <a name="copy-acceptanydate"></a>
-Allows any date format, including invalid formats such as `00/00/00 00:00:00`, to be loaded without generating an error\. This parameter applies only to TIMESTAMP and DATE columns\. Always use ACCEPTANYDATE with the DATEFORMAT parameter\. If the date format for the data does not match the DATEFORMAT specification, Amazon Redshift inserts a NULL value into that field\.
+Allows any date format, including invalid formats such as `00/00/00 00:00:00`, to be loaded without generating an error\. This parameter applies only to TIMESTAMP and DATE columns\. Always use ACCEPTANYDATE with the DATEFORMAT parameter\. If the date format for the data doesn't match the DATEFORMAT specification, Amazon Redshift inserts a NULL value into that field\.
 
 ACCEPTINVCHARS \[AS\] \['*replacement\_char*'\]   <a name="copy-acceptinvchars"></a>
 Enables loading of data into VARCHAR columns even if the data contains invalid UTF\-8 characters\. When ACCEPTINVCHARS is specified, COPY replaces each invalid UTF\-8 character with a string of equal length consisting of the character specified by *replacement\_char*\. For example, if the replacement character is '`^`', an invalid three\-byte character will be replaced with '`^^^`'\.  
  The replacement character can be any ASCII character except NULL\. The default is a question mark \( ? \)\. For information about invalid UTF\-8 characters, see [Multibyte Character Load Errors](multi-byte-character-load-errors.md)\.  
-COPY returns the number of rows that contained invalid UTF\-8 characters, and it adds an entry to the [STL\_REPLACEMENTS](r_STL_REPLACEMENTS.md) system table for each affected row, up to a maximum of 100 rows for each node slice\. Additional invalid UTF\-8 characters are also replaced, but those replacement events are not recorded\.  
-If ACCEPTINVCHARS is not specified, COPY returns an error whenever it encounters an invalid UTF\-8 character\.   
+COPY returns the number of rows that contained invalid UTF\-8 characters, and it adds an entry to the [STL\_REPLACEMENTS](r_STL_REPLACEMENTS.md) system table for each affected row, up to a maximum of 100 rows for each node slice\. Additional invalid UTF\-8 characters are also replaced, but those replacement events aren't recorded\.  
+If ACCEPTINVCHARS isn't specified, COPY returns an error whenever it encounters an invalid UTF\-8 character\.   
 ACCEPTINVCHARS is valid only for VARCHAR columns\.
 
 BLANKSASNULL   <a name="copy-blanksasnull"></a>
@@ -34,7 +34,7 @@ Loads blank fields, which consist of only white space characters, as NULL\. This
 
 DATEFORMAT \[AS\] \{'*dateformat\_string*' \| 'auto' \}  <a name="copy-dateformat"></a>
 If no DATEFORMAT is specified, the default format is `'YYYY-MM-DD'`\. For example, an alternative valid format is `'MM-DD-YYYY'`\.   
-If the COPY command does not recognize the format of your date or time values, or if your date or time values use different formats, use the `'auto'` argument with the DATEFORMAT or TIMEFORMAT parameter\. The `'auto'` argument recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. The `'auto'`' keyword is case\-sensitive\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\.   
+If the COPY command doesn't recognize the format of your date or time values, or if your date or time values use different formats, use the `'auto'` argument with the DATEFORMAT or TIMEFORMAT parameter\. The `'auto'` argument recognizes several formats that aren't supported when using a DATEFORMAT and TIMEFORMAT string\. The `'auto'`' keyword is case\-sensitive\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\.   
 The date format can include time information \(hour, minutes, seconds\), but this information is ignored\. The AS keyword is optional\. For more information, see [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\.
 
 EMPTYASNULL   <a name="copy-emptyasnull"></a>
@@ -86,22 +86,23 @@ A|B|C
 A Midsummer Night's Dream
 ```
 Applying the escape character to the input data for a load is the responsibility of the user\. One exception to this requirement is when you reload data that was previously unloaded with the ESCAPE parameter\. In this case, the data will already contain the necessary escape characters\.
-The ESCAPE parameter does not interpret octal, hex, Unicode, or other escape sequence notation\. For example, if your source data contains the octal line feed value \(`\012`\) and you try to load this data with the ESCAPE parameter, Amazon Redshift loads the value `012` into the table and does not interpret this value as a line feed that is being escaped\.  
+The ESCAPE parameter doesn't interpret octal, hex, Unicode, or other escape sequence notation\. For example, if your source data contains the octal line feed value \(`\012`\) and you try to load this data with the ESCAPE parameter, Amazon Redshift loads the value `012` into the table and doesn't interpret this value as a line feed that is being escaped\.  
 In order to escape newline characters in data that originates from Microsoft Windows platforms, you might need to use two escape characters: one for the carriage return and one for the line feed\. Alternatively, you can remove the carriage returns before loading the file \(for example, by using the dos2unix utility\)\.
 
 EXPLICIT\_IDS   <a name="copy-explicit-ids"></a>
 Use EXPLICIT\_IDS with tables that have IDENTITY columns if you want to override the autogenerated values with explicit values from the source data files for the tables\. If the command includes a column list, that list must include the IDENTITY columns to use this parameter\. The data format for EXPLICIT\_IDS values must match the IDENTITY format specified by the CREATE TABLE definition\.  
-After you run a COPY command against a table with the EXPLICIT\_IDS option, Amazon Redshift no longer checks the uniqueness of IDENTITY columns in the table\.
+After you run a COPY command against a table with the EXPLICIT\_IDS option, Amazon Redshift no longer checks the uniqueness of IDENTITY columns in the table\.  
+If a column is defined with GENERATED BY DEFAULT AS IDENTITY, then it can be copied\. Values are generated or updated with values that you supply\. The EXPLICIT\_IDS option isn't required\. COPY doesn't update the identity high watermark\.
 
 FILLRECORD   <a name="copy-fillrecord"></a>
-Allows data files to be loaded when contiguous columns are missing at the end of some of the records\. The missing columns are filled with either zero\-length strings or NULLs, as appropriate for the data types of the columns in question\. If the EMPTYASNULL parameter is present in the COPY command and the missing column is a VARCHAR column, NULLs are loaded; if EMPTYASNULL is not present and the column is a VARCHAR, zero\-length strings are loaded\. NULL substitution only works if the column definition allows NULLs\.  
+Allows data files to be loaded when contiguous columns are missing at the end of some of the records\. The missing columns are filled with either zero\-length strings or NULLs, as appropriate for the data types of the columns in question\. If the EMPTYASNULL parameter is present in the COPY command and the missing column is a VARCHAR column, NULLs are loaded; if EMPTYASNULL isn't present and the column is a VARCHAR, zero\-length strings are loaded\. NULL substitution only works if the column definition allows NULLs\.  
 For example, if the table definition contains four nullable CHAR columns, and a record contains the values `apple, orange, banana, mango`, the COPY command could load and fill in a record that contains only the values `apple, orange`\. The missing CHAR values would be loaded as NULL values\.
 
 IGNOREBLANKLINES   <a name="copy-ignoreblanklines"></a>
 Ignores blank lines that only contain a line feed in a data file and does not try to load them\.
 
 IGNOREHEADER \[ AS \] *number\_rows*   <a name="copy-ignoreheader"></a>
-Treats the specified *number\_rows* as a file header and does not load them\. Use IGNOREHEADER to skip file headers in all files in a parallel load\.
+Treats the specified *number\_rows* as a file header and doesn't load them\. Use IGNOREHEADER to skip file headers in all files in a parallel load\.
 
 NULL AS '*null\_string*'   <a name="copy-null-as"></a>
 Loads fields that match *null\_string* as NULL, where *null\_string* can be any string\. If your data includes a null terminator, also referred to as NUL \(UTF\-8 0000\) or binary zero \(0x000\), COPY treats it as an end of record \(EOR\) and terminates the record\. If a field contains only NUL, you can use NULL AS to replace the null terminator with NULL by specifying `'\0'` or `'\000'`—for example, `NULL AS '\0'` or `NULL AS '\000'`\. If a field contains a string that ends with NUL and NULL AS is specified, the string is inserted with NUL at the end\. Do not use '\\n' \(newline\) for the *null\_string* value\. Amazon Redshift reserves '\\n' for use as a line delimiter\. The default *null\_string* is `'\N`'\.  
@@ -116,7 +117,7 @@ Rounds up numeric values when the scale of the input value is greater than the s
 
 TIMEFORMAT \[AS\] \{'*timeformat\_string*' \| 'auto' \| 'epochsecs' \| 'epochmillisecs' \}  <a name="copy-timeformat"></a>
 Specifies the time format\. If no TIMEFORMAT is specified, the default format is `YYYY-MM-DD HH:MI:SS` for TIMESTAMP columns or `YYYY-MM-DD HH:MI:SSOF` for TIMESTAMPTZ columns, where `OF` is the offset from Coordinated Universal Time \(UTC\)\. You can't include a time zone specifier in the *timeformat\_string*\. To load TIMESTAMPTZ data that is in a format different from the default format, specify 'auto'; for more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. For more information about *timeformat\_string*, see [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\.  
-The `'auto'` argument recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. If the COPY command does not recognize the format of your date or time values, or if your date and time values use formats different from each other, use the `'auto'` argument with the DATEFORMAT or TIMEFORMAT parameter\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\.   
+The `'auto'` argument recognizes several formats that aren't supported when using a DATEFORMAT and TIMEFORMAT string\. If the COPY command doesn't recognize the format of your date or time values, or if your date and time values use formats different from each other, use the `'auto'` argument with the DATEFORMAT or TIMEFORMAT parameter\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\.   
 If your source data is represented as epoch time, that is the number of seconds or milliseconds since January 1, 1970, 00:00:00 UTC, specify `'epochsecs'` or `'epochmillisecs'`\.   
 The `'auto'`, `'epochsecs'`, and `'epochmillisecs'` keywords are case\-sensitive\.  
 The AS keyword is optional\.

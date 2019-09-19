@@ -96,7 +96,7 @@ query | querygroup |  pid  |                  sql
 (1 row)
 ```
 
-Query group labels are a useful mechanism for isolating individual queries or groups of queries that are run as part of scripts\. You do not need to identify and track queries by their IDs; you can track them by their labels\.
+Query group labels are a useful mechanism for isolating individual queries or groups of queries that are run as part of scripts\. You don't need to identify and track queries by their IDs; you can track them by their labels\.
 
  **Setting a Seed Value for Random Number Generation** 
 

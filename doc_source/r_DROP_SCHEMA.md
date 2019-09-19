@@ -1,6 +1,6 @@
 # DROP SCHEMA<a name="r_DROP_SCHEMA"></a>
 
-Deletes a schema\. For an external schema, you can also drop the external database associated with the schema\. This command is not reversible\.
+Deletes a schema\. For an external schema, you can also drop the external database associated with the schema\. This command isn't reversible\.
 
 ## Syntax<a name="r_DROP_SCHEMA-synopsis"></a>
 
@@ -33,7 +33,7 @@ Keyword that indicates not to drop a schema or external database if it contains 
 
 ## Example<a name="r_DROP_SCHEMA-example"></a>
 
-The following example deletes a schema named S\_SALES\. This example uses RESTRICT as a safety mechanism so that the schema is not deleted if it contains any objects\. In this case, you need to delete the schema objects before deleting the schema\.
+The following example deletes a schema named S\_SALES\. This example uses RESTRICT as a safety mechanism so that the schema isn't deleted if it contains any objects\. In this case, you need to delete the schema objects before deleting the schema\.
 
 ```
 drop schema s_sales restrict;
@@ -45,7 +45,7 @@ The following example deletes a schema named S\_SALES and all objects that depen
 drop schema s_sales cascade;
 ```
 
-The following example either drops the S\_SALES schema if it exists, or does nothing and returns a message if it does not\.
+The following example either drops the S\_SALES schema if it exists, or does nothing and returns a message if it doesn't\.
 
 ```
 drop schema if exists s_sales;

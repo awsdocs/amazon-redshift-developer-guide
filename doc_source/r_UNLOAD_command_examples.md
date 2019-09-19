@@ -73,7 +73,7 @@ The unload file would look similar to the following\.
 To create a manifest file, include the MANIFEST option\. The following example unloads the VENUE table and writes a manifest file along with the data files to s3://mybucket/venue\_pipe\_: 
 
 **Important**  
-If you unload files with the MANIFEST option, you should use the MANIFEST option with the COPY command when you load the files\. If you use the same prefix to load the files and do not specify the MANIFEST option, COPY fails because it assumes the manifest file is a data file\.
+If you unload files with the MANIFEST option, you should use the MANIFEST option with the COPY command when you load the files\. If you use the same prefix to load the files and don't specify the MANIFEST option, COPY fails because it assumes the manifest file is a data file\.
 
 ```
 unload ('select * from venue')
@@ -545,7 +545,7 @@ select * from loadvenuenulls where venuestate is null or venueseats is null;
 
 ## ALLOWOVERWRITE Example<a name="unload-examples-allowoverwrite"></a>
 
-By default, UNLOAD does not overwrite existing files in the destination bucket\. For example, if you run the same UNLOAD statement twice without modifying the files in the destination bucket, the second UNLOAD fails\. To overwrite the existing files, including the manifest file, specify the ALLOWOVERWRITE option\.
+By default, UNLOAD doesn't overwrite existing files in the destination bucket\. For example, if you run the same UNLOAD statement twice without modifying the files in the destination bucket, the second UNLOAD fails\. To overwrite the existing files, including the manifest file, specify the ALLOWOVERWRITE option\.
 
 ```
 unload ('select * from venue')

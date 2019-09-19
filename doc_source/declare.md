@@ -40,7 +40,7 @@ Amazon Redshift cursors are supported with the following limitations:
 
 ## Cursor Constraints<a name="declare-constraints"></a>
 
-When the first row of a cursor is fetched, the entire result set is materialized on the leader node\. If the result set does not fit in memory, it is written to disk as needed\. To protect the integrity of the leader node, Amazon Redshift enforces constraints on the size of all cursor result sets, based on the cluster's node type\.
+When the first row of a cursor is fetched, the entire result set is materialized on the leader node\. If the result set doesn't fit in memory, it is written to disk as needed\. To protect the integrity of the leader node, Amazon Redshift enforces constraints on the size of all cursor result sets, based on the cluster's node type\.
 
 The following table shows the maximum total result set size for each cluster node type\. Maximum result set sizes are in megabytes\.
 

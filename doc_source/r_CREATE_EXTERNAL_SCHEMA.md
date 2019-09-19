@@ -11,7 +11,7 @@ If you currently have Redshift Spectrum external tables in the Athena data catal
 
 All external tables must be created in an external schema\. You can't create local tables in external schemas\. For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\. 
 
-External schemas do not support search paths\.
+External schemas don't support search paths\.
 
 To view details for external schemas, query the [SVV\_EXTERNAL\_SCHEMAS](r_SVV_EXTERNAL_SCHEMAS.md) system view\. 
 

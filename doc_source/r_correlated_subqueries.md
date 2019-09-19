@@ -23,7 +23,7 @@ salesid | listid |   sum
 
 ## Correlated Subquery Patterns That Are Not Supported<a name="r_correlated_subqueries-correlated-subquery-patterns-that-are-not-supported"></a>
 
-The query planner uses a query rewrite method called subquery decorrelation to optimize several patterns of correlated subqueries for execution in an MPP environment\. A few types of correlated subqueries follow patterns that Amazon Redshift can't decorrelate and does not support\. Queries that contain the following correlation references return errors: 
+The query planner uses a query rewrite method called subquery decorrelation to optimize several patterns of correlated subqueries for execution in an MPP environment\. A few types of correlated subqueries follow patterns that Amazon Redshift can't decorrelate and doesn't support\. Queries that contain the following correlation references return errors: 
 +  Correlation references that skip a query block, also known as "skip\-level correlation references\." For example, in the following query, the block containing the correlation reference and the skipped block are connected by a NOT EXISTS predicate: 
 
   ```
@@ -69,7 +69,7 @@ The query planner uses a query rewrite method called subquery decorrelation to o
   from listing
   group by list, listing.listid;
   ```
-+ Correlation references from a subquery with an aggregate function and a GROUP BY clause, connected to the outer query by an IN predicate\. \(This restriction does not apply to MIN and MAX aggregate functions\.\) For example: 
++ Correlation references from a subquery with an aggregate function and a GROUP BY clause, connected to the outer query by an IN predicate\. \(This restriction doesn't apply to MIN and MAX aggregate functions\.\) For example: 
 
   ```
   select * from listing where listid in
