@@ -1,6 +1,6 @@
 # GROUP BY Clause<a name="r_GROUP_BY_clause"></a>
 
-The GROUP BY clause identifies the grouping columns for the query\. Grouping columns must be declared when the query computes aggregates with standard functions such as SUM, AVG, and COUNT\.
+The GROUP BY clause identifies the grouping columns for the query\. Grouping columns must be declared when the query computes aggregates with standard functions such as SUM, AVG, and COUNT\. For more information, see [Aggregate Functions](c_Aggregate_Functions.md)\. 
 
 ```
 GROUP BY expression [, ...]

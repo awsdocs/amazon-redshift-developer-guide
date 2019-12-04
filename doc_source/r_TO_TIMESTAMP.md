@@ -22,7 +22,7 @@ TIMESTAMPTZ
 
 ## Examples<a name="r_TO_TIMESTAMP-examples"></a>
 
-The following example demonstrates using the T0\_TIMESTAMP function to convert a TIMESTAMP string to a TIMESTAMPTZ 
+The following example demonstrates using the TO\_TIMESTAMP function to convert a TIMESTAMP string to a TIMESTAMPTZ 
 
 ```
 select sysdate,

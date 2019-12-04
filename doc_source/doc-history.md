@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: September 19, 2019** 
+ **Latest documentation update: November 21, 2019** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,8 +12,12 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Support for default IDENTITY columns](https://docs.aws.amazon.com/redshift/latest/dg//r_CREATE_TABLE_NEW.html) | You can create tables with default IDENTITY columns\.  | September 19, 2019 | 
-| [Support for AZ64 compression encoding](https://docs.aws.amazon.com/redshift/latest/dg//az64-encoding.html) | You can encode some columns with AZ64 compression encoding\.  | September 19, 2019 | 
+| [Support for spatial data](https://docs.aws.amazon.com/redshift/latest/dg/geospatial-overview.html) | Updated the guide to describe support for spatial data\.  | November 21, 2019 | 
+| [Support for the new console](https://docs.aws.amazon.com/redshift/latest/dg/welcome.html) | Updated the guide to describe the new Amazon Redshift console\.  | November 11, 2019 | 
+| [Support for automatic table sort](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) | Amazon Redshift can automatically sort table data\.  | November 7, 2019 | 
+| [Support for VACUUM BOOST option](https://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) | You can use the BOOST option when vacuuming tables\.  | November 7, 2019 | 
+| [Support for default IDENTITY columns](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) | You can create tables with default IDENTITY columns\.  | September 19, 2019 | 
+| [Support for AZ64 compression encoding](https://docs.aws.amazon.com/redshift/latest/dg/az64-encoding.html) | You can encode some columns with AZ64 compression encoding\.  | September 19, 2019 | 
 | [Support for query priority](https://docs.aws.amazon.com/redshift/latest/dg/query-priority.html) | You can set the query priority of an automatic WLM queue\.  | August 22, 2019 | 
 | [Support for AWS Lake Formation](https://docs.aws.amazon.com/redshift/latest/dg/spectrum-lake-formation.html) | You can use a Lake Formation Data Catalog with Amazon Redshift Spectrum\.  | August 8, 2019 | 
 | [COMPUPDATE PRESET](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-load.html) | You can use a COPY command with COMPUPDATE PRESET to enable Amazon Redshift to choose the compression encoding\. | June 13, 2019 | 

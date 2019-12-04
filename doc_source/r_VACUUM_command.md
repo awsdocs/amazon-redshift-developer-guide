@@ -1,9 +1,11 @@
 # VACUUM<a name="r_VACUUM_command"></a>
 
-Resorts rows and reclaims space in either a specified table or all tables in the current database\.
+Re\-sorts rows and reclaims space in either a specified table or all tables in the current database\.
 
 **Note**  
 Only the table owner or a superuser can effectively vacuum a table\. If VACUUM is run without the necessary table privileges, the operation completes successfully but has no effect\. 
+
+Amazon Redshift automatically sorts data and runs VACUUM DELETE in the background\. This lessens the need to run the VACUUM command\. For more information, see [Vacuuming Tables](t_Reclaiming_storage_space202.md)\. 
 
 By default, VACUUM skips the sort phase for any table where more than 95 percent of the table's rows are already sorted\. Skipping the sort phase can significantly improve VACUUM performance\. To change the default sort or delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
@@ -12,7 +14,7 @@ Users can access tables while they are being vacuumed\. You can perform queries 
 Amazon Redshift automatically performs a DELETE ONLY vacuum in the background\. Automatic vacuum operation pauses when users run data definition language \(DDL\) operations, such as ALTER TABLE\.
 
 **Note**  
-The Amazon Redshift VACUUM command syntax and behavior are substantially different from the PostgreSQL VACUUM operation\. For example, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and resorts all rows\. In contrast, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for reuse\.
+The Amazon Redshift VACUUM command syntax and behavior are substantially different from the PostgreSQL VACUUM operation\. For example, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and re\-sorts all rows\. In contrast, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for reuse\.
 
 For more information, see [Vacuuming Tables](t_Reclaiming_storage_space202.md)\.
 
@@ -20,7 +22,7 @@ For more information, see [Vacuuming Tables](t_Reclaiming_storage_space202.md)\.
 
 ```
 VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX ] 
-[ [ table_name ] [ TO threshold PERCENT ] ]
+[ [ table_name ] [ TO threshold PERCENT ] [ BOOST ] ]
 ```
 
 ## Parameters<a name="r_VACUUM_command-parameters"></a>
@@ -33,13 +35,13 @@ If the sort threshold isn't met \(for example, if 90 percent of rows are sorted\
 You can change the default vacuum threshold only for a single table\. To change the default vacuum threshold for a single table, include the table name and the TO *threshold* PERCENT parameter\. 
 
 SORT ONLY   <a name="vacuum-sort-only"></a>
-Sorts the specified table \(or all tables in the current database\) without reclaiming space freed by deleted rows\. This option is useful when reclaiming disk space isn't important but resorting new rows is important\. A SORT ONLY vacuum reduces the elapsed time for vacuum operations when the unsorted region doesn't contain a large number of deleted rows and doesn't span the entire sorted region\. Applications that don't have disk space constraints but do depend on query optimizations associated with keeping table rows sorted can benefit from this kind of vacuum\.  
+Sorts the specified table \(or all tables in the current database\) without reclaiming space freed by deleted rows\. This option is useful when reclaiming disk space isn't important but re\-sorting new rows is important\. A SORT ONLY vacuum reduces the elapsed time for vacuum operations when the unsorted region doesn't contain a large number of deleted rows and doesn't span the entire sorted region\. Applications that don't have disk space constraints but do depend on query optimizations associated with keeping table rows sorted can benefit from this kind of vacuum\.  
 By default, VACUUM SORT ONLY skips any table that is already at least 95 percent sorted\. To change the default sort threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
 DELETE ONLY   <a name="vacuum-delete-only"></a>
 Amazon Redshift automatically performs a DELETE ONLY vacuum in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\.  
 A VACUUM DELETE reclaims disk space occupied by rows that were marked for deletion by previous UPDATE and DELETE operations, and compacts the table to free up the consumed space\. A DELETE ONLY vacuum operation doesn't sort table data\.   
-This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but resorting new rows isn't important\. This option can also be useful when your query performance is already optimal, and resorting rows to optimize query performance isn't a requirement\.  
+This option reduces the elapsed time for vacuum operations when reclaiming disk space is important but re\-sorting new rows isn't important\. This option can also be useful when your query performance is already optimal, and re\-sorting rows to optimize query performance isn't a requirement\.  
 By default, VACUUM DELETE ONLY reclaims space such that at least 95 percent of the remaining rows aren't marked for deletion\. To change the default delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\.    
 Some operations, such as `ALTER TABLE APPEND`, can cause tables to be fragmented\. When you use the `DELETE ONLY` clause the vacuum operation reclaims space from fragmented tables\. The same threshold value of 95 percent applies to the defragmentation operation\. 
 
@@ -55,10 +57,17 @@ The name of a table to vacuum\. If you don't specify a table name, the vacuum op
 
  TO *threshold* PERCENT   
 A clause that specifies the threshold above which VACUUM skips the sort phase and the target threshold for reclaiming space in the delete phase\. The *sort threshold* is the percentage of total rows that are already in sort order for the specified table prior to vacuuming\.  The *delete threshold* is the minimum percentage of total rows not marked for deletion after vacuuming\.   
-Because VACUUM resorts the rows only when the percent of sorted rows in a table is less than the sort threshold, Amazon Redshift can often reduce VACUUM times significantly\. Similarly, when VACUUM isn't constrained to reclaim space from 100 percent of rows marked for deletion, it is often able to skip rewriting blocks that contain only a few deleted rows\.  
+Because VACUUM re\-sorts the rows only when the percent of sorted rows in a table is less than the sort threshold, Amazon Redshift can often reduce VACUUM times significantly\. Similarly, when VACUUM isn't constrained to reclaim space from 100 percent of rows marked for deletion, it is often able to skip rewriting blocks that contain only a few deleted rows\.  
 For example, if you specify 75 for *threshold*, VACUUM skips the sort phase if 75 percent or more of the table's rows are already in sort order\. For the delete phase, VACUUMS sets a target of reclaiming disk space such that at least 75 percent of the table's rows aren't marked for deletion following the vacuum\. The *threshold* value must be an integer between 0 and 100\. The default is 95\. If you specify a value of 100, VACUUM always sorts the table unless it's already fully sorted and reclaims space from all rows marked for deletion\. If you specify a value of 0, VACUUM never sorts the table and never reclaims space\.  
 If you include the TO *threshold* PERCENT parameter, you must also specify a table name\. If a table name is omitted, VACUUM fails\.   
 The TO *threshold* PERCENT parameter can't be used with REINDEX\. 
+
+BOOST  
+Runs the VACUUM command with additional resources, such as memory and disk space, as they're available\. With the BOOST option, VACUUM operates in one window and blocks concurrent deletes and updates for the duration of the VACUUM operation\. Running with the BOOST option contends for system resources, which might affect query performance\. Run the VACUUM BOOST when the load on the system is light, such as during maintenance operations\.   
+Consider the following when using the BOOST option:  
++ When BOOST is specified, the *table\_name* value is required\. 
++ BOOST isn't supported with REINDEX\. 
++ BOOST is ignored with DELETE ONLY\. 
 
 ## Usage Notes<a name="r_VACUUM_usage_notes"></a>
 
@@ -81,25 +90,25 @@ Automatic vacuum operations pause if any of the following conditions are met:
 
 ## Examples<a name="r_VACUUM_command-examples"></a>
 
-Reclaim space and database and resort rows in alls tables based on the default 95 percent vacuum threshold\.
+Reclaim space and database and re\-sort rows in alls tables based on the default 95 percent vacuum threshold\.
 
 ```
 vacuum;
 ```
 
-Reclaim space and resort rows in the SALES table based on the default 95 percent threshold\. 
+Reclaim space and re\-sort rows in the SALES table based on the default 95 percent threshold\. 
 
 ```
 vacuum sales;
 ```
 
-Always reclaim space and resort rows in the SALES table\. 
+Always reclaim space and re\-sort rows in the SALES table\. 
 
 ```
 vacuum sales to 100 percent;
 ```
 
-Resort rows in the SALES table only if fewer than 75 percent of rows are already sorted\. 
+Re\-sort rows in the SALES table only if fewer than 75 percent of rows are already sorted\. 
 
 ```
  vacuum sort only sales to 75 percent;

@@ -16,7 +16,7 @@ CANCEL process_id [ 'message' ]
 Process ID corresponding to the query that you want to cancel\.
 
 '*message*'   
-An optional confirmation message that displays when the query cancellation completes\. If you don't specify a message, Amazon Redshift displays the default message as verification\. You must enclose the message in single quotes\.
+An optional confirmation message that displays when the query cancellation completes\. If you don't specify a message, Amazon Redshift displays the default message as verification\. You must enclose the message in single quotation marks\.
 
 ## Usage Notes<a name="r_CANCEL-usage-notes"></a>
 
@@ -74,7 +74,7 @@ ERROR:  Query (168) cancelled on user's request
 
 where `168` is the query ID \(not the process ID used to cancel the query\)\.
 
-Alternatively, you can specify a custom confirmation message to display instead of the default message\. To specify a custom message, include your message in quotes at the end of the CANCEL command: 
+Alternatively, you can specify a custom confirmation message to display instead of the default message\. To specify a custom message, include your message in single quotation marks at the end of the CANCEL command: 
 
 ```
 cancel 802 'Long-running query';

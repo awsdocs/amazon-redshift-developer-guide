@@ -4,7 +4,7 @@ External tables must be created in an external schema\. The external schema refe
 
 **To create an external schema and an external table**
 
-1. To create an external schema, replace the IAM role ARN in the following command with the role ARN you created in [step 1](c-getting-started-using-spectrum-create-role.md), and then execute the command in your SQL client\.
+1. To create an external schema, replace the IAM role ARN in the following command with the role ARN you created in [step 1](c-getting-started-using-spectrum-create-role.md)\. Then run the command in your SQL client\.
 
    ```
    create external schema spectrum 
@@ -17,7 +17,7 @@ External tables must be created in an external schema\. The external schema refe
 1. To create an external table, run the following CREATE EXTERNAL TABLE command\.
 **Note**  
 The Amazon S3 bucket with the sample data for this example is located in the us\-west\-2 region\. Your cluster and the Redshift Spectrum files must be in the same AWS Region, so, for this example, your cluster must also be located in us\-west\-2\.  
-To use this example in a different AWS Region, you can copy the sales data with an Amazon S3 copy command and update the location of the bucket in the example CREATE EXTERNAL TABLE command\.  
+To use this example in a different AWS Region, you can copy the sales data with an Amazon S3 copy command\. Then update the location of the bucket in the example CREATE EXTERNAL TABLE command\.  
 
    ```
    aws s3 cp s3://awssampledbuswest2/tickit/spectrum/sales/ s3://bucket-name/tickit/spectrum/sales/ --recursive 

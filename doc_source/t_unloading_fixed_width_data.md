@@ -52,4 +52,4 @@ The fixed\-width output looks like this:
 300Kennedy Center Opera HouseWashington   DC0
 ```
 
-For more details about FIXEDWIDTH specifications, see the [COPY](r_COPY.md) command\.
+For more details about FIXEDWIDTH specifications, see the [UNLOAD](r_UNLOAD.md) command\.

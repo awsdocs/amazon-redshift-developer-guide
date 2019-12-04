@@ -8,6 +8,7 @@
 + [Window Functions](c_Window_functions.md)
 + [Conditional Expressions](c_conditional_expressions.md)
 + [Date and Time Functions](Date_functions_header.md)
++ [Spatial Functions](geospatial-functions.md)
 + [Math Functions](Math_functions.md)
 + [String Functions](String_functions_header.md)
 + [JSON Functions](json-functions.md)

@@ -4,6 +4,8 @@ With automatic workload management \(WLM\), Amazon Redshift manages query concur
 
 In contrast, manual WLM requires you to specify values for query concurrency and memory allocation\. The default for manual WLM is concurrency of five queries, and memory is divided equally between all five\. Automatic WLM determines the amount of resources that queries need, and adjusts the concurrency based on the workload\. When queries requiring large amounts of resources are in the system \(for example, hash joins between large tables\), the concurrency is lower\. When lighter queries \(such as inserts, deletes, scans, or simple aggregations\) are submitted, concurrency is higher\. 
 
+For details about how to migrate from manual WLM to automatic WLM, see [Migrating from Manual WLM to Automatic WLM](cm-c-modifying-wlm-configuration.md#wlm-manual-to-automatic)\.
+
 Automatic WLM is separate from short query acceleration \(SQA\) and it evaluates queries differently\. Automatic WLM and SQA work together to allow short running and lightweight queries to complete even while long running, resource intensive queries are active\. For more information about SQA, see [Working with Short Query Acceleration](wlm-short-query-acceleration.md)\. 
 
 Amazon Redshift enables automatic WLM through parameter groups:

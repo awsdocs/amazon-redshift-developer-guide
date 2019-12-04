@@ -50,7 +50,7 @@ If pseudocolumns are enabled, the maximum number of columns you can define in a 
 If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage Notes](r_CREATE_TABLE_usage.md)\.
 
  *data\_type*   
-The following [data types](c_Supported_data_types.md) are supported:  
+The following [Data Types](c_Supported_data_types.md) are supported:  
 + SMALLINT \(INT2\)
 + INTEGER \(INT, INT4\)
 + BIGINT \(INT8\)

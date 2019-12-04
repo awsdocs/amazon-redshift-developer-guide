@@ -39,6 +39,36 @@ venue_pipe_0002_part_00
 venue_pipe_0003_part_00
 ```
 
+## Unload LINEITEM table to partitioned Parquet files<a name="unload-examples-partitioned-parquet"></a>
+
+The following example unloads the LINEITEM table in Parquet format, partitioned by the `l_shipdate` column\. 
+
+```
+unload ('select * from lineitem')
+to 's3://mybucket/lineitem/'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+PARQUET
+PARTITION BY (l_shipdate);
+```
+
+Assuming four slices, the resulting Parquet files are dynamically partitioned into various folders\. 
+
+```
+s3://mybucket/lineitem/l_shipdate=1992-01-02/0000_part_00.parquet
+                                             0001_part_00.parquet
+                                             0002_part_00.parquet
+                                             0003_part_00.parquet
+s3://mybucket/lineitem/l_shipdate=1992-01-03/0000_part_00.parquet
+                                             0001_part_00.parquet
+                                             0002_part_00.parquet
+                                             0003_part_00.parquet
+s3://mybucket/lineitem/l_shipdate=1992-01-04/0000_part_00.parquet
+                                             0001_part_00.parquet
+                                             0002_part_00.parquet
+                                             0003_part_00.parquet
+...
+```
+
 ## Unload VENUE to a CSV file<a name="unload-examples-csv"></a>
 
 The following example unloads the VENUE table and writes the data in CSV format to `s3://mybucket/unload/`\.
@@ -359,7 +389,7 @@ gzip;
 
 This example uses the ADDQUOTES option to unload comma\-delimited data where some of the actual data fields contain a comma\.
 
-First, create a table that contains quotes\.
+First, create a table that contains quotation marks\.
 
 ```
 create table location (id int, location char(64));

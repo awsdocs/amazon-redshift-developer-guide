@@ -79,7 +79,7 @@ For steps to create an IAM role, see [Step 2: Create an IAM Role](https://docs.a
 The name of the target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\.
 
 FROM *data\-source*  <a name="r_COPY-syntax-overview-data-source"></a>
-The location of the source data to be loaded into the target table\.  
+The location of the source data to be loaded into the target table\. A manifest file can be specified with some data sources\.   
 The most commonly used data repository is an Amazon S3 bucket\. You can also load from data files located in an Amazon EMR cluster, an Amazon EC2 instance, or a remote host that your cluster can access using an SSH connection, or you can load directly from a DynamoDB table\.   
 + [COPY from Amazon S3](copy-parameters-data-source-s3.md)
 + [COPY from Amazon EMR](copy-parameters-data-source-emr.md) 

@@ -1,8 +1,23 @@
-# Viewing Amazon Redshift Advisor Recommendations in the Console<a name="access-advisor"></a>
+# Viewing Amazon Redshift Advisor Recommendations on the Console<a name="access-advisor"></a>
 
-You can view Amazon Redshift Advisor analysis results and recommendations in the AWS Management Console\. 
+You can view Amazon Redshift Advisor analysis results and recommendations on the AWS Management Console\. 
 
-**To view Amazon Redshift Advisor recommendations in the console**
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="access-advisor-newconsole"></a>
+
+**To view Amazon Redshift Advisor recommendations on the console**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **ADVISOR**\.
+
+1. Expand each recommendation to see more details\. On this page, you can sort and group recommendations\. 
+
+## Original Console<a name="access-advisor-originalconsole"></a>
+
+**To view Amazon Redshift Advisor recommendations on the console**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 

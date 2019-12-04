@@ -1,10 +1,10 @@
 # Step 2: Download the Data Files<a name="tutorial-loading-data-download-files"></a>
 
-In this step, you will download a set of sample data files to your computer\. In the next step, you will upload the files to an Amazon S3 bucket\.
+In this step, you download a set of sample data files to your computer\. In the next step, you upload the files to an Amazon S3 bucket\.
 
 **To download the data files**
 
-1. Download the zipped file from the following link: [LoadingDataSampleFiles\.zip](https://s3.amazonaws.com/awssampledb/LoadingDataSampleFiles.zip)
+1. Download the zipped file: [LoadingDataSampleFiles\.zip](samples/LoadingDataSampleFiles.zip)\. 
 
 1. Extract the files to a folder on your computer\.
 

@@ -1,6 +1,6 @@
 # Creating Data Files for Queries in Amazon Redshift Spectrum<a name="c-spectrum-data-files"></a>
 
-The data files that you use for queries in Amazon Redshift Spectrum are commonly the same types of files that you use for other applications such as Amazon Athena, Amazon EMR, and Amazon QuickSight\. If the files are formatted in a format that Redshift Spectrum supports and located in an Amazon S3 bucket that your cluster can access, you can query the data in its original format directly from Amazon S3\.
+The data files that you use for queries in Amazon Redshift Spectrum are commonly the same types of files that you use for other applications\. For example, the same types of files are used with Amazon Athena, Amazon EMR, and Amazon QuickSight\. You can query the data in its original format directly from Amazon S3\. To do this, the data files must be in a format that Redshift Spectrum supports and located in an Amazon S3 bucket that your cluster can access\. 
 
 The Amazon S3 bucket with the data files and the Amazon Redshift cluster must be in the same AWS Region\. For information about supported AWS Regions, see [Amazon Redshift Spectrum Regions](c-using-spectrum.md#c-spectrum-regions)\.
 

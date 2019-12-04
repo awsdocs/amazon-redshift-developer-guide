@@ -111,7 +111,7 @@ The following procedure describes how to partition your data\.
 
 1. Create an external table and specify the partition key in the PARTITIONED BY clause\. 
 
-   The partition key can't be the name of a table column\. The data type can be any standard Amazon Redshift data type except TIMESTAMPTZ\. 
+   The partition key can't be the name of a table column\. The data type can be SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, or TIMESTAMP data type\. 
 
 1. Add the partitions\. 
 

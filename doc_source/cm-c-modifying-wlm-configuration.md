@@ -19,7 +19,7 @@ Let's take an example where there are three manual WLM queues\. One each for an 
 
 You can use automatic WLM with query priorities to indicate the relative priorities of the workloads, avoiding the preceding issues\. For this example, follow these steps:
 + Create a new parameter group and switch to **Auto WLM** mode\.
-+ Add queues for each of the three workloads: ETL workload, analytics workload, and data science workload\.
++ Add queues for each of the three workloads: ETL workload, analytics workload, and data science workload\. Use the same user groups for each workload that was used with **Manual WLM** mode\. 
 + Set the priority for the ETL workload to `High`, the analytics workload to `Normal`, and the data science to `Low`\. These priorities reflect your business priorities for the different workloads or user groups\. 
 + Optionally, enable concurrency scaling for the analytics or data science queue so that queries in these queues get consistent performance even when the ETL workload is executing every 6 hours\.
 

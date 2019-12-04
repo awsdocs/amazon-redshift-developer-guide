@@ -23,7 +23,7 @@ FROM { [ DATA CATALOG ] |  HIVE METASTORE }
 DATABASE 'database_name'
 [ REGION 'aws-region' ]
 [ URI 'hive_metastore_uri' [ PORT port_number ] ]
-IAM_ROLE 'iam-role-arn-string' ] 
+IAM_ROLE 'iam-role-arn-string' 
 [ CATALOG_ROLE 'catalog-role-arn-string' ] 
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
 ```

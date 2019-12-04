@@ -137,10 +137,10 @@ You can use a manifest to load files from different buckets or files that don't 
 ```
 {
   "entries": [
-    {"url":”s3://mybucket/2013-10-04-custdata.txt","mandatory":true},
-    {"url":”s3://mybucket/2013-10-05-custdata.txt”,"mandatory":true},
-    {"url":”s3://mybucket/2013-10-06-custdata.txt”,"mandatory":true},
-    {"url":”s3://mybucket/2013-10-07-custdata.txt”,"mandatory":true}
+    {"url":"s3://mybucket/2013-10-04-custdata.txt","mandatory":true},
+    {"url":"s3://mybucket/2013-10-05-custdata.txt”,"mandatory":true},
+    {"url":"s3://mybucket/2013-10-06-custdata.txt”,"mandatory":true},
+    {"url":"s3://mybucket/2013-10-07-custdata.txt”,"mandatory":true}
   ]
 }
 ```

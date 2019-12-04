@@ -172,3 +172,27 @@ as value from sales where salesid<10 order by salesid;
        9 | 59100000000000000000000.00
 (9 rows)
 ```
+
+**Note**  
+You can't perform a CAST or CONVERT operation on the `GEOMETRY` data type to change it to another data type\. However, you can provide a hexadecimal representation of a string literal in extended well\-known binary \(EWKB\) format as input to functions that accept a `GEOMETRY` argument\. For example, the `ST_AsText` function following expects a `GEOMETRY` data type\.   
+
+```
+SELECT ST_AsText('01010000000000000000001C400000000000002040');
+```
+
+```
+ st_astext  
+------------
+ POINT(7 8)
+```
+You can also explicitly specify the `GEOMETRY` data type\.   
+
+```
+SELECT ST_AsText('010100000000000000000014400000000000001840'::geometry);
+```
+
+```
+ st_astext  
+------------
+ POINT(5 6)
+```

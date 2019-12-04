@@ -13,7 +13,7 @@ Multibyte character not supported for CHAR
 (Hint: Try using  VARCHAR). Invalid char: e0 a1 c7a4
 ```
 
-If the error is related to a VARCHAR datatype, the error reason includes an error code as well as the invalid UTF\-8 hex sequence\. The following example shows the error reason when COPY attempts to load UTF\-8 a4 into a VARCHAR field:
+If the error is related to a VARCHAR data type, the error reason includes an error code as well as the invalid UTF\-8 hex sequence\. The following example shows the error reason when COPY attempts to load UTF\-8 a4 into a VARCHAR field:
 
 ```
 String contains invalid or unsupported UTF-8 codepoints. 

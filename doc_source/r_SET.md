@@ -29,7 +29,7 @@ SET SEED takes a numeric *value* between 0 and 1, and multiplies this number by 
 Name of the parameter to set\. See [Modifying the Server Configuration](t_Modifying_the_default_settings.md) for information about parameters\.
 
  *value*   
-New parameter value\. Use single quotes to set the value to a specific string\. If using SET SEED, this parameter contains the SEED value\. 
+New parameter value\. Use single quotation marks to set the value to a specific string\. If using SET SEED, this parameter contains the SEED value\. 
 
 DEFAULT   
 Sets the parameter to the default value\.

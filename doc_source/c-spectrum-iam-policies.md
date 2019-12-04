@@ -271,7 +271,7 @@ The following IAM policy gives the minimum permissions required to list the curr
 
 ### Policy for Table Operations<a name="c-spectrum-glue-acess-tables"></a>
 
-If you want to give users permissions to view, create, drop, alter, or take other actions on tables, they need access to the tables, the databases they belong to, and the catalog\.
+If you want to give users permissions to view, create, drop, alter, or take other actions on tables, they need several types of access\. They need access to the tables themselves, the databases they belong to, and the catalog\.
 
 The following example query creates an external table\.
 

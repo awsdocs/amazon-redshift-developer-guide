@@ -10,13 +10,13 @@ The manifest file is in the following format:
      {"endpoint":"<ssh_endpoint_or_IP>", 
        "command": "<remote_command>",
        "mandatory":true, 
-       “publickey”: “<public_key>”, 
-       "username": “<host_user_name>”}, 
+       "publickey": "<public_key>", 
+       "username": "<host_user_name>"}, 
      {"endpoint":"<ssh_endpoint_or_IP>", 
        "command": "<remote_command>",
        "mandatory":true, 
-       “publickey”: “<public_key>”, 
-       "username": “host_user_name”} 
+       "publickey": "<public_key>", 
+       "username": "host_user_name"} 
     ] 
 }
 ```

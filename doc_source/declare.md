@@ -50,6 +50,7 @@ The following table shows the maximum total result set size for each cluster nod
 |   DS1 or DS2 XL single node   |   64000   | 
 |   DS1 or DS2 XL multiple nodes   |   1800000   | 
 |   DS1 or DS2 8XL multiple nodes   |   14400000   | 
+|   RA3 16XL multiple nodes   |   14400000   | 
 |   DC1 Large single node   |   16000   | 
 |   DC1 Large multiple nodes   |   384000   | 
 |   DC1 8XL multiple nodes   |   3000000   | 

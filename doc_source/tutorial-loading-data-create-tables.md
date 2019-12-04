@@ -1,10 +1,10 @@
 # Step 4: Create the Sample Tables<a name="tutorial-loading-data-create-tables"></a>
 
-For this tutorial, you will use a set of five tables based on the Star Schema Benchmark \(SSB\) schema\. The following diagram shows the SSB data model\. 
+For this tutorial, you use a set of five tables based on the Star Schema Benchmark \(SSB\) schema\. The following diagram shows the SSB data model\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/tutorial-optimize-tables-ssb-data-model.png)
 
-If the SSB tables already exist in the current database, you will need to drop the tables to remove them from the database before you create them using the CREATE TABLE commands in the next step\. The tables used in this tutorial might have different attributes than the existing tables\.
+The SSB tables might already exist in the current database\. If so, drop the tables to remove them from the database before you create them using the CREATE TABLE commands in the next step\. The tables used in this tutorial might have different attributes than the existing tables\.
 
 **To create the sample tables**
 

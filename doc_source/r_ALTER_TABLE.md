@@ -25,6 +25,7 @@ ADD table_constraint
 | ALTER COLUMN column_name TYPE new_data_type              
 | ALTER DISTKEY column_name 
 | ALTER DISTSTYLE KEY DISTKEY column_name   
+| ALTER [COMPOUND] SORTKEY ( column_name [,...] )             
 | ADD [ COLUMN ] column_name column_type
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
@@ -93,13 +94,19 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 
 ALTER DISTKEY *column\_name* or ALTER DISTSTYLE KEY DISTKEY *column\_name*  
 A clause that changes the column used as the distribution key of a table\. Consider the following:  
-+ You can only alter the DISTKEY of tables whose original DISTSTYLE is EVEN or KEY\.
 + VACUUM and ALTER DISTKEY cannot run concurrently on the same table\. 
   + If VACUUM is already running, then ALTER DISTKEY returns an error\.
   + If ALTER DISTKEY is running, then background vacuum doesn't start on a table\.
   + If ALTER DISTKEY is running, then foreground vacuum returns an error\.
 + You can only run one ALTER DISTKEY command on a table at a time\. 
++ The ALTER DISTKEY command is not supported for tables with interleaved sort keys\. 
 When specifying DISTSTYLE KEY, the data is distributed by the values in the DISTKEY column\. For more information about DISTSTYLE, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
+
+ALTER \[COMPOUND\] SORTKEY \( *column\_name* \[,\.\.\.\] \)  
+A clause that changes or adds the sort key used for a table\. Consider the following:  
++ You can define a maximum of 400 columns for a sort key per table\. 
++ You can only alter a compound sort key\. You can't alter an interleaved sort key\. 
+When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 RENAME COLUMN *column\_name* TO *new\_name*   
 A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
@@ -120,7 +127,8 @@ The following restrictions apply when adding a column to an external table:
 For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
  *column\_type*   
-The data type of the column being added\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65,535 bytes for VARCHAR\. Amazon Redshift supports the following [data types](c_Supported_data_types.md):   
+The data type of the column being added\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65,535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.   
+Amazon Redshift supports the following [Data Types](c_Supported_data_types.md):   
 + SMALLINT \(INT2\)
 + INTEGER \(INT, INT4\)
 + BIGINT \(INT8\)
@@ -132,6 +140,7 @@ The data type of the column being added\. For CHAR and VARCHAR columns, you can 
 + VARCHAR \(CHARACTER VARYING\)
 + DATE
 + TIMESTAMP
++ GEOMETRY
 
 DEFAULT *default\_expr*   <a name="alter-table-default"></a>
 A clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions aren't allowed\.  
@@ -143,7 +152,7 @@ ENCODE *encoding*
 The compression encoding for a column\. If no compression is selected, Amazon Redshift automatically assigns compression encoding as follows:  
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
-+ Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data types are assigned RAW compression\.
 + All other columns are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
 The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  

@@ -7,7 +7,9 @@ With the Concurrency Scaling feature, you can support virtually unlimited concur
 The Concurrency Scaling feature is available only in the following AWS Regions: 
 + US East \(N\. Virginia\) Region \(us\-east\-1\)
 + US East \(Ohio\) Region \(us\-east\-2\)
++ US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
@@ -15,12 +17,15 @@ The Concurrency Scaling feature is available only in the following AWS Regions:
 + Canada \(Central\) Region \(ca\-central\-1\)
 + EU \(Frankfurt\) Region \(eu\-central\-1\)
 + EU \(Ireland\) Region \(eu\-west\-1\)
++ EU \(London\) Region \(eu\-west\-2\)
++ EU \(Paris\) Region \(eu\-west\-3\)
++ South America \(São Paulo\) Region \(sa\-east\-1\)
 
 ## Concurrency Scaling Candidates<a name="concurrency-scaling-candidates"></a>
 
 Queries are routed to the concurrency scaling cluster only when the main cluster meets the following requirements:
 + EC2\-VPC platform 
-+ Node type must be `dc2.8xlarge`, `ds2.8xlarge`, `dc2.large`, or `ds2.xlarge` 
++ Node type must be `dc2.8xlarge`, `ds2.8xlarge`, `dc2.large`, `ds2.xlarge`, or `ra3.16xlarge` 
 + Maximum of 32 compute nodes for clusters with `8xlarge` node types 
 + Not a single\-node cluster 
 

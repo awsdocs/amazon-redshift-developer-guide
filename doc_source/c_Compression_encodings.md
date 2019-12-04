@@ -16,7 +16,7 @@
 If no compression is specified in a CREATE TABLE or ALTER TABLE statement, Amazon Redshift automatically assigns compression encoding as follows:
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
-+ All other columns are assigned LZO compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, CHAR, VARCHAR, DATE, TIMESTAMP, or TIMESTAMPTZ data types are assigned LZO compression\.
 
 The following table identifies the supported compression encodings and the data types that support the encoding\.
 

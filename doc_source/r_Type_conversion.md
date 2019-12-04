@@ -41,4 +41,5 @@ The table following lists the data types that can be converted implicitly in ass
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Type_conversion.html)
 
 **Note**  
-Implicit conversions between TIMESTAMPTZ, TIMESTAMP, DATE, or character strings use the current session time zone\. For information about setting the current time zone, see [timezone](r_timezone_config.md)\.
+Implicit conversions between TIMESTAMPTZ, TIMESTAMP, DATE, or character strings use the current session time zone\. For information about setting the current time zone, see [timezone](r_timezone_config.md)\.  
+The GEOMETRY data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT Functions](r_CAST_function.md)\. 

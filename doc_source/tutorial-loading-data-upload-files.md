@@ -32,7 +32,7 @@ In this step, you create an Amazon S3 bucket and upload the data files to the bu
 
    1. Name the new folder **load**\.
 **Note**  
-The bucket that you created is not in a sandbox\. In this exercise, you will add objects to a real bucket, and you will be charged a nominal amount for the time that you store the objects in the bucket\. For more information about Amazon S3 pricing, go to the [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/) page\.
+The bucket that you created is not in a sandbox\. In this exercise, you add objects to a real bucket\. You're charged a nominal amount for the time that you store the objects in the bucket\. For more information about Amazon S3 pricing, go to the [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/) page\.
 
 1. Upload the data files to the new Amazon S3 bucket\.
 
@@ -47,7 +47,7 @@ The bucket that you created is not in a sandbox\. In this exercise, you will add
    1. Click **Start Upload**\.
 <a name="tutorial-loading-user-credentials"></a>
 **User Credentials**  
-The Amazon Redshift COPY command must have access to read the file objects in the Amazon S3 bucket\. If you use the same user credentials to create the Amazon S3 bucket and to run the Amazon Redshift COPY command, the COPY command will have all necessary permissions\. If you want to use different user credentials, you can grant access by using the Amazon S3 access controls\. The Amazon Redshift COPY command requires at least ListBucket and GetObject permissions to access the file objects in the Amazon S3 bucket\. For more information about controlling access to Amazon S3 resources, go to [Managing Access Permissions to Your Amazon S3 Resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\.
+The Amazon Redshift COPY command must have access to read the file objects in the Amazon S3 bucket\. If you use the same user credentials to create the Amazon S3 bucket and to run the Amazon Redshift COPY command, the COPY command has all necessary permissions\. If you want to use different user credentials, you can grant access by using the Amazon S3 access controls\. The Amazon Redshift COPY command requires at least ListBucket and GetObject permissions to access the file objects in the Amazon S3 bucket\. For more information about controlling access to Amazon S3 resources, go to [Managing Access Permissions to Your Amazon S3 Resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\.
 
 ## Next Step<a name="tutorial-loading-next-step4"></a>
 

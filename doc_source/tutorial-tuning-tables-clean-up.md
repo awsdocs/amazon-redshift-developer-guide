@@ -12,6 +12,6 @@ drop table dwdate cascade;
 drop table lineorder cascade;
 ```
 
-## Next Step<a name="w4aac15c29b9"></a>
+## Next Step<a name="w5aac15c29b9"></a>
 
 [Summary](tutorial-tuning-tables-summary.md)

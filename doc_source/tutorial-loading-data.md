@@ -1,9 +1,9 @@
 # Tutorial: Loading Data from Amazon S3<a name="tutorial-loading-data"></a>
 
-In this tutorial, you will walk through the process of loading data into your Amazon Redshift database tables from data files in an Amazon Simple Storage Service \(Amazon S3\) bucket from beginning to end\. 
+In this tutorial, you walk through the process of loading data into your Amazon Redshift database tables from data files in an Amazon S3 bucket from beginning to end\. 
 
-In this tutorial, you will: 
-+ Download data files that use CSV, character\-delimited, and fixed width formats\. 
+In this tutorial, you do the following: 
++ Download data files that use comma\-separated value \(CSV\), character\-delimited, and fixed width formats\. 
 + Create an Amazon S3 bucket and then upload the data files to the bucket\. 
 + Launch an Amazon Redshift cluster and create database tables\. 
 + Use COPY commands to load the tables from the data files on Amazon S3\. 
@@ -15,7 +15,7 @@ In this tutorial, you will:
 
 ## Prerequisites<a name="tutorial-loading-data-prerequisites"></a>
 
-You will need the following prerequisites:
+You need the following prerequisites:
 + An AWS account to launch an Amazon Redshift cluster and to create a bucket in Amazon S3\.
 + Your AWS credentials \(an access key ID and secret access key\) to load test data from Amazon S3\. If you need to create new access keys, go to [Administering Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\.
 
@@ -27,9 +27,9 @@ This tutorial is designed so that it can be taken by itself\. In addition to thi
 
 You can add data to your Amazon Redshift tables either by using an INSERT command or by using a COPY command\. At the scale and speed of an Amazon Redshift data warehouse, the COPY command is many times faster and more efficient than INSERT commands\. 
 
-The COPY command uses the Amazon Redshift massively parallel processing \(MPP\) architecture to read and load data in parallel from multiple data sources\. You can load from data files on Amazon S3, Amazon EMR, or any remote host accessible through a Secure Shell \(SSH\) connection, or you can load directly from an Amazon DynamoDB table\. 
+The COPY command uses the Amazon Redshift massively parallel processing \(MPP\) architecture to read and load data in parallel from multiple data sources\. You can load from data files on Amazon S3, Amazon EMR, or any remote host accessible through a Secure Shell \(SSH\) connection\. Or you can load directly from an Amazon DynamoDB table\. 
 
-In this tutorial, you will use the COPY command to load data from Amazon S3\. Many of the principles presented here apply to loading from other data sources as well\. 
+In this tutorial, you use the COPY command to load data from Amazon S3\. Many of the principles presented here apply to loading from other data sources as well\. 
 
 To learn more about using the COPY command, see these resources: 
 + [Amazon Redshift Best Practices for Loading Data](c_loading-data-best-practices.md)
@@ -38,7 +38,7 @@ To learn more about using the COPY command, see these resources:
 + [Loading Data from an Amazon DynamoDB Table](t_Loading-data-from-dynamodb.md)
 
 ## Steps<a name="tutorial-loading-data-steps"></a>
-+ [Step 1: Launch a Cluster](tutorial-loading-data-launch-cluster.md)
++ [Step 1: Create a Cluster](tutorial-loading-data-launch-cluster.md)
 + [Step 2: Download the Data Files](tutorial-loading-data-download-files.md)
 + [Step 3: Upload the Files to an Amazon S3 Bucket](tutorial-loading-data-upload-files.md)
 + [Step 4: Create the Sample Tables](tutorial-loading-data-create-tables.md)

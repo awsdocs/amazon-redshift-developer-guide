@@ -4,7 +4,7 @@
 
 1. Access the Amazon Redshift Management Console\.
 
-1. Click the **Clusters** link in the left navigation pane\.
+1. Click the **Clusters** link in the navigation pane\.
 
 1. Select your cluster from the list\. 
 

@@ -57,7 +57,7 @@ If a column with the same name but different attributes exists in both tables, t
 
 You can't append an identity column\. If both the source table and the target table have identity columns, the command fails\. If only the source table has an identity column, include the IGNOREEXTRA parameter so that the identity column is ignored\. If only the target table has an identity column, include the FILLTARGET parameter so that the identity column is populated according to the IDENTITY clause defined for the table\. For more information, see [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default)\. 
 
-You can append a default identity column with the ALTER TABLE APPEND statement\. For more information, see [](r_CREATE_TABLE_NEW.md#identity-generated-bydefault-clause)\. 
+You can append a default identity column with the ALTER TABLE APPEND statement\. For more information, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\. 
 
 ## ALTER TABLE APPEND Examples<a name="r_ALTER_TABLE_APPEND_examples"></a>
 

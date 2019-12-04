@@ -5,7 +5,7 @@ A scalar Python UDF incorporates a Python program that executes when the functio
 + One return data type\.
 + One executable Python program\.
 
-The input and return data types can be any standard Amazon Redshift data type except TIMESTAMP WITH TIME ZONE \(TIMESTAMPTZ\)\. In addition, Python UDFs can use the data type ANYELEMENT, which Amazon Redshift automatically converts to a standard data type based on the arguments supplied at run time\. For more information, see [ANYELEMENT Data Type](#udf-anyelement-data-type)
+The input and return data types can be SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, or TIMESTAMP\.  In addition, Python UDFs can use the data type ANYELEMENT, which Amazon Redshift automatically converts to a standard data type based on the arguments supplied at run time\. For more information, see [ANYELEMENT Data Type](#udf-anyelement-data-type)
 
 When an Amazon Redshift query calls a scalar UDF, the following steps occur at run time\.
 

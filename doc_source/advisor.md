@@ -21,5 +21,5 @@ The Amazon Redshift Advisor feature is available only in the following AWS Regio
 
 **Topics**
 + [Amazon Redshift Regions](#advisor-regions)
-+ [Viewing Amazon Redshift Advisor Recommendations in the Console](access-advisor.md)
++ [Viewing Amazon Redshift Advisor Recommendations on the Console](access-advisor.md)
 + [Amazon Redshift Advisor Recommendations](advisor-recommendations.md)

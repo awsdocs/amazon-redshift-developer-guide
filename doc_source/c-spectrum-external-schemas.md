@@ -77,7 +77,7 @@ We recommend using Amazon Redshift to create and manage external databases and e
 
 ### Viewing Redshift Spectrum Databases in Athena<a name="c-spectrum-athena-external-catalogs"></a>
 
-If you created an external database by including the CREATE EXTERNAL DATABASE IF NOT EXISTS clause as part of your CREATE EXTERNAL SCHEMA statement, the external database metadata is stored in your Athena data catalog\. The metadata for external tables that you create qualified by the external schema is also stored in your Athena data catalog\. 
+You can create an external database by including the CREATE EXTERNAL DATABASE IF NOT EXISTS clause as part of your CREATE EXTERNAL SCHEMA statement\. In such cases, the external database metadata is stored in your Athena data catalog\. The metadata for external tables that you create qualified by the external schema is also stored in your Athena data catalog\. 
 
 Athena maintains a data catalog for each supported AWS Region\. To view table metadata, log on to the Athena console and choose **Catalog Manager**\. The following example shows the Athena Catalog Manager for the US West \(Oregon\) Region\. 
 
@@ -125,11 +125,27 @@ iam_role 'arn:aws:iam::123456789012:role/mySpectrumRole';
 
 ### Enabling Your Amazon Redshift Cluster to Access Your Amazon EMR Cluster<a name="c-spectrum-enabling-emr-access"></a>
 
-If your Hive metastore is in Amazon EMR, you must give your Amazon Redshift cluster access to your Amazon EMR cluster\. To do so, you create an Amazon EC2 security group and allow all inbound traffic to the EC2 security group from your Amazon Redshift cluster's security group and your Amazon EMR cluster's security group\. Then you add the EC2 security to both your Amazon Redshift cluster and your Amazon EMR cluster\.
+If your Hive metastore is in Amazon EMR, you must give your Amazon Redshift cluster access to your Amazon EMR cluster\. To do so, you create an Amazon EC2 security group\. You then allow all inbound traffic to the EC2 security group from your Amazon Redshift cluster's security group and your Amazon EMR cluster's security group\. Then you add the EC2 security to both your Amazon Redshift cluster and your Amazon EMR cluster\.
 
 **To enable your Amazon Redshift cluster to access your Amazon EMR cluster**
 
-1. In Amazon Redshift, make a note of your cluster's security group name\. In the Amazon Redshift dashboard, choose your cluster\. Find your cluster security groups in the **Cluster Properties** group\.  
+1. In Amazon Redshift, make a note of your cluster's security group name\. 
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+   **New Console**
+
+   To display the security group, do the following:
+
+   1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+   1. On the navigation menu, choose **CLUSTERS**, then choose the cluster from the list to open its details\. Choose **Properties** and view the **Network and security** section\. 
+
+   1. Find your security group in **VPC security group**\. 
+
+   **Original Console**
+
+   In the Amazon Redshift console, choose your cluster\. Find your cluster security groups in the **Cluster Properties** group\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-redshift-security-groups.png)
 
 1. In Amazon EMR, make a note of the EMR master node security group name\.  
@@ -149,19 +165,19 @@ If your Hive metastore is in Amazon EMR, you must give your Amazon Redshift clus
 
    1. For **Source**, choose **Custom**\. 
 
-   1. Type the name of your Amazon Redshift security group\. 
+   1. Enter the name of your Amazon Redshift security group\. 
 
    1. Add another inbound rule\. 
 
    1. For **Type**, choose **TCP**\. 
 
-   1. For **Port Range**, type **9083**\.
+   1. For **Port Range**, enter **9083**\.
 **Note**  
  The default port for an EMR HMS is 9083\. If your HMS uses a different port, specify that port in the inbound rule and in the external schema definition\. 
 
    1. For **Source**, choose **Custom**\. 
 
-   1. Type the name of your Amazon EMR security group\. 
+   1. Enter the name of your Amazon EMR security group\. 
 
    1. Choose **Create**\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-ec2-create-security-group.png)
@@ -181,7 +197,7 @@ If your Hive metastore is in Amazon EMR, you must give your Amazon Redshift clus
    1. Choose the link in the **EC2 Instance ID** column\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-emr-add-security-group.png)
 
-   1. Choose **Actions**, **Networking**, **Change Security Groups**\. 
+   1. For **Actions**, choose **Networking**, **Change Security Groups**\. 
 
    1. Choose the new security group\. 
 

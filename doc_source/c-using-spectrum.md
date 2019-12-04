@@ -36,6 +36,7 @@ Redshift Spectrum is available only in the following AWS Regions:
 + US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\)
 + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
@@ -45,7 +46,11 @@ Redshift Spectrum is available only in the following AWS Regions:
 + EU \(Frankfurt\) Region \(eu\-central\-1\)
 + EU \(Ireland\) Region \(eu\-west\-1\)
 + EU \(London\) Region \(eu\-west\-2\)
++ EU \(Paris\) Region \(eu\-west\-3\)
++ EU \(Stockholm\) Region \(eu\-north\-1\)
++ Middle East \(Bahrain\) Region \(me\-south\-1\)
 + South America \(São Paulo\) Region \(sa\-east\-1\)
++ AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
 
 ### Amazon Redshift Spectrum Considerations<a name="c-spectrum-considerations"></a>
 

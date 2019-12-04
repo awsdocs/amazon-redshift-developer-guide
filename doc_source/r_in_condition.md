@@ -34,7 +34,7 @@ date.month not in ('Oct', 'Nov', 'Dec')
 
 ## Optimization for Large IN Lists<a name="r_in_condition-optimization-for-large-in-lists"></a>
 
-To optimize query performance, an IN list that includes more than 10 values is internally evaluated as a scalar array\. IN lists with fewer than 10 values are evaluated as a series of OR predicates\. This optimization is supported for all data types except DECIMAL\. 
+To optimize query performance, an IN list that includes more than 10 values is internally evaluated as a scalar array\. IN lists with fewer than 10 values are evaluated as a series of OR predicates\. This optimization is supported for SMALLINT, INTEGER, BIGINT, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, TIMESTAMP, and TIMESTAMPTZ data types\.  
 
 Look at the EXPLAIN output for the query to see the effect of this optimization\. For example: 
 
