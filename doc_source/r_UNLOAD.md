@@ -16,7 +16,7 @@ authorization
 
 where option is
 { [ FORMAT [ AS ] ] CSV | PARQUET
-| PARTITON BY ( column_name [, ... ] ) ]
+| PARTITION BY ( column_name [, ... ] ) ]
 | MANIFEST [ VERBOSE ] 
 | HEADER           
 | DELIMITER [ AS ] 'delimiter-char' 
