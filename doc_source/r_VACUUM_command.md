@@ -13,6 +13,18 @@ Users can access tables while they are being vacuumed\. You can perform queries 
 
 Amazon Redshift automatically performs a DELETE ONLY vacuum in the background\. Automatic vacuum operation pauses when users run data definition language \(DDL\) operations, such as ALTER TABLE\.
 
+The Vacuum Delete operation executed during Full vacuum or normal vacuum command does not work when some orphan transaction ids are still active in the cluster.
+These transactions IDs can be found running before the vacuum is executed and that skips the vacuum delete operation in order to maintain the integrity of the data which the active transaction might be using.
+Using below SQL, we can find the PID and transaction which might still be actve:
+
+select *,datediff(s,txn_start,getdate())/86400||' days '||datediff(s,txn_start,getdate())%86400/3600||' hrs '||datediff(s,txn_start,getdate())%3600/60||' mins '||datediff(s,txn_start,getdate())%60||' secs'
+from svv_transactions where lockable_object_type='transactionid' and pid<>pg_backend_pid() order by 3;
+
+This is important because sometimes after the Delete operation on a table, when we run vacuum on the same table and if there are any other transactions which are already running in the cluster at the same time, then vacuum delete will not execute and as a result the rows marked for deletion are not removed. As a result the next phase of the vacuum, i.e., vacuum sort will run longer since it will resort all the rows including rows marked for deletion. This will cause delay in the ETLs.
+The possible way to avoid this is to use Truncate - Load and if that is not possible, then make sure nothing is running in parallel when the Vacuum is started.
+But in order to fix the issue and make the vacuum delete work, kill the long running PID and then issue a vacuum. Rebooting the Redshift cluster will also help in clearing the PID.
+
+
 **Note**  
 The Amazon Redshift VACUUM command syntax and behavior are substantially different from the PostgreSQL VACUUM operation\. For example, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and re\-sorts all rows\. In contrast, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for reuse\.
 
