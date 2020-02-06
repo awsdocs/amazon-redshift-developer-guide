@@ -14,7 +14,7 @@ The rest of this section explains these steps in detail\.
 
 ## Creating New Object Keys<a name="creating-new-keys"></a>
 
-Because of potential data consistency issues, we strongly recommend creating new files with unique Amazon S3 object keys for each data load operation\. If you overwrite existing files with new data, and then issue a COPY command immediately following the upload, it is possible for the COPY operation to begin loading from the old files before all of the new data is available\. For more information about eventual consistency, see [Amazon S3 Data Consistency Model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyMode) in the *Amazon S3 Developer Guide*\.
+Because of potential data consistency issues, we strongly recommend creating new files with unique Amazon S3 object keys for each data load operation\. If you overwrite existing files with new data, and then issue a COPY command immediately following the upload, it is possible for the COPY operation to begin loading from the old files before all of the new data is available\. For more information about eventual consistency, see [Amazon S3 Data Consistency Model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel) in the *Amazon S3 Developer Guide*\.
 
 ## Using a Manifest File<a name="using-a-manifest-file"></a>
 
