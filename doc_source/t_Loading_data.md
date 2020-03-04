@@ -8,6 +8,7 @@
 + [Analyzing Tables](t_Analyzing_tables.md)
 + [Vacuuming Tables](t_Reclaiming_storage_space202.md)
 + [Managing Concurrent Write Operations](c_Concurrent_writes.md)
++ [Tutorial: Loading Data from Amazon S3](tutorial-loading-data.md)
 
 A COPY command is the most efficient way to load a table\. You can also add data to your tables using INSERT commands, though it is much less efficient than using COPY\. The COPY command is able to read from multiple data files or multiple data streams simultaneously\. Amazon Redshift allocates the workload to the cluster nodes and performs the load operations in parallel, including sorting the rows and distributing data across node slices\.
 

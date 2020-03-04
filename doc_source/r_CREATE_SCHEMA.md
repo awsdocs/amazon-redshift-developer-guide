@@ -29,7 +29,7 @@ Name of the schema owner\.
  *schema\_element*   
 Definition for one or more objects to be created within the schema\.
 
-## Limits<a name="w5aac47b9c73b9"></a>
+## Limits<a name="w6aac49b9c79b9"></a>
 
 Amazon Redshift enforces the following limits for schemas\.
 + There is a maximum of 9900 schemas per database\.

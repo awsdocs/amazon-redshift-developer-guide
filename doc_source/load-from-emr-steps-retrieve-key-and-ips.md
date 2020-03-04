@@ -49,7 +49,7 @@ The response will include a ClusterPublicKey value and the list of private and p
             "AutomatedSnapshotRetentionPeriod": 1, 
             "PreferredMaintenanceWindow": "wed:05:30-wed:06:00", 
             "AvailabilityZone": "us-east-1a", 
-            "NodeType": "ds1.xlarge", 
+            "NodeType": "ds2.xlarge", 
             "ClusterPublicKey": "ssh-rsa AAAABexamplepublickey...Y3TAl Amazon-Redshift", 
              ...
              ...

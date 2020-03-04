@@ -11,10 +11,10 @@ ST_MakeLine(geom1, geom2)
 ## Arguments<a name="ST_MakeLine-function-arguments"></a>
 
  *geom1*   
-A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be either `POINT` or `LINESTRING`\. 
+A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `POINT`, `LINESTRING`, or `MULTIPOINT`\. 
 
  *geom2*   
-A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be either `POINT` or `LINESTRING`\. 
+A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `POINT`, `LINESTRING`, or `MULTIPOINT`\. 
 
 ## Return Type<a name="ST_MakeLine-function-return"></a>
 
@@ -26,7 +26,7 @@ If *geom1* or *geom2* is null, then null is returned\.
 
 If *geom1* and *geom2* have different SRID values, then an error is returned\. 
 
-If *geom1* or *geom2* is not a point or a linestring, then an error is returned\. 
+If *geom1* or *geom2* is not a `POINT`, `LINESTRING`, or `MULTIPOINT`, then an error is returned\. 
 
 ## Examples<a name="ST_MakeLine-function-examples"></a>
 

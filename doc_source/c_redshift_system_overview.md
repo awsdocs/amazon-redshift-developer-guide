@@ -1,4 +1,4 @@
-# Amazon Redshift System Overview<a name="c_redshift_system_overview"></a>
+# System and Architecture Overview<a name="c_redshift_system_overview"></a>
 
 **Topics**
 + [Data Warehouse System Architecture](c_high_level_system_architecture.md)

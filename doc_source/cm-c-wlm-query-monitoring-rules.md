@@ -74,6 +74,7 @@ The [WLM Timeout](cm-c-defining-query-queues.md#wlm-timeout) parameter is distin
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)
 
 **Note**  
+The hop action is not supported with the `query_queue_time` predicate\. That is, rules defined to hop when a `query_queue_time` predicate is met are ignored\. 
 Short segment execution times can result in sampling errors with some metrics, such as `io_skew` and `query_cpu_percent`\. To avoid or reduce sampling errors, include segment execution time in your rules\. A good starting point is `segment_execution_time > 10`\.
 
 The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view shows the metrics for completed queries\. The [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view shows the maximum values of metrics for completed queries\. Use the values in these views as an aid to determine threshold values for defining query monitoring rules\.
@@ -90,8 +91,8 @@ The following table lists available templates\.
 
 When all of a rule's predicates are met, WLM writes a row to the [STL\_WLM\_RULE\_ACTION](r_STL_WLM_RULE_ACTION.md) system table\. This row contains details for the query that triggered the rule and the resulting action\. 
 
-In addition, Amazon Redshift records query metrics to two system tables\.
-+ [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) displays the metrics for currently running queries\.
-+ [STL\_QUERY\_METRICS](r_STL_QUERY_METRICS.md) records the metrics for completed queries\. 
+In addition, Amazon Redshift records query metrics the following system tables and views\.
++ The [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) table displays the metrics for currently running queries\.
++ The [STL\_QUERY\_METRICS](r_STL_QUERY_METRICS.md) table records the metrics for completed queries\. 
 + The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view shows the metrics for completed queries\. 
 + The [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view shows the maximum values of metrics for completed queries\.

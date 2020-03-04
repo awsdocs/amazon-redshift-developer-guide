@@ -48,7 +48,16 @@ USAGE
 [ CASCADE | RESTRICT ]
 ```
 
-The following syntax is for Redshift Spectrum integration with Lake Formation\. 
+The following is the syntax for column\-level privileges on Amazon Redshift tables and views\. 
+
+```
+REVOKE { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES ] ( column_name [,...] ) }
+     ON { [ TABLE ] table_name [, ...] }
+     FROM { username | GROUP group_name | PUBLIC } [, ...] 
+     [ CASCADE | RESTRICT ]
+```
+
+The following is the syntax for Redshift Spectrum integration with Lake Formation\. 
 
 ```
 REVOKE [ GRANT OPTION FOR ]
@@ -101,6 +110,9 @@ Revokes the specified privileges on a table or a view\. The TABLE keyword is opt
 
 ON ALL TABLES IN SCHEMA *schema\_name*   
 Revokes the specified privileges on all tables in the referenced schema\.
+
+\( *column\_name* \[,\.\.\.\] \) ON TABLE *table\_name*   <a name="revoke-column-level-privileges"></a>
+Revokes the specified privileges from users, groups, or PUBLIC on the specified columns of the Amazon Redshift table or view\.
 
 \( *column\_list* \) ON EXTERNAL TABLE *schema\_name\.table\_name*   <a name="revoke-external-table-column"></a>
 Revokes the specified privileges from an IAM role on the specified columns of the Lake Formation table in the referenced schema\.
@@ -213,26 +225,50 @@ If the IAM role also has the `ALL` permission in an AWS Glue Data Catalog that i
 
 ## Examples<a name="r_REVOKE-examples"></a>
 
-The following example revokes INSERT privileges on the SALES table from the GUESTS user group\. This command prevents members of GUESTS from being able to load data into the SALES table by using the INSERT command: 
+The following example revokes INSERT privileges on the SALES table from the GUESTS user group\. This command prevents members of GUESTS from being able to load data into the SALES table by using the INSERT command\. 
 
 ```
 revoke insert on table sales from group guests;
 ```
 
-The following example revokes the SELECT privilege on all tables in the QA\_TICKIT schema from the user `fred`: 
+The following example revokes the SELECT privilege on all tables in the QA\_TICKIT schema from the user `fred`\.
 
 ```
 revoke select on all tables in schema qa_tickit from fred;
 ```
 
-The following example revokes the privilege to select from a view for user `bobr`: 
+The following example revokes the privilege to select from a view for user `bobr`\.
 
 ```
 revoke select on table eventview from bobr;
 ```
 
-The following example revokes the privilege to create temporary tables in the TICKIT database from all users: 
+The following example revokes the privilege to create temporary tables in the TICKIT database from all users\.
 
 ```
 revoke temporary on database tickit from public;
+```
+
+The following example revokes SELECT privilege on the `cust_name` and `cust_phone` columns of the `cust_profile` table from the user `user1`\. 
+
+```
+revoke select(cust_name, cust_phone) on cust_profile from user1;
+```
+
+The following example revokes SELECT privilege on the `cust_name` and `cust_phone` columns and UPDATE privilege on the `cust_contact_preference` column of the `cust_profile` table from the `sales_group` group\. 
+
+```
+revoke select(cust_name, cust_phone), update(cust_contact_preference) on cust_profile from group sales_group;
+```
+
+The following example shows the usage of the ALL keyword to revoke both SELECT and UPDATE privileges on three columns of the table `cust_profile` from the `sales_admin` group\. 
+
+```
+revoke ALL(cust_name, cust_phone,cust_contact_preference) on cust_profile from group sales_admin;
+```
+
+The following example revokes the SELECT privilege on the `cust_name` column of the `cust_profile_vw` view from the `user2` user\. 
+
+```
+revoke select(cust_name) on cust_profile_vw from user2;
 ```

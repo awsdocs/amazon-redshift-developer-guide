@@ -62,7 +62,7 @@ SELECT count(*) FROM s3.lineitem_1t_part;
 Create a view of the tables from Amazon Redshift, Aurora PostgreSQL, and Amazon S3\. This view is used to run federated queries\. 
 
 ```
-CREATE VIEW VIEW lineitem_all AS
+CREATE VIEW lineitem_all AS
   SELECT l_orderkey,l_partkey,l_suppkey,l_linenumber,l_quantity,l_extendedprice,l_discount,l_tax,l_returnflag,l_linestatus,
          l_shipdate::date,l_commitdate::date,l_receiptdate::date, l_shipinstruct ,l_shipmode,l_comment 
   FROM s3.lineitem_1t_part 

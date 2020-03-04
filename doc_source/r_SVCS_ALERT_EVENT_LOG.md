@@ -4,9 +4,12 @@ Records an alert when the query optimizer identifies conditions that might indic
 
 A query consists of multiple segments, and each segment consists of one or more steps\. For more information, see [Query Processing](c-query-processing.md)\. 
 
+**Note**  
+System views with the prefix SVCS provide details about queries on both the main and concurrency scaling clusters\. The views are similar to the tables with the prefix STL except that the STL tables provide information only for queries run on the main cluster\.
+
 SVCS\_ALERT\_EVENT\_LOG is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="w5aac49c15c13b9"></a>
+## Table Columns<a name="w6aac51c15c13c11"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_ALERT_EVENT_LOG.html)
 

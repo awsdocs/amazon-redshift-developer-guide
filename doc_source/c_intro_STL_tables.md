@@ -30,6 +30,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_LOADERROR\_DETAIL](r_STL_LOADERROR_DETAIL.md)
 + [STL\_MERGE](r_STL_MERGE.md)
 + [STL\_MERGEJOIN](r_STL_MERGEJOIN.md)
++ [STL\_MV\_STATE](r_STL_MV_STATE.md)
 + [STL\_NESTLOOP](r_STL_NESTLOOP.md)
 + [STL\_PARSE](r_STL_PARSE.md)
 + [STL\_PLAN\_INFO](r_STL_PLAN_INFO.md)

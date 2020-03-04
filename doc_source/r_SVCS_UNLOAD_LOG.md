@@ -2,7 +2,10 @@
 
 Use the SVCS\_UNLOAD\_LOG to get details of UNLOAD operations\.
 
-SVCS\_UNLOAD\_LOG records one row for each file created by an UNLOAD statement\. For example, if an UNLOAD creates 12 files, SVCS\_UNLOAD\_LOG contains 12 corresponding rows\.
+SVCS\_UNLOAD\_LOG records one row for each file created by an UNLOAD statement\. For example, if an UNLOAD creates 12 files, SVCS\_UNLOAD\_LOG contains 12 corresponding rows\. This view is derived from the STL\_UNLOAD\_LOG system table but doesn't show slice\-level for queries run on a concurrency scaling cluster\. 
+
+**Note**  
+System views with the prefix SVCS provide details about queries on both the main and concurrency scaling clusters\. The views are similar to the tables with the prefix STL except that the STL tables provide information only for queries run on the main cluster\.
 
 This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
 

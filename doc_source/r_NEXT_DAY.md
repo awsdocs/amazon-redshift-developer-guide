@@ -17,7 +17,7 @@ A date or timestamp column or an expression that implicitly converts to a date o
 
  *day*   
 A string containing the name of any day\. Capitalization does not matter\.  
-Valid values are as follows:      
+Valid values are as follows\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_NEXT_DAY.html)
 
 ## Return Type<a name="r_NEXT_DAY-return-type"></a>

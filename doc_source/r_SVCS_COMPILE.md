@@ -2,6 +2,9 @@
 
 Records compile time and location for each query segment of queries, including queries run on a scaling cluster as well as queries run on the main cluster\.
 
+**Note**  
+System views with the prefix SVCS provide details about queries on both the main and concurrency scaling clusters\. The views are similar to the views with the prefix SVL except that the SVL views provide information only for queries run on the main cluster\.
+
 SVCS\_COMPILE is visible to all users\.
 
 ## Table Columns<a name="r_SVCS_COMPILE-table-rows"></a>

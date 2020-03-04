@@ -2,6 +2,9 @@
 
 Displays the EXPLAIN plan for a query that has been submitted for execution\.
 
+**Note**  
+System views with the prefix SVCS provide details about queries on both the main and concurrency scaling clusters\. The views are similar to the tables with the prefix STL except that the STL tables provide information only for queries run on the main cluster\.
+
 This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVCS_EXPLAIN-table-columns"></a>

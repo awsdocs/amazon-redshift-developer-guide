@@ -1,8 +1,12 @@
 # CREATE LIBRARY<a name="r_CREATE_LIBRARY"></a>
 
-Installs a Python library, which is available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries can't exceed 100 MB\. CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\.
+Installs a Python library, which is available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries can't exceed 100 MB\. 
+
+CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
 
 Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
+
+For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\. 
 
 ## Syntax<a name="r_CREATE_LIBRARY-synopsis"></a>
 

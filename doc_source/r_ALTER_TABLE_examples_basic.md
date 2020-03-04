@@ -85,35 +85,60 @@ Insert into inventory values(1,1,1,1);
 select "table", "diststyle" from svv_table_info;
    table   |   diststyle
 -----------+----------------
-inventory  |     EVEN
-(1 row)
+ inventory |     EVEN
 ```
 
-Alter the table DISTKEY to `inv_item_sk` and then to `inv_warehouse_sk` within a BEGIN…COMMIT block\. The SVV\_TABLE\_INFO view shows the `inv_warehouse_sk` column as the resulting distribution key\. 
+Alter the table DISTKEY to `inv_warehouse_sk`\. The SVV\_TABLE\_INFO view shows the `inv_warehouse_sk` column as the resulting distribution key\. 
 
 ```
-begin;
-alter table inventory alter distkey inv_item_sk;
-alter table inventory alter distkey inv_warehouse_sk;
-commit;
+alter table inventory alter diststyle key distkey inv_warehouse_sk;
 
 select "table", "diststyle" from svv_table_info;
    table   |       diststyle
 -----------+-----------------------
-inventory | KEY(inv_warehouse_sk)
-(1 row)
+ inventory | KEY(inv_warehouse_sk)
 ```
 
-Alter the DISTKEY on a table and abort the transaction\. The distribution key doesn't change\.
+Alter the table DISTKEY to `inv_item_sk`\. The SVV\_TABLE\_INFO view shows the `inv_item_sk` column as the resulting distribution key\. 
 
 ```
-begin;
 alter table inventory alter distkey inv_item_sk;
-abort;
-select "table", "diststyle" from svv_table_info;
 
+select "table", "diststyle" from svv_table_info;
    table   |       diststyle
------------+----------------------
-inventory  | KEY(inv_warehouse_sk)
-(1 row)
+-----------+-----------------------
+ inventory | KEY(inv_item_sk)
+```
+
+## Alter a table to DISTSTYLE ALL<a name="r_ALTER_TABLE_examples_alter-diststyle-all"></a>
+
+The following examples show how to change a table to DISTSTYLE ALL\.
+
+Create a table with an EVEN distribution style\. The SVV\_TABLE\_INFO view shows that the DISTSTYLE is EVEN\. 
+
+```
+create table inventory(
+  inv_date_sk int4 not null , 
+  inv_item_sk int4 not null ,
+  inv_warehouse_sk int4 not null ,
+  inv_quantity_on_hand int4
+) diststyle even;
+
+Insert into inventory values(1,1,1,1);
+
+select "table", "diststyle" from svv_table_info;
+   table   |   diststyle
+-----------+----------------
+ inventory |     EVEN
+```
+
+Alter the table DISTSTYLE to ALL\. The SVV\_TABLE\_INFO view shows the changed DISTSYTLE\. 
+
+```
+alter table inventory alter diststyle all;
+
+select "table", "diststyle" from svv_table_info;
+   table   |   diststyle
+-----------+----------------
+ inventory |     ALL
 ```

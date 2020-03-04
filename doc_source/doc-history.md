@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: November 21, 2019** 
+ **Latest documentation update: February 19, 2020** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,6 +12,11 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for materialized views general availability](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-overview.html) | Materialized views are generally available starting with cluster version 1\.0\.13059\.  | February 19, 2020 | 
+| [Support for column\-level privileges](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) | Column\-level privileges are available starting with cluster version 1\.0\.13059\.  | February 19, 2020 | 
+| [ALTER TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_TABLE.html) | You can use an ALTER TABLE command with the ALTER DISTSTYLE ALL clause to change the distribution style of a table\.  | February 11, 2020 | 
+| [Support for federated query](https://docs.aws.amazon.com/redshift/latest/dg/federated-overview.html) | Updated the guide to describe federated query with an updated CREATE EXTERNAL SCHEMA\.  | December 3, 2019 | 
+| [Support for data lake export](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) | Updated the guide to describe new parameters of the UNLOAD command\.  | December 3, 2019 | 
 | [Support for spatial data](https://docs.aws.amazon.com/redshift/latest/dg/geospatial-overview.html) | Updated the guide to describe support for spatial data\.  | November 21, 2019 | 
 | [Support for the new console](https://docs.aws.amazon.com/redshift/latest/dg/welcome.html) | Updated the guide to describe the new Amazon Redshift console\.  | November 11, 2019 | 
 | [Support for automatic table sort](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) | Amazon Redshift can automatically sort table data\.  | November 7, 2019 | 
@@ -65,7 +70,7 @@ The following table describes the important changes in each release of the *Amaz
 | New columns in system tables | The tombstonedblocks, tossedblocks, and batched\_by columns were added to the [STL\_COMMIT\_STATS](r_STL_COMMIT_STATS.md) system table\. The localslice column was added to the [STV\_SLICES](r_STV_SLICES.md) system view\.  | March 22, 2018 | 
 | Add and drop columns in external tables | [ALTER TABLE](r_ALTER_TABLE.md) now supports ADD COLUMN and DROP COLUMN for Amazon Redshift Spectrum external tables\.  | March 22, 2018 | 
 | Amazon Redshift Spectrum new AWS Regions | Redshift Spectrum is now available in the Mumbai and São Paulo Regions\. For a list of supported Regions, see [Amazon Redshift Spectrum Regions](c-using-spectrum.md#c-spectrum-regions)\.  | March 22, 2018 | 
-| Table limit increased to 20,000 | The maximum number of tables is now 20,000 for 8xlarge cluster node types\. The limit for large and xlarge node types is 9,900\. For more information, see [Limits](r_CREATE_TABLE_usage.md#r_CREATE_TABLE_usage-limits)\.  | March 13, 2018 | 
+| Table limit increased to 20,000 | The maximum number of tables is now 20,000 for 8xlarge cluster node types\. The limit for large and xlarge node types is 9,900\. For more information, see [Limits and Quotas](r_CREATE_TABLE_usage.md#r_CREATE_TABLE_usage-limits)\.  | March 13, 2018 | 
 | Amazon Redshift Spectrum support for JSON and Ion | Using Redshift Spectrum, you can reference files with scalar data in JSON or Ion data formats\. For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\. | February 26, 2018 | 
 | IAM role chaining for Amazon Redshift Spectrum | You can chain AWS Identity and Access Management \(IAM\) roles so that your cluster can assume other roles not attached to the cluster, including roles belonging to another AWS account\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\. | February 1, 2018 | 
 | ADD PARTITION supports IF NOT EXISTS | The ADD PARTITION clause for ALTER TABLE now supports an IF NOT EXISTS option\. For more information, see [ALTER TABLE](r_ALTER_TABLE.md)\.  | January 11, 2018 | 
@@ -100,7 +105,7 @@ The following table describes the important changes in each release of the *Amaz
 | IAM Policies for Amazon Redshift Spectrum | To grant access to an Amazon S3 bucket only using Redshift Spectrum, you can include a condition that allows access for the user agent "AWS Redshift/Spectrum"\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. | May 25, 2017 | 
 | Amazon Redshift Spectrum Recursive Scan | Redshift Spectrum now scans files in subfolders as well as the specified folder in Amazon S3\. For more information, see [Creating External Tables for Amazon Redshift Spectrum](c-spectrum-external-tables.md)\. | May 25, 2017 | 
 | Query Monitoring Rules | Using WLM query monitoring rules, you can define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries—log, hop, or abort\. You define query monitoring rules as part of your workload management \(WLM\) configuration\. For more information, see [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. | April 21, 2017 | 
-| Amazon Redshift Spectrum | Using Redshift Spectrum, you can efficiently query and retrieve data from files in Amazon S3 without having to load the data into tables\. Redshift Spectrum queries execute very fast against large datasets because Redshift Spectrum scans the data files directly in Amazon S3\. Much of the processing occurs in the Amazon Redshift Spectrum layer, and most of the data remains in Amazon S3\. Multiple clusters can concurrently query the same dataset on Amazon S3 without the need to make copies of the data for each cluster\. For more information, see [Using Amazon Redshift Spectrum to Query External Data](c-using-spectrum.md) | April 19, 2017 | 
+| Amazon Redshift Spectrum | Using Redshift Spectrum, you can efficiently query and retrieve data from files in Amazon S3 without having to load the data into tables\. Redshift Spectrum queries execute very fast against large datasets because Redshift Spectrum scans the data files directly in Amazon S3\. Much of the processing occurs in the Amazon Redshift Spectrum layer, and most of the data remains in Amazon S3\. Multiple clusters can concurrently query the same dataset on Amazon S3 without the need to make copies of the data for each cluster\. For more information, see [Querying External Data Using Amazon Redshift Spectrum](c-using-spectrum.md) | April 19, 2017 | 
 | New system tables to support Redshift Spectrum | The following new system views have been added to support Redshift Spectrum: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/doc-history.html) | April 19, 2017 | 
 | APPROXIMATE PERCENTILE\_DISC aggregate function | The [APPROXIMATE PERCENTILE\_DISC](r_APPROXIMATE_PERCENTILE_DISC.md) aggregate function is now available\. | April 4, 2017 | 
 | Server\-side encryption with KMS | You can now unload data to Amazon S3 using server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\. In addition, [COPY](r_COPY.md) now transparently loads KMS\-encrypted data files from Amazon S3\. For more information, see [UNLOAD](r_UNLOAD.md)\. | February 9, 2017 | 

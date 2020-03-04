@@ -26,15 +26,15 @@ A CHAR or VARCHAR string, the same as the string parameter\.
 
 ## Examples<a name="SPLIT_PART-examples"></a>
 
-The following example splits the time stamp field LISTTIME into year, month, and date components\.
+The following example splits the time stamp field LISTTIME into year, month, and day components\.
 
 ```
 select listtime, split_part(listtime,'-',1) as year,
 split_part(listtime,'-',2) as month, 
-split_part(split_part(listtime,'-',3),' ',1) as date 
+split_part(split_part(listtime,'-',3),' ',1) as day 
 from listing limit 5;
 
-      listtime       | year | month | date
+      listtime       | year | month | day
 ---------------------+------+-------+------
  2008-03-05 12:25:29 | 2008 | 03    | 05
  2008-09-09 08:03:36 | 2008 | 09    | 09

@@ -13,3 +13,4 @@ The following are limitations and considerations when using federated query with
 + This feature currently doesn't support access through materialized views\. 
 + This feature is only available in AWS Regions where both Amazon Redshift and Amazon RDS or Aurora are available\. 
 + This feature currently doesn't support `ALTER SCHEMA`\. You must `DROP` and then `CREATE EXTERNAL SCHEMA`\. 
++ Concurrency scaling is not supported\. 

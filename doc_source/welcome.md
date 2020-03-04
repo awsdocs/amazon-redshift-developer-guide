@@ -1,9 +1,10 @@
-# Welcome<a name="welcome"></a>
+# Amazon Redshift System Overview<a name="welcome"></a>
 
 **Topics**
 + [Are You a First\-Time Amazon Redshift User?](c-first-time-user.md)
 + [Are You a Database Developer?](c-who-should-use-this-guide.md)
 + [Prerequisites](c-dev-guide-prereqs.md)
++ [System and Architecture Overview](c_redshift_system_overview.md)
 
 This is the *Amazon Redshift Database Developer Guide*\.
 

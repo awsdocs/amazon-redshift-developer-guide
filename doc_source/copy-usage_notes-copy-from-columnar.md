@@ -16,12 +16,13 @@ COPY supports columnar formatted data with the following restrictions:
   + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
   + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
   + Canada \(Central\) Region \(ca\-central\-1\)
-  + EU \(Frankfurt\) Region \(eu\-central\-1\)
-  + EU \(Ireland\) Region \(eu\-west\-1\)
-  + EU \(London\) Region \(eu\-west\-2\)
+  + Europe \(Frankfurt\) Region \(eu\-central\-1\)
+  + Europe \(Ireland\) Region \(eu\-west\-1\)
+  + Europe \(London\) Region \(eu\-west\-2\)
   + South America \(São Paulo\) Region \(sa\-east\-1\)
-+ The Amazon S3 bucket must be in the same Region as the Amazon Redshift cluster\. 
++ The Amazon S3 bucket must be in the same AWS Region as the Amazon Redshift cluster\. 
 + COPY command credentials must be supplied using an AWS Identity and Access Management \(IAM\) role as an argument for the [IAM\_ROLE](copy-parameters-authorization.md#copy-iam-role) parameter or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\. 
++ To access your Amazon S3 data through a VPC endpoint, set up access using IAM policies and IAM roles as described in [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Cluster Management Guide*\. 
 + COPY doesn't automatically apply compression encodings\. 
 + Only the following COPY parameters are supported: 
   + [FROM](copy-parameters-data-source-s3.md#copy-parameters-from)

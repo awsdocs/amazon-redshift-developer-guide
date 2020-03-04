@@ -4,6 +4,6 @@ Amazon Redshift routes a submitted SQL query through the parser and optimizer to
 
 **Topics**
 + [Query Planning and Execution Workflow](c-query-planning.md)
-+ [Reviewing Query Plan Steps](reviewing-query-plan-steps.md)
 + [Query Plan](c-the-query-plan.md)
++ [Reviewing Query Plan Steps](reviewing-query-plan-steps.md)
 + [Factors Affecting Query Performance](c-query-performance.md)

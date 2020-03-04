@@ -37,15 +37,6 @@ region 'us-east-2';
 **Note**  
 The `region` parameter references the AWS Region in which the Athena data catalog is located, not the location of the data files in Amazon S3\.
 
-When using the Athena data catalog, the following limits apply:
-+ A maximum of 100 databases per account\.
-+ A maximum of 100 tables per database\.
-+ A maximum of 20,000 partitions per table\.
-
-You can request a limit increase by contacting AWS Support\.
-
-To avoid the limits, use a Hive metastore instead of an Athena data catalog\.
-
 If you manage your data catalog using a Hive metastore, such as Amazon EMR, your security groups must be configured to allow traffic between the clusters\. 
 
 In the CREATE EXTERNAL SCHEMA statement, specify `FROM HIVE METASTORE` and include the metastore's URI and port number\. The following example creates an external schema using a Hive metastore database named `hive_db`\.
@@ -163,6 +154,10 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
    1. For **Type**, choose **TCP**\. 
 
+   1. For **Port Range**, enter **5439**\.
+**Note**  
+The default port for Amazon Redshift is 5439\. 
+
    1. For **Source**, choose **Custom**\. 
 
    1. Enter the name of your Amazon Redshift security group\. 
@@ -173,14 +168,13 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
    1. For **Port Range**, enter **9083**\.
 **Note**  
- The default port for an EMR HMS is 9083\. If your HMS uses a different port, specify that port in the inbound rule and in the external schema definition\. 
+The default port for an EMR HMS is 9083\. If your HMS uses a different port, specify that port in the inbound rule and in the external schema definition\. 
 
    1. For **Source**, choose **Custom**\. 
 
    1. Enter the name of your Amazon EMR security group\. 
 
-   1. Choose **Create**\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-ec2-create-security-group.png)
+   1. Choose **Create**\. 
 
 1. Add the Amazon EC2 security group you created in the previous step to your Amazon Redshift cluster and to your Amazon EMR cluster:
 

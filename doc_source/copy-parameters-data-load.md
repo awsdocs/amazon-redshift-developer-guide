@@ -17,7 +17,8 @@ Controls whether compression encodings are automatically applied during a COPY\.
 When COMPUPDATE is PRESET, the COPY command chooses the compression encoding for each column if the target table is empty; even if the columns already have encodings other than RAW\. Currently specified column encodings can be replaced\. Encoding for each column is based on the column data type\. No data is sampled\. Amazon Redshift automatically assigns compression encoding as follows:  
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, CHAR, VARCHAR, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned LZO compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 When COMPUPDATE is omitted, the COPY command chooses the compression encoding for each column only if the target table is empty and you have not specified an encoding \(other than RAW\) for any of the columns\. The encoding for each column is determined by Amazon Redshift\. No data is sampled\.   
 When COMPUPDATE is ON \(or TRUE\), or COMPUPDATE is specified without an option, the COPY command applies automatic compression if the table is empty; even if the table columns already have encodings other than RAW\. Currently specified column encodings can be replaced\. Encoding for each column is based on an analysis of sample data\. For more information, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.  
 When COMPUPDATE is OFF \(or FALSE\), automatic compression is disabled\. Column encodings aren't changed\.  

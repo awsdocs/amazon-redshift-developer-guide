@@ -2,6 +2,8 @@
 
 Drops a database\. 
 
+You can't run DROP DATABASE within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+
 ## Syntax<a name="r_DROP_DATABASE-synopsis"></a>
 
 ```

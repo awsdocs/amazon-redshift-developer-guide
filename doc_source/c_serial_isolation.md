@@ -3,11 +3,12 @@
 Some applications require not only concurrent querying and loading, but also the ability to write to multiple tables or the same table concurrently\. In this context, *concurrently* means overlapping, not scheduled to run at precisely the same time\. Two transactions are considered to be concurrent if the second one starts before the first commits\. Concurrent operations can originate from different sessions that are controlled either by the same user or by different users\.
 
 **Note**  
-Amazon Redshift supports a default *automatic commit* behavior in which each separately\-executed SQL command commits individually\. If you enclose a set of commands in a transaction block \(defined by [BEGIN](r_BEGIN.md) and [END](r_END.md) statements\), the block commits as one transaction, so you can roll it back if necessary\. An exception to this behavior is the TRUNCATE command, which automatically commits all outstanding changes made in the current transaction without requiring an END statement\.
+Amazon Redshift supports a default *automatic commit* behavior in which each separately executed SQL command commits individually\. If you enclose a set of commands in a transaction block \(defined by [BEGIN](r_BEGIN.md) and [END](r_END.md) statements\), the block commits as one transaction, so you can roll it back if necessary\. Exceptions to this behavior are the TRUNCATE and VACUUM commands, which automatically commit all outstanding changes made in the current transaction\.   
+Some SQL clients issue BEGIN and COMMIT commands automatically, so the client controls whether a group of statements are run as a transaction or each individual statement is run as its own transaction\. Check the documentation for the interface you are using\. For example, when using the Amazon Redshift JDBC driver, a JDBC `PreparedStatement` with a query string that contains multiple \(semicolon separated\) SQL commands runs all the statements as a single transaction\. In contrast, if you use SQL Workbench/J and set AUTO COMMIT ON, then if you run multiple statements, each statement runs as its own transaction\. 
 
 Concurrent write operations are supported in Amazon Redshift in a protective way, using write locks on tables and the principle of *serializable isolation*\. Serializable isolation preserves the illusion that a transaction running against a table is the only transaction that is running against that table\. For example, two concurrently running transactions, T1 and T2, must produce the same results as at least one of the following:
-+ T1 and T2 run serially in that order
-+ T2 and T1 run serially in that order
++ T1 and T2 run serially in that order\.
++ T2 and T1 run serially in that order\.
 
 Concurrent transactions are invisible to each other; they cannot detect each other's changes\. Each concurrent transaction will create a snapshot of the database at the beginning of the transaction\. A database snapshot is created within a transaction on the first occurrence of most SELECT statements, DML commands such as COPY, DELETE, INSERT, UPDATE, and TRUNCATE, and the following DDL commands :
 + ALTER TABLE \(to add or drop columns\)
@@ -57,7 +58,7 @@ To address a serializable isolation error, you can try the following methods:
 
   ```
   Session2_Redshift=# insert into tab1 values (1);
-  Session1_Redshift=# select * from tab2;
+  Session2_Redshift=# select * from tab2;
   ```
 
   In many cases, the result of the SELECT statements isn't important\. In other words, the atomicity of the operations in the transactions isn't important\. In these cases, move the SELECT statements outside of their transactions, as shown in the following examples\.

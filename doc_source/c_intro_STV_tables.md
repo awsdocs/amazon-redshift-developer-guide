@@ -1,6 +1,6 @@
 # STV Tables for Snapshot Data<a name="c_intro_STV_tables"></a>
 
-STV tables are actually virtual system tables that contain snapshots of the current system data\.
+STV tables are virtual system tables that contain snapshots of the current system data\.
 
 **Topics**
 + [STV\_ACTIVE\_CURSORS](r_STV_ACTIVE_CURSORS.md)
@@ -10,6 +10,7 @@ STV tables are actually virtual system tables that contain snapshots of the curr
 + [STV\_INFLIGHT](r_STV_INFLIGHT.md)
 + [STV\_LOAD\_STATE](r_STV_LOAD_STATE.md)
 + [STV\_LOCKS](r_STV_LOCKS.md)
++ [STV\_MV\_INFO](r_STV_MV_INFO.md)
 + [STV\_PARTITIONS](r_STV_PARTITIONS.md)
 + [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md)
 + [STV\_RECENTS](r_STV_RECENTS.md)

@@ -21,6 +21,8 @@ You must have the following prerequisites to create a secret and an IAM role to 
 1. Choose **Store a new secret**\. 
 
 1. Choose the **Credentials for RDS database** tile\. For **User name** and **Password**, enter values for your instance\. Confirm or choose a value for **Encryption key**\. Then choose the RDS database that your secret will access\. 
+**Note**  
+We recommend using the default encryption key \(`DefaultEncryptionKey`\)\. If you use a custom encryption key, the IAM role that is used to access the secret must be added as a key user\.
 
 1. Enter a name for the secret, continue with the creation steps with the default choices, and choose **Store**\. 
 
@@ -70,7 +72,7 @@ You must have the following prerequisites to create a secret and an IAM role to 
 
 1. Either attach the IAM policy you just created to an existing IAM role, or create a new IAM role and attach the policy\. 
 
-1. Confirm that the IAM role **Trust relationships** contains `redshift.amazonaws.com`\. 
+1. On the **Trust relationships** tab of your IAM role, confirm it contains the trust entity `redshift.amazonaws.com`\. 
 
 1. Note the **Role ARN** you created\. This ARN has access to the secret\. 
 

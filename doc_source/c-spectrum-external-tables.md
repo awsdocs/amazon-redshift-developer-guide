@@ -115,7 +115,7 @@ The following procedure describes how to partition your data\.
 
 1. Add the partitions\. 
 
-   Using [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION, add each partition, specifying the partition column and key value, and the location of the partition folder in Amazon S3\. You can add multiple partitions in a single ALTER TABLE … ADD statement\. The following example adds partitions for `'2008-01-01'` and `'2008-02-01'`\.
+   Using [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION, add each partition, specifying the partition column and key value, and the location of the partition folder in Amazon S3\. You can add multiple partitions in a single ALTER TABLE … ADD statement\. The following example adds partitions for `'2008-01'` and `'2008-02'`\.
 
    ```
    alter table spectrum.sales_part add
@@ -193,7 +193,7 @@ partition(saledate='2008-03')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
 ```
 
-Run the following query to select data from the partitioned table\.
+To select data from the partitioned table, run the following query\.
 
 ```
 select top 5 spectrum.sales_part.eventid, sum(spectrum.sales_part.pricepaid) 

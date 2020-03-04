@@ -13,7 +13,7 @@ SVL\_S3RETRIES is visible to all users\. Superusers can see all rows; regular us
 The following example retrieves data about failed S3 queries\.
 
 ```
-SELECT stl_s3retries.query, stl_s3retries.segment, stl_s3retries.node, stl_s3retries.slice, stl_s3retries.eventtime, stl_s3retries.retries, 
-stl_s3retries.successful_fetches, stl_s3retries.file_size, btrim((stl_s3retries."location")::text) AS "location", btrim((stl_s3retries.message)::text)
-AS message FROM stl_s3retries;
+SELECT svl_s3retries.query, svl_s3retries.segment, svl_s3retries.node, svl_s3retries.slice, svl_s3retries.eventtime, svl_s3retries.retries, 
+svl_s3retries.successful_fetches, svl_s3retries.file_size, btrim((svl_s3retries."location")::text) AS "location", btrim((svl_s3retries.message)::text)
+AS message FROM svl_s3retries;
 ```

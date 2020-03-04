@@ -16,8 +16,8 @@ The Amazon Redshift Advisor feature is available only in the following AWS Regio
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
-+ EU \(Frankfurt\) Region \(eu\-central\-1\)
-+ EU \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\)
++ Europe \(Ireland\) Region \(eu\-west\-1\)
 
 **Topics**
 + [Amazon Redshift Regions](#advisor-regions)

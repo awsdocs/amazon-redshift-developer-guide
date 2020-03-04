@@ -1,6 +1,6 @@
 # Choose the Best Sort Key<a name="c_best-practices-sort-key"></a>
 
-Amazon Redshift stores your data on disk in sorted order according to the sort key\. The Amazon Redshift query optimizer uses sort order when it determines optimal query plans\.
+Amazon Redshift stores your data on disk in sorted order according to the sort key\. The Amazon Redshift query optimizer uses sort order when it determines optimal query plans\. Some suggestions for best approach follow:
 + **If recent data is queried most frequently, specify the timestamp column as the leading column for the sort key\. **
 
   Queries are more efficient because they can skip entire blocks that fall outside the time range\.

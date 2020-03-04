@@ -6,7 +6,7 @@ If you are trying to empty a table of rows, without removing the table, use the 
 
 DROP TABLE removes constraints that exist on the target table\. Multiple tables can be removed with a single DROP TABLE command\. 
 
-DROP TABLE with an external table can't be used inside a transaction \(BEGIN … END\)\.
+DROP TABLE with an external table can't be run inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_DROP_TABLE-synopsis"></a>
 

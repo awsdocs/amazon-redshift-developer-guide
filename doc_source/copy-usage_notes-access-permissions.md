@@ -81,7 +81,7 @@ Temporary security credentials provide enhanced security because they have short
 
 To grant users temporary access to your resources, you call AWS Security Token Service \(AWS STS\) API operations\. The AWS STS API operations return temporary security credentials consisting of a security token, an access key ID, and a secret access key\. You issue the temporary security credentials to the users who need temporary access to your resources\. These users can be existing IAM users, or they can be non\-AWS users\. For more information about creating temporary security credentials, see [Using Temporary Security Credentials](https://docs.aws.amazon.com/STS/latest/UsingSTS/Welcome.html) in the IAM User Guide\.
 
-You can user either the [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id) parameters together with the [SESSION_TOKEN](copy-parameters-authorization.md#copy-token) parameter or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\. You must also supply the access key ID and secret access key that were provided with the token\.
+You can use either the [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id) parameters together with the [SESSION_TOKEN](copy-parameters-authorization.md#copy-token) parameter or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\. You must also supply the access key ID and secret access key that were provided with the token\.
 
 To authenticate using ACCESS\_KEY\_ID, SECRET\_ACCESS\_KEY, and SESSION\_TOKEN, replace *<temporary\-access\-key\-id>*, *<temporary\-secret\-access\-key>*, and *<temporary\-token>* as shown following\. 
 

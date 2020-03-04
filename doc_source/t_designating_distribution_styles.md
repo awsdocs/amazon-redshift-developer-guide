@@ -20,7 +20,7 @@
 
 1.  **Use EVEN distribution for the remaining tables\.** 
 
-   If a table is largely denormalized and does not participate in joins, or if you don't have a clear choice for another distribution style, use EVEN distribution \(the default\)\. 
+   If a table is largely denormalized and does not participate in joins, or if you don't have a clear choice for another distribution style, use EVEN distribution\. 
 
 To let Amazon Redshift choose the appropriate distribution style, don't explicitly specify a distribution style\.
 

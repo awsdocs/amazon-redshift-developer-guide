@@ -1,5 +1,7 @@
 # Examples of UPDATE Statements<a name="c_Examples_of_UPDATE_statements"></a>
 
+For more information about the tables used in the following examples, see [Sample Database](c_sampledb.md)\.
+
 The CATEGORY table in the TICKIT database contains the following rows: 
 
 ```

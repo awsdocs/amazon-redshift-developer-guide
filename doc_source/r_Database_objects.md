@@ -18,3 +18,5 @@ Access to database objects depends on the privileges that you grant to user acco
 + Schemas are collections of database tables and other database objects\. Schemas are similar to file system directories, except that schemas cannot be nested\. Users can be granted access to a single schema or to multiple schemas\.
 
 For examples of security implementation, see [Example for Controlling User and Group Access](t_user_group_examples.md)\.
+
+For more information about protecting your data, see [Security in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) in the *Amazon Redshift Cluster Management Guide*\. 

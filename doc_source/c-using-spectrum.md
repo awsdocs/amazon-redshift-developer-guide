@@ -1,4 +1,4 @@
-# Using Amazon Redshift Spectrum to Query External Data<a name="c-using-spectrum"></a>
+# Querying External Data Using Amazon Redshift Spectrum<a name="c-using-spectrum"></a>
 
 Using Amazon Redshift Spectrum, you can efficiently query and retrieve structured and semistructured data from files in Amazon S3 without having to load the data into Amazon Redshift tables\. Redshift Spectrum queries employ massive parallelism to execute very fast against large datasets\. Much of the processing occurs in the Redshift Spectrum layer, and most of the data remains in Amazon S3\. Multiple clusters can concurrently query the same dataset in Amazon S3 without the need to make copies of the data for each cluster\.
 
@@ -13,6 +13,7 @@ Using Amazon Redshift Spectrum, you can efficiently query and retrieve structure
 + [Improving Amazon Redshift Spectrum Query Performance](c-spectrum-external-performance.md)
 + [Monitoring Metrics in Amazon Redshift Spectrum](c-spectrum-metrics.md)
 + [Troubleshooting Queries in Amazon Redshift Spectrum](c-spectrum-troubleshooting.md)
++ [Tutorial: Querying Nested Data with Amazon Redshift Spectrum](tutorial-query-nested-data.md)
 
 ## Amazon Redshift Spectrum Overview<a name="c-spectrum-overview"></a>
 
@@ -43,11 +44,12 @@ Redshift Spectrum is available only in the following AWS Regions:
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
 + Canada \(Central\) Region \(ca\-central\-1\)
-+ EU \(Frankfurt\) Region \(eu\-central\-1\)
-+ EU \(Ireland\) Region \(eu\-west\-1\)
-+ EU \(London\) Region \(eu\-west\-2\)
-+ EU \(Paris\) Region \(eu\-west\-3\)
-+ EU \(Stockholm\) Region \(eu\-north\-1\)
++ China \(Ningxia\) Region \(cn\-northwest\-1\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\)
++ Europe \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(London\) Region \(eu\-west\-2\)
++ Europe \(Paris\) Region \(eu\-west\-3\)
++ Europe \(Stockholm\) Region \(eu\-north\-1\)
 + Middle East \(Bahrain\) Region \(me\-south\-1\)
 + South America \(São Paulo\) Region \(sa\-east\-1\)
 + AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
@@ -66,14 +68,4 @@ Note the following considerations when you use Amazon Redshift Spectrum:
   ```
 
   For more information, see [GRANT](r_GRANT.md)\.
-+ When using the Athena data catalog or AWS Glue Data Catalog, the following limits apply:
-  + A maximum of 10,000 databases per account\.
-  + A maximum of 100,000 tables per database\.
-  + A maximum of 1,000,000 partitions per table\.
-  + A maximum of 10,000,000 partitions per account\.
-
-  You can request a limit increase by contacting AWS Support\.
-
-  These limits don’t apply to an Apache Hive metastore\.
-
-  For more information, see [Creating External Schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\.
++ When using the Athena data catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide\.* 

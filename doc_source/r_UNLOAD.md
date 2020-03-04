@@ -16,7 +16,7 @@ authorization
 
 where option is
 { [ FORMAT [ AS ] ] CSV | PARQUET
-| PARTITON BY ( column_name [, ... ] ) ]
+| PARTITION BY ( column_name [, ... ] ) ]
 | MANIFEST [ VERBOSE ] 
 | HEADER           
 | DELIMITER [ AS ] 'delimiter-char' 
@@ -63,10 +63,10 @@ The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD c
 
 \[ FORMAT \[AS\] \] CSV \| PARQUET  <a name="unload-csv"></a>
 When CSV, unloads to a text file in CSV format using a comma \( , \) character as the delimiter\. If a field contains commas, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\.   
-When PARQUET, unloads to a file in Apache Parquet format\. By default, each row group is compressed using SNAPPY compression\. For more information about Apache Parquet format, see [Parquet](https://parquet.apache.org/)\.   
+When PARQUET, unloads to a file in Apache Parquet version 1\.0 format\. By default, each row group is compressed using SNAPPY compression\. For more information about Apache Parquet format, see [Parquet](https://parquet.apache.org/)\.   
 The FORMAT and AS keywords are optional\. You can't use CSV with DELIMITER or FIXEDWIDTH\. You can't use PARQUET with DELIMITER, FIXEDWIDTH, ADDQUOTES, ESCAPE, NULL AS, HEADER, GZIP, BZIP2, or ZSTD\. PARQUET with ENCRYPTED is only supported with server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\.
 
-PARTITON BY \( *column\_name* \[, \.\.\. \] \)   <a name="unload-partitionby"></a>
+PARTITION BY \( *column\_name* \[, \.\.\. \] \)   <a name="unload-partitionby"></a>
 Specifies the partition keys for the unload operation\. UNLOAD automatically partitions output files into partition folders based on the partition key values, following the Apache Hive convention\. For example, a Parquet file that belongs to the partition year 2019 and the month September has the following prefix: `s3://my_bucket_name/my_prefix/year=2019/month=September/000.parquet`\.   
 The value for *column\_name* must be a column in the query results being unloaded\. 
 
@@ -217,4 +217,4 @@ Be aware of these considerations when using PARTITION BY:
 + If the partition key value is null, Amazon Redshift automatically unloads that data into a default partition called `partition_column=__HIVE_DEFAULT_PARTITION__`\. 
 + The UNLOAD command doesn't make any calls to an external catalog\. To register your new partitions to be part of your existing external table, use a separate ALTER TABLE \.\.\. ADD PARTITION \.\.\. command\. Or you can run a CREATE EXTERNAL TABLE command to register the unloaded data as a new external table\. You can also use an AWS Glue crawler to populate your Data Catalog\. For more information, see [Defining Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. 
 + The MANIFEST keyword isn't supported\.
-+ The column data types that you can use as the partition key are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, BOOLEAN, CHAR, VARCHAR, DATE, and TIMESTAM 
++ The column data types that you can use as the partition key are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, BOOLEAN, CHAR, VARCHAR, DATE, and TIMESTAMP\. 

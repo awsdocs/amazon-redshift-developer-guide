@@ -15,7 +15,8 @@ CREATE TABLE AS \(CTAS\) tables don't inherit constraints, identity columns, def
 You can't specify column compression encodings for CTAS tables\. Amazon Redshift automatically assigns compression encoding as follows:
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data type are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, CHAR, VARCHAR, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned LZO compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 
 For more information, see [Compression Encodings](c_Compression_encodings.md) and [Data Types](c_Supported_data_types.md)\. 
 

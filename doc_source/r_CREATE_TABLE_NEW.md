@@ -125,7 +125,8 @@ Compression encoding for a column\. If no compression is selected, Amazon Redshi
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data type are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, CHAR, VARCHAR, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned LZO compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
  The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  
 + AZ64

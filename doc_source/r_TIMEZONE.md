@@ -2,6 +2,10 @@
 
 TIMEZONE returns a time stamp for the specified time zone and time stamp value\.
 
+For information and examples about how to set time zone, see [timezone](r_timezone_config.md)\.
+
+For information and examples about how to convert time zone, see [CONVERT\_TIMEZONE](CONVERT_TIMEZONE.md)\.
+
 ## Syntax<a name="r_TIMEZONE-syntax"></a>
 
 ```

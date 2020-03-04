@@ -183,6 +183,40 @@ CONTEXT: SQL statement "TRUNCATE test_table_b"
 PL/pgSQL function "sp_truncate_atomic" line 2 at SQL statement
 ```
 
+The following example shows that a user who is not a superuser or the owner of a table can issue a TRUNCATE statement on the table using a `Security Definer` stored procedure\. The example shows the following actions: 
++ The user1 creates table `test_tbl`\. 
++ The user1 creates stored procedure `sp_truncate_test_tbl`\. 
++ The user1 grants `EXECUTE` privilege on the stored procedure to user2\. 
++ The user2 runs the stored procedure to truncate table `test_tbl`\. The example shows the row count before and after the `TRUNCATE` command\. 
+
+```
+set session_authorization to user1;
+create table test_tbl(id int, name varchar(20));
+insert into test_tbl values (1,'john'), (2, 'mary');
+CREATE OR REPLACE PROCEDURE sp_truncate_test_tbl() LANGUAGE plpgsql
+AS $$
+DECLARE
+  tbl_rows int;
+BEGIN
+  select count(*) into tbl_rows from test_tbl;
+  RAISE INFO 'RowCount before Truncate: %', tbl_rows;
+  TRUNCATE test_tbl;
+  select count(*) into tbl_rows from test_tbl;
+  RAISE INFO 'RowCount after Truncate: %', tbl_rows;
+END;
+$$ SECURITY DEFINER;
+grant execute on procedure sp_truncate_test_tbl() to user2;
+reset session_authorization;
+
+
+set session_authorization to user2;
+call sp_truncate_test_tbl();
+INFO:  RowCount before Truncate: 2
+INFO:  RowCount after Truncate: 0
+CALL
+reset session_authorization;
+```
+
 The following example issues COMMIT twice\. The first COMMIT commits all work done in transaction 10363 and implicitly starts transaction 10364\. Transaction 10364 is committed by the second COMMIT statement\. 
 
 ```

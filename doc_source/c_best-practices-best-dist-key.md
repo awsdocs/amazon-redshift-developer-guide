@@ -1,6 +1,6 @@
 # Choose the Best Distribution Style<a name="c_best-practices-best-dist-key"></a>
 
-When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in selecting a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is executed\.
+When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in selecting a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is run\. Some suggestions for best approach follow:
 
 1. **Distribute the fact table and one dimension table on their common columns\.**
 

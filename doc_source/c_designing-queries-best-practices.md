@@ -1,6 +1,6 @@
 # Amazon Redshift Best Practices for Designing Queries<a name="c_designing-queries-best-practices"></a>
 
-To maximize query performance, follow these recommendations when creating queries\.
+To maximize query performance, follow these recommendations when creating queries:
 + Design tables according to best practices to provide a solid foundation for query performance\. For more information, see [Amazon Redshift Best Practices for Designing Tables](c_designing-tables-best-practices.md)\.
 + Avoid using `select *`\. Include only the columns you specifically need\.
 + Use a [CASE Expression](r_CASE_function.md) to perform complex aggregations instead of selecting from the same table multiple times\.

@@ -19,7 +19,7 @@ Name of the user account to remove\. You can specify multiple user accounts, wit
 
 ## Usage Notes<a name="r_DROP_USER-notes"></a>
 
-You can't drop a user if the user owns any database object, such as a schema, database, table, or view, or if the user has any privileges on a table, database, or group\. If you attempt to drop such a user, you will receive one of the following errors\.
+You can't drop a user if the user owns any database object, such as a schema, database, table, or view, or if the user has any privileges on a database, table, column, or group\. If you attempt to drop such a user, you receive one of the following errors\.
 
 ```
 ERROR: user "username" can't be dropped because the user owns some object [SQL State=55006]

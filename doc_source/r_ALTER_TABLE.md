@@ -9,8 +9,10 @@
 
 Changes the definition of a database table or Amazon Redshift Spectrum external table\. This command updates the values and properties set by CREATE TABLE or CREATE EXTERNAL TABLE\.
 
+You can't run ALTER TABLE on an external table within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+
 **Note**  
-ALTER TABLE locks the table for read and write operations until the ALTER TABLE operation completes\. 
+ALTER TABLE locks the table for read and write operations until the transaction enclosing the ALTER TABLE operation completes\. 
 
 ## Syntax<a name="r_ALTER_TABLE-synopsis"></a>
 
@@ -24,6 +26,7 @@ ADD table_constraint
 | RENAME COLUMN column_name TO new_name            
 | ALTER COLUMN column_name TYPE new_data_type              
 | ALTER DISTKEY column_name 
+| ALTER DISTSTYLE ALL             
 | ALTER DISTSTYLE KEY DISTKEY column_name   
 | ALTER [COMPOUND] SORTKEY ( column_name [,...] )             
 | ADD [ COLUMN ] column_name column_type
@@ -90,11 +93,19 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 + You can't decrease the size less than maximum size of existing data\. 
 + You can't alter columns with default values\. 
 + You can't alter columns with UNIQUE, PRIMARY KEY, or FOREIGN KEY\. 
-+ You can't alter columns inside a multi\-statement block \(BEGIN\.\.\.END\)\. 
++ You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+
+ALTER DISTSTYLE ALL  
+A clause that changes the existing distribution style of a table to `ALL`\. Consider the following:  
++ An ALTER DISTSYTLE, ALTER SORTKEY, and VACUUM can't run concurrently on the same table\. 
+  + If VACUUM is currently running, then running ALTER DISTSTYLE ALL returns an error\. 
+  + If ALTER DISTSTYLE ALL is running, then a background vacuum doesn't start on a table\. 
++ The ALTER DISTSTYLE ALL command is not supported for tables with interleaved sort keys and temporary tables\.
+For more information about DISTSTYLE ALL, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER DISTKEY *column\_name* or ALTER DISTSTYLE KEY DISTKEY *column\_name*  
 A clause that changes the column used as the distribution key of a table\. Consider the following:  
-+ VACUUM and ALTER DISTKEY cannot run concurrently on the same table\. 
++ VACUUM and ALTER DISTKEY can't run concurrently on the same table\. 
   + If VACUUM is already running, then ALTER DISTKEY returns an error\.
   + If ALTER DISTKEY is running, then background vacuum doesn't start on a table\.
   + If ALTER DISTKEY is running, then foreground vacuum returns an error\.
@@ -153,7 +164,8 @@ The compression encoding for a column\. If no compression is selected, Amazon Re
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data types are assigned RAW compression\.
-+ All other columns are assigned LZO compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
 The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  
 + AZ64

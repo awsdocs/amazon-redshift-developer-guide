@@ -2,6 +2,8 @@
 
 Creates a new database\.
 
+You can't run CREATE DATABASE within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+
 ## Syntax<a name="r_CREATE_DATABASE-synopsis"></a>
 
 ```

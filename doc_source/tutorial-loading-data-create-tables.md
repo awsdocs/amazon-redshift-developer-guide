@@ -8,7 +8,7 @@ The SSB tables might already exist in the current database\. If so, drop the tab
 
 **To create the sample tables**
 
-1. To drop the SSB tables, execute the following commands\.
+1. To drop the SSB tables, execute the following commands in your SQL client\.
 
    ```
    drop table part cascade;
@@ -18,7 +18,7 @@ The SSB tables might already exist in the current database\. If so, drop the tab
    drop table lineorder;
    ```
 
-1. Execute the following CREATE TABLE commands\. 
+1. Execute the following CREATE TABLE commands in your SQL client\. 
 
    ```
    CREATE TABLE part 

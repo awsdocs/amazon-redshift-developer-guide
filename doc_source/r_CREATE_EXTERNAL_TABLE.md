@@ -10,7 +10,7 @@ You can query an external table using the same SELECT syntax you use with other 
 
 To create a view with an external table, include the WITH NO SCHEMA BINDING clause in the [CREATE VIEW](r_CREATE_VIEW.md) statement\.
 
-You can't execute CREATE EXTERNAL TABLE inside a transaction \(BEGIN … END\)\.
+You can't run CREATE EXTERNAL TABLE inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_CREATE_EXTERNAL_TABLE-synopsis"></a>
 
@@ -134,10 +134,10 @@ For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example
 'org.apache.hadoop.mapred.TextInputFormat'
 ```
 
-LOCATION \{ 's3://*bucket/folder*/' \| 's3://*bucket/manifest\_file*'  <a name="create-external-table-location"></a>
+LOCATION \{ 's3://*bucket/folder*/' \| 's3://*bucket/manifest\_file*'\}  <a name="create-external-table-location"></a>
 The path to the Amazon S3 bucket or folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
 If the path specifies a bucket or folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified bucket or folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period or underscore\.   
-If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example,`'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.   
+If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example, `'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.   
 The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3 and the size of the file, in bytes\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same AWS Region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
 
 ```
@@ -145,6 +145,17 @@ The manifest is a text file in JSON format that lists the URL of each file that 
   "entries": [
     {"url":"s3://mybucket-alpha/custdata.1", "meta": { "content_length": 5956875 } },
     {"url":"s3://mybucket-alpha/custdata.2", "meta": { "content_length": 5997091 } },
+    {"url":"s3://mybucket-beta/custdata.1", "meta": { "content_length": 5978675 } }
+  ]
+}
+```
+You can make the inclusion of a particular file mandatory\. To do this, include a `mandatory` option at the file level in the manifest\. When you query an external table with a mandatory file that is missing, the SELECT statement fails\. Ensure that all files included in the definition of the external table are present\. If they aren't all present, an error appears showing the first mandatory file that isn't found\. The following example shows the JSON for a manifest with the `mandatory` option set to `true`\.  
+
+```
+{
+  "entries": [
+    {"url":"s3://mybucket-alpha/custdata.1", "mandatory":true, "meta": { "content_length": 5956875 } },
+    {"url":"s3://mybucket-alpha/custdata.2", "mandatory":false, "meta": { "content_length": 5997091 } },
     {"url":"s3://mybucket-beta/custdata.1", "meta": { "content_length": 5978675 } }
   ]
 }
@@ -244,7 +255,7 @@ The following example creates a table that uses the JsonSerDe to reference data 
 
 ```
 create external table spectrum.cloudtrail_json (
-event_version int
+event_version int,
 event_id bigint,
 event_time timestamp,
 event_type varchar(10),

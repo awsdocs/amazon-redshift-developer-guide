@@ -48,7 +48,7 @@ If a variable list is used as *target*, the selected values must exactly match t
 
 The INTO clause can appear almost anywhere in the SELECT statement\. It usually appears just after the SELECT clause, or just before FROM clause\. That is, it appears just before or just after the *select\_expressions* list\.
 
-If the query returns zero rows, NULL values are assigned to *target*\. If the query returns multiple rows, the first row is assigned to *target* and the rest are discarded\. Unless the statement contains an ORDER BY, the first row is not nondeterministic\.
+If the query returns zero rows, NULL values are assigned to *target*\. If the query returns multiple rows, the first row is assigned to *target* and the rest are discarded\. Unless the statement contains an ORDER BY, the first row is not deterministic\.
 
 To determine whether the assignment returned at least one row, use the special FOUND variable\.
 
