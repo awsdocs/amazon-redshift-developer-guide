@@ -124,6 +124,7 @@ Places quotation marks around each unloaded data field, so that Amazon Redshift 
 ```
 Without the added quotation marks, the string `Hello, World` would be parsed as two separate fields\.  
 If you use ADDQUOTES, you must specify REMOVEQUOTES in the COPY if you reload the data\.
+ADDQUOTES is not supported for UNLOAD to CSV.
 
 NULL AS '*null\-string*'   
 Specifies a string that represents a null value in unload files\. If this option is used, all output files contain the specified string in place of any null values found in the selected data\. If this option isn't specified, null values are unloaded as:   
