@@ -10,7 +10,8 @@ For example, rename an existing schema to preserve a backup copy of that schema 
 ALTER SCHEMA schema_name
 {
 RENAME TO new_name |
-OWNER TO new_owner
+OWNER TO new_owner |
+QUOTA { quota [MB | GB | TB] | UNLIMITED }
 }
 ```
 
@@ -31,6 +32,9 @@ A clause that changes the owner of the schema\.
  *new\_owner*   
 The new owner of the schema\. 
 
+QUOTA   
+The maximum amount of disk space that the specified schema can use\. This space is the collective size of all tables under the specified schema\. Amazon Redshift converts the selected value to megabytes\. Gigabytes is the default unit of measurement when you don't specify a value\. 
+
 ## Examples<a name="r_ALTER_SCHEMA-examples"></a>
 
 The following example renames the SALES schema to US\_SALES\.
@@ -45,4 +49,11 @@ The following example gives ownership of the US\_SALES schema to the user DWUSER
 ```
 alter schema us_sales
 owner to dwuser;
+```
+
+The following example changes the quota to 300 MB and removes the quota\.
+
+```
+alter schema us_sales QUOTA 300 MB;
+alter schema us_sales QUOTA UNLIMITED;
 ```

@@ -22,8 +22,8 @@ AS query
 
 where table_attributes are:  
 [ DISTSTYLE { EVEN | ALL | KEY } ]
-[ DISTKEY ( distkey_identifier ) ]
-[ [ { COMPOUND | INTERLEAVED } ] SORTKEY ( column_name [, ...] ) ]
+[ DISTKEY( distkey_identifier ) ]
+[ [ { COMPOUND | INTERLEAVED } ] SORTKEY( column_name [, ...] ) ]
 ```
 
 ## Parameters<a name="r_CREATE_TABLE_AS-parameters"></a>

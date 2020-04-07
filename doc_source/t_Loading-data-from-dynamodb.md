@@ -3,7 +3,7 @@
 You can use the COPY command to load a table with data from a single Amazon DynamoDB table\.
 
 **Important**  
-The Amazon DynamoDB table that provides the data must be created in the same region as your cluster unless you use the [REGION](copy-parameters-data-source-s3.md#copy-region) option to specify the region in which the Amazon DynamoDB table is located\.
+The Amazon DynamoDB table that provides the data must be created in the same AWS Region as your cluster unless you use the [REGION](copy-parameters-data-source-s3.md#copy-region) option to specify the AWS Region in which the Amazon DynamoDB table is located\.
 
 The COPY command leverages the Amazon Redshift massively parallel processing \(MPP\) architecture to read and load data in parallel from an Amazon DynamoDB table\. You can take maximum advantage of parallel processing by setting distribution styles on your Amazon Redshift tables\. For more information, see [Choosing a Data Distribution Style](t_Distributing_data.md)\.
 

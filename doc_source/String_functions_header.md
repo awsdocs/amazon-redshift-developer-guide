@@ -33,6 +33,9 @@
 + [REPLICATE Function](r_REPLICATE.md)
 + [REVERSE Function](r_REVERSE.md)
 + [RTRIM Function](r_RTRIM.md)
++ [SHA Function](SHA.md)
++ [SHA1 Function](SHA1.md)
++ [SHA2 Function](SHA2.md)
 + [SPLIT\_PART Function](SPLIT_PART.md)
 + [STRPOS Function](r_STRPOS.md)
 + [STRTOL Function](r_STRTOL.md)
@@ -44,7 +47,7 @@
 
 String functions process and manipulate character strings or expressions that evaluate to character strings\. When the *string* argument in these functions is a literal value, it must be enclosed in single quotes\. Supported data types include CHAR and VARCHAR\. 
 
-The following section provides the function names, syntax, and descriptions for supported functions\. All offsets into strings are 1\-based\. 
+The following section provides the function names, syntax, and descriptions for supported functions\. All offsets into strings are one\-based\. 
 <a name="string-functions-deprecated"></a>
 **Deprecated Leader Node\-Only Functions**  
 The following string functions are deprecated because they execute only on the leader node\. For more information, see [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)

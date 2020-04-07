@@ -28,7 +28,7 @@ You can create an external table in Amazon Redshift, AWS Glue, Amazon Athena, or
 
 If your external table is defined in AWS Glue, Athena, or a Hive metastore, you first create an external schema that references the external database\. Then you can reference the external table in your SELECT statement by prefixing the table name with the schema name, without needing to create the table in Amazon Redshift\. For more information, see [Creating External Schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\. 
 
-To allow Amazon Redshift to view tables in the AWS Glue Data Catalog, add `glue:GetTable` to the Amazon Redshift IAM role\. Otherwise you might get an error similar to:
+To allow Amazon Redshift to view tables in the AWS Glue Data Catalog, add `glue:GetTable` to the Amazon Redshift IAM role\. Otherwise you might get an error similar to the following\.
 
 ```
 RedshiftIamRoleSession is not authorized to perform: glue:GetTable on resource: *;

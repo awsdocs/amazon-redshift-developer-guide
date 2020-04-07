@@ -9,7 +9,7 @@ System views with the prefix SVCS provide details about queries on both the main
 
 SVCS\_ALERT\_EVENT\_LOG is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="w6aac51c15c13c11"></a>
+## Table Columns<a name="w7aac51c15c13c11"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_ALERT_EVENT_LOG.html)
 

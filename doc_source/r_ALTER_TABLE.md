@@ -56,6 +56,17 @@ SET LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' }
 | DROP PARTITION ( partition_column=partition_value [, ...] )
 ```
 
+To reduce the time to run the ALTER TABLE command, you can combine some clauses of the ALTER TABLE command\.
+
+Amazon Redshift supports the following combinations of the ALTER TABLE clauses:
+
+```
+ALTER TABLE tablename ALTER SORTKEY (column_list), ALTER DISTKEY column_Id;
+ALTER TABLE tablename ALTER DISTKEY column_Id, ALTER SORTKEY (column_list);
+ALTER TABLE tablename ALTER SORTKEY (column_list), ALTER DISTSTYLE ALL;
+ALTER TABLE tablename ALTER DISTSTYLE ALL, ALTER SORTKEY (column_list);
+```
+
 ## Parameters<a name="r_ALTER_TABLE-parameters"></a>
 
  *table\_name*   

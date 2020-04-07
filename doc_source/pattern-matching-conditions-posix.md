@@ -6,7 +6,7 @@ POSIX regular expressions provide a more powerful means for pattern matching tha
 Regular expression matching using POSIX operators is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE executes several times faster than the query that uses a regular expression:  
 
 ```
-select count(*) from event where eventname ~ '.*(Ring|Die).* '; 
+select count(*) from event where eventname ~ '.*(Ring|Die).*'; 
 select count(*) from event where eventname LIKE '%Ring%' OR eventname LIKE '%Die%';
 ```
 

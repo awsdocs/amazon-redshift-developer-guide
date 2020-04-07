@@ -35,6 +35,6 @@ SELECT ST_AsText(ST_MakePolygon(ST_GeomFromText('LINESTRING(77.29 29.07,77.42 29
 
 ```
 st_astext
------------
+xxxxxxxxxxx
 POLYGON((77.29 29.07,77.42 29.26,77.27 29.31,77.29 29.07))
 ```

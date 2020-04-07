@@ -1,6 +1,6 @@
 # S3ServiceException Errors<a name="s3serviceexception-error"></a>
 
-The most common s3ServiceException errors are caused by an improperly formatted or incorrect credentials string, having your cluster and your bucket in different regions, and insufficient Amazon S3 privileges\.
+The most common s3ServiceException errors are caused by an improperly formatted or incorrect credentials string, having your cluster and your bucket in different AWS Regions, and insufficient Amazon S3 privileges\.
 
 The section provides troubleshooting information for each type of error\.
 

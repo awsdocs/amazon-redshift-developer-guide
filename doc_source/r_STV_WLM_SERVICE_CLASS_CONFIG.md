@@ -25,13 +25,12 @@ where service_class > 4;
 name                         | slots | mem | max_time | user_wildcard | query_wildcard
 -----------------------------+-------+-----+----------+---------------+---------------
 Service class for super user |     1 | 535 |        0 | false         | false   
-Service class #1             |     5 | 125 |        0 | false         | false         
-Service class #2             |     5 | 125 |        0 | false         | false         
-Service class #3             |     5 | 125 |        0 | false         | false         
-Service class #4             |     5 | 627 |        0 | false         | false         
-Service class #5             |     5 | 125 |        0 | true          | true          
-Service class #6             |     5 | 125 |        0 | false         | false      
-(6 rows)
+Queue 1                      |     5 | 125 |        0 | false         | false         
+Queue 2                      |     5 | 125 |        0 | false         | false         
+Queue 3                      |     5 | 125 |        0 | false         | false         
+Queue 4                      |     5 | 627 |        0 | false         | false         
+Queue 5                      |     5 | 125 |        0 | true          | true          
+Default queue                |     5 | 125 |        0 | false         | false
 ```
 
 The following query shows the status of a dynamic WLM transition\. While the transition is in process, `num_query_tasks` and `target_query_working_mem` are updated until they equal the target values\. For more information, see [WLM Dynamic and Static Configuration Properties](cm-c-wlm-dynamic-properties.md)\.
@@ -49,7 +48,7 @@ and service_class > 5;
 
  name             | slots | target_slots | memory | target_mem 
 ------------------+-------+--------------+--------+------------
- Service class #3 |     5 |           15 |    125 |       375 
- Service class #5 |    10 |            5 |    250 |       125 
+ Queue 3          |     5 |           15 |    125 |       375 
+ Queue 5          |    10 |            5 |    250 |       125 
  (2 rows)
 ```

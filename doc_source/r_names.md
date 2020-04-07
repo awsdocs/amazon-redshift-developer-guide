@@ -60,3 +60,11 @@ this "is it"
 --------------
 (0 rows)
 ```
+
+The following CREATE TABLE command creates a table with a slash in a column name: 
+
+```
+create table if not exists city_slash_id(
+                  "city/id" integer not null,
+                  state char(2) not null);
+```

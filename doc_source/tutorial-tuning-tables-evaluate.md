@@ -30,6 +30,6 @@ Total query execution time was reduced by 31\.4%\.
 
 The improvement in query performance was due to a combination of optimizing sort keys, distribution styles, and compression\. Often, query performance can be improved even further by rewriting queries and configuring workload management \(WLM\)\. For more information, see [Tuning Query Performance](c-optimizing-query-performance.md)\.
 
-## Next Step<a name="w6aac25c19c27c33"></a>
+## Next Step<a name="w7aac25c19c27c33"></a>
 
 [Step 9: Clean Up Your Resources](tutorial-tuning-tables-clean-up.md)

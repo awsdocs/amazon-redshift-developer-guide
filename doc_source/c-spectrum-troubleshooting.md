@@ -4,6 +4,8 @@ Following, you can find a quick reference that identifies and addresses some com
 
 **Topics**
 + [Retries Exceeded](#spectrum-troubleshooting-retries-exceeded)
++ [Access Throttled](#spectrum-troubleshooting-access-throttled)
++ [Resource Limit Exceeded](#spectrum-troubleshooting-resource-limit-exceeded)
 + [No Rows Returned for a Partitioned Table](#spectrum-troubleshooting-no-rows-partitioned-table)
 + [Not Authorized Error](#spectrum-troubleshooting-not-authorized-error)
 + [Incompatible Data Formats](#spectrum-troubleshooting-incompatible-data-format)
@@ -15,28 +17,71 @@ Following, you can find a quick reference that identifies and addresses some com
 If an Amazon Redshift Spectrum request times out, the request is canceled and resubmitted\. After five failed retries, the query fails with the following error\.
 
 ```
-error:  S3Query Exception (Fetch), retries exceeded
+error:  Spectrum Scan Error: Retries exceeded
 ```
 
 Possible causes include the following: 
 + Large file sizes \(greater than 1 GB\)\. Check your file sizes in Amazon S3 and look for large files and file size skew\. Break up large files into smaller files, between 100 MB and 1 GB\. Try to make files about the same size\. 
 + Slow network throughput\. Try your query later\. 
 
+## Access Throttled<a name="spectrum-troubleshooting-access-throttled"></a>
+
+Amazon Redshift Spectrum is subject to the service quotas of other AWS services\. Under high usage, Redshift Spectrum requests might be required to slow down, resulting in the following error\.
+
+```
+error:  Spectrum Scan Error: Access throttled
+```
+
+Two types of throttling can happen:
++ Access throttled by Amazon S3\.
++ Access throttled by AWS KMS\.
+
+The error context provides more details about the type of throttling\. Following, you can find causes and possible resolutions for this throttling\.
+
+### Access Throttled by Amazon S3<a name="spectrum-troubleshooting-access-throttled-s3"></a>
+
+Amazon S3 might throttle a Redshift Spectrum request if the read request rate on a [prefix](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) is too high\. For information about a GET/HEAD request rate that you can achieve in Amazon S3, see [Optimizing Amazon S3 Performance](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html) in *Amazon Simple Storage Service Developer Guide\.* The Amazon S3 GET/HEAD request rate takes into account all GET/HEAD requests on a prefix so different applications accessing the same prefix share the total requests rate\.
+
+If your Redshift Spectrum requests frequently get throttled by Amazon S3, reduce the number of Amazon S3 GET/HEAD requests that Redshift Spectrum makes to Amazon S3\. To do this, try merging small files into larger files\. We recommend using file sizes of 64 MB or larger\.
+
+Also consider partitioning your Redshift Spectrum tables to benefit from early filtering and to reduce the number of files accessed in Amazon S3\. For more information, see [Partitioning Redshift Spectrum External Tables](c-spectrum-external-tables.md#c-spectrum-external-tables-partitioning)\.  
+
+### Access Throttled by AWS KMS<a name="spectrum-troubleshooting-access-throttled-kms"></a>
+
+If you store your data in Amazon S3 using server\-side encryption \(SSE\-S3 or SSE\-KMS\), Amazon S3 calls an API operation to AWS KMS for each file that Redshift Spectrum accesses\. These requests count toward your cryptographic operations quota; for more information, see [AWS KMS Request Quotas](https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html)\. For more information on SSE\-S3 and SSE\-KMS, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) and [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in *Amazon Simple Storage Service Developer Guide\.*
+
+A first step to reduce the number of requests that Redshift Spectrum makes to AWS KMS is to reduce the number of files accessed\. To do this, try merging small files into larger files\. We recommend using file sizes of 64 MB or larger\.
+
+If your Redshift Spectrum requests frequently get throttled by AWS KMS, consider requesting a quota increase for your AWS KMS request rate for cryptographic operations\. To request a quota increase, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\. 
+
+## Resource Limit Exceeded<a name="spectrum-troubleshooting-resource-limit-exceeded"></a>
+
+Redshift Spectrum enforces an upper bound on the amount of memory a request can use\. A Redshift Spectrum request that requires more memory fails, resulting in the following error\.
+
+```
+error:  Spectrum Scan Error: Resource limit exceeded
+```
+
+There are two common reasons that can cause a Redshift Spectrum request to overrun its memory allowance:
++ Redshift Spectrum processes a large chunk of data that can't be split in smaller chunks\.
++ A large aggregation step is processed by Redshift Spectrum\.
+
+We recommend using a file format that supports parallel reads with split sizes of 128 MB or less\. See [Creating Data Files for Queries in Amazon Redshift Spectrum](c-spectrum-data-files.md) for supported file formats and generic guidelines for data file creation\. When using file formats or compression algorithms that don't support parallel reads, we recommend keeping file sizes between 64 MB and 128 MB\.
+
 ## No Rows Returned for a Partitioned Table<a name="spectrum-troubleshooting-no-rows-partitioned-table"></a>
 
-If your query returns zero rows from a partitioned external table, check whether a partition has been added for this external table\. Redshift Spectrum only scans files in an Amazon S3 location that has been explicitly added using ALTER TABLE … ADD PARTITION\. Query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) view to find existing partitions\. Run ALTER TABLE ADD … PARTITION for each missing partition\. 
+If your query returns zero rows from a partitioned external table, check whether a partition has been added for this external table\. Redshift Spectrum only scans files in an Amazon S3 location that has been explicitly added using `ALTER TABLE … ADD PARTITION`\. Query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) view to find existing partitions\. Run `ALTER TABLE … ADD PARTITION` for each missing partition\. 
 
 ## Not Authorized Error<a name="spectrum-troubleshooting-not-authorized-error"></a>
 
-Verify that the IAM role for the cluster allows access to the Amazon S3 file objects\. If your external database is on Amazon Athena, verify that the AWS Identity and Access Management \(IAM\) role allows access to Athena resources\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.
+Verify that the IAM role for the cluster allows access to the Amazon S3 file objects\. If your external database is on Amazon Athena, verify that the IAM role allows access to Athena resources\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.
 
 ## Incompatible Data Formats<a name="spectrum-troubleshooting-incompatible-data-format"></a>
 
-For a columnar file format, such as Parquet, the column type is embedded with the data\. The column type in the CREATE EXTERNAL TABLE definition must match the column type of the data file\. If there is a mismatch, you receive an error similar to the following:
+For a columnar file format, such as Apache Parquet, the column type is embedded with the data\. The column type in the CREATE EXTERNAL TABLE definition must match the column type of the data file\. If there is a mismatch, you receive an error similar to the following:
 
 ```
-Task failed due to an internal error. 
-File 'https://s3bucket/location/file has an incompatible Parquet schema 
+File 'https://s3bucket/location/file has an incompatible Parquet schema
 for column ‘s3://s3bucket/location.col1'. Column type: VARCHAR, Par
 ```
 
@@ -56,8 +101,7 @@ The following is an example of a result that shows the full error message\.
 ```
                             message
 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––-
-S3 Query Exception (Fetch). Task failed due to an internal error. 
-File 'https://s3bucket/location/file has an incompatible 
+Spectrum Scan Error. File 'https://s3bucket/location/file has an incompatible
 Parquet schema for column ' s3bucket/location.col1'. 
 Column type: VARCHAR, Parquet schema:\noptional int64 l_orderkey [i:0 d:1 r:0]\n
 ```

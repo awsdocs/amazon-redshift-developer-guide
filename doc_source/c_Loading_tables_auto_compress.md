@@ -90,4 +90,4 @@ In this example, assume that the TICKIT database contains a copy of the LISTING 
    (1 row)
    ```
 
-When rows are later appended to this table using COPY or INSERT statements, the same compression encodings will be applied\.
+When rows are later appended to this table using COPY or INSERT statements, the same compression encodings are applied\.

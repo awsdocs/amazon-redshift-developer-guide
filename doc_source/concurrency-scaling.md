@@ -25,7 +25,7 @@ The Concurrency Scaling feature is available only in the following AWS Regions:
 
 Queries are routed to the concurrency scaling cluster only when the main cluster meets the following requirements:
 + EC2\-VPC platform 
-+ Node type must be `dc2.8xlarge`, `ds2.8xlarge`, `dc2.large`, `ds2.xlarge`, or `ra3.16xlarge` 
++ Node type must be `dc2.8xlarge`, `ds2.8xlarge`, `dc2.large`, `ds2.xlarge`, `ra3.4xlarge`, or `ra3.16xlarge` 
 + Maximum of 32 compute nodes for clusters with `8xlarge` node types 
 + Not a single\-node cluster 
 

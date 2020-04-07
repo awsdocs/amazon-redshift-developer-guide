@@ -45,6 +45,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_S3CLIENT\_ERROR](r_STL_S3CLIENT_ERROR.md)
 + [STL\_SAVE](r_STL_SAVE.md)
 + [STL\_SCAN](r_STL_SCAN.md)
++ [STL\_SCHEMA\_QUOTA\_VIOLATIONS](r_STL_SCHEMA_QUOTA_VIOLATIONS.md)
 + [STL\_SESSIONS](r_STL_SESSIONS.md)
 + [STL\_SORT](r_STL_SORT.md)
 + [STL\_SSHCLIENT\_ERROR](r_STL_SSHCLIENT_ERROR.md)

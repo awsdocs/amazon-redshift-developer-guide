@@ -68,4 +68,4 @@ Note the following considerations when you use Amazon Redshift Spectrum:
   ```
 
   For more information, see [GRANT](r_GRANT.md)\.
-+ When using the Athena data catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide\.* 
++ When using the Athena Data Catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide\.* 

@@ -1,6 +1,6 @@
 # Step 2: Associate the IAM Role with Your Cluster<a name="c-getting-started-using-spectrum-add-role"></a>
 
-Now you have an IAM role that authorizes Amazon Redshift to access the external data catalog and Amazon S3 for you\. At this point, you must associate that role with your Amazon Redshift cluster\.
+Now you have an IAM role that authorizes Amazon Redshift to access the external Data Catalog and Amazon S3 for you\. At this point, you must associate that role with your Amazon Redshift cluster\.
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.

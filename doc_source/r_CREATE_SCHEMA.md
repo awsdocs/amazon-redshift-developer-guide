@@ -5,9 +5,10 @@ Defines a new schema for the current database\.
 ## Syntax<a name="r_CREATE_SCHEMA-synopsis"></a>
 
 ```
-CREATE SCHEMA [ IF NOT EXISTS ] schema_name [ AUTHORIZATION username ] [ schema_element [ ... ] ]
+CREATE SCHEMA [ IF NOT EXISTS ] schema_name [ AUTHORIZATION username ] 
+           [ QUOTA {quota [MB | GB | TB] | UNLIMITED} ] [ schema_element [ ... ] 
 
-CREATE SCHEMA AUTHORIZATION username [ schema_element [ ... ] ]
+CREATE SCHEMA AUTHORIZATION username[ QUOTA {quota [MB | GB | TB] | UNLIMITED} ] [ schema_element [ ... ] ]
 ```
 
 ## Parameters<a name="r_CREATE_SCHEMA-parameters"></a>
@@ -29,20 +30,41 @@ Name of the schema owner\.
  *schema\_element*   
 Definition for one or more objects to be created within the schema\.
 
-## Limits<a name="w6aac49b9c79b9"></a>
+QUOTA  
+The maximum amount of disk space that the specified schema can use\. This space is the collective disk usage\. It includes all permanent tables, materialized views under the specified schema, and duplicate copies of all tables with ALL distribution on each compute node\. The schema quota doesn't take into account temporary tables created as part of a temporary namespace or schema\.   
+Amazon Redshift converts the selected value to megabytes\. Gigabytes is the default unit of measurement when you don't specify a value\.  
+You must be a database superuser to set and change a schema quota\. A user that is not a superuser but that has CREATE SCHEMA permission can create a schema with a defined quota\. When you create a schema without defining a quota, the schema has an unlimited quota\. When you set the quota below the current value used by the schema, Amazon Redshift doesn't allow further ingestion until you free disk space\. A DELETE statement deletes data from a table and disk space is freed up only when VACUUM runs\.   
+Amazon Redshift checks each transaction for quota violations before committing the transaction\. Amazon Redshift checks the size \(the disk space used by all tables in a schema\) of each modified schema against the set quota\. Because the quota violation check occurs at the end of a transaction, the size limit can exceed the quota temporarily within a transaction before it's committed\. When a transaction exceeds the quota, Amazon Redshift aborts the transaction, prohibits subsequent ingestions, and reverts all the changes until you free disk space\. Due to background VACUUM and internal cleanup, it is possible that a schema isn't full by the time that you check the schema after an aborted transaction\.   
+As an exception, Amazon Redshift disregards the quota violation and commits transactions in certain cases\. Amazon Redshift does this for transactions that consist solely of one or more of the following statements where there isn't an INSERT or COPY ingestion statement in the same schema:  
++ DELETE
++ TRUNCATE
++ VACUUM
++ DROP TABLE
++ ALTER TABLE APPEND only when moving data from the full schema to another non\-full schema
+
+ *UNLIMITED*   
+Amazon Redshift imposes no limit to the growth of the total size of the schema\.
+
+## Limits<a name="r_CREATE_SCHEMA-limit"></a>
 
 Amazon Redshift enforces the following limits for schemas\.
 + There is a maximum of 9900 schemas per database\.
 
 ## Examples<a name="r_CREATE_SCHEMA-examples"></a>
 
-The following example creates a schema named US\_SALES and gives ownership to the user DWUSER:
+The following example creates a schema named US\_SALES and gives ownership to the user DWUSER\.
 
 ```
 create schema us_sales authorization dwuser;
 ```
 
-To view the new schema, query the PG\_NAMESPACE catalog table as shown following:
+The following example creates a schema named US\_SALES, gives ownership to the user DWUSER, and sets the quota to 50 GB\.
+
+```
+create schema us_sales authorization dwuser QUOTA 50 GB;
+```
+
+To view the new schema, query the PG\_NAMESPACE catalog table as shown following\.
 
 ```
 select nspname as schema, usename as owner
@@ -56,7 +78,7 @@ and pg_user.usename ='dwuser';
 (1 row)
 ```
 
-The following example either creates the US\_SALES schema, or does nothing and returns a message if it already exists:
+The following example either creates the US\_SALES schema, or does nothing and returns a message if it already exists\.
 
 ```
 create schema if not exists us_sales;

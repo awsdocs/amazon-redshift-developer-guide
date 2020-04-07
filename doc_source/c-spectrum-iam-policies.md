@@ -1,10 +1,10 @@
 # IAM Policies for Amazon Redshift Spectrum<a name="c-spectrum-iam-policies"></a>
 
-By default, Amazon Redshift Spectrum uses the AWS Glue Data Catalog in AWS Regions that support AWS Glue\. In other AWS Regions, Redshift Spectrum uses the Athena data catalog\. Your cluster needs authorization to access your external data catalog in AWS Glue or Athena and your data files in Amazon S3\. You provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster\. If you use an Apache Hive metastore to manage your data catalog, you don't need to provide access to Athena\.
+By default, Amazon Redshift Spectrum uses the AWS Glue Data Catalog in AWS Regions that support AWS Glue\. In other AWS Regions, Redshift Spectrum uses the Athena Data Catalog\. Your cluster needs authorization to access your external data catalog in AWS Glue or Athena and your data files in Amazon S3\. You provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster\. If you use an Apache Hive metastore to manage your data catalog, you don't need to provide access to Athena\.
 
 You can chain roles so that your cluster can assume other roles not attached to the cluster\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](#c-spectrum-chaining-roles)\.
 
-The AWS Glue catalog that you access might be encrypted to increase security\. If the AWS Glue catalog is encrypted, you need the AWS KMS key for AWS Glue to access the AWS Glue catalog\. For more information, see [Encrypting Your AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html) in the *[AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/)\.*
+The AWS Glue catalog that you access might be encrypted to increase security\. If the AWS Glue catalog is encrypted, you need the AWS KMS key for AWS Glue to access the AWS Glue Data Catalog\. For more information, see [Encrypting Your AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html) in the *[AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/)\.*
 
 **Topics**
 + [Amazon S3 Permissions](#spectrum-iam-policies-s3)
@@ -15,7 +15,7 @@ The AWS Glue catalog that you access might be encrypted to increase security\. I
 + [Controlling Access to the AWS Glue Data Catalog](#c-spectrum-glue-acess)
 
 **Note**  
-If you currently have Redshift Spectrum external tables in the Athena data catalog, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
+If you currently have Redshift Spectrum external tables in the Athena Data Catalog, you can migrate your Athena Data Catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
 
 ## Amazon S3 Permissions<a name="spectrum-iam-policies-s3"></a>
 
@@ -197,7 +197,7 @@ iam_role 'arn:aws:iam::123456789012:role/MyRedshiftRole,arn:aws:iam::11112222333
 
 ## Controlling Access to the AWS Glue Data Catalog<a name="c-spectrum-glue-acess"></a>
 
-If you use AWS Glue for your data catalog, you can apply fine\-grained access control to the data catalog with your IAM policy\. For example, you might want to expose only a few databases and tables to a specific IAM role\.
+If you use AWS Glue for your data catalog, you can apply fine\-grained access control to the AWS Glue Data Catalog with your IAM policy\. For example, you might want to expose only a few databases and tables to a specific IAM role\.
 
 The following sections describe the IAM policies for various levels of access to data stored in the AWS Glue Data Catalog\.
 

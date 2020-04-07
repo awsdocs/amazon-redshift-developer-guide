@@ -79,7 +79,7 @@ Name of a column to be created in the new table\. The maximum length for the col
 If you are creating a "wide table," take care that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage Notes](r_CREATE_TABLE_usage.md)\.
 
  *data\_type*   
-The data type of the column being created\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.  
+Data type of the column being created\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.  
 The following [Data Types](c_Supported_data_types.md) are supported:  
 + SMALLINT \(INT2\)
 + INTEGER \(INT, INT4\)
@@ -171,7 +171,7 @@ A clause that specifies an existing table from which the new table automatically
 Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you can't explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
 
 BACKUP \{ YES \| NO \}   <a name="create-table-backup"></a>
-A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that don't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no effect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
+A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that don't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no affect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
 
 DISTSTYLE \{ AUTO \| EVEN \| KEY \| ALL \}  
 Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\. The default is AUTO\.  

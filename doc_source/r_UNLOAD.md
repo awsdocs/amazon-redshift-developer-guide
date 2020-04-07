@@ -16,7 +16,7 @@ authorization
 
 where option is
 { [ FORMAT [ AS ] ] CSV | PARQUET
-| PARTITION BY ( column_name [, ... ] ) ]
+| PARTITION BY ( column_name [, ... ] ) [INCLUDE]
 | MANIFEST [ VERBOSE ] 
 | HEADER           
 | DELIMITER [ AS ] 'delimiter-char' 
@@ -62,13 +62,14 @@ Authorization
 The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD command uses the same parameters the COPY command uses for authorization\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command syntax reference\.
 
 \[ FORMAT \[AS\] \] CSV \| PARQUET  <a name="unload-csv"></a>
-When CSV, unloads to a text file in CSV format using a comma \( , \) character as the delimiter\. If a field contains commas, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\.   
+When CSV, unloads to a text file in CSV format using a comma \( , \) character as the default delimiter\. If a field contains delimiters, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\.   
 When PARQUET, unloads to a file in Apache Parquet version 1\.0 format\. By default, each row group is compressed using SNAPPY compression\. For more information about Apache Parquet format, see [Parquet](https://parquet.apache.org/)\.   
-The FORMAT and AS keywords are optional\. You can't use CSV with DELIMITER or FIXEDWIDTH\. You can't use PARQUET with DELIMITER, FIXEDWIDTH, ADDQUOTES, ESCAPE, NULL AS, HEADER, GZIP, BZIP2, or ZSTD\. PARQUET with ENCRYPTED is only supported with server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\.
+The FORMAT and AS keywords are optional\. You can't use CSV with FIXEDWIDTH\. You can't use PARQUET with DELIMITER, FIXEDWIDTH, ADDQUOTES, ESCAPE, NULL AS, HEADER, GZIP, BZIP2, or ZSTD\. PARQUET with ENCRYPTED is only supported with server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\.
 
-PARTITION BY \( *column\_name* \[, \.\.\. \] \)   <a name="unload-partitionby"></a>
+PARTITION BY \( *column\_name* \[, \.\.\. \] \) \[INCLUDE\]  <a name="unload-partitionby"></a>
 Specifies the partition keys for the unload operation\. UNLOAD automatically partitions output files into partition folders based on the partition key values, following the Apache Hive convention\. For example, a Parquet file that belongs to the partition year 2019 and the month September has the following prefix: `s3://my_bucket_name/my_prefix/year=2019/month=September/000.parquet`\.   
-The value for *column\_name* must be a column in the query results being unloaded\. 
+The value for *column\_name* must be a column in the query results being unloaded\.   
+If you specify PARTITION BY with the INCLUDE option, partition columns aren't removed from the unloaded files\. 
 
 MANIFEST \[ VERBOSE \]  
 Creates a manifest file that explicitly lists details for the data files that are created by the UNLOAD process\. The manifest is a text file in JSON format that lists the URL of each file that was written to Amazon S3\.   
@@ -81,10 +82,10 @@ You can specify VERBOSE only following MANIFEST\.
 The manifest file is written to the same Amazon S3 path prefix as the unload files in the format `<object_path_prefix>manifest`\. For example, if UNLOAD specifies the Amazon S3 path prefix '`s3://mybucket/venue_`', the manifest file location is '`s3://mybucket/venue_manifest`'\.
 
 HEADER  
-Adds a header line containing column names at the top of each output file\. Text transformation options, such as CSV, DELIMITER, ADDQUOTES, and ESCAPE, also apply to the header line\. HEADER can't be used with FIXEDWIDTH\.
+Adds a header line containing column names at the top of each output file\. Text transformation options, such as CSV, DELIMITER, ADDQUOTES, and ESCAPE, also apply to the header line\. You can't use HEADER with FIXEDWIDTH\.
 
 DELIMITER AS '*delimiter\_character*'   
-Single ASCII character that is used to separate fields in the output file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. The default delimiter is a pipe character\. The AS keyword is optional\. DELIMITER can't be used with FIXEDWIDTH\. If the data contains the delimiter character, you need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotation marks\. Alternatively, specify a delimiter that isn't contained in the data\.
+Specifies a single ASCII character that is used to separate fields in the output file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. The default delimiter for text files is a pipe character\.  The default delimiter for CSV files is a comma character\. The AS keyword is optional\. You can't use DELIMITER with FIXEDWIDTH\. If the data contains the delimiter character, you need to specify the ESCAPE option to escape the delimiter, or use ADDQUOTES to enclose the data in double quotation marks\. Alternatively, specify a delimiter that isn't contained in the data\.
 
 FIXEDWIDTH '*fixedwidth\_spec*'   
 Unloads the data to a file where each column width is a fixed length, rather than separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies the number of columns and the width of the columns\. The AS keyword is optional\. Because FIXEDWIDTH doesn't truncate data, the specification for each column in the UNLOAD statement needs to be at least as long as the length of the longest entry for that column\. The format for *fixedwidth\_spec* is shown below:   
@@ -92,20 +93,20 @@ Unloads the data to a file where each column width is a fixed length, rather tha
 ```
 'colID1:colWidth1,colID2:colWidth2, ...'
 ```
-FIXEDWIDTH can't be used with DELIMITER or HEADER\.
+You can't use FIXEDWIDTH with DELIMITER or HEADER\.
 
 ENCRYPTED  <a name="unload-parameters-encrypted"></a>
-A clause that specifies that the output files on Amazon S3 are encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
+Specifies that the output files on Amazon S3 are encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\), use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you UNLOAD data using KMS\_KEY\_ID, you can then COPY the same data without specifying a key\.   
 To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key using the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the **master\_symmetric\_key** portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, you must supply the same key when you COPY the encrypted data\.   
 UNLOAD doesn't support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
 To compress encrypted unload files, add the BZIP2, GZIP, or ZSTD parameter\. 
 
 KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
-The key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
+Specifies the key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
 
 MASTER\_SYMMETRIC\_KEY '*master\_key*'  <a name="unload-parameters-master-symmetric-key"></a>
-The master symmetric key to be used to encrypt data files on Amazon S3\. If you specify MASTER\_SYMMETRIC\_KEY, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. MASTER\_SYMMETRIC\_KEY can't be used with the CREDENTIALS parameter\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. 
+Specifies the master symmetric key to be used to encrypt data files on Amazon S3\. If you specify MASTER\_SYMMETRIC\_KEY, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. You can't use MASTER\_SYMMETRIC\_KEY with the CREDENTIALS parameter\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. 
 
 BZIP2   
 Unloads data to one or more bzip2\-compressed files per slice\. Each resulting file is appended with a `.bz2` extension\. 
@@ -156,10 +157,10 @@ s3://mybucket/key002    1.0 GB
 The UNLOAD command is designed to use parallel processing\. We recommend leaving PARALLEL enabled for most cases, especially if the files are used to load tables using a COPY command\.
 
 MAXFILESIZE AS max\-size \[ MB \| GB \]   <a name="unload-maxfilesize"></a>
-The maximum size of files UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE isn't specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, isn't affected by MAXFILESIZE\.
+Specifies the maximum size of files that UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE isn't specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, isn't affected by MAXFILESIZE\.
 
 REGION \[AS\] '*aws\-region*'  <a name="unload-region"></a>
-The AWS Region where the target Amazon S3 bucket is located\. REGION is required for UNLOAD to an Amazon S3 bucket that isn't in the same AWS Region as the Amazon Redshift cluster\.   
+Specifies the AWS Region where the target Amazon S3 bucket is located\. REGION is required for UNLOAD to an Amazon S3 bucket that isn't in the same AWS Region as the Amazon Redshift cluster\.   
 The value for *aws\_region* must match an AWS Region listed in the [Amazon Redshift regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) table in the *AWS General Reference*\.  
 By default, UNLOAD assumes that the target Amazon S3 bucket is located in the same AWS Region as the Amazon Redshift cluster\.
 

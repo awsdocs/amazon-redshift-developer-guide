@@ -38,18 +38,45 @@ To access the AWS resources that contain the data to load, you must provide AWS 
 <a name="tutorial-loading-syntax-options.title"></a>Options
 
 You can specify a number of parameters with the COPY command to specify file formats, manage data formats, manage errors, and control other features\. In this tutorial, you use the following COPY command options and features: 
-+ [Key Prefix](#tutorial-loading-key-prefix)
-+ [CSV Format](#tutorial-loading-csv-format)
-+ [NULL AS](#tutorial-loading-null-as)
-+ [REGION](#tutorial-loading-region)
-+ [Fixed\-Width Format](#tutorial-loading-fixed-width)
-+ [MAXERROR](#tutorial-loading-maxerror)
-+ [ACCEPTINVCHARS](#tutorial-loading-acceptinvchars)
-+ [MANIFEST](#tutorial-loading-manifest)
-+ [DATEFORMAT](#tutorial-loading-dateformat)
-+ [GZIP, LZOP and BZIP2](#tutorial-loading-gzip-lzop)
-+ [COMPUPDATE](#tutorial-loading-compupdate)
-+ [Multiple Files](#tutorial-loading-multiple-files)
++ Key prefix
+
+  For information on how to load from multiple files by specifying a key prefix, see [Load the PART Table Using NULL AS](#tutorial-loading-load-part)\.
++ CSV format
+
+  For information on how to load data that is in CSV format, see [Load the PART Table Using NULL AS](#tutorial-loading-load-part)\.
++ NULL AS
+
+  For information on how to load PART using the NULL AS option, see [Load the PART Table Using NULL AS](#tutorial-loading-load-part)\.
++ Character\-delimited format
+
+  For information on how to use the DELIMITER option, see [Load the SUPPLIER table Using REGION](#tutorial-loading-load-supplier)\.
++ REGION
+
+  For information on how to use the REGION option, see [Load the SUPPLIER table Using REGION](#tutorial-loading-load-supplier)\.
++ Fixed\-format width
+
+  For information on how to load the CUSTOMER table from fixed\-width data, see [Load the CUSTOMER Table Using MANIFEST](#tutorial-loading-load-customer)\.
++ MAXERROR
+
+  For information on how to use the MAXERROR option, see [Load the CUSTOMER Table Using MANIFEST](#tutorial-loading-load-customer)\.
++ ACCEPTINVCHARS
+
+  For information on how to use the ACCEPTINVCHARS option, see [Load the CUSTOMER Table Using MANIFEST](#tutorial-loading-load-customer)\.
++ MANIFEST
+
+  For information on how to use the MANIFEST option, see [Load the CUSTOMER Table Using MANIFEST](#tutorial-loading-load-customer)\.
++ DATEFORMAT
+
+  For information on how to use the DATEFORMAT option, see [Load the DWDATE Table Using DATEFORMAT](#tutorial-loading-load-dwdate)\.
++ GZIP, LZOP and BZIP2
+
+  For information on how to compress your files, see [Load the LINEORDER Table Using Multiple Files](#tutorial-loading-load-lineorder)\.
++ COMPUPDATE
+
+  For information on how to use the COMPUPDATE option, see [Load the LINEORDER Table Using Multiple Files](#tutorial-loading-load-lineorder)\.
++ Multiple files
+
+  For information on how to load multiple files, see [Load the LINEORDER Table Using Multiple Files](#tutorial-loading-load-lineorder)\.
 
 ## Loading the SSB Tables<a name="tutorial-loading-run-copy-load-tables"></a>
 

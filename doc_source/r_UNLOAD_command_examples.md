@@ -69,7 +69,19 @@ s3://mybucket/lineitem/l_shipdate=1992-01-04/0000_part_00.parquet
 ...
 ```
 
-## Unload VENUE to a CSV file<a name="unload-examples-csv"></a>
+**Note**  
+In some cases, the UNLOAD command used the INCLUDE option as shown in the following SQL statement\.   
+
+```
+unload ('select * from lineitem')
+to 's3://mybucket/lineitem/'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+PARQUET
+PARTITION BY (l_shipdate) INCLUDE;
+```
+In these cases, the `l_shipdate` column is also in the data in the Parquet files\. Otherwise, the `l_shipdate` column data isn't in the Parquet files\.
+
+## Unload VENUE to a CSV File<a name="unload-examples-csv"></a>
 
 The following example unloads the VENUE table and writes the data in CSV format to `s3://mybucket/unload/`\.
 
@@ -80,22 +92,51 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 CSV;
 ```
 
-Suppose the VENUE table contains the following rows\.
+Suppose that the VENUE table contains the following rows\.
 
 ```
 venueid | venuename                  | venuecity       | venuestate | venueseats
--\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-
-      1 | Pinewood Racetrack         | Akron           | OH         |          0
-      2 | Columbus "Crew" Stadium    | Columbus        | OH         |          0
-      4 | Community, Ballpark, Arena | Kansas City     | KS         |          0
+--------+----------------------------+-----------------+------------+-----------
+      1 | Pinewood Racetrack         | Akron           | OH         | 0
+      2 | Columbus "Crew" Stadium    | Columbus        | OH         | 0
+      4 | Community, Ballpark, Arena | Kansas City     | KS         | 0
 ```
 
-The unload file would look similar to the following\.
+The unload file looks similar to the following\.
 
 ```
 1,Pinewood Racetrack,Akron,OH,0
 2,"Columbus ""Crew"" Stadium",Columbus,OH,0
 4,"Community, Ballpark, Arena",Kansas City,KS,0
+```
+
+## Unload VENUE to a CSV File Using a Delimiter<a name="unload-examples-csv-delimiter"></a>
+
+The following example unloads the VENUE table and writes the data in CSV format using the pipe character \(\|\) as the delimiter\. The unloaded file is written to `s3://mybucket/unload/`\. The VENUE table in this example contains the pipe character in the value of the first row \(`Pinewood Race|track`\)\. It does this to show that the value in the result is enclosed in double quotation marks\. A double quotation mark is escaped by a double quotation mark, and the entire field is enclosed in double quotation marks\. 
+
+```
+unload ('select * from venue')
+to 's3://mybucket/unload/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+CSV DELIMITER AS '|';
+```
+
+Suppose that the VENUE table contains the following rows\.
+
+```
+venueid | venuename                  | venuecity       | venuestate | venueseats
+--------+----------------------------+-----------------+------------+-------------
+      1 | Pinewood Race|track        | Akron           | OH         | 0
+      2 | Columbus "Crew" Stadium    | Columbus        | OH         | 0
+      4 | Community, Ballpark, Arena | Kansas City     | KS         | 0
+```
+
+The unload file looks similar to the following\.
+
+```
+1|"Pinewood Race|track"|Akron|OH|0
+2|"Columbus ""Crew"" Stadium"|Columbus|OH|0
+4|Community, Ballpark, Arena|Kansas City|KS|0
 ```
 
 ## Unload VENUE with a Manifest File<a name="unload-examples-manifest"></a>

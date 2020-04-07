@@ -207,7 +207,7 @@ to iam_role 'arn:aws:iam::123456789012:role/myGrantee';
 
 Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
 
-## Usage Notes for Column\-Level Privileges<a name="r_GRANT-usage-notes-clp"></a>
+## Usage Notes for Column\-Level Access Control<a name="r_GRANT-usage-notes-clp"></a>
 
 The following usage notes apply to column\-level privileges on Amazon Redshift tables and views\. These notes describe tables; the same notes apply to views unless we explicitly note an exception\. 
 

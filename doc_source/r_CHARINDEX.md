@@ -18,7 +18,7 @@ The string or column to be searched\.
 
 ## Return Type<a name="charindex-return-type"></a>
 
-The CHARINDEX function returns an integer corresponding to the position of the substring \(one\-based, not zerobased\)\. The position is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\.
+The CHARINDEX function returns an integer corresponding to the position of the substring \(one\-based, not zero\-based\)\. The position is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\.
 
 ## Usage Notes<a name="charindex-usage_notes"></a>
 

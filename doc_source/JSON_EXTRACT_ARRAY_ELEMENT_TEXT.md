@@ -27,7 +27,7 @@ A VARCHAR string representing the JSON array element referenced by *pos*\.
 
 ## Example<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT-examples"></a>
 
-The following example returns array element at position 2: 
+The following example returns array element at position 2, which is the third element of a zero\-based array index: 
 
 ```
 select json_extract_array_element_text('[111,112,113]', 2);

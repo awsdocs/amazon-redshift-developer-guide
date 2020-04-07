@@ -2,7 +2,7 @@
 
 Starts a transaction\. Synonymous with START TRANSACTION\.
 
-A transaction is a single, logical unit of work, whether it consists of one command or multiple commands\. In general, all commands in a transaction execute on a snapshot of the database whose starting time is determined by the value set for the transaction\_snapshot\_begin system configuration parameter\.
+A transaction is a single, logical unit of work, whether it consists of one command or multiple commands\. In general, all commands in a transaction execute on a snapshot of the database whose starting time is determined by the value set for the `transaction_snapshot_begin` system configuration parameter\.
 
 By default, individual Amazon Redshift operations \(queries, DDL statements, loads\) are automatically committed to the database\. If you want to suspend the commit for an operation until subsequent work is completed, you need to open a transaction with the BEGIN statement, then run the required commands, then close the transaction with a [COMMIT](r_COMMIT.md) or [END](r_END.md) statement\. If necessary, you can use a [ROLLBACK](r_ROLLBACK.md) statement to abort a transaction that is in progress\. An exception to this behavior is the [TRUNCATE](r_TRUNCATE.md) command, which commits the transaction in which it is run and can't be rolled back\.
 

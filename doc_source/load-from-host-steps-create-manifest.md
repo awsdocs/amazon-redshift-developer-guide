@@ -1,6 +1,8 @@
 # Step 5: Create a Manifest File<a name="load-from-host-steps-create-manifest"></a>
 
-The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY executes a command through each host connection, and then loads the output from the commands in parallel into the table\. The manifest file is a text file in JSON format that Amazon Redshift uses to connect to the host\. The manifest file specifies the SSH host endpoints and the commands that will be executed on the hosts to return data to Amazon Redshift\. Optionally, you can include the host public key, the login user name, and a mandatory flag for each entry\.
+The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY executes a command through each host connection, and then loads the output from the commands in parallel into the table\. The manifest file is a text file in JSON format that Amazon Redshift uses to connect to the host\. The manifest file specifies the SSH host endpoints and the commands that are executed on the hosts to return data to Amazon Redshift\. Optionally, you can include the host public key, the login user name, and a mandatory flag for each entry\.
+
+Create the manifest file on your local computer\. In a later step, you upload the file to Amazon S3\. 
 
 The manifest file is in the following format:
 
@@ -23,7 +25,7 @@ The manifest file is in the following format:
 
 The manifest file contains one "entries" construct for each SSH connection\. Each entry represents a single SSH connection\. You can have multiple connections to a single host or multiple connections to multiple hosts\. The double quotes are required as shown, both for the field names and the values\. The only value that does not need double quotes is the Boolean value **true** or **false** for the mandatory field\. 
 
-The following table describes the fields in the manifest file\. 
+The following describes the fields in the manifest file\. 
 
 endpoint  
 The URL address or IP address of the host\. For example, "`ec2-111-222-333.compute-1.amazonaws.com`" or "`22.33.44.56`" 

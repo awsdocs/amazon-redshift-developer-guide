@@ -49,7 +49,7 @@ Note the following elements in the query plan:
 + The `S3 HashAggregate` node indicates aggregation in the Redshift Spectrum layer for the group by clause \(`group by spectrum.sales.eventid`\)\.
 
 Following are ways to improve Redshift Spectrum performance:
-+ Use Parquet formatted data files\. Parquet stores data in a columnar format, so Redshift Spectrum can eliminate unneeded columns from the scan\. When data is in text\-file format, Redshift Spectrum needs to scan the entire file\.
++ Use Apache Parquet formatted data files\. Parquet stores data in a columnar format, so Redshift Spectrum can eliminate unneeded columns from the scan\. When data is in text\-file format, Redshift Spectrum needs to scan the entire file\.
 + Use the fewest columns possible in your queries\.
 + Use multiple files to optimize for parallel processing\. Keep your file sizes larger than 64 MB\. Avoid data size skew by keeping files about the same size\.
 + Put your large fact tables in Amazon S3 and keep your frequently used, smaller dimension tables in your local Amazon Redshift database\.
