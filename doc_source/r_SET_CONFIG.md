@@ -21,7 +21,7 @@ New value of the parameter\.
  *is\_local*   
 If true, parameter value applies only to the current transaction\. Valid values are `true` or `1` and `false` or `0`\. 
 
-## Return Type<a name="r_SET_CONFIG-return-type"></a>
+## Return type<a name="r_SET_CONFIG-return-type"></a>
 
 Returns a CHAR or VARCHAR string\.
 

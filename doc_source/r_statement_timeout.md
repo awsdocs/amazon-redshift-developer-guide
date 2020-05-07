@@ -1,6 +1,6 @@
 # statement\_timeout<a name="r_statement_timeout"></a>
 
-## Values \(Default in Bold\)<a name="r_statement_timeout-values"></a>
+## Values \(default in bold\)<a name="r_statement_timeout-values"></a>
 
  **0 \(turns off limitation\)**, x milliseconds
 
@@ -10,7 +10,7 @@ Aborts any statement that takes over the specified number of milliseconds\.
 
 The statement\_timeout value is the maximum amount of time a query can run before Amazon Redshift terminates it\. This time includes planning, queueing in WLM, and execution time\. Compare this time to WLM timeout \(max\_execution\_time\) and a QMR \(query\_execution\_time\), which include only execution time\.
 
-If WLM timeout \(max\_execution\_time\) is also specified as part of a WLM configuration, the lower of statement\_timeout and max\_execution\_time is used\. For more information, see [WLM Timeout](cm-c-defining-query-queues.md#wlm-timeout)\.
+If WLM timeout \(max\_execution\_time\) is also specified as part of a WLM configuration, the lower of statement\_timeout and max\_execution\_time is used\. For more information, see [WLM timeout](cm-c-defining-query-queues.md#wlm-timeout)\.
 
 ## Example<a name="r_statement_timeout-example"></a>
 

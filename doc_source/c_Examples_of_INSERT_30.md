@@ -1,4 +1,4 @@
-# INSERT Examples<a name="c_Examples_of_INSERT_30"></a>
+# INSERT examples<a name="c_Examples_of_INSERT_30"></a>
 
 The CATEGORY table in the TICKIT database contains the following rows: 
 

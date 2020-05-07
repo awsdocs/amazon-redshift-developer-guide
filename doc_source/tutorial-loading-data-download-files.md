@@ -1,4 +1,4 @@
-# Step 2: Download the Data Files<a name="tutorial-loading-data-download-files"></a>
+# Step 2: Download the data files<a name="tutorial-loading-data-download-files"></a>
 
 In this step, you download a set of sample data files to your computer\. In the next step, you upload the files to an Amazon S3 bucket\.
 
@@ -40,6 +40,6 @@ In this step, you download a set of sample data files to your computer\. In the 
    part-csv.tbl-007
    ```
 
-## Next Step<a name="tutorial-loading-next-step3"></a>
+## Next step<a name="tutorial-loading-next-step3"></a>
 
-[Step 3: Upload the Files to an Amazon S3 Bucket](tutorial-loading-data-upload-files.md)
+[Step 3: Upload the files to an Amazon S3 bucket](tutorial-loading-data-upload-files.md)

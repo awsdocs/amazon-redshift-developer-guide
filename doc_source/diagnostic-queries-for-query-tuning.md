@@ -1,20 +1,20 @@
-# Diagnostic Queries for Query Tuning<a name="diagnostic-queries-for-query-tuning"></a>
+# Diagnostic queries for query tuning<a name="diagnostic-queries-for-query-tuning"></a>
 
-Use the following queries to identify issues with queries or underlying tables that can affect query performance\. We recommend using these queries in conjunction with the query tuning processes discussed in [Analyzing and Improving Queries](c-query-tuning.md)\.
+Use the following queries to identify issues with queries or underlying tables that can affect query performance\. We recommend using these queries in conjunction with the query tuning processes discussed in [Analyzing and improving queries](c-query-tuning.md)\.
 
 **Topics**
-+ [Identifying Queries That Are Top Candidates for Tuning](#identify-queries-that-are-top-candidates-for-tuning)
-+ [Identifying Tables with Data Skew or Unsorted Rows](#identify-tables-with-data-skew-or-unsorted-rows)
-+ [Identifying Queries with Nested Loops](#identify-queries-with-nested-loops)
-+ [Reviewing Queue Wait Times for Queries](#review-queue-wait-times-for-queries)
-+ [Reviewing Query Alerts by Table](#review-query-alerts-by-table)
-+ [Identifying Tables with Missing Statistics](#identify-tables-with-missing-statistics)
++ [Identifying queries that are top candidates for tuning](#identify-queries-that-are-top-candidates-for-tuning)
++ [Identifying tables with data skew or unsorted rows](#identify-tables-with-data-skew-or-unsorted-rows)
++ [Identifying queries with nested loops](#identify-queries-with-nested-loops)
++ [Reviewing queue wait times for queries](#review-queue-wait-times-for-queries)
++ [Reviewing query alerts by table](#review-query-alerts-by-table)
++ [Identifying tables with missing statistics](#identify-tables-with-missing-statistics)
 
-## Identifying Queries That Are Top Candidates for Tuning<a name="identify-queries-that-are-top-candidates-for-tuning"></a>
+## Identifying queries that are top candidates for tuning<a name="identify-queries-that-are-top-candidates-for-tuning"></a>
 
 The following query identifies the top 50 most time\-consuming statements that have been executed in the last 7 days\. You can use the results to identify queries that are taking unusually long, and also to identify queries that are run frequently \(those that appear more than once in the result set\)\. These queries are frequently good candidates for tuning to improve system performance\.
 
-This query also provides a count of the alert events associated with each query identified\. These alerts provide details that you can use to improve the query’s performance\. For more information, see [Reviewing Query Alerts](c-reviewing-query-alerts.md)\.
+This query also provides a count of the alert events associated with each query identified\. These alerts provide details that you can use to improve the query’s performance\. For more information, see [Reviewing query alerts](c-reviewing-query-alerts.md)\.
 
 ```
 select trim(database) as db, count(query) as n_qry, 
@@ -41,13 +41,13 @@ group by database, label, qry_md5, aborted
 order by total desc limit 50;
 ```
 
-## Identifying Tables with Data Skew or Unsorted Rows<a name="identify-tables-with-data-skew-or-unsorted-rows"></a>
+## Identifying tables with data skew or unsorted rows<a name="identify-tables-with-data-skew-or-unsorted-rows"></a>
 
 The following query identifies tables that have uneven data distribution \(data skew\) or a high percentage of unsorted rows\.
 
-A low `skew` value indicates that table data is properly distributed\. If a table has a `skew` value of 4\.00 or higher, consider modifying its data distribution style\. For more information, see [Suboptimal Data Distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.
+A low `skew` value indicates that table data is properly distributed\. If a table has a `skew` value of 4\.00 or higher, consider modifying its data distribution style\. For more information, see [Suboptimal data distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.
 
-If a table has a `pct_unsorted` value greater than 20 percent, consider running the [VACUUM](r_VACUUM_command.md) command\. For more information, see [Unsorted or Missorted Rows](query-performance-improvement-opportunities.md#unsorted-or-mis-sorted-rows)\.
+If a table has a `pct_unsorted` value greater than 20 percent, consider running the [VACUUM](r_VACUUM_command.md) command\. For more information, see [Unsorted or missorted rows](query-performance-improvement-opportunities.md#unsorted-or-mis-sorted-rows)\.
 
 Also review the `mbytes` and `pct_of_total` values for each table\. These columns identify the size of the table and what percentage of raw disk space the table consumes\. The raw disk space includes space that is reserved by Amazon Redshift for internal use, so it is larger than the nominal disk capacity, which is the amount of disk space available to the user\. Use this information to ensure that you have free disk space equal to at least 2\.5 times the size of your largest table\. Having this space available enables the system to write intermediate results to disk when processing complex queries\. 
 
@@ -86,9 +86,9 @@ where mbytes is not null
 order by  mbytes desc;
 ```
 
-## Identifying Queries with Nested Loops<a name="identify-queries-with-nested-loops"></a>
+## Identifying queries with nested loops<a name="identify-queries-with-nested-loops"></a>
 
-The following query identifies queries that have had alert events logged for nested loops\. For information on how to fix the nested loop condition, see [Nested Loop](query-performance-improvement-opportunities.md#nested-loop)\.
+The following query identifies queries that have had alert events logged for nested loops\. For information on how to fix the nested loop condition, see [Nested loop](query-performance-improvement-opportunities.md#nested-loop)\.
 
 ```
 select query, trim(querytxt) as SQL, starttime 
@@ -100,9 +100,9 @@ where event like 'Nested Loop Join in the query plan%')
 order by starttime desc;
 ```
 
-## Reviewing Queue Wait Times for Queries<a name="review-queue-wait-times-for-queries"></a>
+## Reviewing queue wait times for queries<a name="review-queue-wait-times-for-queries"></a>
 
-The following query shows how long recent queries waited for an open slot in a query queue before being executed\. If you see a trend of high wait times, you might want to modify your query queue configuration for better throughput\. For more information, see [Implementing Manual WLM](cm-c-defining-query-queues.md)\.
+The following query shows how long recent queries waited for an open slot in a query queue before being executed\. If you see a trend of high wait times, you might want to modify your query queue configuration for better throughput\. For more information, see [Implementing manual WLM](cm-c-defining-query-queues.md)\.
 
 ```
 select trim(database) as DB , w.query, 
@@ -118,7 +118,7 @@ and q.starttime >= dateadd(day, -7, current_Date)
 order by w.total_queue_time desc, w.queue_start_time desc limit 35;
 ```
 
-## Reviewing Query Alerts by Table<a name="review-query-alerts-by-table"></a>
+## Reviewing query alerts by table<a name="review-query-alerts-by-table"></a>
 
 The following query identifies tables that have had alert events logged for them, and also identifies what type of alerts are most frequently raised\.
 
@@ -138,7 +138,7 @@ group by 1,3,4
 order by 2 desc,6 desc;
 ```
 
-## Identifying Tables with Missing Statistics<a name="identify-tables-with-missing-statistics"></a>
+## Identifying tables with missing statistics<a name="identify-tables-with-missing-statistics"></a>
 
 The following query provides a count of the queries that you are running against tables that are missing statistics\. If this query returns any rows, look at the `plannode` value to determine the affected table, and then run [ANALYZE](r_ANALYZE.md) on it\.
 

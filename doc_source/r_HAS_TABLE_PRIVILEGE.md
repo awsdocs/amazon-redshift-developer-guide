@@ -27,7 +27,7 @@ Privilege to check\. Valid values are:
 + DELETE
 + REFERENCES
 
-## Return Type<a name="r_HAS_TABLE_PRIVILEGE-return-type"></a>
+## Return type<a name="r_HAS_TABLE_PRIVILEGE-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

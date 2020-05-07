@@ -8,7 +8,7 @@ To view all user groups, query the PG\_GROUP system catalog table:
 select * from pg_group;
 ```
 
-## Creating, Altering, and Deleting Groups<a name="r_Groups-creating-altering-and-deleting-groups"></a>
+## Creating, altering, and deleting groups<a name="r_Groups-creating-altering-and-deleting-groups"></a>
 
 Only a superuser can create, alter, or drop groups\.
 

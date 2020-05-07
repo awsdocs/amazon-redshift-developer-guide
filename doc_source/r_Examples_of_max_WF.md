@@ -1,4 +1,4 @@
-# MAX Window Function Examples<a name="r_Examples_of_max_WF"></a>
+# MAX window function examples<a name="r_Examples_of_max_WF"></a>
 
  Show the sales ID, quantity, and maximum quantity from the beginning of the data window: 
 
@@ -24,7 +24,7 @@ salesid | qty | max
 (11 rows)
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 
 
 Show the salesid, quantity, and maximum quantity in a restricted frame: 
 

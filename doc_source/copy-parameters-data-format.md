@@ -1,4 +1,4 @@
-# Data Format Parameters<a name="copy-parameters-data-format"></a>
+# Data format parameters<a name="copy-parameters-data-format"></a>
 
 By default, the COPY command expects the source data to be character\-delimited UTF\-8 text\. The default delimiter is a pipe character \( \| \)\. If the source data is in another format, use the following parameters to specify the data format: 
 + [FORMAT](#copy-format)
@@ -14,7 +14,7 @@ In addition to the standard data formats, COPY supports the following columnar d
 + [ORC](#copy-orc) 
 + [PARQUET](#copy-parquet) 
 
-COPY from columnar format is supported with certain restriction\. For more information, see [COPY from Columnar Data Formats](copy-usage_notes-copy-from-columnar.md)\. <a name="copy-data-format-parameters"></a>Data Format Parameters
+COPY from columnar format is supported with certain restriction\. For more information, see [COPY from columnar data formats](copy-usage_notes-copy-from-columnar.md)\. <a name="copy-data-format-parameters"></a>Data format parameters
 
 FORMAT \[AS\]  <a name="copy-format"></a>
 \(Optional\) Identifies data format keywords\. The FORMAT arguments are described following\.
@@ -24,13 +24,13 @@ Enables use of CSV format in the input data\. To automatically escape delimiters
 When a field is enclosed in quotes, white space between the delimiters and the quote characters is ignored\. If the delimiter is a white space character, such as a tab, the delimiter isn't treated as white space\.  
 CSV cannot be used with FIXEDWIDTH, REMOVEQUOTES, or ESCAPE\.     
 QUOTE \[AS\] *'quote\_character'*  <a name="copy-csv-quote"></a>
-Optional\. Specifies the character to be used as the quote character when using the CSV parameter\. The default is a double quotation mark \( " \)\. If you use the QUOTE parameter to define a quote character other than double quotation mark, you don’t need to escape double quotation marks within the field\. The QUOTE parameter can be used only with the CSV parameter\. The AS keyword is optional\.
+Optional\. Specifies the character to be used as the quote character when using the CSV parameter\. The default is a double quotation mark \( " \)\. If you use the QUOTE parameter to define a quote character other than double quotation mark, you don't need to escape double quotation marks within the field\. The QUOTE parameter can be used only with the CSV parameter\. The AS keyword is optional\.
 
 DELIMITER \[AS\] \['*delimiter\_char*'\]   <a name="copy-delimiter"></a>
 Specifies the single ASCII character that is used to separate fields in the input file, such as a pipe character \( \| \), a comma \( , \), or a tab \( \\t \)\. Non\-printing ASCII characters are supported\. ASCII characters can also be represented in octal, using the format '\\ddd', where 'd' is an octal digit \(0–7\)\. The default delimiter is a pipe character \( \| \), unless the CSV parameter is used, in which case the default delimiter is a comma \( , \)\. The AS keyword is optional\. DELIMITER cannot be used with FIXEDWIDTH\.
 
 FIXEDWIDTH '*fixedwidth\_spec*'   <a name="copy-fixedwidth"></a>
-Loads the data from a file where each column width is a fixed length, rather than columns being separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies a user\-defined column label and column width\. The column label can be either a text string or an integer, depending on what the user chooses\. The column label has no relation to the column name\. The order of the label/width pairs must match the order of the table columns exactly\. FIXEDWIDTH cannot be used with CSV or DELIMITER\. In Amazon Redshift, the length of CHAR and VARCHAR columns is expressed in bytes, so be sure that the column width that you specify accommodates the binary length of multibyte characters when preparing the file to be loaded\. For more information, see [Character Types](r_Character_types.md)\.   
+Loads the data from a file where each column width is a fixed length, rather than columns being separated by a delimiter\. The *fixedwidth\_spec* is a string that specifies a user\-defined column label and column width\. The column label can be either a text string or an integer, depending on what the user chooses\. The column label has no relation to the column name\. The order of the label/width pairs must match the order of the table columns exactly\. FIXEDWIDTH cannot be used with CSV or DELIMITER\. In Amazon Redshift, the length of CHAR and VARCHAR columns is expressed in bytes, so be sure that the column width that you specify accommodates the binary length of multibyte characters when preparing the file to be loaded\. For more information, see [Character types](r_Character_types.md)\.   
 The format for *fixedwidth\_spec* is shown following:   
 
 ```
@@ -74,7 +74,7 @@ An Avro source data file includes a schema that defines the structure of the dat
 The Avro schema is defined using JSON format\. The top\-level JSON object contains three name/value pairs with the names, or *keys*, `"name"`, `"type"`, and `"fields"`\.   
 The `"fields"` key pairs with an array of objects that define the name and data type of each field in the data structure\. By default, COPY automatically matches the field names to column names\. Column names are always lowercase, so matching field names must also be lowercase\. Any field names that don't match a column name are ignored\. Order doesn't matter\. In the previous example, COPY maps to the column names `id`, `guid`, `name`, and `address`\.   
 With the default `'auto'` argument, COPY matches only the first\-level objects to columns\. To map to deeper levels in the schema, or if field names and column names don't match, use a JSONPaths file to define the mapping\. For more information, see [JSONPaths file](#copy-json-jsonpaths)\.   
-If the value associated with a key is a complex Avro data type such as byte, array, record, map, or link, COPY loads the value as a string, where the string is the JSON representation of the data\. COPY loads Avro enum data types as strings, where the content is the name of the type\. For an example, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\.  
+If the value associated with a key is a complex Avro data type such as byte, array, record, map, or link, COPY loads the value as a string, where the string is the JSON representation of the data\. COPY loads Avro enum data types as strings, where the content is the name of the type\. For an example, see [COPY from JSON format](copy-usage_notes-copy-from-json.md)\.  
 The maximum size of the Avro file header, which includes the schema and file metadata, is 1 MB\.     
 The maximum size of a single Avro data block is 4 MB\. This is distinct from the maximum row size\. If the maximum size of a single Avro data block is exceeded, even if the resulting row size is less than the 4 MB row\-size limit, the COPY command fails\.   
 In calculating row size, Amazon Redshift internally counts pipe characters \( \| \) twice\. If your input data contains a very large number of pipe characters, it is possible for row size to exceed 4 MB even if the data block is less than 4 MB\.
@@ -100,7 +100,7 @@ If COPY attempts to assign NULL to a column that is defined as NOT NULL, the COP
 COPY uses the named JSONPaths file to map the data elements in the JSON source data to the columns in the target table\. The *`s3://jsonpaths_file`* argument must be an Amazon S3 object key that explicitly references a single file, such as `'s3://mybucket/jsonpaths.txt`'; it can't be a key prefix\. For more information about using a JSONPaths file, see [JSONPaths file](#copy-json-jsonpaths)\.
 If the file specified by *jsonpaths\_file* has the same prefix as the path specified by *copy\_from\_s3\_objectpath* for the data files, COPY reads the JSONPaths file as a data file and returns errors\. For example, if your data files use the object path `s3://mybucket/my_data.json` and your JSONPaths file is `s3://mybucket/my_data.jsonpaths`, COPY attempts to load `my_data.jsonpaths` as a data file\.
 
-## JSON Data File<a name="copy-json-data-file"></a>
+## JSON data file<a name="copy-json-data-file"></a>
 
 The JSON data file contains a set of either objects or arrays\. COPY loads each JSON object or array into one row in the target table\. Each object or array corresponding to a row must be a stand\-alone, root\-level structure; that is, it must not be a member of another JSON structure\.
 
@@ -149,7 +149,7 @@ The following options aren't supported with JSON:
 + READRATIO
 + REMOVEQUOTES 
 
-For more information, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\. For more information about JSON data structures, go to [www\.json\.org](https://www.json.org/)\. 
+For more information, see [COPY from JSON format](copy-usage_notes-copy-from-json.md)\. For more information about JSON data structures, go to [www\.json\.org](https://www.json.org/)\. 
 
 ## JSONPaths file<a name="copy-json-jsonpaths"></a>
 
@@ -157,7 +157,7 @@ If you are loading from JSON\-formatted or Avro source data, by default COPY map
 
 If your column names and object keys don't match, or to map to deeper levels in the data hierarchy, you can use a JSONPaths file to explicitly map JSON or Avro data elements to columns\. The JSONPaths file maps JSON data elements to columns by matching the column order in the target table or column list\.
 
-The JSONPaths file must contain only a single JSON object \(not an array\)\. The JSON object is a name/value pair\. The *object key*, which is the name in the name/value pair, must be `"jsonpaths"`\. The *value* in the name/value pair is an array of *JSONPath expressions*\. Each JSONPath expression references a single element in the JSON data hierarchy or Avro schema, similarly to how an XPath expression refers to elements in an XML document\. For more information, see [JSONPath Expressions](#copy-json-jsonpath-expressions)\.
+The JSONPaths file must contain only a single JSON object \(not an array\)\. The JSON object is a name/value pair\. The *object key*, which is the name in the name/value pair, must be `"jsonpaths"`\. The *value* in the name/value pair is an array of *JSONPath expressions*\. Each JSONPath expression references a single element in the JSON data hierarchy or Avro schema, similarly to how an XPath expression refers to elements in an XML document\. For more information, see [JSONPath expressions](#copy-json-jsonpath-expressions)\.
 
 To use a JSONPaths file, add the JSON or AVRO keyword to the COPY command and specify the S3 bucket name and object path of the JSONPaths file, using the following format\.
 
@@ -186,9 +186,9 @@ MAXERROR doesn't apply to the JSONPaths file\.
 
 The JSONPaths file must not be encrypted, even if the [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) option is specified\.
 
-For more information, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\. 
+For more information, see [COPY from JSON format](copy-usage_notes-copy-from-json.md)\. 
 
-## JSONPath Expressions<a name="copy-json-jsonpath-expressions"></a>
+## JSONPath expressions<a name="copy-json-jsonpath-expressions"></a>
 
 The JSONPaths file uses JSONPath expressions to map data fields to target columns\. Each JSONPath expression corresponds to one column in the Amazon Redshift target table\. The order of the JSONPath array elements must match the order of the columns in the target table or the column list, if a column list is used\. 
 
@@ -226,7 +226,7 @@ The following example shows JSONPath expressions using dot notation\.
 
 In the context of Amazon Redshift COPY syntax, a JSONPath expression must specify the explicit path to a single name element in a JSON or Avro hierarchical data structure\. Amazon Redshift doesn't support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\.
 
-For more information, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)\. 
+For more information, see [COPY from JSON format](copy-usage_notes-copy-from-json.md)\. 
 
 Using JSONPaths with Avro Data
 
@@ -310,9 +310,9 @@ The Avro schema syntax requires using *inner fields* to define the structure of 
 "$.friends[0].name"
 ```
 
-## Columnar Data Format Parameters<a name="copy-parameters-columnar-data"></a>
+## Columnar data format parameters<a name="copy-parameters-columnar-data"></a>
 
-In addition to the standard data formats, COPY supports the following columnar data formats for COPY from Amazon S3\. COPY from columnar format is supported with certain restrictions\. For more information, see [COPY from Columnar Data Formats](copy-usage_notes-copy-from-columnar.md)\. 
+In addition to the standard data formats, COPY supports the following columnar data formats for COPY from Amazon S3\. COPY from columnar format is supported with certain restrictions\. For more information, see [COPY from columnar data formats](copy-usage_notes-copy-from-columnar.md)\. 
 
 ORC  <a name="copy-orc"></a>
 Loads the data from a file that uses Optimized Row Columnar \(ORC\) file format\. 

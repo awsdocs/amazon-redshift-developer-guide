@@ -1,12 +1,12 @@
-# System and Architecture Overview<a name="c_redshift_system_overview"></a>
+# System and architecture overview<a name="c_redshift_system_overview"></a>
 
 **Topics**
-+ [Data Warehouse System Architecture](c_high_level_system_architecture.md)
++ [Data warehouse system architecture](c_high_level_system_architecture.md)
 + [Performance](c_challenges_achieving_high_performance_queries.md)
-+ [Columnar Storage](c_columnar_storage_disk_mem_mgmnt.md)
-+ [Internal Architecture and System Operation](c_internal_arch_system_operation.md)
-+ [Workload Management](c_workload_mngmt_classification.md)
-+ [Using Amazon Redshift with Other Services](using-redshift-with-other-services.md)
++ [Columnar storage](c_columnar_storage_disk_mem_mgmnt.md)
++ [Internal architecture and system operation](c_internal_arch_system_operation.md)
++ [Workload management](c_workload_mngmt_classification.md)
++ [Using Amazon Redshift with other services](using-redshift-with-other-services.md)
 
 An Amazon Redshift data warehouse is an enterprise\-class relational database query and management system\.
 

@@ -1,4 +1,4 @@
-# Delete a Database User<a name="t_deleting_redshift_user_cmd"></a>
+# Delete a database user<a name="t_deleting_redshift_user_cmd"></a>
 
 You won't need the GUEST user account for this tutorial, so you can delete it\. If you delete a database user account, the user will no longer be able to access any of the cluster databases\.
 

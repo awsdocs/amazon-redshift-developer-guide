@@ -2,13 +2,13 @@
 
 Lists the relationship between streams and concurrent segments\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_STREAM_SEGS-table-columns"></a>
+## Table columns<a name="r_STL_STREAM_SEGS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_STREAM_SEGS.html)
 
-## Sample Queries<a name="r_STL_STREAM_SEGS-sample-queries"></a>
+## Sample queries<a name="r_STL_STREAM_SEGS-sample-queries"></a>
 
 To view the relationship between streams and concurrent segments for the most recent query, type the following query: 
 

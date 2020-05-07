@@ -1,4 +1,4 @@
-# Step 2: Test System Performance to Establish a Baseline<a name="tutorial-tuning-tables-test-performance"></a>
+# Step 2: Test system performance to establish a baseline<a name="tutorial-tuning-tables-test-performance"></a>
 
 As you test system performance before and after tuning your tables, you will record the following details:
 + Load time 
@@ -11,7 +11,7 @@ You will record your results using the following benchmarks table\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-test-performance.html)
 
-## To Test System Performance to Establish a Baseline<a name="tutorial-tuning-tables-to-test-performance"></a>
+## To test system performance to establish a baseline<a name="tutorial-tuning-tables-to-test-performance"></a>
 
 1. Note the cumulative load time for all five tables and enter it in the benchmarks table in the Before column\. 
 
@@ -45,7 +45,7 @@ You will record your results using the following benchmarks table\.
 
 1. Test query performance\.
 
-   The first time you run a query, Amazon Redshift compiles the code, and then sends compiled code to the compute nodes\. When you compare the execution times for queries, you should not use the results for the first time you execute the query\. Instead, compare the times for the second execution of each query\. For more information, see [Factors Affecting Query Performance](c-query-performance.md)\.
+   The first time you run a query, Amazon Redshift compiles the code, and then sends compiled code to the compute nodes\. When you compare the execution times for queries, you should not use the results for the first time you execute the query\. Instead, compare the times for the second execution of each query\. For more information, see [Factors affecting query performance](c-query-performance.md)\.
 **Note**  
 To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When result caching is enabled, subsequent queries run much faster, which invalidates performance comparisons\.
 
@@ -123,6 +123,6 @@ The following benchmarks table shows the example results for the cluster used in
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-test-performance.html)
 
-## Next Step<a name="next-step--sort-keys"></a>
+## Next step<a name="next-step--sort-keys"></a>
 
-[Step 3: Select Sort Keys](tutorial-tuning-tables-sort-keys.md)
+[Step 3: Select sort keys](tutorial-tuning-tables-sort-keys.md)

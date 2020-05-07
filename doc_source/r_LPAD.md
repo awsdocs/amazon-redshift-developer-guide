@@ -1,4 +1,4 @@
-# LPAD and RPAD Functions<a name="r_LPAD"></a>
+# LPAD and RPAD functions<a name="r_LPAD"></a>
 
 These functions prepend or append characters to a string, based on a specified length\. 
 
@@ -23,7 +23,7 @@ An integer that defines the length of the result of the function\. The length of
  *string2*   
 One or more characters that are prepended or appended to *string1*\. This argument is optional; if it is not specified, spaces are used\. 
 
-## Return Type<a name="r_LPAD-return-type"></a>
+## Return type<a name="r_LPAD-return-type"></a>
 
 These functions return a VARCHAR data type\. 
 

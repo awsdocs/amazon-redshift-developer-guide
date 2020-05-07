@@ -2,13 +2,13 @@
 
 **Topics**
 + [Syntax](#r_conditions-synopsis)
-+ [Comparison Condition](r_comparison_condition.md)
-+ [Logical Conditions](r_logical_condition.md)
-+ [Pattern\-Matching Conditions](pattern-matching-conditions.md)
-+ [BETWEEN Range Condition](r_range_condition.md)
-+ [Null Condition](r_null_condition.md)
-+ [EXISTS Condition](r_exists_condition.md)
-+ [IN Condition](r_in_condition.md)
++ [Comparison condition](r_comparison_condition.md)
++ [Logical conditions](r_logical_condition.md)
++ [Pattern\-matching conditions](pattern-matching-conditions.md)
++ [BETWEEN range condition](r_range_condition.md)
++ [Null condition](r_null_condition.md)
++ [EXISTS condition](r_exists_condition.md)
++ [IN condition](r_in_condition.md)
 
  A condition is a statement of one or more expressions and logical operators that evaluates to true, false, or unknown\. Conditions are also sometimes referred to as predicates\.
 

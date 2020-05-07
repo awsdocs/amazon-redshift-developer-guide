@@ -1,4 +1,4 @@
-# Text255 and Text32k Encodings<a name="c_Text255_encoding"></a>
+# Text255 and Text32k encodings<a name="c_Text255_encoding"></a>
 
 Text255 and text32k encodings are useful for compressing VARCHAR columns in which the same words recur often\. A separate dictionary of unique words is created for each block of column values on disk\. \(An Amazon Redshift disk block occupies 1 MB\.\) The dictionary contains the first 245 unique words in the column\. Those words are replaced on disk by a one\-byte index value representing one of the 245 values, and any words that are not represented in the dictionary are stored uncompressed\. The process repeats for each 1 MB disk block\. If the indexed words occur frequently in the column, the column will yield a high compression ratio\.
 

@@ -1,4 +1,4 @@
-# Data Type Differences Between Amazon Redshift and Supported RDS PostgreSQL or Aurora PostgreSQL Databases<a name="federated-data-types"></a>
+# Data type differences between Amazon Redshift and supported RDS PostgreSQL or Aurora PostgreSQL databases<a name="federated-data-types"></a>
 
 The following table shows the mapping of an Amazon Redshift data type to a corresponding Amazon RDS PostgreSQL or Aurora PostgreSQL data type\. 
 

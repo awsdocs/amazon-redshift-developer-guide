@@ -16,7 +16,7 @@ Optional keyword\. This keyword isn't supported within a stored procedure\.
 TRANSACTION  
 Optional keyword\. WORK and TRANSACTION are synonyms\. Neither is supported within a stored procedure\. 
 
-For information about using COMMIT within a stored procedure, see [Managing Transactions](stored-procedure-transaction-management.md)\. 
+For information about using COMMIT within a stored procedure, see [Managing transactions](stored-procedure-transaction-management.md)\. 
 
 ## Examples<a name="r_COMMIT-examples"></a>
 

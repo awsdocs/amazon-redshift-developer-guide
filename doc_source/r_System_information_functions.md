@@ -1,4 +1,4 @@
-# System Information Functions<a name="r_System_information_functions"></a>
+# System information functions<a name="r_System_information_functions"></a>
 
 **Topics**
 + [CURRENT\_DATABASE](r_CURRENT_DATABASE.md)

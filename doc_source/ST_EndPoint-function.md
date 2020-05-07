@@ -13,7 +13,7 @@ ST_EndPoint(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `LINESTRING`\. 
 
-## Return Type<a name="ST_EndPoint-function-return"></a>
+## Return type<a name="ST_EndPoint-function-return"></a>
 
 `GEOMETRY` 
 

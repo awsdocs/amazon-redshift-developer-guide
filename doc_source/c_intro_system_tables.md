@@ -1,4 +1,4 @@
-# System Tables and Views<a name="c_intro_system_tables"></a>
+# System tables and views<a name="c_intro_system_tables"></a>
 
 Amazon Redshift has many system tables and views that contain information about how the system is functioning\. You can query these system tables and views the same way that you would query any other database tables\. This section shows some sample system table queries and explains: 
 + How different types of system tables and views are generated

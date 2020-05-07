@@ -1,4 +1,4 @@
-# LEAD Window Function<a name="r_WF_LEAD"></a>
+# LEAD window function<a name="r_WF_LEAD"></a>
 
  The LEAD window function returns the values for a row at a given offset below \(after\) the current row in the partition\. 
 
@@ -20,7 +20,7 @@ The target column or expression that the function operates on\.
 
 IGNORE NULLS   
 An optional specification that indicates that Amazon Redshift should skip null values in the determination of which row to use\. Null values are included if IGNORE NULLS is not listed\.   
-You can use an NVL or COALESCE expression to replace the null values with another value\. For more information, see [NVL Expression](r_NVL_function.md)\. 
+You can use an NVL or COALESCE expression to replace the null values with another value\. For more information, see [NVL expression](r_NVL_function.md)\. 
 
 RESPECT NULLS   
  Indicates that Amazon Redshift should include null values in the determination of which row to use\. RESPECT NULLS is supported by default if you do not specify IGNORE NULLS\. 
@@ -38,4 +38,4 @@ The LEAD window function supports expressions that use any of the Amazon Redshif
 
 ## Examples<a name="r_WF_LEAD-examples"></a>
 
-See [LEAD Window Function Examples](r_Examples_of_LEAD_WF.md)\. 
+See [LEAD window function examples](r_Examples_of_LEAD_WF.md)\. 

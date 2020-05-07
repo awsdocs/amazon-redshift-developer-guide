@@ -1,8 +1,8 @@
-# Step 2: Query Your Nested Data in Amazon S3 with SQL Extensions<a name="tutorial-query-nested-data-sqlextensions"></a>
+# Step 2: Query your nested data in Amazon S3 with SQL extensions<a name="tutorial-query-nested-data-sqlextensions"></a>
 
 Redshift Spectrum supports querying `array`, `map`, and `struct` complex types through extensions to the Amazon Redshift SQL syntax\. 
 
-## Extension 1: Access to Columns of Structs<a name="nested-data-sqlextension1"></a>
+## Extension 1: Access to columns of structs<a name="nested-data-sqlextension1"></a>
 
 You can extract data from `struct` columns using a dot notation that concatenates field names into paths\. For example, the following query returns given and family names for customers\. The given name is accessed by the long path `c.name.given`\. The family name is accessed by the long path `c.name.family`\. 
 
@@ -37,13 +37,13 @@ You can access the data in `e` as `x.b.d.e`\.
 **Note**  
 You use `struct`s only to describe the path to the fields that they contain\. You can't access them directly in a query or return them from a query\.
 
-## Extension 2: Ranging Over Arrays in a FROM Clause<a name="nested-data-sqlextension2"></a>
+## Extension 2: Ranging over arrays in a FROM clause<a name="nested-data-sqlextension2"></a>
 
 You can extract data from `array` columns \(and, by extension, `map` columns\) by specifying the `array` columns in a `FROM` clause in place of table names\. The extension applies to the `FROM` clause of the main query, and also the `FROM` clauses of subqueries\. You can't reference `array` elements by position, such as `c.orders[0]`\. 
 
 By combining ranging over `arrays` with joins, you can achieve various kinds of unnesting, as explained in the following use cases\. 
 
-### Unnesting Using Inner Joins<a name="unnest-inner-joins"></a>
+### Unnesting using inner joins<a name="unnest-inner-joins"></a>
 
 The following query selects customer IDs and order ship dates for customers that have orders\. The SQL extension in the FROM clause `c.orders o` depends on the alias `c`\.
 
@@ -85,7 +85,7 @@ FROM   spectrum.customers c INNER JOIN c.orders o ON true
 **Note**  
 If a schema named `c` exists with a table named `orders`, then `c.orders` refers to the table `orders`, and not the array column of `customers`\.
 
-### Unnesting Using Left Joins<a name="unnest-left-joins"></a>
+### Unnesting using left joins<a name="unnest-left-joins"></a>
 
 The following query outputs all customer names and their orders\. If a customer hasn't placed an order, the customer's name is still returned\. However, in this case the order columns are NULL, as shown in the following example for Jenny Doe\.
 
@@ -106,7 +106,7 @@ id  |  given  | family  |    shipdate          | price
  (4 rows)
 ```
 
-## Extension 3: Accessing an Array of Scalars Directly Using an Alias<a name="nested-data-sqlextension3"></a>
+## Extension 3: Accessing an array of scalars directly using an alias<a name="nested-data-sqlextension3"></a>
 
 When an alias `p` in a `FROM` clause ranges over an array of scalars, the query refers to the values of `p` simply as `p`\. For example, the following query produces pairs of customer names and phone numbers\.
 
@@ -127,7 +127,7 @@ Andy   | Jones    |
 (4 rows)
 ```
 
-## Extension 4: Accessing Elements of Maps<a name="nested-data-sqlextension4"></a>
+## Extension 4: Accessing elements of maps<a name="nested-data-sqlextension4"></a>
 
 Redshift Spectrum treats the `map` data type as an `array` type that contains `struct` types with a `key` column and a `value` column\. The `key` must be a `scalar`; the value can be any data type\. 
 

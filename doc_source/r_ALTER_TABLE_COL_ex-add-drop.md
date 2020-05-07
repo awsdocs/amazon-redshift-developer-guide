@@ -1,8 +1,8 @@
-# ALTER TABLE ADD and DROP COLUMN Examples<a name="r_ALTER_TABLE_COL_ex-add-drop"></a>
+# ALTER TABLE ADD and DROP COLUMN examples<a name="r_ALTER_TABLE_COL_ex-add-drop"></a>
 
 The following examples demonstrate how to use ALTER TABLE to add and then drop a basic table column and also how to drop a column with a dependent object\. 
 
-## ADD Then DROP a Basic Column<a name="r_ALTER_TABLE_COL_ex-add-then-drop-a-basic-column"></a>
+## ADD then DROP a basic column<a name="r_ALTER_TABLE_COL_ex-add-then-drop-a-basic-column"></a>
 
 The following example adds a standalone FEEDBACK\_SCORE column to the USERS table\. This column simply contains an integer, and the default value for this column is NULL \(no feedback score\)\. 
 
@@ -56,7 +56,7 @@ Drop the column to reinstate the original DDL:
 alter table users drop column feedback_score;
 ```
 
-## DROPPING a Column with a Dependent Object<a name="r_ALTER_TABLE_COL_ex-dropping-a-column-with-a-dependent-object"></a>
+## DROPPING a column with a dependent object<a name="r_ALTER_TABLE_COL_ex-dropping-a-column-with-a-dependent-object"></a>
 
 This example drops a column that has a dependent object\. As a result, the dependent object is also dropped\. 
 

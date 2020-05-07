@@ -1,4 +1,4 @@
-# Verifying That the Data Was Loaded Correctly<a name="verifying-that-data-loaded-correctly"></a>
+# Verifying that the data loaded correctly<a name="verifying-that-data-loaded-correctly"></a>
 
 After the load operation is complete, query the [STL\_LOAD\_COMMITS](r_STL_LOAD_COMMITS.md) system table to verify that the expected files were loaded\. Execute the COPY command and load verification within the same transaction so that if there is problem with the load you can roll back the entire transaction\.
 

@@ -1,4 +1,4 @@
-# CASE Expression<a name="r_CASE_function"></a>
+# CASE expression<a name="r_CASE_function"></a>
 
 ## Syntax<a name="r_CASE_function-syntax"></a>
 

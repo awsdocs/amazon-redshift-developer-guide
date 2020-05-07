@@ -1,4 +1,4 @@
-# Window Function Syntax Summary<a name="r_Window_function_synopsis"></a>
+# Window function syntax summary<a name="r_Window_function_synopsis"></a>
 
 Standard window function syntax is as follows:
 
@@ -53,11 +53,11 @@ The ranking functions, DENSE\_RANK, NTILE, RANK, and ROW\_NUMBER, require a glob
 
 ORDER BY *order\_list*   
 Optional\. The window function is applied to the rows within each partition sorted according to the order specification in ORDER BY\. This ORDER BY clause is distinct from and completely unrelated to an ORDER BY clause in a nonwindow function \(outside of the OVER clause\)\. The ORDER BY clause can be used without the PARTITION BY clause\.   
-For the ranking functions, the ORDER BY clause identifies the measures for the ranking values\. For aggregation functions, the partitioned rows must be ordered before the aggregate function is computed for each frame\. For more about window function types, see [Window Functions](c_Window_functions.md)\.  
+For the ranking functions, the ORDER BY clause identifies the measures for the ranking values\. For aggregation functions, the partitioned rows must be ordered before the aggregate function is computed for each frame\. For more about window function types, see [Window functions](c_Window_functions.md)\.  
 Column identifiers or expressions that evaluate to column identifiers are required in the order list\. Neither constants nor constant expressions can be used as substitutes for column names\.   
 NULLS values are treated as their own group, sorted and ranked according to the NULLS FIRST or NULLS LAST option\. By default, NULL values are sorted and ranked last in ASC ordering, and sorted and ranked first in DESC ordering\.  
  If the ORDER BY clause is omitted, the order of the rows is nondeterministic\.   
-In any parallel system such as Amazon Redshift, when an ORDER BY clause does not produce a unique and total ordering of the data, the order of the rows is nondeterministic\. That is, if the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows might vary from one run of Amazon Redshift to the next\. In turn, window functions might return unexpected or inconsistent results\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
+In any parallel system such as Amazon Redshift, when an ORDER BY clause does not produce a unique and total ordering of the data, the order of the rows is nondeterministic\. That is, if the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows might vary from one run of Amazon Redshift to the next\. In turn, window functions might return unexpected or inconsistent results\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 
  *column\_name*   
 Name of a column to be partitioned by or ordered by\. 

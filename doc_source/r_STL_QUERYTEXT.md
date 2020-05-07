@@ -17,13 +17,13 @@ The STL\_QUERY and STL\_QUERYTEXT tables only contain information about queries,
 
 See also [STL\_DDLTEXT](r_STL_DDLTEXT.md), [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md), and [SVL\_STATEMENTTEXT](r_SVL_STATEMENTTEXT.md)\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_QUERYTEXT-table-columns"></a>
+## Table columns<a name="r_STL_QUERYTEXT-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_QUERYTEXT.html)
 
-## Sample Queries<a name="r_STL_QUERYTEXT-sample-queries"></a>
+## Sample queries<a name="r_STL_QUERYTEXT-sample-queries"></a>
 
 You can use the PG\_BACKEND\_PID\(\) function to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries executed in the current session\.
 
@@ -44,7 +44,7 @@ order by query desc;
 (6 rows)
 ```
 
-### Reconstructing Stored SQL<a name="r_STL_QUERYTEXT-reconstruct-sql"></a>
+### Reconstructing stored SQL<a name="r_STL_QUERYTEXT-reconstruct-sql"></a>
 
 To reconstruct the SQL stored in the `text` column of STL\_QUERYTEXT, run a SELECT statement to create SQL from 1 or more parts in the `text` column\. Before running the reconstructed SQL, replace any \(`\n`\) special characters with a new line\. The result of the following SELECT statement is rows of reconstructed SQL in the `query_statement` field\.
 

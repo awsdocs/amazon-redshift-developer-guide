@@ -1,4 +1,4 @@
-# Step 6: Run the COPY Command to Load the Data<a name="load-from-emr-steps-run-copy"></a>
+# Step 6: Run the COPY command to load the data<a name="load-from-emr-steps-run-copy"></a>
 
 Run a [COPY](r_COPY.md) command to connect to the Amazon EMR cluster and load the data into an Amazon Redshift table\. The Amazon EMR cluster must continue running until the COPY command completes\. For example, do not configure the cluster to auto\-terminate\. 
 

@@ -1,4 +1,4 @@
-# QUOTE\_IDENT Function<a name="r_QUOTE_IDENT"></a>
+# QUOTE\_IDENT function<a name="r_QUOTE_IDENT"></a>
 
 The QUOTE\_IDENT function returns the specified string as a double quoted string so that it can be used as an identifier in a SQL statement\. Appropriately doubles any embedded double quotes\. 
 
@@ -15,7 +15,7 @@ QUOTE_IDENT(string)
  *string*   
 The input parameter can be a CHAR or VARCHAR string\. 
 
-## Return Type<a name="r_QUOTE_IDENT-return-type"></a>
+## Return type<a name="r_QUOTE_IDENT-return-type"></a>
 
 The QUOTE\_IDENT function returns the same type string as the input parameter\. 
 

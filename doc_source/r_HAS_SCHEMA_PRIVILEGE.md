@@ -24,7 +24,7 @@ Privilege to check\. Valid values are:
 + CREATE
 + USAGE
 
-## Return Type<a name="r_HAS_SCHEMA_PRIVILEGE-return-type"></a>
+## Return type<a name="r_HAS_SCHEMA_PRIVILEGE-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

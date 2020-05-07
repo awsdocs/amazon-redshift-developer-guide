@@ -1,4 +1,4 @@
-# Step 1: Create a Test Data Set<a name="tutorial-tuning-tables-create-test-data"></a>
+# Step 1: Create a test data set<a name="tutorial-tuning-tables-create-test-data"></a>
 
 Data warehouse databases commonly use a star schema design, in which a central fact table contains the core data for the database and several dimension tables provide descriptive attribute information for the fact table\. The fact table joins each dimension table on a foreign key that matches the dimension's primary key\. 
 
@@ -8,7 +8,7 @@ For this tutorial, you will use a set of five tables based on the Star Schema Be
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/tutorial-optimize-tables-ssb-data-model.png)
 
-## To Create a Test Data Set<a name="tutorial-tuning-tables-to-create-test-data"></a>
+## To create a test data set<a name="tutorial-tuning-tables-to-create-test-data"></a>
 
 You will create a set of tables without sort keys, distribution styles, or compression encodings\. Then you will load the tables with data from the SSB data set\.
 
@@ -16,13 +16,13 @@ You will create a set of tables without sort keys, distribution styles, or compr
 
    If you already have a cluster that you want to use, you can skip this step\. Your cluster should have at least two nodes\. For the exercises in this tutorial, you will use a four\-node cluster\.
 
-   To launch a dc1\.large cluster with four nodes, follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but select **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
+   To launch a dc2\.large cluster with four nodes, follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but select **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
 
    Follow the steps to connect to your cluster from a SQL client and test a connection\. You do not need to complete the remaining steps to create tables, upload data, and try example queries\. 
 
 1. Create the SSB test tables using minimum attributes\.
 **Note**  
-If the SSB tables already exist in the current database, you will need to drop the tables first\. See [Step 6: Recreate the Test Data Set](tutorial-tuning-tables-recreate-test-data.md) for the DROP TABLE commands\.
+If the SSB tables already exist in the current database, you will need to drop the tables first\. See [Step 6: Recreate the test data set](tutorial-tuning-tables-recreate-test-data.md) for the DROP TABLE commands\.
 
    For the purposes of this tutorial, the first time you create the tables, they will not have sort keys, distribution styles, or compression encodings\. 
 
@@ -172,6 +172,6 @@ The load operation will take about 10 to 15 minutes for all five tables\.
    The following results table shows the number of rows for each SSB table\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-create-test-data.html)
 
-## Next Step<a name="next-step-test-performance"></a>
+## Next step<a name="next-step-test-performance"></a>
 
-[Step 2: Test System Performance to Establish a Baseline](tutorial-tuning-tables-test-performance.md)
+[Step 2: Test system performance to establish a baseline](tutorial-tuning-tables-test-performance.md)

@@ -1,4 +1,4 @@
-# Step 1: Create an External Table That Contains Nested Data<a name="tutorial-nested-data-create-table"></a>
+# Step 1: Create an external table that contains nested data<a name="tutorial-nested-data-create-table"></a>
 
 To create the external table for this tutorial, run the following command\. 
 

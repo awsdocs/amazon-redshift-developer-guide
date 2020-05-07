@@ -1,6 +1,6 @@
 # wlm\_query\_slot\_count<a name="r_wlm_query_slot_count"></a>
 
-## Values \(Default in Bold\)<a name="r_wlm_query_slot_count-values-"></a>
+## Values \(default in bold\)<a name="r_wlm_query_slot_count-values-"></a>
 
  **1**, 1 to 50 \(cannot exceed number of available slots \(concurrency level\) for the service class\)
 
@@ -8,7 +8,7 @@
 
 Sets the number of query slots a query uses\.
 
-Workload management \(WLM\) reserves slots in a service class according to the concurrency level set for the queue \(for example, if concurrency level is set to 5, then the service class has 5 slots\)\. WLM allocates the available memory for a service class equally to each slot\. For more information, see [Implementing Workload Management](cm-c-implementing-workload-management.md)\. 
+Workload management \(WLM\) reserves slots in a service class according to the concurrency level set for the queue \(for example, if concurrency level is set to 5, then the service class has 5 slots\)\. WLM allocates the available memory for a service class equally to each slot\. For more information, see [Implementing workload management](cm-c-implementing-workload-management.md)\. 
 
 **Note**  
 If the value of wlm\_query\_slot\_count is larger than the number of available slots \(concurrency level\) for the service class, the query fails\. If you encounter an error, decrease wlm\_query\_slot\_count to an allowable value\.

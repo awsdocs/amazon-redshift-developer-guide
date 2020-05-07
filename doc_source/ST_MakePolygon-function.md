@@ -13,7 +13,7 @@ ST_MakePolygon(linestring)
  *linestring*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `LINESTRING`\. The *linestring* value must be closed\. 
 
-## Return Type<a name="ST_MakePolygon-function-return"></a>
+## Return type<a name="ST_MakePolygon-function-return"></a>
 
 `GEOMETRY` of subtype `POLYGON`\. 
 

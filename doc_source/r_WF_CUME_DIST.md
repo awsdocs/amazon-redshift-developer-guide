@@ -1,4 +1,4 @@
-# CUME\_DIST Window Function<a name="r_WF_CUME_DIST"></a>
+# CUME\_DIST window function<a name="r_WF_CUME_DIST"></a>
 
 Calculates the cumulative distribution of a value within a window or partition\. Assuming ascending ordering, the cumulative distribution is determined using this formula:
 
@@ -37,12 +37,12 @@ Optional\. An expression that sets the range of records for each group in the OV
 
 ORDER BY *order\_list*   
 The expression on which to calculate cumulative distribution\. The expression must have either a numeric data type or be implicitly convertible to one\. If ORDER BY is omitted, the return value is 1 for all rows\.   
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 
-## Return Type<a name="r_WF_CUME_DIST-returns"></a>
+## Return type<a name="r_WF_CUME_DIST-returns"></a>
 
 FLOAT8
 
 ## Example<a name="r_WF_CUME_DIST-examples"></a>
 
-See [CUME\_DIST Window Function Examples](r_Examples_of_CUME_DIST_WF.md)\. 
+See [CUME\_DIST window function examples](r_Examples_of_CUME_DIST_WF.md)\. 

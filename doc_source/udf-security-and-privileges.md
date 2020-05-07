@@ -1,4 +1,4 @@
-# UDF Security and Privileges<a name="udf-security-and-privileges"></a>
+# UDF security and privileges<a name="udf-security-and-privileges"></a>
 
 To create a UDF, you must have permission for usage on language for SQL or plpythonu \(Python\)\. By default, USAGE ON LANGUAGE SQL is granted to PUBLIC, but you must explicitly grant USAGE ON LANGUAGE PLPYTHONU to specific users or groups\. 
 

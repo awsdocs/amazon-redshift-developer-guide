@@ -24,7 +24,7 @@ RENAME TO
 A clause that renames the schema\. 
 
  *new\_name*   
-The new name of the schema\. For more information about valid names, see [Names and Identifiers](r_names.md)\. 
+The new name of the schema\. For more information about valid names, see [Names and identifiers](r_names.md)\. 
 
 OWNER TO   
 A clause that changes the owner of the schema\. 

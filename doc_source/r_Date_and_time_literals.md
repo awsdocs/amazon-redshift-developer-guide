@@ -1,4 +1,4 @@
-# Date and Timestamp Literals<a name="r_Date_and_time_literals"></a>
+# Date and timestamp literals<a name="r_Date_and_time_literals"></a>
 
 ## Dates<a name="r_Date_and_time_literals-dates"></a>
 
@@ -15,7 +15,7 @@ The following input timestamps are all valid examples of literal time values tha
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Date_and_time_literals.html)
 
-## Special Datetime Values<a name="r_Date_and_time_literals-special-datetime-values"></a>
+## Special datetime values<a name="r_Date_and_time_literals-special-datetime-values"></a>
 
 The following special values can be used as datetime literals and as arguments to date functions\. They require single quotes and are converted to regular timestamp values during query processing\. 
 

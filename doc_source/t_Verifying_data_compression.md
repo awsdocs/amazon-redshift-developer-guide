@@ -1,9 +1,9 @@
-# Testing Compression Encodings<a name="t_Verifying_data_compression"></a>
+# Testing compression encodings<a name="t_Verifying_data_compression"></a>
 
 If you decide to manually specify column encodings, you might want to test different encodings with your data\.
 
 **Note**  
-We recommend that you use the COPY command to load data whenever possible, and allow the COPY command to choose the optimal encodings based on your data\. Alternatively, you can use the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command to view the suggested encodings for existing data\. For details about applying automatic compression, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.
+We recommend that you use the COPY command to load data whenever possible, and allow the COPY command to choose the optimal encodings based on your data\. Alternatively, you can use the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command to view the suggested encodings for existing data\. For details about applying automatic compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
 To perform a meaningful test of data compression, you need a large number of rows\. For this example, we will create a table and insert rows by using a statement that selects from two tables; VENUE and LISTING\. We will leave out the WHERE clause that would normally join the two tables; the result is that *each* row in the VENUE table is joined to *all* of the rows in the LISTING table, for a total of over 32 million rows\. This is known as a Cartesian join and normally is not recommended, but for this purpose, it is a convenient method of creating a lot of rows\. If you have an existing table with data that you want to test, you can skip this step\.
 

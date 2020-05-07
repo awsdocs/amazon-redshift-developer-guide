@@ -16,7 +16,7 @@ Displays the full query plan instead of just a summary\.
  *query*   
 Query statement to explain\. The query can be a SELECT, INSERT, CREATE TABLE AS, UPDATE, or DELETE statement\.
 
-## Usage Notes<a name="r_EXPLAIN-usage-notes"></a>
+## Usage notes<a name="r_EXPLAIN-usage-notes"></a>
 
 EXPLAIN performance is sometimes influenced by the time it takes to create temporary tables\. For example, a query that uses the common subexpression optimization requires temporary tables to be created and analyzed in order to return the EXPLAIN output\. The query plan depends on the schema and statistics of the temporary tables\. Therefore, the EXPLAIN command for this type of query might take longer to run than expected\.
 
@@ -30,7 +30,7 @@ You can use EXPLAIN only for the following commands:
 
 The EXPLAIN command will fail if you use it for other SQL commands, such as data definition language \(DDL\) or database operations\.
 
-## Query Planning and Execution Steps<a name="r_EXPLAIN-query-planning-and-execution-steps"></a>
+## Query planning and execution steps<a name="r_EXPLAIN-query-planning-and-execution-steps"></a>
 
 The execution plan for a specific Amazon Redshift query statement breaks down execution and calculation of a query into a discrete sequence of steps and table operations that eventually produce a final result set for the query\. The following table provides a summary of steps that Amazon Redshift can use in developing an execution plan for any query a user submits for execution\.
 

@@ -16,9 +16,9 @@ TO_DATE (string, format)
  String to be converted\. 
 
  *format*   
-A string literal that defines the format of the input *string*, in terms of its date parts\. For a list of valid formats, see [Datetime Format Strings](r_FORMAT_strings.md)\. 
+A string literal that defines the format of the input *string*, in terms of its date parts\. For a list of valid formats, see [Datetime format strings](r_FORMAT_strings.md)\. 
 
-## Return Type<a name="r_TO_DATE_function-return-type"></a>
+## Return type<a name="r_TO_DATE_function-return-type"></a>
 
 TO\_DATE returns a DATE, depending on the *format* value\. 
 

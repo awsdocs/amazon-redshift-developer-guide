@@ -12,7 +12,7 @@ The COPY ID is not updated if the COPY command fails because of an error that oc
 pg_last_copy_id()
 ```
 
-## Return Type<a name="PG_LAST_COPY_ID-return-type"></a>
+## Return type<a name="PG_LAST_COPY_ID-return-type"></a>
 
 Returns an integer\.
 

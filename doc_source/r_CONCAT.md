@@ -16,7 +16,7 @@ CONCAT ( string1, string2 )
  *string1*, *string2*   
 Both arguments can be fixed\-length or variable\-length character strings or expressions\. 
 
-## Return Type<a name="r_CONCAT-return-type"></a>
+## Return type<a name="r_CONCAT-return-type"></a>
 
  CONCAT returns a string\. The data type of the string is the same type as the input arguments\. 
 
@@ -55,7 +55,7 @@ Thursday, December 25, 2008
 (1 row)
 ```
 
-To concatenate columns that might contain nulls, use the [NVL Expression](r_NVL_function.md)\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
+To concatenate columns that might contain nulls, use the [NVL expression](r_NVL_function.md)\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
 
 ```
 select concat(venuename, concat(' seats ', nvl(venueseats, 0))) as seating

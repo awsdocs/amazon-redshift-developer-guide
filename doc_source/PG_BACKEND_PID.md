@@ -11,7 +11,7 @@ The PID is not globally unique\. It can be reused over time\.
 pg_backend_pid()
 ```
 
-## Return Type<a name="PG_BACKEND_PID-return-type"></a>
+## Return type<a name="PG_BACKEND_PID-return-type"></a>
 
 Returns an integer\.
 

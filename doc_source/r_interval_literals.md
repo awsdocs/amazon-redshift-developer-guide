@@ -1,4 +1,4 @@
-# Interval Literals<a name="r_interval_literals"></a>
+# Interval literals<a name="r_interval_literals"></a>
 
 Use an interval literal to identify specific periods of time, such as `12 hours` or `6 weeks`\. You can use these interval literals in conditions and calculations that involve datetime expressions\. 
 

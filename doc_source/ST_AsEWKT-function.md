@@ -20,7 +20,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *precision*   
 A value of data type `INTEGER`\. The coordinates of *geom* are displayed using the specified precision 1–20\. If *precision* is not specified, the default is 15\. 
 
-## Return Type<a name="ST_AsEWKT-function-return"></a>
+## Return type<a name="ST_AsEWKT-function-return"></a>
 
 `VARCHAR`
 

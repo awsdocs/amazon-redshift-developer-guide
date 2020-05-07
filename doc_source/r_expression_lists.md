@@ -1,4 +1,4 @@
-# Expression Lists<a name="r_expression_lists"></a>
+# Expression lists<a name="r_expression_lists"></a>
 
 An expression list is a combination of expressions, and can appear in membership and comparison conditions \(WHERE clauses\) and in GROUP BY clauses\.
 

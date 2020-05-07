@@ -1,4 +1,4 @@
-# Using Automatic Recognition with DATEFORMAT and TIMEFORMAT<a name="automatic-recognition"></a>
+# Using automatic recognition with DATEFORMAT and TIMEFORMAT<a name="automatic-recognition"></a>
 
 If you specify `'auto'` as the argument for the DATEFORMAT or TIMEFORMAT parameter, Amazon Redshift will automatically recognize and convert the date format or time format in your source data\. The following shows an example\.
 
@@ -8,7 +8,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 dateformat 'auto';
 ```
 
-When used with the `'auto'` argument for DATEFORMAT and TIMEFORMAT, COPY recognizes and converts the date and time formats listed in the table in [ DATEFORMAT and TIMEFORMAT Strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\. In addition, the `'auto'` argument recognizes the following formats that aren't supported when using a DATEFORMAT and TIMEFORMAT string\.
+When used with the `'auto'` argument for DATEFORMAT and TIMEFORMAT, COPY recognizes and converts the date and time formats listed in the table in [ DATEFORMAT and TIMEFORMAT strings](r_DATEFORMAT_and_TIMEFORMAT_strings.md)\. In addition, the `'auto'` argument recognizes the following formats that aren't supported when using a DATEFORMAT and TIMEFORMAT string\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/automatic-recognition.html)
 

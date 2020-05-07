@@ -1,8 +1,8 @@
-# STRPOS Function<a name="r_STRPOS"></a>
+# STRPOS function<a name="r_STRPOS"></a>
 
 Returns the position of a substring within a specified string\. 
 
-Synonym of [CHARINDEX Function](r_CHARINDEX.md) and [POSITION Function](r_POSITION.md)\. 
+Synonym of [CHARINDEX Function](r_CHARINDEX.md) and [POSITION function](r_POSITION.md)\. 
 
 ## Syntax<a name="r_STRPOS-synopsis"></a>
 
@@ -18,11 +18,11 @@ The first input parameter is the string to be searched\.
  *substring*   
 The second parameter is the substring to search for within the *string*\. 
 
-## Return Type<a name="r_STRPOS-return-type"></a>
+## Return type<a name="r_STRPOS-return-type"></a>
 
 The STRPOS function returns an integer corresponding to the position of the substring \(one\-based, not zero\-based\)\. The position is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\.
 
-## Usage Notes<a name="r_STRPOS_usage_notes"></a>
+## Usage notes<a name="r_STRPOS_usage_notes"></a>
 
 STRPOS returns 0 if the *substring* is not found within the *string*: 
 

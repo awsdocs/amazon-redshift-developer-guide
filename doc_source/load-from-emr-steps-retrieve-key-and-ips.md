@@ -1,4 +1,4 @@
-# Step 3: Retrieve the Amazon Redshift Cluster Public Key and Cluster Node IP Addresses<a name="load-from-emr-steps-retrieve-key-and-ips"></a>
+# Step 3: Retrieve the Amazon Redshift cluster public key and cluster node IP addresses<a name="load-from-emr-steps-retrieve-key-and-ips"></a>
 
 **To retrieve the Amazon Redshift cluster public key and cluster node IP addresses for your cluster using the console**
 

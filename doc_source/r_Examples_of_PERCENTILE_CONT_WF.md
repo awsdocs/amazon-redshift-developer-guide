@@ -1,6 +1,6 @@
-# PERCENTILE\_CONT Window Function Examples<a name="r_Examples_of_PERCENTILE_CONT_WF"></a>
+# PERCENTILE\_CONT window function examples<a name="r_Examples_of_PERCENTILE_CONT_WF"></a>
 
-The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 
 
 ```
 select sellerid, qty, percentile_cont(0.5) 

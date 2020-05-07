@@ -1,4 +1,4 @@
-# Working with Recommendations from Amazon Redshift Advisor<a name="advisor"></a>
+# Working with recommendations from Amazon Redshift Advisor<a name="advisor"></a>
 
 To help you improve the performance and decrease the operating costs for your Amazon Redshift cluster, Amazon Redshift Advisor offers you specific recommendations about changes to make\. Advisor develops its customized recommendations by analyzing performance and usage metrics for your cluster\. These tailored recommendations relate to operations and cluster settings\. To help you prioritize your optimizations, Advisor ranks recommendations by order of impact\.
 
@@ -21,5 +21,5 @@ The Amazon Redshift Advisor feature is available only in the following AWS Regio
 
 **Topics**
 + [Amazon Redshift Regions](#advisor-regions)
-+ [Viewing Amazon Redshift Advisor Recommendations on the Console](access-advisor.md)
-+ [Amazon Redshift Advisor Recommendations](advisor-recommendations.md)
++ [Viewing Amazon Redshift Advisor recommendations on the console](access-advisor.md)
++ [Amazon Redshift Advisor recommendations](advisor-recommendations.md)

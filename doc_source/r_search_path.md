@@ -1,6 +1,6 @@
 # search\_path<a name="r_search_path"></a>
 
-## Values \(Default in Bold\)<a name="r_search_path-values"></a>
+## Values \(default in bold\)<a name="r_search_path-values"></a>
 
 **'$user', public, ***schema\_names*
 

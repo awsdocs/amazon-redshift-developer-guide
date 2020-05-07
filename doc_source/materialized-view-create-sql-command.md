@@ -21,22 +21,22 @@ The `BACKUP NO` setting has no effect on automatic replication of data to other 
 
  *table\_attributes*   
 A clause that specifies how the data in the materialized view is distributed, including the following:  
-+  The distribution style for the materialized view, in the format `DISTSTYLE { EVEN | ALL | KEY }`\. If you omit this clause, the distribution style is `AUTO`\. For more information, see [Distribution Styles](c_choosing_dist_sort.md)\.
-+ The distribution key for the materialized view, in the format `DISTKEY ( distkey_identifier )`\. For more information, see [Designating Distribution Styles](t_designating_distribution_styles.md)\.
-+ The sort key for the materialized view, in the format `SORTKEY ( column_name [, ...] )`\. For more information, see [Choosing Sort Keys](t_Sorting_data.md)\.
++  The distribution style for the materialized view, in the format `DISTSTYLE { EVEN | ALL | KEY }`\. If you omit this clause, the distribution style is `AUTO`\. For more information, see [Distribution styles](c_choosing_dist_sort.md)\.
++ The distribution key for the materialized view, in the format `DISTKEY ( distkey_identifier )`\. For more information, see [Designating distribution styles](t_designating_distribution_styles.md)\.
++ The sort key for the materialized view, in the format `SORTKEY ( column_name [, ...] )`\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.
 
 AS *query*  
 A valid `SELECT` statement which defines the materialized view and its content\. The result set from the query defines the columns and rows of the materialized view\. For information about limitations when creating materialized views, see [Limitations](#mv_CREATE_MATERIALIZED_VIEW-limitations)\.  
-Furthermore, specific SQL language constructs used in the query determines whether the materialized view can be incrementally or fully refresehed\. For information about the refresh method, see [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)\. For information about the limitations for incremental refresh, see [Limitations for Incremental Refresh](materialized-view-refresh-sql-command.md#mv_REFRESH_MARTERIALIZED_VIEW_limitations)\.  
+Furthermore, specific SQL language constructs used in the query determines whether the materialized view can be incrementally or fully refresehed\. For information about the refresh method, see [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)\. For information about the limitations for incremental refresh, see [Limitations for incremental refresh](materialized-view-refresh-sql-command.md#mv_REFRESH_MARTERIALIZED_VIEW_limitations)\.  
 If the query contains an SQL command that doesn't support incremental refresh, Amazon Redshift displays a message indicating that the materialized view will use a full refresh\. The message may or may not be displayed depending on the SQL client application\. For example, psql displays the message, and a JDBC client may not\. Check the `state` column of the [STV\_MV\_INFO](r_STV_MV_INFO.md) to see the refresh type used by a materialized view\.
 
-## Usage Notes<a name="mv_CREATE_MARTERIALIZED_VIEW_usage"></a>
+## Usage notes<a name="mv_CREATE_MARTERIALIZED_VIEW_usage"></a>
 
 To create a materialized view, you must have the following privileges:
 + CREATE privileges for a schema\.
 + Table\-level SELECT privilege on the base tables to create a materialized view\. Even if you have column\-level privileges on specific columns, you can't create a materialized view on only those columns\. 
 
-## DDL Updates to Materialized Views or Base Tables<a name="materialized-view-ddl"></a>
+## DDL updates to materialized views or base tables<a name="materialized-view-ddl"></a>
 
 When using materialized views in Amazon Redshift, follow these usage notes for data definition language \(DDL\) updates to materialized views or base tables\.
 + You can add columns to a base table without affecting any materialized views that reference the base table\.
@@ -86,6 +86,6 @@ SELECT name, state FROM STV_MV_INFO
 ```
 
 For details about materialized view overview and SQL commands used to refresh and drop materialized views, see the following topics:
-+ [Creating Materialized Views in Amazon Redshift](materialized-view-overview.md)
++ [Creating materialized views in Amazon Redshift](materialized-view-overview.md)
 + [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)
 + [DROP MATERIALIZED VIEW](materialized-view-drop-sql-command.md)

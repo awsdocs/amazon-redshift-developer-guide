@@ -1,4 +1,4 @@
-# LEAD Window Function Examples<a name="r_Examples_of_LEAD_WF"></a>
+# LEAD window function examples<a name="r_Examples_of_LEAD_WF"></a>
 
  The following example provides the commission for events in the SALES table for which tickets were sold on January 1, 2008 and January 2, 2008 and the commission paid for ticket sales for the subsequent sale\. 
 

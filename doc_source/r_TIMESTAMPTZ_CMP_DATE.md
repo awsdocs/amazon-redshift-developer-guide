@@ -1,4 +1,4 @@
-# TIMESTAMPTZ\_CMP\_DATE Function<a name="r_TIMESTAMPTZ_CMP_DATE"></a>
+# TIMESTAMPTZ\_CMP\_DATE function<a name="r_TIMESTAMPTZ_CMP_DATE"></a>
 
 TIMESTAMPTZ\_CMP\_DATE compares the value of a time stamp and a date\. If the time stamp and date values are identical, the function returns 0\. If the time stamp is greater alphabetically, the function returns 1\. If the date is greater, the function returns –1\.
 
@@ -16,6 +16,6 @@ A TIMESTAMPTZ column or an expression that implicitly converts to a time stamp w
  *date*   
 A date column or an expression that implicitly converts to a date\.
 
-## Return Type<a name="r_TIMESTAMPTZ_CMP_DATE-return-type"></a>
+## Return type<a name="r_TIMESTAMPTZ_CMP_DATE-return-type"></a>
 
 INTEGER

@@ -8,7 +8,7 @@ You can only GRANT or REVOKE USAGE permissions on an external schema to database
 
 For stored procedures, the only privilege that you can grant is EXECUTE\.
 
-You can't run GRANT \(on an external resource\) within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+You can't run GRANT \(on an external resource\) within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_GRANT-synopsis"></a>
 
@@ -153,18 +153,18 @@ EXECUTE ON ALL FUNCTIONS IN SCHEMA *schema\_name*  <a name="grant-all-functions"
 Grants the specified privileges on all functions in the referenced schema\.
 
 EXECUTE ON PROCEDURE *procedure\_name*   <a name="grant-procedure"></a>
-Grants the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming Stored Procedures](stored-procedure-naming.md)\.
+Grants the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.
 
 EXECUTE ON ALL PROCEDURES IN SCHEMA *schema\_name*  <a name="grant-all-procedures"></a>
 Grants the specified privileges on all stored procedures in the referenced schema\.
 
 USAGE ON LANGUAGE *language\_name*   
 Grants the USAGE privilege on a language\.   
-The USAGE ON LANGUAGE privilege is required to create user\-defined functions \(UDFs\) by running the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.   
-The USAGE ON LANGUAGE privilege is required to create stored procedures by running the [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) command\. For more information, see [Security and Privileges for Stored Procedures ](stored-procedure-security-and-privileges.md)\.  
+The USAGE ON LANGUAGE privilege is required to create user\-defined functions \(UDFs\) by running the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. For more information, see [UDF security and privileges](udf-security-and-privileges.md)\.   
+The USAGE ON LANGUAGE privilege is required to create stored procedures by running the [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) command\. For more information, see [Security and privileges for stored procedures ](stored-procedure-security-and-privileges.md)\.  
 For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.
 
-## Usage Notes<a name="r_GRANT-usage-notes"></a>
+## Usage notes<a name="r_GRANT-usage-notes"></a>
 
 To grant privileges on an object, you must meet one of the following criteria:
 + Be the object owner\.
@@ -207,7 +207,7 @@ to iam_role 'arn:aws:iam::123456789012:role/myGrantee';
 
 Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
 
-## Usage Notes for Column\-Level Access Control<a name="r_GRANT-usage-notes-clp"></a>
+## Usage notes for column\-level access control<a name="r_GRANT-usage-notes-clp"></a>
 
 The following usage notes apply to column\-level privileges on Amazon Redshift tables and views\. These notes describe tables; the same notes apply to views unless we explicitly note an exception\. 
 

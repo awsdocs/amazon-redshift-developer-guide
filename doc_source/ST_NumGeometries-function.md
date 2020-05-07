@@ -13,7 +13,7 @@ ST_NumGeometries(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. 
 
-## Return Type<a name="ST_NumGeometries-function-return"></a>
+## Return type<a name="ST_NumGeometries-function-return"></a>
 
 `INTEGER` representing the number of geometries in *geom*\. 
 

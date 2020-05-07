@@ -1,26 +1,26 @@
-# Choosing a Data Distribution Style<a name="t_Distributing_data"></a>
+# Choosing a data distribution style<a name="t_Distributing_data"></a>
 
 **Topics**
-+ [Data Distribution Concepts](#t_data_distribution_concepts)
-+ [Distribution Styles](c_choosing_dist_sort.md)
-+ [Viewing Distribution Styles](viewing-distribution-styles.md)
-+ [Evaluating Query Patterns](t_evaluating_query_patterns.md)
-+ [Designating Distribution Styles](t_designating_distribution_styles.md)
-+ [Evaluating the Query Plan](c_data_redistribution.md)
-+ [Query Plan Example](t_explain_plan_example.md)
-+ [Distribution Examples](c_Distribution_examples.md)
++ [Data distribution concepts](#t_data_distribution_concepts)
++ [Distribution styles](c_choosing_dist_sort.md)
++ [Viewing distribution styles](viewing-distribution-styles.md)
++ [Evaluating query patterns](t_evaluating_query_patterns.md)
++ [Designating distribution styles](t_designating_distribution_styles.md)
++ [Evaluating the query plan](c_data_redistribution.md)
++ [Query plan example](t_explain_plan_example.md)
++ [Distribution examples](c_Distribution_examples.md)
 
 When you load data into a table, Amazon Redshift distributes the rows of the table to each of the compute nodes according to the table's distribution style\. When you run a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in selecting a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is executed\.
 
 This section will introduce you to the principles of data distribution in an Amazon Redshift database and give you a methodology to choose the best distribution style for each of your tables\.
 
-## Data Distribution Concepts<a name="t_data_distribution_concepts"></a>
+## Data distribution concepts<a name="t_data_distribution_concepts"></a>
 
  **Nodes and slices** 
 
  An Amazon Redshift cluster is a set of nodes\. Each node in the cluster has its own operating system, dedicated memory, and dedicated disk storage\. One node is the *leader node*, which manages the distribution of data and query processing tasks to the *compute nodes*\. 
 
- The disk storage for a compute node is divided into a number of *slices*\. The number of slices per node depends on the node size of the cluster\. For example, each DS2\.XL compute node has two slices, and each DS2\.8XL compute node has 16 slices\. The nodes all participate in parallel query execution, working on data that is distributed as evenly as possible across the slices\. For more information about the number of slices that each node size has, go to [About Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+ The disk storage for a compute node is divided into a number of *slices*\. The number of slices per node depends on the node size of the cluster\. For example, each DS2\.XL compute node has two slices, and each DS2\.8XL compute node has 16 slices\. The nodes all participate in parallel query execution, working on data that is distributed as evenly as possible across the slices\. For more information about the number of slices that each node size has, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
  **Data redistribution** 
 

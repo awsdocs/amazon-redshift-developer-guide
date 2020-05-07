@@ -1,4 +1,4 @@
-# Data Load Operations<a name="copy-parameters-data-load"></a>
+# Data load operations<a name="copy-parameters-data-load"></a>
 
 Manage the default behavior of the load operation for troubleshooting or to reduce load times by specifying the following parameters\. 
 + [COMPROWS](#copy-comprows) 
@@ -20,7 +20,7 @@ When COMPUPDATE is PRESET, the COPY command chooses the compression encoding for
 + Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
 + Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 When COMPUPDATE is omitted, the COPY command chooses the compression encoding for each column only if the target table is empty and you have not specified an encoding \(other than RAW\) for any of the columns\. The encoding for each column is determined by Amazon Redshift\. No data is sampled\.   
-When COMPUPDATE is ON \(or TRUE\), or COMPUPDATE is specified without an option, the COPY command applies automatic compression if the table is empty; even if the table columns already have encodings other than RAW\. Currently specified column encodings can be replaced\. Encoding for each column is based on an analysis of sample data\. For more information, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.  
+When COMPUPDATE is ON \(or TRUE\), or COMPUPDATE is specified without an option, the COPY command applies automatic compression if the table is empty; even if the table columns already have encodings other than RAW\. Currently specified column encodings can be replaced\. Encoding for each column is based on an analysis of sample data\. For more information, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.  
 When COMPUPDATE is OFF \(or FALSE\), automatic compression is disabled\. Column encodings aren't changed\.  
 For information about the system table to analyze compression, see [STL\_ANALYZE\_COMPRESSION](r_STL_ANALYZE_COMPRESSION.md)\. 
 
@@ -37,4 +37,4 @@ Governs automatic computation and refresh of optimizer statistics at the end of 
 Whenever ingesting data into a nonempty table significantly changes the size of the table, we recommend updating statistics either by running an [ANALYZE](r_ANALYZE.md) command or by using the STATUPDATE ON argument\.  
 With STATUPDATE ON \(or TRUE\), statistics are updated automatically regardless of whether the table is initially empty\. If STATUPDATE is used, the current user must be either the table owner or a superuser\. If STATUPDATE is not specified, only INSERT permission is required\.  
 With STATUPDATE OFF \(or FALSE\), statistics are never updated\.  
-For additional information, see [Analyzing Tables](t_Analyzing_tables.md)\.
+For additional information, see [Analyzing tables](t_Analyzing_tables.md)\.

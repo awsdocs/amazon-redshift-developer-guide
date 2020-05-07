@@ -18,7 +18,7 @@ Clause that indicates that if the specified schema already exists, the command s
 This clause is useful when scripting, so the script doesn’t fail if CREATE SCHEMA tries to create a schema that already exists\.
 
  *schema\_name*   
-Name of the new schema\. The schema name can't be `PUBLIC`\. For more information about valid names, see [Names and Identifiers](r_names.md)\.  
+Name of the new schema\. The schema name can't be `PUBLIC`\. For more information about valid names, see [Names and identifiers](r_names.md)\.  
 The list of schemas in the [search\_path](r_search_path.md) configuration parameter determines the precedence of identically named objects when they are referenced without schema names\.
 
 AUTHORIZATION   

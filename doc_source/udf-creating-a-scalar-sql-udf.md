@@ -1,4 +1,4 @@
-# Creating a Scalar SQL UDF<a name="udf-creating-a-scalar-sql-udf"></a>
+# Creating a scalar SQL UDF<a name="udf-creating-a-scalar-sql-udf"></a>
 
 A scalar SQL UDF incorporates a SQL SELECT clause that executes when the function is called and returns a single value\. The [CREATE FUNCTION](r_CREATE_FUNCTION.md) command defines the following parameters:
 + \(Optional\) Input arguments\. Each argument must have a data type\. 
@@ -17,7 +17,7 @@ The SELECT clause can't include any of the following types of clauses:
 + ORDER BY
 + LIMIT
 
-## Scalar SQL Function Example<a name="udf-scalar-sql-function-example"></a>
+## Scalar SQL function example<a name="udf-scalar-sql-function-example"></a>
 
 The following example creates a function that compares two numbers and returns the larger value\. For more information, see [CREATE FUNCTION](r_CREATE_FUNCTION.md)\.
 

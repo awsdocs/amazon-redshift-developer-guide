@@ -4,26 +4,26 @@ Contains metrics information, such as the number of rows processed, CPU usage, i
 
 Query metrics are sampled at one second intervals\. As a result, different runs of the same query might return slightly different times\. Also, query segments that run in less than 1 second might not be recorded\. 
 
-STV\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query Planning and Execution Workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data Warehouse System Architecture](c_high_level_system_architecture.md)\. 
+STV\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query planning and execution workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data warehouse system architecture](c_high_level_system_architecture.md)\. 
 
 To determine the level at which the row reports metrics, examine the `segment` and `step_type` columns:
 + If both `segment` and `step_type` are `-1`, then the row reports metrics at the query level\. 
 + If `segment` is not `-1` and `step_type` is `-1`, then the row reports metrics at the segment level\. 
 + If both `segment` and `step_type` are not `-1`, then the row reports metrics at the step level\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Rows<a name="r_STV_QUERY_METRICS-table-rows2"></a>
+## Table rows<a name="r_STV_QUERY_METRICS-table-rows2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_QUERY_METRICS.html)
 
-## Step Types<a name="r_STV_QUERY_METRICS-step-type"></a>
+## Step types<a name="r_STV_QUERY_METRICS-step-type"></a>
 
 The following table lists step types relevant to database users\. The table doesn't list step types that are for internal use only\. If step type is \-1, the metric is not reported at the step level\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_QUERY_METRICS.html)
 
-## Sample Query<a name="r_STV_QUERY_METRICS-sample-query2"></a>
+## Sample query<a name="r_STV_QUERY_METRICS-sample-query2"></a>
 
 To find active queries with high CPU time \(more the 1,000 seconds\), run the following query\.
 

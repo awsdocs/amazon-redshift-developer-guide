@@ -2,11 +2,11 @@
 
 Installs a Python library, which is available for users to incorporate when creating a user\-defined function \(UDF\) with the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. The total size of user\-installed libraries can't exceed 100 MB\. 
 
-CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
 
-For more information, see [Importing Custom Python Library Modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\. 
+For more information, see [Importing custom Python library modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\. 
 
 ## Syntax<a name="r_CREATE_LIBRARY-synopsis"></a>
 
@@ -26,7 +26,7 @@ OR REPLACE
 Specifies that if a library with the same name as this one already exists, the existing library is replaced\. REPLACE commits immediately\. If a UDF that depends on the library is running concurrently, the UDF might fail or return unexpected results, even if the UDF is running within a transaction\. You must be the owner or a superuser to replace a library\.
 
  *library\_name*   
-The name of the library to be installed\. You can't create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as the library to be installed , you must drop the existing library before installing the new library\. For more information, see [Python Language Support for UDFs](udf-python-language-support.md)\.
+The name of the library to be installed\. You can't create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as the library to be installed , you must drop the existing library before installing the new library\. For more information, see [Python language support for UDFs](udf-python-language-support.md)\.
 
 LANGUAGE plpythonu  
 The language to use\. Python \(plpythonu\) is the only supported language\. Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
@@ -52,7 +52,7 @@ If you specify an Amazon S3 bucket, you must also provide credentials for an AWS
 
 *authorization*   
 A clause that indicates the method your cluster uses for authentication and authorization to access the Amazon S3 bucket that contains the library file\. Your cluster must have permission to access the Amazon S3 with the LIST and GET actions\.  
-The syntax for authorization is the same as for the COPY command authorization\. For more information, see [Authorization Parameters](copy-parameters-authorization.md)\.  
+The syntax for authorization is the same as for the COPY command authorization\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.  
 To specify an AWS Identity and Access Management \(IAM\) role, replace *<account\-id>* and *<role\-name>* with the account ID and role name in the CREDENTIALS *credentials\-args* string\. An example is shown following\.  
 
 ```
@@ -70,7 +70,7 @@ To use temporary token credentials, you must provide the temporary access key ID
 WITH CREDENTIALS AS 
 'aws_access_key_id=<temporary-access-key-id>;aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>'
 ```
-For more information, see [Temporary Security Credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)
+For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)
 
  REGION \[AS\] *aws\_region*   
 The AWS Region where the Amazon S3 bucket is located\. REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.  

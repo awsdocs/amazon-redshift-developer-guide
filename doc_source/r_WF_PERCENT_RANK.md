@@ -1,4 +1,4 @@
-# PERCENT\_RANK Window Function<a name="r_WF_PERCENT_RANK"></a>
+# PERCENT\_RANK window function<a name="r_WF_PERCENT_RANK"></a>
 
 Calculates the percent rank of a given row\. The percent rank is determined using this formula:
 
@@ -42,12 +42,12 @@ Optional\. An expression that sets the range of records for each group in the OV
 
 ORDER BY *order\_list*   
 Optional\. The expression on which to calculate percent rank\. The expression must have either a numeric data type or be implicitly convertible to one\. If ORDER BY is omitted, the return value is 0 for all rows\.  
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 
-## Return Type<a name="r_WF_PERCENT_RANK-return-type"></a>
+## Return type<a name="r_WF_PERCENT_RANK-return-type"></a>
 
 FLOAT8
 
 ## Examples<a name="r_WF_PERCENT_RANK-examples"></a>
 
-See [PERCENT\_RANK Window Function Examples](r_Examples_of_PERCENT_RANK_WF.md)\. 
+See [PERCENT\_RANK window function examples](r_Examples_of_PERCENT_RANK_WF.md)\. 

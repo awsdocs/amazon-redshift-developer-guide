@@ -1,8 +1,8 @@
-# REGEXP\_REPLACE Function<a name="REGEXP_REPLACE"></a>
+# REGEXP\_REPLACE function<a name="REGEXP_REPLACE"></a>
 
-Searches a string for a regular expression pattern and replaces every occurrence of the pattern with the specified string\. REGEXP\_REPLACE is similar to the [REPLACE Function](r_REPLACE.md), but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX Operators](pattern-matching-conditions-posix.md)\.
+Searches a string for a regular expression pattern and replaces every occurrence of the pattern with the specified string\. REGEXP\_REPLACE is similar to the [REPLACE function](r_REPLACE.md), but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX operators](pattern-matching-conditions-posix.md)\.
 
-REGEXP\_REPLACE is similar to the [TRANSLATE Function](r_TRANSLATE.md) and the [REPLACE Function](r_REPLACE.md), except that TRANSLATE makes multiple single\-character substitutions and REPLACE substitutes one entire string with another string, while REGEXP\_REPLACE lets you search a string for a regular expression pattern\.
+REGEXP\_REPLACE is similar to the [TRANSLATE function](r_TRANSLATE.md) and the [REPLACE function](r_REPLACE.md), except that TRANSLATE makes multiple single\-character substitutions and REPLACE substitutes one entire string with another string, while REGEXP\_REPLACE lets you search a string for a regular expression pattern\.
 
 ## Syntax<a name="REGEXP_REPLACE-synopsis"></a>
 
@@ -24,7 +24,7 @@ A string expression, such as a column name, that will replace each occurrence of
  *position*   
 A positive integer that indicates the position within *source\_string* to begin searching\. The position is based on the number of characters, not bytes, so that multibyte characters are counted as single characters\. The default is 1\. If *position* is less than 1, the search begins at the first character of *source\_string*\. If *position* is greater than the number of characters in *source\_string*, the result is *source\_string*\.
 
-## Return Type<a name="REGEXP_REPLACE-return-type"></a>
+## Return type<a name="REGEXP_REPLACE-return-type"></a>
 
 VARCHAR
 

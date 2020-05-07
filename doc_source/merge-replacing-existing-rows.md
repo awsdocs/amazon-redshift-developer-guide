@@ -1,4 +1,4 @@
-# Performing a Merge Operation by Replacing Existing Rows<a name="merge-replacing-existing-rows"></a>
+# Performing a merge operation by replacing existing rows<a name="merge-replacing-existing-rows"></a>
 
 **To perform a merge operation by replacing existing rows**
 

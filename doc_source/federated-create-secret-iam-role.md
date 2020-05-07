@@ -1,4 +1,4 @@
-# Creating a Secret and an IAM Role to Use Federated Queries<a name="federated-create-secret-iam-role"></a>
+# Creating a secret and an IAM role to use federated queries<a name="federated-create-secret-iam-role"></a>
 
 The following steps show how to create a secret and an IAM role to use with federated queries\. 
 

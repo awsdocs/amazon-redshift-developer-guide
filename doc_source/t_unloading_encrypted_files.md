@@ -1,6 +1,6 @@
-# Unloading Encrypted Data Files<a name="t_unloading_encrypted_files"></a>
+# Unloading encrypted data files<a name="t_unloading_encrypted_files"></a>
 
-UNLOAD automatically creates files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can also specify server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\) or client\-side encryption with a customer\-managed key \(CSE\-CMK\)\. UNLOAD doesn't support Amazon S3 server\-side encryption using a customer\-supplied key \(SSE\-C\)\. For more information, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\. 
+UNLOAD automatically creates files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can also specify server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\) or client\-side encryption with a customer\-managed key \(CSE\-CMK\)\. UNLOAD doesn't support Amazon S3 server\-side encryption using a customer\-supplied key \(SSE\-C\)\. For more information, see [ Protecting data using server\-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\. 
 
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key, use the KMS\_KEY\_ID parameter to provide the key ID as shown in the following example\.
 
@@ -26,7 +26,7 @@ The process works like this:
 
 1. UNLOAD then stores the encrypted data files in Amazon S3 and stores the encrypted envelope key and IV as object metadata with each file\. The encrypted envelope key is stored as object metadata `x-amz-meta-x-amz-key` and the IV is stored as object metadata `x-amz-meta-x-amz-iv`\. 
 
-For more information about the envelope encryption process, see the [Client\-Side Data Encryption with the AWS SDK for Java and Amazon S3](https://aws.amazon.com/articles/2850096021478074) article\. 
+For more information about the envelope encryption process, see the [Client\-side data encryption with the AWS SDK for Java and amazon S3](https://aws.amazon.com/articles/2850096021478074) article\. 
 
 To unload encrypted data files, add the master key value to the credentials string and include the ENCRYPTED option\. If you use the MANIFEST option, the manifest file is also encrypted\.
 

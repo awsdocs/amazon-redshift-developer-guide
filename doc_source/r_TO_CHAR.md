@@ -14,13 +14,13 @@ TO_CHAR (timestamp_expression | numeric_expression , 'format')
 An expression that results in a TIMESTAMP or TIMESTAMPTZ type value or a value that can implicitly be coerced to a time stamp\. 
 
  *numeric\_expression*   
-An expression that results in a numeric data type value or a value that can implicitly be coerced to a numeric type\. For more information, see [Numeric Types](r_Numeric_types201.md)\. TO\_CHAR inserts a space to the left of the numeral string\.  
+An expression that results in a numeric data type value or a value that can implicitly be coerced to a numeric type\. For more information, see [Numeric types](r_Numeric_types201.md)\. TO\_CHAR inserts a space to the left of the numeral string\.  
 TO\_CHAR does not support 128\-bit DECIMAL values\. 
 
  *format*   
-The format for the new value\. For valid formats, see [Datetime Format Strings](r_FORMAT_strings.md) and [ Numeric Format Strings](r_Numeric_formating.md)\. 
+The format for the new value\. For valid formats, see [Datetime format strings](r_FORMAT_strings.md) and [ Numeric Format Strings](r_Numeric_formating.md)\. 
 
-## Return Type<a name="r_TO_CHAR-return-type"></a>
+## Return type<a name="r_TO_CHAR-return-type"></a>
 
 VARCHAR
 

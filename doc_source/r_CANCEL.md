@@ -18,7 +18,7 @@ Process ID corresponding to the query that you want to cancel\.
 '*message*'   
 An optional confirmation message that displays when the query cancellation completes\. If you don't specify a message, Amazon Redshift displays the default message as verification\. You must enclose the message in single quotation marks\.
 
-## Usage Notes<a name="r_CANCEL-usage-notes"></a>
+## Usage notes<a name="r_CANCEL-usage-notes"></a>
 
 You can't cancel a query by specifying a *query ID*; you must specify the query's *process ID* \(PID\)\. You can only cancel queries currently being run by your user\. Superusers can cancel all queries\.
 

@@ -4,10 +4,10 @@ PL/pgSQL is a procedural language with many of the same constructs as other proc
 
 **Topics**
 + [Block](#r_PLpgSQL-block)
-+ [Variable Declaration](#r_PLpgSQL-variable-declaration)
-+ [Alias Declaration](#r_PLpgSQL-alias-declaration)
-+ [Built\-in Variables](#r_PLpgSQL-builtin-variables)
-+ [Record Types](#r_PLpgSQL-record-type)
++ [Variable declaration](#r_PLpgSQL-variable-declaration)
++ [Alias declaration](#r_PLpgSQL-alias-declaration)
++ [Built\-in variables](#r_PLpgSQL-builtin-variables)
++ [Record types](#r_PLpgSQL-record-type)
 
 ## Block<a name="r_PLpgSQL-block"></a>
 
@@ -59,11 +59,11 @@ Use a label to identify the block to use in an EXIT statement or to qualify the 
 
 Don't confuse the use of BEGIN/END for grouping statements in PL/pgSQL with the database commands for transaction control\. The BEGIN and END in PL/pgSQL are only for grouping\. They don't start or end a transaction\.
 
-## Variable Declaration<a name="r_PLpgSQL-variable-declaration"></a>
+## Variable declaration<a name="r_PLpgSQL-variable-declaration"></a>
 
-Declare all variables in a block, with the exception of loop variables, in the block's DECLARE section\. Variables can use any valid Amazon Redshift data type\. For supported data types, see [Data Types](c_Supported_data_types.md)\. 
+Declare all variables in a block, with the exception of loop variables, in the block's DECLARE section\. Variables can use any valid Amazon Redshift data type\. For supported data types, see [Data types](c_Supported_data_types.md)\. 
 
-PL/pgSQL variables can be any Amazon Redshift supported data type, plus `RECORD` and `refcursor`\. For more information about `RECORD`, see [Record Types](#r_PLpgSQL-record-type)\. For more information about `refcursor`, see [Cursors](c_PLpgSQL-statements.md#r_PLpgSQL-cursors)\. 
+PL/pgSQL variables can be any Amazon Redshift supported data type, plus `RECORD` and `refcursor`\. For more information about `RECORD`, see [Record types](#r_PLpgSQL-record-type)\. For more information about `refcursor`, see [Cursors](c_PLpgSQL-statements.md#r_PLpgSQL-cursors)\. 
 
 ```
 DECLARE
@@ -91,9 +91,9 @@ url VARCHAR := 'http://mysite.com';
 user_id CONSTANT INTEGER := 10;
 ```
 
-The `refcursor` data type is the data type of cursor variables within stored procedures\. A `refcursor` value can be returned from within a stored procedure\. For more information, see [Returning a Result Set](stored-procedure-result-set.md)\.
+The `refcursor` data type is the data type of cursor variables within stored procedures\. A `refcursor` value can be returned from within a stored procedure\. For more information, see [Returning a result set](stored-procedure-result-set.md)\.
 
-## Alias Declaration<a name="r_PLpgSQL-alias-declaration"></a>
+## Alias declaration<a name="r_PLpgSQL-alias-declaration"></a>
 
 If stored procedure's signature omits the argument name, you can declare an alias for the argument\.
 
@@ -101,7 +101,7 @@ If stored procedure's signature omits the argument name, you can declare an alia
 name ALIAS FOR $n;
 ```
 
-## Built\-in Variables<a name="r_PLpgSQL-builtin-variables"></a>
+## Built\-in variables<a name="r_PLpgSQL-builtin-variables"></a>
 
 The following built\-in variables are supported:
 + FOUND
@@ -176,7 +176,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-## Record Types<a name="r_PLpgSQL-record-type"></a>
+## Record types<a name="r_PLpgSQL-record-type"></a>
 
 A RECORD type is not a true data type, only a placeholder\. Record type variables assume the actual row structure of the row that they are assigned during a SELECT or FOR command\. The substructure of a record variable can change each time it is assigned a value\. Until a record variable is first assigned to, it has no substructure\. Any attempt to access a field in it throws a runtime error\.
 

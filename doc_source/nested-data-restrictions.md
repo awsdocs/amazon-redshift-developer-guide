@@ -1,4 +1,4 @@
-# Nested Data Limitations<a name="nested-data-restrictions"></a>
+# Nested data limitations<a name="nested-data-restrictions"></a>
 
 The following limitations apply to nested data:
 + An array can only contain scalars or `struct` types\. `Array` types can't contain `array` or `map` types\.

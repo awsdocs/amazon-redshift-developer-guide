@@ -1,6 +1,6 @@
 # enable\_vacuum\_boost<a name="r_enable_vacuum_boost"></a>
 
-## Values \(Default in Bold\)<a name="r_enable_vacuum_boost-values"></a>
+## Values \(default in bold\)<a name="r_enable_vacuum_boost-values"></a>
 
 **false**, true
 

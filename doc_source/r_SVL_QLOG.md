@@ -4,7 +4,7 @@ The SVL\_QLOG view contains a log of all queries run against the database\.
 
 Amazon Redshift creates the SVL\_QLOG view as a readable subset of information from the [STL\_QUERY](r_STL_QUERY.md) table\. Use this table to find the query ID for a recently run query or to see how long it took a query to complete\.
 
-SVL\_QLOG is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_QLOG is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVL_QLOG-table-columns"></a>
 

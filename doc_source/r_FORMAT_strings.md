@@ -1,4 +1,4 @@
-# Datetime Format Strings<a name="r_FORMAT_strings"></a>
+# Datetime format strings<a name="r_FORMAT_strings"></a>
 
 You can find a reference for datetime format strings following\. 
 

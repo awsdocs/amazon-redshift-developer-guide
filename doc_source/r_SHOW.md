@@ -1,6 +1,6 @@
 # SHOW<a name="r_SHOW"></a>
 
-Displays the current value of a server configuration parameter\. This value may be specific to the current session if a SET command is in effect\. For a list of configuration parameters, see [Configuration Reference](cm_chap_ConfigurationRef.md)\.
+Displays the current value of a server configuration parameter\. This value may be specific to the current session if a SET command is in effect\. For a list of configuration parameters, see [Configuration reference](cm_chap_ConfigurationRef.md)\.
 
 ## Syntax<a name="r_SHOW-synopsis"></a>
 

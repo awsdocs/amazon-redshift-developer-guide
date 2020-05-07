@@ -1,4 +1,4 @@
-# CHR Function<a name="r_CHR"></a>
+# CHR function<a name="r_CHR"></a>
 
 The CHR function returns the character that matches the ASCII code point value specified by of the input parameter\.
 
@@ -13,7 +13,7 @@ CHR(number)
  *number*   
 The input parameter is an integer that represents an ASCII code point value\.
 
-## Return Type<a name="r_CHR-return-type"></a>
+## Return type<a name="r_CHR-return-type"></a>
 
 The CHR function returns a CHAR string if an ASCII character matches the input value\. If the input number has no ASCII match, the function returns null\.
 

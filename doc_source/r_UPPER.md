@@ -1,4 +1,4 @@
-# UPPER Function<a name="r_UPPER"></a>
+# UPPER function<a name="r_UPPER"></a>
 
 Converts a string to uppercase\. UPPER supports UTF\-8 multibyte characters, up to a maximum of four bytes per character\.
 
@@ -13,7 +13,7 @@ UPPER(string)
  *string*   
 The input parameter is a CHAR or VARCHAR string\. 
 
-## Return Type<a name="r_UPPER-return-type"></a>
+## Return type<a name="r_UPPER-return-type"></a>
 
 The UPPER function returns a character string that is the same data type as the input string \(CHAR or VARCHAR\)\. 
 

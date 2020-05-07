@@ -1,4 +1,4 @@
-# Limitations and Considerations When Accessing Federated Data with Amazon Redshift<a name="federated-limitations"></a>
+# Limitations and considerations when accessing federated data with Amazon Redshift<a name="federated-limitations"></a>
 
 Some Amazon Redshift features don't support access to federated data\. You can find related limitations and considerations following\.
 

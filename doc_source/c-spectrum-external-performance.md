@@ -1,4 +1,4 @@
-# Improving Amazon Redshift Spectrum Query Performance<a name="c-spectrum-external-performance"></a>
+# Improving Amazon Redshift Spectrum query performance<a name="c-spectrum-external-performance"></a>
 
 Look at the query plan to find what steps have been pushed to the Amazon Redshift Spectrum layer\. 
 
@@ -64,6 +64,6 @@ Following are ways to improve Redshift Spectrum performance:
   + String functions\.
 
   Operations that can't be pushed to the Redshift Spectrum layer include DISTINCT and ORDER BY\.
-+ Use partitions to limit the data that is scanned\. Partition your data based on your most common query predicates, then prune partitions by filtering on partition columns\. For more information, see [Partitioning Redshift Spectrum External Tables](c-spectrum-external-tables.md#c-spectrum-external-tables-partitioning)\.
++ Use partitions to limit the data that is scanned\. Partition your data based on your most common query predicates, then prune partitions by filtering on partition columns\. For more information, see [Partitioning Redshift Spectrum external tables](c-spectrum-external-tables.md#c-spectrum-external-tables-partitioning)\.
 
   Query [SVL\_S3PARTITION](r_SVL_S3PARTITION.md) to view total partitions and qualified partitions\.

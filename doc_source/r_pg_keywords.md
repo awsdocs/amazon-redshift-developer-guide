@@ -1,8 +1,8 @@
-# Reserved Words<a name="r_pg_keywords"></a>
+# Reserved words<a name="r_pg_keywords"></a>
 
 The following is a list of Amazon Redshift reserved words\. You can use the reserved words with delimited identifiers \(double quotes\)\.
 
-For more information, see [Names and Identifiers](r_names.md)\. 
+For more information, see [Names and identifiers](r_names.md)\. 
 
 ```
 AES128

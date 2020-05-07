@@ -1,6 +1,6 @@
-# Managing Transactions<a name="stored-procedure-transaction-management"></a>
+# Managing transactions<a name="stored-procedure-transaction-management"></a>
 
-The default automatic commit behavior causes each SQL command that runs separately to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable Isolation](c_serial_isolation.md)\.
+The default automatic commit behavior causes each SQL command that runs separately to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable isolation](c_serial_isolation.md)\.
 
 However, when you call a stored procedure from within a user specified transaction block \(defined by BEGIN\.\.\.COMMIT\), all statements in the stored procedure run in the context of the user specified transaction\. The procedure doesn't commit implicitly on exit\. The caller controls the procedure commit or rollback\.
 
@@ -17,7 +17,7 @@ All statements that follow a COMMIT, ROLLBACK, or TRUNCATE statement run in the 
 When you use a COMMIT, ROLLBACK, or TRUNCATE statement from within a stored procedure, the following constraints apply:
 + If the stored procedure is called from within a transaction block, it can't issue a COMMIT, ROLLBACK, or TRUNCATE statement\. This restriction applies within the stored procedure's own body and within any nested procedure call\.
 + If the stored procedure is created with `SET config` options, it can't issue a COMMIT, ROLLBACK, or TRUNCATE statement\. This restriction applies within the stored procedure's own body and within any nested procedure call\. 
-+ Any cursor that is open \(explicitly or implicitly\) is closed automatically when a COMMIT, ROLLBACK, or TRUNCATE statement is processed\. For constraints on explicit and implicit cursors, see [Limits and Differences for Stored Procedure Support](stored-procedure-constraints.md)\.
++ Any cursor that is open \(explicitly or implicitly\) is closed automatically when a COMMIT, ROLLBACK, or TRUNCATE statement is processed\. For constraints on explicit and implicit cursors, see [Limits and differences for stored procedure support](stored-procedure-constraints.md)\.
 
 Additionally, you can't run COMMIT or ROLLBACK using dynamic SQL\. However, you can run TRUNCATE using dynamic SQL\. For more information, see [Dynamic SQL](c_PLpgSQL-statements.md#r_PLpgSQL-dynamic-sql)\. 
 

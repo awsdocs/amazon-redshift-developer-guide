@@ -1,4 +1,4 @@
-# Analyzing Table Design<a name="c_analyzing-table-design"></a>
+# Analyzing table design<a name="c_analyzing-table-design"></a>
 
 As you have seen in the previous sections, specifying sort keys, distribution keys, and column encodings can significantly improve storage, I/O, and query performance\. This section provides a SQL script that you can run to help you identify tables where these options are missing or performing poorly\. 
 

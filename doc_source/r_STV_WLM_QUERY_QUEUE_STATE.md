@@ -2,13 +2,13 @@
 
 Records the current state of the query queues for the service classes\.
 
-STV\_WLM\_QUERY\_QUEUE\_STATE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_WLM\_QUERY\_QUEUE\_STATE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_WLM_QUERY_QUEUE_STATE-table-columns2"></a>
+## Table columns<a name="r_STV_WLM_QUERY_QUEUE_STATE-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_QUEUE_STATE.html)
 
-## Sample Query<a name="r_STV_WLM_QUERY_QUEUE_STATE-sample-query2"></a>
+## Sample query<a name="r_STV_WLM_QUERY_QUEUE_STATE-sample-query2"></a>
 
 The following query shows the queries in the queue for service classes greater than 4\. 
 

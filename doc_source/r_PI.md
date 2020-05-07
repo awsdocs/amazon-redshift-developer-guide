@@ -1,4 +1,4 @@
-# PI Function<a name="r_PI"></a>
+# PI function<a name="r_PI"></a>
 
 The PI function returns the value of PI to 14 decimal places\. 
 
@@ -8,7 +8,7 @@ The PI function returns the value of PI to 14 decimal places\.
 PI()
 ```
 
-## Return Type<a name="r_PI-return-type"></a>
+## Return type<a name="r_PI-return-type"></a>
 
 PI returns a DOUBLE PRECISION number\. 
 

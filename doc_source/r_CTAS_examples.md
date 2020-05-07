@@ -1,4 +1,4 @@
-# CTAS Examples<a name="r_CTAS_examples"></a>
+# CTAS examples<a name="r_CTAS_examples"></a>
 
 The following example creates a table called EVENT\_BACKUP for the EVENT table:
 

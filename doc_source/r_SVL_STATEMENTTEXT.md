@@ -4,7 +4,7 @@ Use the SVL\_STATEMENTTEXT view to get a complete record of all of the SQL comma
 
 The SVL\_STATEMENTTEXT view contains the union of all of the rows in the [STL\_DDLTEXT](r_STL_DDLTEXT.md), [STL\_QUERYTEXT](r_STL_QUERYTEXT.md), and [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md) tables\. This view also includes a join to the STL\_QUERY table\.
 
-SVL\_STATEMENTTEXT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_STATEMENTTEXT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVL_STATEMENTTEXT-table-columns"></a>
 

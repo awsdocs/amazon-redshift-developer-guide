@@ -7,13 +7,13 @@ The STL\_QUERY and STL\_QUERYTEXT tables only contain information about queries,
 
 To manage disk space, the STL log tables only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="sub-r_STL_QUERY-table-columns"></a>
+## Table columns<a name="sub-r_STL_QUERY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_QUERY.html)
 
-## Sample Queries<a name="r_STL_QUERY-sample-queries"></a>
+## Sample queries<a name="r_STL_QUERY-sample-queries"></a>
 
 The following query lists the five most recent queries\.
 

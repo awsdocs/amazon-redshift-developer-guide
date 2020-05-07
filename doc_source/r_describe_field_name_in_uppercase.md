@@ -1,6 +1,6 @@
 # describe\_field\_name\_in\_uppercase<a name="r_describe_field_name_in_uppercase"></a>
 
-## Values \(Default in Bold\)<a name="r_describe_field_name_in_uppercase-values"></a>
+## Values \(default in bold\)<a name="r_describe_field_name_in_uppercase-values"></a>
 
 **off \(false\)**, on \(true\)
 

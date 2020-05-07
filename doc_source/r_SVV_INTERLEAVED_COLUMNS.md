@@ -1,8 +1,8 @@
 # SVV\_INTERLEAVED\_COLUMNS<a name="r_SVV_INTERLEAVED_COLUMNS"></a>
 
-Use the SVV\_INTERLEAVED\_COLUMNS view to help determine whether a table that uses interleaved sort keys should be reindexed using [VACUUM REINDEX](r_VACUUM_command.md#vacuum-reindex)\. For more information about how to determine how often to run VACUUM and when to run a VACUUM REINDEX, see [Managing Vacuum Times](vacuum-managing-vacuum-times.md)\.
+Use the SVV\_INTERLEAVED\_COLUMNS view to help determine whether a table that uses interleaved sort keys should be reindexed using [VACUUM REINDEX](r_VACUUM_command.md#vacuum-reindex)\. For more information about how to determine how often to run VACUUM and when to run a VACUUM REINDEX, see [Managing vacuum times](vacuum-managing-vacuum-times.md)\.
 
-SVV\_INTERLEAVED\_COLUMNS is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVV\_INTERLEAVED\_COLUMNS is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="SVV_INTERLEAVED_COLUMNS-table-columns"></a>
 

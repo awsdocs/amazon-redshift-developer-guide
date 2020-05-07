@@ -11,7 +11,7 @@ This is a leader\-node function\. This function returns an error if it reference
 current_schema()
 ```
 
-## Return Type<a name="r_CURRENT_SCHEMA-return-type"></a>
+## Return type<a name="r_CURRENT_SCHEMA-return-type"></a>
 
 CURRENT\_SCHEMA returns a CHAR or VARCHAR string\. 
 

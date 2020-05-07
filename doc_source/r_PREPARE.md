@@ -21,7 +21,7 @@ The data type of a parameter to the prepared statement\. To refer to the paramet
  *statement *   
 Any SELECT, INSERT, UPDATE, or DELETE statement\.
 
-## Usage Notes<a name="r_PREPARE_usage_notes"></a>
+## Usage notes<a name="r_PREPARE_usage_notes"></a>
 
 Prepared statements can take parameters: values that are substituted into the statement when it is executed\. To include parameters in a prepared statement, supply a list of data types in the PREPARE statement, and, in the statement to be prepared itself, refer to the parameters by position using the notation $1, $2, \.\.\. When executing the statement, specify the actual values for these parameters in the EXECUTE statement\. See [EXECUTE](r_EXECUTE.md) for more details\. 
 
@@ -56,6 +56,6 @@ EXECUTE prep_select_plan (3);
 DEALLOCATE prep_select_plan;
 ```
 
-## See Also<a name="r_PREPARE-see-also"></a>
+## See also<a name="r_PREPARE-see-also"></a>
 
  [DEALLOCATE](r_DEALLOCATE.md), [EXECUTE](r_EXECUTE.md) 

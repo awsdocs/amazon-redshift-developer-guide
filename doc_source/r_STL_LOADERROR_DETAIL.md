@@ -8,13 +8,13 @@ Query STL\_LOADERROR\_DETAIL for additional details, such as the exact data row 
 
 The STL\_LOADERROR\_DETAIL table contains all data columns including and prior to the column where the parse error occurred\. Use the VALUE field to see the data value that was actually parsed in this column, including the columns that parsed correctly up to the error\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_LOADERROR_DETAIL-table-columns"></a>
+## Table columns<a name="r_STL_LOADERROR_DETAIL-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_LOADERROR_DETAIL.html)
 
-## Sample Query<a name="r_STL_LOADERROR_DETAIL-samplequery"></a>
+## Sample query<a name="r_STL_LOADERROR_DETAIL-samplequery"></a>
 
 The following query joins STL\_LOAD\_ERRORS to STL\_LOADERROR\_DETAIL to view the details of a parse error that occurred while loading the EVENT table, which has a table ID of 100133: 
 

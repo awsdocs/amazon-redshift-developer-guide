@@ -25,11 +25,11 @@ Number of rows to be used as the sample size for compression analysis\. The anal
  *numrows*   
 Number of rows to be used as the sample size for compression analysis\. The accepted range for *numrows* is a number between 1000 and 1000000000 \(1,000,000,000\)\.
 
-## Usage Notes<a name="r_ANALYZE_COMPRESSION_usage_notes"></a>
+## Usage notes<a name="r_ANALYZE_COMPRESSION_usage_notes"></a>
 
-Run ANALYZE COMPRESSION to get recommendations for column encoding schemes, based on a sample of the table's contents\. ANALYZE COMPRESSION is an advisory tool and doesn't modify the column encodings of the table\. The suggested encoding can be applied by recreating the table, or creating a new table with the same schema\. Recreating an uncompressed table with appropriate encoding schemes can significantly reduce its on\-disk footprint, saving disk space and improving query performance for IO\-bound workloads\.
+Run ANALYZE COMPRESSION to get recommendations for column encoding schemes, based on a sample of the table's contents\. ANALYZE COMPRESSION is an advisory tool and doesn't modify the column encodings of the table\. You can apply the suggested encoding by recreating the table or by creating a new table with the same schema\. Recreating an uncompressed table with appropriate encoding schemes can significantly reduce its on\-disk footprint\. This approach saves disk space and improves query performance for I/O\-bound workloads\.
 
-ANALYZE COMPRESSION doesn't consider [Runlength Encoding](c_Runlength_encoding.md) encoding on any column that is designated as a SORTKEY because range\-restricted scans might perform poorly when SORTKEY columns are compressed much more highly than other columns\.
+ANALYZE COMPRESSION skips the actual analysis phase and directly returns the original encoding type on any column that is designated as a SORTKEY\. It does this because range\-restricted scans might perform poorly when SORTKEY columns are compressed much more highly than other columns\.
 
 ANALYZE COMPRESSION acquires an exclusive table lock, which prevents concurrent reads and writes against the table\. Only run the ANALYZE COMPRESSION command when the table is idle\.
 

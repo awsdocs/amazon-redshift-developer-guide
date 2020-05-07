@@ -8,7 +8,7 @@ Returns the name of the database where you are currently connected\.
 current_database()
 ```
 
-## Return Type<a name="r_CURRENT_DATABASE-return-type"></a>
+## Return type<a name="r_CURRENT_DATABASE-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

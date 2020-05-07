@@ -4,13 +4,13 @@ Use the STV\_TBL\_TRANS table to find out information about the transient databa
 
 Transient tables are typically temporary row sets that are used as intermediate results while a query runs\. STV\_TBL\_TRANS differs from [STV\_TBL\_PERM](r_STV_TBL_PERM.md) in that STV\_TBL\_PERM contains information about permanent database tables\.
 
-STV\_TBL\_TRANS is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_TBL\_TRANS is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_TBL_TRANS-table-columns"></a>
+## Table columns<a name="r_STV_TBL_TRANS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_TBL_TRANS.html)
 
-## Sample Queries<a name="r_STV_TBL_TRANS-sample-queries"></a>
+## Sample queries<a name="r_STV_TBL_TRANS-sample-queries"></a>
 
 To view transient table information for a query with a query ID of 90, type the following command: 
 

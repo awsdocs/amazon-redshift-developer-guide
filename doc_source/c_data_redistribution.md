@@ -1,4 +1,4 @@
-# Evaluating the Query Plan<a name="c_data_redistribution"></a>
+# Evaluating the query plan<a name="c_data_redistribution"></a>
 
  You can use query plans to identify candidates for optimizing the distribution style\. 
 

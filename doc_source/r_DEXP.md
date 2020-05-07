@@ -1,4 +1,4 @@
-# DEXP Function<a name="r_DEXP"></a>
+# DEXP function<a name="r_DEXP"></a>
 
 The DEXP function returns the exponential value in scientific notation for a double precision number\. The only difference between the DEXP and EXP functions is that the parameter for DEXP must be a double precision\. 
 
@@ -13,7 +13,7 @@ DEXP(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_DEXP-return-type"></a>
+## Return type<a name="r_DEXP-return-type"></a>
 
 The DEXP function returns a double precision number\. 
 

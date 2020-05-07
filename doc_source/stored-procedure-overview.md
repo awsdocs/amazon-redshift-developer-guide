@@ -1,4 +1,4 @@
-# Creating Stored Procedures in Amazon Redshift<a name="stored-procedure-overview"></a>
+# Creating stored procedures in Amazon Redshift<a name="stored-procedure-overview"></a>
 
 You can define an Amazon Redshift stored procedure using the PostgreSQL procedural language PL/pgSQL to perform a set of SQL queries and logical operations\. The procedure is stored in the database and is available for any user with sufficient privileges to run\.  
 
@@ -15,5 +15,5 @@ For details about SQL commands to create and manage stored procedures, see the f
 + [ALTER DEFAULT PRIVILEGES](r_ALTER_DEFAULT_PRIVILEGES.md)
 
 **Topics**
-+ [Overview of Stored Procedures in Amazon Redshift](stored-procedure-create.md)
-+ [PL/pgSQL Language Reference](c_pl_pgSQL_reference.md)
++ [Overview of stored procedures in Amazon Redshift](stored-procedure-create.md)
++ [PL/pgSQL language reference](c_pl_pgSQL_reference.md)

@@ -1,4 +1,4 @@
-# Using the SVL\_QUERY\_REPORT View<a name="using-SVL-Query-Report"></a>
+# Using the SVL\_QUERY\_REPORT view<a name="using-SVL-Query-Report"></a>
 
 To analyze query summary information by slice, do the following:
 
@@ -25,4 +25,4 @@ To analyze query summary information by slice, do the following:
    Also check to see that all slices are taking approximately the same amount of time:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/SVL_QUERY_REPORT_elapsed_time.png)
 
-   Large discrepancies in these values can indicate data distribution skew due to a suboptimal distribution style for this particular query\. For recommended solutions, see [Suboptimal Data Distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.
+   Large discrepancies in these values can indicate data distribution skew due to a suboptimal distribution style for this particular query\. For recommended solutions, see [Suboptimal data distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.

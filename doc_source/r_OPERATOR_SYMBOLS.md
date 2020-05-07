@@ -1,8 +1,8 @@
-# Mathematical Operator Symbols<a name="r_OPERATOR_SYMBOLS"></a>
+# Mathematical operator symbols<a name="r_OPERATOR_SYMBOLS"></a>
 
  The following table lists the supported mathematical operators\. 
 
-## Supported Operators<a name="r_OPERATOR_SYMBOLS-supported-operators"></a>
+## Supported operators<a name="r_OPERATOR_SYMBOLS-supported-operators"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_OPERATOR_SYMBOLS.html)
 

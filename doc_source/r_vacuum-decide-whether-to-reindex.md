@@ -1,4 +1,4 @@
-# Deciding Whether to Reindex<a name="r_vacuum-decide-whether-to-reindex"></a>
+# Deciding whether to reindex<a name="r_vacuum-decide-whether-to-reindex"></a>
 
 You can often significantly improve query performance by using an interleaved sort style, but over time performance might degrade if the distribution of the values in the sort key columns changes\. 
 

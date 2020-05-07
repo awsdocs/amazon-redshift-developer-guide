@@ -1,10 +1,10 @@
-# Creating Data Files for Queries in Amazon Redshift Spectrum<a name="c-spectrum-data-files"></a>
+# Creating data files for queries in Amazon Redshift Spectrum<a name="c-spectrum-data-files"></a>
 
 The data files that you use for queries in Amazon Redshift Spectrum are commonly the same types of files that you use for other applications\. For example, the same types of files are used with Amazon Athena, Amazon EMR, and Amazon QuickSight\. You can query the data in its original format directly from Amazon S3\. To do this, the data files must be in a format that Redshift Spectrum supports and be located in an Amazon S3 bucket that your cluster can access\. 
 
 The Amazon S3 bucket with the data files and the Amazon Redshift cluster must be in the same AWS Region\. For information about supported AWS Regions, see [Amazon Redshift Spectrum Regions](c-using-spectrum.md#c-spectrum-regions)\.
 
-## Data Formats for Redshift Spectrum<a name="c-spectrum-data-files-formats"></a>
+## Data formats for Redshift Spectrum<a name="c-spectrum-data-files-formats"></a>
 
 Redshift Spectrum supports the following structured and semistructured data formats\.
 
@@ -12,14 +12,14 @@ Redshift Spectrum supports the following structured and semistructured data form
 
 In the preceding table, the headings indicate the following:
 + **Columnar** – Whether the file format physically stores data in a column\-oriented structure as opposed to a row\-oriented one\.
-+ **Supports Parallel Reads** – Whether the file format supports reading individual blocks within the file\. Reading individual blocks enables the distributed processing of a file across multiple independent Redshift Spectrum requests instead of having to read the full file in a single request\.
-+ **Split Unit** – For file formats that can be read in parallel, the split unit is the smallest chunk of data that a single Redshift Spectrum request can process\.
++ **Supports parallel reads** – Whether the file format supports reading individual blocks within the file\. Reading individual blocks enables the distributed processing of a file across multiple independent Redshift Spectrum requests instead of having to read the full file in a single request\.
++ **Split unit** – For file formats that can be read in parallel, the split unit is the smallest chunk of data that a single Redshift Spectrum request can process\.
 **Note**  
 Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000`\.
 
   We recommend using a columnar storage file format, such as Apache Parquet\. With a columnar storage file format, you can minimize data transfer out of Amazon S3 by selecting only the columns that you need\. 
 
-## Compression Types for Redshift Spectrum<a name="c-spectrum-data-files-compression"></a>
+## Compression types for Redshift Spectrum<a name="c-spectrum-data-files-compression"></a>
 
 To reduce storage space, improve performance, and minimize costs, we strongly recommend that you compress your data files\. Redshift Spectrum recognizes file compression types based on the file extension\.
 

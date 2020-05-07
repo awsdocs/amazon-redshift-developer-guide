@@ -1,4 +1,4 @@
-# SHA2 Function<a name="SHA2"></a>
+# SHA2 function<a name="SHA2"></a>
 
 The SHA2 function uses the SHA2 cryptographic hash function to convert a variable\-length string into a character string\. The character string is a text representation of the hexadecimal value of the checksum with the specified number of bits\.
 
@@ -16,7 +16,7 @@ A variable\-length string\.
  *integer*   
 The number of its in the hash functions\. Valid values are 0 \(same as 256\), 224, 256, 384, and 512\.
 
-## Return Type<a name="SHA2-returm-type"></a>
+## Return type<a name="SHA2-returm-type"></a>
 
 The SHA2 function returns a character string that is a text representation of the hexadecimal value of the checksum or an empty string if the number of bits is invalid\. 
 

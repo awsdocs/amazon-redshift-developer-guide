@@ -2,7 +2,7 @@
 
 Use the SVL\_S3QUERY view to get details about Amazon Redshift Spectrum queries at the segment and node slice level\.
 
-SVL\_S3QUERY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_S3QUERY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVL_S3QUERY-table-columns"></a>
 

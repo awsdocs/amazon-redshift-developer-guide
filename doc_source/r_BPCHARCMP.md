@@ -1,10 +1,10 @@
-# BPCHARCMP Function<a name="r_BPCHARCMP"></a>
+# BPCHARCMP function<a name="r_BPCHARCMP"></a>
 
 Compares the value of two strings and returns an integer\. If the strings are identical, returns 0\. If the first string is "greater" alphabetically, returns 1\. If the second string is "greater", returns \-1\. 
 
 For multibyte characters, the comparison is based on the byte encoding\.
 
-Synonym of [BTTEXT\_PATTERN\_CMP Function](r_BTTEXT_PATTERN_CMP.md)\. 
+Synonym of [BTTEXT\_PATTERN\_CMP function](r_BTTEXT_PATTERN_CMP.md)\. 
 
 ## Syntax<a name="r_BPCHARCMP-synopsis"></a>
 
@@ -20,7 +20,7 @@ The first input parameter is a CHAR or VARCHAR string\.
  *string2*   
 The second parameter is a CHAR or VARCHAR string\. 
 
-## Return Type<a name="r_BPCHARCMP-return-type"></a>
+## Return type<a name="r_BPCHARCMP-return-type"></a>
 
 The BPCHARCMP function returns an integer\. 
 

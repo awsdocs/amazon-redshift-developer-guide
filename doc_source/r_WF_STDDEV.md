@@ -1,6 +1,6 @@
-# STDDEV\_SAMP and STDDEV\_POP Window Functions<a name="r_WF_STDDEV"></a>
+# STDDEV\_SAMP and STDDEV\_POP window functions<a name="r_WF_STDDEV"></a>
 
-The STDDEV\_SAMP and STDDEV\_POP window functions return the sample and population standard deviation of a set of numeric values \(integer, decimal, or floating\-point\)\. See also [STDDEV\_SAMP and STDDEV\_POP Functions](r_STDDEV_functions.md)\.
+The STDDEV\_SAMP and STDDEV\_POP window functions return the sample and population standard deviation of a set of numeric values \(integer, decimal, or floating\-point\)\. See also [STDDEV\_SAMP and STDDEV\_POP functions](r_STDDEV_functions.md)\.
 
 STDDEV\_SAMP and STDDEV are synonyms for the same function\.
 
@@ -34,9 +34,9 @@ ORDER BY *order\_list*
 Sorts the rows within each partition\. If no PARTITION BY is specified, ORDER BY uses the entire table\.
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window Function Syntax Summary](r_Window_function_synopsis.md)\.
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\.
 
-## Data Types<a name="c_Supported_data_types_wf_stddev"></a>
+## Data types<a name="c_Supported_data_types_wf_stddev"></a>
 
 The argument types supported by the STDDEV functions are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, and DOUBLE PRECISION\.
 
@@ -44,4 +44,4 @@ Regardless of the data type of the expression, the return type of a STDDEV funct
 
 ## Examples<a name="r_wf_stddev-examples"></a>
 
-See [STDDEV\_POP and VAR\_POP Window Function Examples](r_Examples_stddev_variance_WF.md)\. 
+See [STDDEV\_POP and VAR\_POP window function examples](r_Examples_stddev_variance_WF.md)\. 

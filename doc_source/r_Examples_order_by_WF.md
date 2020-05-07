@@ -1,4 +1,4 @@
-# Unique Ordering of Data for Window Functions<a name="r_Examples_order_by_WF"></a>
+# Unique ordering of data for window functions<a name="r_Examples_order_by_WF"></a>
 
 If an ORDER BY clause for a window function does not produce a unique and total ordering of the data, the order of the rows is nondeterministic\. If the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows may vary in multiple runs and window functions may return unexpected or inconsistent results\. 
 

@@ -1,12 +1,12 @@
-# Step 5: Review Compression Encodings<a name="tutorial-tuning-tables-compression"></a>
+# Step 5: Review compression encodings<a name="tutorial-tuning-tables-compression"></a>
 
 Compression is a column\-level operation that reduces the size of data when it is stored\. Compression conserves storage space and reduces the size of data that is read from storage, which reduces the amount of disk I/O and therefore improves query performance\. 
 
-By default, Amazon Redshift stores data in its raw, uncompressed format\. When you create tables in an Amazon Redshift database, you can define a compression type, or encoding, for the columns\. For more information, see [Compression Encodings](c_Compression_encodings.md)\. 
+By default, Amazon Redshift stores data in its raw, uncompressed format\. When you create tables in an Amazon Redshift database, you can define a compression type, or encoding, for the columns\. For more information, see [Compression encodings](c_Compression_encodings.md)\. 
 
 You can apply compression encodings to columns in tables manually when you create the tables, or you can use the COPY command to analyze the load data and apply compression encodings automatically\. 
 
-## To Review Compression Encodings<a name="tutorial-tuning-tables-compression-review-encodings"></a>
+## To review compression encodings<a name="tutorial-tuning-tables-compression-review-encodings"></a>
 
 1. Find how much space each column uses\.
 
@@ -143,14 +143,14 @@ You can apply compression encodings to columns in tables manually when you creat
 
    Notice that ANALYZE COMPRESSION chose BYTEDICT encoding for the `lo_shipmode` column\. 
 
-   For an example that walks through choosing manually applied compression encodings, see [Example: Choosing Compression Encodings for the CUSTOMER Table](Examples__compression_encodings_in_CREATE_TABLE_statements.md)\. 
+   For an example that walks through choosing manually applied compression encodings, see [Example: Choosing compression encodings for the CUSTOMER table](Examples__compression_encodings_in_CREATE_TABLE_statements.md)\. 
 
 1. Apply automatic compression to the SSB tables\.
 
    By default, the COPY command automatically applies compression encodings when you load data into an empty table that has no compression encodings other than RAW encoding\. For this tutorial, you will let the COPY command automatically select and apply optimal encodings for the tables as part of the next step, Recreate the test data set\.
 
-   For more information, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.
+   For more information, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
-## Next Step<a name="next-step-recreate-data"></a>
+## Next step<a name="next-step-recreate-data"></a>
 
-[Step 6: Recreate the Test Data Set](tutorial-tuning-tables-recreate-test-data.md)
+[Step 6: Recreate the test data set](tutorial-tuning-tables-recreate-test-data.md)

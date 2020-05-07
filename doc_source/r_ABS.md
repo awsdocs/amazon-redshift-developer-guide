@@ -1,4 +1,4 @@
-# ABS Function<a name="r_ABS"></a>
+# ABS function<a name="r_ABS"></a>
 
  ABS calculates the absolute value of a number, where that number can be a literal or an expression that evaluates to a number\. 
 
@@ -13,7 +13,7 @@ ABS (number)
  *number*   
 Number or expression that evaluates to a number\. 
 
-## Return Type<a name="r_ABS-return-type"></a>
+## Return type<a name="r_ABS-return-type"></a>
 
 ABS returns the same data type as its argument\. 
 

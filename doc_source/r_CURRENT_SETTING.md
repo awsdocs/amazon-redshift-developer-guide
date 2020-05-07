@@ -13,9 +13,9 @@ current_setting('parameter')
 ## Argument<a name="r_CURRENT_SETTING-argument"></a>
 
  *parameter*   
-Parameter value to display\. For a list of configuration parameters, see [Configuration Reference](cm_chap_ConfigurationRef.md)
+Parameter value to display\. For a list of configuration parameters, see [Configuration reference](cm_chap_ConfigurationRef.md)
 
-## Return Type<a name="r_CURRENT_SETTING-return-type"></a>
+## Return type<a name="r_CURRENT_SETTING-return-type"></a>
 
 Returns a CHAR or VARCHAR string\.
 

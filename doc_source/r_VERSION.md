@@ -11,7 +11,7 @@ This is a leader\-node function\. This function returns an error if it reference
 VERSION()
 ```
 
-## Return Type<a name="r_VERSION-return-type"></a>
+## Return type<a name="r_VERSION-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

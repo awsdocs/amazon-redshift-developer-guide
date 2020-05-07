@@ -1,4 +1,4 @@
-# Delta Encoding<a name="c_Delta_encoding"></a>
+# Delta encoding<a name="c_Delta_encoding"></a>
 
 Delta encodings are very useful for datetime columns\.
 

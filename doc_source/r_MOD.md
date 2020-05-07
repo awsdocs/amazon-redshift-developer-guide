@@ -1,4 +1,4 @@
-# MOD Function<a name="r_MOD"></a>
+# MOD function<a name="r_MOD"></a>
 
 The MOD function returns a numeric result that is the remainder of two numeric parameters\. The first parameter is divided by the second parameter\. 
 
@@ -16,7 +16,7 @@ The first input parameter is an INTEGER, SMALLINT, BIGINT, or DECIMAL number\. I
  *number2*   
 The second parameter is an INTEGER, SMALLINT, BIGINT, or DECIMAL number\. The same data type rules apply to *number2* as to *number1*\. 
 
-## Return Type<a name="r_MOD-return-type"></a>
+## Return type<a name="r_MOD-return-type"></a>
 
 Valid return types are DECIMAL, INT, SMALLINT, and BIGINT\. The return type of the MOD function is the same numeric type as the input parameters, if both input parameters are the same type\. If either input parameter is an INTEGER, however, the return type will also be an INTEGER\. 
 

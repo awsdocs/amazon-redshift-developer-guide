@@ -1,4 +1,4 @@
-# MAX Window Function<a name="r_WF_MAX"></a>
+# MAX window function<a name="r_WF_MAX"></a>
 
  The MAX window function returns the maximum of the input expression values\. The MAX function works with numeric values and ignores NULL values\. 
 
@@ -30,12 +30,12 @@ ORDER BY *order\_list*
 Sorts the rows within each partition\. If no PARTITION BY is specified, ORDER BY uses the entire table\.
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window Function Syntax Summary](r_Window_function_synopsis.md)\.
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\.
 
-## Data Types<a name="r_WF_MAX-data-types"></a>
+## Data types<a name="r_WF_MAX-data-types"></a>
 
 Accepts any data type as input\. Returns the same data type as *expression*\.
 
 ## Examples<a name="r_WF_MAX-examples"></a>
 
-See [MAX Window Function Examples](r_Examples_of_max_WF.md)\.
+See [MAX window function examples](r_Examples_of_max_WF.md)\.

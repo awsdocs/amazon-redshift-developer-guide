@@ -1,4 +1,4 @@
-# Determine the Process ID of a Running Query<a name="determine_pid"></a>
+# Determine the process ID of a running query<a name="determine_pid"></a>
 
 In the previous example you learned how to obtain the query ID and process ID \(PID\) for a completed query from the SVL\_QLOG view\.
 

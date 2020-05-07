@@ -1,17 +1,17 @@
-# Creating a Scalar Python UDF<a name="udf-creating-a-scalar-udf"></a>
+# Creating a scalar Python UDF<a name="udf-creating-a-scalar-udf"></a>
 
 A scalar Python UDF incorporates a Python program that executes when the function is called and returns a single value\. The [CREATE FUNCTION](r_CREATE_FUNCTION.md) command defines the following parameters:
 + \(Optional\) Input arguments\. Each argument must have a name and a data type\. 
 + One return data type\.
 + One executable Python program\.
 
-The input and return data types can be SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, or TIMESTAMP\.  In addition, Python UDFs can use the data type ANYELEMENT, which Amazon Redshift automatically converts to a standard data type based on the arguments supplied at run time\. For more information, see [ANYELEMENT Data Type](#udf-anyelement-data-type)
+The input and return data types can be SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, or TIMESTAMP\.  In addition, Python UDFs can use the data type ANYELEMENT, which Amazon Redshift automatically converts to a standard data type based on the arguments supplied at run time\. For more information, see [ANYELEMENT data type](#udf-anyelement-data-type)
 
 When an Amazon Redshift query calls a scalar UDF, the following steps occur at run time\.
 
 1. The function converts the input arguments to Python data types\.
 
-   For a mapping of Amazon Redshift data types to Python data types, see [Python UDF Data Types](udf-data-types.md)\.
+   For a mapping of Amazon Redshift data types to Python data types, see [Python UDF data types](udf-data-types.md)\.
 
 1. The function executes the Python program, passing the converted input arguments\.
 
@@ -19,7 +19,7 @@ When an Amazon Redshift query calls a scalar UDF, the following steps occur at r
 
 1. The function converts the Python return value to the specified Amazon Redshift data type, then returns that value to the query\.
 
-## Scalar Python UDF Example<a name="udf-scalar-function-example"></a>
+## Scalar Python UDF example<a name="udf-scalar-function-example"></a>
 
 The following example creates a function that compares two numbers and returns the larger value\. Note that the indentation of the code between the double dollar signs \($$\) is a Python requirement\. For more information, see [CREATE FUNCTION](r_CREATE_FUNCTION.md)\.
 
@@ -40,7 +40,7 @@ The following query calls the new `f_greater` function to query the SALES table 
 select f_py_greater (commission, pricepaid*0.20) from sales;
 ```
 
-## ANYELEMENT Data Type<a name="udf-anyelement-data-type"></a>
+## ANYELEMENT data type<a name="udf-anyelement-data-type"></a>
 
 ANYELEMENT is a *polymorphic data type*, which means that if a function is declared using ANYELEMENT for an argument's data type, the function can accept any standard Amazon Redshift data type as input for that argument when the function is called\. The ANYELEMENT argument is set to the data type actually passed to it when the function is called\.
 

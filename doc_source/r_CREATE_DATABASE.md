@@ -2,7 +2,7 @@
 
 Creates a new database\.
 
-You can't run CREATE DATABASE within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+You can't run CREATE DATABASE within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_CREATE_DATABASE-synopsis"></a>
 
@@ -15,7 +15,7 @@ CREATE DATABASE database_name [ WITH ]
 ## Parameters<a name="r_CREATE_DATABASE-parameters"></a>
 
  *database\_name*   
-Name of the new database\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+Name of the new database\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 WITH   
 Optional keyword\.
@@ -33,7 +33,7 @@ CONNECTION LIMIT \{ *limit* \| UNLIMITED \}
 The maximum number of database connections users are permitted to have open concurrently\. The limit isn't enforced for super users\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
-## CREATE DATABASE Limits<a name="r_CREATE_DATABASE-create-database-limits"></a>
+## CREATE DATABASE limits<a name="r_CREATE_DATABASE-create-database-limits"></a>
 
 Amazon Redshift enforces these limits for databases\.
 + Maximum of 60 user\-defined databases per cluster\.

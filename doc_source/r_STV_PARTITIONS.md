@@ -4,18 +4,18 @@ Use the STV\_PARTITIONS table to find out the disk speed performance and disk ut
 
 STV\_PARTITIONS contains one row per node per logical disk partition, or slice\.
 
-STV\_PARTITIONS is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_PARTITIONS is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_PARTITIONS-table-rows2"></a>
+## Table columns<a name="r_STV_PARTITIONS-table-rows2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_PARTITIONS.html)
 
-## Sample Query<a name="r_STV_PARTITIONS-sample-query2"></a>
+## Sample query<a name="r_STV_PARTITIONS-sample-query2"></a>
 
 The following query returns the disk space used and capacity, in 1 MB disk blocks, and calculates disk utilization as a percentage of raw disk space\. The raw disk space includes space that is reserved by Amazon Redshift for internal use, so it is larger than the nominal disk capacity, which is the amount of disk space available to the user\. The **Percentage of Disk Space Used** metric on the **Performance** tab of the Amazon Redshift Management Console reports the percentage of nominal disk capacity used by your cluster\. We recommend that you monitor the **Percentage of Disk Space Used** metric to maintain your usage within your cluster's nominal disk capacity\. 
 
 **Important**  
-We strongly recommend that you do not exceed your cluster’s nominal disk capacity\. While it might be technically possible under certain circumstances, exceeding your nominal disk capacity decreases your cluster’s fault tolerance and increases your risk of losing data\.
+We strongly recommend that you do not exceed your cluster's nominal disk capacity\. While it might be technically possible under certain circumstances, exceeding your nominal disk capacity decreases your cluster's fault tolerance and increases your risk of losing data\.
 
 This example was run on a two\-node cluster with six logical disk partitions per node\. Space is being used very evenly across the disks, with approximately 25% of each disk in use\. 
 

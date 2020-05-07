@@ -16,7 +16,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *geom2*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `POINT`, `LINESTRING`, or `MULTIPOINT`\. 
 
-## Return Type<a name="ST_MakeLine-function-return"></a>
+## Return type<a name="ST_MakeLine-function-return"></a>
 
 `GEOMETRY` of subtype `LINESTRING`\. 
 

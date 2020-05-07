@@ -1,4 +1,4 @@
-# Evaluating Query Patterns<a name="t_evaluating_query_patterns"></a>
+# Evaluating query patterns<a name="t_evaluating_query_patterns"></a>
 
  Choosing distribution styles is just one aspect of database design\. You should consider distribution styles only within the context of the entire system, balancing distribution with other important factors such as cluster size, compression encoding methods, sort keys, and table constraints\. 
 

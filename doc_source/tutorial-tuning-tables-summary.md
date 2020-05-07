@@ -14,12 +14,12 @@ You applied the following best practices to improve the distribution of the tabl
 You evaluated the effects of compression on a table and determined that using automatic compression usually produces the best results\. 
 
 For more information, see the following links: 
-+ [Amazon Redshift Best Practices for Designing Tables](c_designing-tables-best-practices.md) 
-+ [Choose the Best Sort Key](c_best-practices-sort-key.md)
-+ [Choosing a Data Distribution Style](t_Distributing_data.md) 
-+ [Choosing a Column Compression Type](t_Compressing_data_on_disk.md)
-+ [Analyzing Table Design](c_analyzing-table-design.md) 
++ [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md) 
++ [Choose the best sort key](c_best-practices-sort-key.md)
++ [Choosing a data distribution style](t_Distributing_data.md) 
++ [Choosing a column compression type](t_Compressing_data_on_disk.md)
++ [Analyzing table design](c_analyzing-table-design.md) 
 
-## Next Step<a name="tutorial-tuning-tables-next-step-loading-tutorial"></a>
+## Next step<a name="next-step-summary"></a>
 
-For your next step, if you haven't done so already, we recommend taking [Tutorial: Loading Data from Amazon S3](tutorial-loading-data.md)\. 
+For your next step, if you haven't done so already, we recommend taking [Tutorial: Loading data from Amazon S3](tutorial-loading-data.md)\. 

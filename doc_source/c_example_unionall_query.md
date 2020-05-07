@@ -1,4 +1,4 @@
-# Example UNION ALL Query<a name="c_example_unionall_query"></a>
+# Example UNION ALL query<a name="c_example_unionall_query"></a>
 
 The following example uses a UNION ALL operator because duplicate rows, if found, need to be retained in the result\. For a specific series of event IDs, the query returns 0 or more rows for each sale associated with each event, and 0 or 1 row for each listing of that event\. Event IDs are unique to each row in the LISTING and EVENT tables, but there might be multiple sales for the same combination of event and listing IDs in the SALES table\.
 

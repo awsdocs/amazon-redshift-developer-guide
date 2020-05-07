@@ -1,6 +1,6 @@
-# Example of Using a Federated Query<a name="federated_query_example"></a>
+# Example of using a federated query<a name="federated_query_example"></a>
 
-The following example shows how to set up a federated query that references an Amazon Redshift database, an Aurora PostgreSQL database, and Amazon S3\. This example illustrates how federated queries works\. To run it on your own environment, change it to fit your environment\. For prerequisites for doing this, see [Getting Started with Using Federated Query](getting-started-federated.md)\. 
+The following example shows how to set up a federated query that references an Amazon Redshift database, an Aurora PostgreSQL database, and Amazon S3\. This example illustrates how federated queries works\. To run it on your own environment, change it to fit your environment\. For prerequisites for doing this, see [Getting started with using federated queries](getting-started-federated.md)\. 
 
 Create an external schema that references an Aurora PostgreSQL database\.
 
@@ -54,7 +54,7 @@ SELECT count(*) FROM s3.lineitem_1t_part;
 6144008876
 ```
 
-Create a view of the tables from Amazon Redshift, Aurora PostgreSQL, and Amazon S3\. This view is used to run your federated query\. For information about the SVL\_FEDERATED\_QUERY view, see [SVL\_FEDERATED\_QUERY](r_SVL_FEDERATED_QUERY.md)\.
+Create a view of the tables from Amazon Redshift, Aurora PostgreSQL, and Amazon S3\. This view is used to run your federated query\. 
 
 ```
 CREATE VIEW lineitem_all AS

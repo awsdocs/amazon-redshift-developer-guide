@@ -1,5 +1,5 @@
-# CHARACTER\_LENGTH Function<a name="r_CHARACTER_LENGTH"></a>
+# CHARACTER\_LENGTH function<a name="r_CHARACTER_LENGTH"></a>
 
 Synonym of the LEN function\. 
 
-See [LEN Function](r_LEN.md) 
+See [LEN function](r_LEN.md) 

@@ -1,4 +1,4 @@
-# Loading Fixed\-Width Data from Amazon S3<a name="t_loading_fixed_width_data"></a>
+# Loading fixed\-width data from Amazon S3<a name="t_loading_fixed_width_data"></a>
 
 Fixed\-width data files have uniform lengths for each column of data\. Each field in a fixed\-width data file has exactly the same length and position\. For character data \(CHAR and VARCHAR\) in a fixed\-width data file, you must include leading or trailing spaces as placeholders in order to keep the width uniform\. For integers, you must use leading zeros as placeholders\. A fixed\-width data file has no delimiter to separate columns\.
 

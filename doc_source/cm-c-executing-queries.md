@@ -1,8 +1,8 @@
-# Assigning Queries to Queues<a name="cm-c-executing-queries"></a>
+# Assigning queries to queues<a name="cm-c-executing-queries"></a>
 
 The following examples assign queries to queues according to user groups and query groups\.
 
-## Assigning Queries to Queues Based on User Groups<a name="cm-c-executing-queries-assigning-queries-to-queues-based-on-user-groups"></a>
+## Assigning queries to queues based on user groups<a name="cm-c-executing-queries-assigning-queries-to-queues-based-on-user-groups"></a>
 
 If a user group name is listed in a queue definition, queries run by members of that user group are assigned to the corresponding queue\. The following example creates user groups and adds users to groups by using the SQL commands [CREATE USER](r_CREATE_USER.md), [CREATE GROUP](r_CREATE_GROUP.md), and [ALTER GROUP](r_ALTER_GROUP.md)\.
 
@@ -12,7 +12,7 @@ create user vp1234 in group ad_hoc_group password 'vpPass1234';
 alter group admin_group add user analyst44, analyst45, analyst46;
 ```
 
-## Assigning a Query to a Query Group<a name="cm-c-executing-queries-assigning-a-query-to-a-query-group"></a>
+## Assigning a query to a query group<a name="cm-c-executing-queries-assigning-a-query-to-a-query-group"></a>
 
 You can assign a query to a queue at runtime by assigning your query to the appropriate query group\. Use the SET command to begin a query group\.
 
@@ -37,7 +37,7 @@ select query, elapsed, substring from svl_qlog order by query desc limit 5;
 reset query_group;
 ```
 
-## Assigning Queries to the Superuser Queue<a name="cm-c-executing-queries-assigning-superuser-queue"></a>
+## Assigning queries to the superuser queue<a name="cm-c-executing-queries-assigning-superuser-queue"></a>
 
 To assign a query to the superuser queue, log on to Amazon Redshift as a superuser and then run the query in the superuser group\. When you are done, reset the query group so that subsequent queries do not run in the superuser queue\.
 

@@ -1,4 +1,4 @@
-# TO\_HEX Function<a name="r_TO_HEX"></a>
+# TO\_HEX function<a name="r_TO_HEX"></a>
 
 The TO\_HEX function converts a number to its equivalent hexadecimal value\. 
 
@@ -13,7 +13,7 @@ TO_HEX(string)
  *number*   
 A number to convert to its hexadecimal value\. 
 
-## Return Type<a name="r_TO_HEX-return-type"></a>
+## Return type<a name="r_TO_HEX-return-type"></a>
 
 The TO\_HEX function returns a hexadecimal value\. 
 

@@ -1,6 +1,6 @@
 # timezone<a name="r_timezone_config"></a>
 
-## Values \(Default in Bold\)<a name="r_timezone_config-values"></a>
+## Values \(default in bold\)<a name="r_timezone_config-values"></a>
 
  **UTC**, time zone
 
@@ -31,7 +31,7 @@ When you set the time zone using the SET time zone command *without* `TO` or `=`
 SET time zone time_zone
 ```
 
-## Time Zone Formats<a name="r_timezone_config-formats"></a>
+## Time zone formats<a name="r_timezone_config-formats"></a>
 
 Amazon Redshift supports the following time zone formats:
 + Time zone name
@@ -43,7 +43,7 @@ Because time zone abbreviations, such as PST or PDT, are defined as a fixed offs
 
 For more details on time zone formats, see the following\.
 
-**Time Zone Name** – The full time zone name, such as America/New\_York\. Full time zone names can include daylight savings rules\.
+**Time zone name** – The full time zone name, such as America/New\_York\. Full time zone names can include daylight savings rules\.
 
 The following are examples of time zone names:
 + Etc/Greenwich
@@ -67,7 +67,7 @@ The following are examples of INTERVAL time zone offsets:
 + –8 hours
 + 30 minutes
 
-**POSIX\-Style Format** – A time zone specification in the form *STDoffset* or *STDoffsetDST*, where *STD* is a time zone abbreviation, *offset* is the numeric offset in hours west from UTC, and *DST* is an optional daylight\-savings zone abbreviation\. Daylight savings time is assumed to be one hour ahead of the given offset\.
+**POSIX\-style format** – A time zone specification in the form *STDoffset* or *STDoffsetDST*, where *STD* is a time zone abbreviation, *offset* is the numeric offset in hours west from UTC, and *DST* is an optional daylight\-savings zone abbreviation\. Daylight savings time is assumed to be one hour ahead of the given offset\.
 
 POSIX\-style time zone formats use positive offsets west of Greenwich, in contrast to the ISO\-8601 convention, which uses positive offsets east of Greenwich\.
 

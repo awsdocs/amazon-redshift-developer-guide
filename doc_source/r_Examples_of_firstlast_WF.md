@@ -1,4 +1,4 @@
-# FIRST\_VALUE and LAST\_VALUE Window Function Examples<a name="r_Examples_of_firstlast_WF"></a>
+# FIRST\_VALUE and LAST\_VALUE window function examples<a name="r_Examples_of_firstlast_WF"></a>
 
 The following example returns the seating capacity for each venue in the VENUE table, with the results ordered by capacity \(high to low\)\. The FIRST\_VALUE function is used to select the name of the venue that corresponds to the first row in the frame: in this case, the row with the highest number of seats\. The results are partitioned by state, so when the VENUESTATE value changes, a new first value is selected\. The window frame is unbounded so the same first value is selected for each row in each partition\. 
 

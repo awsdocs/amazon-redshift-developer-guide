@@ -17,7 +17,7 @@ This clause is useful when scripting, so the script doesn’t fail if DROP USER 
  *name*   
 Name of the user account to remove\. You can specify multiple user accounts, with a comma separating each account name from the next\.
 
-## Usage Notes<a name="r_DROP_USER-notes"></a>
+## Usage notes<a name="r_DROP_USER-notes"></a>
 
 You can't drop a user if the user owns any database object, such as a schema, database, table, or view, or if the user has any privileges on a database, table, column, or group\. If you attempt to drop such a user, you receive one of the following errors\.
 

@@ -1,4 +1,4 @@
-# DATE\_PART Function<a name="r_DATE_PART_function"></a>
+# DATE\_PART function<a name="r_DATE_PART_function"></a>
 
 DATE\_PART extracts datepart values from an expression\. DATE\_PART is a synonym of the PGDATE\_PART function\. 
 
@@ -11,12 +11,12 @@ DATE_PART ( datepart, {date|timestamp} )
 ## Arguments<a name="r_DATE_PART_function-arguments"></a>
 
  *datepart*   
-The specific part of the date value \(year, month, or day, for example\) that the function operates on\. For more information, see [Dateparts for Date or Time Stamp Functions](r_Dateparts_for_datetime_functions.md)\. 
+The specific part of the date value \(year, month, or day, for example\) that the function operates on\. For more information, see [Dateparts for Date or Time Stamp functions](r_Dateparts_for_datetime_functions.md)\. 
 
 \{*date*\|*timestamp*\}  
 A date or timestamp column or an expression that implicitly converts to a date or time stamp\. The expression must be a date or time stamp expression that contains the specified datepart\. 
 
-## Return Type<a name="r_DATE_PART_function-return-type"></a>
+## Return type<a name="r_DATE_PART_function-return-type"></a>
 
 DOUBLE
 

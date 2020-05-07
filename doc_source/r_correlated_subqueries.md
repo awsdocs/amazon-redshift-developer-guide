@@ -1,4 +1,4 @@
-# Correlated Subqueries<a name="r_correlated_subqueries"></a>
+# Correlated subqueries<a name="r_correlated_subqueries"></a>
 
 The following example contains a *correlated subquery* in the WHERE clause; this kind of subquery contains one or more correlations between its columns and the columns produced by the outer query\. In this case, the correlation is `where s.listid=l.listid`\. For each row that the outer query produces, the subquery is executed to qualify or disqualify the row\. 
 
@@ -21,7 +21,7 @@ salesid | listid |   sum
 (5 rows)
 ```
 
-## Correlated Subquery Patterns That Are Not Supported<a name="r_correlated_subqueries-correlated-subquery-patterns-that-are-not-supported"></a>
+## Correlated subquery patterns that are not supported<a name="r_correlated_subqueries-correlated-subquery-patterns-that-are-not-supported"></a>
 
 The query planner uses a query rewrite method called subquery decorrelation to optimize several patterns of correlated subqueries for execution in an MPP environment\. A few types of correlated subqueries follow patterns that Amazon Redshift can't decorrelate and doesn't support\. Queries that contain the following correlation references return errors: 
 +  Correlation references that skip a query block, also known as "skip\-level correlation references\." For example, in the following query, the block containing the correlation reference and the skipped block are connected by a NOT EXISTS predicate: 

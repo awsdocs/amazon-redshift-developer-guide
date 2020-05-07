@@ -1,4 +1,4 @@
-# Step 1\. Create an IAM Role for Amazon Redshift<a name="c-getting-started-using-spectrum-create-role"></a>
+# Step 1\. Create an IAM role for Amazon Redshift<a name="c-getting-started-using-spectrum-create-role"></a>
 
 Your cluster needs authorization to access your external Data Catalog in AWS Glue or Amazon Athena and your data files in Amazon S3\. You provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster\. For more information about using roles with Amazon Redshift, see [Authorizing COPY and UNLOAD Operations Using IAM Roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html)\.
 

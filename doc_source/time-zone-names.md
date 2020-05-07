@@ -1,6 +1,6 @@
-# Time Zone Names<a name="time-zone-names"></a>
+# Time zone names<a name="time-zone-names"></a>
 
-The following list contains most of the valid time zone names that can be specified with the [CONVERT\_TIMEZONE Function](CONVERT_TIMEZONE.md)\. For a current, complete of list time zone names, execute the following command\.
+The following list contains most of the valid time zone names that can be specified with the [CONVERT\_TIMEZONE function](CONVERT_TIMEZONE.md)\. For a current, complete of list time zone names, execute the following command\.
 
 ```
 select pg_timezone_names();

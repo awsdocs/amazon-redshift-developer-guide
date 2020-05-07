@@ -1,4 +1,4 @@
-# LAG Window Function Examples<a name="r_Examples_of_LAG_WF"></a>
+# LAG window function examples<a name="r_Examples_of_LAG_WF"></a>
 
  The following example shows the quantity of tickets sold to the buyer with a buyer ID of 3 and the time that buyer 3 bought the tickets\. To compare each sale with the previous sale for buyer 3, the query returns the previous quantity sold for each sale\. Since there is no purchase before 1/16/2008, the first previous quantity sold value is null: 
 

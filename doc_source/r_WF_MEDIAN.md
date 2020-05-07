@@ -1,4 +1,4 @@
-# MEDIAN Window Function<a name="r_WF_MEDIAN"></a>
+# MEDIAN window function<a name="r_WF_MEDIAN"></a>
 
 Calculates the median value for the range of values in a window or partition\. NULL values in the range are ignored\.
 
@@ -24,13 +24,13 @@ A clause that specifies the window partitioning\. The OVER clause cannot contain
 PARTITION BY *partition\_expression*   
 Optional\. An expression that sets the range of records for each group in the OVER clause\.
 
-## Data Types<a name="r_WF_MEDIAN-data-types"></a>
+## Data types<a name="r_WF_MEDIAN-data-types"></a>
 
 The return type is determined by the data type of *median\_expression*\. The following table shows the return type for each *median\_expression* data type\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_MEDIAN.html)
 
-## Usage Notes<a name="w7aac49c11c17c45c17"></a>
+## Usage notes<a name="w13aac49c11c17c45c17"></a>
 
 If the *median\_expression* argument is a DECIMAL data type defined with the maximum precision of 38 digits, it is possible that MEDIAN will return either an inaccurate result or an error\. If the return value of the MEDIAN function exceeds 38 digits, the result is truncated to fit, which causes a loss of precision\. If, during interpolation, an intermediate result exceeds the maximum precision, a numeric overflow occurs and the function returns an error\. To avoid these conditions, we recommend either using a data type with lower precision or casting the *median\_expression* argument to a lower precision\. 
 
@@ -52,4 +52,4 @@ over() from sales where salesid < 10 group by salesid;
 
 ## Examples<a name="r_WF_MEDIAN-examples"></a>
 
-See [MEDIAN Window Function Examples](r_Examples_of_median_WF.md)\.
+See [MEDIAN window function examples](r_Examples_of_median_WF.md)\.

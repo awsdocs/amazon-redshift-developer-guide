@@ -1,4 +1,4 @@
-# COPY from JSON Format<a name="copy-usage_notes-copy-from-json"></a>
+# COPY from JSON format<a name="copy-usage_notes-copy-from-json"></a>
 
 The JSON data structure is made up of a set of *objects* or *arrays*\. A JSON *object* begins and ends with braces, and contains an unordered collection of name/value pairs\. Each name and value are separated by a colon, and the pairs are separated by commas\. The name is a string in double quotation marks\. The quote characters must be simple quotation marks \(0x22\), not slanted or "smart" quotes\. 
 
@@ -110,9 +110,9 @@ The JSONPath expression `$['friends'][1]` then returns the following value\.
 
 Each JSONPath expression in the `jsonpaths` array corresponds to one column in the Amazon Redshift target table\. The order of the `jsonpaths` array elements must match the order of the columns in the target table or the column list, if a column list is used\. 
 
-For examples that show how to load data using either the `'auto'` argument or a JSONPaths file, and using either JSON objects or arrays, see [Copy from JSON Examples](r_COPY_command_examples.md#r_COPY_command_examples-copy-from-json)\. 
+For examples that show how to load data using either the `'auto'` argument or a JSONPaths file, and using either JSON objects or arrays, see [Copy from JSON examples](r_COPY_command_examples.md#r_COPY_command_examples-copy-from-json)\. 
 
-## Escape Characters in JSON<a name="copy-usage-json-escape-characters"></a>
+## Escape characters in JSON<a name="copy-usage-json-escape-characters"></a>
 
 COPY loads `\n` as a newline character and loads `\t` as a tab character\. To load a backslash, escape it with a backslash \( `\\` \)\.
 

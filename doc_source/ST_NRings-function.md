@@ -13,7 +13,7 @@ ST_NRings(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\.
 
-## Return Type<a name="ST_NRings-function-return"></a>
+## Return type<a name="ST_NRings-function-return"></a>
 
 `INTEGER`
 
@@ -22,7 +22,7 @@ If *geom* is null, then null is returned\.
 The values returned are as follows\.
 
 
-| Returned Value | Geometry Subtype | 
+| Returned value | Geometry subtype | 
 | --- | --- | 
 | 0 | Returned if *geom* is a `POINT`, `LINESTRING`, `MULTIPOINT`, or `MULTILINESTRING` subtype  | 
 | The number of rings\. | Returned if *geom* is a `POLYGON` or `MULTIPOLYGON` subtype | 

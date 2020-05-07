@@ -1,4 +1,4 @@
-# TRUNC Function<a name="r_TRUNC"></a>
+# TRUNC function<a name="r_TRUNC"></a>
 
 The TRUNC function truncates a number and right\-fills it with zeros from the position specified\. This function also truncates a time stamp and returns a date\. 
 
@@ -20,7 +20,7 @@ An integer that indicates the number of decimal places of precision, in either d
  *timestamp*   
 The function can also return the date from a time stamp\. \(To return a time stamp value with `00:00:00` as the time, cast the function result to a time stamp\.\) 
 
-## Return Type<a name="r_TRUNC-return-type"></a>
+## Return type<a name="r_TRUNC-return-type"></a>
 
 TRUNC returns the same numeric data type as the first input argument\. For time stamps, TRUNC returns a date\. 
 

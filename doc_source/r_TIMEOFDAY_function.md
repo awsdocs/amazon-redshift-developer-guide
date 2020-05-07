@@ -1,4 +1,4 @@
-# TIMEOFDAY Function<a name="r_TIMEOFDAY_function"></a>
+# TIMEOFDAY function<a name="r_TIMEOFDAY_function"></a>
 
 TIMEOFDAY is a special alias used to return the weekday, date, and time as a string value\.
 
@@ -8,7 +8,7 @@ TIMEOFDAY is a special alias used to return the weekday, date, and time as a str
 TIMEOFDAY()
 ```
 
-## Return Type<a name="r_TIMEOFDAY_function-return-type"></a>
+## Return type<a name="r_TIMEOFDAY_function-return-type"></a>
 
 VARCHAR
 

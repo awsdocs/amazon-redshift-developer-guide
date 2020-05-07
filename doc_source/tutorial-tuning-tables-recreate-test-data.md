@@ -1,8 +1,8 @@
-# Step 6: Recreate the Test Data Set<a name="tutorial-tuning-tables-recreate-test-data"></a>
+# Step 6: Recreate the test data set<a name="tutorial-tuning-tables-recreate-test-data"></a>
 
 Now that you have chosen the sort keys and distribution styles for each of the tables, you can create the tables using those attributes and reload the data\. You will allow the COPY command to analyze the load data and apply compression encodings automatically\.
 
-## To Recreate the Test Data Set<a name="tutorial-tuning-tables-to-recreate-test-data"></a>
+## To recreate the test data set<a name="tutorial-tuning-tables-to-recreate-test-data"></a>
 
 1. You need to drop the SSB tables before you run the CREATE TABLE commands\. 
 
@@ -145,6 +145,6 @@ The load operation will take about 10 to 15 minutes\. This might be a good time 
    1. Record the load time in the benchmarks table\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-recreate-test-data.html)
 
-## Next Step<a name="next-step-retest"></a>
+## Next step<a name="next-step-retest"></a>
 
-[Step 7: Retest System Performance After Tuning](tutorial-tuning-tables-retest.md)
+[Step 7: Retest system performance after tuning](tutorial-tuning-tables-retest.md)

@@ -1,4 +1,4 @@
-# Overview of Stored Procedures in Amazon Redshift<a name="stored-procedure-create"></a>
+# Overview of stored procedures in Amazon Redshift<a name="stored-procedure-create"></a>
 
 Stored procedures are commonly used to encapsulate logic for data transformation, data validation, and business\-specific logic\. By combining multiple SQL steps into a stored procedure, you can reduce round trips between your applications and the database\.
 
@@ -28,16 +28,16 @@ LANGUAGE plpgsql
 ;
 /
 ```
-For more information, see [Alternate delimiter](http://www.sql-workbench.net/manual/profiles.html#profile-alternate-delimiter) in the SQL Workbench/J documentation\. Or use a client with better support for parsing CREATE PROCEDURE statements, such as the [Query Editor in the Amazon Redshift console](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) or TablePlus\. 
+For more information, see [Alternate delimiter](http://www.sql-workbench.net/manual/profiles.html#profile-alternate-delimiter) in the SQL Workbench/J documentation\. Or use a client with better support for parsing CREATE PROCEDURE statements, such as the [Query editor in the Amazon Redshift console](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) or TablePlus\. 
 
 **Topics**
-+ [Naming Stored Procedures](stored-procedure-naming.md)
-+ [Security and Privileges for Stored Procedures](stored-procedure-security-and-privileges.md)
-+ [Returning a Result Set](stored-procedure-result-set.md)
-+ [Managing Transactions](stored-procedure-transaction-management.md)
-+ [Trapping Errors](stored-procedure-trapping-errors.md)
-+ [Logging Stored Procedures](c_PLpgSQL-logging.md)
-+ [Limits and Differences for Stored Procedure Support](stored-procedure-constraints.md)
++ [Naming stored procedures](stored-procedure-naming.md)
++ [Security and privileges for stored procedures](stored-procedure-security-and-privileges.md)
++ [Returning a result set](stored-procedure-result-set.md)
++ [Managing transactions](stored-procedure-transaction-management.md)
++ [Trapping errors](stored-procedure-trapping-errors.md)
++ [Logging stored procedures](c_PLpgSQL-logging.md)
++ [Limits and differences for stored procedure support](stored-procedure-constraints.md)
 
 The following example shows a procedure with no output arguments\. By default, arguments are input \(IN\) arguments\.
 

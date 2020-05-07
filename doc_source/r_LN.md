@@ -1,8 +1,8 @@
-# LN Function<a name="r_LN"></a>
+# LN function<a name="r_LN"></a>
 
 Returns the natural logarithm of the input parameter\. Synonym of the DLOG1 function\. 
 
-Synonym of [DLOG1 Function](r_DLOG1.md)\. 
+Synonym of [DLOG1 function](r_DLOG1.md)\. 
 
 ## Syntax<a name="r_LN-synopsis"></a>
 
@@ -29,7 +29,7 @@ Expressions with the following data types run successfully on user\-created tabl
 + REAL 
 + SMALLINT 
 
-## Return Type<a name="r_LN-return-type"></a>
+## Return type<a name="r_LN-return-type"></a>
 
 The LN function returns the same type as the expression\. 
 

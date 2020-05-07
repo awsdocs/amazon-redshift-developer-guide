@@ -1,4 +1,4 @@
-# APPROXIMATE PERCENTILE\_DISC Function<a name="r_APPROXIMATE_PERCENTILE_DISC"></a>
+# APPROXIMATE PERCENTILE\_DISC function<a name="r_APPROXIMATE_PERCENTILE_DISC"></a>
 
 APPROXIMATE PERCENTILE\_DISC is an inverse distribution function that assumes a discrete distribution model\. It takes a percentile value and a sort specification and returns an element from the given set\. Approximation enables the function to execute much faster, with a low relative error of around 0\.5 percent\.
 
@@ -25,7 +25,7 @@ Clause that specifies numeric or date/time values to sort and compute the percen
 
 The same data type as the ORDER BY expression in the WITHIN GROUP clause\.
 
-## Usage Notes<a name="w7aac49c11c13c15c15"></a>
+## Usage notes<a name="w13aac49c11c13c15c15"></a>
 
 If the APPROXIMATE PERCENTILE\_DISC statement includes a GROUP BY clause, the result set is limited\. The limit varies based on node type and the number of nodes\. If the limit is exceeded, the function fails and returns the following error\.
 
@@ -33,7 +33,7 @@ If the APPROXIMATE PERCENTILE\_DISC statement includes a GROUP BY clause, the re
 GROUP BY limit for approximate percentile_disc exceeded.
 ```
 
-If you need to evaluate more groups than the limit permits, consider using [PERCENTILE\_CONT Function](r_PERCENTILE_CONT.md)\. 
+If you need to evaluate more groups than the limit permits, consider using [PERCENTILE\_CONT function](r_PERCENTILE_CONT.md)\. 
 
 ## Examples<a name="r_APPROXIMATE_PERCENTILE_DISC-examples"></a>
 

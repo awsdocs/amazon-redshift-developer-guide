@@ -16,7 +16,7 @@ A `POINT` value of data type `GEOMETRY`\. The spatial reference system identifie
  *point2*   
 A `POINT` value of data type `GEOMETRY`\. The SRID of *point2* must match the SRID of *point1*\. 
 
-## Return Type<a name="ST_Azimuth-function-return"></a>
+## Return type<a name="ST_Azimuth-function-return"></a>
 
 A number that is an angle in radians of `DOUBLE PRECISION` data type\. Values range from 0 \(inclusive\) to 2 pi \(exclusive\)\. 
 

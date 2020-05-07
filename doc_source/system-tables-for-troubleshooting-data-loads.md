@@ -1,4 +1,4 @@
-# System Tables for Troubleshooting Data Loads<a name="system-tables-for-troubleshooting-data-loads"></a>
+# System tables for troubleshooting data loads<a name="system-tables-for-troubleshooting-data-loads"></a>
 
 The following Amazon Redshift system tables can be helpful in troubleshooting data load issues:
 + Query [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md) to discover the errors that occurred during specific loads\.

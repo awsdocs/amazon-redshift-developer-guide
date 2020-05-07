@@ -1,11 +1,11 @@
-# JSON Functions<a name="json-functions"></a>
+# JSON functions<a name="json-functions"></a>
 
 **Topics**
-+ [IS\_VALID\_JSON Function](IS_VALID_JSON.md)
-+ [IS\_VALID\_JSON\_ARRAY Function](IS_VALID_JSON_ARRAY.md)
-+ [JSON\_ARRAY\_LENGTH Function](JSON_ARRAY_LENGTH.md)
++ [IS\_VALID\_JSON function](IS_VALID_JSON.md)
++ [IS\_VALID\_JSON\_ARRAY function](IS_VALID_JSON_ARRAY.md)
++ [JSON\_ARRAY\_LENGTH function](JSON_ARRAY_LENGTH.md)
 + [JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT Function](JSON_EXTRACT_ARRAY_ELEMENT_TEXT.md)
-+ [JSON\_EXTRACT\_PATH\_TEXT Function](JSON_EXTRACT_PATH_TEXT.md)
++ [JSON\_EXTRACT\_PATH\_TEXT function](JSON_EXTRACT_PATH_TEXT.md)
 
 When you need to store a relatively small set of key\-value pairs, you might save space by storing the data in JSON format\. Because JSON strings can be stored in a single column, using JSON might be more efficient than storing your data in tabular format\. For example, suppose you have a sparse table, where you need to have many columns to fully represent all possible attributes, but most of the column values are NULL for any given row or any given column\. By using JSON for storage, you might be able to store the data for a row in key:value pairs in a single JSON string and eliminate the sparsely\-populated table columns\. 
 
@@ -34,4 +34,4 @@ JSON strings must be properly formatted JSON, according to the following rules:
 + JSON fields are case sensitive\. 
 + White space between JSON structural elements \(such as `{ }, [ ]`\) is ignored\. 
 
-The Amazon Redshift JSON functions and the Amazon Redshift COPY command use the same methods to work with JSON\-formatted data\. For more information about working with JSON, see [COPY from JSON Format](copy-usage_notes-copy-from-json.md)
+The Amazon Redshift JSON functions and the Amazon Redshift COPY command use the same methods to work with JSON\-formatted data\. For more information about working with JSON, see [COPY from JSON format](copy-usage_notes-copy-from-json.md)

@@ -1,4 +1,4 @@
-# ROW\_NUMBER Window Function Example<a name="r_Examples_of_WF_ROW_NUMBER_WF"></a>
+# ROW\_NUMBER window function examples<a name="r_Examples_of_WF_ROW_NUMBER_WF"></a>
 
 The following example partitions the table by SELLERID and orders each partition by QTY \(in ascending order\), then assigns a row number to each row\. The results are sorted after the window function results are applied\. 
 
@@ -26,4 +26,4 @@ order by 2,4;
 (11 rows)
 ```
 
- For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+ For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 

@@ -1,6 +1,6 @@
-# LISTAGG Window Function Examples<a name="r_Examples_of_LISTAGG_WF"></a>
+# LISTAGG window function examples<a name="r_Examples_of_LISTAGG_WF"></a>
 
-The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 
 
 The following example returns a list of seller IDs, ordered by seller ID\. 
 

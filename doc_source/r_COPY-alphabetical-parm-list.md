@@ -1,4 +1,4 @@
-# Alphabetical Parameter List<a name="r_COPY-alphabetical-parm-list"></a>
+# Alphabetical parameter list<a name="r_COPY-alphabetical-parm-list"></a>
 
 The following list provides links to each COPY command parameter description, sorted alphabetically\.
 + [ACCEPTANYDATE](copy-parameters-data-conversion.md#copy-acceptanydate)

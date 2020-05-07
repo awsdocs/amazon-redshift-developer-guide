@@ -1,4 +1,4 @@
-# MEDIAN Window Function Examples<a name="r_Examples_of_median_WF"></a>
+# MEDIAN window function examples<a name="r_Examples_of_median_WF"></a>
 
  The following example calculates the median sales quantity for each seller: 
 
@@ -24,4 +24,4 @@ sellerid	qty	median
 4		40	25.0
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 

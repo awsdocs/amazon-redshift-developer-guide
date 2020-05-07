@@ -1,4 +1,4 @@
-# MD5 Function<a name="r_MD5"></a>
+# MD5 function<a name="r_MD5"></a>
 
 Uses the MD5 cryptographic hash function to convert a variable\-length string into a 32\-character string that is a text representation of the hexadecimal value of a 128\-bit checksum\. 
 
@@ -13,7 +13,7 @@ MD5(string)
  *string*   
 A variable\-length string\.
 
-## Return Type<a name="r_MD5-return-type"></a>
+## Return type<a name="r_MD5-return-type"></a>
 
 The MD5 function returns a 32\-character string that is a text representation of the hexadecimal value of a 128\-bit checksum\.
 

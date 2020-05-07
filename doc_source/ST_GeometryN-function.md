@@ -20,7 +20,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *index*   
 A value of data type `INTEGER` that represents the position of a one\-based index\. 
 
-## Return Type<a name="ST_GeometryN-function-return"></a>
+## Return type<a name="ST_GeometryN-function-return"></a>
 
 `GEOMETRY` 
 

@@ -1,4 +1,4 @@
-# COUNT Window Function<a name="r_WF_COUNT"></a>
+# COUNT window function<a name="r_WF_COUNT"></a>
 
  The COUNT window function counts the rows defined by the expression\.
 
@@ -33,9 +33,9 @@ ORDER BY *order\_list*
 Sorts the rows within each partition\. If no PARTITION BY is specified, ORDER BY uses the entire table\.
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window Function Syntax Summary](r_Window_function_synopsis.md)\.
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\.
 
-## Data Types<a name="c_Supported_data_types_wf_count"></a>
+## Data types<a name="c_Supported_data_types_wf_count"></a>
 
 The COUNT function supports all argument data types\.
 
@@ -43,4 +43,4 @@ The return type supported by the COUNT function is BIGINT\.
 
 ## Examples<a name="r_WF_COUNT-examples"></a>
 
-See [COUNT Window Function Examples](r_Examples_of_count_WF.md)\.
+See [COUNT window function examples](r_Examples_of_count_WF.md)\.

@@ -1,4 +1,4 @@
-# Limitations When Using Spatial Data with Amazon Redshift<a name="spatial-limitations"></a>
+# Limitations when using spatial data with Amazon Redshift<a name="spatial-limitations"></a>
 
 The following are limitations when using spatial data with Amazon Redshift: 
 + The maximum size of a `GEOMETRY` object is 1,048,447 bytes\. 

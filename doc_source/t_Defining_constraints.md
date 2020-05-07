@@ -1,4 +1,4 @@
-# Defining Constraints<a name="t_Defining_constraints"></a>
+# Defining constraints<a name="t_Defining_constraints"></a>
 
 Uniqueness, primary key, and foreign key constraints are informational only; *they are not enforced by Amazon Redshift*\. Nonetheless, primary keys and foreign keys are used as planning hints and they should be declared if your ETL process or some other process in your application enforces their integrity\.
 

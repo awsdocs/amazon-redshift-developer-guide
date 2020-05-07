@@ -1,4 +1,4 @@
-# GETDATE Function<a name="r_GETDATE"></a>
+# GETDATE function<a name="r_GETDATE"></a>
 
 GETDATE returns the current date and time in the current session time zone \(UTC by default\)\.
 
@@ -10,7 +10,7 @@ GETDATE()
 
 The parentheses are required\. 
 
-## Return Type<a name="r_GETDATE-return-type"></a>
+## Return type<a name="r_GETDATE-return-type"></a>
 
 TIMESTAMP
 

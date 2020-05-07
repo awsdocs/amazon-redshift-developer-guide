@@ -25,7 +25,7 @@ Privilege to check\. Valid values are:
 + TEMPORARY
 + TEMP
 
-## Return Type<a name="r_HAS_DATABASE_PRIVILEGE-return-type"></a>
+## Return type<a name="r_HAS_DATABASE_PRIVILEGE-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

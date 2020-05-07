@@ -1,4 +1,4 @@
-# STV Tables for Snapshot Data<a name="c_intro_STV_tables"></a>
+# STV tables for snapshot data<a name="c_intro_STV_tables"></a>
 
 STV tables are virtual system tables that contain snapshots of the current system data\.
 

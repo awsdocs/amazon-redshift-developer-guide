@@ -4,13 +4,13 @@ Displays row and block statistics for tables that have been vacuumed\.
 
 The table shows information specific to when each vacuum operation started and finished, and demonstrates the benefits of running the operation\. For information about the requirements for running this command, see the [VACUUM](r_VACUUM_command.md) command description\.
 
-This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_VACUUM-table-columns"></a>
+## Table columns<a name="r_STL_VACUUM-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_VACUUM.html)
 
-## Sample Queries<a name="r_STL_VACUUM-sample-queries"></a>
+## Sample queries<a name="r_STL_VACUUM-sample-queries"></a>
 
 The following query reports vacuum statistics for table 108313\. The table was vacuumed following a series of inserts and deletes\. 
 

@@ -15,7 +15,7 @@ CLOSE cursor
 *cursor*   
 Name of the cursor to close\. 
 
-## CLOSE Example<a name="close-example"></a>
+## CLOSE example<a name="close-example"></a>
 
 The following commands close the cursor and perform a commit, which ends the transaction:
 

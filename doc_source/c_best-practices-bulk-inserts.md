@@ -1,4 +1,4 @@
-# Use a Bulk Insert<a name="c_best-practices-bulk-inserts"></a>
+# Use a bulk insert<a name="c_best-practices-bulk-inserts"></a>
 
 Use a bulk insert operation with a SELECT clause for high\-performance data insertion\.
 

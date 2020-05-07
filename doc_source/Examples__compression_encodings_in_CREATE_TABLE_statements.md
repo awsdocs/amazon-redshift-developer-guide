@@ -1,4 +1,4 @@
-# Example: Choosing Compression Encodings for the CUSTOMER Table<a name="Examples__compression_encodings_in_CREATE_TABLE_statements"></a>
+# Example: Choosing compression encodings for the CUSTOMER table<a name="Examples__compression_encodings_in_CREATE_TABLE_statements"></a>
 
 The following statement creates a CUSTOMER table that has columns with various data types\. This CREATE TABLE statement shows one of many possible combinations of compression encodings for these columns\. 
 
@@ -17,7 +17,7 @@ start_date date encode delta32k);
 The following table shows the column encodings that were chosen for the CUSTOMER table and gives an explanation for the choices:
 
 
-| Column | Data Type | Encoding | Explanation | 
+| Column | Data type | Encoding | Explanation | 
 | --- | --- | --- | --- | 
 | CUSTKEY | int | delta | CUSTKEY consists of unique, consecutive integer values\. Since the differences will be one byte, DELTA is a good choice\. | 
 | CUSTNAME | varchar\(30\) | raw | CUSTNAME has a large domain with few repeated values\. Any compression encoding would probably be ineffective\. | 

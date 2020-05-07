@@ -1,4 +1,4 @@
-# DATE\_TRUNC Function<a name="r_DATE_TRUNC"></a>
+# DATE\_TRUNC function<a name="r_DATE_TRUNC"></a>
 
 The DATE\_TRUNC function truncates a time stamp expression or literal based on the date part that you specify, such as hour, week, or month\. DATE\_TRUNC returns the first day of the specified year, the first day of the specified month, or the Monday of the specified week\. 
 
@@ -11,12 +11,12 @@ DATE_TRUNC('datepart', timestamp)
 ## Arguments<a name="r_DATE_TRUNC-arguments"></a>
 
  *datepart*   
-The date part to which to truncate the time stamp value\. See [Dateparts for Date or Time Stamp Functions](r_Dateparts_for_datetime_functions.md) for valid formats\. 
+The date part to which to truncate the time stamp value\. See [Dateparts for Date or Time Stamp functions](r_Dateparts_for_datetime_functions.md) for valid formats\. 
 
  *timestamp*   
 A timestamp column or an expression that implicitly converts to a time stamp\.
 
-## Return Type<a name="r_DATE_TRUNC-return-type"></a>
+## Return type<a name="r_DATE_TRUNC-return-type"></a>
 
 TIMESTAMP
 

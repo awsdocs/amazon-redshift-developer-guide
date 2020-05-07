@@ -1,4 +1,4 @@
-# CHECKSUM Function<a name="r_CHECKSUM"></a>
+# CHECKSUM function<a name="r_CHECKSUM"></a>
 
 Computes a checksum value for building a hash index\. 
 
@@ -13,7 +13,7 @@ CHECKSUM(expression)
  *expression*   
 The input expression must be a VARCHAR, INTEGER, or DECIMAL data type\. 
 
-## Return Type<a name="r_CHECKSUM-return-type"></a>
+## Return type<a name="r_CHECKSUM-return-type"></a>
 
 The CHECKSUM function returns an integer\. 
 

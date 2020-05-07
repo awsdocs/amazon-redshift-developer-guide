@@ -1,4 +1,4 @@
-# Designating Distribution Styles<a name="t_designating_distribution_styles"></a>
+# Designating distribution styles<a name="t_designating_distribution_styles"></a>
 
  The considerations and recommendations for designating distribution styles in this section use a star schema as an example\. Your database design might be based on a star schema, some variant of a star schema, or an entirely different schema\. Amazon Redshift is designed to work effectively with whatever schema design you choose\. The principles in this section can be applied to any design schema\. 
 
@@ -24,4 +24,4 @@
 
 To let Amazon Redshift choose the appropriate distribution style, don't explicitly specify a distribution style\.
 
- You cannot change the distribution style of a table after it is created\. To use a different distribution style, you can recreate the table and populate the new table with a deep copy\. For more information, see [Performing a Deep Copy](performing-a-deep-copy.md)\. 
+ You cannot change the distribution style of a table after it is created\. To use a different distribution style, you can recreate the table and populate the new table with a deep copy\. For more information, see [Performing a deep copy](performing-a-deep-copy.md)\. 

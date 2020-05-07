@@ -1,8 +1,8 @@
-# Comparing Sort Styles<a name="t_Sorting_data-compare-sort-styles"></a>
+# Comparing sort styles<a name="t_Sorting_data-compare-sort-styles"></a>
 
 This section compares the performance differences when using a single\-column sort key, a compound sort key, and an interleaved sort key for different types of queries\. 
 
-For this example, you'll create a denormalized table named CUST\_SALES, using data from the CUSTOMER and LINEORDER tables\. CUSTOMER and LINEORDER are part of the SSB dataset, which is used in the [Tutorial: Tuning Table Design](tutorial-tuning-tables.md)\.
+For this example, you'll create a denormalized table named CUST\_SALES, using data from the CUSTOMER and LINEORDER tables\. CUSTOMER and LINEORDER are part of the SSB dataset, which is used in the [Tutorial: Tuning table design](tutorial-tuning-tables.md)\.
 
 The new CUST\_SALES table has 480 million rows, which is not large by Amazon Redshift standards, but it is large enough to show the performance differences\. Larger tables will tend to show greater differences, especially for interleaved sorting\. 
 
@@ -16,13 +16,13 @@ To compare the three sort methods, perform the following steps:
 
 1. Execute queries and compare the results\. 
 
-## Create the SSB Dataset<a name="t_Sorting_data-compare-sort-styles-create-ssb"></a>
+## Create the SSB dataset<a name="t_Sorting_data-compare-sort-styles-create-ssb"></a>
 
-If you haven't already done so, follow the steps in [Step 1: Create a Test Data Set](tutorial-tuning-tables-create-test-data.md) in the Tuning Table Design tutorial to create the tables in the SSB dataset and load them with data\. The data load will take about 10 to 15 minutes\.
+If you haven't already done so, follow the steps in [Step 1: Create a test data set](tutorial-tuning-tables-create-test-data.md) in the Tuning Table Design tutorial to create the tables in the SSB dataset and load them with data\. The data load will take about 10 to 15 minutes\.
 
 The example in the Tuning Table Design tutorial uses a four\-node cluster\. The comparisons in this example use a two\-node cluster\. Your results will vary with different cluster configurations\. 
 
-## Create the CUST\_SALES\_DATE Table<a name="t_Sorting_data-compare-sort-styles-create-cust_sales"></a>
+## Create the CUST\_SALES\_DATE table<a name="t_Sorting_data-compare-sort-styles-create-cust_sales"></a>
 
 The CUST\_SALES\_DATE table is a denormalized table that contains data about customers and revenues\. To create the CUST\_SALES\_DATE table, execute the following statement\.
 
@@ -56,7 +56,7 @@ c_custkey | c_nation | c_region | c_mktsegment | d_date     | lo_revenue
         1 | MOROCCO  | AFRICA   | BUILDING     | 1994-10-28 |    1924330
 ```
 
-## Create Tables for Comparing Sort Styles<a name="t_Sorting_data-compare-sort-styles-create-comparison-tables"></a>
+## Create tables for comparing sort styles<a name="t_Sorting_data-compare-sort-styles-create-comparison-tables"></a>
 
 To compare the sort styles, create three tables\. The first will use a single\-column sort key; the second will use a compound sort key; the third will use an interleaved sort key\. The single\-column sort will use the `c_custkey` column\. The compound sort and the interleaved sort will both use the `c_custkey`, `c_region`, `c_mktsegment`, and `d_date` columns\.
 
@@ -76,7 +76,7 @@ interleaved sortkey (c_custkey, c_region, c_mktsegment, d_date)
 as select * from cust_sales_date;
 ```
 
-## Execute Queries and Compare the Results<a name="t_Sorting_data-compare-sort-styles-compare-results"></a>
+## Execute queries and compare the results<a name="t_Sorting_data-compare-sort-styles-compare-results"></a>
 
 Execute the same queries against each of the tables to compare execution times for each table\. To eliminate differences due to compile time, run each of the queries twice, and record the second time\.
 

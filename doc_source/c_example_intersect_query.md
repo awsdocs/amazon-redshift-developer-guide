@@ -1,4 +1,4 @@
-# Example INTERSECT Queries<a name="c_example_intersect_query"></a>
+# Example INTERSECT queries<a name="c_example_intersect_query"></a>
 
 Compare the following example with the first UNION example\. The only difference between the two examples is the set operator that is used, but the results are very different\. Only one of the rows is the same: 
 

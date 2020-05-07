@@ -1,4 +1,4 @@
-# Step 1: Configure IAM Permissions<a name="load-from-emr-steps-configure-iam"></a>
+# Step 1: Configure IAM permissions<a name="load-from-emr-steps-configure-iam"></a>
 
 The users that create the Amazon EMR cluster and run the Amazon Redshift COPY command must have the necessary permissions\.
 

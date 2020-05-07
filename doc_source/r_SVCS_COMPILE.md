@@ -7,6 +7,8 @@ System views with the prefix SVCS provide details about queries on both the main
 
 SVCS\_COMPILE is visible to all users\.
 
+For information about SCL\_COMPILE, see [SVL\_COMPILE](r_SVL_COMPILE.md)\.
+
 ## Table Columns<a name="r_SVCS_COMPILE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_COMPILE.html)

@@ -1,10 +1,10 @@
-# Amazon Redshift Best Practices for Designing Queries<a name="c_designing-queries-best-practices"></a>
+# Amazon Redshift best practices for designing queries<a name="c_designing-queries-best-practices"></a>
 
 To maximize query performance, follow these recommendations when creating queries:
-+ Design tables according to best practices to provide a solid foundation for query performance\. For more information, see [Amazon Redshift Best Practices for Designing Tables](c_designing-tables-best-practices.md)\.
++ Design tables according to best practices to provide a solid foundation for query performance\. For more information, see [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md)\.
 + Avoid using `select *`\. Include only the columns you specifically need\.
-+ Use a [CASE Expression](r_CASE_function.md) to perform complex aggregations instead of selecting from the same table multiple times\.
-+ Don’t use cross\-joins unless absolutely necessary\. These joins without a join condition result in the Cartesian product of two tables\. Cross\-joins are typically executed as nested\-loop joins, which are the slowest of the possible join types\. 
++ Use a [CASE expression](r_CASE_function.md) to perform complex aggregations instead of selecting from the same table multiple times\.
++ Don't use cross\-joins unless absolutely necessary\. These joins without a join condition result in the Cartesian product of two tables\. Cross\-joins are typically executed as nested\-loop joins, which are the slowest of the possible join types\. 
 + Use subqueries in cases where one table in the query is used only for predicate conditions and the subquery returns a small number of rows \(less than about 200\)\. The following example uses a subquery to avoid joining the LISTING table\.
 
   ```
@@ -13,7 +13,7 @@ To maximize query performance, follow these recommendations when creating querie
   where salesid in (select listid from listing where listtime > '2008-12-26');
   ```
 + Use predicates to restrict the dataset as much as possible\.
-+ In the predicate, use the least expensive operators that you can\. [Comparison Condition](r_comparison_condition.md) operators are preferable to [LIKE](r_patternmatching_condition_like.md) operators\. LIKE operators are still preferable to [SIMILAR TO](pattern-matching-conditions-similar-to.md) or [POSIX Operators](pattern-matching-conditions-posix.md)\.
++ In the predicate, use the least expensive operators that you can\. [Comparison condition](r_comparison_condition.md) operators are preferable to [LIKE](r_patternmatching_condition_like.md) operators\. LIKE operators are still preferable to [SIMILAR TO](pattern-matching-conditions-similar-to.md) or [POSIX operators](pattern-matching-conditions-posix.md)\.
 + Avoid using functions in query predicates\. Using them can drive up the cost of the query by requiring large numbers of rows to resolve the intermediate steps of the query\.
 + If possible, use a WHERE clause to restrict the dataset\. The query planner can then use row order to help determine which records match the criteria, so it can skip scanning large numbers of disk blocks\. Without this, the query execution engine must scan participating columns entirely\.
 + Add predicates to filter tables that participate in joins, even if the predicates apply the same filters\. The query returns the same result set, but Amazon Redshift is able to filter the join tables before the scan step and can then efficiently skip scanning blocks from those tables\. Redundant filters aren't needed if you filter on a column that's used in the join condition\. 

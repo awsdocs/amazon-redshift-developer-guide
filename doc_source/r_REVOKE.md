@@ -164,7 +164,7 @@ EXECUTE ON FUNCTION *function\_name*
 Revokes the EXECUTE privilege on a specific function\. Because function names can be overloaded, you must include the argument list for the function\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.
 
 EXECUTE ON PROCEDURE *procedure\_name*   
-Revokes the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming Stored Procedures](stored-procedure-naming.md)\.
+Revokes the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.
 
 EXECUTE ON ALL PROCEDURES IN SCHEMA *procedure\_name*   
 Revokes the specified privileges on all procedures in the referenced schema\.
@@ -178,10 +178,10 @@ To revoke usage for SQL, first revoke usage from PUBLIC\. Then grant usage on SQ
 revoke usage on language sql from PUBLIC;
 grant usage on language sql to group udf_devs;
 ```
-For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.   
-To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then grant usage on `plpgsql` only to the specific users or groups permitted to create stored procedures\. For more information, see [Security and Privileges for Stored Procedures ](stored-procedure-security-and-privileges.md)\. 
+For more information, see [UDF security and privileges](udf-security-and-privileges.md)\.   
+To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then grant usage on `plpgsql` only to the specific users or groups permitted to create stored procedures\. For more information, see [Security and privileges for stored procedures ](stored-procedure-security-and-privileges.md)\. 
 
-## Usage Notes<a name="r_REVOKE-usage-notes"></a>
+## Usage notes<a name="r_REVOKE-usage-notes"></a>
 
 To revoke privileges from an object, you must meet one of the following criteria:
 + Be the object owner\.

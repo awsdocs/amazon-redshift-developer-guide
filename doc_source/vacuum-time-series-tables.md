@@ -1,4 +1,4 @@
-# Using Time Series Tables<a name="vacuum-time-series-tables"></a>
+# Using time series tables<a name="vacuum-time-series-tables"></a>
 
 If you maintain data for a rolling time period, use a series of tables, as the following diagram illustrates\.
 

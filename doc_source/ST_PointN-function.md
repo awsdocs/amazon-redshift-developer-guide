@@ -16,7 +16,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *index*   
 A value of data type `INTEGER` that represents the index of a point in a linestring\. 
 
-## Return Type<a name="ST_PointN-function-return"></a>
+## Return type<a name="ST_PointN-function-return"></a>
 
 `GEOMETRY` of subtype `POINT`\. 
 

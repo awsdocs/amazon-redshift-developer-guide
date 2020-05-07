@@ -1,4 +1,4 @@
-# Dateparts for Date or Time Stamp Functions<a name="r_Dateparts_for_datetime_functions"></a>
+# Dateparts for Date or Time Stamp functions<a name="r_Dateparts_for_datetime_functions"></a>
 
 The following table identifies the datepart and timepart names and abbreviations that are accepted as arguments to the following functions: 
 + DATEADD 
@@ -9,7 +9,7 @@ The following table identifies the datepart and timepart names and abbreviations
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Dateparts_for_datetime_functions.html)
 
-## Variations in Results with Seconds, Milliseconds, and Microseconds<a name="r_Dateparts_for_datetime_functions-variations-in-results"></a>
+## Variations in results with seconds, milliseconds, and microseconds<a name="r_Dateparts_for_datetime_functions-variations-in-results"></a>
 
 Minor differences in query results occur when different date functions specify seconds, milliseconds, or microseconds as dateparts: 
 + The EXTRACT function return integers for the specified datepart only, ignoring higher\- and lower\-level dateparts\. If the specified datepart is seconds, milliseconds and microseconds are not included in the result\. If the specified datepart is milliseconds, seconds and microseconds are not included\. If the specified datepart is microseconds, seconds and milliseconds are not included\. 
@@ -35,7 +35,7 @@ pgdate_part
 (1 row)
 ```
 
-## CENTURY, EPOCH, DECADE, and MIL Notes<a name="r_Dateparts_for_datetime_functions-century"></a>
+## CENTURY, EPOCH, DECADE, and MIL notes<a name="r_Dateparts_for_datetime_functions-century"></a>
 
 CENTURY or CENTURIES   
 Amazon Redshift interprets a CENTURY to start with year *\#\#\#1* and end with year `###0`:   

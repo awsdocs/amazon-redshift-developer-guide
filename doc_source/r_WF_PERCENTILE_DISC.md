@@ -1,4 +1,4 @@
-# PERCENTILE\_DISC Window Function<a name="r_WF_PERCENTILE_DISC"></a>
+# PERCENTILE\_DISC window function<a name="r_WF_PERCENTILE_DISC"></a>
 
 PERCENTILE\_DISC is an inverse distribution function that assumes a discrete distribution model\. It takes a percentile value and a sort specification and returns an element from the given set\. 
 
@@ -36,4 +36,4 @@ The same data type as the ORDER BY expression in the WITHIN GROUP clause\.
 
 ## Examples<a name="r_WF_PERCENTILE_DISC-examples"></a>
 
-See [PERCENTILE\_DISC Window Function Examples](r_Examples_of_PERCENTILE_DISC_WF.md)\. 
+See [PERCENTILE\_DISC window function examples](r_Examples_of_PERCENTILE_DISC_WF.md)\. 

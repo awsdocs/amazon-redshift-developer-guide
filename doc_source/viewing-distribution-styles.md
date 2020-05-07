@@ -1,4 +1,4 @@
-# Viewing Distribution Styles<a name="viewing-distribution-styles"></a>
+# Viewing distribution styles<a name="viewing-distribution-styles"></a>
 
 To view the distribution style of a table, query the PG\_CLASS\_INFO view or the SVV\_TABLE\_INFO view\.
 
@@ -7,7 +7,7 @@ The RELEFFECTIVEDISTSTYLE column in PG\_CLASS\_INFO indicates the current distri
 The following table gives the distribution style for each value in RELEFFECTIVEDISTSTYLE column: 
 
 
-| RELEFFECTIVEDISTSTYLE | Current Distribution style | 
+| RELEFFECTIVEDISTSTYLE | Current distribution style | 
 | --- | --- | 
 | 0 | EVEN | 
 | 1 | KEY | 

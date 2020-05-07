@@ -12,7 +12,7 @@ CREATE GROUP group_name
 ## Parameters<a name="r_CREATE_GROUP-parameters"></a>
 
  *group\_name*   
-Name of the new user group\. Group names beginning with two underscores are reserved for Amazon Redshift internal use\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+Name of the new user group\. Group names beginning with two underscores are reserved for Amazon Redshift internal use\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 WITH  
 Optional syntax to indicate additional parameters for CREATE GROUP\.

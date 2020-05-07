@@ -1,8 +1,8 @@
-# Integer and Floating\-Point Literals<a name="r_numeric_literals201"></a>
+# Integer and floating\-point literals<a name="r_numeric_literals201"></a>
 
 Literals or constants that represent numbers can be integer or floating\-point\.
 
-## Integer Literals<a name="r_numeric_literals201-integer-literals"></a>
+## Integer literals<a name="r_numeric_literals201-integer-literals"></a>
 
 An integer constant is a sequence of the digits 0\-9, with an optional positive \(\+\) or negative \(\-\) sign preceding the digits\.
 
@@ -22,7 +22,7 @@ Valid integers include the following:
 +17
 ```
 
-## Floating\-Point Literals<a name="r_numeric_literals201-floating-point-literals"></a>
+## Floating\-point literals<a name="r_numeric_literals201-floating-point-literals"></a>
 
 Floating\-point literals \(also referred to as decimal, numeric, or fractional literals\) are sequences of digits that can include a decimal point, and optionally the exponent marker \(e\)\.
 

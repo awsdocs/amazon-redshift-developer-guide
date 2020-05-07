@@ -1,4 +1,4 @@
-# COS Function<a name="r_COS"></a>
+# COS function<a name="r_COS"></a>
 
 COS is a trigonometric function that returns the cosine of a number\. The return value is in radians and is between PI/2 and \-PI/2\. 
 
@@ -13,7 +13,7 @@ COS(double_precision)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_COS-return-type"></a>
+## Return type<a name="r_COS-return-type"></a>
 
 The COS function returns a double precision number\. 
 

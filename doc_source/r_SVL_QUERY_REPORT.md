@@ -4,7 +4,7 @@ Amazon Redshift creates the SVL\_QUERY\_REPORT view from a UNION of a number of 
 
 This view breaks down the information about executed queries by slice and by step, which can help with troubleshooting node and slice issues in the Amazon Redshift cluster\.
 
-SVL\_QUERY\_REPORT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_QUERY\_REPORT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVL_QUERY_REPORT-table-rows2"></a>
 

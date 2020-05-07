@@ -13,7 +13,7 @@ ST_Dimension(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. 
 
-## Return Type<a name="ST_Dimension-function-return"></a>
+## Return type<a name="ST_Dimension-function-return"></a>
 
 `INTEGER` representing the inherent dimension of *geom*\. 
 
@@ -22,7 +22,7 @@ If *geom* is null, then null is returned\.
 The values returned are as follows\.
 
 
-| Returned Value | Geometry Subtype | 
+| Returned value | Geometry subtype | 
 | --- | --- | 
 | 0 | Returned if *geom* is a `POINT` or `MULTIPOINT` subtype | 
 | 1 | Returned if *geom* is a `LINESTRING` or `MULTILINESTRING` subtype\. | 

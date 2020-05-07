@@ -1,4 +1,4 @@
-# RTRIM Function<a name="r_RTRIM"></a>
+# RTRIM function<a name="r_RTRIM"></a>
 
 The RTRIM function trims a specified set of characters from the end of a string\. 
 
@@ -16,7 +16,7 @@ The string column or expression to be trimmed\.
  *trim\_chars*   
 A string column or expression representing the characters to be trimmed from the end of *string*\.
 
-## Return Type<a name="r_RTRIM-return-type"></a>
+## Return type<a name="r_RTRIM-return-type"></a>
 
 A string that is the same data type as the *string* argument\.
 

@@ -1,4 +1,4 @@
-# NEXT\_DAY Function<a name="r_NEXT_DAY"></a>
+# NEXT\_DAY function<a name="r_NEXT_DAY"></a>
 
 NEXT\_DAY returns the date of the first instance of the specified day that is later than the given date\.
 
@@ -20,7 +20,7 @@ A string containing the name of any day\. Capitalization does not matter\.
 Valid values are as follows\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_NEXT_DAY.html)
 
-## Return Type<a name="r_NEXT_DAY-return-type"></a>
+## Return type<a name="r_NEXT_DAY-return-type"></a>
 
 DATE
 

@@ -1,4 +1,4 @@
-# Join Examples<a name="r_Join_examples"></a>
+# Join examples<a name="r_Join_examples"></a>
 
 The following query is an outer join\. Left and right outer joins retain values from one of the joined tables when no match is found in the other table\. The left and right tables are the first and second tables listed in the syntax\. NULL values are used to fill the "gaps" in the result set\.
 

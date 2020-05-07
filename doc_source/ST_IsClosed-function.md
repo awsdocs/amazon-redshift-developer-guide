@@ -19,7 +19,7 @@ ST_IsClosed(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. 
 
-## Return Type<a name="ST_IsClosed-function-return"></a>
+## Return type<a name="ST_IsClosed-function-return"></a>
 
 `BOOLEAN`
 

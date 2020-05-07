@@ -4,13 +4,13 @@ STV\_BLOCKLIST contains the number of 1 MB disk blocks that are used by each sli
 
 Use aggregate queries with STV\_BLOCKLIST, as the following examples show, to determine the number of 1 MB disk blocks allocated per database, table, slice, or column\. You can also use [STV\_PARTITIONS](r_STV_PARTITIONS.md) to view summary information about disk utilization\.
 
-STV\_BLOCKLIST is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_BLOCKLIST is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_BLOCKLIST-table-columns"></a>
+## Table columns<a name="r_STV_BLOCKLIST-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_BLOCKLIST.html)
 
-## Sample Queries<a name="r_STV_BLOCKLIST-sample-queries"></a>
+## Sample queries<a name="r_STV_BLOCKLIST-sample-queries"></a>
 
 STV\_BLOCKLIST contains one row per allocated disk block, so a query that selects all the rows potentially returns a very large number of rows\. We recommend using only aggregate queries with STV\_BLOCKLIST\.
 

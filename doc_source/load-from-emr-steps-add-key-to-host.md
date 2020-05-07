@@ -1,4 +1,4 @@
-# Step 4: Add the Amazon Redshift Cluster Public Key to Each Amazon EC2 Host's Authorized Keys File<a name="load-from-emr-steps-add-key-to-host"></a>
+# Step 4: Add the Amazon Redshift cluster public key to each Amazon EC2 host's authorized keys file<a name="load-from-emr-steps-add-key-to-host"></a>
 
 You add the cluster public key to each host's authorized keys file for all of the Amazon EMR cluster nodes so that the hosts will recognize Amazon Redshift and accept the SSH connection\. 
 

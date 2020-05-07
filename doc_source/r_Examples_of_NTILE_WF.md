@@ -1,4 +1,4 @@
-# NTILE Window Function Examples<a name="r_Examples_of_NTILE_WF"></a>
+# NTILE window function examples<a name="r_Examples_of_NTILE_WF"></a>
 
  The following example ranks into four ranking groups the price paid for Hamlet tickets on August 26, 2008\. The result set is 17 rows, divided almost evenly among the rankings 1 through 4: 
 

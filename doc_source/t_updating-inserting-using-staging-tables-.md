@@ -1,19 +1,19 @@
-# Updating and Inserting New Data<a name="t_updating-inserting-using-staging-tables-"></a>
+# Updating and inserting new data<a name="t_updating-inserting-using-staging-tables-"></a>
 
 You can efficiently add new data to an existing table by using a combination of updates and inserts from a staging table\. While Amazon Redshift does not support a single *merge*, or *upsert*, command to update a table from a single data source, you can perform a merge operation by creating a staging table and then using one of the methods described in this section to update the target table from the staging table\. 
 
 **Topics**
-+ [Merge Method 1: Replacing Existing Rows](#merge-method-replace-existing-rows)
-+ [Merge Method 2: Specifying a Column List](#merge-method-specify-column-list)
-+ [Creating a Temporary Staging Table](merge-create-staging-table.md)
-+ [Performing a Merge Operation by Replacing Existing Rows](merge-replacing-existing-rows.md)
-+ [Performing a Merge Operation by Specifying a Column List](merge-specify-a-column-list.md)
-+ [Merge Examples](merge-examples.md)
++ [Merge method 1: Replacing existing rows](#merge-method-replace-existing-rows)
++ [Merge method 2: Specifying a column list](#merge-method-specify-column-list)
++ [Creating a temporary staging table](merge-create-staging-table.md)
++ [Performing a merge operation by replacing existing rows](merge-replacing-existing-rows.md)
++ [Performing a merge operation by specifying a column list](merge-specify-a-column-list.md)
++ [Merge examples](merge-examples.md)
 
 **Note**  
 You should run the entire merge operation, except for creating and dropping the temporary staging table, in a single transaction so that the transaction will roll back if any step fails\. Using a single transaction also reduces the number of commits, which saves time and resources\.
 
-## Merge Method 1: Replacing Existing Rows<a name="merge-method-replace-existing-rows"></a>
+## Merge method 1: Replacing existing rows<a name="merge-method-replace-existing-rows"></a>
 
 If you are overwriting all of the columns in the target table, the fastest method for performing a merge is by replacing the existing rows because it scans the target table only once, by using an inner join to delete rows that will be updated\. After the rows are deleted, they are replaced along with new rows by a single insert operation from the staging table\. 
 
@@ -26,7 +26,7 @@ If any of these criteria do not apply, use Merge Method 2: Specifying a column l
 
 If you will not use all of the rows in the staging table, you can filter the DELETE and INSERT statements by using a WHERE clause to leave out rows that are not actually changing\. However, if most of the rows in the staging table will not participate in the merge, we recommend performing an UPDATE and an INSERT in separate steps, as described later in this section\.
 
-## Merge Method 2: Specifying a Column List<a name="merge-method-specify-column-list"></a>
+## Merge method 2: Specifying a column list<a name="merge-method-specify-column-list"></a>
 
 Use this method to update specific columns in the target table instead of overwriting entire rows\. This method takes longer than the previous method because it requires an extra update step\. Use this method if any of the following are true: 
 + Not all of the columns in the target table are to be updated\. 

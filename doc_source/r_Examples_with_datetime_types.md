@@ -1,6 +1,6 @@
-# Examples with Datetime Types<a name="r_Examples_with_datetime_types"></a>
+# Examples with datetime types<a name="r_Examples_with_datetime_types"></a>
 
-## Date Examples<a name="r_Examples_with_datetime_types-date-examples"></a>
+## Date examples<a name="r_Examples_with_datetime_types-date-examples"></a>
 
 Insert dates that have different formats and display the output:
 
@@ -25,7 +25,7 @@ start_date |  end_date
 
 If you insert a time stamp value into a DATE column, the time portion is ignored and only the date loaded\.
 
-## Time Stamp Examples<a name="r_Examples_with_datetime_types-timestamp-examples"></a>
+## Time stamp examples<a name="r_Examples_with_datetime_types-timestamp-examples"></a>
 
 If you insert a date into a TIMESTAMP or TIMESTAMPTZ column, the time defaults to midnight\. For example, if you insert the literal `20081231`, the stored value is `2008-12-31 00:00:00`\. 
 

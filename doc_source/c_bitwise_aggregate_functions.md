@@ -1,15 +1,15 @@
-# Bit\-Wise Aggregate Functions<a name="c_bitwise_aggregate_functions"></a>
+# Bit\-wise aggregate functions<a name="c_bitwise_aggregate_functions"></a>
 
 **Topics**
 + [BIT\_AND and BIT\_OR](#c_bitwise_aggregate_functions-bit_and-and-bit_or)
 + [BOOL\_AND and BOOL\_OR](#c_bitwise_aggregate_functions-bool_and-and-bool_or)
-+ [NULLs in Bit\-Wise Aggregations](#c_bitwise_aggregate_functions-nulls-in-bit-wise-aggregations)
-+ [DISTINCT Support for Bit\-Wise Aggregations](#distinct-support-for-bit-wise-aggregations)
-+ [BIT\_AND Function](r_BIT_AND.md)
-+ [BIT\_OR Function](r_BIT_OR.md)
-+ [BOOL\_AND Function](r_BOOL_AND.md)
-+ [BOOL\_OR Function](r_BOOL_OR.md)
-+ [Bit\-Wise Function Examples](r_bitwise_examples.md)
++ [NULLs in bit\-wise aggregations](#c_bitwise_aggregate_functions-nulls-in-bit-wise-aggregations)
++ [DISTINCT support for bit\-wise aggregations](#distinct-support-for-bit-wise-aggregations)
++ [BIT\_AND function](r_BIT_AND.md)
++ [BIT\_OR function](r_BIT_OR.md)
++ [BOOL\_AND function](r_BOOL_AND.md)
++ [BOOL\_OR function](r_BOOL_OR.md)
++ [Bit\-Wise function examples](r_bitwise_examples.md)
 
 Amazon Redshift supports the following bit\-wise aggregate functions:
 + BIT\_AND
@@ -37,7 +37,7 @@ The BOOL\_AND and BOOL\_OR functions operate on a single Boolean or integer colu
 + If all values in a set are true, the BOOL\_AND function returns `true` \(`t`\)\. If any value is false, the function returns `false` \(`f`\)\.
 + If any value in a set is `true`, the BOOL\_OR function returns `true` \(`t`\)\. If no value in a set is `true`, the function returns `false` \(`f`\)\.
 
-## NULLs in Bit\-Wise Aggregations<a name="c_bitwise_aggregate_functions-nulls-in-bit-wise-aggregations"></a>
+## NULLs in bit\-wise aggregations<a name="c_bitwise_aggregate_functions-nulls-in-bit-wise-aggregations"></a>
 
 When a bit\-wise function is applied to a column that is nullable, any NULL values are eliminated before the function result is calculated\. If no rows qualify for aggregation, the bit\-wise function returns NULL\. The same behavior applies to regular aggregate functions\. For example:
 
@@ -51,6 +51,6 @@ null |    null
 (1 row)
 ```
 
-## DISTINCT Support for Bit\-Wise Aggregations<a name="distinct-support-for-bit-wise-aggregations"></a>
+## DISTINCT support for bit\-wise aggregations<a name="distinct-support-for-bit-wise-aggregations"></a>
 
 Like other aggregate functions, bit\-wise functions support the DISTINCT keyword\. However, using DISTINCT with these functions has no impact on the results\. The first instance of a value is sufficient to satisfy bitwise AND or OR operations, and it makes no difference if duplicate values are present in the expression being evaluated\. Because the DISTINCT processing is likely to incur some query execution overhead, do not use DISTINCT with these functions\.

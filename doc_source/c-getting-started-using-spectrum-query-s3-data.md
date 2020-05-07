@@ -1,4 +1,4 @@
-# Step 4: Query Your Data in Amazon S3<a name="c-getting-started-using-spectrum-query-s3-data"></a>
+# Step 4: Query your data in Amazon S3<a name="c-getting-started-using-spectrum-query-s3-data"></a>
 
 After your external tables are created, you can query them using the same SELECT statements that you use to query other Amazon Redshift tables\. These SELECT statement queries include joining tables, aggregating data, and filtering on predicates\. <a name="spectrum-get-started-query-s3-data"></a>
 
@@ -28,7 +28,7 @@ After your external tables are created, you can query them using the same SELECT
    starttime timestamp);
    ```
 
-1. Load the EVENT table by replacing the IAM role ARN in the following COPY command with the role ARN you created in [Step 1\. Create an IAM Role for Amazon Redshift](c-getting-started-using-spectrum-create-role.md)\. 
+1. Load the EVENT table by replacing the IAM role ARN in the following COPY command with the role ARN you created in [Step 1\. Create an IAM role for Amazon Redshift](c-getting-started-using-spectrum-create-role.md)\. 
 
    ```
    copy event from 's3://awssampledbuswest2/tickit/allevents_pipe.txt' 

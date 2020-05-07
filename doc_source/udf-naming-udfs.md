@@ -2,13 +2,13 @@
 
 You can avoid potential conflicts and unexpected results considering your UDF naming conventions before implementation\. Because function names can be overloaded, they can collide with existing and future Amazon Redshift function names\. This topic discusses overloading and presents a strategy for avoiding conflict\.
 
-## Overloading Function Names<a name="udf-naming-overloading-function-names"></a>
+## Overloading function names<a name="udf-naming-overloading-function-names"></a>
 
 A function is identified by its name and *signature*, which is the number of input arguments and the data types of the arguments\. Two functions in the same schema can have the same name if they have different signatures\. In other words, the function names can be *overloaded*\.
 
 When you execute a query, the query engine determines which function to call based on the number of arguments you provide and the data types of the arguments\. You can use overloading to simulate functions with a variable number of arguments, up to the limit allowed by the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. 
 
-## Preventing UDF Naming Conflicts<a name="udf-naming-preventing-udf-naming-conflicts"></a>
+## Preventing UDF naming conflicts<a name="udf-naming-preventing-udf-naming-conflicts"></a>
 
 We recommend that you name all UDFs using the prefix `f_`\. Amazon Redshift reserves the `f_` prefix exclusively for UDFs and by prefixing your UDF names with `f_`, you ensure that your UDF name won't conflict with any existing or future Amazon Redshift built\-in SQL function names\. For example, by naming a new UDF `f_sum`, you avoid conflict with the Amazon Redshift SUM function\. Similarly, if you name a new function `f_fibonacci`, you avoid conflict if Amazon Redshift adds a function named FIBONACCI in a future release\.
 

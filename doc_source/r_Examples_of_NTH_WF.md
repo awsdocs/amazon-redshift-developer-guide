@@ -1,4 +1,4 @@
-# NTH\_VALUE Window Function Examples<a name="r_Examples_of_NTH_WF"></a>
+# NTH\_VALUE window function examples<a name="r_Examples_of_NTH_WF"></a>
 
 The following example shows the number of seats in the third largest venue in California, Florida, and New York compared to the number of seats in the other venues in those states: 
 

@@ -16,7 +16,7 @@ current_schemas(include_implicit)
  *include\_implicit*   
 If true, specifies that the search path should include any implicitly included system schemas\. Valid values are `true` and `false`\. Typically, if `true`, this parameter returns the `pg_catalog` schema in addition to the current schema\. 
 
-## Return Type<a name="r_CURRENT_SCHEMAS-return-type"></a>
+## Return type<a name="r_CURRENT_SCHEMAS-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

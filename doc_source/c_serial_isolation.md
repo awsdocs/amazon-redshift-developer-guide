@@ -1,4 +1,4 @@
-# Serializable Isolation<a name="c_serial_isolation"></a>
+# Serializable isolation<a name="c_serial_isolation"></a>
 
 Some applications require not only concurrent querying and loading, but also the ability to write to multiple tables or the same table concurrently\. In this context, *concurrently* means overlapping, not scheduled to run at precisely the same time\. Two transactions are considered to be concurrent if the second one starts before the first commits\. Concurrent operations can originate from different sessions that are controlled either by the same user or by different users\.
 
@@ -24,11 +24,11 @@ For example, suppose that table A exists in the database when two concurrent tra
 
 Transactions for updates to these tables run in a *read committed* isolation mode\. PG\-prefix catalog tables do not support snapshot isolation\.
 
-## Serializable Isolation for System Tables and Catalog Tables<a name="c_serial_isolation-serializable-isolation-for-tables"></a>
+## Serializable isolation for system tables and catalog tables<a name="c_serial_isolation-serializable-isolation-for-tables"></a>
 
 A database snapshot is also created in a transaction for any SELECT query that references a user\-created table or Amazon Redshift system table \(STL or STV\)\. SELECT queries that do not reference any table will not create a new transaction database snapshot, nor will any INSERT, DELETE, or UPDATE statements that operate solely on system catalog tables \(PG\)\.
 
-## How to Fix Serializable Isolation Errors<a name="c_serial_isolation-serializable-isolation-troubleshooting"></a>
+## How to fix serializable isolation errors<a name="c_serial_isolation-serializable-isolation-troubleshooting"></a>
 
 When Amazon Redshift detects a serializable isolation error, you see an error message such as the following\.
 

@@ -1,4 +1,4 @@
-# SYSDATE Function<a name="r_SYSDATE"></a>
+# SYSDATE function<a name="r_SYSDATE"></a>
 
 SYSDATE returns the current date and time in the current session time zone \(UTC by default\)\. 
 
@@ -13,7 +13,7 @@ SYSDATE
 
 This function requires no arguments\. 
 
-## Return Type<a name="r_SYSDATE-return-type"></a>
+## Return type<a name="r_SYSDATE-return-type"></a>
 
 TIMESTAMP
 

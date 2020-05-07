@@ -1,4 +1,4 @@
-# PERCENT\_RANK Window Function Examples<a name="r_Examples_of_PERCENT_RANK_WF"></a>
+# PERCENT\_RANK window function examples<a name="r_Examples_of_PERCENT_RANK_WF"></a>
 
 The following example calculates the percent rank of the sales quantities for each seller:
 
@@ -22,4 +22,4 @@ sellerid	qty		percent_rank
 4		40.23		1.0
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.

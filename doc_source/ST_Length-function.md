@@ -13,7 +13,7 @@ ST_Length(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\.
 
-## Return Type<a name="ST_Length-function-return"></a>
+## Return type<a name="ST_Length-function-return"></a>
 
 `DOUBLE PRECISION`
 

@@ -1,4 +1,4 @@
-# Query Priority<a name="query-priority"></a>
+# Query priority<a name="query-priority"></a>
 
 Not all queries are of equal importance, and often performance of one workload or set of users might be more important\. If you have enabled [automatic WLM](automatic-wlm.md), you can define the relative importance of queries in a workload by setting a priority value\. The priority is specified for a queue and inherited by all queries associated with the queue\. You associate queries to a queue by mapping user groups and query groups to the queue\. You can set the following priorities \(listed from highest to lowest priority\):
 
@@ -25,7 +25,7 @@ Within a given cluster, the predictable performance for a high priority workload
 
 In the preceding example, the administrator can enable [concurrency scaling](concurrency-scaling.md) for the analytics workload\. Doing this enables that workload to maintain its throughput, even though the ETL workload is running at high priority\. 
 
-## Configuring Queue Priority<a name="concurrency-scaling-queues"></a>
+## Configuring queue priority<a name="concurrency-scaling-queues"></a>
 
 If you have enabled automatic WLM, each queue has a priority value\. Queries are routed to queues based on user groups and query groups\. The default queue priority is `NORMAL`\. Set the priority higher or lower based on the workload associated with the queue's user groups and query groups\. 
 
@@ -60,9 +60,9 @@ The following `wlm_json_configuration` example defines three user groups \(`inge
 ]
 ```
 
-## Changing Query Priority with Query Monitoring Rules<a name="query-priority-qmr"></a>
+## Changing query priority with query monitoring rules<a name="query-priority-qmr"></a>
 
-Query monitoring rules \(QMR\) enable you to change the priority of a query based on its behavior while it is running\. You do this by specifying the priority attribute in a QMR predicate in addition to an action\. For more information, see [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. 
+Query monitoring rules \(QMR\) enable you to change the priority of a query based on its behavior while it is running\. You do this by specifying the priority attribute in a QMR predicate in addition to an action\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 
 
 For example, you can define a rule to abort any query classified as `high` priority that runs for more than 10 minutes\.
 
@@ -111,7 +111,7 @@ Another example is to define a rule to change the query priority to `lowest` for
 ]
 ```
 
-## Monitoring Query Priority<a name="query-priority-monitoring"></a>
+## Monitoring query priority<a name="query-priority-monitoring"></a>
 
 To display priority for waiting and running queries, view the `query_priority` column in the stv\_wlm\_query\_state system table\.
 

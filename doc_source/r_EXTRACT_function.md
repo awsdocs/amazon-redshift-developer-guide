@@ -1,4 +1,4 @@
-# EXTRACT Function<a name="r_EXTRACT_function"></a>
+# EXTRACT function<a name="r_EXTRACT_function"></a>
 
  The EXTRACT function returns a date part, such as a day, month, or year, from a time stamp value or expression\. 
 
@@ -11,7 +11,7 @@ EXTRACT ( datepart FROM { TIMESTAMP 'literal' | timestamp } )
 ## Arguments<a name="r_EXTRACT_function-arguments"></a>
 
  *datepart*   
-For possible values, see [Dateparts for Date or Time Stamp Functions](r_Dateparts_for_datetime_functions.md)\. 
+For possible values, see [Dateparts for Date or Time Stamp functions](r_Dateparts_for_datetime_functions.md)\. 
 
  *literal*   
 A time stamp value, enclosed in single quotation marks and preceded by the TIMESTAMP keyword\. 
@@ -19,7 +19,7 @@ A time stamp value, enclosed in single quotation marks and preceded by the TIMES
  *timestamp*   
 A TIMESTAMP or TIMESTAMPTZ column, or an expression that implicitly converts to a time stamp or time stamp with time zone\.
 
-## Return Type<a name="r_EXTRACT_function-return-type"></a>
+## Return type<a name="r_EXTRACT_function-return-type"></a>
 
 INTEGER if the argument is TIMESTAMP
 

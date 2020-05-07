@@ -2,13 +2,13 @@
 
 Logs authentication attempts and connections and disconnections\.
 
-This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_CONNECTION_LOG-table-columns2"></a>
+## Table columns<a name="r_STL_CONNECTION_LOG-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_CONNECTION_LOG.html)
 
-## Sample Queries<a name="r_STL_CONNECTION_LOG-sample-queries2"></a>
+## Sample queries<a name="r_STL_CONNECTION_LOG-sample-queries2"></a>
 
 To view the details for open connections, execute the following query\.
 

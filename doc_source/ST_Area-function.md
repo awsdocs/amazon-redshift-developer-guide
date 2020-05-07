@@ -13,7 +13,7 @@ ST_Area(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\.
 
-## Return Type<a name="ST_Area-function-return"></a>
+## Return type<a name="ST_Area-function-return"></a>
 
 `DOUBLE PRECISION`
 

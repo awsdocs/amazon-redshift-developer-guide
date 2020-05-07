@@ -1,4 +1,4 @@
-# LAG Window Function<a name="r_WF_LAG"></a>
+# LAG window function<a name="r_WF_LAG"></a>
 
  The LAG window function returns the values for a row at a given offset above \(before\) the current row in the partition\. 
 
@@ -20,7 +20,7 @@ OVER ( [ PARTITION BY window_partition ] ORDER BY window_ordering )
 
 IGNORE NULLS   
 An optional specification that indicates that Amazon Redshift should skip null values in the determination of which row to use\. Null values are included if IGNORE NULLS is not listed\.   
-You can use an NVL or COALESCE expression to replace the null values with another value\. For more information, see [NVL Expression](r_NVL_function.md)\. 
+You can use an NVL or COALESCE expression to replace the null values with another value\. For more information, see [NVL expression](r_NVL_function.md)\. 
 
 RESPECT NULLS   
  Indicates that Amazon Redshift should include null values in the determination of which row to use\. RESPECT NULLS is supported by default if you do not specify IGNORE NULLS\. 
@@ -38,4 +38,4 @@ The LAG window function supports expressions that use any of the Amazon Redshift
 
 ## Examples<a name="r_WF_LAG-examples"></a>
 
-See [LAG Window Function Examples](r_Examples_of_LAG_WF.md)\. 
+See [LAG window function examples](r_Examples_of_LAG_WF.md)\. 

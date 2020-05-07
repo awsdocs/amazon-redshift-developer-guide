@@ -2,7 +2,7 @@
 
  Records system\-defined error and warning messages generating during user\-defined function \(UDF\) execution\. 
 
-This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\. 
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. 
 
 ## Table Columns<a name="SVL_UDF_LOG-table-columns"></a>
 

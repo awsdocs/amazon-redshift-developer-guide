@@ -1,6 +1,6 @@
 # auto\_analyze<a name="r_auto_analyze"></a>
 
-## Values \(Default in Bold\)<a name="t_auto_analyze-values"></a>
+## Values \(default in bold\)<a name="t_auto_analyze-values"></a>
 
  **true**, false
 

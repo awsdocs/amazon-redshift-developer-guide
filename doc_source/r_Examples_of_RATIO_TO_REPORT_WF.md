@@ -1,4 +1,4 @@
-# RATIO\_TO\_REPORT Window Function Examples<a name="r_Examples_of_RATIO_TO_REPORT_WF"></a>
+# RATIO\_TO\_REPORT window function examples<a name="r_Examples_of_RATIO_TO_REPORT_WF"></a>
 
 The following example calculates the ratios of the sales quantities for each seller:
 
@@ -22,4 +22,4 @@ sellerid	qty		ratio_to_report
 3		20.74630000      0.27
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.

@@ -1,4 +1,4 @@
-# System Administration Functions<a name="r_System_administration_functions"></a>
+# System administration functions<a name="r_System_administration_functions"></a>
 
 **Topics**
 + [CHANGE\_QUERY\_PRIORITY](r_CHANGE_QUERY_PRIORITY.md)

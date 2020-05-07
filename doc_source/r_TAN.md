@@ -1,4 +1,4 @@
-# TAN Function<a name="r_TAN"></a>
+# TAN function<a name="r_TAN"></a>
 
 TAN is a trigonometric function that returns the tangent of a number\. The input parameter must be a non\-zero number \(in radians\)\. 
 
@@ -13,7 +13,7 @@ TAN(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_TAN-return-type"></a>
+## Return type<a name="r_TAN-return-type"></a>
 
 The TAN function returns a double precision number\. 
 

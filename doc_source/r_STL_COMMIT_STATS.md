@@ -2,13 +2,13 @@
 
 Provides metrics related to commit performance, including the timing of the various stages of commit and the number of blocks committed\. Query STL\_COMMIT\_STATS to determine what portion of a transaction was spent on commit and how much queuing is occurring\.
 
-This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_COMMIT_STATS-table-columns"></a>
+## Table columns<a name="r_STL_COMMIT_STATS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_COMMIT_STATS.html)
 
-## Sample Query<a name="r_STL_COMMIT_STATS-sample-queries"></a>
+## Sample query<a name="r_STL_COMMIT_STATS-sample-queries"></a>
 
 ```
 select node, datediff(ms,startqueue,startwork) as queue_time, 

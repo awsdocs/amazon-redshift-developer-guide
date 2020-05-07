@@ -1,6 +1,6 @@
 # query\_group<a name="r_query_group"></a>
 
-## Values \(Default in Bold\)<a name="r_query_group-values"></a>
+## Values \(default in bold\)<a name="r_query_group-values"></a>
 
 No default; the value can be any character string\. 
 

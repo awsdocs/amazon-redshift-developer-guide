@@ -1,4 +1,4 @@
-# ASIN Function<a name="r_ASIN"></a>
+# ASIN function<a name="r_ASIN"></a>
 
 ASIN is a trigonometric function that returns the arc sine of a number\. The return value is in radians and is between PI/2 and \-PI/2\. 
 
@@ -13,7 +13,7 @@ ASIN(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_ASIN-return-type"></a>
+## Return type<a name="r_ASIN-return-type"></a>
 
 The ASIN function returns a double precision number\. 
 

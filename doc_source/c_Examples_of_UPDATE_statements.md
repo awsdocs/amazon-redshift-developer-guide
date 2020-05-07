@@ -1,6 +1,6 @@
-# Examples of UPDATE Statements<a name="c_Examples_of_UPDATE_statements"></a>
+# Examples of UPDATE statements<a name="c_Examples_of_UPDATE_statements"></a>
 
-For more information about the tables used in the following examples, see [Sample Database](c_sampledb.md)\.
+For more information about the tables used in the following examples, see [Sample database](c_sampledb.md)\.
 
 The CATEGORY table in the TICKIT database contains the following rows: 
 
@@ -21,7 +21,7 @@ The CATEGORY table in the TICKIT database contains the following rows:
 (11 rows)
 ```
 
- **Updating a Table Based on a Range of Values** 
+ **Updating a table based on a range of values** 
 
 Update the CATGROUP column based on a range of values in the CATID column\. 
 
@@ -43,7 +43,7 @@ catid | catgroup |  catname  |                  catdesc
 (3 rows)
 ```
 
- **Updating a Table Based on a Current Value** 
+ **Updating a table based on a current value** 
 
 Update the CATNAME and CATDESC columns based on their current CATGROUP value: 
 
@@ -78,7 +78,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter '|';
 ```
 
- **Updating a Table Based on the Result of a WHERE Clause Subquery** 
+ **Updating a table based on the result of a WHERE clause subquery** 
 
 Update the CATEGORY table based on the result of a subquery in the WHERE clause: 
 
@@ -114,7 +114,7 @@ catid | catgroup |  catname  |                  catdesc
 (11 rows)
 ```
 
-## Updating a Table Based on the Result of a Join Condition<a name="c_Examples_of_UPDATE_statements-updating-a-table-based-on-the-result-of-a-join-condition"></a>
+## Updating a table based on the result of a join condition<a name="c_Examples_of_UPDATE_statements-updating-a-table-based-on-the-result-of-a-join-condition"></a>
 
 Update the original 11 rows in the CATEGORY table based on matching CATID rows in the EVENT table: 
 
@@ -179,7 +179,7 @@ where cat.catgroup='Concerts';
 
 The advantage to this approach is that the join criteria are clearly separated from any other criteria that qualify rows for the update\. Note the use of the alias CAT for the CATEGORY table in the FROM clause\.
 
-## Updates with Outer Joins in the FROM Clause<a name="c_Examples_of_UPDATE_statements-updates-with-outer-joins-in-the-from-clause"></a>
+## Updates with outer joins in the FROM clause<a name="c_Examples_of_UPDATE_statements-updates-with-outer-joins-in-the-from-clause"></a>
 
 The previous example showed an inner join specified in the FROM clause of an UPDATE statement\. The following example returns an error because the FROM clause does not support outer joins to the target table: 
 

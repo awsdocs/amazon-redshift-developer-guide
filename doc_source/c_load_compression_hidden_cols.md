@@ -1,4 +1,4 @@
-# Optimizing Storage for Narrow Tables<a name="c_load_compression_hidden_cols"></a>
+# Optimizing storage for narrow tables<a name="c_load_compression_hidden_cols"></a>
 
 If you have a table with very few columns but a very large number of rows, the three hidden metadata identity columns \(INSERT\_XID, DELETE\_XID, ROW\_ID\) will consume a disproportionate amount of the disk space for the table\.
 

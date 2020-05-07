@@ -1,9 +1,9 @@
-# ORDER BY Clause<a name="r_ORDER_BY_clause"></a>
+# ORDER BY clause<a name="r_ORDER_BY_clause"></a>
 
 **Topics**
 + [Syntax](#r_ORDER_BY_clause-synopsis)
 + [Parameters](#r_ORDER_BY_clause-parameters)
-+ [Usage Notes](#r_ORDER_BY_usage_notes)
++ [Usage notes](#r_ORDER_BY_usage_notes)
 + [Examples with ORDER BY](r_Examples_with_ORDER_BY.md)
 
 The ORDER BY clause sorts the result set of a query\.
@@ -43,7 +43,7 @@ LIMIT 0 returns no rows\. You can use this syntax for testing purposes: to check
 OFFSET *start*   <a name="order-by-clause-offset"></a>
 Option that specifies to skip the number of rows before *start* before beginning to return rows\. The OFFSET number must be a positive integer; the maximum value is `2147483647`\. When used with the LIMIT option, OFFSET rows are skipped before starting to count the LIMIT rows that are returned\. If the LIMIT option isn't used, the number of rows in the result set is reduced by the number of rows that are skipped\. The rows skipped by an OFFSET clause still have to be scanned, so it might be inefficient to use a large OFFSET value\.
 
-## Usage Notes<a name="r_ORDER_BY_usage_notes"></a>
+## Usage notes<a name="r_ORDER_BY_usage_notes"></a>
 
  Note the following expected behavior with ORDER BY clauses: 
 + NULL values are considered "higher" than all other values\. With the default ascending sort order, NULL values sort at the end\. To change this behavior, use the NULLS FIRST option\.

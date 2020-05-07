@@ -1,4 +1,4 @@
-# ACOS Function<a name="r_ACOS"></a>
+# ACOS function<a name="r_ACOS"></a>
 
 ACOS is a trigonometric function that returns the arc cosine of a number\. The return value is in radians and is between PI/2 and \-PI/2\. 
 
@@ -13,7 +13,7 @@ ACOS(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_ACOS-return-type"></a>
+## Return type<a name="r_ACOS-return-type"></a>
 
 The ACOS function returns a double precision number\. 
 

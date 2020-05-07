@@ -2,17 +2,17 @@
 
 **Topics**
 + [Syntax](#r_SELECT_synopsis-synopsis)
-+ [WITH Clause](r_WITH_clause.md)
-+ [SELECT List](r_SELECT_list.md)
-+ [FROM Clause](r_FROM_clause30.md)
-+ [WHERE Clause](r_WHERE_clause.md)
-+ [GROUP BY Clause](r_GROUP_BY_clause.md)
-+ [HAVING Clause](r_HAVING_clause.md)
++ [WITH clause](r_WITH_clause.md)
++ [SELECT list](r_SELECT_list.md)
++ [FROM clause](r_FROM_clause30.md)
++ [WHERE clause](r_WHERE_clause.md)
++ [GROUP BY clause](r_GROUP_BY_clause.md)
++ [HAVING clause](r_HAVING_clause.md)
 + [UNION, INTERSECT, and EXCEPT](r_UNION.md)
-+ [ORDER BY Clause](r_ORDER_BY_clause.md)
-+ [Join Examples](r_Join_examples.md)
-+ [Subquery Examples](r_Subquery_examples.md)
-+ [Correlated Subqueries](r_correlated_subqueries.md)
++ [ORDER BY clause](r_ORDER_BY_clause.md)
++ [Join examples](r_Join_examples.md)
++ [Subquery examples](r_Subquery_examples.md)
++ [Correlated subqueries](r_correlated_subqueries.md)
 
 Returns rows from tables, views, and user\-defined functions\. 
 

@@ -1,4 +1,4 @@
-# Querying Spatial Data in Amazon Redshift<a name="geospatial-overview"></a>
+# Querying spatial data in Amazon Redshift<a name="geospatial-overview"></a>
 
 Spatial data describes the position and shape of a geometry in a defined space \(a spatial reference system\)\. Amazon Redshift supports spatial data with the `GEOMETRY` data type, which contains spatial data and optionally its spatial reference system identifier \(SRID\)\. 
 
@@ -29,7 +29,7 @@ There are Amazon Redshift SQL functions that support the following representatio
 + Well\-known binary \(WKB\) representation 
 + Extended well\-known binary \(EWKB\)
 
-For details about SQL functions to query spatial data, see [Spatial Functions](geospatial-functions.md)\. 
+For details about SQL functions to query spatial data, see [Spatial functions](geospatial-functions.md)\. 
 
 **Topics**
-+ [Limitations When Using Spatial Data with Amazon Redshift](spatial-limitations.md)
++ [Limitations when using spatial data with Amazon Redshift](spatial-limitations.md)

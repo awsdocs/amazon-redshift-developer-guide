@@ -1,14 +1,14 @@
-# Compression Encodings<a name="c_Compression_encodings"></a>
+# Compression encodings<a name="c_Compression_encodings"></a>
 
 **Topics**
-+ [Raw Encoding](c_Raw_encoding.md)
++ [Raw encoding](c_Raw_encoding.md)
 + [AZ64](az64-encoding.md)
-+ [Byte\-Dictionary Encoding](c_Byte_dictionary_encoding.md)
-+ [Delta Encoding](c_Delta_encoding.md)
++ [Byte\-dictionary encoding](c_Byte_dictionary_encoding.md)
++ [Delta encoding](c_Delta_encoding.md)
 + [LZO](lzo-encoding.md)
-+ [Mostly Encoding](c_MostlyN_encoding.md)
-+ [Runlength Encoding](c_Runlength_encoding.md)
-+ [Text255 and Text32k Encodings](c_Text255_encoding.md)
++ [Mostly encoding](c_MostlyN_encoding.md)
++ [Runlength encoding](c_Runlength_encoding.md)
++ [Text255 and Text32k encodings](c_Text255_encoding.md)
 + [ZSTD](zstd-encoding.md)
 
 <a name="compression-encoding-list"></a>A compression encoding specifies the type of compression that is applied to a column of data values as rows are added to a table\.

@@ -1,4 +1,4 @@
-# SQRT Function<a name="r_SQRT"></a>
+# SQRT function<a name="r_SQRT"></a>
 
  The SQRT function returns the square root of a numeric value\. 
 
@@ -13,7 +13,7 @@ SQRT (expression)
  *expression*   
 The expression must have an integer, decimal, or floating\-point data type\. 
 
-## Return Type<a name="r_SQRT-return-type"></a>
+## Return type<a name="r_SQRT-return-type"></a>
 
 SQRT returns a DOUBLE PRECISION number\. 
 

@@ -2,7 +2,11 @@
 
 This view returns an estimate of how much time it will take to complete a vacuum operation that is currently in progress\.
 
-SVV\_VACUUM\_PROGRESS is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVV\_VACUUM\_PROGRESS is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+
+For information about SVV\_VACUUM\_SUMMARY, see [SVV\_VACUUM\_SUMMARY](r_SVV_VACUUM_SUMMARY.md)\.
+
+For information about SVL\_VACUUM\_PERCENTAGE, see [SVL\_VACUUM\_PERCENTAGE](r_SVL_VACUUM_PERCENTAGE.md)\.
 
 ## Table Columns<a name="sub-r_SVV_VACUUM_PROGRESS-table-columns"></a>
 

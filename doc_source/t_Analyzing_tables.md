@@ -1,4 +1,4 @@
-# Analyzing Tables<a name="t_Analyzing_tables"></a>
+# Analyzing tables<a name="t_Analyzing_tables"></a>
 
 The ANALYZE operation updates the statistical metadata that the query planner uses to choose optimal plans\.
 
@@ -7,11 +7,11 @@ In most cases, you don't need to explicitly run the ANALYZE command\. Amazon Red
 To explicitly analyze a table or the entire database, run the [ANALYZE](r_ANALYZE.md) command\. 
 
 **Topics**
-+ [Automatic Analyze](#t_Analyzing_tables-auto-analyze)
-+ [Analysis of New Table Data](#t_Analyzing_tables-new-tables)
-+ [ANALYZE Command History](c_check_last_analyze.md)
++ [Automatic analyze](#t_Analyzing_tables-auto-analyze)
++ [Analysis of new table data](#t_Analyzing_tables-new-tables)
++ [ANALYZE command history](c_check_last_analyze.md)
 
-## Automatic Analyze<a name="t_Analyzing_tables-auto-analyze"></a>
+## Automatic analyze<a name="t_Analyzing_tables-auto-analyze"></a>
 
 Amazon Redshift continuously monitors your database and automatically performs analyze operations in the background\. To minimize impact to your system performance, automatic analyze runs during periods when workloads are light\. 
 
@@ -21,7 +21,7 @@ To reduce processing time and improve overall system performance, Amazon Redshif
 
 An analyze operation skips tables that have up\-to\-date statistics\. If you run ANALYZE as part of your extract, transform, and load \(ETL\) workflow, automatic analyze skips tables that have current statistics\. Similarly, an explicit ANALYZE skips tables when automatic analyze has updated the table's statistics\. 
 
-## Analysis of New Table Data<a name="t_Analyzing_tables-new-tables"></a>
+## Analysis of new table data<a name="t_Analyzing_tables-new-tables"></a>
 
  By default, the COPY command performs an ANALYZE after it loads data into an empty table\. You can force an ANALYZE regardless of whether a table is empty by setting STATUPDATE ON\. If you specify STATUPDATE OFF, an ANALYZE is not performed\. Only the table owner or a superuser can run the ANALYZE command or run the COPY command with STATUPDATE set to ON\.
 
@@ -77,7 +77,7 @@ Suppose that the sellers and events in the application are much more static, and
 
 In addition, consider the case where the NUMTICKETS and PRICEPERTICKET measures are queried infrequently compared to the TOTALPRICE column\. In this case, you can run the ANALYZE command on the whole table once every weekend to update statistics for the five columns that are not analyzed daily: 
 <a name="t_Analyzing_tables-predicate-columns"></a>
-**Predicate Columns**  
+**Predicate columns**  
 As a convenient alternative to specifying a column list, you can choose to analyze only the columns that are likely to be used as predicates\. When you run a query, any columns that are used in a join, filter condition, or group by clause are marked as predicate columns in the system catalog\. When you run ANALYZE with the PREDICATE COLUMNS clause, the analyze operation includes only columns that meet the following criteria:
 + The column is marked as a predicate column\.
 + The column is a distribution key\.

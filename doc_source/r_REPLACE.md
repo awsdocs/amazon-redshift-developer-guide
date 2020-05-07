@@ -1,8 +1,8 @@
-# REPLACE Function<a name="r_REPLACE"></a>
+# REPLACE function<a name="r_REPLACE"></a>
 
 Replaces all occurrences of a set of characters within an existing string with other specified characters\. 
 
-REPLACE is similar to the [TRANSLATE Function](r_TRANSLATE.md) and the [REGEXP\_REPLACE Function](REGEXP_REPLACE.md), except that TRANSLATE makes multiple single\-character substitutions and REGEXP\_REPLACE lets you search a string for a regular expression pattern, while REPLACE substitutes one entire string with another string\.
+REPLACE is similar to the [TRANSLATE function](r_TRANSLATE.md) and the [REGEXP\_REPLACE function](REGEXP_REPLACE.md), except that TRANSLATE makes multiple single\-character substitutions and REGEXP\_REPLACE lets you search a string for a regular expression pattern, while REPLACE substitutes one entire string with another string\.
 
 ## Syntax<a name="r_REPLACE-synopsis"></a>
 
@@ -21,7 +21,7 @@ CHAR or VARCHAR string to replace\.
  *new\_chars*   
 New CHAR or VARCHAR string replacing the *old\_string*\. 
 
-## Return Type<a name="r_REPLACE-return-type"></a>
+## Return type<a name="r_REPLACE-return-type"></a>
 
 VARCHAR
 

@@ -19,7 +19,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *threshold*   
 A value of data type `DOUBLE PRECISION`\. This value is in the units of the input arguments\. 
 
-## Return Type<a name="ST_DWithin-function-return"></a>
+## Return type<a name="ST_DWithin-function-return"></a>
 
 `BOOLEAN`
 

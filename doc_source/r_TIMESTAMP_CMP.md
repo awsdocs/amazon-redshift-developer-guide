@@ -1,4 +1,4 @@
-# TIMESTAMP\_CMP Function<a name="r_TIMESTAMP_CMP"></a>
+# TIMESTAMP\_CMP function<a name="r_TIMESTAMP_CMP"></a>
 
 Compares the value of two time stamps and returns an integer\. If the time stamps are identical, the function returns 0\. If the first time stamp is greater alphabetically, the function returns 1\. If the second time stamp is greater, the function returns –1\.
 
@@ -16,7 +16,7 @@ A TIMESTAMP column or an expression that implicitly converts to a time stamp\.
  *timestamp2*   
 A TIMESTAMP column or an expression that implicitly converts to a time stamp\.
 
-## Return Type<a name="r_TIMESTAMP_CMP-return-type"></a>
+## Return type<a name="r_TIMESTAMP_CMP-return-type"></a>
 
 INTEGER
 

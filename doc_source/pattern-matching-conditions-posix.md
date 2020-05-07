@@ -1,4 +1,4 @@
-# POSIX Operators<a name="pattern-matching-conditions-posix"></a>
+# POSIX operators<a name="pattern-matching-conditions-posix"></a>
 
 POSIX regular expressions provide a more powerful means for pattern matching than the [LIKE](r_patternmatching_condition_like.md) and [SIMILAR TO](pattern-matching-conditions-similar-to.md) operators\. POSIX regular expression patterns can match any portion of a string, unlike the SIMILAR TO operator, which returns true only if its pattern matches the entire string\.
 

@@ -1,17 +1,17 @@
-# Datetime Types<a name="r_Datetime_types"></a>
+# Datetime types<a name="r_Datetime_types"></a>
 
 **Topics**
-+ [Storage and Ranges](#r_Datetime_types-storage-and-ranges)
++ [Storage and ranges](#r_Datetime_types-storage-and-ranges)
 + [DATE](#r_Datetime_types-date)
 + [TIMESTAMP](#r_Datetime_types-timestamp)
 + [TIMESTAMPTZ](#r_Datetime_types-timestamptz)
-+ [Examples with Datetime Types](r_Examples_with_datetime_types.md)
-+ [Date and Timestamp Literals](r_Date_and_time_literals.md)
-+ [Interval Literals](r_interval_literals.md)
++ [Examples with datetime types](r_Examples_with_datetime_types.md)
++ [Date and timestamp literals](r_Date_and_time_literals.md)
++ [Interval literals](r_interval_literals.md)
 
 Datetime data types include DATE, TIMESTAMP, and TIMESTAMPTZ\.
 
-## Storage and Ranges<a name="r_Datetime_types-storage-and-ranges"></a>
+## Storage and ranges<a name="r_Datetime_types-storage-and-ranges"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Datetime_types.html)
 

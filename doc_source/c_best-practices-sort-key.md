@@ -1,4 +1,4 @@
-# Choose the Best Sort Key<a name="c_best-practices-sort-key"></a>
+# Choose the best sort key<a name="c_best-practices-sort-key"></a>
 
 Amazon Redshift stores your data on disk in sorted order according to the sort key\. The Amazon Redshift query optimizer uses sort order when it determines optimal query plans\. Some suggestions for best approach follow:
 + **If recent data is queried most frequently, specify the timestamp column as the leading column for the sort key\. **
@@ -11,4 +11,4 @@ Amazon Redshift stores your data on disk in sorted order according to the sort k
 
   Doing this enables the query optimizer to choose a sort merge join instead of a slower hash join\. Because the data is already sorted on the join key, the query optimizer can bypass the sort phase of the sort merge join\.
 
-For more information about choosing and specifying sort keys, see [Tutorial: Tuning Table Design](tutorial-tuning-tables.md) and [Choosing Sort Keys](t_Sorting_data.md)\.
+For more information about choosing and specifying sort keys, see [Tutorial: Tuning table design](tutorial-tuning-tables.md) and [Choosing sort keys](t_Sorting_data.md)\.

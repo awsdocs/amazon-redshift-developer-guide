@@ -1,4 +1,4 @@
-# ADD\_MONTHS Function<a name="r_ADD_MONTHS"></a>
+# ADD\_MONTHS function<a name="r_ADD_MONTHS"></a>
 
 ADD\_MONTHS adds the specified number of months to a date or time stamp value or expression\. The [DATEADD](r_DATEADD_function.md) function provides similar functionality\. 
 
@@ -16,7 +16,7 @@ A date or timestamp column or an expression that implicitly converts to a date o
  *integer*   
 A positive or negative integer\. Use a negative number to subtract months from dates\. 
 
-## Return Type<a name="r_ADD_MONTHS-return-type"></a>
+## Return type<a name="r_ADD_MONTHS-return-type"></a>
 
 TIMESTAMP
 

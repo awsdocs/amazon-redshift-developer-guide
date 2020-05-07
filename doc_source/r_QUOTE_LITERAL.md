@@ -1,4 +1,4 @@
-# QUOTE\_LITERAL Function<a name="r_QUOTE_LITERAL"></a>
+# QUOTE\_LITERAL function<a name="r_QUOTE_LITERAL"></a>
 
 The QUOTE\_LITERAL function returns the specified string as a quoted string so that it can be used as a string literal in a SQL statement\. If the input parameter is a number, QUOTE\_LITERAL treats it as a string\. Appropriately doubles any embedded single quotes and backslashes\. 
 
@@ -13,7 +13,7 @@ QUOTE_LITERAL(string)
  *string*   
 The input parameter is a CHAR or VARCHAR string\. 
 
-## Return Type<a name="r_QUOTE_LITERAL-return-type"></a>
+## Return type<a name="r_QUOTE_LITERAL-return-type"></a>
 
 The QUOTE\_LITERAL function returns a string that is the same data type as the input string \(CHAR or VARCHAR\)\. 
 

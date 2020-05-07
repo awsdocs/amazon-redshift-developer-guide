@@ -1,9 +1,9 @@
-# Pattern\-Matching Conditions<a name="pattern-matching-conditions"></a>
+# Pattern\-matching conditions<a name="pattern-matching-conditions"></a>
 
 **Topics**
 + [LIKE](r_patternmatching_condition_like.md)
 + [SIMILAR TO](pattern-matching-conditions-similar-to.md)
-+ [POSIX Operators](pattern-matching-conditions-posix.md)
++ [POSIX operators](pattern-matching-conditions-posix.md)
 
 A pattern\-matching operator searches a string for a pattern specified in the conditional expression and returns true or false depend on whether it finds a match\. Amazon Redshift uses three methods for pattern matching: 
 + LIKE expressions

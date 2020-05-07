@@ -1,6 +1,6 @@
-# DENSE\_RANK Window Function Examples<a name="r_Examples_of_dense_rank_WF"></a>
+# DENSE\_RANK window function examples<a name="r_Examples_of_dense_rank_WF"></a>
 
-## Dense Ranking with ORDER BY<a name="r_Examples_of_dense_rank_WF-dense-ranking-with-order-by-"></a>
+## Dense ranking with ORDER BY<a name="r_Examples_of_dense_rank_WF-dense-ranking-with-order-by-"></a>
 
 Order the table by the quantity sold \(in descending order\), and assign both a dense rank and a regular rank to each row\. The results are sorted after the window function results are applied\. 
 
@@ -27,9 +27,9 @@ salesid | qty | d_rnk | rnk
 (11 rows)
 ```
 
-Note the difference in rankings assigned to the same set of rows when the DENSE\_RANK and RANK functions are used side by side in the same query\. For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+Note the difference in rankings assigned to the same set of rows when the DENSE\_RANK and RANK functions are used side by side in the same query\. For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.
 
-## Dense Ranking with PARTITION BY and ORDER BY<a name="r_Examples_of_dense_rank_WF-dense-ranking-with-partition-by-and-order-by"></a>
+## Dense ranking with PARTITION BY and ORDER BY<a name="r_Examples_of_dense_rank_WF-dense-ranking-with-partition-by-and-order-by"></a>
 
 Partition the table by SELLERID and order each partition by the quantity \(in descending order\) and assign a dense rank to each row\. The results are sorted after the window function results are applied\. 
 
@@ -55,4 +55,4 @@ salesid | sellerid | qty | d_rnk
 (11 rows)
 ```
 
- For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+ For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.

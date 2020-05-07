@@ -1,4 +1,4 @@
-# Oracle\-Style Outer Joins in the WHERE Clause<a name="r_WHERE_oracle_outer"></a>
+# Oracle\-Style outer joins in the WHERE clause<a name="r_WHERE_oracle_outer"></a>
 
 For Oracle compatibility, Amazon Redshift supports the Oracle outer\-join operator \(\+\) in WHERE clause join conditions\. This operator is intended for use only in defining outer\-join conditions; don't try to use it in other contexts\. Other uses of this operator are silently ignored in most cases\. 
 
@@ -8,7 +8,7 @@ To outer join tables TABLE1 and TABLE2 and return non\-matching rows from TABLE1
 
 To produce the same behavior for all rows in TABLE2 that have no matching rows in TABLE1, specify `TABLE1 RIGHT OUTER JOIN TABLE2` in the FROM clause or apply the \(\+\) operator to all joining columns from TABLE1 in the WHERE clause\. 
 
-## Basic Syntax<a name="r_WHERE_oracle_outer-basic-syntax"></a>
+## Basic syntax<a name="r_WHERE_oracle_outer-basic-syntax"></a>
 
 ```
 [ WHERE {
@@ -41,7 +41,7 @@ where table1.col1 > table2.col1(+)
 and table1.col2 = table2.col2(+)
 ```
 
-## Usage Notes<a name="r_WHERE_oracle_outer_usage_notes"></a>
+## Usage notes<a name="r_WHERE_oracle_outer_usage_notes"></a>
 
 Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(\+\) operator in the WHERE clause\. Queries that contain the \(\+\) operator are subject to the following rules: 
 + You can only use the \(\+\) operator in the WHERE clause, and only in reference to columns from tables or views\. 

@@ -1,4 +1,4 @@
-# Mostly Encoding<a name="c_MostlyN_encoding"></a>
+# Mostly encoding<a name="c_MostlyN_encoding"></a>
 
 Mostly encodings are useful when the data type for a column is larger than most of the stored values require\. By specifying a mostly encoding for this type of column, you can compress the majority of the values in the column to a smaller standard storage size\. The remaining values that cannot be compressed are stored in their raw form\. For example, you can compress a 16\-bit column, such as an INT2 column, to 8\-bit storage\.
 

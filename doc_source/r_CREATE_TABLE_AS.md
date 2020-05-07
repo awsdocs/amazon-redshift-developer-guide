@@ -3,8 +3,8 @@
 **Topics**
 + [Syntax](#r_CREATE_TABLE_AS-synopsis)
 + [Parameters](#r_CREATE_TABLE_AS-parameters)
-+ [CTAS Usage Notes](r_CTAS_usage_notes.md)
-+ [CTAS Examples](r_CTAS_examples.md)
++ [CTAS usage notes](r_CTAS_usage_notes.md)
++ [CTAS examples](r_CTAS_examples.md)
 
 Creates a new table based on a query\. The owner of this table is the user that issues the command\.
 
@@ -58,7 +58,7 @@ A clause that specifies whether the table should be included in automated and ma
 
 DISTSTYLE \{ EVEN \| KEY \| ALL \}  
 Defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according the distribution style specified for the table\.  
-The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a Data Distribution Style](t_Distributing_data.md)\.  
+The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a data distribution style](t_Distributing_data.md)\.  
 + EVEN: The data in the table is spread evenly across the nodes in a cluster in a round\-robin distribution\. Row IDs are used to determine the distribution, and roughly the same number of rows are distributed to each node\. This is the default distribution method\.
 + KEY: The data is distributed by the values in the DISTKEY column\. When you set the joining columns of joining tables as distribution keys, the joining rows from both tables are collocated on the compute nodes\. When data is collocated, the optimizer can perform joins more efficiently\. If you specify DISTSTYLE KEY, you must name a DISTKEY column\.
 +  ALL: A copy of the entire table is distributed to every node\. This distribution style ensures that all the rows required for any join are available on every node, but it multiplies storage requirements and increases the load and maintenance times for the table\. ALL distribution can improve execution time when used with certain dimension tables where KEY distribution isn't appropriate, but performance improvements must be weighed against maintenance costs\. 
@@ -67,14 +67,14 @@ DISTKEY \(*column*\)
 Specifies a column name or positional number for the distribution key\. Use the name specified in either the optional column list for the table or the select list of the query\. Alternatively, use a positional number, where the first column selected is 1, the second is 2, and so on\. Only one column in a table can be the distribution key:  
 + If you declare a column as the DISTKEY column, DISTSTYLE must be set to KEY or not set at all\.
 + If you don't declare a DISTKEY column, you can set DISTSTYLE to EVEN\.
-+ If you don't specify DISTKEY or DISTSTYLE, CTAS determines the distribution style for the new table based on the query plan for the SELECT clause\. For more information, see [Inheritance of Column and Table Attributes](r_CTAS_usage_notes.md#r_CTAS_usage_notes-inheritance-of-column-and-table-attributes)\.
++ If you don't specify DISTKEY or DISTSTYLE, CTAS determines the distribution style for the new table based on the query plan for the SELECT clause\. For more information, see [Inheritance of column and table attributes](r_CTAS_usage_notes.md#r_CTAS_usage_notes-inheritance-of-column-and-table-attributes)\.
 You can define the same column as the distribution key and the sort key; this approach tends to accelerate joins when the column in question is a joining column in the query\.
 
 \[ \{ COMPOUND \| INTERLEAVED \} \] SORTKEY \( *column\_name* \[, \.\.\. \] \)  
 Specifies one or more sort keys for the table\. When data is loaded into the table, the data is sorted by the columns that are designated as sort keys\.   
-You can optionally specify COMPOUND or INTERLEAVED sort style\. The default is COMPOUND\. For more information, see [Choosing Sort Keys](t_Sorting_data.md)\.  
+You can optionally specify COMPOUND or INTERLEAVED sort style\. The default is COMPOUND\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.  
 You can define a maximum of 400 COMPOUND SORTKEY columns or 8 INTERLEAVED SORTKEY columns per table\.   
-If you don't specify SORTKEY, CTAS determines the sort keys for the new table based on the query plan for the SELECT clause\. For more information, see [Inheritance of Column and Table Attributes](r_CTAS_usage_notes.md#r_CTAS_usage_notes-inheritance-of-column-and-table-attributes)\.    
+If you don't specify SORTKEY, CTAS determines the sort keys for the new table based on the query plan for the SELECT clause\. For more information, see [Inheritance of column and table attributes](r_CTAS_usage_notes.md#r_CTAS_usage_notes-inheritance-of-column-and-table-attributes)\.    
 COMPOUND  
 Specifies that the data is sorted using a compound key made up of all of the listed columns, in the order they are listed\. A compound sort key is most useful when a query scans rows according to the order of the sort columns\. The performance benefits of sorting with a compound key decrease when queries rely on secondary sort columns\. You can define a maximum of 400 COMPOUND SORTKEY columns per table\.   
 INTERLEAVED  

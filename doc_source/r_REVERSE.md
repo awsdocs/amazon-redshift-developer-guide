@@ -1,4 +1,4 @@
-# REVERSE Function<a name="r_REVERSE"></a>
+# REVERSE function<a name="r_REVERSE"></a>
 
 The REVERSE function operates on a string and returns the characters in reverse order\. For example, `reverse('abcde')` returns `edcba`\. This function works on numeric and date data types as well as character data types; however, in most cases it has practical value for character strings\. 
 
@@ -13,7 +13,7 @@ REVERSE ( expression )
  *expression*   
 An expression with a character, date, time stamp, or numeric data type that represents the target of the character reversal\. All expressions are implicitly converted to variable\-length character strings\. Trailing blanks in fixed\-width character strings are ignored\. 
 
-## Return Type<a name="r_REVERSE-return-type"></a>
+## Return type<a name="r_REVERSE-return-type"></a>
 
 REVERSE returns a VARCHAR\. 
 

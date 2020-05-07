@@ -1,6 +1,6 @@
-# Supported PL/pgSQL Statements<a name="c_PLpgSQL-statements"></a>
+# Supported PL/pgSQL statements<a name="c_PLpgSQL-statements"></a>
 
- PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL Commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
+ PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
 
 **Topics**
 + [Assignment](#r_PLpgSQL-assignment)
@@ -13,7 +13,7 @@
 + [Loops](#r_PLpgSQL-loops)
 + [Cursors](#r_PLpgSQL-cursors)
 + [RAISE](#r_PLpgSQL-messages-errors)
-+ [Transaction Control](#r_PLpgSQL-transaction-control)
++ [Transaction control](#r_PLpgSQL-transaction-control)
 
 ## Assignment<a name="r_PLpgSQL-assignment"></a>
 
@@ -95,7 +95,7 @@ EXECUTE command-string [ INTO target ];
 In the preceding, *command\-string* is an expression yielding a string \(of type text\) that contains the command to be run\. This *command\-string* value is sent to the SQL engine\. No substitution of PL/pgSQL variables is done on the command string\. The values of variables must be inserted in the command string as it is constructed\.
 
 **Note**  
-You can't use COMMIT and ROLLBACK statements from within dynamic SQL\. For information about using COMMIT and ROLLBACK statements within a stored procedure, see [Managing Transactions](stored-procedure-transaction-management.md)\. 
+You can't use COMMIT and ROLLBACK statements from within dynamic SQL\. For information about using COMMIT and ROLLBACK statements within a stored procedure, see [Managing transactions](stored-procedure-transaction-management.md)\. 
 
 When working with dynamic commands, you often have to handle escaping of single quotation marks\. We recommend enclosing fixed text in quotation marks in your function body using dollar quoting\. Dynamic values to insert into a constructed query require special handling because they might themselves contain quotation marks\. The following example assumes dollar quoting for the function as a whole, so the quotation marks don't need to be doubled\.
 
@@ -562,7 +562,7 @@ RAISE level 'format' [, variable [, ...]];
 
 Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally aborts the current transaction\. The other levels generate only messages of different priority levels\. 
 
-Inside the format string, % is replaced by the next optional argument’s string representation\. Write %% to emit a literal %\. Currently, optional arguments must be simple variables, not expressions, and the format must be a simple string literal\.
+Inside the format string, % is replaced by the next optional argument's string representation\. Write %% to emit a literal %\. Currently, optional arguments must be simple variables, not expressions, and the format must be a simple string literal\.
 
 In the following example, the value of `v_job_id` replaces the % in the string\.
 
@@ -570,6 +570,6 @@ In the following example, the value of `v_job_id` replaces the % in the string\.
 RAISE NOTICE ’Calling cs_create_job(%)’, v_job_id;
 ```
 
-## Transaction Control<a name="r_PLpgSQL-transaction-control"></a>
+## Transaction control<a name="r_PLpgSQL-transaction-control"></a>
 
-You can work with transaction control statements in the PL/pgSQL language that Amazon Redshift uses\. For information about using the statements COMMIT, ROLLBACK, and TRUNCATE within a stored procedure, see [Managing Transactions](stored-procedure-transaction-management.md)\. 
+You can work with transaction control statements in the PL/pgSQL language that Amazon Redshift uses\. For information about using the statements COMMIT, ROLLBACK, and TRUNCATE within a stored procedure, see [Managing transactions](stored-procedure-transaction-management.md)\. 

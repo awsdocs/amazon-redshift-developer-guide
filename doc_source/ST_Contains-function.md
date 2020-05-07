@@ -18,7 +18,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *geom2*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. This value is compared with *geom1* to determine if it is contained within *geom1*\. 
 
-## Return Type<a name="ST_Contains-function-return"></a>
+## Return type<a name="ST_Contains-function-return"></a>
 
 `BOOLEAN`
 

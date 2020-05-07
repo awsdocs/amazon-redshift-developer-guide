@@ -10,7 +10,7 @@ If the COPY fails because of a syntax error or because of insufficient privilege
 pg_last_copy_count()
 ```
 
-## Return Type<a name="PG_LAST_COPY_COUNT-return-type"></a>
+## Return type<a name="PG_LAST_COPY_COUNT-return-type"></a>
 
 Returns BIGINT\.
 

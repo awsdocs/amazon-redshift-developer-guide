@@ -1,4 +1,4 @@
-# Data Warehouse System Architecture<a name="c_high_level_system_architecture"></a>
+# Data warehouse system architecture<a name="c_high_level_system_architecture"></a>
 
 This section introduces the elements of the Amazon Redshift data warehouse architecture as shown in the following figure\.
 
@@ -22,7 +22,7 @@ A cluster is composed of one or more *compute nodes*\. If a cluster is provision
 
 The leader node manages communications with client programs and all communication with compute nodes\. It parses and develops execution plans to carry out database operations, in particular, the series of steps necessary to obtain results for complex queries\. Based on the execution plan, the leader node compiles code, distributes the compiled code to the compute nodes, and assigns a portion of the data to each compute node\.
 
-The leader node distributes SQL statements to the compute nodes only when a query references tables that are stored on the compute nodes\. All other queries run exclusively on the leader node\. Amazon Redshift is designed to implement certain SQL functions only on the leader node\. A query that uses any of these functions will return an error if it references tables that reside on the compute nodes\. For more information, see [SQL Functions Supported on the Leader Node](c_sql-functions-leader-node.md)\.
+The leader node distributes SQL statements to the compute nodes only when a query references tables that are stored on the compute nodes\. All other queries run exclusively on the leader node\. Amazon Redshift is designed to implement certain SQL functions only on the leader node\. A query that uses any of these functions will return an error if it references tables that reside on the compute nodes\. For more information, see [SQL functions supported on the leader node](c_sql-functions-leader-node.md)\.
 
  **Compute nodes** 
 
@@ -30,17 +30,17 @@ The leader node compiles code for individual elements of the execution plan and 
 
 Each compute node has its own dedicated CPU, memory, and attached disk storage, which are determined by the node type\. As your workload grows, you can increase the compute capacity and storage capacity of a cluster by increasing the number of nodes, upgrading the node type, or both\.
 
-Amazon Redshift provides two node types; dense storage nodes and dense compute nodes\. Each node provides two storage choices\. You can start with a single 160 GB node and scale up to multiple 16 TB nodes to support a petabyte of data or more\.
+Amazon Redshift provides several node types for your compute and storage needs\. For details of each node type, see [Amazon Redshift clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html) in the *Amazon Redshift Cluster Management Guide*\. 
 
-For a more detailed explanation of data warehouse clusters and nodes, see [Internal Architecture and System Operation](c_internal_arch_system_operation.md)\.
+For a more detailed explanation of data warehouse clusters and nodes, see [Internal architecture and system operation](c_internal_arch_system_operation.md)\.
 
  **Node slices** 
 
 A compute node is partitioned into slices\. Each slice is allocated a portion of the node's memory and disk space, where it processes a portion of the workload assigned to the node\. The leader node manages distributing data to the slices and apportions the workload for any queries or other database operations to the slices\. The slices then work in parallel to complete the operation\.
 
-The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
-When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and execute queries efficiently\. For information about choosing a distribution key, see [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)\.
+When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and execute queries efficiently\. For information about choosing a distribution key, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
 
  **Internal network** 
 

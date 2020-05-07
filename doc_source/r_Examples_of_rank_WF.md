@@ -1,4 +1,4 @@
-# RANK Window Function Examples<a name="r_Examples_of_rank_WF"></a>
+# RANK window function examples<a name="r_Examples_of_rank_WF"></a>
 
 ## Ranking with ORDER BY<a name="r_Examples_of_rank_WF-ranking-with-order-by"></a>
 
@@ -26,7 +26,7 @@ salesid | qty | rnk
 (11 rows)
 ```
 
-Note that the outer ORDER BY clause in this example includes columns 2 and 1 to make sure that Amazon Redshift returns consistently sorted results each time this query is run\. For example, rows with sales IDs 10001 and 10006 have identical QTY and RNK values\. Ordering the final result set by column 1 ensures that row 10001 always falls before 10006\. For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+Note that the outer ORDER BY clause in this example includes columns 2 and 1 to make sure that Amazon Redshift returns consistently sorted results each time this query is run\. For example, rows with sales IDs 10001 and 10006 have identical QTY and RNK values\. Ordering the final result set by column 1 ensures that row 10001 always falls before 10006\. For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.
 
 In the following example, the ordering is reversed for the window function \(`order by qty desc`\)\. Now the highest rank value applies to the largest QTY value\. 
 
@@ -52,7 +52,7 @@ order by 2,1;
 (11 rows)
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 
 
 ## Ranking with PARTITION BY and ORDER BY<a name="r_Examples_of_rank_WF-ranking-with-partition-by-and-order-by"></a>
 

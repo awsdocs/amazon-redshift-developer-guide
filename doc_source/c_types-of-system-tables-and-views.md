@@ -1,4 +1,4 @@
-# Types of System Tables and Views<a name="c_types-of-system-tables-and-views"></a>
+# Types of system tables and views<a name="c_types-of-system-tables-and-views"></a>
 
 There are two types of system tables: STL and STV tables\.
 

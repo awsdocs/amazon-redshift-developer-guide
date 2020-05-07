@@ -2,7 +2,9 @@
 
 Use the SVL\_S3PARTITION\_SUMMARY view to get a summary of Redshift Spectrum queries partition processing at the segment level\.
 
-SVL\_S3PARTITION\_SUMMARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_S3PARTITION\_SUMMARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+
+For information about SVCS\_S3PARTITION, see [SVCS\_S3PARTITION\_SUMMARY](r_SVCS_S3PARTITION_SUMMARY.md)\.
 
 ## Table Columns<a name="r_SVL_S3PARTITION_SUMMARY-table-columns"></a>
 

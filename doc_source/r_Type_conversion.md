@@ -1,4 +1,4 @@
-# Type Compatibility and Conversion<a name="r_Type_conversion"></a>
+# Type compatibility and conversion<a name="r_Type_conversion"></a>
 
 Following, you can find a discussion about how type conversion rules and data type compatibility work in Amazon Redshift\.
 
@@ -12,9 +12,9 @@ Following, you can find a discussion about how type conversion rules and data ty
 + Evaluation of SQL functions that do comparisons or extractions of data 
 + Comparisons with mathematical operators 
 
-The results of these operations depend on type conversion rules and data type compatibility\. *Compatibility* implies that a one\-to\-one matching of a certain value and a certain data type is not always required\. Because some data types are *compatible*, an implicit conversion, or *coercion*, is possible \(for more information, see [Implicit Conversion Types](#implicit-conversion-types)\)\. When data types are incompatible, you can sometimes convert a value from one data type to another by using an explicit conversion function\. 
+The results of these operations depend on type conversion rules and data type compatibility\. *Compatibility* implies that a one\-to\-one matching of a certain value and a certain data type is not always required\. Because some data types are *compatible*, an implicit conversion, or *coercion*, is possible \(for more information, see [Implicit conversion types](#implicit-conversion-types)\)\. When data types are incompatible, you can sometimes convert a value from one data type to another by using an explicit conversion function\. 
 
-## General Compatibility and Conversion Rules<a name="r_Type_conversion-general-compatibility-and-conversion-rules"></a>
+## General compatibility and conversion rules<a name="r_Type_conversion-general-compatibility-and-conversion-rules"></a>
 
 Note the following compatibility and conversion rules: 
 + In general, data types that fall into the same type category \(such as different numeric data types\) are compatible and can be implicitly converted\. 
@@ -30,7 +30,7 @@ A character string that you want to cast to a numeric type must contain a charac
 + Similarly, TIMESTAMPTZ is converted to DATE or TIMESTAMP based on the current session time zone\. The session time zone is UTC by default\. After the conversion, time zone information is dropped\.
 + Character strings that represent a time stamp with time zone specified are converted to TIMESTAMPTZ using the specified time zone\. If the time zone is omitted, the current session time zone is used, which is UTC by default\.
 
-## Implicit Conversion Types<a name="implicit-conversion-types"></a>
+## Implicit conversion types<a name="implicit-conversion-types"></a>
 
 There are two types of implicit conversions: 
 + Implicit conversions in assignments, such as setting values in INSERT or UPDATE commands\.
@@ -42,4 +42,4 @@ The table following lists the data types that can be converted implicitly in ass
 
 **Note**  
 Implicit conversions between TIMESTAMPTZ, TIMESTAMP, DATE, or character strings use the current session time zone\. For information about setting the current time zone, see [timezone](r_timezone_config.md)\.  
-The GEOMETRY data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT Functions](r_CAST_function.md)\. 
+The GEOMETRY data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\. 

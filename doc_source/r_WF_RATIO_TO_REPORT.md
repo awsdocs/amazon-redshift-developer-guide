@@ -1,4 +1,4 @@
-# RATIO\_TO\_REPORT Window Function<a name="r_WF_RATIO_TO_REPORT"></a>
+# RATIO\_TO\_REPORT window function<a name="r_WF_RATIO_TO_REPORT"></a>
 
 Calculates the ratio of a value to the sum of the values in a window or partition\. The ratio to report value is determined using the formula:
 
@@ -36,10 +36,10 @@ A clause that specifies the window partitioning\. The OVER clause cannot contain
 PARTITION BY *partition\_expression*   
 Optional\. An expression that sets the range of records for each group in the OVER clause\.
 
-## Return Type<a name="r_WF_RATIO_TO_REPORT-return-type"></a>
+## Return type<a name="r_WF_RATIO_TO_REPORT-return-type"></a>
 
 FLOAT8
 
 ## Examples<a name="r_WF_RATIO_TO_REPORT-examples"></a>
 
-See [RATIO\_TO\_REPORT Window Function Examples](r_Examples_of_RATIO_TO_REPORT_WF.md)\. 
+See [RATIO\_TO\_REPORT window function examples](r_Examples_of_RATIO_TO_REPORT_WF.md)\. 

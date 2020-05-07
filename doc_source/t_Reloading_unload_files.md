@@ -1,4 +1,4 @@
-# Reloading Unloaded Data<a name="t_Reloading_unload_files"></a>
+# Reloading unloaded data<a name="t_Reloading_unload_files"></a>
 
 To reload the results of an unload operation, you can use a COPY command\.
 

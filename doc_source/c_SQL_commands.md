@@ -1,4 +1,4 @@
-# SQL Commands<a name="c_SQL_commands"></a>
+# SQL commands<a name="c_SQL_commands"></a>
 
 **Topics**
 + [ABORT](r_ABORT.md)

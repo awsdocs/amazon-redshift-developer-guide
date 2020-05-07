@@ -1,4 +1,4 @@
-# Reviewing Query Alerts<a name="c-reviewing-query-alerts"></a>
+# Reviewing query alerts<a name="c-reviewing-query-alerts"></a>
 
 To use the [STL\_ALERT\_EVENT\_LOG](r_STL_ALERT_EVENT_LOG.md) system table to identify and correct potential performance issues with your query, follow these steps:
 

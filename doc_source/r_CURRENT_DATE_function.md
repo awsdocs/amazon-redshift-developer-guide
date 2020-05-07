@@ -1,4 +1,4 @@
-# CURRENT\_DATE Function<a name="r_CURRENT_DATE_function"></a>
+# CURRENT\_DATE function<a name="r_CURRENT_DATE_function"></a>
 
 CURRENT\_DATE returns a date in the current session time zone \(UTC by default\) in the default format: YYYY\-MM\-DD\.
 
@@ -11,7 +11,7 @@ CURRENT\_DATE returns the start date for the current transaction, not for the st
 CURRENT_DATE
 ```
 
-## Return Type<a name="r_CURRENT_DATE_function-return-type"></a>
+## Return type<a name="r_CURRENT_DATE_function-return-type"></a>
 
 DATE
 

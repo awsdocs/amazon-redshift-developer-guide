@@ -4,7 +4,7 @@
 
 The SVV\_QUERY\_STATE view contains a data subset of the STV\_EXEC\_STATE table\.
 
-SVV\_QUERY\_STATE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVV\_QUERY\_STATE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVV_QUERY_STATE-table-columns"></a>
 

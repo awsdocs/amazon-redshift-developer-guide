@@ -1,4 +1,4 @@
-# Default Database User Privileges<a name="r_Privileges"></a>
+# Default database user privileges<a name="r_Privileges"></a>
 
 When you create a database object, you are its owner\. By default, only a superuser or the owner of an object can query, modify, or grant privileges on the object\. For users to use an object, you must grant the necessary privileges to the user or the group that contains the user\. Database superusers have the same privileges as database owners\.
 

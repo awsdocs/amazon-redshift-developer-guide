@@ -1,7 +1,7 @@
-# Configuration Reference<a name="cm_chap_ConfigurationRef"></a>
+# Configuration reference<a name="cm_chap_ConfigurationRef"></a>
 
 **Topics**
-+ [Modifying the Server Configuration](t_Modifying_the_default_settings.md)
++ [Modifying the server configuration](t_Modifying_the_default_settings.md)
 + [analyze\_threshold\_percent](r_analyze_threshold_percent.md)
 + [auto\_analyze](r_auto_analyze.md)
 + [datestyle](r_datestyle.md)
@@ -14,5 +14,6 @@
 + [query\_group](r_query_group.md)
 + [search\_path](r_search_path.md)
 + [statement\_timeout](r_statement_timeout.md)
++ [stored\_proc\_log\_min\_messages](r_stored_proc_log_min_messages.md)
 + [timezone](r_timezone_config.md)
 + [wlm\_query\_slot\_count](r_wlm_query_slot_count.md)

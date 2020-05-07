@@ -1,4 +1,4 @@
-# MIN Function<a name="r_MIN"></a>
+# MIN function<a name="r_MIN"></a>
 
  The MIN function returns the minimum value in a set of rows\. DISTINCT or ALL may be used but do not affect the result\.
 
@@ -16,9 +16,9 @@ The target column or expression that the function operates on\.
 DISTINCT \| ALL  
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before calculating the minimum\. With the argument ALL, the function retains all duplicate values from the expression for calculating the minimum\. ALL is the default\.
 
-## Data Types<a name="c_Supported_data_types_min"></a>
+## Data types<a name="c_Supported_data_types_min"></a>
 
-Accepts any data type except Boolean as input\. Returns the same data type as *expression*\. The Boolean equivalent of the MIN function is [BOOL\_AND Function](r_BOOL_AND.md), and the Boolean equivalent of MAX is [BOOL\_OR Function](r_BOOL_OR.md)\. 
+Accepts any data type except Boolean as input\. Returns the same data type as *expression*\. The Boolean equivalent of the MIN function is [BOOL\_AND function](r_BOOL_AND.md), and the Boolean equivalent of MAX is [BOOL\_OR function](r_BOOL_OR.md)\. 
 
 ## Examples<a name="r_MIN-examples"></a>
 

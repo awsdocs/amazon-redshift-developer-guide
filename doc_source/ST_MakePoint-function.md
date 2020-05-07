@@ -16,7 +16,7 @@ A value of data type `DOUBLE PRECISION` representing the first coordinate\.
  *y*   
 A value of data type `DOUBLE PRECISION` representing the second coordinate\. 
 
-## Return Type<a name="ST_MakePoint-function-return"></a>
+## Return type<a name="ST_MakePoint-function-return"></a>
 
 `GEOMETRY` of subtype `POINT`\. 
 

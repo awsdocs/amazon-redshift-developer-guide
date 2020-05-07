@@ -1,4 +1,4 @@
-# Bit\-Wise Function Examples<a name="r_bitwise_examples"></a>
+# Bit\-Wise function examples<a name="r_bitwise_examples"></a>
 
 The USERS table in the TICKIT sample database contains several Boolean columns that indicate whether each user is known to like different types of events, such as sports, theatre, opera, and so on\. For example:
 
@@ -21,7 +21,7 @@ In the database table, these binary values could be stored in a single LIKES col
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_bitwise_examples.html)
 
-## BIT\_AND and BIT\_OR Examples<a name="r_bitwise_examples-bit_and-and-bit_or-examples"></a>
+## BIT\_AND and BIT\_OR examples<a name="r_bitwise_examples-bit_and-and-bit_or-examples"></a>
 
 Given that meaningful business information is stored in integer columns, you can use bit\-wise functions to extract and aggregate that information\. The following query applies the BIT\_AND function to the LIKES column in a table called USERLIKES and groups the results by the CITY column\. 
 
@@ -60,7 +60,7 @@ Santa Barbara |    255
 
 For four of the cities listed, all of the event types are liked by at least one user \(`255=11111111`\)\. For Los Angeles, all of the event types except sports are liked by at least one user \(`127=01111111`\)\.
 
-## BOOL\_AND and BOOL\_OR Examples<a name="r_bitwise_examples-bool_and-and-bool_or-examples"></a>
+## BOOL\_AND and BOOL\_OR examples<a name="r_bitwise_examples-bool_and-and-bool_or-examples"></a>
 
 You can use the Boolean functions against either Boolean expressions or integer expressions\. For example, the following query return results from the standard USERS table in the TICKIT database, which has several Boolean columns\.
 

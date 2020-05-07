@@ -20,7 +20,7 @@ A temporary or persistent table\. Only the owner of the table or a superuser may
 You can truncate any table, including tables that are referenced in foreign\-key constraints\.   
 You don't need to vacuum a table after truncating it\. 
 
-## Usage Notes<a name="r_TRUNCATE_usage_notes"></a>
+## Usage notes<a name="r_TRUNCATE_usage_notes"></a>
 
 The TRUNCATE command commits the transaction in which it is run; therefore, you can't roll back a TRUNCATE operation, and a TRUNCATE command may commit other operations when it commits itself\. 
 

@@ -20,7 +20,7 @@ The name of an input argument\. DROP PROCEDURE ignores argument names, because o
 The mode of an argument, which can be IN, OUT, or INOUT\. OUT arguments are optional because they aren't used to identify a stored procedure\. 
 
  *argtype*   
-The data type of the input argument\. For a list of the supported data types, see [Data Types](c_Supported_data_types.md)\. 
+The data type of the input argument\. For a list of the supported data types, see [Data types](c_Supported_data_types.md)\. 
 
 ## Examples<a name="r_DROP_PROCEDURE-examples"></a>
 

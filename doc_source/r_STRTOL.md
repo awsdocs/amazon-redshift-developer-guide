@@ -1,4 +1,4 @@
-# STRTOL Function<a name="r_STRTOL"></a>
+# STRTOL function<a name="r_STRTOL"></a>
 
 Converts a string expression of a number of the specified base to the equivalent integer value\. The converted value must be within the signed 64\-bit range\. 
 
@@ -16,7 +16,7 @@ String expression of a number to be converted\. If *num\_string* is empty \( `''
 *base*  
 Integer between 2 and 36\.
 
-## Return Type<a name="r_STRTOL-return-type"></a>
+## Return type<a name="r_STRTOL-return-type"></a>
 
 BIGINT\. If *num\_string* is null, returns NULL\.
 

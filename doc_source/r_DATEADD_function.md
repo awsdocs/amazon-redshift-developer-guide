@@ -1,4 +1,4 @@
-# DATEADD Function<a name="r_DATEADD_function"></a>
+# DATEADD function<a name="r_DATEADD_function"></a>
 
 Increments a date or time stamp value by a specified interval\. 
 
@@ -13,7 +13,7 @@ This function returns a time stamp data type\.
 ## Arguments<a name="r_DATEADD_function-arguments"></a>
 
  *datepart*   
-The date part \(year, month, or day, for example\) that the function operates on\. See [Dateparts for Date or Time Stamp Functions](r_Dateparts_for_datetime_functions.md)\. 
+The date part \(year, month, or day, for example\) that the function operates on\. See [Dateparts for Date or Time Stamp functions](r_Dateparts_for_datetime_functions.md)\. 
 
  *interval*   
 An integer that specified the interval \(number of days, for example\) to add to the target expression\. A negative integer subtracts the interval\. 
@@ -21,7 +21,7 @@ An integer that specified the interval \(number of days, for example\) to add to
  *date*\|*timestamp*  
 A date or timestamp column or an expression that implicitly converts to a date or time stamp\. The date or time stamp expression must contain the specified date part\. 
 
-## Return Type<a name="r_DATEADD_function-return-type"></a>
+## Return type<a name="r_DATEADD_function-return-type"></a>
 
 TIMESTAMP
 
@@ -70,7 +70,7 @@ date_add
 
 You can name dateparts in full or abbreviate them; in this case, *m* stands for minutes, not months\. 
 
-## Usage Notes<a name="r_DATEADD_usage_notes"></a>
+## Usage notes<a name="r_DATEADD_usage_notes"></a>
 
  The DATEADD\(month, \.\.\.\) and ADD\_MONTHS functions handle dates that fall at the ends of months differently\. 
 + ADD\_MONTHS: If the date you are adding to is the last day of the month, the result is always the last day of the result month, regardless of the length of the month\. For example, April 30th \+ 1 month is May 31st: 

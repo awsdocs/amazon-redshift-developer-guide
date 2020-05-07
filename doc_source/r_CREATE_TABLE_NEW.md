@@ -3,7 +3,7 @@
 **Topics**
 + [Syntax](#r_CREATE_TABLE_NEW-synopsis)
 + [Parameters](#r_CREATE_TABLE_NEW-parameters)
-+ [Usage Notes](r_CREATE_TABLE_usage.md)
++ [Usage notes](r_CREATE_TABLE_usage.md)
 + [Examples](r_CREATE_TABLE_examples.md)
 
 Creates a new table in the current database\. The owner of this table is the issuer of the CREATE TABLE command\.
@@ -71,16 +71,16 @@ The maximum length for the table name is 127 bytes; longer names are truncated t
 create table tickit.public.test (c1 int);
 ```
 If the database or schema doesn't exist, the table isn't created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
-If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created by using the current database schema\. If you are creating a temporary table, you can't specify a schema name, because temporary tables exist in a special schema\.  
-Multiple temporary tables with the same name can exist at the same time in the same database if they are created in separate sessions because the tables are assigned to different schemas\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created by using the't current database schema\. If you are creating a temporary table, you can specify a schema name, because temporary tables exist in a special schema\.  
+Multiple temporary tables with the same name can exist at the same time in the same database if they are created in separate sessions because the tables are assigned to different schemas\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
  *column\_name*   
-Name of a column to be created in the new table\. The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. The maximum number of columns you can define in a single table is 1,600\. For more information about valid names, see [Names and Identifiers](r_names.md)\.  
-If you are creating a "wide table," take care that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage Notes](r_CREATE_TABLE_usage.md)\.
+Name of a column to be created in the new table\. The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. The maximum number of columns you can define in a single table is 1,600\. For more information about valid names, see [Names and identifiers](r_names.md)\.  
+If you are creating a "wide table," take care that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_usage.md)\.
 
  *data\_type*   
 Data type of the column being created\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.  
-The following [Data Types](c_Supported_data_types.md) are supported:  
+The following [Data types](c_Supported_data_types.md) are supported:  
 + SMALLINT \(INT2\)
 + INTEGER \(INT, INT4\)
 + BIGINT \(INT8\)
@@ -175,8 +175,8 @@ A clause that specifies whether the table should be included in automated and ma
 
 DISTSTYLE \{ AUTO \| EVEN \| KEY \| ALL \}  
 Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\. The default is AUTO\.  
-The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a Data Distribution Style](t_Distributing_data.md)\. Possible distribution styles are as follows:  
-+ AUTO: Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns ALL distribution to a small table, then changes the table to EVEN distribution when the table grows larger\. The change in distribution occurs in the background, in a few seconds\. Amazon Redshift never changes the distribution style from EVEN to ALL\. To view the distribution style applied to a table, query the PG\_CLASS system catalog table\. For more information, see [Viewing Distribution Styles](viewing-distribution-styles.md)\. 
+The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a data distribution style](t_Distributing_data.md)\. Possible distribution styles are as follows:  
++ AUTO: Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns ALL distribution to a small table, then changes the table to EVEN distribution when the table grows larger\. The change in distribution occurs in the background, in a few seconds\. Amazon Redshift never changes the distribution style from EVEN to ALL\. To view the distribution style applied to a table, query the PG\_CLASS system catalog table\. For more information, see [Viewing distribution styles](viewing-distribution-styles.md)\. 
 + EVEN: The data in the table is spread evenly across the nodes in a cluster in a round\-robin distribution\. Row IDs are used to determine the distribution, and roughly the same number of rows are distributed to each node\. 
 + KEY: The data is distributed by the values in the DISTKEY column\. When you set the joining columns of joining tables as distribution keys, the joining rows from both tables are collocated on the compute nodes\. When data is collocated, the optimizer can perform joins more efficiently\. If you specify DISTSTYLE KEY, you must name a DISTKEY column, either for the table or as part of the column definition\. For more information, see the DISTKEY parameter earlier in this topic\.
 +  ALL: A copy of the entire table is distributed to every node\. This distribution style ensures that all the rows required for any join are available on every node, but it multiplies storage requirements and increases the load and maintenance times for the table\. ALL distribution can improve execution time when used with certain dimension tables where KEY distribution isn't appropriate, but performance improvements must be weighed against maintenance costs\. 
@@ -186,7 +186,7 @@ Constraint that specifies the column to be used as the distribution key for the 
 
 \[ \{ COMPOUND \| INTERLEAVED \} \] SORTKEY \(* column\_name* \[,\.\.\. \] \)  
 Specifies one or more sort keys for the table\. When data is loaded into the table, the data is sorted by the columns that are designated as sort keys\. You can use the SORTKEY keyword after a column name to specify a single\-column sort key, or you can specify one or more columns as sort key columns for the table by using the `SORTKEY (column_name [ , ... ] )` syntax\.   
-You can optionally specify COMPOUND or INTERLEAVED sort style\. The default is COMPOUND\. For more information, see [Choosing Sort Keys](t_Sorting_data.md)\.  
+You can optionally specify COMPOUND or INTERLEAVED sort style\. The default is COMPOUND\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.  
 If you don't specify any sort keys, the table isn't sorted by default\. You can define a maximum of 400 COMPOUND SORTKEY columns or 8 INTERLEAVED SORTKEY columns per table\.     
 COMPOUND  
 Specifies that the data is sorted using a compound key made up of all of the listed columns, in the order they are listed\. A compound sort key is most useful when a query scans rows according to the order of the sort columns\. The performance benefits of sorting with a compound key decrease when queries rely on secondary sort columns\. You can define a maximum of 400 COMPOUND SORTKEY columns per table\.   

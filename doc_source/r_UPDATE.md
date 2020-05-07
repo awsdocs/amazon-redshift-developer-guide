@@ -3,8 +3,8 @@
 **Topics**
 + [Syntax](#r_UPDATE-synopsis)
 + [Parameters](#r_UPDATE-parameters)
-+ [Usage Notes](#r_UPDATE_usage_notes)
-+ [Examples of UPDATE Statements](c_Examples_of_UPDATE_statements.md)
++ [Usage notes](#r_UPDATE_usage_notes)
++ [Examples of UPDATE statements](c_Examples_of_UPDATE_statements.md)
 
 Updates values in one or more table columns when a condition is satisfied\. 
 
@@ -41,7 +41,7 @@ WHERE *condition*
 Optional clause that restricts updates to rows that match a condition\. When the condition returns `true`, the specified SET columns are updated\. The condition can be a simple predicate on a column or a condition based on the result of a subquery\.   
 You can name any table in the subquery, including the target table for the UPDATE\. 
 
-## Usage Notes<a name="r_UPDATE_usage_notes"></a>
+## Usage notes<a name="r_UPDATE_usage_notes"></a>
 
 After updating a large number of rows in a table: 
 + Vacuum the table to reclaim storage space and re\-sort rows\. 

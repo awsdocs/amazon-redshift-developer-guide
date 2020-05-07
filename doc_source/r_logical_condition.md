@@ -1,4 +1,4 @@
-# Logical Conditions<a name="r_logical_condition"></a>
+# Logical conditions<a name="r_logical_condition"></a>
 
 Logical conditions combine the result of two conditions to produce a single result\. All logical conditions are binary operators with a Boolean return type\. 
 

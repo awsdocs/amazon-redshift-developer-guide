@@ -1,4 +1,4 @@
-# Creating Materialized Views in Amazon Redshift<a name="materialized-view-overview"></a>
+# Creating materialized views in Amazon Redshift<a name="materialized-view-overview"></a>
 
 In a data warehouse environment, applications often need to perform complex queries on large tables—for example, SELECT statements that perform multiple\-table joins and aggregations on tables that contain billions of rows\. Processing these queries can be expensive, in terms of system resources and the time it takes to compute the results\.
 
@@ -6,15 +6,11 @@ Materialized views in Amazon Redshift provide a way to address these issues\. A 
 
 Materialized views are especially useful for speeding up queries that are predictable and repeated\. Instead of performing resource\-intensive queries against large database tables \(such as aggregates or multiple\-table joins\), applications can query a materialized view and retrieve a precomputed result set\. For example, consider the scenario where a set of queries is used to populate a collection of charts, such as Amazon QuickSight\.  This use case is ideal for a materialized view, because the queries are predictable and repeated over and over again\. 
 
-## <a name="w7aac35c13"></a>
-
 When you create a materialized view, Amazon Redshift runs the user\-specified SQL statement to gather the data from the base table or tables and stores the result set\. For information on how to create materialized views, see [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)\.
 
-You can issue SELECT statements to query a materialized view\. For information on how to query materialized views, see [Querying a Materialized View](#materialized-view-query)\.
+You can issue SELECT statements to query a materialized view\. For information on how to query materialized views, see [Querying a materialized view](#materialized-view-query)\.
 
 The result set eventually becomes stale when data is inserted, updated, and deleted in the base tables\. You can refresh the materialized view at any time to update it with the latest changes from the base tables\. For information on how to refresh materialized views, see [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)\.
-
-## <a name="w7aac35c21"></a>
 
 For details about SQL commands used to create and manage materialized views, see the following command topics:
 + [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)
@@ -26,7 +22,7 @@ For information about system tables and views to monitor materialized views, see
 + [STL\_MV\_STATE](r_STL_MV_STATE.md)
 + [SVL\_MV\_REFRESH\_STATUS](r_SVL_MV_REFRESH_STATUS.md)
 
-## Querying a Materialized View<a name="materialized-view-query"></a>
+## Querying a materialized view<a name="materialized-view-query"></a>
 
 You can use a materialized view in any SQL query by referencing the materialized view name as the data source, like a table or standard view\.
 

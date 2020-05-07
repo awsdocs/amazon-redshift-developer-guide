@@ -1,4 +1,4 @@
-# Compound Expressions<a name="r_compound_expressions"></a>
+# Compound expressions<a name="r_compound_expressions"></a>
 
 A compound expression is a series of simple expressions joined by arithmetic operators\. A simple expression used in a compound expression must return a numeric value\.
 

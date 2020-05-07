@@ -2,7 +2,7 @@
 
 The following examples demonstrate various column and table attributes in Amazon Redshift CREATE TABLE statements\.
 
-## Create a Table with a Distribution Key, a Compound Sort Key, and Compression<a name="r_CREATE_TABLE_examples-create-a-table-with-distribution-key"></a>
+## Create a table with a distribution key, a compound sort key, and compression<a name="r_CREATE_TABLE_examples-create-a-table-with-distribution-key"></a>
 
 The following example creates a SALES table in the TICKIT database with compression defined for several columns\. LISTID is declared as the distribution key, and LISTID and SELLERID are declared as a multicolumn compound sort key\. Primary key and foreign key constraints are also defined for the table\. 
 
@@ -44,7 +44,7 @@ public     | sales     | commission | numeric(8,2)                | delta32k | f
 public     | sales     | saletime   | timestamp without time zone | lzo      | false   |       0 | false
 ```
 
-## Create a Table Using an Interleaved Sort Key<a name="CREATE_TABLE_NEW-create-a-table-using-interleaved-sortkey"></a>
+## Create a table using an interleaved sort key<a name="CREATE_TABLE_NEW-create-a-table-using-interleaved-sortkey"></a>
 
 The following example creates the CUSTOMER table with an interleaved sort key\.
 
@@ -62,7 +62,7 @@ diststyle all
 interleaved sortkey (c_custkey, c_city, c_mktsegment);
 ```
 
-## Create a Table Using IF NOT EXISTS<a name="CREATE_TABLE_NEW-create-a-table-using-if-not-exists"></a>
+## Create a table using IF NOT EXISTS<a name="CREATE_TABLE_NEW-create-a-table-using-if-not-exists"></a>
 
  The following example either creates the CITIES table, or does nothing and returns a message if it already exists:
 
@@ -73,7 +73,7 @@ city varchar(100) not null,
 state char(2) not null);
 ```
 
-## Create a Table with ALL Distribution<a name="CREATE_TABLE_NEW-create-a-table-with-all-distribution"></a>
+## Create a table with ALL distribution<a name="CREATE_TABLE_NEW-create-a-table-with-all-distribution"></a>
 
  The following example creates the VENUE table with ALL distribution\. 
 
@@ -88,7 +88,7 @@ primary key(venueid))
 diststyle all;
 ```
 
-## Create a Table with EVEN Distribution<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-even-distribution"></a>
+## Create a Table with EVEN distribution<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-even-distribution"></a>
 
 The following example creates a table called MYEVENT with three columns\. 
 
@@ -114,7 +114,7 @@ from pg_table_def where tablename = 'myevent';
 (3 rows)
 ```
 
-## Create a Temporary Table That Is LIKE Another Table<a name="r_CREATE_TABLE_NEW-create-a-temporary-table-that-is-like-another-table"></a>
+## Create a temporary table that is LIKE another table<a name="r_CREATE_TABLE_NEW-create-a-temporary-table-that-is-like-another-table"></a>
 
 The following example creates a temporary table called TEMPEVENT, which inherits its columns from the EVENT table\. 
 
@@ -139,7 +139,7 @@ select "column", type, encoding, distkey, sortkey
 (6 rows)
 ```
 
-## Create a Table with an IDENTITY Column<a name="r_CREATE_TABLE_NEW-create-a-table-with-an-identity-column"></a>
+## Create a table with an IDENTITY column<a name="r_CREATE_TABLE_NEW-create-a-table-with-an-identity-column"></a>
 
 The following example creates a table named VENUE\_IDENT, which has an IDENTITY column named VENUEID\. This column starts with 0 and increments by 1 for each record\. VENUEID is also declared as the primary key of the table\. 
 
@@ -152,7 +152,7 @@ venueseats integer,
 primary key(venueid));
 ```
 
-## Create a Table with a Default IDENTITY Column<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-identity-column"></a>
+## Create a table with a default IDENTITY column<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-identity-column"></a>
 
 The following example creates a table named `t1`\. This table has an IDENTITY column named `hist_id` and a default IDENTITY column named `base_id`\. 
 
@@ -203,7 +203,7 @@ SELECT * FROM t1;
        3 |       2 | B            | MNNN
 ```
 
-## Create a Table with DEFAULT Column Values<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-column-values"></a>
+## Create a table with DEFAULT column values<a name="r_CREATE_TABLE_NEW-create-a-table-with-default-column-values"></a>
 
 The following example creates a CATEGORYDEF table that declares default values for each column: 
 
@@ -225,7 +225,7 @@ catid | catgroup | catname |    catdesc
 (1 row)
 ```
 
-## DISTSTYLE, DISTKEY, and SORTKEY Options<a name="r_CREATE_TABLE_NEW-diststyle-distkey-and-sortkey-options"></a>
+## DISTSTYLE, DISTKEY, and SORTKEY options<a name="r_CREATE_TABLE_NEW-diststyle-distkey-and-sortkey-options"></a>
 
 The following example shows how the DISTKEY, SORTKEY, and DISTSTYLE options work\. In this example, COL1 is the distribution key; therefore, the distribution style must be either set to KEY or not set\. By default, the table has no sort key and so isn't sorted: 
 

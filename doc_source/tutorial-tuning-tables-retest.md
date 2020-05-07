@@ -1,8 +1,8 @@
-# Step 7: Retest System Performance After Tuning<a name="tutorial-tuning-tables-retest"></a>
+# Step 7: Retest system performance after tuning<a name="tutorial-tuning-tables-retest"></a>
 
 After recreating the test data set with the selected sort keys, distribution styles, and compressions encodings, you will retest the system performance\.
 
-## To Retest System Performance After Tuning<a name="tutorial-tuning-tables-to-retest"></a>
+## To retest system performance after tuning<a name="tutorial-tuning-tables-to-retest"></a>
 
 1. Record storage use\.
 
@@ -187,6 +187,6 @@ The following benchmarks table shows the results based on the cluster used in th
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-retest.html)
 
-## Next Step<a name="w7aac25c19c25b7"></a>
+## Next step<a name="next-step-retest"></a>
 
-[Step 8: Evaluate the Results](tutorial-tuning-tables-evaluate.md)
+[Step 8: Evaluate the results](tutorial-tuning-tables-evaluate.md)

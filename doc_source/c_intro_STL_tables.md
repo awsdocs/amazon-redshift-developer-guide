@@ -1,4 +1,4 @@
-# STL Tables for Logging<a name="c_intro_STL_tables"></a>
+# STL tables for logging<a name="c_intro_STL_tables"></a>
 
 STL system tables are generated from Amazon Redshift log files to provide a history of the system\.
 
@@ -54,6 +54,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_UNDONE](r_STL_UNDONE.md)
 + [STL\_UNIQUE](r_STL_UNIQUE.md)
 + [STL\_UNLOAD\_LOG](r_STL_UNLOAD_LOG.md)
++ [STL\_USAGE\_CONTROL](r_STL_USAGE_CONTROL.md)
 + [STL\_USERLOG](r_STL_USERLOG.md)
 + [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md)
 + [STL\_VACUUM](r_STL_VACUUM.md)

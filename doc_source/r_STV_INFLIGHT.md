@@ -1,14 +1,14 @@
 # STV\_INFLIGHT<a name="r_STV_INFLIGHT"></a>
 
-Use the STV\_INFLIGHT table to determine what queries are currently running on the cluster\. STV\_INFLIGHT does not show leader\-node only queries\. For more information, see [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md)\.
+Use the STV\_INFLIGHT table to determine what queries are currently running on the cluster\. STV\_INFLIGHT does not show leader\-node only queries\. For more information, see [Leader node–only functions](c_SQL_functions_leader_node_only.md)\.
 
-STV\_INFLIGHT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_INFLIGHT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_INFLIGHT-table-columns"></a>
+## Table columns<a name="r_STV_INFLIGHT-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_INFLIGHT.html)
 
-## Sample Queries<a name="r_STV_INFLIGHT-sample-queries"></a>
+## Sample queries<a name="r_STV_INFLIGHT-sample-queries"></a>
 
 To view all active queries currently running on the database, type the following query: 
 

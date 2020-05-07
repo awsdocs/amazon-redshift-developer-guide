@@ -1,4 +1,4 @@
-# MONTHS\_BETWEEN Function<a name="r_MONTHS_BETWEEN_function"></a>
+# MONTHS\_BETWEEN function<a name="r_MONTHS_BETWEEN_function"></a>
 
 MONTHS\_BETWEEN determines the number of months between two dates\.
 
@@ -20,7 +20,7 @@ An expression, such as a column name, that evaluates to a valid date or time sta
  *date2*   
 An expression, such as a column name, that evaluates to a valid date or time stamp value\.
 
-## Return Type<a name="r_MONTHS_BETWEEN_function-return-type"></a>
+## Return type<a name="r_MONTHS_BETWEEN_function-return-type"></a>
 
 FLOAT8
 

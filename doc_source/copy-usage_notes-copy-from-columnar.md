@@ -1,4 +1,4 @@
-# COPY from Columnar Data Formats<a name="copy-usage_notes-copy-from-columnar"></a>
+# COPY from columnar data formats<a name="copy-usage_notes-copy-from-columnar"></a>
 
 COPY can load data from Amazon S3 in the following columnar formats:
 + ORC 
@@ -10,16 +10,23 @@ COPY supports columnar formatted data with the following restrictions:
   + US East \(Ohio\) Region \(us\-east\-2\)
   + US West \(N\. California\) Region \(us\-west\-1\)
   + US West \(Oregon\) Region \(us\-west\-2\) 
+  + Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\) 
   + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
   + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
   + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
   + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
   + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
   + Canada \(Central\) Region \(ca\-central\-1\)
+  + China \(Beijing\) Region \(cn\-north\-1\)
+  + China \(Ningxia\) Region \(cn\-northwest\-1\)
   + Europe \(Frankfurt\) Region \(eu\-central\-1\)
   + Europe \(Ireland\) Region \(eu\-west\-1\)
   + Europe \(London\) Region \(eu\-west\-2\)
+  + Europe \(Paris\) Region \(eu\-west\-3\)
+  + Europe \(Stockholm\) Region \(eu\-north\-1\)
+  + Middle East \(Bahrain\) Region \(me\-south\-1\)
   + South America \(São Paulo\) Region \(sa\-east\-1\)
+  + AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
 + The Amazon S3 bucket must be in the same AWS Region as the Amazon Redshift cluster\. 
 + COPY command credentials must be supplied using an AWS Identity and Access Management \(IAM\) role as an argument for the [IAM\_ROLE](copy-parameters-authorization.md#copy-iam-role) parameter or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\. 
 + To access your Amazon S3 data through a VPC endpoint, set up access using IAM policies and IAM roles as described in [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Cluster Management Guide*\. 

@@ -1,6 +1,6 @@
 # datestyle<a name="r_datestyle"></a>
 
-## Values \(Default in Bold\)<a name="t_Modifying_the_default_settings-values"></a>
+## Values \(default in bold\)<a name="t_Modifying_the_default_settings-values"></a>
 
  Format specification \(**ISO**, Postgres, SQL, or German\), and year/month/day ordering \(DMY, **MDY**, YMD\)\.
 

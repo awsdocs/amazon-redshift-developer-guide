@@ -2,7 +2,7 @@
 
 Creates a new external schema in the current database\. You can use this external schema to connect to Amazon RDS for PostgreSQL or Amazon Aurora with PostgreSQL compatibility databases\. You can also create an external schema that references a database in an external data catalog such as AWS Glue, Athena, or a database in an Apache Hive metastore, such as Amazon EMR\.
 
-The owner of this schema is the issuer of the CREATE EXTERNAL SCHEMA command\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. To grant access to the schema to other users or groups, use the [GRANT](r_GRANT.md) command\. 
+The owner of this schema is the issuer of the CREATE EXTERNAL SCHEMA command\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. To grant access to the schema to other users or user groups, use the [GRANT](r_GRANT.md) command\. 
 
 You can't use the GRANT or REVOKE commands for permissions on an external table\. Instead, grant or revoke the permissions on the external schema\. 
 
@@ -13,7 +13,7 @@ To view details for external schemas, query the [SVV\_EXTERNAL\_SCHEMAS](r_SVV_E
 
 ## Syntax<a name="r_CREATE_EXTERNAL_SCHEMA-synopsis"></a>
 
-The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using an external data catalog\. For more information, see [Querying External Data Using Amazon Redshift Spectrum](c-using-spectrum.md)\.
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using an external data catalog\. For more information, see [Querying external data using Amazon Redshift Spectrum](c-using-spectrum.md)\.
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
@@ -27,7 +27,7 @@ SECRET_ARN 'ssm-secret-arn'
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
 ```
 
-The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query\. For more information, see [Querying Data with Federated Query in Amazon Redshift](federated-overview.md)\.
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
@@ -44,7 +44,7 @@ IF NOT EXISTS
 A clause that indicates that if the specified schema already exists, the command should make no changes and return a message that the schema exists, rather than terminating with an error\. This clause is useful when scripting, so the script doesn’t fail if CREATE EXTERNAL SCHEMA tries to create a schema that already exists\. 
 
 local\_schema\_name  
-The name of the new external schema\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+The name of the new external schema\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 FROM \[ DATA CATALOG \] \| HIVE METASTORE   
 A keyword that indicates where the external database is located\.   
@@ -66,12 +66,12 @@ If the database is in a Hive metastore, specify the URI and optionally the port 
 The RDS PostgreSQL or Aurora PostgreSQL must be in the same VPC as your Amazon Redshift cluster\. Create a security group linking Amazon Redshift and RDS PostgreSQL or Aurora PostgreSQL\. 
 
 IAM\_ROLE '*iam\-role\-arn\-string*'  
-The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or the AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
+The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or the AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
 
 ```
 IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-name>'
 ```
-You can chain roles so that your cluster can assume another IAM role, possibly belonging to another account\. You can chain up to 10 roles\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.   
+You can chain roles so that your cluster can assume another IAM role, possibly belonging to another account\. You can chain up to 10 roles\. For more information, see [Chaining IAM roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.   
  To this IAM role, attach an IAM permissions policy similar to the following\.  
 
 ```
@@ -101,7 +101,7 @@ You can chain roles so that your cluster can assume another IAM role, possibly b
     ]
 }
 ```
-For the steps to create an IAM role to use with federated query, see [Creating a Secret and an IAM Role to Use Federated Queries](federated-create-secret-iam-role.md)\.   
+For the steps to create an IAM role to use with federated query, see [Creating a secret and an IAM role to use federated queries](federated-create-secret-iam-role.md)\.   
 Don't include spaces in the list of chained roles\.
 The following shows the syntax for chaining three roles\.  
 
@@ -113,12 +113,12 @@ SECRET\_ARN '*ssm\-secret\-arn*'
 The Amazon Resource Name \(ARN\) of an RDS PostgreSQL or Aurora PostgreSQL secret created using AWS Secrets Manager\. For information about how to create and retrieve an ARN for a secret, see [Creating a Basic Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) and [Retrieving the Secret Value Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_retrieve-secret.html) in the *AWS Secrets Manager User Guide*\. 
 
 CATALOG\_ROLE '*catalog\-role\-arn\-string*'  
-The ARN for an IAM role that your cluster uses for authentication and authorization for the data catalog\. If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the Data Catalog in AWS Glue or Athena\. For more information, see [IAM Policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
+The ARN for an IAM role that your cluster uses for authentication and authorization for the data catalog\. If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the Data Catalog in AWS Glue or Athena\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
 
 ```
 CATALOG_ROLE 'arn:aws:iam::<aws-account-id>:role/<catalog-role>'
 ```
-You can chain roles so that your cluster can assume another IAM role, possibly belonging to another account\. You can chain up to 10 roles\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.   
+You can chain roles so that your cluster can assume another IAM role, possibly belonging to another account\. You can chain up to 10 roles\. For more information, see [Chaining IAM roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.   
 The list of chained roles must not include spaces\.
 The following shows the syntax for chaining three roles\.  
 
@@ -131,7 +131,7 @@ A clause that creates an external database with the name specified by the DATABA
 You can't use CREATE EXTERNAL DATABASE IF NOT EXISTS with HIVE METASTORE\.  
 To use CREATE EXTERNAL DATABASE IF NOT EXISTS with a Data Catalog enabled for AWS Lake Formation, you need `CREATE_DATABASE` permission on the Data Catalog\. 
 
-## Usage Notes<a name="r_CREATE_EXTERNAL_SCHEMA_usage"></a>
+## Usage notes<a name="r_CREATE_EXTERNAL_SCHEMA_usage"></a>
 
 For limits when using the Athena data catalog, see [Athena Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#amazon-athena-limits) in the AWS General Reference\.
 
@@ -178,7 +178,7 @@ uri '172.10.10.10' port 99
 iam_role 'arn:aws:iam::123456789012:role/MySpectrumRole';
 ```
 
-The following example chains roles to use the role `myS3Role` for accessing Amazon S3 and uses `myAthenaRole` for data catalog access\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.
+The following example chains roles to use the role `myS3Role` for accessing Amazon S3 and uses `myAthenaRole` for data catalog access\. For more information, see [Chaining IAM roles in Amazon Redshift Spectrum](c-spectrum-iam-policies.md#c-spectrum-chaining-roles)\.
 
 ```
 create external schema spectrum_schema

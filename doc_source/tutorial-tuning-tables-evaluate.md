@@ -1,4 +1,4 @@
-# Step 8: Evaluate the Results<a name="tutorial-tuning-tables-evaluate"></a>
+# Step 8: Evaluate the results<a name="tutorial-tuning-tables-evaluate"></a>
 
 You tested load times, storage requirements, and query execution times before and after tuning the tables, and recorded the results\. 
 
@@ -28,8 +28,8 @@ By checking the EXPLAIN plan, you saw that data redistribution was eliminated fo
 
 Total query execution time was reduced by 31\.4%\. 
 
-The improvement in query performance was due to a combination of optimizing sort keys, distribution styles, and compression\. Often, query performance can be improved even further by rewriting queries and configuring workload management \(WLM\)\. For more information, see [Tuning Query Performance](c-optimizing-query-performance.md)\.
+The improvement in query performance was due to a combination of optimizing sort keys, distribution styles, and compression\. Often, query performance can be improved even further by rewriting queries and configuring workload management \(WLM\)\. For more information, see [Tuning query performance](c-optimizing-query-performance.md)\.
 
-## Next Step<a name="w7aac25c19c27c33"></a>
+## Next step<a name="next-step-evaluate"></a>
 
-[Step 9: Clean Up Your Resources](tutorial-tuning-tables-clean-up.md)
+[Step 9: Clean up your resources](tutorial-tuning-tables-clean-up.md)

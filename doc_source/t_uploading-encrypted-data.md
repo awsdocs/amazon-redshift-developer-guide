@@ -1,12 +1,12 @@
-# Uploading Encrypted Data to Amazon S3<a name="t_uploading-encrypted-data"></a>
+# Uploading encrypted data to Amazon S3<a name="t_uploading-encrypted-data"></a>
 
 Amazon S3 supports both server\-side encryption and client\-side encryption\. This topic discusses the differences between the server\-side and client\-side encryption and describes the steps to use client\-side encryption with Amazon Redshift\. Server\-side encryption is transparent to Amazon Redshift\. 
 
-## Server\-Side Encryption<a name="server-side-encryption"></a>
+## Server\-side encryption<a name="server-side-encryption"></a>
 
 Server\-side encryption is data encryption at rest—that is, Amazon S3 encrypts your data as it uploads it and decrypts it for you when you access it\. When you load tables using a COPY command, there is no difference in the way you load from server\-side encrypted or unencrypted objects on Amazon S3\. For more information about server\-side encryption, see [Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-## Client\-Side Encryption<a name="client-side-encryption"></a>
+## Client\-side encryption<a name="client-side-encryption"></a>
 
 In client\-side encryption, your client application manages encryption of your data, the encryption keys, and related tools\. You can upload data to an Amazon S3 bucket using client\-side encryption, and then load the data using the COPY command with the ENCRYPTED option and a private encryption key to provide greater security\.
 
@@ -20,9 +20,9 @@ To work with Amazon S3 client\-side encrypted data in Amazon Redshift, follow th
 **Note**  
 If you get a cipher encryption error message when you use the encryption API for the first time, your version of the JDK may have a Java Cryptography Extension \(JCE\) jurisdiction policy file that limits the maximum key length for encryption and decryption transformations to 128 bits\. For information about addressing this issue, go to [Specifying Client\-Side Encryption Using the AWS SDK for Java](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryptionUpload.html) in the *Amazon Simple Storage Service Developer Guide*\. 
 
-For information about loading client\-side encrypted files into your Amazon Redshift tables using the COPY command, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\.
+For information about loading client\-side encrypted files into your Amazon Redshift tables using the COPY command, see [Loading encrypted data files from Amazon S3](c_loading-encrypted-files.md)\.
 
-## Example: Uploading Client\-Side Encrypted Data<a name="client-side-encryption-example"></a>
+## Example: Uploading client\-side encrypted data<a name="client-side-encryption-example"></a>
 
 For an example of how to use the AWS SDK for Java to upload client\-side encrypted data, go to [Example 1: Encrypt and Upload a File Using a Client\-Side Symmetric Master Key](https://docs.aws.amazon.com/AmazonS3/latest/dev/encrypt-client-side-symmetric-master-key.html) in the *Amazon Simple Storage Service Developer Guide*\. 
 

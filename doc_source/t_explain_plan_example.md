@@ -1,4 +1,4 @@
-# Query Plan Example<a name="t_explain_plan_example"></a>
+# Query plan example<a name="t_explain_plan_example"></a>
 
 This example shows how to evaluate a query plan to find opportunities to optimize the distribution\.
 

@@ -1,4 +1,4 @@
-# Step 3: Create a Database Table<a name="t_creating_table"></a>
+# Step 3: Create a database table<a name="t_creating_table"></a>
 
 After you create your new database, you create tables to hold your database data\. You specify any column information for the table when you create the table\.
 
@@ -25,4 +25,4 @@ schemaname|tablename|column | type  |encoding|distkey|sortkey | notnull
 
 By default, new database objects, such as tables, are created in a schema named "public"\. For more information about schemas, see [Schemas](r_Schemas_and_tables.md) in the Managing Database Security section\.
 
-The `encoding`, `distkey`, and `sortkey` columns are used by Amazon Redshift for parallel processing\. For more information about designing tables that incorporate these elements, see [Amazon Redshift Best Practices for Designing Tables](c_designing-tables-best-practices.md)\.
+The `encoding`, `distkey`, and `sortkey` columns are used by Amazon Redshift for parallel processing\. For more information about designing tables that incorporate these elements, see [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md)\.

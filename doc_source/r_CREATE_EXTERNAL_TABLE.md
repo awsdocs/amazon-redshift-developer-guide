@@ -10,7 +10,7 @@ You can query an external table using the same SELECT syntax you use with other 
 
 To create a view with an external table, include the WITH NO SCHEMA BINDING clause in the [CREATE VIEW](r_CREATE_VIEW.md) statement\.
 
-You can't run CREATE EXTERNAL TABLE inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+You can't run CREATE EXTERNAL TABLE inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_CREATE_EXTERNAL_TABLE-synopsis"></a>
 
@@ -40,17 +40,17 @@ location 's3://mybucket/myfolder/';
 ```
 If the database or schema specified doesn't exist, the table isn't created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
 The table name must be a unique name for the specified schema\.   
-For more information about valid names, see [Names and Identifiers](r_names.md)\.
+For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 \( *column\_name* *data\_type* \)  
 The name and data type of each column being created\.  
-The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. You can't specify column names `"$path"` or `"$size"`\. For more information about valid names, see [Names and Identifiers](r_names.md)\.  
+The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. You can't specify column names `"$path"` or `"$size"`\. For more information about valid names, see [Names and identifiers](r_names.md)\.  
 By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [Pseudocolumns ](#r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns)\.  
 If pseudocolumns are enabled, the maximum number of columns you can define in a single table is 1,598\. If pseudocolumns aren't enabled, the maximum number of columns you can define in a single table is 1,600\.   
-If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage Notes](r_CREATE_TABLE_usage.md)\.
+If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_usage.md)\.
 
  *data\_type*   
-The following [Data Types](c_Supported_data_types.md) are supported:  
+The following [Data types](c_Supported_data_types.md) are supported:  
 + SMALLINT \(INT2\)
 + INTEGER \(INT, INT4\)
 + BIGINT \(INT8\)
@@ -63,7 +63,7 @@ The following [Data Types](c_Supported_data_types.md) are supported:
 + DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
 + TIMESTAMP
 Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
-The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and Ranges](r_Character_types.md#r_Character_types-storage-and-ranges)   
+The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and ranges](r_Character_types.md#r_Character_types-storage-and-ranges)   
 For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\. The following example returns the maximum size of values in the email column\.  
 
 ```
@@ -135,7 +135,7 @@ For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example
 ```
 
 LOCATION \{ 's3://*bucket/folder*/' \| 's3://*bucket/manifest\_file*'\}  <a name="create-external-table-location"></a>
-The path to the Amazon S3 bucket or folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
+The path to the Amazon S3 bucket or folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
 If the path specifies a bucket or folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified bucket or folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period or underscore\.   
 If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example, `'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.   
 The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3 and the size of the file, in bytes\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same AWS Region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
@@ -182,14 +182,14 @@ A property that sets the column mapping type for tables that use ORC data format
 Valid values for column mapping type are as follows:   
 + name 
 + position 
-If the *orc\.schema\.resolution* property is omitted, columns are mapped by name by default\. If *orc\.schema\.resolution* is set to any value other than *'name'* or *'position'*, columns are mapped by position\. For more information about column mapping, see [Mapping External Table Columns to ORC Columns](c-spectrum-external-tables.md#c-spectrum-column-mapping-orc)  
+If the *orc\.schema\.resolution* property is omitted, columns are mapped by name by default\. If *orc\.schema\.resolution* is set to any value other than *'name'* or *'position'*, columns are mapped by position\. For more information about column mapping, see [Mapping external table columns to ORC columns](c-spectrum-external-tables.md#c-spectrum-column-mapping-orc)  
 The COPY command maps to ORC data files only by position\. The *orc\.schema\.resolution* table property has no effect on COPY command behavior\. 
 
-## Usage Notes<a name="r_CREATE_EXTERNAL_TABLE_usage"></a>
+## Usage notes<a name="r_CREATE_EXTERNAL_TABLE_usage"></a>
 
 You can't view details for Amazon Redshift Spectrum tables using the same resources you use for standard Amazon Redshift tables, such as [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md), [STV\_TBL\_PERM](r_STV_TBL_PERM.md), PG\_CLASS, or information\_schema\. If your business intelligence or analytics tool doesn't recognize Redshift Spectrum external tables, configure your application to query [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) and [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md)\.
 
-### Permissions to Create and Query External Tables<a name="r_CREATE_EXTERNAL_TABLE_usage-permissions"></a>
+### Permissions to create and query external tables<a name="r_CREATE_EXTERNAL_TABLE_usage-permissions"></a>
 
 To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md)\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
 
@@ -360,7 +360,7 @@ s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  144
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
 ```
 
-## Partitioning Examples<a name="r_CREATE_EXTERNAL_TABLE_examples-partitioning"></a>
+## Partitioning examples<a name="r_CREATE_EXTERNAL_TABLE_examples-partitioning"></a>
 
 To create an external table partitioned by date, run the following command\.
 
@@ -476,7 +476,7 @@ spectrum   | sales_part | ["2008-11-01"] | s3://awssampledbuswest2/tickit/spectr
 spectrum   | sales_part | ["2008-12-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12
 ```
 
-## Row Format Examples<a name="r_CREATE_EXTERNAL_TABLE_examples-row-format"></a>
+## Row format examples<a name="r_CREATE_EXTERNAL_TABLE_examples-row-format"></a>
 
 The following shows an example of specifying the ROW FORMAT SERDE parameters for data files stored in AVRO format\.
 

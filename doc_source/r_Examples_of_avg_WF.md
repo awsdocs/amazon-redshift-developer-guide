@@ -1,4 +1,4 @@
-# AVG Window Function Examples<a name="r_Examples_of_avg_WF"></a>
+# AVG window function examples<a name="r_Examples_of_avg_WF"></a>
 
 Compute a rolling average of quantities sold by date; order the results by date ID and sales ID: 
 
@@ -25,4 +25,4 @@ salesid |   dateid   | sellerid | qty | avg
 (11 rows)
 ```
 
- For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+ For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.

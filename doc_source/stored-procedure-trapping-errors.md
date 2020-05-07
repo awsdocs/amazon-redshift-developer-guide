@@ -1,4 +1,4 @@
-# Trapping Errors<a name="stored-procedure-trapping-errors"></a>
+# Trapping errors<a name="stored-procedure-trapping-errors"></a>
 
 An error encountered during the execution of a stored procedure ends the execution flow and ends the transaction\. You can trap errors using an EXCEPTION block\. The only supported condition is OTHERS, which matches every error type except query cancellation\. 
 

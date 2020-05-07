@@ -1,4 +1,4 @@
-# Dynamic WLM Example<a name="cm-c-wlm-dynamic-example"></a>
+# Dynamic WLM example<a name="cm-c-wlm-dynamic-example"></a>
 
 Suppose that your cluster WLM is configured with two queues, using the following dynamic properties\. 
 

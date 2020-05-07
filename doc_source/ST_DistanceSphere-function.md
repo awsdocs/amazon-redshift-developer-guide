@@ -23,7 +23,7 @@ A point value in degrees of data type `GEOMETRY` lying on a sphere\. The first c
  *radius*   
 The radius of a sphere of data type `DOUBLE PRECISION`\. If no *radius* is provided, the sphere defaults to Earth and the radius is computed from the World Geodetic System \(WGS\) 84 representation of the ellipsoid\. 
 
-## Return Type<a name="ST_DistanceSphere-function-return"></a>
+## Return type<a name="ST_DistanceSphere-function-return"></a>
 
 `DOUBLE PRECISION` in the same units as the radius\. 
 

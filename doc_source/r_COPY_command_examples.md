@@ -1,29 +1,29 @@
-# COPY Examples<a name="r_COPY_command_examples"></a>
+# COPY examples<a name="r_COPY_command_examples"></a>
 
 **Note**  
 These examples contain line breaks for readability\. Do not include line breaks or spaces in your *credentials\-args* string\.
 
 **Topics**
-+ [Load FAVORITEMOVIES from an DynamoDB Table](#r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table)
-+ [Load LISTING from an Amazon S3 Bucket](#r_COPY_command_examples-load-listing-from-an-amazon-s3-bucket)
-+ [Load LISTING from an Amazon EMR Cluster](#copy-command-examples-emr)
++ [Load FAVORITEMOVIES from an DynamoDB table](#r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table)
++ [Load LISTING from an Amazon S3 bucket](#r_COPY_command_examples-load-listing-from-an-amazon-s3-bucket)
++ [Load LISTING from an Amazon EMR cluster](#copy-command-examples-emr)
 + [Example: COPY from Amazon S3 using a manifest](#copy-command-examples-manifest)
-+ [Load LISTING from a Pipe\-Delimited File \(Default Delimiter\)](#r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter)
-+ [Load LISTING Using Columnar Data in Parquet Format](#r_COPY_command_examples-load-listing-from-parquet)
-+ [Load LISTING Using Temporary Credentials](#sub-example-load-favorite-movies)
-+ [Load EVENT with Options](#r_COPY_command_examples-load-event-with-options)
-+ [Load VENUE from a Fixed\-Width Data File](#r_COPY_command_examples-load-venue-from-a-fixed-width-data-file)
-+ [Load CATEGORY from a CSV File](#load-from-csv)
-+ [Load VENUE with Explicit Values for an IDENTITY Column](#r_COPY_command_examples-load-venue-with-explicit-values-for-an-identity-column)
-+ [Load TIME from a Pipe\-Delimited GZIP File](#r_COPY_command_examples-load-time-from-a-pipe-delimited-gzip-file)
-+ [Load a Timestamp or Datestamp](#r_COPY_command_examples-load-a-time-datestamp)
-+ [Load Data from a File with Default Values](#r_COPY_command_examples-load-data-from-a-file-with-default-values)
-+ [COPY Data with the ESCAPE Option](#r_COPY_command_examples-copy-data-with-the-escape-option)
-+ [Copy from JSON Examples](#r_COPY_command_examples-copy-from-json)
-+ [Copy from Avro Examples](#r_COPY_command_examples-copy-from-avro)
-+ [Preparing Files for COPY with the ESCAPE Option](#r_COPY_preparing_data)
++ [Load LISTING from a pipe\-delimited file \(default delimiter\)](#r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter)
++ [Load LISTING using columnar data in Parquet format](#r_COPY_command_examples-load-listing-from-parquet)
++ [Load LISTING using temporary credentials](#sub-example-load-favorite-movies)
++ [Load EVENT with options](#r_COPY_command_examples-load-event-with-options)
++ [Load VENUE from a fixed\-width data file](#r_COPY_command_examples-load-venue-from-a-fixed-width-data-file)
++ [Load CATEGORY from a CSV file](#load-from-csv)
++ [Load VENUE with explicit values for an IDENTITY column](#r_COPY_command_examples-load-venue-with-explicit-values-for-an-identity-column)
++ [Load TIME from a pipe\-delimited GZIP file](#r_COPY_command_examples-load-time-from-a-pipe-delimited-gzip-file)
++ [Load a timestamp or datestamp](#r_COPY_command_examples-load-a-time-datestamp)
++ [Load data from a file with default values](#r_COPY_command_examples-load-data-from-a-file-with-default-values)
++ [COPY data with the ESCAPE option](#r_COPY_command_examples-copy-data-with-the-escape-option)
++ [Copy from JSON examples](#r_COPY_command_examples-copy-from-json)
++ [Copy from Avro examples](#r_COPY_command_examples-copy-from-avro)
++ [Preparing files for COPY with the ESCAPE option](#r_COPY_preparing_data)
 
-## Load FAVORITEMOVIES from an DynamoDB Table<a name="r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table"></a>
+## Load FAVORITEMOVIES from an DynamoDB table<a name="r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table"></a>
 
 The AWS SDKs include a simple example of creating a DynamoDB table called *Movies*\. \(For this example, see [Getting Started with DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html)\.\) The following example loads the Amazon Redshift MOVIES table with data from the DynamoDB table\. The Amazon Redshift table must already exist in the database\.
 
@@ -33,7 +33,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 readratio 50;
 ```
 
-## Load LISTING from an Amazon S3 Bucket<a name="r_COPY_command_examples-load-listing-from-an-amazon-s3-bucket"></a>
+## Load LISTING from an Amazon S3 bucket<a name="r_COPY_command_examples-load-listing-from-an-amazon-s3-bucket"></a>
 
 The following example loads LISTING from an Amazon S3 bucket\. The COPY command loads all of the files in the `/data/listing/` folder\.
 
@@ -43,7 +43,7 @@ from 's3://mybucket/data/listing/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-## Load LISTING from an Amazon EMR Cluster<a name="copy-command-examples-emr"></a>
+## Load LISTING from an Amazon EMR cluster<a name="copy-command-examples-emr"></a>
 
 The following example loads the SALES table with tab\-delimited data from lzop\-compressed files in an Amazon EMR cluster\. COPY loads every file in the `myoutput/` folder that begins with `part-`\.
 
@@ -63,7 +63,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 JSON 's3://mybucket/jsonpaths.txt';
 ```
 
-## Using a Manifest to Specify Data Files<a name="copy-command-examples-manifest"></a>
+## Using a manifest to specify data files<a name="copy-command-examples-manifest"></a>
 
 You can use a manifest to ensure that your COPY command loads all of the required files, and only the required files, from Amazon S3\. You can also use a manifest when you need to load multiple files from different buckets or files that don't share the same prefix\. 
 
@@ -157,7 +157,7 @@ The manifest can list files that are in different buckets, as long as the bucket
 }
 ```
 
-## Load LISTING from a Pipe\-Delimited File \(Default Delimiter\)<a name="r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter"></a>
+## Load LISTING from a pipe\-delimited file \(default delimiter\)<a name="r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter"></a>
 
 The following example is a very simple case in which no options are specified and the input file contains the default delimiter, a pipe character \('\|'\)\. 
 
@@ -167,7 +167,7 @@ from 's3://mybucket/data/listings_pipe.txt'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-## Load LISTING Using Columnar Data in Parquet Format<a name="r_COPY_command_examples-load-listing-from-parquet"></a>
+## Load LISTING using columnar data in Parquet format<a name="r_COPY_command_examples-load-listing-from-parquet"></a>
 
 The following example loads data from a folder on Amazon S3 named parquet\. 
 
@@ -178,7 +178,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format as parquet;
 ```
 
-## Load LISTING Using Temporary Credentials<a name="sub-example-load-favorite-movies"></a>
+## Load LISTING using temporary credentials<a name="sub-example-load-favorite-movies"></a>
 
 The following example uses the SESSION\_TOKEN parameter to specify temporary session credentials:
 
@@ -190,7 +190,7 @@ secret_access_key '<secret-access-key'
 session_token '<temporary-token>';
 ```
 
-## Load EVENT with Options<a name="r_COPY_command_examples-load-event-with-options"></a>
+## Load EVENT with options<a name="r_COPY_command_examples-load-event-with-options"></a>
 
 The following example loads pipe\-delimited data into the EVENT table and applies the following rules: 
 + If pairs of quotation marks are used to surround any character strings, they are removed\.
@@ -210,7 +210,7 @@ delimiter '|'
 timeformat 'YYYY-MM-DD HH:MI:SS';
 ```
 
-## Load VENUE from a Fixed\-Width Data File<a name="r_COPY_command_examples-load-venue-from-a-fixed-width-data-file"></a>
+## Load VENUE from a fixed\-width data file<a name="r_COPY_command_examples-load-venue-from-a-fixed-width-data-file"></a>
 
 ```
 copy venue
@@ -229,7 +229,7 @@ The preceding example assumes a data file formatted in the same way as the sampl
 5  Gillette Stadium         Foxborough  MA68756
 ```
 
-## Load CATEGORY from a CSV File<a name="load-from-csv"></a>
+## Load CATEGORY from a CSV file<a name="load-from-csv"></a>
 
 Suppose you want to load the CATEGORY with the values shown in the following table\.
 
@@ -280,7 +280,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 csv quote as '%';
 ```
 
-## Load VENUE with Explicit Values for an IDENTITY Column<a name="r_COPY_command_examples-load-venue-with-explicit-values-for-an-identity-column"></a>
+## Load VENUE with explicit values for an IDENTITY column<a name="r_COPY_command_examples-load-venue-with-explicit-values-for-an-identity-column"></a>
 
 The following example assumes that when the VENUE table was created that at least one column \(such as the `venueid` column\) was specified to be an IDENTITY column\. This command overrides the default IDENTITY behavior of autogenerating values for an IDENTITY column and instead loads the explicit values from the venue\.txt file\.
 
@@ -291,7 +291,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 explicit_ids;
 ```
 
-## Load TIME from a Pipe\-Delimited GZIP File<a name="r_COPY_command_examples-load-time-from-a-pipe-delimited-gzip-file"></a>
+## Load TIME from a pipe\-delimited GZIP file<a name="r_COPY_command_examples-load-time-from-a-pipe-delimited-gzip-file"></a>
 
 The following example loads the TIME table from a pipe\-delimited GZIP file:
 
@@ -303,7 +303,7 @@ gzip
 delimiter '|';
 ```
 
-## Load a Timestamp or Datestamp<a name="r_COPY_command_examples-load-a-time-datestamp"></a>
+## Load a timestamp or datestamp<a name="r_COPY_command_examples-load-a-time-datestamp"></a>
 
 The following example loads data with a formatted timestamp\.
 
@@ -327,7 +327,7 @@ c1
 (1 row)
 ```
 
-## Load Data from a File with Default Values<a name="r_COPY_command_examples-load-data-from-a-file-with-default-values"></a>
+## Load data from a file with default values<a name="r_COPY_command_examples-load-data-from-a-file-with-default-values"></a>
 
 The following example uses a variation of the VENUE table in the TICKIT database\. Consider a VENUE\_NEW table defined with the following statement: 
 
@@ -445,7 +445,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter '|';
 ```
 
-## COPY Data with the ESCAPE Option<a name="r_COPY_command_examples-copy-data-with-the-escape-option"></a>
+## COPY data with the ESCAPE option<a name="r_COPY_command_examples-copy-data-with-the-escape-option"></a>
 
 The following example shows how to load characters that match the delimiter character \(in this case, the pipe character\)\. In the input file, make sure that all of the pipe characters \(\|\) that you want to load are escaped with the backslash character \(\\\)\. Then load the file with the ESCAPE parameter\. 
 
@@ -473,18 +473,18 @@ Without the ESCAPE parameter, this COPY command fails with an `Extra column(s) f
 **Important**  
 If you load your data using a COPY with the ESCAPE parameter, you must also specify the ESCAPE parameter with your UNLOAD command to generate the reciprocal output file\. Similarly, if you UNLOAD using the ESCAPE parameter, you need to use ESCAPE when you COPY the same data\.
 
-## Copy from JSON Examples<a name="r_COPY_command_examples-copy-from-json"></a>
+## Copy from JSON examples<a name="r_COPY_command_examples-copy-from-json"></a>
 
 In the following examples, you load the CATEGORY table with the following data\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html)
 
 **Topics**
-+ [Load from JSON Data Using the 'auto' Option](#copy-from-json-examples-using-auto)
-+ [Load from JSON Data Using a JSONPaths file](#copy-from-json-examples-using-jsonpaths)
-+ [Load from JSON Arrays Using a JSONPaths file](#copy-from-json-examples-using-jsonpaths-arrays)
++ [Load from JSON data using the 'auto' option](#copy-from-json-examples-using-auto)
++ [Load from JSON data using a JSONPaths file](#copy-from-json-examples-using-jsonpaths)
++ [Load from JSON arrays using a JSONPaths file](#copy-from-json-examples-using-jsonpaths-arrays)
 
-### Load from JSON Data Using the 'auto' Option<a name="copy-from-json-examples-using-auto"></a>
+### Load from JSON data using the 'auto' option<a name="copy-from-json-examples-using-auto"></a>
 
 To load from JSON data using the `'auto'` argument, the JSON data must consist of a set of objects\. The key names must match the column names, but in this case, order doesn't matter\. The following shows the contents of a file named `category_object_auto.json`\.
 
@@ -530,7 +530,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 json 'auto';
 ```
 
-### Load from JSON Data Using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths"></a>
+### Load from JSON data using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths"></a>
 
 If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. Again, the order doesn't matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose that you have the following data file, named `category_object_paths.json`\.
 
@@ -589,7 +589,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 json 's3://mybucket/category_jsonpath.json';
 ```
 
-### Load from JSON Arrays Using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths-arrays"></a>
+### Load from JSON arrays using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths-arrays"></a>
 
 To load from JSON data that consists of a set of arrays, you must use a JSONPaths file to map the array elements to columns\. Suppose that you have the following data file, named `category_array_data.json`\.
 
@@ -623,17 +623,17 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 json 's3://mybucket/category_array_jsonpath.json';
 ```
 
-## Copy from Avro Examples<a name="r_COPY_command_examples-copy-from-avro"></a>
+## Copy from Avro examples<a name="r_COPY_command_examples-copy-from-avro"></a>
 
 In the following examples, you load the CATEGORY table with the following data\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html)
 
 **Topics**
-+ [Load from Avro Data Using the 'auto' Option](#copy-from-avro-examples-using-auto)
-+ [Load from Avro Data Using a JSONPaths File](#copy-from-avro-examples-using-avropaths)
++ [Load from Avro data using the 'auto' option](#copy-from-avro-examples-using-auto)
++ [Load from Avro data using a JSONPaths file](#copy-from-avro-examples-using-avropaths)
 
-### Load from Avro Data Using the 'auto' Option<a name="copy-from-avro-examples-using-auto"></a>
+### Load from Avro data using the 'auto' option<a name="copy-from-avro-examples-using-auto"></a>
 
 To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. However, when using the `'auto'` argument, order doesn't matter\. The following shows the schema for a file named `category_auto.avro`\.
 
@@ -687,7 +687,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format as avro 'auto';
 ```
 
-### Load from Avro Data Using a JSONPaths File<a name="copy-from-avro-examples-using-avropaths"></a>
+### Load from Avro data using a JSONPaths file<a name="copy-from-avro-examples-using-avropaths"></a>
 
 If the field names in the Avro schema don't correspond directly to column names, you can use a JSONPaths file to map the schema elements to columns\. The order of the JSONPaths file expressions must match the column order\. 
 
@@ -729,7 +729,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format avro 's3://mybucket/category_path.avropath ';
 ```
 
-## Preparing Files for COPY with the ESCAPE Option<a name="r_COPY_preparing_data"></a>
+## Preparing files for COPY with the ESCAPE option<a name="r_COPY_preparing_data"></a>
 
 The following example describes how you might prepare data to "escape" newline characters before importing the data into an Amazon Redshift table using the COPY command with the ESCAPE parameter\. Without preparing the data to delimit the newline characters, Amazon Redshift returns load errors when you run the COPY command, because the newline character is normally used as a record separator\. 
 

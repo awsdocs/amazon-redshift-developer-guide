@@ -1,9 +1,9 @@
-# Managing Concurrent Write Operations<a name="c_Concurrent_writes"></a>
+# Managing concurrent write operations<a name="c_Concurrent_writes"></a>
 
 **Topics**
-+ [Serializable Isolation](c_serial_isolation.md)
-+ [Write and Read\-Write Operations](c_write_readwrite.md)
-+ [Concurrent Write Examples](r_Serializable_isolation_example.md)
++ [Serializable isolation](c_serial_isolation.md)
++ [Write and read\-write operations](c_write_readwrite.md)
++ [Concurrent write examples](r_Serializable_isolation_example.md)
 
 Amazon Redshift allows tables to be read while they are being incrementally loaded or modified\.
 

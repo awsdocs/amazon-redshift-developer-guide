@@ -1,4 +1,4 @@
-# COUNT Window Function Examples<a name="r_Examples_of_count_WF"></a>
+# COUNT window function examples<a name="r_Examples_of_count_WF"></a>
 
  Show the sales ID, quantity, and count of all rows from the beginning of the data window: 
 
@@ -24,7 +24,7 @@ salesid | qty | count
 (11 rows)
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 
 
  Show the sales ID, quantity, and count of non\-null rows from the beginning of the data window\. \(In the WINSALES table, the QTY\_SHIPPED column contains some NULLs\.\) 
 

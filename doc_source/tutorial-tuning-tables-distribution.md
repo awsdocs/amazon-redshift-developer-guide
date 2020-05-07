@@ -1,6 +1,6 @@
-# Step 4: Select Distribution Styles<a name="tutorial-tuning-tables-distribution"></a>
+# Step 4: Select distribution styles<a name="tutorial-tuning-tables-distribution"></a>
 
-When you load data into a table, Amazon Redshift distributes the rows of the table to each of the node slices according to the table's distribution style\. The number of slices per node depends on the node size of the cluster\. For example, the dc1\.large cluster that you are using in this tutorial has four nodes with two slices each, so the cluster has a total of eight slices\. The nodes all participate in parallel query execution, working on data that is distributed across the slices\.
+When you load data into a table, Amazon Redshift distributes the rows of the table to each of the node slices according to the table's distribution style\. The number of slices per node depends on the node size of the cluster\. For example, the dc2\.large cluster that you are using in this tutorial has four nodes with two slices each, so the cluster has a total of eight slices\. The nodes all participate in parallel query execution, working on data that is distributed across the slices\.
 
 When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. Redistribution might involve either sending specific rows to nodes for joining or broadcasting an entire table to all of the nodes\. 
 
@@ -16,7 +16,7 @@ These goals may conflict in some cases, and you will need to evaluate which stra
 
 In this step, you evaluate the distribution of the SSB tables with respect to the goals of data distribution, and then select the optimum distribution styles for the tables\.
 
-## Distribution Styles<a name="tutorial-tuning-tables-distribution-styles"></a>
+## Distribution styles<a name="tutorial-tuning-tables-distribution-styles"></a>
 
 When you create a table, you designate one of three distribution styles: KEY, ALL, or EVEN\. 
 
@@ -32,9 +32,9 @@ A copy of the entire table is distributed to every node\. Where EVEN distributio
 
 The rows are distributed across the slices in a round\-robin fashion, regardless of the values in any particular column\. EVEN distribution is appropriate when a table does not participate in joins or when there is not a clear choice between KEY distribution and ALL distribution\. EVEN distribution is the default distribution style\. 
 
-For more information, see [Distribution Styles](c_choosing_dist_sort.md)\. 
+For more information, see [Distribution styles](c_choosing_dist_sort.md)\. 
 
-## To Select Distribution Styles<a name="tutorial-tuning-tables-distribution-to-collocate"></a>
+## To select distribution styles<a name="tutorial-tuning-tables-distribution-to-collocate"></a>
 
 When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. By locating the data where it needs to be before the query is executed, you can minimize the impact of the redistribution step\. 
 
@@ -83,7 +83,7 @@ The first goal is to distribute the data so that the matching rows from joining 
                                    ->  XN Seq Scan on dwdate  (cost=0.00..25.56 rows=2556
    ```
 
-   DS\_BCAST\_INNER indicates that the inner join table was broadcast to every slice\. A *DS\_DIST\_BOTH* label, if present, would indicate that both the outer join table and the inner join table were redistributed across the slices\. Broadcasting and redistribution can be expensive steps in terms of query performance\. You want to select distribution strategies that reduce or eliminate broadcast and distribution steps\. For more information about evaluating the EXPLAIN plan, see [Evaluating Query Patterns](t_evaluating_query_patterns.md)\. 
+   DS\_BCAST\_INNER indicates that the inner join table was broadcast to every slice\. A *DS\_DIST\_BOTH* label, if present, would indicate that both the outer join table and the inner join table were redistributed across the slices\. Broadcasting and redistribution can be expensive steps in terms of query performance\. You want to select distribution strategies that reduce or eliminate broadcast and distribution steps\. For more information about evaluating the EXPLAIN plan, see [Evaluating query patterns](t_evaluating_query_patterns.md)\. 
 
 1. Distribute the fact table and one dimension table on their common columns\. 
 
@@ -108,10 +108,10 @@ The following tuning table shows the chosen distribution styles\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-tuning-tables-distribution.html)
 
-You can find the steps for setting the distribution style in [Step 6: Recreate the Test Data Set](tutorial-tuning-tables-recreate-test-data.md)\.
+You can find the steps for setting the distribution style in [Step 6: Recreate the test data set](tutorial-tuning-tables-recreate-test-data.md)\.
 
-For more information, see [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)\.
+For more information, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
 
-## Next Step<a name="next-step-compression"></a>
+## Next step<a name="next-step-compression"></a>
 
-[Step 5: Review Compression Encodings](tutorial-tuning-tables-compression.md)
+[Step 5: Review compression encodings](tutorial-tuning-tables-compression.md)

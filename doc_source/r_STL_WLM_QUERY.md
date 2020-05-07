@@ -2,17 +2,17 @@
 
 Contains a record of each attempted execution of a query in a service class handled by WLM\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_WLM_QUERY-table-columns"></a>
+## Table columns<a name="r_STL_WLM_QUERY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_WLM_QUERY.html)
 
-## Sample Queries<a name="r_STL_WLM_QUERY-sample-queries"></a>
+## Sample queries<a name="r_STL_WLM_QUERY-sample-queries"></a>
 
- **View Average Query Time in Queues and Executing** 
+ **View average query Time in queues and executing** 
 
-The following queries display the current configuration for service classes greater than 4\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\.
+The following queries display the current configuration for service classes greater than 4\. For a list of service class IDs, see [WLM service class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\.
 
 The following query returns the average time \(in microseconds\) that each query spent in query queues and executing for each service class\. 
 
@@ -38,7 +38,7 @@ This query returns the following sample output:
 (4 rows)
 ```
 
- **View Maximum Query Time in Queues and Executing** 
+ **View maximum query time in queues and executing** 
 
 The following query returns the maximum amount of time \(in microseconds\) that a query spent in any query queue and executing for each service class\.
 

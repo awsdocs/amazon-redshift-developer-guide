@@ -4,7 +4,7 @@ Use SVV\_COLUMNS to view catalog information about the columns of local and exte
 
 SVV\_COLUMNS is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\. 
 
-The SVV\_COLUMNS view joins table metadata from the [System Catalog Tables](c_intro_catalog_views.md) \(tables with a PG prefix\) and the [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md) system view\. The system catalog tables describe Amazon Redshift database tables\. SVV\_EXTERNAL\_COLUMNS describes external tables that are used with Amazon Redshift Spectrum\. 
+The SVV\_COLUMNS view joins table metadata from the [System catalog tables](c_intro_catalog_views.md) \(tables with a PG prefix\) and the [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md) system view\. The system catalog tables describe Amazon Redshift database tables\. SVV\_EXTERNAL\_COLUMNS describes external tables that are used with Amazon Redshift Spectrum\. 
 
 All users can see all rows from the system catalog tables\. Regular users can see column definitions from the SVV\_EXTERNAL\_COLUMNS view only for external tables to which they have been granted access\. Although regular users can see table metadata in the system catalog tables, they can only select data from the user\-defined tables if they own the table or have been granted access\. 
 

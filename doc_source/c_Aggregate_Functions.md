@@ -1,17 +1,17 @@
-# Aggregate Functions<a name="c_Aggregate_Functions"></a>
+# Aggregate functions<a name="c_Aggregate_Functions"></a>
 
 **Topics**
-+ [APPROXIMATE PERCENTILE\_DISC Function](r_APPROXIMATE_PERCENTILE_DISC.md)
-+ [AVG Function](r_AVG.md)
-+ [COUNT Function](r_COUNT.md)
-+ [LISTAGG Function](r_LISTAGG.md)
-+ [MAX Function](r_MAX.md)
-+ [MEDIAN Function](r_MEDIAN.md)
-+ [MIN Function](r_MIN.md)
-+ [PERCENTILE\_CONT Function](r_PERCENTILE_CONT.md)
-+ [STDDEV\_SAMP and STDDEV\_POP Functions](r_STDDEV_functions.md)
-+ [SUM Function](r_SUM.md)
-+ [VAR\_SAMP and VAR\_POP Functions](r_VARIANCE_functions.md)
++ [APPROXIMATE PERCENTILE\_DISC function](r_APPROXIMATE_PERCENTILE_DISC.md)
++ [AVG function](r_AVG.md)
++ [COUNT function](r_COUNT.md)
++ [LISTAGG function](r_LISTAGG.md)
++ [MAX function](r_MAX.md)
++ [MEDIAN function](r_MEDIAN.md)
++ [MIN function](r_MIN.md)
++ [PERCENTILE\_CONT function](r_PERCENTILE_CONT.md)
++ [STDDEV\_SAMP and STDDEV\_POP functions](r_STDDEV_functions.md)
++ [SUM function](r_SUM.md)
++ [VAR\_SAMP and VAR\_POP functions](r_VARIANCE_functions.md)
 
 Aggregate functions compute a single result value from a set of input values\. 
 

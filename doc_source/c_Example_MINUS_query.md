@@ -1,4 +1,4 @@
-# Example EXCEPT Query<a name="c_Example_MINUS_query"></a>
+# Example EXCEPT query<a name="c_Example_MINUS_query"></a>
 
 The CATEGORY table in the TICKIT database contains the following 11 rows: 
 

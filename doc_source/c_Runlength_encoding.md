@@ -1,4 +1,4 @@
-# Runlength Encoding<a name="c_Runlength_encoding"></a>
+# Runlength encoding<a name="c_Runlength_encoding"></a>
 
 Runlength encoding replaces a value that is repeated consecutively with a token that consists of the value and a count of the number of consecutive occurrences \(the length of the run\)\. A separate dictionary of unique values is created for each block of column values on disk\. \(An Amazon Redshift disk block occupies 1 MB\.\) This encoding is best suited to a table in which data values are often repeated consecutively, for example, when the table is sorted by those values\.
 

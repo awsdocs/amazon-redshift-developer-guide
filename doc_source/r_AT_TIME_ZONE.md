@@ -1,4 +1,4 @@
-# AT TIME ZONE Function<a name="r_AT_TIME_ZONE"></a>
+# AT TIME ZONE function<a name="r_AT_TIME_ZONE"></a>
 
 AT TIME ZONE specifies which time zone to use with a TIMESTAMP or TIMESTAMPTZ expression\.
 
@@ -22,9 +22,9 @@ select pg_timezone_names();
 ```
 select pg_timezone_abbrevs();
 ```
- For more information and examples, see [Time Zone Usage Notes](CONVERT_TIMEZONE.md#CONVERT_TIMEZONE-usage-notes)\.
+ For more information and examples, see [Time zone usage notes](CONVERT_TIMEZONE.md#CONVERT_TIMEZONE-usage-notes)\.
 
-## Return Type<a name="r_AT_TIME_ZONE-return-type"></a>
+## Return type<a name="r_AT_TIME_ZONE-return-type"></a>
 
 TIMESTAMPTZ when used with a TIMESTAMP expression\. TIMESTAMP when used with a TIMESTAMPTZ expression\. 
 

@@ -1,4 +1,4 @@
-# Step 5: Create a Manifest File<a name="load-from-host-steps-create-manifest"></a>
+# Step 5: Create a manifest file<a name="load-from-host-steps-create-manifest"></a>
 
 The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY executes a command through each host connection, and then loads the output from the commands in parallel into the table\. The manifest file is a text file in JSON format that Amazon Redshift uses to connect to the host\. The manifest file specifies the SSH host endpoints and the commands that are executed on the hosts to return data to Amazon Redshift\. Optionally, you can include the host public key, the login user name, and a mandatory flag for each entry\.
 
@@ -31,7 +31,7 @@ endpoint
 The URL address or IP address of the host\. For example, "`ec2-111-222-333.compute-1.amazonaws.com`" or "`22.33.44.56`" 
 
 command   
-The command that will be executed by the host to generate text or binary \(gzip, lzop, or bzip2\) output\. The command can be any command that the user *"host\_user\_name"* has permission to run\. The command can be as simple as printing a file, or it could query a database or launch a script\. The output \(text file, gzip binary file, lzop binary file, or bzip2 binary file\) must be in a form the Amazon Redshift COPY command can ingest\. For more information, see [Preparing Your Input Data](t_preparing-input-data.md)\.
+The command that will be executed by the host to generate text or binary \(gzip, lzop, or bzip2\) output\. The command can be any command that the user *"host\_user\_name"* has permission to run\. The command can be as simple as printing a file, or it could query a database or launch a script\. The output \(text file, gzip binary file, lzop binary file, or bzip2 binary file\) must be in a form the Amazon Redshift COPY command can ingest\. For more information, see [Preparing your input data](t_preparing-input-data.md)\.
 
 publickey  
 \(Optional\) The public key of the host\. If provided, Amazon Redshift will use the public key to identify the host\. If the public key is not provided, Amazon Redshift will not attempt host identification\. For example, if the remote host's public key is: `ssh-rsa AbcCbaxxx…xxxDHKJ root@amazon.com` enter the following text in the publickey field: `AbcCbaxxx…xxxDHKJ`\. 

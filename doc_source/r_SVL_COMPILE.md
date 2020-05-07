@@ -4,6 +4,8 @@ Records compile time and location for each query segment of queries\.
 
 SVL\_COMPILE is visible to all users\.
 
+For information about SVCS\_COMPILE, see [SVCS\_COMPILE](r_SVCS_COMPILE.md)\.
+
 ## Table Columns<a name="r_SVL_COMPILE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_COMPILE.html)

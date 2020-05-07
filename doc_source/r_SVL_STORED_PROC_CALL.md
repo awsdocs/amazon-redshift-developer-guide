@@ -2,7 +2,7 @@
 
 You can query the system view SVL\_STORED\_PROC\_CALL to get information about stored procedure calls, including start time, end time, and whether a call is aborted\. Each stored procedure call receives a query ID\.
 
-SVL\_STORED\_PROC\_CALL is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_STORED\_PROC\_CALL is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVL_STORED_PROC_CALL-table-columns"></a>
 

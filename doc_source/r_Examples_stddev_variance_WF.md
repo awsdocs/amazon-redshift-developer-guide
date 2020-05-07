@@ -1,4 +1,4 @@
-# STDDEV\_POP and VAR\_POP Window Function Examples<a name="r_Examples_stddev_variance_WF"></a>
+# STDDEV\_POP and VAR\_POP window function examples<a name="r_Examples_stddev_variance_WF"></a>
 
 The following example shows how to use STDDEV\_POP and VAR\_POP functions as window functions\. The query computes the population variance and population standard deviation for PRICEPAID values in the SALES table\. 
 

@@ -1,4 +1,4 @@
-# Byte\-Dictionary Encoding<a name="c_Byte_dictionary_encoding"></a>
+# Byte\-dictionary encoding<a name="c_Byte_dictionary_encoding"></a>
 
 In byte dictionary encoding, a separate dictionary of unique values is created for each block of column values on disk\. \(An Amazon Redshift disk block occupies 1 MB\.\) The dictionary contains up to 256 one\-byte values that are stored as indexes to the original data values\. If more than 256 values are stored in a single block, the extra values are written into the block in raw, uncompressed form\. The process repeats for each disk block\.
 

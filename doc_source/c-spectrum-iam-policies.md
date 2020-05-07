@@ -1,23 +1,23 @@
-# IAM Policies for Amazon Redshift Spectrum<a name="c-spectrum-iam-policies"></a>
+# IAM policies for Amazon Redshift Spectrum<a name="c-spectrum-iam-policies"></a>
 
 By default, Amazon Redshift Spectrum uses the AWS Glue Data Catalog in AWS Regions that support AWS Glue\. In other AWS Regions, Redshift Spectrum uses the Athena Data Catalog\. Your cluster needs authorization to access your external data catalog in AWS Glue or Athena and your data files in Amazon S3\. You provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster\. If you use an Apache Hive metastore to manage your data catalog, you don't need to provide access to Athena\.
 
-You can chain roles so that your cluster can assume other roles not attached to the cluster\. For more information, see [Chaining IAM Roles in Amazon Redshift Spectrum](#c-spectrum-chaining-roles)\.
+You can chain roles so that your cluster can assume other roles not attached to the cluster\. For more information, see [Chaining IAM roles in Amazon Redshift Spectrum](#c-spectrum-chaining-roles)\.
 
 The AWS Glue catalog that you access might be encrypted to increase security\. If the AWS Glue catalog is encrypted, you need the AWS KMS key for AWS Glue to access the AWS Glue Data Catalog\. For more information, see [Encrypting Your AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/encrypt-glue-data-catalog.html) in the *[AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/)\.*
 
 **Topics**
-+ [Amazon S3 Permissions](#spectrum-iam-policies-s3)
-+ [Cross\-Account Amazon S3 Permissions](#spectrum-iam-policies-cross-account)
-+ [Policies to Grant or Restrict Redshift Spectrum Access](#spectrum-iam-policies-spectrum-only)
-+ [Policies to Grant Minimum Permissions](#spectrum-iam-policies-minimum-permissions)
-+ [Chaining IAM Roles in Amazon Redshift Spectrum](#c-spectrum-chaining-roles)
-+ [Controlling Access to the AWS Glue Data Catalog](#c-spectrum-glue-acess)
++ [Amazon S3 permissions](#spectrum-iam-policies-s3)
++ [Cross\-account Amazon S3 permissions](#spectrum-iam-policies-cross-account)
++ [Policies to grant or restrict access using Redshift Spectrum](#spectrum-iam-policies-spectrum-only)
++ [Policies to grant minimum permissions](#spectrum-iam-policies-minimum-permissions)
++ [Chaining IAM roles in Amazon Redshift Spectrum](#c-spectrum-chaining-roles)
++ [Controlling access to the AWS Glue Data Catalog](#c-spectrum-glue-acess)
 
 **Note**  
 If you currently have Redshift Spectrum external tables in the Athena Data Catalog, you can migrate your Athena Data Catalog to an AWS Glue Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
 
-## Amazon S3 Permissions<a name="spectrum-iam-policies-s3"></a>
+## Amazon S3 permissions<a name="spectrum-iam-policies-s3"></a>
 
 At a minimum, your cluster needs GET and LIST access to your Amazon S3 bucket\. If your bucket is not in the same AWS account as your cluster, your bucket must also authorize your cluster to access the data\. For more information, see [ Authorizing Amazon Redshift to Access Other AWS Services on Your Behalf](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html)\. 
 
@@ -50,7 +50,7 @@ The following policy grants GET and LIST access to your Amazon S3 bucket named `
 }
 ```
 
-## Cross\-Account Amazon S3 Permissions<a name="spectrum-iam-policies-cross-account"></a>
+## Cross\-account Amazon S3 permissions<a name="spectrum-iam-policies-cross-account"></a>
 
 To grant Redshift Spectrum permission to access data in an Amazon S3 bucket that belongs to another AWS account, add the following policy to the Amazon S3 bucket\. For more information, see [Granting Cross\-Account Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access-example2.html)\.
 
@@ -80,7 +80,7 @@ To grant Redshift Spectrum permission to access data in an Amazon S3 bucket that
 }
 ```
 
-## Policies to Grant or Restrict Redshift Spectrum Access<a name="spectrum-iam-policies-spectrum-only"></a>
+## Policies to grant or restrict access using Redshift Spectrum<a name="spectrum-iam-policies-spectrum-only"></a>
 
 To grant access to an Amazon S3 bucket only using Redshift Spectrum, include a condition that allows access for the user agent `AWS Redshift/Spectrum`\. The following policy allows access to Amazon S3 buckets only for Redshift Spectrum\. It excludes other access, such as COPY operations\.
 
@@ -110,7 +110,7 @@ Similarly, you might want to create an IAM role that allows access for COPY oper
 }
 ```
 
-## Policies to Grant Minimum Permissions<a name="spectrum-iam-policies-minimum-permissions"></a>
+## Policies to grant minimum permissions<a name="spectrum-iam-policies-minimum-permissions"></a>
 
 The following policy grants the minimum permissions required to use Redshift Spectrum with Amazon S3, AWS Glue, and Athena\. 
 
@@ -176,7 +176,7 @@ If you use Athena for your data catalog instead of AWS Glue, the policy requires
 }
 ```
 
-## Chaining IAM Roles in Amazon Redshift Spectrum<a name="c-spectrum-chaining-roles"></a>
+## Chaining IAM roles in Amazon Redshift Spectrum<a name="c-spectrum-chaining-roles"></a>
 
 When you attach a role to your cluster, your cluster can assume that role to access Amazon S3, Athena, and AWS Glue on your behalf\. If a role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. You can chain a maximum of 10 roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\. 
 
@@ -195,18 +195,18 @@ database 'acmedb' region 'us-west-2'
 iam_role 'arn:aws:iam::123456789012:role/MyRedshiftRole,arn:aws:iam::111122223333:role/AcmeData';
 ```
 
-## Controlling Access to the AWS Glue Data Catalog<a name="c-spectrum-glue-acess"></a>
+## Controlling access to the AWS Glue Data Catalog<a name="c-spectrum-glue-acess"></a>
 
 If you use AWS Glue for your data catalog, you can apply fine\-grained access control to the AWS Glue Data Catalog with your IAM policy\. For example, you might want to expose only a few databases and tables to a specific IAM role\.
 
 The following sections describe the IAM policies for various levels of access to data stored in the AWS Glue Data Catalog\.
 
 **Topics**
-+ [Policy for Database Operations](#c-spectrum-glue-acess-database)
-+ [Policy for Table Operations](#c-spectrum-glue-acess-tables)
-+ [Policy for Partition Operations](#c-spectrum-glue-acess-partitions)
++ [Policy for database operations](#c-spectrum-glue-acess-database)
++ [Policy for table operations](#c-spectrum-glue-acess-tables)
++ [Policy for partition operations](#c-spectrum-glue-acess-partitions)
 
-### Policy for Database Operations<a name="c-spectrum-glue-acess-database"></a>
+### Policy for database operations<a name="c-spectrum-glue-acess-database"></a>
 
 If you want to give users permissions to view and create a database, they need access rights to both the database and the AWS Glue Data Catalog\.
 
@@ -269,7 +269,7 @@ The following IAM policy gives the minimum permissions required to list the curr
 }
 ```
 
-### Policy for Table Operations<a name="c-spectrum-glue-acess-tables"></a>
+### Policy for table operations<a name="c-spectrum-glue-acess-tables"></a>
 
 If you want to give users permissions to view, create, drop, alter, or take other actions on tables, they need several types of access\. They need access to the tables themselves, the databases they belong to, and the catalog\.
 
@@ -404,7 +404,7 @@ The following IAM policy gives the minimum permissions required to drop an exist
 }
 ```
 
-### Policy for Partition Operations<a name="c-spectrum-glue-acess-partitions"></a>
+### Policy for partition operations<a name="c-spectrum-glue-acess-partitions"></a>
 
 If you want to give users permissions to perform partition\-level operations \(view, create, drop, alter, and so on\), they need permissions to the tables that the partitions belong to\. They also need permissions to the related databases and the AWS Glue Data Catalog\.
 

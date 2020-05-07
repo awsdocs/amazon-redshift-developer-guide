@@ -2,7 +2,9 @@
 
 Use the SVL\_S3QUERY\_SUMMARY view to get a summary of all Amazon Redshift Spectrum queries \(S3 queries\) that have been run on the system\. SVL\_S3QUERY\_SUMMARY aggregates detail from SVL\_S3QUERY at the segment level\.
 
-SVL\_S3QUERY\_SUMMARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_S3QUERY\_SUMMARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+
+For SVCS\_S3QUERY\_SUMMARY, see [SVCS\_S3QUERY\_SUMMARY](r_SVCS_S3QUERY_SUMMARY.md)\.
 
 ## Table Columns<a name="r_SVL_S3QUERY_SUMMARY-table-columns"></a>
 

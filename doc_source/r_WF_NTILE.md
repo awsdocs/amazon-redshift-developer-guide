@@ -1,4 +1,4 @@
-# NTILE Window Function<a name="r_WF_NTILE"></a>
+# NTILE window function<a name="r_WF_NTILE"></a>
 
  The NTILE window function divides ordered rows in the partition into the specified number of ranked groups of as equal size as possible and returns the group that a given row falls into\. 
 
@@ -25,12 +25,12 @@ Optional\. The range of records for each group in the OVER clause\.
 
 ORDER BY *window\_ordering*   
 Optional\. An expression that sorts the rows within each partition\. If the ORDER BY clause is omitted, the ranking behavior is the same\.  
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 
-## Return Type<a name="r_WF_NTILE-return-type"></a>
+## Return type<a name="r_WF_NTILE-return-type"></a>
 
 BIGINT
 
 ## Examples<a name="r_WF_NTILE-examples"></a>
 
-See [NTILE Window Function Examples](r_Examples_of_NTILE_WF.md)\. 
+See [NTILE window function examples](r_Examples_of_NTILE_WF.md)\. 

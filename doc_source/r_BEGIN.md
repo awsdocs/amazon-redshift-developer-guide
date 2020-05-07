@@ -33,7 +33,7 @@ TRANSACTION
 Optional keyword; WORK and TRANSACTION are synonyms\.
 
 ISOLATION LEVEL SERIALIZABLE   
-Serializable isolation is supported by default, so the behavior of the transaction is the same whether or not this syntax is included in the statement\. See [Managing Concurrent Write Operations](c_Concurrent_writes.md)\. No other isolation levels are supported\.  
+Serializable isolation is supported by default, so the behavior of the transaction is the same whether or not this syntax is included in the statement\. See [Managing concurrent write operations](c_Concurrent_writes.md)\. No other isolation levels are supported\.  
 The SQL standard defines four levels of transaction isolation to prevent *dirty reads* \(where a transaction reads data written by a concurrent uncommitted transaction\), *nonrepeatable reads* \(where a transaction re\-reads data it read previously and finds that data was changed by another transaction that committed since the initial read\), and *phantom reads* \(where a transaction re\-executes a query, returns a set of rows that satisfy a search condition, and then finds that the set of rows has changed because of another recently\-committed transaction\):  
 + Read uncommitted: Dirty reads, nonrepeatable reads, and phantom reads are possible\.
 + Read committed: Nonrepeatable reads and phantom reads are possible\.

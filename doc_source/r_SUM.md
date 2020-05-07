@@ -1,4 +1,4 @@
-# SUM Function<a name="r_SUM"></a>
+# SUM function<a name="r_SUM"></a>
 
  The SUM function returns the sum of the input column or expression values\. The SUM function works with numeric values and ignores NULL values\. 
 
@@ -16,7 +16,7 @@ The target column or expression that the function operates on\.
 DISTINCT \| ALL   
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before calculating the sum\. With the argument ALL, the function retains all duplicate values from the expression for calculating the sum\. ALL is the default\. 
 
-## Data Types<a name="c_Supported_data_types_sum"></a>
+## Data types<a name="c_Supported_data_types_sum"></a>
 
 The argument types supported by the SUM function are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, and DOUBLE PRECISION\.
 

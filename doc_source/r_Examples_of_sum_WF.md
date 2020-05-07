@@ -1,6 +1,6 @@
-# SUM Window Function Examples<a name="r_Examples_of_sum_WF"></a>
+# SUM window function examples<a name="r_Examples_of_sum_WF"></a>
 
-## Cumulative Sums \(Running Totals\)<a name="r_Examples_of_sum_WF-cumulative-sums-running-totals"></a>
+## Cumulative sums \(running totals\)<a name="r_Examples_of_sum_WF-cumulative-sums-running-totals"></a>
 
 Create a cumulative \(rolling\) sum of sales quantities ordered by date and sales ID: 
 
@@ -26,7 +26,7 @@ salesid |   dateid   | sellerid | qty | sum
 (11 rows)
 ```
 
- For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\.
+ For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\.
 
 Create a cumulative \(rolling\) sum of sales quantities by date, partition the results by seller ID, and order the results by date and sales ID within the partition: 
 
@@ -53,7 +53,7 @@ salesid |   dateid   | sellerid | qty | sum
 (11 rows)
 ```
 
-## Number Rows Sequentially<a name="r_Examples_of_sum_WF-number-rows-sequentially"></a>
+## Number rows sequentially<a name="r_Examples_of_sum_WF-number-rows-sequentially"></a>
 
 Number all of the rows in the result set, ordered by the SELLERID and SALESID columns: 
 
@@ -79,7 +79,7 @@ salesid | sellerid |  qty | rownum
 (11 rows)
 ```
 
-For a description of the WINSALES table, see [Window Function Examples](r_Window_function_examples.md)\. 
+For a description of the WINSALES table, see [Window function examples](r_Window_function_examples.md)\. 
 
 Number all rows in the result set, partition the results by SELLERID, and order the results by SELLERID and SALESID within the partition: 
 

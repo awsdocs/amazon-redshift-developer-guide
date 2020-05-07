@@ -1,4 +1,4 @@
-# LAST\_DAY Function<a name="r_LAST_DAY"></a>
+# LAST\_DAY function<a name="r_LAST_DAY"></a>
 
 LAST\_DAY returns the date of the last day of the month that contains *date*\. The return type is always DATE, regardless of the data type of the *date* argument\.
 
@@ -14,7 +14,7 @@ LAST_DAY ( { date | timestamp } )
 
 A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
 
-## Return Type<a name="r_LAST_DAY-return-type"></a>
+## Return type<a name="r_LAST_DAY-return-type"></a>
 
 DATE
 

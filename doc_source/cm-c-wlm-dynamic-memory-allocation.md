@@ -1,4 +1,4 @@
-# WLM Dynamic Memory Allocation<a name="cm-c-wlm-dynamic-memory-allocation"></a>
+# WLM dynamic memory allocation<a name="cm-c-wlm-dynamic-memory-allocation"></a>
 
 In each queue, WLM creates a number of query slots equal to the queue's concurrency level\. The amount of memory allocated to a query slot equals the percentage of memory allocated to the queue divided by the slot count\. If you change the memory allocation or concurrency, Amazon Redshift dynamically manages the transition to the new WLM configuration\. Thus, active queries can run to completion using the currently allocated amount of memory\. At the same time, Amazon Redshift ensures that total memory usage never exceeds 100 percent of available memory\.
 

@@ -1,4 +1,4 @@
-# Select Data from a Table<a name="t_selecting_data"></a>
+# Select data from a table<a name="t_selecting_data"></a>
 
 After you create a table and populate it with data, use a SELECT statement to display the data contained in the table\. The SELECT \* statement returns all the column names and row values for all of the data in a table and is a good way to verify that recently added data was correctly inserted into the table\.
 

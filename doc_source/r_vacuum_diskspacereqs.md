@@ -1,4 +1,4 @@
-# Managing the Size of the Unsorted Region<a name="r_vacuum_diskspacereqs"></a>
+# Managing the size of the unsorted region<a name="r_vacuum_diskspacereqs"></a>
 
 The unsorted region grows when you load large amounts of new data into tables that already contain data or when you do not vacuum tables as part of your routine maintenance operations\. To avoid long\-running vacuum operations, use the following practices:
 + Run vacuum operations on a regular schedule\. 
@@ -15,4 +15,4 @@ The unsorted region grows when you load large amounts of new data into tables th
   If you are loading a small number of rows into a table for test purposes, don't delete the rows when you are done\. Instead, truncate the table and reload those rows as part of the subsequent production load operation\. 
 + Perform a deep copy\. 
 
-  If a table that uses a compound sort key table has a large unsorted region, a deep copy is much faster than a vacuum\. A deep copy recreates and repopulates a table by using a bulk insert, which automatically re\-sorts the table\. If a table has a large unsorted region, a deep copy is much faster than a vacuum\. The trade off is that you cannot make concurrent updates during a deep copy operation, which you can do during a vacuum\. For more information, see [Amazon Redshift Best Practices for Designing Queries](c_designing-queries-best-practices.md)\. 
+  If a table that uses a compound sort key table has a large unsorted region, a deep copy is much faster than a vacuum\. A deep copy recreates and repopulates a table by using a bulk insert, which automatically re\-sorts the table\. If a table has a large unsorted region, a deep copy is much faster than a vacuum\. The trade off is that you cannot make concurrent updates during a deep copy operation, which you can do during a vacuum\. For more information, see [Amazon Redshift best practices for designing queries](c_designing-queries-best-practices.md)\. 

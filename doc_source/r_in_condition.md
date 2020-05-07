@@ -1,4 +1,4 @@
-# IN Condition<a name="r_in_condition"></a>
+# IN condition<a name="r_in_condition"></a>
 
 An IN condition tests a value for membership in a set of values or in a subquery\. 
 

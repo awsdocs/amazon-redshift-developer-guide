@@ -1,8 +1,8 @@
-# LOG Function<a name="r_LOG"></a>
+# LOG function<a name="r_LOG"></a>
 
 Returns the base 10 logarithm of a number\. 
 
-Synonym of [DLOG10 Function](r_DLOG10.md)\. 
+Synonym of [DLOG10 function](r_DLOG10.md)\. 
 
 ## Syntax<a name="r_LOG-synopsis"></a>
 
@@ -15,7 +15,7 @@ LOG(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_LOG-return-type"></a>
+## Return type<a name="r_LOG-return-type"></a>
 
 The LOG function returns a double precision number\. 
 

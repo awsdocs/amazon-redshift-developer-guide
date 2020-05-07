@@ -1,4 +1,4 @@
-# WHERE Clause<a name="r_WHERE_clause"></a>
+# WHERE clause<a name="r_WHERE_clause"></a>
 
 The WHERE clause contains conditions that either join tables or apply predicates to columns in tables\. Tables can be inner\-joined by using appropriate syntax in either the WHERE clause or the FROM clause\. Outer join criteria must be specified in the FROM clause\. 
 
@@ -34,7 +34,7 @@ Conditions can be simple or complex; for complex conditions, you can use parenth
 where (category.catid=event.catid) and category.catid in(6,7,8)
 ```
 
-## Usage Notes<a name="r_WHERE_clause_usage_notes"></a>
+## Usage notes<a name="r_WHERE_clause_usage_notes"></a>
 
 You can use aliases in the WHERE clause to reference select list expressions\. 
 

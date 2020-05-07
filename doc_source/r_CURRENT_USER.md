@@ -11,7 +11,7 @@ Do not use trailing parentheses when calling CURRENT\_USER\.
 current_user
 ```
 
-## Return Type<a name="r_CURRENT_USER-return-type"></a>
+## Return type<a name="r_CURRENT_USER-return-type"></a>
 
 CURRENT\_USER returns a CHAR or VARCHAR string\. 
 

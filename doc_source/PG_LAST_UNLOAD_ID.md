@@ -12,7 +12,7 @@ The UNLOAD ID is not updated if the UNLOAD command fails because of an error tha
 PG_LAST_UNLOAD_ID()
 ```
 
-## Return Type<a name="PG_LAST_UNLOAD_ID-return-type"></a>
+## Return type<a name="PG_LAST_UNLOAD_ID-return-type"></a>
 
 Returns an integer\.
 

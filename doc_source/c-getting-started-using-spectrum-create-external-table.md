@@ -1,6 +1,6 @@
-# Step 3: Create an External Schema and an External Table<a name="c-getting-started-using-spectrum-create-external-table"></a>
+# Step 3: Create an external schema and an external table<a name="c-getting-started-using-spectrum-create-external-table"></a>
 
-Create external tables in an external schema\. The external schema references a database in the external data catalog and provides the IAM role ARN that authorizes your cluster to access Amazon S3 on your behalf\. You can create an external database in an Amazon Athena Data Catalog, AWS Glue Data Catalog, or an Apache Hive metastore, such as Amazon EMR\. For this example, you create the external database in an Amazon Athena Data Catalog when you create the external schema Amazon Redshift\. For more information, see [Creating External Schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\. <a name="spectrum-get-started-create-external-table"></a>
+Create external tables in an external schema\. The external schema references a database in the external data catalog and provides the IAM role ARN that authorizes your cluster to access Amazon S3 on your behalf\. You can create an external database in an Amazon Athena Data Catalog, AWS Glue Data Catalog, or an Apache Hive metastore, such as Amazon EMR\. For this example, you create the external database in an Amazon Athena Data Catalog when you create the external schema Amazon Redshift\. For more information, see [Creating external schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\. <a name="spectrum-get-started-create-external-table"></a>
 
 **To create an external schema and an external table**
 

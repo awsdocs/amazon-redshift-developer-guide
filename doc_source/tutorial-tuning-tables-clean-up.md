@@ -1,4 +1,4 @@
-# Step 9: Clean Up Your Resources<a name="tutorial-tuning-tables-clean-up"></a>
+# Step 9: Clean up your resources<a name="tutorial-tuning-tables-clean-up"></a>
 
 Your cluster continues to accrue charges as long as it is running\. When you have completed this tutorial, you should return your environment to the previous state by following the steps in [Step 5: Revoke Access and Delete Your Sample Cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-clean-up-tasks.html) in the *Amazon Redshift Getting Started*\.
 
@@ -12,6 +12,6 @@ drop table dwdate cascade;
 drop table lineorder cascade;
 ```
 
-## Next Step<a name="w7aac25c19c29b9"></a>
+## Next step<a name="next-step-cleanup"></a>
 
 [Summary](tutorial-tuning-tables-summary.md)

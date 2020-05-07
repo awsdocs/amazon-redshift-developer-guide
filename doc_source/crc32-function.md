@@ -1,4 +1,4 @@
-# CRC32 Function<a name="crc32-function"></a>
+# CRC32 function<a name="crc32-function"></a>
 
 CRC32 is an error\-detecting function that uses a CRC32 algorithm to detect changes between source and target data\. The CRC32 function converts a variable\-length string into an 8\-character string that is a text representation of the hexadecimal value of a 32 bit\-binary sequence\.
 
@@ -13,7 +13,7 @@ CRC32(string)
  *string*   
 A variable\-length string\.
 
-## Return Type<a name="crc32-function-return-type"></a>
+## Return type<a name="crc32-function-return-type"></a>
 
 The CRC32 function returns an 8\-character string that is a text representation of the hexadecimal value of a 32\-bit binary sequence\. The Amazon Redshift CRC32 function is based on the CRC\-32C polynomial\. 
 

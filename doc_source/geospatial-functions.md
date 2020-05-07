@@ -1,4 +1,4 @@
-# Spatial Functions<a name="geospatial-functions"></a>
+# Spatial functions<a name="geospatial-functions"></a>
 
 Relationships between geometry objects are based on the Dimensionally Extended nine\-Intersection Model \(DE\-9IM\)\. This model defines predicates such as equals, contains, and covers\. For more information about the definition of spatial relationships, see [DE\-9IM](https://en.wikipedia.org/wiki/DE-9IM) in Wikipedia\.
 

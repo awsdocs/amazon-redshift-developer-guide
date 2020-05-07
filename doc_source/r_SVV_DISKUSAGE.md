@@ -4,7 +4,7 @@ Amazon Redshift creates the SVV\_DISKUSAGE system view by joining the STV\_TBL\_
 
 Use aggregate queries with SVV\_DISKUSAGE, as the following examples show, to determine the number of disk blocks allocated per database, table, slice, or column\. Each data block uses 1 MB\. You can also use [STV\_PARTITIONS](r_STV_PARTITIONS.md) to view summary information about disk utilization\.
 
-SVV\_DISKUSAGE is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVV\_DISKUSAGE is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table Columns<a name="r_SVV_DISKUSAGE-table-rows"></a>
 

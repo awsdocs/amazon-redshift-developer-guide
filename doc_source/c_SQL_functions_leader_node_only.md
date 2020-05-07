@@ -1,4 +1,4 @@
-# Leader Node–Only Functions<a name="c_SQL_functions_leader_node_only"></a>
+# Leader node–only functions<a name="c_SQL_functions_leader_node_only"></a>
 
 Some Amazon Redshift queries are distributed and executed on the compute nodes; other queries execute exclusively on the leader node\.
 
@@ -8,7 +8,7 @@ Some Amazon Redshift SQL functions are supported only on the leader node and are
 
 The documentation for each leader\-node only function includes a note stating that the function will return an error if it references user\-defined tables or Amazon Redshift system tables\.
 
-For more information, see [SQL Functions Supported on the Leader Node](c_sql-functions-leader-node.md)\.
+For more information, see [SQL functions supported on the leader node](c_sql-functions-leader-node.md)\.
 
 The following SQL functions are leader\-node only functions and are not supported on the compute nodes:
 

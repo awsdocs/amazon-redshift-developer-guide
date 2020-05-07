@@ -2,13 +2,13 @@
 
 Records details for [ANALYZE](r_ANALYZE.md) operations\.
 
-This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_ANALYZE-table-columns2"></a>
+## Table columns<a name="r_STL_ANALYZE-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_ANALYZE.html)
 
-## Sample Queries<a name="r_STL_ANALYZE-sample-queries2"></a>
+## Sample queries<a name="r_STL_ANALYZE-sample-queries2"></a>
 
 The following example joins STV\_TBL\_PERM to show the table name and execution details\. 
 

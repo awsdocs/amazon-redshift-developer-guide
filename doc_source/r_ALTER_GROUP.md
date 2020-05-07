@@ -28,7 +28,7 @@ Removes a user from a user group\.
 Name of the user to add to the group or drop from the group\. 
 
 RENAME TO   
-Renames the user group\. Group names beginning with two underscores are reserved for Amazon Redshift internal use\. For more information about valid names, see [Names and Identifiers](r_names.md)\. 
+Renames the user group\. Group names beginning with two underscores are reserved for Amazon Redshift internal use\. For more information about valid names, see [Names and identifiers](r_names.md)\. 
 
  *new\_name*   
 New name of the user group\. 

@@ -5,7 +5,7 @@ Re\-sorts rows and reclaims space in either a specified table or all tables in t
 **Note**  
 Only the table owner or a superuser can effectively vacuum a table\. If VACUUM is run without the necessary table privileges, the operation completes successfully but has no effect\. 
 
-Amazon Redshift automatically sorts data and runs VACUUM DELETE in the background\. This lessens the need to run the VACUUM command\. For more information, see [Vacuuming Tables](t_Reclaiming_storage_space202.md)\. 
+Amazon Redshift automatically sorts data and runs VACUUM DELETE in the background\. This lessens the need to run the VACUUM command\. For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\. 
 
 By default, VACUUM skips the sort phase for any table where more than 95 percent of the table's rows are already sorted\. Skipping the sort phase can significantly improve VACUUM performance\. To change the default sort or delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
@@ -16,7 +16,7 @@ Amazon Redshift automatically performs a DELETE ONLY vacuum in the background\. 
 **Note**  
 The Amazon Redshift VACUUM command syntax and behavior are substantially different from the PostgreSQL VACUUM operation\. For example, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and re\-sorts all rows\. In contrast, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for reuse\.
 
-For more information, see [Vacuuming Tables](t_Reclaiming_storage_space202.md)\.
+For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\.
 
 ## Syntax<a name="r_VACUUM_command-synopsis"></a>
 
@@ -69,12 +69,12 @@ Consider the following when using the BOOST option:
 + BOOST isn't supported with REINDEX\. 
 + BOOST is ignored with DELETE ONLY\. 
 
-## Usage Notes<a name="r_VACUUM_usage_notes"></a>
+## Usage notes<a name="r_VACUUM_usage_notes"></a>
 
-For most Amazon Redshift applications, a full vacuum is recommended\. For more information, see [Vacuuming Tables](t_Reclaiming_storage_space202.md)\.
+For most Amazon Redshift applications, a full vacuum is recommended\. For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\.
 
 Before running a vacuum operation, note the following behavior: 
-+ You can't run VACUUM within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
++ You can't run VACUUM within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 + You can run only one VACUUM command on a cluster at any given time\. If you attempt to run multiple vacuum operations concurrently, Amazon Redshift returns an error\.
 + Some amount of table growth might occur when tables are vacuumed\. This behavior is expected when there are no deleted rows to reclaim or the new sort order of the table results in a lower ratio of data compression\.
 + During vacuum operations, some degree of query performance degradation is expected\. Normal performance resumes as soon as the vacuum operation is complete\.

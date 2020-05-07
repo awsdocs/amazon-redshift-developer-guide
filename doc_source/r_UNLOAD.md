@@ -59,7 +59,7 @@ To use Amazon S3 client\-side encryption, specify the ENCRYPTED option\.
 REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. 
 
 Authorization  
-The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD command uses the same parameters the COPY command uses for authorization\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command syntax reference\.
+The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD command uses the same parameters the COPY command uses for authorization\. For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command syntax reference\.
 
 \[ FORMAT \[AS\] \] CSV \| PARQUET  <a name="unload-csv"></a>
 When CSV, unloads to a text file in CSV format using a comma \( , \) character as the default delimiter\. If a field contains delimiters, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\.   
@@ -96,7 +96,7 @@ Unloads the data to a file where each column width is a fixed length, rather tha
 You can't use FIXEDWIDTH with DELIMITER or HEADER\.
 
 ENCRYPTED  <a name="unload-parameters-encrypted"></a>
-Specifies that the output files on Amazon S3 are encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
+Specifies that the output files on Amazon S3 are encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
 To unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\), use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you UNLOAD data using KMS\_KEY\_ID, you can then COPY the same data without specifying a key\.   
 To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key using the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the **master\_symmetric\_key** portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, you must supply the same key when you COPY the encrypted data\.   
 UNLOAD doesn't support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
@@ -106,7 +106,7 @@ KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
 Specifies the key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
 
 MASTER\_SYMMETRIC\_KEY '*master\_key*'  <a name="unload-parameters-master-symmetric-key"></a>
-Specifies the master symmetric key to be used to encrypt data files on Amazon S3\. If you specify MASTER\_SYMMETRIC\_KEY, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. You can't use MASTER\_SYMMETRIC\_KEY with the CREDENTIALS parameter\. For more information, see [Loading Encrypted Data Files from Amazon S3](c_loading-encrypted-files.md)\. 
+Specifies the master symmetric key to be used to encrypt data files on Amazon S3\. If you specify MASTER\_SYMMETRIC\_KEY, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. You can't use MASTER\_SYMMETRIC\_KEY with the CREDENTIALS parameter\. For more information, see [Loading encrypted data files from Amazon S3](c_loading-encrypted-files.md)\. 
 
 BZIP2   
 Unloads data to one or more bzip2\-compressed files per slice\. Each resulting file is appended with a `.bz2` extension\. 
@@ -164,20 +164,20 @@ Specifies the AWS Region where the target Amazon S3 bucket is located\. REGION i
 The value for *aws\_region* must match an AWS Region listed in the [Amazon Redshift regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) table in the *AWS General Reference*\.  
 By default, UNLOAD assumes that the target Amazon S3 bucket is located in the same AWS Region as the Amazon Redshift cluster\.
 
-## Usage Notes<a name="unload-usage-notes"></a>
+## Usage notes<a name="unload-usage-notes"></a>
 
-### Using ESCAPE for All Delimited Text UNLOAD Operations<a name="unload-usage-escape"></a>
+### Using ESCAPE for all delimited text UNLOAD operations<a name="unload-usage-escape"></a>
 
 When you UNLOAD using a delimiter, your data can include that delimiter or any of the characters listed in the ESCAPE option description\. In this case, you must use the ESCAPE option with the UNLOAD statement\. If you don't use the ESCAPE option with the UNLOAD, subsequent COPY operations using the unloaded data might fail\.
 
 **Important**  
 We strongly recommend that you always use ESCAPE with both UNLOAD and COPY statements\. The exception is if you are certain that your data doesn't contain any delimiters or other characters that might need to be escaped\. 
 
-### Loss of Floating\-Point Precision<a name="unload-usage-floating-point-precision"></a>
+### Loss of floating\-point precision<a name="unload-usage-floating-point-precision"></a>
 
 You might encounter loss of precision for floating\-point data that is successively unloaded and reloaded\. 
 
-### Limit Clause<a name="unload-usage-limit-clause"></a>
+### Limit clause<a name="unload-usage-limit-clause"></a>
 
 The SELECT query can't use a LIMIT clause in the outer SELECT\. For example, the following UNLOAD statement fails\.
 
@@ -196,11 +196,11 @@ to 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedsh
 
 You can also populate a table using SELECT…INTO or CREATE TABLE AS using a LIMIT clause, then unload from that table\.
 
-### Unloading a Column of the GEOMETRY Data Type<a name="unload-usage-geometry"></a>
+### Unloading a column of the GEOMETRY data type<a name="unload-usage-geometry"></a>
 
 You can only unload GEOMETRY columns to text or CSV format\. You can't unload GEOMETRY data with the `FIXEDWIDTH` option\. The data is unloaded in the hexadecimal form of the extended well\-known binary \(EWKB\) format\. If the size of the EWKB data is more than 4 MB, then a warning occurs because the data can't later be loaded into a table\. 
 
-### FORMAT AS PARQUET Clause<a name="unload-parquet-usage"></a>
+### FORMAT AS PARQUET clause<a name="unload-parquet-usage"></a>
 
 Be aware of these considerations when using FORMAT AS PARQUET:
 + Unload to Parquet doesn't use file level compression\. Each row group is compressed with SNAPPY\.
@@ -210,12 +210,12 @@ Be aware of these considerations when using FORMAT AS PARQUET:
 + If a column uses TIMESTAMPTZ data format, only the timestamp values are unloaded\. The time zone information isn't unloaded\.
 + Don't specify file name prefixes that begin with underscore \(\_\) or period \(\.\) characters\. Redshift Spectrum treats files that begin with these characters as hidden files and ignores them\.
 
-### PARTITION BY Clause<a name="unload-partitionby-usage"></a>
+### PARTITION BY clause<a name="unload-partitionby-usage"></a>
 
 Be aware of these considerations when using PARTITION BY:
 + Partition columns aren't included in the output file\.
 + Make sure to include partition columns in the SELECT query used in the UNLOAD statement\. You can specify any number of partition columns in the UNLOAD command\. However, there is a limitation that there should be at least one nonpartition column to be part of the file\.
 + If the partition key value is null, Amazon Redshift automatically unloads that data into a default partition called `partition_column=__HIVE_DEFAULT_PARTITION__`\. 
 + The UNLOAD command doesn't make any calls to an external catalog\. To register your new partitions to be part of your existing external table, use a separate ALTER TABLE \.\.\. ADD PARTITION \.\.\. command\. Or you can run a CREATE EXTERNAL TABLE command to register the unloaded data as a new external table\. You can also use an AWS Glue crawler to populate your Data Catalog\. For more information, see [Defining Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. 
-+ The MANIFEST keyword isn't supported\.
++ If you use the MANIFEST option, Amazon Redshift generates only one manifest file in the root Amazon S3 folder\.
 + The column data types that you can use as the partition key are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, BOOLEAN, CHAR, VARCHAR, DATE, and TIMESTAMP\. 

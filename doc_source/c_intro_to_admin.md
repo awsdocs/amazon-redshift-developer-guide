@@ -1,13 +1,13 @@
-# Getting Started Using Databases<a name="c_intro_to_admin"></a>
+# Getting started using databases<a name="c_intro_to_admin"></a>
 
 **Topics**
-+ [Step 1: Create a Database](t_creating_database.md)
-+ [Step 2: Create a Database User](t_adding_redshift_user_cmd.md)
-+ [Step 3: Create a Database Table](t_creating_table.md)
-+ [Step 4: Load Sample Data](cm-dev-t-load-sample-data.md)
-+ [Step 5: Query the System Tables](t_querying_redshift_system_tables.md)
-+ [Step 6: Cancel a Query](cancel_query.md)
-+ [Step 7: Clean Up Your Resources](cm-dev-t-clean-up-resources.md)
++ [Step 1: Create a database](t_creating_database.md)
++ [Step 2: Create a database user](t_adding_redshift_user_cmd.md)
++ [Step 3: Create a database table](t_creating_table.md)
++ [Step 4: Load sample data](cm-dev-t-load-sample-data.md)
++ [Step 5: Query the system tables](t_querying_redshift_system_tables.md)
++ [Step 6: Cancel a query](cancel_query.md)
++ [Step 7: Clean up your resources](cm-dev-t-clean-up-resources.md)
 
 This section describes the basic steps to begin using the Amazon Redshift database\.
 

@@ -4,13 +4,13 @@ Returns information about user session history\.
 
 STL\_SESSIONS differs from STV\_SESSIONS in that STL\_SESSIONS contains session history, where STV\_SESSIONS contains the current active sessions\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_SESSIONS-table-columns"></a>
+## Table columns<a name="r_STL_SESSIONS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_SESSIONS.html)
 
-## Sample Queries<a name="r_STL_SESSIONS-sample-queries"></a>
+## Sample queries<a name="r_STL_SESSIONS-sample-queries"></a>
 
 To view session history for the TICKIT database, type the following query:
 

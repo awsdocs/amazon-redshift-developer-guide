@@ -1,13 +1,13 @@
-# Choosing a Column Compression Type<a name="t_Compressing_data_on_disk"></a>
+# Choosing a column compression type<a name="t_Compressing_data_on_disk"></a>
 
 **Topics**
-+ [Compression Encodings](c_Compression_encodings.md)
-+ [Testing Compression Encodings](t_Verifying_data_compression.md)
-+ [Example: Choosing Compression Encodings for the CUSTOMER Table](Examples__compression_encodings_in_CREATE_TABLE_statements.md)
++ [Compression encodings](c_Compression_encodings.md)
++ [Testing compression encodings](t_Verifying_data_compression.md)
++ [Example: Choosing compression encodings for the CUSTOMER table](Examples__compression_encodings_in_CREATE_TABLE_statements.md)
 
 Compression is a column\-level operation that reduces the size of data when it is stored\. Compression conserves storage space and reduces the size of data that is read from storage, which reduces the amount of disk I/O and therefore improves query performance\.
 
-You can apply a compression type, or *encoding*, to the columns in a table manually when you create the table, or you can use the COPY command to analyze and apply compression automatically\. For details about applying automatic compression, see [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)\.
+You can apply a compression type, or *encoding*, to the columns in a table manually when you create the table, or you can use the COPY command to analyze and apply compression automatically\. For details about applying automatic compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
 **Note**  
 We strongly recommend using the COPY command to apply automatic compression\.

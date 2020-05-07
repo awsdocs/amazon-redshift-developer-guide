@@ -1,4 +1,4 @@
-# DECODE Expression<a name="r_DECODE_expression"></a>
+# DECODE expression<a name="r_DECODE_expression"></a>
 
 A DECODE expression replaces a specific value with either another specific value or a default value, depending on the result of an equality condition\. This operation is equivalent to the operation of a simple CASE expression or an IF\-THEN\-ELSE statement\.
 
@@ -26,11 +26,11 @@ The data types of all instances of the result expression must be the same or com
  *default*   
 An optional default value that is used for cases when the search condition fails\. If you do not specify a default value, the DECODE expression returns NULL\.
 
-## Usage Notes<a name="decode-expression-usage-notes"></a>
+## Usage notes<a name="decode-expression-usage-notes"></a>
 
 If the *expression* value and the *search* value are both NULL, the DECODE result is the corresponding *result* value\. For an illustration of this use of the function, see the Examples section\.
 
-When used this way, DECODE is similar to [NVL2 Expression](r_NVL2.md), but there are some differences\. For a description of these differences, see the NVL2 usage notes\.
+When used this way, DECODE is similar to [NVL2 expression](r_NVL2.md), but there are some differences\. For a description of these differences, see the NVL2 usage notes\.
 
 ## Examples<a name="r_DECODE_expression-examples"></a>
 

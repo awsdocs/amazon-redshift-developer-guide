@@ -1,8 +1,8 @@
-# Distribution Examples<a name="c_Distribution_examples"></a>
+# Distribution examples<a name="c_Distribution_examples"></a>
 
 The following examples show how data is distributed according to the options that you define in the CREATE TABLE statement\.
 
-## DISTKEY Examples<a name="c_Distribution_examples-distkey-examples"></a>
+## DISTKEY examples<a name="c_Distribution_examples-distkey-examples"></a>
 
 Look at the schema of the USERS table in the TICKIT database\. USERID is defined as the SORTKEY column and the DISTKEY column: 
 
@@ -58,7 +58,7 @@ slice | col | rows  | minvalue | maxvalue
 (4 rows)
 ```
 
-## DISTSTYLE EVEN Example<a name="c_Distribution_examples-diststyle-even-example"></a>
+## DISTSTYLE EVEN example<a name="c_Distribution_examples-diststyle-even-example"></a>
 
 If you create a new table with the same data as the USERS table but set the DISTSTYLE to EVEN, rows are always evenly distributed across slices\. 
 
@@ -81,7 +81,7 @@ slice | col | rows  | minvalue | maxvalue
 
 However, because distribution is not based on a specific column, query processing can be degraded, especially if the table is joined to other tables\. The lack of distribution on a joining column often influences the type of join operation that can be performed efficiently\. Joins, aggregations, and grouping operations are optimized when both tables are distributed and sorted on their respective joining columns\.
 
-## DISTSTYLE ALL Example<a name="c_Distribution_examples-diststyle-all-example"></a>
+## DISTSTYLE ALL example<a name="c_Distribution_examples-diststyle-all-example"></a>
 
 If you create a new table with the same data as the USERS table but set the DISTSTYLE to ALL, all the rows are distributed to the first slice of each node\. 
 

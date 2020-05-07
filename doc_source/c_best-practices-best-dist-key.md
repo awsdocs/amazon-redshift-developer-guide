@@ -1,4 +1,4 @@
-# Choose the Best Distribution Style<a name="c_best-practices-best-dist-key"></a>
+# Choose the best distribution style<a name="c_best-practices-best-dist-key"></a>
 
 When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in selecting a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is run\. Some suggestions for best approach follow:
 
@@ -20,4 +20,4 @@ When you execute a query, the query optimizer redistributes the rows to the comp
 
 To let Amazon Redshift choose the appropriate distribution style, don't specify DISTSTYLE\.
 
-For more information about choosing distribution styles, see [Tutorial: Tuning Table Design](tutorial-tuning-tables.md) and [Choosing a Data Distribution Style](t_Distributing_data.md)\.
+For more information about choosing distribution styles, see [Tutorial: Tuning table design](tutorial-tuning-tables.md) and [Choosing a data distribution style](t_Distributing_data.md)\.

@@ -1,4 +1,4 @@
-# Compress Your Data Files<a name="c_best-practices-compress-data-files"></a>
+# Compress your data files<a name="c_best-practices-compress-data-files"></a>
 
 We strongly recommend that you individually compress your load files using gzip, lzop, bzip2, or Zstandard when you have large datasets\.
 

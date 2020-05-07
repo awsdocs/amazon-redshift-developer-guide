@@ -1,7 +1,7 @@
-# Querying the Catalog Tables<a name="c_join_PG"></a>
+# Querying the catalog tables<a name="c_join_PG"></a>
 
 **Topics**
-+ [Examples of Catalog Queries](c_join_PG_examples.md)
++ [Examples of catalog queries](c_join_PG_examples.md)
 
 In general, you can join catalog tables and views \(relations whose names begin with **PG\_**\) to Amazon Redshift tables and views\. 
 

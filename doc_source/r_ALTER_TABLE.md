@@ -3,13 +3,13 @@
 **Topics**
 + [Syntax](#r_ALTER_TABLE-synopsis)
 + [Parameters](#r_ALTER_TABLE-parameters)
-+ [ALTER TABLE Examples](r_ALTER_TABLE_examples_basic.md)
-+ [Alter External Table Examples](r_ALTER_TABLE_external-table.md)
-+ [ALTER TABLE ADD and DROP COLUMN Examples](r_ALTER_TABLE_COL_ex-add-drop.md)
++ [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md)
++ [ALTER EXTERNAL TABLE examples](r_ALTER_TABLE_external-table.md)
++ [ALTER TABLE ADD and DROP COLUMN examples](r_ALTER_TABLE_COL_ex-add-drop.md)
 
 Changes the definition of a database table or Amazon Redshift Spectrum external table\. This command updates the values and properties set by CREATE TABLE or CREATE EXTERNAL TABLE\.
 
-You can't run ALTER TABLE on an external table within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+You can't run ALTER TABLE on an external table within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 **Note**  
 ALTER TABLE locks the table for read and write operations until the transaction enclosing the ALTER TABLE operation completes\. 
@@ -70,7 +70,7 @@ ALTER TABLE tablename ALTER DISTSTYLE ALL, ALTER SORTKEY (column_list);
 ## Parameters<a name="r_ALTER_TABLE-parameters"></a>
 
  *table\_name*   
-The name of the table to alter\. Either specify just the name of the table, or use the format *schema\_name\.table\_name* to use a specific schema\. External tables must be qualified by an external schema name\. You can also specify a view name if you are using the ALTER TABLE statement to rename a view or change its owner\. The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+The name of the table to alter\. Either specify just the name of the table, or use the format *schema\_name\.table\_name* to use a specific schema\. External tables must be qualified by an external schema name\. You can also specify a view name if you are using the ALTER TABLE statement to rename a view or change its owner\. The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 ADD *table\_constraint*   
 A clause that adds the specified constraint to the table\. For descriptions of valid *table\_constraint* values, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.  
@@ -100,11 +100,11 @@ You can't rename an external table\.
 
 ALTER COLUMN *column\_name* TYPE *new\_data\_type*   
 A clause that changes the size of a column defined as a VARCHAR data type\. Consider the following limitations:  
-+ You can’t alter a column with compression encodings BYTEDICT, RUNLENGTH, TEXT255, or TEXT32K\. 
++ You can't alter a column with compression encodings BYTEDICT, RUNLENGTH, TEXT255, or TEXT32K\. 
 + You can't decrease the size less than maximum size of existing data\. 
 + You can't alter columns with default values\. 
 + You can't alter columns with UNIQUE, PRIMARY KEY, or FOREIGN KEY\. 
-+ You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
++ You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ALTER DISTSTYLE ALL  
 A clause that changes the existing distribution style of a table to `ALL`\. Consider the following:  
@@ -131,7 +131,7 @@ A clause that changes or adds the sort key used for a table\. Consider the follo
 When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 RENAME COLUMN *column\_name* TO *new\_name*   
-A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and Identifiers](r_names.md)\.
+A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 ADD \[ COLUMN \] *column\_name*   
 A clause that adds a column with the specified name to the table\. You can add only one column in each ALTER TABLE statement\.  
@@ -150,7 +150,7 @@ For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
  *column\_type*   
 The data type of the column being added\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65,535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.   
-Amazon Redshift supports the following [Data Types](c_Supported_data_types.md):   
+Amazon Redshift supports the following [Data types](c_Supported_data_types.md):   
 + SMALLINT \(INT2\)
 + INTEGER \(INT, INT4\)
 + BIGINT \(INT8\)
@@ -223,7 +223,7 @@ RESTRICT and CASCADE are ignored for external tables\.
 The following options apply only to external tables\.
 
 SET LOCATION \{ 's3://*bucket/folder*/' \| 's3://*bucket/manifest\_file*' \}  
-The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum Considerations](c-using-spectrum.md#c-spectrum-considerations)\. For more information about using a manifest file, see LOCATION in the CREATE EXTERNAL TABLE [Parameters](r_CREATE_EXTERNAL_TABLE.md#r_CREATE_EXTERNAL_TABLE-parameters) reference\.
+The path to the Amazon S3 folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum considerations](c-using-spectrum.md#c-spectrum-considerations)\. For more information about using a manifest file, see LOCATION in the CREATE EXTERNAL TABLE [Parameters](r_CREATE_EXTERNAL_TABLE.md#r_CREATE_EXTERNAL_TABLE-parameters) reference\.
 
 SET FILE FORMAT *format*  
 The file format for external data files\.  
