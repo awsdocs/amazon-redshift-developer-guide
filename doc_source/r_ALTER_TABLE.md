@@ -108,7 +108,7 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 
 ALTER DISTSTYLE ALL  
 A clause that changes the existing distribution style of a table to `ALL`\. Consider the following:  
-+ An ALTER DISTSYTLE, ALTER SORTKEY, and VACUUM can't run concurrently on the same table\. 
++ An ALTER DISTSTYLE, ALTER SORTKEY, and VACUUM can't run concurrently on the same table\. 
   + If VACUUM is currently running, then running ALTER DISTSTYLE ALL returns an error\. 
   + If ALTER DISTSTYLE ALL is running, then a background vacuum doesn't start on a table\. 
 + The ALTER DISTSTYLE ALL command is not supported for tables with interleaved sort keys and temporary tables\.
