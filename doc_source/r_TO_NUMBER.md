@@ -20,6 +20,8 @@ The second argument is a format string that indicates how the character string s
 
 TO\_NUMBER returns a DECIMAL number\. 
 
+If the conversion to *format* fails, then an error is returned\. 
+
 ## Examples<a name="r_TO_NUMBER-examples"></a>
 
 The following example converts the string `12,454.8-` to a number: 

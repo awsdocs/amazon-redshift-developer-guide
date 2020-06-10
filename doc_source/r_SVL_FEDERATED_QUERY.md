@@ -4,11 +4,11 @@ Use the SVL\_FEDERATED\_QUERY view to view information about a federated query c
 
 SVL\_FEDERATED\_QUERY is visible to all users\. Superusers can see all rows\. Regular users can see only their own data\.
 
-## Table Columns<a name="SVL_FEDERATED_QUERY-table-columns"></a>
+## Table columns<a name="SVL_FEDERATED_QUERY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_FEDERATED_QUERY.html)
 
-## Sample Queries<a name="SVL_FEDERATED_QUERY-sample-queries"></a>
+## Sample queries<a name="SVL_FEDERATED_QUERY-sample-queries"></a>
 
 To show information about federated query calls, run the following query\.
 

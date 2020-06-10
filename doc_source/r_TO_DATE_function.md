@@ -22,6 +22,8 @@ A string literal that defines the format of the input *string*, in terms of its 
 
 TO\_DATE returns a DATE, depending on the *format* value\. 
 
+If the conversion to *format* fails, then an error is returned\. 
+
 ## Example<a name="r_TO_DATE_function-example"></a>
 
  The following command converts the date `02 Oct 2001` into the default date format: 

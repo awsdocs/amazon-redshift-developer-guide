@@ -23,7 +23,7 @@ AS query
 where table_attributes are:  
 [ DISTSTYLE { EVEN | ALL | KEY } ]
 [ DISTKEY( distkey_identifier ) ]
-[ [ { COMPOUND | INTERLEAVED } ] SORTKEY( column_name [, ...] ) ]
+[ [ COMPOUND | INTERLEAVED ] SORTKEY( column_name [, ...] ) ]
 ```
 
 ## Parameters<a name="r_CREATE_TABLE_AS-parameters"></a>
@@ -70,7 +70,7 @@ Specifies a column name or positional number for the distribution key\. Use the 
 + If you don't specify DISTKEY or DISTSTYLE, CTAS determines the distribution style for the new table based on the query plan for the SELECT clause\. For more information, see [Inheritance of column and table attributes](r_CTAS_usage_notes.md#r_CTAS_usage_notes-inheritance-of-column-and-table-attributes)\.
 You can define the same column as the distribution key and the sort key; this approach tends to accelerate joins when the column in question is a joining column in the query\.
 
-\[ \{ COMPOUND \| INTERLEAVED \} \] SORTKEY \( *column\_name* \[, \.\.\. \] \)  
+\[ COMPOUND \| INTERLEAVED \] SORTKEY \( *column\_name* \[, \.\.\. \] \)  
 Specifies one or more sort keys for the table\. When data is loaded into the table, the data is sorted by the columns that are designated as sort keys\.   
 You can optionally specify COMPOUND or INTERLEAVED sort style\. The default is COMPOUND\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.  
 You can define a maximum of 400 COMPOUND SORTKEY columns or 8 INTERLEAVED SORTKEY columns per table\.   

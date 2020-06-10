@@ -26,7 +26,8 @@ ADD table_constraint
 | RENAME COLUMN column_name TO new_name            
 | ALTER COLUMN column_name TYPE new_data_type              
 | ALTER DISTKEY column_name 
-| ALTER DISTSTYLE ALL             
+| ALTER DISTSTYLE ALL       
+| ALTER DISTSTYLE EVEN
 | ALTER DISTSTYLE KEY DISTKEY column_name   
 | ALTER [COMPOUND] SORTKEY ( column_name [,...] )             
 | ADD [ COLUMN ] column_name column_type
@@ -113,6 +114,14 @@ A clause that changes the existing distribution style of a table to `ALL`\. Cons
   + If ALTER DISTSTYLE ALL is running, then a background vacuum doesn't start on a table\. 
 + The ALTER DISTSTYLE ALL command is not supported for tables with interleaved sort keys and temporary tables\.
 For more information about DISTSTYLE ALL, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
+
+ALTER DISTSTYLE EVEN  
+A clause that changes the existing distribution style of a table to `EVEN`\. Consider the following:  
++ An ALTER DISTSYTLE, ALTER SORTKEY, and VACUUM can't run concurrently on the same table\. 
+  + If VACUUM is currently running, then running ALTER DISTSTYLE EVEN returns an error\. 
+  + If ALTER DISTSTYLE EVEN is running, then a background vacuum doesn't start on a table\. 
++ The ALTER DISTSTYLE EVEN command is not supported for tables with interleaved sort keys and temporary tables\.
+For more information about DISTSTYLE EVEN, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER DISTKEY *column\_name* or ALTER DISTSTYLE KEY DISTKEY *column\_name*  
 A clause that changes the column used as the distribution key of a table\. Consider the following:  

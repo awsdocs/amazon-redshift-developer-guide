@@ -1,8 +1,10 @@
 # SET<a name="r_SET"></a>
 
-Sets the value of a server configuration parameter\.
+Sets the value of a server configuration parameter\. Use the SET command to override a setting for the duration of the current session or transaction only\.
 
-Use the [RESET](r_RESET.md) command to return a parameter to its default value\. See [Modifying the server configuration](t_Modifying_the_default_settings.md) for more information about parameters\. 
+Use the [RESET](r_RESET.md) command to return a parameter to its default value\. 
+
+You can change the server configuration parameters in several ways\. For more information, see [Modifying the server configuration](t_Modifying_the_default_settings.md)\. 
 
 ## Syntax<a name="r_SET-synopsis"></a>
 

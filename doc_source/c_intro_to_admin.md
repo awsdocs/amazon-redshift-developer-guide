@@ -11,7 +11,7 @@
 
 This section describes the basic steps to begin using the Amazon Redshift database\.
 
-The examples in this section assume you have signed up for the Amazon Redshift data warehouse service, created a cluster, and established a connection to the cluster from your SQL query tool\. For information about these tasks, see [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\.
+The examples in this section assume you have signed up for the Amazon Redshift data warehouse service, created a cluster, and established a connection to the cluster from your SQL client tool such at the Amazon Redshift console query editor\. For information about these tasks, see [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\.
 
 **Important**  
 The cluster that you deployed for this exercise will be running in a live environment\. As long as it is running, it will accrue charges to your AWS account\. For more pricing information, go to [the Amazon Redshift pricing page](https://aws.amazon.com/redshift/pricing/)\.   

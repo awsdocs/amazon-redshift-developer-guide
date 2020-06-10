@@ -7,11 +7,11 @@ System views with the prefix SVCS provide details about queries on both the main
 
 This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVCS_EXPLAIN-table-columns"></a>
+## Table columns<a name="r_SVCS_EXPLAIN-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_EXPLAIN.html)
 
-## Sample Queries<a name="r_SVCS_EXPLAIN-sample-queries"></a>
+## Sample queries<a name="r_SVCS_EXPLAIN-sample-queries"></a>
 
 Consider the following EXPLAIN output for an aggregate join query: 
 

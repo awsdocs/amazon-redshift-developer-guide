@@ -51,6 +51,7 @@
 + [FETCH](fetch.md)
 + [GRANT](r_GRANT.md)
 + [INSERT](r_INSERT_30.md)
++ [INSERT \(external table\)](r_INSERT_external_table.md)
 + [LOCK](r_LOCK.md)
 + [PREPARE](r_PREPARE.md)
 + [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)

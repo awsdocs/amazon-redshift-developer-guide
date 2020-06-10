@@ -9,11 +9,11 @@ SVCS\_S3LOG is visible to all users\. Superusers can see all rows; regular users
 
 For information about SVL\_S3LOG, see [SVL\_S3LOG](r_SVL_S3LOG.md)\.
 
-## Table Columns<a name="r_SVCS_S3LOG-table-columns"></a>
+## Table columns<a name="r_SVCS_S3LOG-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_S3LOG.html)
 
-## Sample Query<a name="r_SVCS_S3LOG-sample-query"></a>
+## Sample query<a name="r_SVCS_S3LOG-sample-query"></a>
 
 The following example queries SVCS\_S3LOG for the last query that ran\.
 

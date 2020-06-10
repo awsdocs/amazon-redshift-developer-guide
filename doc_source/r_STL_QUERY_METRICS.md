@@ -15,7 +15,7 @@ The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view and the [SVL\_QUERY\_METR
 
 This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table rows<a name="r_STL_QUERY_METRICS-table-rows2"></a>
+## Table columns<a name="r_STL_QUERY_METRICS-table-rows2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_QUERY_METRICS.html)
 

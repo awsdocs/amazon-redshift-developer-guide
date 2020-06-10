@@ -6,7 +6,7 @@ SELECT PG\_TERMINATE\_BACKEND\(*pid*\), SELECT PG\_CANCEL\_BACKEND\(*pid*\), and
 
 SVL\_ TERMINATE is visible only to the superuser\.
 
-## Table Columns<a name="r_SVL_TERMINATE-table-rows"></a>
+## Table columns<a name="r_SVL_TERMINATE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_TERMINATE.html)
 

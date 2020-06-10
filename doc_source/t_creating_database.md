@@ -4,7 +4,7 @@ After you have verified that your cluster is up and running, you can create your
 
 After you connect to the initial cluster database, the database you created when you launched the cluster, you use the initial database as the base for creating a new database\.
 
-For example, to create a database named **tickit**, issue the following command: 
+For example, to create a database named **tickit**, issue the following command in your SQL client tool: 
 
 ```
 create database tickit;

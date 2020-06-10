@@ -35,12 +35,12 @@ Truncate a specified set of event names to 20 characters and prepend the shorter
 select lpad(eventname,20) from event
 where eventid between 1 and 5 order by 1;
 
-lpad
-----------------------
-Salome
-Il Trovatore
-Boris Godunov
-Gotterdammerung
+ lpad
+--------------------
+              Salome
+        Il Trovatore
+       Boris Godunov
+     Gotterdammerung
 La Cenerentola (Cind
 (5 rows)
 ```
@@ -51,8 +51,8 @@ Truncate the same set of event names to 20 characters but append the shorter nam
 select rpad(eventname,20,'0123456789') from event
 where eventid between 1 and 5 order by 1;
 
-rpad
-----------------------
+ rpad
+--------------------
 Boris Godunov0123456
 Gotterdammerung01234
 Il Trovatore01234567

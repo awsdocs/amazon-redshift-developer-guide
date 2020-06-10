@@ -11,8 +11,7 @@ The ORDER BY clause sorts the result set of a query\.
 ## Syntax<a name="r_ORDER_BY_clause-synopsis"></a>
 
 ```
-[ ORDER BY expression
-[ ASC | DESC ]
+[ ORDER BY expression [ ASC | DESC ] ]
 [ NULLS FIRST | NULLS LAST ]  
 [ LIMIT { count | ALL } ]
 [ OFFSET start ]

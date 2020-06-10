@@ -32,8 +32,6 @@ Each compute node has its own dedicated CPU, memory, and attached disk storage, 
 
 Amazon Redshift provides several node types for your compute and storage needs\. For details of each node type, see [Amazon Redshift clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html) in the *Amazon Redshift Cluster Management Guide*\. 
 
-For a more detailed explanation of data warehouse clusters and nodes, see [Internal architecture and system operation](c_internal_arch_system_operation.md)\.
-
  **Node slices** 
 
 A compute node is partitioned into slices\. Each slice is allocated a portion of the node's memory and disk space, where it processes a portion of the workload assigned to the node\. The leader node manages distributing data to the slices and apportions the workload for any queries or other database operations to the slices\. The slices then work in parallel to complete the operation\.

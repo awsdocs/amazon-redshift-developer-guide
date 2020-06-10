@@ -9,7 +9,6 @@
 + [ATAN2 function](r_ATAN2.md)
 + [CBRT function](r_CBRT.md)
 + [CEILING \(or CEIL\) function](r_CEILING_FLOOR.md)
-+ [CHECKSUM function](r_CHECKSUM.md)
 + [COS function](r_COS.md)
 + [COT function](r_COT.md)
 + [DEGREES function](r_DEGREES.md)

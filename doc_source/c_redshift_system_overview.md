@@ -4,7 +4,6 @@
 + [Data warehouse system architecture](c_high_level_system_architecture.md)
 + [Performance](c_challenges_achieving_high_performance_queries.md)
 + [Columnar storage](c_columnar_storage_disk_mem_mgmnt.md)
-+ [Internal architecture and system operation](c_internal_arch_system_operation.md)
 + [Workload management](c_workload_mngmt_classification.md)
 + [Using Amazon Redshift with other services](using-redshift-with-other-services.md)
 

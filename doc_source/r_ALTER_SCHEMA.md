@@ -51,9 +51,9 @@ alter schema us_sales
 owner to dwuser;
 ```
 
-The following example changes the quota to 300 MB and removes the quota\.
+The following example changes the quota to 300 GB and removes the quota\.
 
 ```
-alter schema us_sales QUOTA 300 MB;
+alter schema us_sales QUOTA 300 GB;
 alter schema us_sales QUOTA UNLIMITED;
 ```

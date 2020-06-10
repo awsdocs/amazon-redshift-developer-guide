@@ -4,11 +4,11 @@ You can query the system view SVL\_STORED\_PROC\_CALL to get information about s
 
 SVL\_STORED\_PROC\_CALL is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_STORED_PROC_CALL-table-columns"></a>
+## Table columns<a name="r_SVL_STORED_PROC_CALL-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_STORED_PROC_CALL.html)
 
-## Sample Query<a name="r_SVL_STORED_PROC_CALL-sample-query"></a>
+## Sample query<a name="r_SVL_STORED_PROC_CALL-sample-query"></a>
 
 The following query returns the elapsed time in descending order and the completion status for stored procedure calls in the past day\.
 

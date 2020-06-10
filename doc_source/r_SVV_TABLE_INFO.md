@@ -8,11 +8,11 @@ The SVV\_TABLE\_INFO view summarizes information from the [STV\_BLOCKLIST](r_STV
 
 SVV\_TABLE\_INFO is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. To permit a user to query the view, grant SELECT privilege on SVV\_TABLE\_INFO to the user\.
 
-## Table Columns<a name="SVV_TABLE_INFO-table-columns"></a>
+## Table columns<a name="SVV_TABLE_INFO-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_TABLE_INFO.html)
 
-## Sample Queries<a name="SVV_TABLE_INFO-sample-queries"></a>
+## Sample queries<a name="SVV_TABLE_INFO-sample-queries"></a>
 
 The following example shows encoding, distribution style, sorting, and data skew for all user\-defined tables in the database\. Note that "table" must be enclosed in double quotes because it is a reserved word\.
 

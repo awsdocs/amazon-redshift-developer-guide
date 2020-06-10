@@ -31,8 +31,7 @@ SELECT
 [ GROUP BY expression [, ...] ]
 [ HAVING condition ]
 [ { UNION | ALL | INTERSECT | EXCEPT | MINUS } query ]
-[ ORDER BY expression
-[ ASC | DESC ]
+[ ORDER BY expression [ ASC | DESC ] ]
 [ LIMIT { number | ALL } ]
 [ OFFSET start ]
 ```

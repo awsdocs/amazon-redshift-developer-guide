@@ -9,11 +9,11 @@ SVCS\_S3LIST is visible to all users\. Superusers can see all rows; regular user
 
 For information about SVL\_S3LIST, see [SVL\_S3LIST](r_SVL_S3LIST.md)\.
 
-## Table Columns<a name="r_SVCS_S3LIST-table-columns"></a>
+## Table columns<a name="r_SVCS_S3LIST-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_S3LIST.html)
 
-## Sample Query<a name="r_SVCS_S3LIST-sample-query"></a>
+## Sample query<a name="r_SVCS_S3LIST-sample-query"></a>
 
 The following example queries SVCS\_S3LIST for the last query executed\.
 

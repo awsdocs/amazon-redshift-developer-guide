@@ -19,9 +19,17 @@ FLOOR returns an integer\.
 
 ## Example<a name="r_FLOOR-example"></a>
 
-Calculate the floor of the commission paid for a given sales transaction: 
+The example shows the value of the commission paid for a given sales transaction before and after using the FLOOR function\. 
 
 ```
+select commission from sales
+where salesid=10000;
+
+floor
+-------
+28.05
+(1 row)
+
 select floor(commission) from sales
 where salesid=10000;
 

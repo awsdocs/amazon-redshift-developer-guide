@@ -1,4 +1,4 @@
-# Data Type Formatting functions<a name="r_Data_type_formatting"></a>
+# Data type formatting functions<a name="r_Data_type_formatting"></a>
 
 **Topics**
 + [CAST and CONVERT functions](r_CAST_function.md)

@@ -1,6 +1,6 @@
 # GETDATE function<a name="r_GETDATE"></a>
 
-GETDATE returns the current date and time in the current session time zone \(UTC by default\)\.
+GETDATE returns the current date and time in the current session time zone \(UTC by default\)\. It returns the start date or time of the current statement, even when it is within a transaction block\.
 
 ## Syntax<a name="r_GETDATE-synopsis"></a>
 

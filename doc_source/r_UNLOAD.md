@@ -16,12 +16,12 @@ authorization
 
 where option is
 { [ FORMAT [ AS ] ] CSV | PARQUET
-| PARTITION BY ( column_name [, ... ] ) [INCLUDE]
+| PARTITION BY ( column_name [, ... ] ) [ INCLUDE ]
 | MANIFEST [ VERBOSE ] 
 | HEADER           
 | DELIMITER [ AS ] 'delimiter-char' 
 | FIXEDWIDTH [ AS ] 'fixedwidth-spec'   
-| ENCRYPTED
+| ENCRYPTED [ AUTO ]
 | BZIP2  
 | GZIP 
 | ZSTD
@@ -95,12 +95,12 @@ Unloads the data to a file where each column width is a fixed length, rather tha
 ```
 You can't use FIXEDWIDTH with DELIMITER or HEADER\.
 
-ENCRYPTED  <a name="unload-parameters-encrypted"></a>
+ENCRYPTED \[AUTO\]  <a name="unload-parameters-encrypted"></a>
 Specifies that the output files on Amazon S3 are encrypted using Amazon S3 server\-side encryption or client\-side encryption\. If MANIFEST is specified, the manifest file is also encrypted\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)\. If you don't specify the ENCRYPTED parameter, UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\.   
-To unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\), use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you UNLOAD data using KMS\_KEY\_ID, you can then COPY the same data without specifying a key\.   
-To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key using the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the **master\_symmetric\_key** portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, you must supply the same key when you COPY the encrypted data\.   
+For ENCRYPTED, you might want to unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\)\. If so, use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you run an UNLOAD command for data using KMS\_KEY\_ID, you can then do a COPY operation for the same data without specifying a key\.   
+To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key in one of two ways\. To provide the key, use the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the `master_symmetric_key` portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, make sure that you supply the same key when you perform a COPY operation for the encrypted data\.   
 UNLOAD doesn't support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
-To compress encrypted unload files, add the BZIP2, GZIP, or ZSTD parameter\. 
+If ENCRYPTED AUTO is used, the UNLOAD command fetches the default KMS encryption key on the target Amazon S3 cluster and encrypts the files written to Amazon S3 with the KMS key\. If the bucket doesn't have the default KMS encryption key, UNLOAD automatically creates encrypted files using Amazon Redshift server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can't use this option with KMS\_KEY\_ID, MASTER\_SYMMETRIC\_KEY, or CREDENTIALS that contains master\_symmetric\_key\. 
 
 KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
 Specifies the key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
@@ -156,7 +156,7 @@ s3://mybucket/key002    1.0 GB
 ```
 The UNLOAD command is designed to use parallel processing\. We recommend leaving PARALLEL enabled for most cases, especially if the files are used to load tables using a COPY command\.
 
-MAXFILESIZE AS max\-size \[ MB \| GB \]   <a name="unload-maxfilesize"></a>
+MAXFILESIZE \[AS\] max\-size \[ MB \| GB \]   <a name="unload-maxfilesize"></a>
 Specifies the maximum size of files that UNLOAD creates in Amazon S3\. Specify a decimal value between 5 MB and 6\.2 GB\. The AS keyword is optional\. The default unit is MB\. If MAXFILESIZE isn't specified, the default maximum file size is 6\.2 GB\. The size of the manifest file, if one is used, isn't affected by MAXFILESIZE\.
 
 REGION \[AS\] '*aws\-region*'  <a name="unload-region"></a>

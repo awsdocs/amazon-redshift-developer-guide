@@ -4,11 +4,11 @@ The SVL\_VACUUM\_PERCENTAGE view reports the percentage of data blocks allocated
 
 SVL\_VACUUM\_PERCENTAGE is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_VACUUM_PERCENTAGE-table-rows"></a>
+## Table columns<a name="r_SVL_VACUUM_PERCENTAGE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_VACUUM_PERCENTAGE.html)
 
-## Sample Query<a name="r_SVL_VACUUM_PERCENTAGE-sample-query"></a>
+## Sample query<a name="r_SVL_VACUUM_PERCENTAGE-sample-query"></a>
 
 The following query displays the percentage for a specific operation on table 100238: 
 

@@ -4,11 +4,11 @@ You can query the system view SVL\_STORED\_PROC\_MESSAGES to get information abo
 
 SVL\_STORED\_PROC\_MESSAGES is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see Visibility of data in system tables and views\.
 
-## Table Columns<a name="r_SVL_STORED_PROC_MESSAGES-table-columns"></a>
+## Table columns<a name="r_SVL_STORED_PROC_MESSAGES-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_STORED_PROC_MESSAGES.html)
 
-## Sample Query<a name="r_SVL_STORED_PROC_MESSAGES-sample-query"></a>
+## Sample query<a name="r_SVL_STORED_PROC_MESSAGES-sample-query"></a>
 
 The following SQL statements show how to use SVL\_STORED\_PROC\_MESSAGES to review raised messages\.
 

@@ -4,9 +4,11 @@ Creates a new external table in the specified schema\. All external tables must 
 
 To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use ALTER SCHEMA to change the owner\. Access to external tables is controlled by access to the external schema\. You can't [GRANT](r_GRANT.md) or [REVOKE](r_REVOKE.md) permissions on an external table\. Instead, grant or revoke USAGE on the external schema\.
 
-In addition to external tables created using the CREATE EXTERNAL TABLE command, Amazon Redshift can reference external tables defined in an AWS Glue or Amazon Athena data catalog or a Hive metastore\. Use the [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md) command to register an external database defined in an AWS Glue or Athena data catalog or Hive metastore and make the external tables available for use in Amazon Redshift\. If the external table exists in an AWS Glue or Athena data catalog or Hive metastore, you don't need to create the table using CREATE EXTERNAL TABLE\. To view external tables, query the [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) system view\. 
+In addition to external tables created using the CREATE EXTERNAL TABLE command, Amazon Redshift can reference external tables defined in an AWS Glue or AWS Lake Formation catalog or an Apache Hive metastore\. Use the [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md) command to register an external database defined in the external catalog and make the external tables available for use in Amazon Redshift\. If the external table exists in an AWS Glue or AWS Lake Formation catalog or Hive metastore, you don't need to create the table using CREATE EXTERNAL TABLE\. To view external tables, query the [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) system view\. 
 
-You can query an external table using the same SELECT syntax you use with other Amazon Redshift tables\. External tables are read\-only\. You can't write to an external table\.
+By running the CREATE EXTERNAL TABLE AS command, you can create an external table based on the column definition from a query and write the results of that query into Amazon S3\. The results are in Apache Parquet or delimited text format\. If the external table has a partition key or keys, Amazon Redshift partitions new files according to those partition keys and registers new partitions into the external catalog automatically\. For more information about CREATE EXTERNAL TABLE AS, see [Usage notes](#r_CREATE_EXTERNAL_TABLE_usage)\. 
+
+You can query an external table using the same SELECT syntax you use with other Amazon Redshift tables\. You can also use the INSERT syntax to write new files into the location of external table on Amazon S3\. For more information, see [INSERT \(external table\)](r_INSERT_external_table.md)\.
 
 To create a view with an external table, include the WITH NO SCHEMA BINDING clause in the [CREATE VIEW](r_CREATE_VIEW.md) statement\.
 
@@ -27,6 +29,20 @@ LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' }
 [ TABLE PROPERTIES ( 'property_name'='property_value' [, ...] ) ]
 ```
 
+The following is the syntax for CREATE EXTERNAL TABLE AS\.
+
+```
+CREATE EXTERNAL TABLE
+external_schema.table_name  
+[ PARTITIONED BY (col_name [, … ] ) ] 
+[ ROW FORMAT DELIMITED row_format ]
+STORED AS file_format
+LOCATION { 's3://bucket/folder/' }
+[ TABLE PROPERTIES ( 'property_name'='property_value' [, ...] ) ]
+ AS
+ { select_statement }
+```
+
 ## Parameters<a name="r_CREATE_EXTERNAL_TABLE-parameters"></a>
 
  *external\_schema\.table\_name*   
@@ -35,7 +51,7 @@ The maximum length for the table name is 127 bytes; longer names are truncated t
 
 ```
 create external table spectrum_db.spectrum_schema.test (c1 int)
-stored as textfile 
+stored as parquet 
 location 's3://mybucket/myfolder/';
 ```
 If the database or schema specified doesn't exist, the table isn't created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
@@ -47,7 +63,8 @@ The name and data type of each column being created\.
 The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. You can't specify column names `"$path"` or `"$size"`\. For more information about valid names, see [Names and identifiers](r_names.md)\.  
 By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [Pseudocolumns ](#r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns)\.  
 If pseudocolumns are enabled, the maximum number of columns you can define in a single table is 1,598\. If pseudocolumns aren't enabled, the maximum number of columns you can define in a single table is 1,600\.   
-If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_usage.md)\.
+If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_usage.md)\.  
+For a CREATE EXTERNAL TABLE AS command, a column list is not required, because columns are derived from the query\.
 
  *data\_type*   
 The following [Data types](c_Supported_data_types.md) are supported:  
@@ -63,7 +80,7 @@ The following [Data types](c_Supported_data_types.md) are supported:
 + DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
 + TIMESTAMP
 Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
-The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and ranges](r_Character_types.md#r_Character_types-storage-and-ranges)   
+The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and ranges](r_Character_types.md#r_Character_types-storage-and-ranges)\.   
 For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\. The following example returns the maximum size of values in the email column\.  
 
 ```
@@ -76,14 +93,16 @@ max
 
 PARTITIONED BY \(*col\_name* *data\_type* \[, … \] \)  
 A clause that defines a partitioned table with one or more partition columns\. A separate data directory is used for each specified combination, which can improve query performance in some circumstances\. Partitioned columns don't exist within the table data itself\. If you use a value for *col\_name* that is the same as a table column, you get an error\.   
-After creating a partitioned table, alter the table using an [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION statement to add partitions\. When you add a partition, you define the location of the subfolder on Amazon S3 that contains the partition data\. You can add only one partition in each ALTER TABLE statement\.  
-For example, if the table `spectrum.lineitem_part` is defined with `PARTITIONED BY (l_shipdate date)`, execute the following ALTER TABLE command to add a partition\.  
+After creating a partitioned table, alter the table using an [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION statement to register new partitions to the external catalog\. When you add a partition, you define the location of the subfolder on Amazon S3 that contains the partition data\.  
+For example, if the table `spectrum.lineitem_part` is defined with `PARTITIONED BY (l_shipdate date)`, run the following ALTER TABLE command to add a partition\.  
 
 ```
 ALTER TABLE spectrum.lineitem_part ADD PARTITION (l_shipdate='1992-01-29') 
 LOCATION 's3://spectrum-public/lineitem_partition/l_shipdate=1992-01-29';
 ```
-To view partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) system view\.
+If you are using CREATE EXTERNAL TABLE AS, you don't need to run ALTER TABLE \.\.\. ADD PARTITION \. Amazon Redshift automatically registers new partitions in the external catalog\. Amazon Redshift also automatically writes corresponding data to partitions in Amazon S3 based on the partition key or keys defined in the table\.  
+To view partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) system view\.  
+For a CREATE EXTERNAL TABLE AS command, you don't need to specify the data type of the partition column because this column is derived from the query\. 
 
 ROW FORMAT DELIMITED *rowformat*  
 A clause that specifies the format of the underlying data\. Possible values for *rowformat* are as follows:  
@@ -128,7 +147,8 @@ Valid formats are as follows:
 + ORC 
 + AVRO 
 + INPUTFORMAT '*input\_format\_classname*' OUTPUTFORMAT '*output\_format\_classname*' 
-For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example shows:   
+The CREATE EXTERNAL TABLE AS command only supports two file formats, TEXTFILE and PARQUET\.  
+For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example shows\.   
 
 ```
 'org.apache.hadoop.mapred.TextInputFormat'
@@ -136,7 +156,7 @@ For INPUTFORMAT and OUTPUTFORMAT, specify a class name, as the following example
 
 LOCATION \{ 's3://*bucket/folder*/' \| 's3://*bucket/manifest\_file*'\}  <a name="create-external-table-location"></a>
 The path to the Amazon S3 bucket or folder that contains the data files or a manifest file that contains a list of Amazon S3 object paths\. The buckets must be in the same AWS Region as the Amazon Redshift cluster\. For a list of supported AWS Regions, see [Amazon Redshift Spectrum considerations](c-using-spectrum.md#c-spectrum-considerations)\.  
-If the path specifies a bucket or folder, for example, `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified bucket or folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period or underscore\.   
+If the path specifies a bucket or folder, for example `'s3://mybucket/custdata/'`, Redshift Spectrum scans the files in the specified bucket or folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period or underscore\.   
 If the path specifies a manifest file, the `'s3://bucket/manifest_file'` argument must explicitly reference a single file—for example, `'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.   
 The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3 and the size of the file, in bytes\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same AWS Region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
 
@@ -183,15 +203,47 @@ Valid values for column mapping type are as follows:
 + name 
 + position 
 If the *orc\.schema\.resolution* property is omitted, columns are mapped by name by default\. If *orc\.schema\.resolution* is set to any value other than *'name'* or *'position'*, columns are mapped by position\. For more information about column mapping, see [Mapping external table columns to ORC columns](c-spectrum-external-tables.md#c-spectrum-column-mapping-orc)  
-The COPY command maps to ORC data files only by position\. The *orc\.schema\.resolution* table property has no effect on COPY command behavior\. 
+The COPY command maps to ORC data files only by position\. The *orc\.schema\.resolution* table property has no effect on COPY command behavior\.   
+'write\.parallel'='on / off’  
+A property that sets whether CREATE EXTERNAL TABLE AS should write data in parallel\. By default, CREATE EXTERNAL TABLE AS writes data in parallel to multiple files, according to the number of slices in the cluster\. The default option is on\. When 'write\.parallel' is set to off, CREATE EXTERNAL TABLE AS writes to one or more data files serially onto Amazon S3\. This table property also applies to any subsequent INSERT statement into the same external table\.  
+‘write\.maxfilesize\.mb’=‘size’  
+A property that sets the maximum size \(in MB\) of each file written to Amazon S3 by CREATE EXTERNAL TABLE AS\. The size must be a valid integer between 5 and 6200\. The default maximum file size is 6,200 MB\. This table property also applies to any subsequent INSERT statement into the same external table\.  
+*select\_statement*  
+A statement that inserts one or more rows into the external table by defining any query\. All rows that the query produces are written to Amazon S3 in either text or Parquet format based on the table definition\.
 
 ## Usage notes<a name="r_CREATE_EXTERNAL_TABLE_usage"></a>
 
 You can't view details for Amazon Redshift Spectrum tables using the same resources you use for standard Amazon Redshift tables, such as [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md), [STV\_TBL\_PERM](r_STV_TBL_PERM.md), PG\_CLASS, or information\_schema\. If your business intelligence or analytics tool doesn't recognize Redshift Spectrum external tables, configure your application to query [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) and [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md)\.
 
+### CREATE EXTERNAL TABLE AS<a name="r_CETAS"></a>
+
+In some cases, you might run the CREATE EXTERNAL TABLE AS command on a AWS Glue Data Catalog, AWS Lake Formation external catalog, or Apache Hive metastore\. In such cases, you use an AWS Identity and Access Management \(IAM\) role to create the external schema\. This IAM role must have both read and write permissions on Amazon S3\. 
+
+If you use a Lake Formation catalog, the IAM role must have the permission to create table in the catalog\. In this case, it must also have the data lake location permission on the target Amazon S3 path\. This IAM role becomes the owner of the new AWS Lake Formation table\.
+
+To ensure that file names are unique, Amazon Redshift uses the following format for the name of each file uploaded to Amazon S3 by default\.
+
+`<date>_<time>_<microseconds>_<query_id>_<slice-number>_part_<part-number>.<format>`\.
+
+ An example is `20200303_004509_810669_1007_0001_part_00.parquet`\.
+
+Consider the following when running the CREATE EXTERNAL TABLE AS command:
++ The Amazon S3 location must be empty\.
++ Amazon Redshift only supports PARQUET and TEXTFILE formats when using the STORED AS clause\.
++ You don't need to define a column definition list\. Column names and column data types of the new external table are derived directly from the SELECT query\.
++ You don't need to define the data type of the partition column in the PARTITIONED BY clause\. If you specify a partition key, the name of this column must exist in the SELECT query result\. When having multiple partition columns, their order in the SELECT query doesn't matter\. Amazon Redshift uses their order defined in the PARTITIONED BY clause to create the external table\.
++ Amazon Redshift automatically partitions output files into partition folders based on the partition key values\. By default, Amazon Redshift removes partition columns from the output files\.
++ The LINES TERMINATED BY 'delimiter' clause isn't supported\.
++ The ROW FORMAT SERDE 'serde\_name' clause isn't supported\.
++ The use of manifest files isn't supported\. Thus, you can't define the LOCATION clause to a manifest file on Amazon S3\.
++ Amazon Redshift automatically updates the 'numRows' table property at the end of the command\.
++ The 'compression\_type' table property only accepts 'none' or 'snappy' for the PARQUET file format\.
++ Amazon Redshift doesn't allow the LIMIT clause in the outer SELECT query\. Instead, you can use a nested LIMIT clause\.
++ You can use STL\_UNLOAD\_LOG to track the files that are written to Amazon S3 by each CREATE EXTERNAL TABLE AS operation\.
+
 ### Permissions to create and query external tables<a name="r_CREATE_EXTERNAL_TABLE_usage-permissions"></a>
 
-To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md)\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
+To create external tables, make sure that you're the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md)\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
 
 ```
 alter schema spectrum_schema owner to newowner;
@@ -270,6 +322,25 @@ with serdeproperties (
 'dots.in.keys' = 'true',
 'mapping.requesttime' = 'requesttimestamp'
 ) location 's3://mybucket/json/cloudtrail';
+```
+
+The following CREATE EXTERNAL TABLE AS example creates a nonpartitioned external table\. Then it writes the result of the SELECT query as Apache Parquet to the target Amazon S3 location\.
+
+```
+CREATE EXTERNAL TABLE spectrum.lineitem
+STORED AS parquet
+LOCATION 'S3://mybucket/cetas/lineitem/'
+AS SELECT * FROM local_lineitem;
+```
+
+The following example creates a partitioned external table and includes the partition columns in the SELECT query\. 
+
+```
+CREATE EXTERNAL TABLE spectrum.partitioned_lineitem
+PARTITIONED BY (l_shipdate, l_shipmode)
+STORED AS parquet
+LOCATION 'S3://mybucket/cetas/partitioned_lineitem/'
+AS SELECT l_orderkey, l_shipmode, l_shipdate, l_partkey FROM local_table;
 ```
 
 For a list of existing databases in the external data catalog, query the [SVV\_EXTERNAL\_DATABASES](r_SVV_EXTERNAL_DATABASES.md) system view\. 
@@ -527,7 +598,7 @@ location 's3://mybucket/grok/logs';
 The following shows an example of defining an Amazon S3 server access log in an S3 bucket\. You can use Redshift Spectrum to query Amazon S3 access logs\.
 
 ```
-CREATE EXTERNAL TABLE IF NOT EXISTS spectrum.mybucket_s3_logs(
+CREATE EXTERNAL TABLE spectrum.mybucket_s3_logs(
 bucketowner varchar(255),
 bucket varchar(255),
 requestdatetime varchar(2000),

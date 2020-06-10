@@ -12,6 +12,7 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for write to external table](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_TABLE.html) | You can write to external tables by running CREATE EXTERNAL TABLE AS SELECT to write to a new external table or INSERT INTO to insert data into an existing external table\.  | June 5, 2020 | 
 | [Support for federated query general availability](https://docs.aws.amazon.com/redshift/latest/dg/federated-overview.html) | Updated information about querying data with federated queries\.  | April 16, 2020 | 
 | [Support for additional spatial functions](https://docs.aws.amazon.com/redshift/latest/dg/spatial-functions.html) | Added descriptions of additional spatial functions\.  | April 2, 2020 | 
 | [Support for materialized views general availability](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-overview.html) | Materialized views are generally available starting with cluster version 1\.0\.13059\.  | February 19, 2020 | 

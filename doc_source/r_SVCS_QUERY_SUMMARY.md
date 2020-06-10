@@ -12,13 +12,13 @@ SVCS\_QUERY\_SUMMARY is visible to all users\. Superusers can see all rows; regu
 
 For information about SVL\_QUERY\_SUMMARY, see [SVL\_QUERY\_SUMMARY](r_SVL_QUERY_SUMMARY.md)\.
 
-## Table Columns<a name="r_SVCS_QUERY_SUMMARY-table-columns"></a>
+## Table columns<a name="r_SVCS_QUERY_SUMMARY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_QUERY_SUMMARY.html)
 
-## Sample Queries<a name="r_SVCS_QUERY_SUMMARY-sample-queries"></a>
+## Sample queries<a name="r_SVCS_QUERY_SUMMARY-sample-queries"></a>
 
- **Viewing Processing Information for a Query Step** 
+ **Viewing processing information for a query step** 
 
 The following query shows basic processing information for each step of query 87: 
 
@@ -50,7 +50,7 @@ This query retrieves the processing information about query 87, as shown in the 
 (13 rows)
 ```
 
- **Determining Whether Query Steps Spilled to Disk** 
+ **Determining whether query steps spilled to disk** 
 
 The following query shows whether or not any of the steps for the query with query ID 1025 \(see the [SVL\_QLOG](r_SVL_QLOG.md) view to learn how to obtain the query ID for a query\) spilled to disk or if the query ran entirely in\-memory: 
 

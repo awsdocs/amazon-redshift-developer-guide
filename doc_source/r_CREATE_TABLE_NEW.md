@@ -184,7 +184,7 @@ The distribution style that you select for tables affects the overall performanc
 DISTKEY \( *column\_name* \)  
 Constraint that specifies the column to be used as the distribution key for the table\. You can use the DISTKEY keyword after a column name or as part of the table definition, by using the DISTKEY \(*column\_name*\) syntax\. Either method has the same effect\. For more information, see the DISTSTYLE parameter earlier in this topic\.
 
-\[ \{ COMPOUND \| INTERLEAVED \} \] SORTKEY \(* column\_name* \[,\.\.\. \] \)  
+\[ COMPOUND \| INTERLEAVED \] SORTKEY \(* column\_name* \[,\.\.\. \] \)  
 Specifies one or more sort keys for the table\. When data is loaded into the table, the data is sorted by the columns that are designated as sort keys\. You can use the SORTKEY keyword after a column name to specify a single\-column sort key, or you can specify one or more columns as sort key columns for the table by using the `SORTKEY (column_name [ , ... ] )` syntax\.   
 You can optionally specify COMPOUND or INTERLEAVED sort style\. The default is COMPOUND\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.  
 If you don't specify any sort keys, the table isn't sorted by default\. You can define a maximum of 400 COMPOUND SORTKEY columns or 8 INTERLEAVED SORTKEY columns per table\.     
@@ -204,5 +204,5 @@ Constraint that specifies that a column or a number of columns of a table can co
  Primary key constraints are informational only\. They aren't enforced by the system, but they are used by the planner\. 
 
 FOREIGN KEY \( *column\_name* \[, \.\.\. \] \) REFERENCES *reftable* \[ \( *refcolumn* \) \]   
-Constraint that specifies a foreign key constraint, which requires that a group of one or more columns of the new table must only contain values that match values in the referenced column\(s\) of some row of the referenced table\. If *refcolumn* is omitted, the primary key of *reftable* is used\. The referenced columns must be the columns of a unique or primary key constraint in the referenced table\.  
+Constraint that specifies a foreign key constraint, which requires that a group of one or more columns of the new table must only contain values that match values in the referenced column or columns of some row of the referenced table\. If *refcolumn* is omitted, the primary key of *reftable* is used\. The referenced columns must be the columns of a unique or primary key constraint in the referenced table\.  
 Foreign key constraints are informational only\. They aren't enforced by the system, but they are used by the planner\.

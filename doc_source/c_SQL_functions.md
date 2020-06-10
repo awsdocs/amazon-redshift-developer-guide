@@ -11,8 +11,9 @@
 + [Spatial functions](geospatial-functions.md)
 + [Math functions](Math_functions.md)
 + [String functions](String_functions_header.md)
++ [Hash functions](hash-functions.md)
 + [JSON functions](json-functions.md)
-+ [Data Type Formatting functions](r_Data_type_formatting.md)
++ [Data type formatting functions](r_Data_type_formatting.md)
 + [System administration functions](r_System_administration_functions.md)
 + [System information functions](r_System_information_functions.md)
 

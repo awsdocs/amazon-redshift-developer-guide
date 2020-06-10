@@ -25,7 +25,7 @@ Because ADDRESS1 is a VARCHAR column, the trailing blanks in the second inserted
 ```
 insert into address(address1) values('9516 Magnolia Boulevard');
 
-insert into address(address1) values('9516 Magnolia Boulevard');
+insert into address(address1) values('9516 Magnolia Boulevard  ');
 ```
 
 ```

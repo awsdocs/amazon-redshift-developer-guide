@@ -112,7 +112,7 @@ Sets the configuration parameter to the default value for all sessions run by th
 
 ## Usage notes<a name="r_ALTER_USER_usage_notes"></a>
 
-When using IAM \(IAM\) authentication to create database user credentials, you might want to create a superuser that is able to log on only using temporary credentials\. You can't disable a superuser's password, but you can create an unknown password using a randomly generated MD5 hash string\.
+When using AWS Identity and Access Management \(IAM\) authentication to create database user credentials, you might want to create a superuser that is able to log on only using temporary credentials\. You can't disable a superuser's password, but you can create an unknown password using a randomly generated MD5 hash string\.
 
 ```
 alter user iam_superuser password 'mdA51234567890123456780123456789012';

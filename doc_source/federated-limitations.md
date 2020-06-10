@@ -18,5 +18,5 @@ The following are limitations and considerations when using federated queries wi
 + Federated queries don't work with concurrency scaling\. 
 
 An Amazon Redshift external schema references a database in an external RDS PostgreSQL or Aurora PostgreSQL\. When it does, these limitations apply: 
-+ When creating an external schema referencing Aurora, the Aurora PostgreSQL database must be at version 9\.6, 10\.4, 10\.5, 10\.6, or 10\.7\. 
-+ When creating an external schema referencing Amazon RDS, the Amazon RDS PostgreSQL database must be at version 9\.6, or 10\.1 to 10\.9, or 11\.0 to 11\.4, or 12\. 
++ When creating an external schema referencing Aurora, the Aurora PostgreSQL database must be at version 9\.6, or later\. 
++ When creating an external schema referencing Amazon RDS, the Amazon RDS PostgreSQL database must be at version 9\.6, or later\. 

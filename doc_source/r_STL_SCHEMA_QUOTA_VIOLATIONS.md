@@ -13,15 +13,15 @@ Superusers can see all the records\. Schema owners can only see records related 
 The following query shows the result of quota violation:
 
 ```
-SELECT TRIM(SCHEMA_NAME) "schema_name", QUOTA, disk_usage, disk_usage_pct  
-FROM stl_schema_quota_violations 
-WHERE SCHEMA_NAME = 'dp18419_schema';
+SELECT userid, TRIM(SCHEMA_NAME) "schema_name", quota, disk_usage, disk_usage_pct, timestamp FROM
+stl_schema_quota_violations WHERE SCHEMA_NAME = 'sales_schema' ORDER BY timestamp DESC;
 ```
 
 This query returns the following sample output for the specified schema:
 
 ```
-  schema_name   | quota | disk_usage | disk_usage_pct
-----------------+-------+------------+----------------
- dp18419_schema |    17 |         30 |         176.47
+userid | schema_name  | quota | disk_usage | disk_usage_pct |timestamp
+-------+--------------+-------+------------+----------------+----------------------------
+104    | sales_schema | 2048  | 2798       |  136.62        | 2020-04-20 20:09:25.494723
+(1 row)
 ```

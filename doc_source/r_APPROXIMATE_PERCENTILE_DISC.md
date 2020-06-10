@@ -25,7 +25,7 @@ Clause that specifies numeric or date/time values to sort and compute the percen
 
 The same data type as the ORDER BY expression in the WITHIN GROUP clause\.
 
-## Usage notes<a name="w13aac49c11c13c15c15"></a>
+## Usage notes<a name="r_APPROXIMATE_PERCENTILE_DISC-usage-notes"></a>
 
 If the APPROXIMATE PERCENTILE\_DISC statement includes a GROUP BY clause, the result set is limited\. The limit varies based on node type and the number of nodes\. If the limit is exceeded, the function fails and returns the following error\.
 

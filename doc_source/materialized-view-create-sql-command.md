@@ -21,7 +21,7 @@ The `BACKUP NO` setting has no effect on automatic replication of data to other 
 
  *table\_attributes*   
 A clause that specifies how the data in the materialized view is distributed, including the following:  
-+  The distribution style for the materialized view, in the format `DISTSTYLE { EVEN | ALL | KEY }`\. If you omit this clause, the distribution style is `AUTO`\. For more information, see [Distribution styles](c_choosing_dist_sort.md)\.
++  The distribution style for the materialized view, in the format `DISTSTYLE { EVEN | ALL | KEY }`\. If you omit this clause, the distribution style is `EVEN`\. For more information, see [Distribution styles](c_choosing_dist_sort.md)\.
 + The distribution key for the materialized view, in the format `DISTKEY ( distkey_identifier )`\. For more information, see [Designating distribution styles](t_designating_distribution_styles.md)\.
 + The sort key for the materialized view, in the format `SORTKEY ( column_name [, ...] )`\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.
 
