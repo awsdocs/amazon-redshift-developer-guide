@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: April 23, 2020** 
+ **Latest documentation update: July 6, 2020** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 

@@ -29,7 +29,7 @@ query }
 
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a user with INSERT privilege on the table can insert rows\. If you use the *query* clause to insert rows, you must have SELECT privilege on the tables named in the query\.   
-Amazon Redshift Spectrum external tables are read\-only\. You can't INSERT to an external table\.
+Use INSERT \(external table\) to insert results of a SELECT query into existing tables on external catalog\. For more information, see [INSERT \(external table\)](r_INSERT_external_table.md)\.
 
  *column*   
 You can insert values into one or more columns of the table\. You can list the target column names in any order\. If you don't specify a column list, the values to be inserted must correspond to the table columns in the order in which they were declared in the CREATE TABLE statement\. If the number of values to be inserted is less than the number of columns in the table, the first *n* columns are loaded\.   

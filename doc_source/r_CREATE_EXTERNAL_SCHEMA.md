@@ -63,6 +63,7 @@ If the external database is defined in an Athena data catalog or the AWS Glue Da
 URI '*hive\_metastore\_uri*' \[ PORT port\_number \]  
 The hostname URI and port\_number of an RDS PostgreSQL or Aurora PostgreSQL\. The *hostname* is the head node of the replica set\. The endpoint must be reachable \(routable\) from the Amazon Redshift cluster\. The default port\_number is 5432\.   
 If the database is in a Hive metastore, specify the URI and optionally the port number for the metastore\. The default port number is 9083\.   
+A URI doesn't contain a protocol specification \("http://"\)\. An example valid URI: `uri '172.10.10.10'`\.   
 The RDS PostgreSQL or Aurora PostgreSQL must be in the same VPC as your Amazon Redshift cluster\. Create a security group linking Amazon Redshift and RDS PostgreSQL or Aurora PostgreSQL\. 
 
 IAM\_ROLE '*iam\-role\-arn\-string*'  

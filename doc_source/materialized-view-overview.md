@@ -6,7 +6,11 @@ Materialized views in Amazon Redshift provide a way to address these issues\. A 
 
 Materialized views are especially useful for speeding up queries that are predictable and repeated\. Instead of performing resource\-intensive queries against large database tables \(such as aggregates or multiple\-table joins\), applications can query a materialized view and retrieve a precomputed result set\. For example, consider the scenario where a set of queries is used to populate a collection of charts, such as Amazon QuickSight\.  This use case is ideal for a materialized view, because the queries are predictable and repeated over and over again\. 
 
-When you create a materialized view, Amazon Redshift runs the user\-specified SQL statement to gather the data from the base table or tables and stores the result set\. For information on how to create materialized views, see [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)\.
+When you create a materialized view, Amazon Redshift runs the user\-specified SQL statement to gather the data from the base table or tables and stores the result set\. The following illustration provides an overview of the materialized view `tickets_mv` that an SQL query defines using two base tables `events` and `sales`\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/materialized-view.png)
+
+For information on how to create materialized views, see [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)\.
 
 You can issue SELECT statements to query a materialized view\. For information on how to query materialized views, see [Querying a materialized view](#materialized-view-query)\.
 

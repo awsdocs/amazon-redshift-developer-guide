@@ -44,3 +44,14 @@ initiating session     | 2012-10-25 14:42:10.87638 | 10.49.42.138 | john
 disconnecting session  | 2012-10-25 14:42:19.95992 | 10.49.42.138 | john                                              
 (4 rows)
 ```
+
+The following example shows the version of the ODBC driver and operating system on the client machine\.
+
+```
+select driver_version, os_version from stl_connection_log;
+                
+driver_version                          |  os_version
+----------------------------------------+------------------------
+Amazon Redshift ODBC Driver 1.4.15.0001 | Darwin 18.7.0 x86_64 
+Amazon Redshift ODBC Driver 1.4.15.0001 | Linux 4.15.0-101-generic x86_64
+```

@@ -134,7 +134,13 @@ A clause that changes the column used as the distribution key of a table\. Consi
 When specifying DISTSTYLE KEY, the data is distributed by the values in the DISTKEY column\. For more information about DISTSTYLE, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER \[COMPOUND\] SORTKEY \( *column\_name* \[,\.\.\.\] \)  
-A clause that changes or adds the sort key used for a table\. Consider the following:  
+A clause that changes or adds the sort key used for a table\.   
+When you alter a sort key, the compression encoding of columns in the new or original sort key can change\. If no encoding is explicitly defined for the table, then Amazon Redshift automatically assigns compression encodings as follows:  
++ Columns that are defined as sort keys are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
+Consider the following:  
 + You can define a maximum of 400 columns for a sort key per table\. 
 + You can only alter a compound sort key\. You can't alter an interleaved sort key\. 
 When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.

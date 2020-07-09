@@ -33,9 +33,10 @@ The `REFRESH MATERIALIZED VIEW` command runs as a transaction of its own\. Amazo
 + For incremental materialized views, `REFRESH MATERIALIZED VIEW` uses only those base table rows that are already committed\. Therefore, if the refresh operation runs after a data manipulation language \(DML\) statement in the same transaction, then changes of that DML statement aren't visible to refresh\. 
 + Furthermore, take a case where a transaction B follows a transaction A\. In such a case, `REFRESH MATERIALIZED VIEW` issued after committing B doesn't see some committed base table rows that are updated by transaction B while the older transaction A is in progress\. These omitted rows are updated by subsequent refresh operations, after transaction A is committed\.
 + For a full refresh of a materialized view, `REFRESH MATERIALIZED VIEW` sees all base table rows visible to the refresh transaction, according to usual Amazon Redshift transaction semantics\. 
++ Depending on the input argument type, Amazon Redshift still supports incremental refresh for materialized views for the following functions with specific input argument types: DATE \(timestamp\), DATE\_PART \(date, time, interval, time\-tz\), DATE\_TRUNC \(timestamp, interval\)\.
 
-Some operations in Amazon Redshift interact with materialized views\. Some of these operations might force a `REFRESH MATERIALIZED VIEW` operation to fully recompute the materialized view\. An operation can force a full refresh even when the materialized view only uses the SQL features that lend themselves to incremental refresh\. For example:
-+ Background vacuum operations might be blocked if materialized views aren't refreshed\. After an internally defined threshold period, a vacuum operation is allowed to run\. When this vacuum operation happens, any dependent materialized views are marked for recomputation upon the next refresh \(even if they are incremental\)\. For more information about events and state changes, see [STL\_MV\_STATE](r_STL_MV_STATE.md)\. 
+Some operations in Amazon Redshift interact with materialized views\. Some of these operations might force a `REFRESH MATERIALIZED VIEW` operation to fully recompute the materialized view even though the query defining the materialized view only uses the SQL features eligible for incremental refresh\. For example:
++ Background vacuum operations might be blocked if materialized views aren't refreshed\. After an internally defined threshold period, a vacuum operation is allowed to run\. When this vacuum operation happens, any dependent materialized views are marked for recomputation upon the next refresh \(even if they are incremental\)\. For information about VACUUM, see [VACUUM](r_VACUUM_command.md)\. For more information about events and state changes, see [STL\_MV\_STATE](r_STL_MV_STATE.md)\.
 + Some user\-initiated operations on base tables force a materialized view to be fully recomputed next time that a REFRESH operation is run\. Examples of such operations are a manually invoked VACUUM, a classic resize, an ALTER DISTKEY operation, an ALTER SORTKEY operation, and a truncate operation\. For more information about events and state changes, see [STL\_MV\_STATE](r_STL_MV_STATE.md)\. 
 
 ## Limitations for incremental refresh<a name="mv_REFRESH_MARTERIALIZED_VIEW_limitations"></a>
@@ -48,14 +49,9 @@ Amazon Redshift currently does not support incremental refresh for materialized 
 The COUNT and SUM aggregate functions are supported\.
 + DISTINCT aggregate functions, such as DISTINCT COUNT, DISTINCT SUM, and so on\.
 + Window functions\.
-+ System administration functions\. For a list, see [System administration functions](r_System_administration_functions.md)\. 
-+ System information functions\. For a list, see [System information functions](r_System_information_functions.md)\. 
-+ Leader node\-only functions: CURRENT\_SCHEMA, CURRENT\_SCHEMAS, HAS\_DATABASE\_PRIVILEGE, HAS\_SCHEMA\_PRIVILEGE, HAS\_TABLE\_PRIVILEGE, AGE, CURRENT\_TIME, CURRENT\_TIMESTAMP, LOCALTIME, NOW\.
-+ Date functions: CURRENT\_DATE, DATE, DATE\_PART, DATE\_TRUNC, DATE\_CMP\_TIMESTAMPTZ, SYSDATE, TIMEOFDAY, TO\_TIMESTAMP\.
-+ Math functions: RANDOM\.
-+ Date type formatting functions: TO\_CHAR WITH TIMESTAMPTZ\. 
-+ A query that uses temporary tables for query optimization, such as optimizing common subexpressions\. 
++ A query that uses temporary tables for query optimization, such as optimizing common subexpressions\.
 + Subqueries in any place other than the FROM clause\.
++ External tables referenced as base tables in the query that defines the materialized view\.
 
 ## Examples<a name="mv_REFRESH_MARTERIALIZED_VIEW_examples"></a>
 

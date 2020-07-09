@@ -30,7 +30,7 @@ The return type is determined by the data type of *median\_expression*\. The fol
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_MEDIAN.html)
 
-## Usage notes<a name="w13aac49c11c17c45c17"></a>
+## Usage notes<a name="r_WF_MEDIAN-data-usage-notes"></a>
 
 If the *median\_expression* argument is a DECIMAL data type defined with the maximum precision of 38 digits, it is possible that MEDIAN will return either an inaccurate result or an error\. If the return value of the MEDIAN function exceeds 38 digits, the result is truncated to fit, which causes a loss of precision\. If, during interpolation, an intermediate result exceeds the maximum precision, a numeric overflow occurs and the function returns an error\. To avoid these conditions, we recommend either using a data type with lower precision or casting the *median\_expression* argument to a lower precision\. 
 
@@ -52,4 +52,28 @@ over() from sales where salesid < 10 group by salesid;
 
 ## Examples<a name="r_WF_MEDIAN-examples"></a>
 
-See [MEDIAN window function examples](r_Examples_of_median_WF.md)\.
+ The following example calculates the median sales quantity for each seller: 
+
+```
+select sellerid, qty, median(qty) 
+over (partition by sellerid) 
+from winsales
+order by sellerid;
+
+
+sellerid	qty	median
+---------------------------
+1		10	10.0
+1		10	10.0
+1		30	10.0
+2		20	20.0
+2		20	20.0
+3		10	17.5
+3		15	17.5
+3		20	17.5
+3		30	17.5
+4		10	25.0
+4		40	25.0
+```
+
+For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 

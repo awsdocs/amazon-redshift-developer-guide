@@ -26,8 +26,26 @@ The following examples return the FNV hash of a number, the string 'Amazon Redsh
 
 ```
 select fnv_hash(1);
+        fnv_hash
+----------------------
+ -5968735742475085980
+(1 row)
+```
+
+```
 select fnv_hash('Amazon Redshift');
+      fnv_hash
+---------------------
+ 7783490368944507294
+(1 row)
+```
+
+```
 select fnv_hash('Amazon Redshift', fnv_hash(1));
+       fnv_hash
+----------------------
+ -2202602717770968555
+(1 row)
 ```
 
 ## Usage notes<a name="r_FNV_HASH-usage-notes"></a>
@@ -42,7 +60,18 @@ select fnv_hash('Amazon Redshift', fnv_hash(1));
 
   ```
   select fnv_hash('abcd');
+         fnv_hash
+  ---------------------
+   -281581062704388899
+  (1 row)
+  ```
+
+  ```
   select fnv_hash('cd', fnv_hash('ab'));
+        fnv_hash
+  ---------------------
+   -281581062704388899
+  (1 row)
   ```
 + The hash function uses the type of the input to determine the number of bytes to hash\. Use casting to enforce a specific type, if necessary\.
 
@@ -50,6 +79,24 @@ select fnv_hash('Amazon Redshift', fnv_hash(1));
 
   ```
   select fnv_hash(1::smallint);
+        fnv_hash
+  --------------------
+   589727492704079044
+  (1 row)
+  ```
+
+  ```
   select fnv_hash(1);
+         fnv_hash
+  ----------------------
+   -5968735742475085980
+  (1 row)
+  ```
+
+  ```
   select fnv_hash(1::bigint);
+         fnv_hash
+  ----------------------
+   -8517097267634966620
+  (1 row)
   ```
