@@ -9,7 +9,7 @@ For information and examples about how to convert time zone, see [CONVERT\_TIMEZ
 ## Syntax<a name="r_TIMEZONE-syntax"></a>
 
 ```
-TIMEZONE ('timezone', { timestamp | timestamptz )
+TIMEZONE ('timezone', { timestamp | timestamptz } )
 ```
 
 ## Arguments<a name="r_TIMEZONE-arguments"></a>
