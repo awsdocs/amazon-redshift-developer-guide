@@ -1,6 +1,6 @@
 # Loading data from remote hosts<a name="loading-data-from-remote-hosts"></a>
 
-You can use the COPY command to load data in parallel from one or more remote hosts, such Amazon EC2 instances or other computers\. COPY connects to the remote hosts using SSH and executes commands on the remote hosts to generate text output\. 
+You can use the COPY command to load data in parallel from one or more remote hosts, such as Amazon EC2 instances or other computers\. COPY connects to the remote hosts using SSH and executes commands on the remote hosts to generate text output\. 
 
 The remote host can be an Amazon EC2 Linux instance or another Unix or Linux computer configured to accept SSH connections\. This guide assumes your remote host is an Amazon EC2 instance\. Where the procedure is different for another computer, the guide will point out the difference\. 
 
