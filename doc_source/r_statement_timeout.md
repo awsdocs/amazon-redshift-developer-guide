@@ -17,7 +17,7 @@ If WLM timeout \(max\_execution\_time\) is also specified as part of a WLM confi
 Because the following query takes longer than 1 millisecond, it times out and is cancelled\.
 
 ```
-set statement_timeout to 1;
+set statement_timeout = 1;
 
 select * from listing where listid>5000;
 ERROR:  Query (150) cancelled on user's request
