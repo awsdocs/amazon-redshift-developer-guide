@@ -36,7 +36,6 @@ COPY supports columnar formatted data with the following restrictions:
   + [CREDENTIALS](copy-parameters-authorization.md#copy-credentials)
   + [STATUPDATE ](copy-parameters-data-load.md#copy-statupdate)
   + [MANIFEST](copy-parameters-data-source-s3.md#copy-manifest)
-  + [ACCESS\_KEY\_ID, SECRET\_ACCESS\_KEY, and SESSION\_TOKEN](copy-parameters-authorization.md#copy-access-key-id)
 + If COPY encounters an error while loading, the command fails\. ACCEPTANYDATE, ACCEPTINVCHARS, and MAXERROR aren't supported for columnar data types\.
 + Error messages are sent only to the SQL client\. Errors aren't logged in STL\_LOAD\_ERRORS\.
 + COPY inserts values into the target table's columns in the same order as the columns occur in the columnar data files\. The number of columns in the target table and the number of columns in the data file must match\.
