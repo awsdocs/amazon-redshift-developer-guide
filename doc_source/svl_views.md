@@ -10,6 +10,7 @@ The SVL\_QUERY\_SUMMARY view only contains information about queries executed by
 **Topics**
 + [SVL\_COMPILE](r_SVL_COMPILE.md)
 + [SVL\_FEDERATED\_QUERY](r_SVL_FEDERATED_QUERY.md)
++ [SVL\_MULTI\_STATEMENT\_VIOLATIONS](r_SVL_MULTI_STATEMENT_VIOLATIONS.md)
 + [SVL\_MV\_REFRESH\_STATUS](r_SVL_MV_REFRESH_STATUS.md)
 + [SVL\_QERROR](r_SVL_QERROR.md)
 + [SVL\_QLOG](r_SVL_QLOG.md)

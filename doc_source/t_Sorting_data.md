@@ -8,7 +8,7 @@ You can specify either a compound or interleaved sort key\. A compound sort key 
 
 To understand the impact of the chosen sort key on query performance, use the [EXPLAIN](r_EXPLAIN.md) command\. For more information, see [Query planning and execution workflow](c-query-planning.md) 
 
-To define a sort type, use either the INTERLEAVED or COMPOUND keyword with your CREATE TABLE or CREATE TABLE AS statement\. The default is COMPOUND\. An INTERLEAVED sort key can use a maximum of eight columns\.
+To define a sort type, use either the INTERLEAVED or COMPOUND keyword with your CREATE TABLE or CREATE TABLE AS statement\. The default is COMPOUND\. The default COMPOUND is recommended unless your tables aren't updated regularly with INSERT, UPDATE, or DELETE\. An INTERLEAVED sort key can use a maximum of eight columns\. Depending on your data and cluster size, VACUUM REINDEX takes significantly longer than VACUUM FULL because it makes an additional pass to analyze the interleaved sort keys\. The sort and merge operation can take longer for interleaved tables because the interleaved sort might need to rearrange more rows than a compound sort\.
 
 To view the sort keys for a table, query the [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md) system view\.
 

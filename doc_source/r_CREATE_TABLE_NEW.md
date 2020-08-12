@@ -65,13 +65,13 @@ If you specify a table name that begins with '\# ', the table is created as a te
 ```
 create table #newtable (id int);
 ```
-The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 20,000 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit` , the schema name is `public`, and the table name is `test`\.   
+The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a quota of the number of tables per cluster by node type, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit` , the schema name is `public`, and the table name is `test`\.   
 
 ```
 create table tickit.public.test (c1 int);
 ```
 If the database or schema doesn't exist, the table isn't created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
-If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created by using the't current database schema\. If you are creating a temporary table, you can specify a schema name, because temporary tables exist in a special schema\.  
+If a schema name is given, the new table is created in that schema \(assuming the creator has access to the schema\)\. The table name must be a unique name for that schema\. If no schema is specified, the table is created by using the current database schema\. If you are creating a temporary table, you can't specify a schema name, because temporary tables exist in a special schema\.  
 Multiple temporary tables with the same name can exist at the same time in the same database if they are created in separate sessions because the tables are assigned to different schemas\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
  *column\_name*   

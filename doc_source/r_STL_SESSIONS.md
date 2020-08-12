@@ -4,7 +4,7 @@ Returns information about user session history\.
 
 STL\_SESSIONS differs from STV\_SESSIONS in that STL\_SESSIONS contains session history, where STV\_SESSIONS contains the current active sessions\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_SESSIONS-table-columns"></a>
 

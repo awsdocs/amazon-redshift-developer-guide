@@ -2,7 +2,7 @@
 
 Logs authentication attempts and connections and disconnections\.
 
-This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_CONNECTION_LOG-table-columns2"></a>
 
@@ -45,13 +45,13 @@ disconnecting session  | 2012-10-25 14:42:19.95992 | 10.49.42.138 | john
 (4 rows)
 ```
 
-The following example shows the version of the ODBC driver and operating system on the client machine\.
+The following example shows the version of the ODBC driver, the operating system on the client machine, and the plugin used to connect to the Amazon Redshift cluster\. In this example, the plugin used is for standard ODBC driver authentication using a login name and password\.
 
 ```
-select driver_version, os_version from stl_connection_log;
+select driver_version, os_version, plugin_name from stl_connection_log;
                 
-driver_version                          |  os_version
-----------------------------------------+------------------------
-Amazon Redshift ODBC Driver 1.4.15.0001 | Darwin 18.7.0 x86_64 
-Amazon Redshift ODBC Driver 1.4.15.0001 | Linux 4.15.0-101-generic x86_64
+driver_version                          |  os_version                       | plugin_name
+----------------------------------------+-----------------------------------+--------------------
+Amazon Redshift ODBC Driver 1.4.15.0001 | Darwin 18.7.0 x86_64              | none
+Amazon Redshift ODBC Driver 1.4.15.0001 | Linux 4.15.0-101-generic x86_64   | none
 ```

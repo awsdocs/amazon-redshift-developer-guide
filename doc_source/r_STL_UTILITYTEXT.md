@@ -2,7 +2,7 @@
 
 Captures the text of non\-SELECT SQL commands run on the database\.
 
-Query the STL\_UTILITYTEXT table to capture the following subset of SQL statements that were run on the system:
+Query the STL\_UTILITYTEXT view to capture the following subset of SQL statements that were run on the system:
 + ABORT, BEGIN, COMMIT, END, ROLLBACK
 + CALL
 + CANCEL
@@ -21,7 +21,7 @@ See also [STL\_DDLTEXT](r_STL_DDLTEXT.md), [STL\_QUERYTEXT](r_STL_QUERYTEXT.md),
 
 Use the STARTTIME and ENDTIME columns to find out which statements were logged during a given time period\. Long blocks of SQL text are broken into lines 200 characters long; the SEQUENCE column identifies fragments of text that belong to a single statement\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_UTILITYTEXT-table-columns"></a>
 

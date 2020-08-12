@@ -2,7 +2,7 @@
 
 Displays the EXPLAIN plan for a query that has been submitted for execution\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_EXPLAIN-table-columns"></a>
 
@@ -61,7 +61,7 @@ eventid |   sum
 ...
 ```
 
- If this query's ID is 15, the following system table query returns the plan nodes that were executed\. In this case, the order of the nodes is reversed to show the actual order of execution: 
+ If this query's ID is 15, the following system view query returns the plan nodes that were executed\. In this case, the order of the nodes is reversed to show the actual order of execution: 
 
 ```
 select query,nodeid,parentid,substring(plannode from 1 for 56)

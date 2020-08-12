@@ -1,6 +1,6 @@
 # STL\_ALERT\_EVENT\_LOG<a name="r_STL_ALERT_EVENT_LOG"></a>
 
-Records an alert when the query optimizer identifies conditions that might indicate performance issues\. Use the STL\_ALERT\_EVENT\_LOG table to identify opportunities to improve query performance\.
+Records an alert when the query optimizer identifies conditions that might indicate performance issues\. Use the STL\_ALERT\_EVENT\_LOG view to identify opportunities to improve query performance\.
 
 A query consists of multiple segments, and each segment consists of one or more steps\. For more information, see [Query processing](c-query-processing.md)\. 
 
@@ -21,7 +21,7 @@ You can use the STL\_ALERT\_EVENT\_LOG to identify potential issues in your quer
   A nested loop is usually a Cartesian product\. Evaluate your query to ensure that all participating tables are joined efficiently\.
 + **Very selective filter**
 
-  The ratio of rows returned to rows scanned is less than 0\.05\. Rows scanned is the value of `rows_pre_user_filter `and rows returned is the value of rows in the [STL\_SCAN](r_STL_SCAN.md) system table\. Indicates that the query is scanning an unusually large number of rows to determine the result set\. This can be caused by missing or incorrect sort keys\. For more information, see [Choosing sort keys](t_Sorting_data.md)\. 
+  The ratio of rows returned to rows scanned is less than 0\.05\. Rows scanned is the value of `rows_pre_user_filter `and rows returned is the value of rows in the [STL\_SCAN](r_STL_SCAN.md) system view\. Indicates that the query is scanning an unusually large number of rows to determine the result set\. This can be caused by missing or incorrect sort keys\. For more information, see [Choosing sort keys](t_Sorting_data.md)\. 
 + **Excessive ghost rows **
 
   A scan skipped a relatively large number of rows that are marked as deleted but not vacuumed, or rows that have been inserted but not committed\. For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\. 

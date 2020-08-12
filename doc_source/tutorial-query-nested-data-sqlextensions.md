@@ -65,7 +65,7 @@ id|      shipdate
 
 The alias `c` provides access to the customer fields, and the alias `o` provides access to the order fields\. 
 
-The semantics are similar to standard SQL\. You can think of the `FROM` clause as executing the following nested loop, which is followed by `SELECT` choosing the fields to output\. 
+The semantics are similar to standard SQL\. You can think of the `FROM` clause as running the following nested loop, which is followed by `SELECT` choosing the fields to output\. 
 
 ```
 for each customer c in spectrum.customers

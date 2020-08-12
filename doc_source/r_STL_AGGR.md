@@ -2,7 +2,7 @@
 
 Analyzes aggregate execution steps for queries\. These steps occur during execution of aggregate functions and GROUP BY clauses\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_AGGR-table-columns2"></a>
 

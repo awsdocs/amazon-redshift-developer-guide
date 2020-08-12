@@ -41,7 +41,7 @@ If you specify a table name that begins with '\# ', the table is created as a te
 ```
 create table #newtable (id) as select * from oldtable;
 ```
-The maximum table name length is 127 bytes; longer names are truncated to 127 bytes\. Amazon Redshift enforces a maximum limit of 9,900 permanent tables per cluster\. The table name can be qualified with the database and schema name, as the following table shows\.  
+The maximum table name length is 127 bytes; longer names are truncated to 127 bytes\. Amazon Redshift enforces a quota of the number of tables per cluster by node type\. The table name can be qualified with the database and schema name, as the following table shows\.  
 
 ```
 create table tickit.public.test (c1) as select * from oldtable;

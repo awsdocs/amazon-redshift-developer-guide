@@ -2,7 +2,7 @@
 
 ## Limits<a name="r_CTAS_usage_notes-limits"></a>
 
-Amazon Redshift enforces a maximum limit of 9,900 permanent tables\. 
+Amazon Redshift enforces a quota of the number of tables per cluster by node type\. 
 
 The maximum number of characters for a table name is 127\. 
 

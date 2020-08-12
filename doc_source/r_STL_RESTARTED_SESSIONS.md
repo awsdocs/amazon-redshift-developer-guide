@@ -4,7 +4,7 @@ To maintain continuous availability following certain internal events, Amazon Re
 
  For more information, see the examples following in this section\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_RESTARTED_SESSIONS-table-columns2"></a>
 

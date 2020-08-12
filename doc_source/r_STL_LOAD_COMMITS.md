@@ -2,9 +2,9 @@
 
 Returns information to track or troubleshoot a data load\.
 
-This table records the progress of each data file as it is loaded into a database table\. 
+This view records the progress of each data file as it is loaded into a database table\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. 
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. 
 
 ## Table columns<a name="r_STL_LOAD_COMMITS-table-columns"></a>
 
@@ -52,7 +52,7 @@ where filename like '%tickit%' order by query;
 (12 rows)
 ```
 
-The fact that a record is written to the log file for this system table does not mean that the load committed successfully as part of its containing transaction\. To verify load commits, query the STL\_UTILITYTEXT table and look for the COMMIT record that corresponds with a COPY transaction\. For example, this query joins STL\_LOAD\_COMMITS and STL\_QUERY based on a subquery against STL\_UTILITYTEXT: 
+The fact that a record is written to the log file for this system view does not mean that the load committed successfully as part of its containing transaction\. To verify load commits, query the STL\_UTILITYTEXT view and look for the COMMIT record that corresponds with a COPY transaction\. For example, this query joins STL\_LOAD\_COMMITS and STL\_QUERY based on a subquery against STL\_UTILITYTEXT: 
 
 ```
 select l.query,rtrim(l.filename),q.xid

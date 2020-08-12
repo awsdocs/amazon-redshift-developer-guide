@@ -6,7 +6,7 @@ STL\_LOAD\_ERRORS contains a history of all Amazon Redshift load errors\. See [L
 
 Query [STL\_LOADERROR\_DETAIL](r_STL_LOADERROR_DETAIL.md) for additional details, such as the exact data row and column where a parse error occurred, after you query STL\_LOAD\_ERRORS to find out general information about the error\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_LOAD_ERRORS-table-columns2"></a>
 
