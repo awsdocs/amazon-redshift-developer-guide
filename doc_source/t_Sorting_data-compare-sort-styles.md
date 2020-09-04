@@ -105,18 +105,15 @@ Execute the same queries against each of the tables to compare execution times f
    
    select max(lo_revenue), min(lo_revenue)
    from cust_sales_date_single
-   where c_region = 'ASIA'
-   and c_mktsegment = 'FURNITURE';
+   where c_region = 'ASIA';
    
    select max(lo_revenue), min(lo_revenue)
    from cust_sales_date_compound
-   where c_region = 'ASIA'
-   and c_mktsegment = 'FURNITURE';
+   where c_region = 'ASIA';
    
    select max(lo_revenue), min(lo_revenue)
    from cust_sales_date_interleaved
-   where c_region = 'ASIA'
-   and c_mktsegment = 'FURNITURE';
+   where c_region = 'ASIA';
    ```
 
 1. Test a query that restricts on both the `c_region` column and the `c_mktsegment` column\. Execute the following queries\.
