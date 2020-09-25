@@ -3,6 +3,9 @@
 POSIX regular expressions provide a more powerful means for pattern matching than the [LIKE](r_patternmatching_condition_like.md) and [SIMILAR TO](pattern-matching-conditions-similar-to.md) operators\. POSIX regular expression patterns can match any portion of a string, unlike the SIMILAR TO operator, which returns true only if its pattern matches the entire string\.
 
 **Note**  
+~~ (2 tildes) is not a POSIX operator, but an alias for LIKE.
+
+**Note**  
 Regular expression matching using POSIX operators is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE executes several times faster than the query that uses a regular expression:  
 
 ```
