@@ -30,7 +30,6 @@ Date functions
 + NOW
 
 String functions
-+ ASCII
 + GET\_BIT
 + GET\_BYTE
 + SET\_BIT

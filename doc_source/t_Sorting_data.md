@@ -1,12 +1,14 @@
 # Choosing sort keys<a name="t_Sorting_data"></a>
 
-When you create a table, you can define one or more of its columns as *sort keys*\. When data is initially loaded into the empty table, the rows are stored on disk in sorted order\. Information about sort key columns is passed to the query planner, and the planner uses this information to construct plans that exploit the way that the data is sorted\. 
+When you create a table, you can let Amazon Redshift define the optimal *sort keys* for the table\. To let Amazon Redshift define the sort keys, either don't specify the CREATE TABLE SORTKEY keyword or define SORTKEY AUTO\. When the SORTKEY is set to AUTO, Amazon Redshift might change the sort key of your table data\. For more information, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\. 
+
+When you create a table, you can alternatively define one or more of its columns as *sort keys*\. When data is initially loaded into the empty table, the rows are stored on disk in sorted order\. Information about sort key columns is passed to the query planner, and the planner uses this information to construct plans that exploit the way that the data is sorted\. 
 
 Sorting enables efficient handling of range\-restricted predicates\. Amazon Redshift stores columnar data in 1 MB disk blocks\. The min and max values for each block are stored as part of the metadata\. If query uses a range\-restricted predicate, the query processor can use the min and max values to rapidly skip over large numbers of blocks during table scans\. For example, if a table stores five years of data sorted by date and a query specifies a date range of one month, up to 98 percent of the disk blocks can be eliminated from the scan\. If the data is not sorted, more of the disk blocks \(possibly all of them\) have to be scanned\. 
 
 You can specify either a compound or interleaved sort key\. A compound sort key is more efficient when query predicates use a *prefix*, which is a subset of the sort key columns in order\. An interleaved sort key gives equal weight to each column in the sort key, so query predicates can use any subset of the columns that make up the sort key, in any order\. For examples of using compound sort keys and interleaved sort keys, see [Comparing sort styles](t_Sorting_data-compare-sort-styles.md)\.
 
-To understand the impact of the chosen sort key on query performance, use the [EXPLAIN](r_EXPLAIN.md) command\. For more information, see [Query planning and execution workflow](c-query-planning.md) 
+To understand the impact of the chosen sort key on query performance, use the [EXPLAIN](r_EXPLAIN.md) command\. For more information, see [Query planning and execution workflow](c-query-planning.md)\. 
 
 To define a sort type, use either the INTERLEAVED or COMPOUND keyword with your CREATE TABLE or CREATE TABLE AS statement\. The default is COMPOUND\. The default COMPOUND is recommended unless your tables aren't updated regularly with INSERT, UPDATE, or DELETE\. An INTERLEAVED sort key can use a maximum of eight columns\. Depending on your data and cluster size, VACUUM REINDEX takes significantly longer than VACUUM FULL because it makes an additional pass to analyze the interleaved sort keys\. The sort and merge operation can take longer for interleaved tables because the interleaved sort might need to rearrange more rows than a compound sort\.
 

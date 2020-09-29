@@ -65,8 +65,8 @@ If you specify `UTF16`, then your data must have a byte order mark \(BOM\)\. If 
 ESCAPE   <a name="copy-escape"></a>
 When this parameter is specified, the backslash character \(`\`\) in input data is treated as an escape character\. The character that immediately follows the backslash character is loaded into the table as part of the current column value, even if it is a character that normally serves a special purpose\. For example, you can use this parameter to escape the delimiter character, a quotation mark, an embedded newline character, or the escape character itself when any of these characters is a legitimate part of a column value\.  
 If you specify the ESCAPE parameter in combination with the REMOVEQUOTES parameter, you can escape and retain quotation marks \(`'` or `"`\) that might otherwise be removed\. The default null string, `\N`, works as is, but it can also be escaped in the input data as `\\N`\. As long as you don't specify an alternative null string with the NULL AS parameter, `\N` and `\\N` produce the same results\.  
-The control character `0x00` \(NUL\) cannot be escaped and should be removed from the input data or converted\. This character is treated as an end of record \(EOR\) marker, causing the remainder of the record to be truncated\.
-You cannot use the ESCAPE parameter for FIXEDWIDTH loads, and you cannot specify the escape character itself; the escape character is always the backslash character\. Also, you must ensure that the input data contains the escape character in the appropriate places\.  
+The control character `0x00` \(NUL\) can't be escaped and should be removed from the input data or converted\. This character is treated as an end of record \(EOR\) marker, causing the remainder of the record to be truncated\.
+You can't use the ESCAPE parameter for FIXEDWIDTH loads, and you can't specify the escape character itself; the escape character is always the backslash character\. Also, you must ensure that the input data contains the escape character in the appropriate places\.  
 Here are some examples of input data and the resulting loaded data when the ESCAPE parameter is specified\. The result for row 4 assumes that the REMOVEQUOTES parameter is also specified\. The input data consists of two pipe\-delimited fields:   
 
 ```
@@ -109,7 +109,7 @@ Loads fields that match *null\_string* as NULL, where *null\_string* can be any 
 If you attempt to load nulls into a column defined as NOT NULL, the COPY command will fail\.
 
 REMOVEQUOTES   <a name="copy-removequotes"></a>
-Removes surrounding quotation marks from strings in the incoming data\. All characters within the quotation marks, including delimiters, are retained\. If a string has a beginning single or double quotation mark but no corresponding ending mark, the COPY command fails to load that row and returns an error\. The following table shows some simple examples of strings that contain quotes and the resulting loaded values\.      
+Removes surrounding quotation marks from strings in the incoming data\. All characters within the quotation marks, including delimiters, are retained\. If a string has a beginning single or double quotation mark but no corresponding ending mark, the COPY command fails to load that row and returns an error\. The following table shows some simple examples of strings that contain quotation marks and the resulting loaded values\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-conversion.html)
 
 ROUNDEC   <a name="copy-roundec"></a>

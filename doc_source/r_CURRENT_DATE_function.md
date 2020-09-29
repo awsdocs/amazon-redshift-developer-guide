@@ -17,7 +17,7 @@ DATE
 
 ## Examples<a name="r_CURRENT_DATE_function-examples"></a>
 
-Return the current date: 
+The following example returns the current date\. 
 
 ```
 select current_date;

@@ -398,3 +398,118 @@ Using position mapping, Redshift Spectrum attempts the following mapping\.
 When you query a table with the preceding position mapping, the SELECT command fails on type validation because the structures are different\. 
 
 You can map the same external table to both file structures shown in the previous examples by using column name mapping\. The table columns `int_col`, `float_col`, and `nested_col` map by column name to columns with the same names in the ORC file\. The column named `nested_col` in the external table is a `struct` column with subcolumns named `map_col` and `int_col`\. The subcolumns also map correctly to the corresponding columns in the ORC file by column name\. 
+
+## Creating external tables for data managed in Apache Hudi<a name="c-spectrum-column-mapping-hudi"></a>
+
+To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/concepts.html#copy-on-write-table) in the open source Apache Hudi documentation\. 
+
+When you create an external table that references data in Hudi CoW format, you map each column in the external table to a column in the Hudi data\. Mapping is done by column\. 
+
+The data definition language \(DDL\) statements for partitioned and unpartitioned Hudi tables are similar to those for other Apache Parquet file formats\. For Hudi tables, you define `INPUTFORMAT` as `org.apache.hudi.hadoop.HoodieParquetInputFormat`\. The `LOCATION` parameter must point to the Hudi table base folder that contains the `.hoodie` folder, which is required to establish the Hudi commit timeline\. In some cases, a SELECT operation on a Hudi table might fail with the message No valid Hudi commit timeline found\. If so, check if the `.hoodie` folder is in the correct location and contains a valid Hudi commit timeline\. 
+
+**Note**  
+Apache Hudi format is only supported when you use an AWS Glue Data Catalog\. It's not supported when you use an Apache Hive metastore as the external catalog\. 
+
+The DDL to define an unpartitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hudi.hadoop.HoodieParquetInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
+```
+
+The DDL to define a partitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+PARTITIONED BY(pcolumn1 pcolumn1-type[,...])
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hudi.hadoop.HoodieParquetInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
+```
+
+To add partitions to a partitioned Hudi table, run an ALTER TABLE ADD PARTITION command where the `LOCATION` parameter points to the Amazon S3 subfolder with the files that belong to the partition\.
+
+The DDL to add partitions has the following format\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION 's3://s3-bucket/prefix/partition-path'
+```
+
+## Creating external tables for data managed in Delta Lake<a name="c-spectrum-column-mapping-delta"></a>
+
+To query data in Delta Lake tables, you can use Amazon Redshift Spectrum external tables\. 
+
+To access a Delta Lake table from Redshift Spectrum, generate a manifest before the query\. A Delta Lake *manifest* contains a listing of files that make up a consistent snapshot of the Delta Lake table\. In a partitioned table, there is one manifest per partition\. A Delta Lake table is a collection of Apache Parquet files stored in Amazon S3\.  For more information, see [Delta Lake](https://delta.io) in the open source Delta Lake documentation\. 
+
+When you create an external table that references data in Delta Lake tables, you map each column in the external table to a column in the Delta Lake table\. Mapping is done by column name\. 
+
+The DDL for partitioned and unpartitioned Delta Lake tables is similar to that for other Apache Parquet file formats\. For Delta Lake tables, you define `INPUTFORMAT` as `org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat` and `OUTPUTFORMAT` as `org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat`\. The `LOCATION` parameter must point to the manifest folder in the table base folder\. If a SELECT operation on a Delta Lake table fails, for possible reasons see [Limitations and troubleshooting for Delta Lake tables](#c-spectrum-column-mapping-delta-limitations)\. 
+
+The DDL to define an unpartitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://s3-bucket/prefix/_symlink_format_manifest'
+```
+
+The DDL to define a partitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+PARTITIONED BY(pcolumn1 pcolumn1-type[,...])
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://s3-bucket>/prefix/_symlink_format_manifest'
+```
+
+To add partitions to a partitioned Delta Lake table, run an ALTER TABLE ADD PARTITION command where the `LOCATION` parameter points to the Amazon S3 subfolder that contains the manifest for the partition\.
+
+The DDL to add partitions has the following format\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION
+'s3://s3-bucket/prefix/_symlink_format_manifest/partition-path'
+```
+
+Or run DDL that points directly to the Delta Lake manifest file\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION
+'s3://s3-bucket/prefix/_symlink_format_manifest/partition-path/manifest'
+```
+
+### Limitations and troubleshooting for Delta Lake tables<a name="c-spectrum-column-mapping-delta-limitations"></a>
+
+Consider the following when querying Delta Lake tables from Redshift Spectrum:
++ If a manifest points to a snapshot or partition that no longer exists, queries fail until a new valid manifest has been generated\. For example, this might result from a VACUUM operation on the underlying table,
++ Delta Lake manifests only provide partition\-level consistency\. 
+
+The following table explains some potential reasons for certain errors when you query a Delta Lake table\. 
+
+
+| Error message | Possible reason | 
+| --- | --- | 
+| Empty Delta Lake manifests are not valid\. | The manifest file is empty\.  | 
+| Delta Lake manifest in bucket *s3\-bucket\-1* cannot contain entries in bucket *s3\-bucket\-2*\. | The manifest entries point to files in a different Amazon S3 bucket than the specified one\.  | 
+| Delta Lake files are expected to be in the same folder\. | The manifest entries point to files that have a different Amazon S3 prefix than the specified one\. | 
+| File *filename* listed in Delta Lake manifest *manifest\-path* was not found\. | A file listed in the manifest wasn't found in Amazon S3\.  | 
+| Error fetching Delta Lake manifest\. | The manifest wasn't found in Amazon S3\.  | 
+| Invalid S3 Path\. | An entry in the manifest file isn't a valid Amazon S3 path, or the manifest file has been corrupted\.  | 

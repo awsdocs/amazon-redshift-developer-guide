@@ -25,9 +25,9 @@ Accepts any data type except Boolean as input\. Returns the same data type as *e
 Find the lowest price paid from all sales:
 
 ```
-select min(pricepaid)from sales;
+select min(pricepaid) from sales;
 
-max
+min
 -------
 20.00
 (1 row)

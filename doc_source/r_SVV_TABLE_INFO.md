@@ -14,7 +14,7 @@ SVV\_TABLE\_INFO is visible only to superusers\. For more information, see [Visi
 
 ## Sample queries<a name="SVV_TABLE_INFO-sample-queries"></a>
 
-The following example shows encoding, distribution style, sorting, and data skew for all user\-defined tables in the database\. Note that "table" must be enclosed in double quotes because it is a reserved word\.
+The following example shows encoding, distribution style, sorting, and data skew for all user\-defined tables in the database\. Here, "table" must be enclosed in double quotation marks because it is a reserved word\.
 
 ```
 select "table", encoded, diststyle, sortkey1, skew_sortkey1, skew_rows

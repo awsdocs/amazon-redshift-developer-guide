@@ -2,7 +2,7 @@
 
 Returns the position of a substring within a specified string\. 
 
-Synonym of [CHARINDEX Function](r_CHARINDEX.md) and [POSITION function](r_POSITION.md)\. 
+Synonym of [CHARINDEX function](r_CHARINDEX.md) and [POSITION function](r_POSITION.md)\. 
 
 ## Syntax<a name="r_STRPOS-synopsis"></a>
 

@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: July 6, 2020** 
+ **Latest documentation update: September 18, 2020** 
 
 For a list of the changes to the *Amazon Redshift Cluster Management Guide*, see [Amazon Redshift Cluster Management Guide Document History](https://docs.aws.amazon.com/redshift/latest/mgmt/document-history.html)\.
 
@@ -12,7 +12,10 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Support for write to external table](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_TABLE.html) | You can write to external tables by running CREATE EXTERNAL TABLE AS SELECT to write to a new external table or INSERT INTO to insert data into an existing external table\.  | June 5, 2020 | 
+| [Support for enhancements to querying spatial data](https://docs.aws.amazon.com/redshift/latest/dg/geospatial-overview.html) | Enhancements include loading a shapefile and several new spatial SQL functions\.  | September 15, 2020 | 
+| [Materialized view support external tables](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-overview.html) | You can create materialized views in Amazon Redshift that reference external data sources\.  | June 19, 2020 | 
+| [Support to write to external table](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_TABLE.html) | You can write to external tables by running CREATE EXTERNAL TABLE AS SELECT to write to a new external table or INSERT INTO to insert data into an existing external table\.  | June 8, 2020 | 
+| [Support for storage controls for schemas](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_SCHEMA.html) | Updates to commands and views that manage storage controls for schemas\.  | June 2, 2020 | 
 | [Support for federated query general availability](https://docs.aws.amazon.com/redshift/latest/dg/federated-overview.html) | Updated information about querying data with federated queries\.  | April 16, 2020 | 
 | [Support for additional spatial functions](https://docs.aws.amazon.com/redshift/latest/dg/spatial-functions.html) | Added descriptions of additional spatial functions\.  | April 2, 2020 | 
 | [Support for materialized views general availability](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-overview.html) | Materialized views are generally available starting with cluster version 1\.0\.13059\.  | February 19, 2020 | 
@@ -122,7 +125,7 @@ The following table describes the important changes in each release of the *Amaz
 | Connection limits | You can now set a limit on the number of database connections a user is permitted to have open concurrently\. You can also limit the number of concurrent connections for a database\. For more information, see [CREATE USER](r_CREATE_USER.md) and [CREATE DATABASE](r_CREATE_DATABASE.md)\.  | November 10, 2016 | 
 | COPY sort order enhancement | COPY now automatically adds new rows to the table's sorted region when you load your data in sort key order\. For specific requirements to enable this enhancement, see [Loading your data in sort key order](vacuum-load-in-sort-key-order.md) | November 10, 2016 | 
 | CTAS with compression | CREATE TABLE AS \(CTAS\) now automatically assigns compression encodings to new tables based on the column's data type\. For more information, see [Inheritance of column and table attributes](r_CTAS_usage_notes.md#r_CTAS_usage_notes-inheritance-of-column-and-table-attributes)\. | October 28, 2016 | 
-| Time stamp with time zone data type | Amazon Redshift now supports a time stamp with time zone \([TIMESTAMPTZ](r_Datetime_types.md#r_Datetime_types-timestamptz)\) data type\. Also, several new functions have been added to support the new data type\. For more information, see [Date and time functions](Date_functions_header.md)\. | September 29, 2016 | 
+| Time stamp with time zone data type | Amazon Redshift now supports a timestamp with time zone \([TIMESTAMPTZ](r_Datetime_types.md#r_Datetime_types-timestamptz)\) data type\. Also, several new functions have been added to support the new data type\. For more information, see [Date and time functions](Date_functions_header.md)\. | September 29, 2016 | 
 | Analyze threshold | To reduce processing time and improve overall system performance for [ANALYZE](r_ANALYZE.md) operations, Amazon Redshift skips analyzing a table if the percentage of rows that have changed since the last ANALYZE command run is lower than the analyze threshold specified by the [analyze\_threshold\_percent](r_analyze_threshold_percent.md) parameter\. By default, analyze\_threshold\_percent is 10\.  | August 9, 2016 | 
 | New STL\_RESTARTED\_SESSIONS system table | When Amazon Redshift restarts a session, [STL\_RESTARTED\_SESSIONS](r_STL_RESTARTED_SESSIONS.md) records the new process ID \(PID\) and the old PID\. | August 9, 2016 | 
 | Updated the Date and Time Functions documentation | Added a summary of functions with links to the [Date and time functions](Date_functions_header.md), and updated the function references for consistency\. | June 24, 2016 | 

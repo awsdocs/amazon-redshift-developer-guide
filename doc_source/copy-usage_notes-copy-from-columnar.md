@@ -44,3 +44,5 @@ COPY supports columnar formatted data with the following restrictions:
   + `.gz`
   + `.snappy`
   + `.bz2`
+
+COPY from the Parquet and ORC file formats uses Redshift Spectrum and the bucket access\. For more information, see [Using Amazon Redshift Spectrum with enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html)\.

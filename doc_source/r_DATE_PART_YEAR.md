@@ -19,7 +19,7 @@ INTEGER
 
 ## Examples<a name="r_DATE_PART_YEAR-examples"></a>
 
-The following example extracts the year from the CALDATE column: 
+The following example extracts the year from the CALDATE column\.
 
 ```
 select caldate, date_part_year(caldate)

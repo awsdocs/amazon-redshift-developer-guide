@@ -4,7 +4,7 @@ Unloads the result of a query to one or more text or Apache Parquet files on Ama
 
 You can manage the size of files on Amazon S3, and by extension the number of files, by setting the MAXFILESIZE parameter\.
 
-You can unload the result of an Amazon Redshift query to your Amazon S3 data lake in Apache Parquet, an efficient open columnar storage format for analytics\. Parquet format is up to 2x faster to unload and consumes up to 6x less storage in Amazon S3, compared with text formats\. This enables you to save data transformation and enrichment you have done in Amazon S3 into your Amazon S3 data lake in an open format\. You can then analyze your data with Redshift Spectrum and other AWS services such as Amazon Athena, Amazon EMR, and Amazon SageMaker\. 
+You can unload the result of an Amazon Redshift query to your Amazon S3 data lake in Apache Parquet, an efficient open columnar storage format for analytics\. Parquet format is up to 2x faster to unload and consumes up to 6x less storage in Amazon S3, compared with text formats\. This enables you to save data transformation and enrichment you have done in Amazon S3 into your Amazon S3 data lake in an open format\. You can then analyze your data with Redshift Spectrum and other AWS services such as Amazon Athena, Amazon EMR, and SageMaker\. 
 
 ## Syntax<a name="r_UNLOAD-synopsis"></a>
 
@@ -69,7 +69,8 @@ The FORMAT and AS keywords are optional\. You can't use CSV with FIXEDWIDTH\. Yo
 PARTITION BY \( *column\_name* \[, \.\.\. \] \) \[INCLUDE\]  <a name="unload-partitionby"></a>
 Specifies the partition keys for the unload operation\. UNLOAD automatically partitions output files into partition folders based on the partition key values, following the Apache Hive convention\. For example, a Parquet file that belongs to the partition year 2019 and the month September has the following prefix: `s3://my_bucket_name/my_prefix/year=2019/month=September/000.parquet`\.   
 The value for *column\_name* must be a column in the query results being unloaded\.   
-If you specify PARTITION BY with the INCLUDE option, partition columns aren't removed from the unloaded files\. 
+If you specify PARTITION BY with the INCLUDE option, partition columns aren't removed from the unloaded files\.   
+Amazon Redshift doesn't support string literals in PARTITION BY clauses\.
 
 MANIFEST \[ VERBOSE \]  
 Creates a manifest file that explicitly lists details for the data files that are created by the UNLOAD process\. The manifest is a text file in JSON format that lists the URL of each file that was written to Amazon S3\.   
@@ -100,7 +101,7 @@ Specifies that the output files on Amazon S3 are encrypted using Amazon S3 serve
 For ENCRYPTED, you might want to unload to Amazon S3 using server\-side encryption with an AWS KMS key \(SSE\-KMS\)\. If so, use the [KMS_KEY_ID](#unload-parameters-kms-key-id) parameter to provide the key ID\. You can't use the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter with the KMS\_KEY\_ID parameter\. If you run an UNLOAD command for data using KMS\_KEY\_ID, you can then do a COPY operation for the same data without specifying a key\.   
 To unload to Amazon S3 using client\-side encryption with a customer\-supplied symmetric key \(CSE\-CMK\), provide the key in one of two ways\. To provide the key, use the [MASTER_SYMMETRIC_KEY](#unload-parameters-master-symmetric-key) parameter or the `master_symmetric_key` portion of a [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) credential string\. If you unload data using a master symmetric key, make sure that you supply the same key when you perform a COPY operation for the encrypted data\.   
 UNLOAD doesn't support Amazon S3 server\-side encryption with a customer\-supplied key \(SSE\-C\)\.   
-If ENCRYPTED AUTO is used, the UNLOAD command fetches the default KMS encryption key on the target Amazon S3 cluster and encrypts the files written to Amazon S3 with the KMS key\. If the bucket doesn't have the default KMS encryption key, UNLOAD automatically creates encrypted files using Amazon Redshift server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can't use this option with KMS\_KEY\_ID, MASTER\_SYMMETRIC\_KEY, or CREDENTIALS that contains master\_symmetric\_key\. 
+If ENCRYPTED AUTO is used, the UNLOAD command fetches the default KMS encryption key on the target Amazon S3 bucket property and encrypts the files written to Amazon S3 with the KMS key\. If the bucket doesn't have the default KMS encryption key, UNLOAD automatically creates encrypted files using Amazon Redshift server\-side encryption with AWS\-managed encryption keys \(SSE\-S3\)\. You can't use this option with KMS\_KEY\_ID, MASTER\_SYMMETRIC\_KEY, or CREDENTIALS that contains master\_symmetric\_key\. 
 
 KMS\_KEY\_ID '*key\-id*'  <a name="unload-parameters-kms-key-id"></a>
 Specifies the key ID for an AWS Key Management Service \(AWS KMS\) key to be used to encrypt data files on Amazon S3\. For more information, see [What is AWS Key Management Service?](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) If you specify KMS\_KEY\_ID, you must specify the [ENCRYPTED](#unload-parameters-encrypted) parameter also\. If you specify KMS\_KEY\_ID, you can't authenticate using the CREDENTIALS parameter\. Instead, use either [IAM_ROLE](copy-parameters-authorization.md#copy-iam-role) or [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id)\. 
@@ -199,6 +200,23 @@ You can also populate a table using SELECT…INTO or CREATE TABLE AS using a LIM
 ### Unloading a column of the GEOMETRY data type<a name="unload-usage-geometry"></a>
 
 You can only unload GEOMETRY columns to text or CSV format\. You can't unload GEOMETRY data with the `FIXEDWIDTH` option\. The data is unloaded in the hexadecimal form of the extended well\-known binary \(EWKB\) format\. If the size of the EWKB data is more than 4 MB, then a warning occurs because the data can't later be loaded into a table\. 
+
+### Unloading the HLLSKETCH data type<a name="unload-usage-hll"></a>
+
+You can only unload HLLSKETCH columns to text or CSV format\. You can't unload HLLSKETCH data with the `FIXEDWIDTH` option\. The data is unloaded in the Base64 format for dense HyperLogLog sketches or in the JSON format for sparse HyperLogLog sketches\. For more information, see [HyperLogLog functions](hyperloglog-functions.md)\.
+
+The following example exports a table containing HLLSKETCH columns into a file\.
+
+```
+CREATE TABLE a_table(an_int INT, b_int INT);
+INSERT INTO a_table VALUES (1,1), (2,1), (3,1), (4,1), (1,2), (2,2), (3,2), (4,2), (5,2), (6,2);
+
+CREATE TABLE hll_table (sketch HLLSKETCH);
+INSERT INTO hll_table select hll_create_sketch(an_int) from a_table group by b_int;
+
+UNLOAD ('select * from hll_table') TO 's3://mybucket/unload/'
+IAM_ROLE 'arn:aws:iam::0123456789012:role/MyRedshiftRole' NULL AS 'null' ALLOWOVERWRITE CSV;
+```
 
 ### FORMAT AS PARQUET clause<a name="unload-parquet-usage"></a>
 

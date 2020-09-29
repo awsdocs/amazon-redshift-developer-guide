@@ -26,7 +26,7 @@ If *point1* and *point2* are equal, then null is returned\.
 
 If *point1* or *point2* is not a point, then an error is returned\. 
 
-If *point1* and *point2* don't have the same SRID value, then an error is returned\. 
+If *point1* and *point2* don't have the value for the spatial reference system identifier \(SRID\), then an error is returned\. 
 
 ## Examples<a name="ST_Azimuth-function-examples"></a>
 

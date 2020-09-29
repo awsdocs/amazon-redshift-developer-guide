@@ -52,7 +52,7 @@ If the S3 bucket that holds the data files doesn't reside in the same AWS Region
 For more information, see [Loading data from Amazon S3](t_Loading-data-from-S3.md)\.
 
 's3://*copy\_from\_s3\_manifest\_file*'   <a name="copy-manifest-file"></a>
-Specifies the Amazon S3 object key for a manifest file that lists the data files to be loaded\. The *'s3://*copy\_from\_s3\_manifest\_file'** argument must explicitly reference a single file—for example, `'s3://mybucket/manifest.txt'`\. It cannot reference a key prefix\.  
+Specifies the Amazon S3 object key for a manifest file that lists the data files to be loaded\. The *'s3://*copy\_from\_s3\_manifest\_file'** argument must explicitly reference a single file—for example, `'s3://mybucket/manifest.txt'`\. It can't reference a key prefix\.  
 The manifest is a text file in JSON format that lists the URL of each file that is to be loaded from Amazon S3\. The URL includes the bucket name and full object path for the file\. The files that are specified in the manifest can be in different buckets, but all the buckets must be in the same AWS Region as the Amazon Redshift cluster\. If a file is listed twice, the file is loaded twice\. The following example shows the JSON for a manifest that loads three files\.   
 
 ```
@@ -64,7 +64,7 @@ The manifest is a text file in JSON format that lists the URL of each file that 
   ]
 }
 ```
-The double quote characters are required, and must be simple quotation marks \(0x22\), not slanted or "smart" quotes\. Each entry in the manifest can optionally include a `mandatory` flag\. If `mandatory` is set to `true`, COPY terminates if it doesn't find the file for that entry; otherwise, COPY will continue\. The default value for `mandatory` is `false`\.   
+The double quotation mark characters are required, and must be simple quotation marks \(0x22\), not slanted or "smart" quotation marks\. Each entry in the manifest can optionally include a `mandatory` flag\. If `mandatory` is set to `true`, COPY terminates if it doesn't find the file for that entry; otherwise, COPY will continue\. The default value for `mandatory` is `false`\.   
 When loading from data files in ORC or Parquet format, a `meta` field is required, as shown in the following example\.  
 
 ```
@@ -124,6 +124,6 @@ You can optionally specify the following parameters with COPY from Amazon S3:
 
 ## Unsupported parameters<a name="copy-parameters-data-source-s3-unsupported-parms"></a>
 
-You cannot use the following parameters with COPY from Amazon S3: 
+You can't use the following parameters with COPY from Amazon S3: 
 + SSH
 + READRATIO

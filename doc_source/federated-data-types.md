@@ -10,7 +10,7 @@ The following RDS PostgreSQL and Aurora PostgreSQL data types are converted to V
 + BIT, BIT VARYING
 + BYTEA
 + Composite types
-+ Date and time types INTERVAL and TIME
++ Date and time types INTERVAL, TIME, TIME WITH TIMEZONE
 + Enumerated types
 + Monetary types
 + Network address types

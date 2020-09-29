@@ -37,6 +37,7 @@ The following list provides links to each COPY command parameter description, so
 + [REGION](copy-parameters-data-source-s3.md#copy-region)
 + [REMOVEQUOTES](copy-parameters-data-conversion.md#copy-removequotes)
 + [ROUNDEC](copy-parameters-data-conversion.md#copy-roundec)
++ [SHAPEFILE](copy-parameters-data-format.md#copy-shapefile)
 + [SSH](copy-parameters-data-source-ssh.md#copy-ssh)
 + [STATUPDATE](copy-parameters-data-load.md#copy-statupdate)
 + [TIMEFORMAT](copy-parameters-data-conversion.md#copy-timeformat)

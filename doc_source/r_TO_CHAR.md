@@ -1,6 +1,6 @@
 # TO\_CHAR<a name="r_TO_CHAR"></a>
 
-TO\_CHAR converts a time stamp or numeric expression to a character\-string data format\. 
+TO\_CHAR converts a timestamp or numeric expression to a character\-string data format\. 
 
 ## Syntax<a name="r_TO_CHAR-synopsis"></a>
 
@@ -11,7 +11,7 @@ TO_CHAR (timestamp_expression | numeric_expression , 'format')
 ## Arguments<a name="r_TO_CHAR-arguments"></a>
 
  *timestamp\_expression*   
-An expression that results in a TIMESTAMP or TIMESTAMPTZ type value or a value that can implicitly be coerced to a time stamp\. 
+An expression that results in a TIMESTAMP or TIMESTAMPTZ type value or a value that can implicitly be coerced to a timestamp\. 
 
  *numeric\_expression*   
 An expression that results in a numeric data type value or a value that can implicitly be coerced to a numeric type\. For more information, see [Numeric types](r_Numeric_types201.md)\. TO\_CHAR inserts a space to the left of the numeral string\.  
@@ -43,7 +43,7 @@ to_char
 (5 rows)
 ```
 
-The following example converts an entire time stamp value into a different format\.
+The following example converts an entire timestamp value into a different format\.
 
 ```
 select starttime, to_char(starttime, 'MON-DD-YYYY HH12:MIPM')
@@ -55,7 +55,7 @@ from event where eventid=1;
 (1 row)
 ```
 
-The following example converts a time stamp literal to a character string\.
+The following example converts a timestamp literal to a character string\.
 
 ```
 select to_char(timestamp '2009-12-31 23:15:59','HH24:MI:SS');

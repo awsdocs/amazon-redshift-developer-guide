@@ -135,7 +135,7 @@ part-csv.tbl-007
 ```
 <a name="tutorial-loading-csv-format"></a>
 **CSV format**  
-CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quote character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quote character by using the QUOTE AS option\. When you use the quote character within the field, escape the character with an additional quote character\.
+CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quotation mark character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quotation mark character by using the QUOTE AS option\. When you use the quotation mark character within the field, escape the character with an additional quotation mark character\.
 
 The following excerpt from a CSV\-formatted data file for the PART table shows strings enclosed in double quotation marks \(`"LARGE ANODIZED BRASS"`\)\. It also shows a string enclosed in two double quotation marks within a quoted string \(`"MEDIUM ""BURNISHED"" TIN"`\)\.
 
@@ -472,7 +472,7 @@ The following shows the `customer-fw-manifest` text\.
 
 In this step, you use the DELIMITER and DATEFORMAT options to load the DWDATE table\.
 
-When loading DATE and TIMESTAMP columns, COPY expects the default format, which is YYYY\-MM\-DD for dates and YYYY\-MM\-DD HH:MI:SS for time stamps\. If the load data does not use a default format, you can use DATEFORMAT and TIMEFORMAT to specify the format\. 
+When loading DATE and TIMESTAMP columns, COPY expects the default format, which is YYYY\-MM\-DD for dates and YYYY\-MM\-DD HH:MI:SS for timestamps\. If the load data does not use a default format, you can use DATEFORMAT and TIMEFORMAT to specify the format\. 
 
 The following excerpt shows date formats in the DWDATE table\. Notice that the date formats in column two are inconsistent\.
 

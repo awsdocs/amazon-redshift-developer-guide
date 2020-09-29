@@ -64,7 +64,7 @@ The following example creates a table named CATDEMO, and then loads the table wi
 create table catdemo(catid smallint, catgroup varchar(10), catname varchar(10), catdesc varchar(50));
 ```
 
-In the following example, the data source for the COPY command is a data file named `category_pipe.txt` in the `tickit` folder of an Amazon S3 bucket named `awssampledbuswest2`\. The COPY command is authorized to access the Amazon S3 bucket through an AWS Identity and Access Management \(IAM\) role\. If your cluster has an existing IAM role with permission to access Amazon S3 attached, you can substitute your role's Amazon Resource Name \(ARN\) in the following COPY command and execute it\.
+In the following example, the data source for the COPY command is a data file named `category_pipe.txt` in the `tickit` folder of an Amazon S3 bucket named `awssampledbuswest2`\. The COPY command is authorized to access the Amazon S3 bucket through an AWS Identity and Access Management \(IAM\) role\. If your cluster has an existing IAM role with permission to access Amazon S3 attached, you can substitute your role's Amazon Resource Name \(ARN\) in the following COPY command and run it\.
 
 ```
 copy catdemo
@@ -115,6 +115,7 @@ By default, the COPY command expects the source data to be in character\-delimit
 + [CSV](copy-parameters-data-format.md#copy-csv)
 + [DELIMITER](copy-parameters-data-format.md#copy-delimiter) 
 + [FIXEDWIDTH](copy-parameters-data-format.md#copy-fixedwidth) 
++ [SHAPEFILE](copy-parameters-data-format.md#copy-shapefile) 
 + [AVRO](copy-parameters-data-format.md#copy-avro) 
 + [JSON](copy-parameters-data-format.md#copy-json) 
 + [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) 

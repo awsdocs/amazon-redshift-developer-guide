@@ -1,8 +1,10 @@
 # Examples with datetime types<a name="r_Examples_with_datetime_types"></a>
 
+Following, you can find examples for working with datetime types supported by Amazon Redshift\.
+
 ## Date examples<a name="r_Examples_with_datetime_types-date-examples"></a>
 
-Insert dates that have different formats and display the output:
+The following examples insert dates that have different formats and display the output\. 
 
 ```
 create table datetable (start_date date, end_date date);
@@ -23,7 +25,7 @@ start_date |  end_date
 2008-06-01 | 2008-12-31
 ```
 
-If you insert a time stamp value into a DATE column, the time portion is ignored and only the date loaded\.
+If you insert a timestamp value into a DATE column, the time portion is ignored and only the date is loaded\.
 
 ## Time stamp examples<a name="r_Examples_with_datetime_types-timestamp-examples"></a>
 
@@ -31,7 +33,7 @@ If you insert a date into a TIMESTAMP or TIMESTAMPTZ column, the time defaults t
 
 To change the time zone for the current session, use the [SET](r_SET.md) command to set the [timezone](r_timezone_config.md) configuration parameter\.
 
-Insert timestamps that have different formats and display the output: 
+The following examples insert timestamps that have different formats and display the output\. 
 
 ```
 create table tstamp(timeofday timestamp, timeofdaytz timestamptz);

@@ -3,6 +3,7 @@
 SVV views are system views that contain references to STV tables and snapshots for more detailed information\.
 
 **Topics**
++ [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)
 + [SVV\_COLUMNS](r_SVV_COLUMNS.md)
 + [SVV\_DISKUSAGE](r_SVV_DISKUSAGE.md)
 + [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md)

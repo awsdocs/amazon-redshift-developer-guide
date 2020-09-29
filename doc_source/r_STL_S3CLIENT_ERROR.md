@@ -10,11 +10,11 @@ This view is visible to all users\. Superusers can see all rows; regular users c
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_S3CLIENT_ERROR.html)
 
-## Usage notes<a name="w29aac51c13c11c89c11"></a>
+## Usage notes<a name="w31aac53c13c11c89c11"></a>
 
 If you see multiple errors with "Connection timed out", you might have a networking issue\. If you're using Enhanced VPC Routing, verify that you have a valid network path between your cluster's VPC and your data resources\. For more information, see [Amazon Redshift Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html)
 
-## Sample query<a name="w29aac51c13c11c89c13"></a>
+## Sample query<a name="w31aac53c13c11c89c13"></a>
 
 The following query returns the errors from COPY commands executed during the current session\.
 

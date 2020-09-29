@@ -14,7 +14,7 @@ ERROR: Invalid credentials. Must be of the format: credentials
 [;token=<temporary-session-token>]'
 ```
 
-Verify that the credentials string does not contain any spaces or line breaks, and is enclosed in single quotes\. 
+Verify that the credentials string does not contain any spaces or line breaks, and is enclosed in single quotation marks\. 
 
 ## Invalid access key ID<a name="invalid-access-key-id-error"></a>
 

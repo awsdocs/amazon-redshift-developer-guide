@@ -108,7 +108,7 @@ EXECUTE 'UPDATE tbl SET '
   || quote_literal(keyvalue);
 ```
 
-The preceding example shows the functions `quote_ident(text)` and `quote_literal(text)`\. This example passes variables that contain column and table identifiers to the `quote_ident` function\. It also passes variables that contain literal strings in the constructed command to the `quote_literal` function\. Both functions take the appropriate steps to return the input text enclosed in double or single quotes respectively, with any embedded special characters properly escaped\.
+The preceding example shows the functions `quote_ident(text)` and `quote_literal(text)`\. This example passes variables that contain column and table identifiers to the `quote_ident` function\. It also passes variables that contain literal strings in the constructed command to the `quote_literal` function\. Both functions take the appropriate steps to return the input text enclosed in double or single quotation marks respectively, with any embedded special characters properly escaped\.
 
 Dollar quoting is only useful for quoting fixed text\. Don't write the preceding example in the following format\.
 

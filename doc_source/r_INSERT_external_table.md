@@ -43,6 +43,7 @@ Consider the following when running the INSERT \(external table\) command:
 + The 'numRows’ table property is automatically updated toward the end of the INSERT operation\. The table property must be defined or added to the table already if it wasn't created by CREATE EXTERNAL TABLE AS operation\.
 + The LIMIT clause isn't supported in the outer SELECT query\. Instead, use a nested LIMIT clause\.
 + You can use the [STL\_UNLOAD\_LOG](r_STL_UNLOAD_LOG.md) table to track the files that got written to Amazon S3 by each INSERT \(external table\) operation\.
++ Amazon Redshift supports only Amazon S3 standard encryption for INSERT \(external table\)\.
 
 ## INSERT \(external table\) examples<a name="c_Examples_of_INSERT_external_table"></a>
 

@@ -28,8 +28,11 @@ ADD table_constraint
 | ALTER DISTKEY column_name 
 | ALTER DISTSTYLE ALL       
 | ALTER DISTSTYLE EVEN
-| ALTER DISTSTYLE KEY DISTKEY column_name   
-| ALTER [COMPOUND] SORTKEY ( column_name [,...] )             
+| ALTER DISTSTYLE KEY DISTKEY column_name 
+| ALTER DISTSTYLE AUTO             
+| ALTER [COMPOUND] SORTKEY ( column_name [,...] ) 
+| ALTER SORTKEY AUTO 
+| ALTER SORTKEY NONE
 | ADD [ COLUMN ] column_name column_type
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
@@ -113,6 +116,7 @@ A clause that changes the existing distribution style of a table to `ALL`\. Cons
   + If VACUUM is currently running, then running ALTER DISTSTYLE ALL returns an error\. 
   + If ALTER DISTSTYLE ALL is running, then a background vacuum doesn't start on a table\. 
 + The ALTER DISTSTYLE ALL command is not supported for tables with interleaved sort keys and temporary tables\.
++ If the distribution style was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 For more information about DISTSTYLE ALL, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER DISTSTYLE EVEN  
@@ -121,6 +125,7 @@ A clause that changes the existing distribution style of a table to `EVEN`\. Con
   + If VACUUM is currently running, then running ALTER DISTSTYLE EVEN returns an error\. 
   + If ALTER DISTSTYLE EVEN is running, then a background vacuum doesn't start on a table\. 
 + The ALTER DISTSTYLE EVEN command is not supported for tables with interleaved sort keys and temporary tables\.
++ If the distribution style was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 For more information about DISTSTYLE EVEN, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER DISTKEY *column\_name* or ALTER DISTSTYLE KEY DISTKEY *column\_name*  
@@ -131,19 +136,45 @@ A clause that changes the column used as the distribution key of a table\. Consi
   + If ALTER DISTKEY is running, then foreground vacuum returns an error\.
 + You can only run one ALTER DISTKEY command on a table at a time\. 
 + The ALTER DISTKEY command is not supported for tables with interleaved sort keys\. 
++ If the distribution style was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 When specifying DISTSTYLE KEY, the data is distributed by the values in the DISTKEY column\. For more information about DISTSTYLE, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
+
+ALTER DISTSTYLE AUTO  
+A clause that changes the existing distribution style of a table to AUTO\.   
+When you alter a distribution style to AUTO, the distribution style of the table is set to the following:   
++ A small table with DISTSTYLE ALL is converted to AUTO\(ALL\)\. 
++ A small table with DISTSTYLE EVEN is converted to AUTO\(ALL\)\. 
++ A small table with DISTSTYLE KEY is converted to AUTO\(ALL\)\. 
++ A large table with DISTSTYLE ALL is converted to AUTO\(EVEN\)\. 
++ A large table with DISTSTYLE EVEN is converted to AUTO\(EVEN\)\. 
++ A large table with DISTSTYLE KEY is converted to AUTO\(KEY\) and the DISTKEY is preserved\. 
+If Amazon Redshift determines that a new distribution style or key will improve the performance of queries, then Amazon Redshift might change the distribution style or key of your table in the future\.   
+For more information about DISTSTYLE AUTO, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.   
+To view the distribution style of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\. To view the Amazon Redshift Advisor recommendations for tables, query the SVV\_ALTER\_TABLE\_RECOMMENDATIONS system catalog view\. For more information, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. To view the actions taken by Amazon Redshift, query the SVL\_AUTO\_WORKER\_ACTION system catalog view\. For more information, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. 
 
 ALTER \[COMPOUND\] SORTKEY \( *column\_name* \[,\.\.\.\] \)  
 A clause that changes or adds the sort key used for a table\.   
 When you alter a sort key, the compression encoding of columns in the new or original sort key can change\. If no encoding is explicitly defined for the table, then Amazon Redshift automatically assigns compression encodings as follows:  
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
 + Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 Consider the following:  
 + You can define a maximum of 400 columns for a sort key per table\. 
 + You can only alter a compound sort key\. You can't alter an interleaved sort key\. 
++ If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
+
+ALTER SORTKEY AUTO  
+A clause that changes or adds the sort key of the target table to AUTO\.   
+When you alter a sort key to AUTO, Amazon Redshift preserves the existing sort key of the table\.    
+If Amazon Redshift determines that a new sort key will improve the performance of queries, then Amazon Redshift might change the sort key of your table in the future\.   
+For more information about SORTKEY AUTO, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.   
+To view the sort key of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\. To view the Amazon Redshift Advisor recommendations for tables, query the SVV\_ALTER\_TABLE\_RECOMMENDATIONS system catalog view\. For more information, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. To view the actions taken by Amazon Redshift, query the SVL\_AUTO\_WORKER\_ACTION system catalog view\. For more information, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. 
+
+ALTER SORTKEY NONE  
+A clause that removes the sort key of the target table\.   
+If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 
 RENAME COLUMN *column\_name* TO *new\_name*   
 A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and identifiers](r_names.md)\.
@@ -178,6 +209,8 @@ Amazon Redshift supports the following [Data types](c_Supported_data_types.md):
 + DATE
 + TIMESTAMP
 + GEOMETRY
++ TIME
++ TIMETZ
 
 DEFAULT *default\_expr*   <a name="alter-table-default"></a>
 A clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions aren't allowed\.  
@@ -190,7 +223,7 @@ The compression encoding for a column\. If no compression is selected, Amazon Re
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data types are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
 + Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
 The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  

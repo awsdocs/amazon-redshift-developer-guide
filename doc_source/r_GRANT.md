@@ -12,8 +12,6 @@ You can't run GRANT \(on an external resource\) within a transaction block \(BEG
 
 ## Syntax<a name="r_GRANT-synopsis"></a>
 
-  
-
 ```
 GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
     ON { [ TABLE ] table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...] }

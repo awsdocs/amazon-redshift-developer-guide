@@ -22,7 +22,7 @@ The TRIM function returns a VARCHAR or CHAR string\. If you use the TRIM functio
 
 ## Example<a name="r_TRIM-example"></a>
 
-The following example removes the double quotes that surround the string `"dog"`: 
+The following example removes the double quotation marks that surround the string `"dog"`: 
 
 ```
 select trim('"' FROM '"dog"');

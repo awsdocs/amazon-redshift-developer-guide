@@ -135,7 +135,7 @@ If the SSB tables already exist in the current database, you will need to drop t
       gzip compupdate off region 'us-west-2';
       ```
 
-   1. Replace *<Your\-Access\-Key\-ID>* and *<Your\-Secret\-Access\-Key>* with your own AWS account credentials\. The segment of the credentials string that is enclosed in single quotes must not contain any spaces or line breaks\. 
+   1. Replace *<Your\-Access\-Key\-ID>* and *<Your\-Secret\-Access\-Key>* with your own AWS account credentials\. The segment of the credentials string that is enclosed in single quotation marks must not contain any spaces or line breaks\. 
 
    1. Execute the COPY commands either by running the SQL script or by copying and pasting the commands into your SQL client\. 
 **Note**  

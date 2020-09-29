@@ -39,7 +39,7 @@ The following Amazon Redshift system tables can be helpful in troubleshooting da
 1. Fix the problem in the input file or the load script, based on the information that the view returns\. Some typical load errors to watch for include: 
    + Mismatch between data types in table and values in input data fields\.
    + Mismatch between number of columns in table and number of fields in input data\.
-   + Mismatched quotes\. Amazon Redshift supports both single and double quotes; however, these quotes must be balanced appropriately\.
+   + Mismatched quotation marks\. Amazon Redshift supports both single and double quotation marks; however, these quotation marks must be balanced appropriately\.
    + Incorrect format for date/time data in input files\.
    + Out\-of\-range values in input files \(for numeric columns\)\.
    + Number of distinct values for a column exceeds the limitation for its compression encoding\.

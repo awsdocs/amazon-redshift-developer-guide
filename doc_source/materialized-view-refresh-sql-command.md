@@ -41,9 +41,10 @@ Some operations in Amazon Redshift interact with materialized views\. Some of th
 
 ## Limitations for incremental refresh<a name="mv_REFRESH_MARTERIALIZED_VIEW_limitations"></a>
 
-Amazon Redshift currently does not support incremental refresh for materialized views that are defined with a query using any of the following SQL elements:
+Amazon Redshift currently doesn't support incremental refresh for materialized views that are defined with a query using any of the following SQL elements:
 + OUTER JOIN \(RIGHT, LEFT, or FULL\)\.
 + Set operations: UNION, INTERSECT, EXCEPT, MINUS\.
++ UNION ALL when it occurs in a subquery and an aggregate function or a GROUP BY clause is present in the query\.
 + Aggregate functions: AVG, MEDIAN, PERCENTILE\_CONT, MAX, MIN, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
 **Note**  
 The COUNT and SUM aggregate functions are supported\.

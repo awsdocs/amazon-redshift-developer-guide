@@ -22,7 +22,7 @@ INTEGER
 
 ## Examples<a name="r_INTERVAL_CMP-examples"></a>
 
-The following example compares the value of "3 days" to "1 year": 
+The following example compares the value of "3 days" to "1 year"\. 
 
 ```
 select interval_cmp('3 days','1 year');
@@ -32,7 +32,7 @@ interval_cmp
 -1
 ```
 
-This example compares the value "7 days" to "1 week": 
+This example compares the value "7 days" to "1 week"\. 
 
 ```
 select interval_cmp('7 days','1 week');

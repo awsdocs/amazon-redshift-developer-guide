@@ -5,7 +5,7 @@ As you test system performance before and after tuning your tables, you will rec
 + Storage use 
 + Query performance 
 
-The examples in this tutorial are based on using a four\-node dw2\.large cluster\. Your results will be different, even if you use the same cluster configuration\. System performance is influenced by many factors, and no two systems will perform exactly the same\.
+The examples in this tutorial are based on using a four\-node dc2\.large cluster\. Your results will be different, even if you use the same cluster configuration\. System performance is influenced by many factors, and no two systems will perform exactly the same\.
 
 You will record your results using the following benchmarks table\.
 

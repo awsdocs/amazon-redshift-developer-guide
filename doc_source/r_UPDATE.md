@@ -14,7 +14,8 @@ The maximum size for a single SQL statement is 16 MB\.
 ## Syntax<a name="r_UPDATE-synopsis"></a>
 
 ```
-UPDATE table_name SET column = { expression | DEFAULT } [,...]
+UPDATE table_name [ [ AS ] alias ] SET column = { expression | DEFAULT } [,...]
+
 [ FROM fromlist ]
 [ WHERE condition ]
 ```
@@ -24,6 +25,9 @@ UPDATE table_name SET column = { expression | DEFAULT } [,...]
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a user with UPDATE privilege on the table may update rows\. If you use the FROM clause or select from tables in an expression or condition, you must have SELECT privilege on those tables\. You can't give the table an alias here; however, you can specify an alias in the FROM clause\.   
 Amazon Redshift Spectrum external tables are read\-only\. You can't UPDATE an external table\.
+
+alias  
+Temporary alternative name for a target table\. Aliases are optional\. The AS keyword is always optional\. 
 
 SET *column* =   
 One or more columns that you want to modify\. Columns that aren't listed retain their current values\. Do not include the table name in the specification of a target column\. For example, `UPDATE tab SET tab.col = 1` is invalid\.

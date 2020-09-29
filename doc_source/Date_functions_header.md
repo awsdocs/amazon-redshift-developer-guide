@@ -6,6 +6,7 @@ In this section, you can find information about the date and time scalar functio
 + [Summary of date and time functions](#date-functions-summary)
 + [Date and time functions in transactions](#date-functions-transactions)
 + [Deprecated leader node\-only functions](#date-functions-deprecated)
++ [\+ \(Concatenation\) operator](r_DATE-CONCATENATE_function.md)
 + [ADD\_MONTHS function](r_ADD_MONTHS.md)
 + [AT TIME ZONE function](r_AT_TIME_ZONE.md)
 + [CONVERT\_TIMEZONE function](CONVERT_TIMEZONE.md)
@@ -35,7 +36,7 @@ In this section, you can find information about the date and time scalar functio
 + [TIMEZONE function](r_TIMEZONE.md)
 + [TO\_TIMESTAMP function](r_TO_TIMESTAMP.md)
 + [TRUNC Date function](r_TRUNC_date.md)
-+ [Dateparts for Date or Time Stamp functions](r_Dateparts_for_datetime_functions.md)
++ [Date parts for date or timestamp functions](r_Dateparts_for_datetime_functions.md)
 
 ## Summary of date and time functions<a name="date-functions-summary"></a>
 

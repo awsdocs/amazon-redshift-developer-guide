@@ -23,7 +23,7 @@ The manifest file is in the following format:
 }
 ```
 
-The manifest file contains one "entries" construct for each SSH connection\. Each entry represents a single SSH connection\. You can have multiple connections to a single host or multiple connections to multiple hosts\. The double quotes are required as shown, both for the field names and the values\. The only value that does not need double quotes is the Boolean value **true** or **false** for the mandatory field\. 
+The manifest file contains one "entries" construct for each SSH connection\. Each entry represents a single SSH connection\. You can have multiple connections to a single host or multiple connections to multiple hosts\. The double quotation marks are required as shown, both for the field names and the values\. The only value that does not need double quotation marks is the Boolean value **true** or **false** for the mandatory field\. 
 
 The following describes the fields in the manifest file\. 
 

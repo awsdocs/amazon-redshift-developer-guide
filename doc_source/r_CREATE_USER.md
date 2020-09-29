@@ -35,7 +35,7 @@ You can specify the password in clear text or as an MD5 hash string\.
 For clear text, the password must meet the following constraints:  
 + It must be 8 to 64 characters in length\.
 + It must contain at least one uppercase letter, one lowercase letter, and one number\.
-+ It can use any ASCII characters with ASCII codes 33–126, except ' \(single quote\), " \(double quote\), \\, /, or @\.
++ It can use any ASCII characters with ASCII codes 33–126, except ' \(single quotation mark\), " \(double quotation mark\), \\, /, or @\.
 As a more secure alternative to passing the CREATE USER password parameter as clear text, you can specify an MD5 hash of a string that includes the password and user name\.   
 When you specify an MD5 hash string, the CREATE USER command checks for a valid MD5 hash string, but it doesn't validate the password portion of the string\. It is possible in this case to create a password, such as an empty string, that you can't use to log on to the database\.
 To specify an MD5 password, follow these steps:   

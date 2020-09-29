@@ -30,6 +30,8 @@ A database snapshot is also created in a transaction for any SELECT query that r
 
 ## How to fix serializable isolation errors<a name="c_serial_isolation-serializable-isolation-troubleshooting"></a>
 
+### ERROR:1023 DETAIL: Serializable isolation violation on table in Redshift<a name="c_serial_isolation-serialization-isolation-1023"></a>
+
 When Amazon Redshift detects a serializable isolation error, you see an error message such as the following\.
 
 ```
@@ -87,3 +89,60 @@ To address a serializable isolation error, you can try the following methods:
 + Retry the aborted transaction\.
 
   A transaction can encounter a serializable isolation error if it conflicts with operations performed by another concurrent transaction\. If the conflicting transactions don't need to run at the same time, simply retrying the aborted transaction might succeed\. If the issue persists, try one of the other methods\.
+
+### ERROR:1018 DETAIL: Relation does not exist<a name="c_serial_isolation-serialization-isolation-1018"></a>
+
+When you run concurrent Amazon Redshift operations in different sessions, you see an error message such as the following\.
+
+```
+ERROR: 1018 DETAIL: Relation does not exist.
+```
+
+Transactions in Amazon Redshift follow snapshot isolation\. After a transaction begins, Amazon Redshift takes a snapshot of the database\. For the entire lifecycle of the transaction, the transaction operates on the state of the database as reflected in the snapshot\. If the transaction reads from a table that doesn't exist in the snapshot, it throws the 1018 error message shown previously\. Even when another concurrent transaction creates a table after the transaction has taken the snapshot, the transaction can't read from the newly created table\.
+
+To address this serialization isolation error, you can try to move the start of the transaction to a point where you know the table exists\.
+
+If the table is created by another transaction, this point is at least after that transaction has been committed\. Also, ensure that no concurrent transaction has been committed that might have dropped the table\.
+
+```
+session1 = # BEGIN;
+session1 = # DROP TABLE A;
+session1 = # COMMIT;
+```
+
+```
+session2 = # BEGIN;
+```
+
+```
+session3 = # BEGIN;
+session3 = # CREATE TABLE A (id INT);
+session3 = # COMMIT;
+```
+
+```
+session2 = # SELECT * FROM A;
+```
+
+The last operation that is run as the read operation by session2 results in a serializable isolation error\. This error happens when session2 takes a snapshot and the table has already been dropped by a committed session1\. In other words, even though a concurrent session3 has created the table, session2 doesn't see the table becuase it's not in the snapshot\.
+
+To resolve this error, you can reorder the sessions as follows\.
+
+```
+session1 = # BEGIN;
+session1 = # DROP TABLE A;
+session1 = # COMMIT;
+```
+
+```
+session3 = # BEGIN;
+session3 = # CREATE TABLE A (id INT);
+session3 = # COMMIT;
+```
+
+```
+session2 = # BEGIN;
+session2 = # SELECT * FROM A;
+```
+
+Now when session2 takes its snapshot, session3 has already been committed, and the table is in the database\. Session2 can read from the table without any error\.

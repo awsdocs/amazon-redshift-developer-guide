@@ -49,13 +49,15 @@ Clause that defines the window specification\. The OVER clause is mandatory for 
 
 PARTITION BY *expr\_list*   
 \(Optional\) The PARTITION BY clause subdivides the result set into partitions, much like the GROUP BY clause\. If a partition clause is present, the function is calculated for the rows in each partition\. If no partition clause is specified, a single partition contains the entire table, and the function is computed for that complete table\.   
-The ranking functions, DENSE\_RANK, NTILE, RANK, and ROW\_NUMBER, require a global comparison of all the rows in the result set\. When a PARTITION BY clause is used, the query optimizer can execute each aggregation in parallel by spreading the workload across multiple slices according to the partitions\. If the PARTITION BY clause is not present, the aggregation step must be executed serially on a single slice, which can have a significant negative impact on performance, especially for large clusters\.
+The ranking functions, DENSE\_RANK, NTILE, RANK, and ROW\_NUMBER, require a global comparison of all the rows in the result set\. When a PARTITION BY clause is used, the query optimizer can execute each aggregation in parallel by spreading the workload across multiple slices according to the partitions\. If the PARTITION BY clause is not present, the aggregation step must be executed serially on a single slice, which can have a significant negative impact on performance, especially for large clusters\.  
+Amazon Redshift doesn't support string literals in PARTITION BY clauses\.
 
 ORDER BY *order\_list*   
 \(Optional\) The window function is applied to the rows within each partition sorted according to the order specification in ORDER BY\. This ORDER BY clause is distinct from and completely unrelated to an ORDER BY clause in a nonwindow function \(outside of the OVER clause\)\. The ORDER BY clause can be used without the PARTITION BY clause\.   
 For the ranking functions, the ORDER BY clause identifies the measures for the ranking values\. For aggregation functions, the partitioned rows must be ordered before the aggregate function is computed for each frame\. For more about window function types, see [Window functions](c_Window_functions.md)\.  
 Column identifiers or expressions that evaluate to column identifiers are required in the order list\. Neither constants nor constant expressions can be used as substitutes for column names\.   
 NULLS values are treated as their own group, sorted and ranked according to the NULLS FIRST or NULLS LAST option\. By default, NULL values are sorted and ranked last in ASC ordering, and sorted and ranked first in DESC ordering\.  
+Amazon Redshift doesn't support string literals in ORDER BY clauses\.  
  If the ORDER BY clause is omitted, the order of the rows is nondeterministic\.   
 In any parallel system such as Amazon Redshift, when an ORDER BY clause doesn't produce a unique and total ordering of the data, the order of the rows is nondeterministic\. That is, if the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows might vary from one run of Amazon Redshift to the next\. In turn, window functions might return unexpected or inconsistent results\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 

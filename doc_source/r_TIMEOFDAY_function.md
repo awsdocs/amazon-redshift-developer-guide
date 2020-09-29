@@ -14,7 +14,7 @@ VARCHAR
 
 ## Examples<a name="r_TIMEOFDAY_function-examples"></a>
 
-Return the current date and time by using the TIMEOFDAY function: 
+The following example returns the current date and time by using the TIMEOFDAY function\. 
 
 ```
 select timeofday();

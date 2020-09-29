@@ -11,7 +11,7 @@ When you need to store a relatively small set of key\-value pairs, you might sav
 
 In addition, you can easily modify JSON strings to store additional key:value pairs without needing to add columns to a table\. 
 
-We recommend using JSON sparingly\. JSON is not a good choice for storing larger datasets because, by storing disparate data in a single column, JSON does not leverage Amazon Redshift’s column store architecture\. 
+We recommend using JSON sparingly\. JSON is not a good choice for storing larger datasets because, by storing disparate data in a single column, JSON does not use the Amazon Redshift column store architecture\. 
 
 JSON uses UTF\-8 encoded text strings, so JSON strings can be stored as CHAR or VARCHAR data types\. Use VARCHAR if the strings include multi\-byte characters\.
 
@@ -22,11 +22,11 @@ JSON strings must be properly formatted JSON, according to the following rules:
 + A JSON array is an ordered set of comma\-separated values enclosed by brackets\. 
 
   An example is the following: `["first", {"one":1}, "second", 3, null] `
-+ JSON arrays use a zero\-based index; the first element in an array is at position 0\. In a JSON key:value pair, the key is a double quoted string\. 
-+ A JSON value can be any of: 
++ JSON arrays use a zero\-based index; the first element in an array is at position 0\. In a JSON key:value pair, the key is a string in double quotation marks\. 
++ A JSON value can be any of the following: 
   + JSON object 
   + JSON array 
-  + string \(double quoted\) 
+  + string in double quotation marks
   + number \(integer and float\) 
   + boolean
   + null 

@@ -92,8 +92,6 @@ region as 'us-east-1';
 
 The following example installs a library named `f_urlparse` from a library file on a website\.
 
-  
-
 ```
 create library f_urlparse 
 language plpythonu 

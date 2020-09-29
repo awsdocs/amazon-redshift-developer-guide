@@ -10,7 +10,7 @@ To get authorization to access the resource, your cluster must be authenticated\
 
 With <a name="copy-usage_notes-access-role-based.phrase"></a>role\-based access control, your cluster temporarily assumes an IAM role on your behalf\. Then, based on the authorizations granted to the role, your cluster can access the required AWS resources\.
 
-An IAM *role* is similar to an IAM user, in that it is an AWS identity with permissions policies that determine what the identity can and cannot do in AWS\. However, instead of being uniquely associated with one user, a role can be assumed by any entity that needs it\. Also, a role doesn’t have any credentials \(a password or access keys\) associated with it\. Instead, if a role is associated with a cluster, access keys are created dynamically and provided to the cluster\.
+An IAM *role* is similar to an IAM user, in that it is an AWS identity with permissions policies that determine what the identity can and can't do in AWS\. However, instead of being uniquely associated with one user, a role can be assumed by any entity that needs it\. Also, a role doesn’t have any credentials \(a password or access keys\) associated with it\. Instead, if a role is associated with a cluster, access keys are created dynamically and provided to the cluster\.
 
 We recommend using role\-based access control because it provides more secure, fine\-grained control of access to AWS resources and sensitive user data, in addition to safeguarding your AWS credentials\.
 
@@ -77,7 +77,7 @@ The IAM user must have, at a minimum, the permissions listed in [IAM permissions
 **Note**  
 We strongly recommend using [role-based access control](#copy-usage_notes-access-role-based.phrase) instead of creating temporary credentials and providing access key ID and secret access key as plain text\. Role\-based access controlautomatically uses temporary credentials\. 
 
-Temporary security credentials provide enhanced security because they have short lifespans and cannot be reused after they expire\. The access key ID and secret access key generated with the token cannot be used without the token, and a user who has these temporary security credentials can access your resources only until the credentials expire\.
+Temporary security credentials provide enhanced security because they have short lifespans and can't be reused after they expire\. The access key ID and secret access key generated with the token can't be used without the token, and a user who has these temporary security credentials can access your resources only until the credentials expire\.
 
 To grant users temporary access to your resources, you call AWS Security Token Service \(AWS STS\) API operations\. The AWS STS API operations return temporary security credentials consisting of a security token, an access key ID, and a secret access key\. You issue the temporary security credentials to the users who need temporary access to your resources\. These users can be existing IAM users, or they can be non\-AWS users\. For more information about creating temporary security credentials, see [Using Temporary Security Credentials](https://docs.aws.amazon.com/STS/latest/UsingSTS/Welcome.html) in the IAM User Guide\.
 

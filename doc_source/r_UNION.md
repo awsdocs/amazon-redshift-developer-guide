@@ -23,7 +23,7 @@ query
 ## Parameters<a name="r_UNION-parameters"></a>
 
  *query*   
-A query expression that corresponds, in the form of its select list, to a second query expression that follows the UNION, INTERSECT, or EXCEPT operator\. The two expressions must contain the same number of output columns with compatible data types; otherwise, the two result sets can't be compared and merged\. Set operations don't allow implicit conversion between different categories of data types; for more information, see [Type compatibility and conversion](r_Type_conversion.md)\.  
+A query expression that corresponds, in the form of its select list, to a second query expression that follows the UNION, INTERSECT, or EXCEPT operator\. The two expressions must contain the same number of output columns with compatible data types; otherwise, the two result sets can't be compared and merged\. Set operations don't allow implicit conversion between different categories of data types; for more information, see [Type compatibility and conversion](c_Supported_data_types.md#r_Type_conversion)\.  
 You can build queries that contain an unlimited number of query expressions and link them with UNION, INTERSECT, and EXCEPT operators in any combination\. For example, the following query structure is valid, assuming that the tables T1, T2, and T3 contain compatible sets of columns:   
 
 ```
