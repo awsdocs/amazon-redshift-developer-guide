@@ -15,7 +15,7 @@ The name of an Amazon Redshift table or view\.
 
 ## Return type<a name="PG_GET_COLS-return-type"></a>
 
-VARCHAR 
+RECORD
 
 ## Usage notes<a name="PG_GET_COLS-usage-notes"></a>
 
