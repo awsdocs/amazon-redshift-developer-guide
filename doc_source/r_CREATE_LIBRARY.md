@@ -4,7 +4,7 @@ Installs a Python library, which is available for users to incorporate when crea
 
 CREATE LIBRARY can't be run inside a transaction block \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
-Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
+Amazon Redshift supports Python version 2\.7\. For more information, see [www\.python\.org](https://www.python.org/)\.
 
 For more information, see [Importing custom Python library modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\. 
 
@@ -26,13 +26,13 @@ OR REPLACE
 Specifies that if a library with the same name as this one already exists, the existing library is replaced\. REPLACE commits immediately\. If a UDF that depends on the library is running concurrently, the UDF might fail or return unexpected results, even if the UDF is running within a transaction\. You must be the owner or a superuser to replace a library\.
 
  *library\_name*   
-The name of the library to be installed\. You can't create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as the library to be installed , you must drop the existing library before installing the new library\. For more information, see [Python language support for UDFs](udf-python-language-support.md)\.
+The name of the library to be installed\. You can't create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as the library to be installed, you must drop the existing library before installing the new library\. For more information, see [Python language support for UDFs](udf-python-language-support.md)\.
 
 LANGUAGE plpythonu  
-The language to use\. Python \(plpythonu\) is the only supported language\. Amazon Redshift supports Python version 2\.7\. For more information, go to [www\.python\.org](https://www.python.org/)\.
+The language to use\. Python \(plpythonu\) is the only supported language\. Amazon Redshift supports Python version 2\.7\. For more information, see [www\.python\.org](https://www.python.org/)\.
 
 FROM  
-The location of the library file\. You can specify an Amazon S3 bucket and object name, or you can specify a URL to download the file from a public website\. The library must be packaged in the form of a `.zip` file\. For more information, go to [Building and Installing Python Modules](https://docs.python.org/2/library/distutils.html?highlight=distutils#module-distutils) in the Python documentation\.
+The location of the library file\. You can specify an Amazon S3 bucket and object name, or you can specify a URL to download the file from a public website\. The library must be packaged in the form of a `.zip` file\. For more information, see [Building and Installing Python Modules](https://docs.python.org/2/library/distutils.html?highlight=distutils#module-distutils) in the Python documentation\.
 
  https://*file\_url*   
 The URL to download the file from a public website\. The URL can contain up to three redirects\. The following is an example of a file URL\.  
@@ -70,7 +70,7 @@ To use temporary token credentials, you must provide the temporary access key ID
 WITH CREDENTIALS AS 
 'aws_access_key_id=<temporary-access-key-id>;aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>'
 ```
-For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)
+For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)\.
 
  REGION \[AS\] *aws\_region*   
 The AWS Region where the Amazon S3 bucket is located\. REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. The value for *aws\_region* must match an AWS Region listed in the table in the [REGION](copy-parameters-data-source-s3.md#copy-region) parameter description for the COPY command\.  
@@ -91,6 +91,8 @@ region as 'us-east-1';
 ```
 
 The following example installs a library named `f_urlparse` from a library file on a website\.
+
+
 
 ```
 create library f_urlparse 

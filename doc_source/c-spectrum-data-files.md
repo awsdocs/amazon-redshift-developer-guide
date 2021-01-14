@@ -27,7 +27,7 @@ Redshift Spectrum supports the following compression types and extensions\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-data-files.html)
 
-You can apply compression at different levels\. Most commonly, you compress a whole file or compress individual blocks within a file\. 
+You can apply compression at different levels\. Most commonly, you compress a whole file or compress individual blocks within a file\.  Compressing columnar formats at the file level doesn't yield performance benefits\. 
 
 For Redshift Spectrum to be able to read a file in parallel, the following must be true:
 + The file format supports parallel reads\.

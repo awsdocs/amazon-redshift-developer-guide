@@ -36,11 +36,11 @@ slice| col | rows  | minvalue | maxvalue
 (4 rows)
 ```
 
-The table contains 49,990 rows\. The rows \(num\_values\) column shows that each slice contains about the same number of rows\. The minvalue and maxvalue columns show the range of values on each slice\. Each slice includes nearly the entire range of values, so there's a good chance that every slice will participate in executing a query that filters for a range of user IDs\.
+The table contains 49,990 rows\. The rows \(num\_values\) column shows that each slice contains about the same number of rows\. The minvalue and maxvalue columns show the range of values on each slice\. Each slice includes nearly the entire range of values, so there's a good chance that every slice participates in running a query that filters for a range of user IDs\.
 
 This example demonstrates distribution on a small test system\. The total number of slices is typically much higher\.
 
-If you commonly join or group using the STATE column, you might choose to distribute on the STATE column\. The following examples shows that if you create a new table with the same data as the USERS table, but you set the DISTKEY to the STATE column, the distribution will not be as even\. Slice 0 \(13,587 rows\) holds approximately 30% more rows than slice 3 \(10,150 rows\)\. In a much larger table, this amount of distribution skew could have an adverse impact on query processing\.
+If you commonly join or group using the STATE column, you might choose to distribute on the STATE column\. The following example shows a case where you create a new table with the same data as the USERS table but set the DISTKEY to the STATE column\. In this case, the distribution isn't as even\. Slice 0 \(13,587 rows\) holds approximately 30 percent more rows than slice 3 \(10,150 rows\)\. In a much larger table, this amount of distribution skew can have an adverse impact on query processing\.
 
 ```
 create table userskey distkey(state) as select * from users;

@@ -13,9 +13,8 @@ This section provides a quick reference for identifying and addressing some of t
 
 These suggestions give you a starting point for troubleshooting\. You can also refer to the following resources for more detailed information\.
 + [Accessing Amazon Redshift clusters and databases](https://docs.aws.amazon.com/redshift/latest/mgmt/using-rs-tools.html)
-+ [Designing tables](t_Creating_tables.md)
++ [Working with automatic table optimization](t_Creating_tables.md)
 + [Loading data](t_Loading_data.md)
-+ [Tutorial: Tuning table design](tutorial-tuning-tables.md)
 + [Tutorial: Loading data from Amazon S3](tutorial-loading-data.md)
 
 ## Connection fails<a name="queries-troubleshooting-connection-fails"></a>
@@ -56,7 +55,7 @@ If there is a potential deadlock, try the following:
 Your query can take too long for the following reasons; we suggest the following troubleshooting approaches\.
 
 **Tables are not optimized**  
-Set the sort key, distribution style, and compression encoding of the tables to take full advantage of parallel processing\. For more information, see [Designing tables](t_Creating_tables.md) and [Tutorial: Tuning table design](tutorial-tuning-tables.md)\.
+Set the sort key, distribution style, and compression encoding of the tables to take full advantage of parallel processing\. For more information, see [Working with automatic table optimization](t_Creating_tables.md)  
 
 **Query is writing to disk**  
 Your queries might be writing to disk for at least part of the query execution\. For more information, see [Improving query performance](query-performance-improvement-opportunities.md)\.
@@ -87,7 +86,7 @@ The bucket you are attempting to access must be addressed using the specified en
 If at all possible, make sure your cluster and your data source are the same Region\. You can specify a different Region by using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
 
 **Note**  
-If your cluster and your data source are in different AWS Regions, you incur data transfer costs\. You also have higher latency and more issues with eventual consistency\.
+If your cluster and your data source are in different AWS Regions, you incur data transfer costs\. You also have higher latency\.
 
 **COPY Command Fails**  
 Query STL\_LOAD\_ERRORS to discover the errors that occurred during specific loads\. For more information, see [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md)\.
@@ -105,9 +104,6 @@ If you use multiple concurrent COPY commands to load one table from multiple fil
 ## Load data is incorrect<a name="queries-troubleshooting-load-data-incorrect"></a>
 
 Your COPY operation can load incorrect data in the following ways; we suggest the following troubleshooting approaches\.
-
-**Not all files are loaded**  
-Eventual consistency can cause a discrepancy in some cases between the files listed using an Amazon S3 ListBuckets action and the files available to the COPY command\. For more information, see [Verifying that the data loaded correctly](verifying-that-data-loaded-correctly.md)\.
 
 **Wrong files are loaded**  
 Using an object prefix to specify data files can cause unwanted files to be read\. Instead, use a manifest file to specify exactly which files to load\. For more information, see the [copy_from_s3_manifest_file](copy-parameters-data-source-s3.md#copy-manifest-file) option for the COPY command and [Example: COPY from Amazon S3 using a manifest](r_COPY_command_examples.md#copy-command-examples-manifest) in the COPY examples\.

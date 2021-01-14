@@ -271,7 +271,7 @@ END, (SUM(transfer_size)/(1024.0*1024.0))/COUNT(*) DESC;
 **Implementation tips**
 + The number of slices in a node depends on the node size of the cluster\. For more information about the number of slices in the various node types, see [Clusters and Nodes in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide\.* 
 + You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Splitting your data into multiple files](t_splitting-data-files.md)\.
-+ Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. For optimum parallelism, the ideal size is between 1 MB and 125 MB after compression\. 
++ Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. 
 
 ## Update table statistics<a name="update-table-statistics-recommendation"></a>
 
@@ -357,7 +357,7 @@ For more information, see [Monitoring SQA](wlm-short-query-acceleration.md#wlm-m
 
 Some tables use an interleaved sort key on a single column\. In general, such a table is less efficient and consumes more resources than a table that uses a compound sort key on a single column\.
 
-Interleaved sorting improves performance in certain cases where multiple columns are used by different queries for filtering\. Using an interleaved sort key on a single column is effective only in a particular case\. That case is when queries often filter on CHAR or VARCHAR column values that have a long common prefix in the first 8 bytes\. For example, URL strings are often prefixed with "`https://`"\. For single\-column keys, a compound sort is better than an interleaved sort for any other filtering operations\. A compound sort speeds up joins, GROUP BY and ORDER BY operations, and window functions that use PARTITION BY and ORDER BY on the sorted column\. An interleaved sort doesn't benefit any of those operations\. For more information, see [Choosing sort keys](t_Sorting_data.md)\. 
+Interleaved sorting improves performance in certain cases where multiple columns are used by different queries for filtering\. Using an interleaved sort key on a single column is effective only in a particular case\. That case is when queries often filter on CHAR or VARCHAR column values that have a long common prefix in the first 8 bytes\. For example, URL strings are often prefixed with "`https://`"\. For single\-column keys, a compound sort is better than an interleaved sort for any other filtering operations\. A compound sort speeds up joins, GROUP BY and ORDER BY operations, and window functions that use PARTITION BY and ORDER BY on the sorted column\. An interleaved sort doesn't benefit any of those operations\. For more information, see [Working with sort keys](t_Sorting_data.md)\. 
 
 Using compound sort significantly reduces maintenance overhead\. Tables with compound sort keys don't need the expensive VACUUM REINDEX operations that are necessary for interleaved sorts\. In practice, compound sort keys are more effective than interleaved sort keys for the vast majority of Amazon Redshift workloads\. 
 

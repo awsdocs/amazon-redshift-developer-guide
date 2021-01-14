@@ -22,7 +22,6 @@ You need the following prerequisites:
 
 This tutorial is designed so that it can be taken by itself\. In addition to this tutorial, we recommend completing the following tutorials to gain a more complete understanding of how to design and use Amazon Redshift databases: 
 + [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) walks you through the process of creating an Amazon Redshift cluster and loading sample data\. 
-+ [Tutorial: Tuning table design](tutorial-tuning-tables.md) walks you step by step through the process of designing and tuning tables, including choosing sort keys, distribution styles, and compression encodings, and evaluating system performance before and after tuning\.
 
 ## Overview<a name="tutorial-loading-data-overview"></a>
 

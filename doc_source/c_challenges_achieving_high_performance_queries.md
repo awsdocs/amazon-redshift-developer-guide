@@ -71,8 +71,6 @@ userid | query  | elapsed  | source_query
    100 | 628891 | 58808694 |
 ```
 
-For details about the queries used to create the results shown in the previous example, see [Step 2: Test system performance to establish a baseline](tutorial-tuning-tables-test-performance.md) in the [Tuning Table Design](tutorial-tuning-tables.md) tutorial\.
-
 ## Compiled code<a name="compiled-code"></a>
 
 The leader node distributes fully optimized compiled code across all of the nodes of a cluster\. Compiling the query eliminates the overhead associated with an interpreter and therefore increases the execution speed, especially for complex queries\. The compiled code is cached and shared across sessions on the same cluster, so subsequent executions of the same query will be faster, often even with different parameters\. 

@@ -1,0 +1,5 @@
+# How data sharing works<a name="how_it_works"></a>
+
+The data sharing between Amazon Redshift clusters is a two\-step process\. First, the producer cluster administrator that wants to share data creates an Amazon Redshift data share\. Producer cluster administrator adds the needed database objects such as schemas, tables, views to the data share and specifies a list of consumers that the objects to be shared with\. 
+
+Next, the consumer cluster administrators look at the data shares that are made available to them and review the contents of each data share\. To consume shared data, the consumer cluster administrator creates an Amazon Redshift database from the shared object and then assigns permissions to appropriate users and groups in the consumer cluster\. Users and groups can list the shared objects as part of the standard metadata queries and can start querying data immediately\.

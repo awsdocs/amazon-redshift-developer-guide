@@ -15,3 +15,5 @@ Amazon Redshift uses the following string representation in a Base64 format to r
 ```
 "ABAABA..."
 ```
+
+The maximum size of a HLLSKETCH object is 24,580 bytes when used in raw compression\.

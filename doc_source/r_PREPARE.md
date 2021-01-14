@@ -23,7 +23,7 @@ Any SELECT, INSERT, UPDATE, or DELETE statement\.
 
 ## Usage notes<a name="r_PREPARE_usage_notes"></a>
 
-Prepared statements can take parameters: values that are substituted into the statement when it is executed\. To include parameters in a prepared statement, supply a list of data types in the PREPARE statement, and, in the statement to be prepared itself, refer to the parameters by position using the notation $1, $2, \.\.\. When executing the statement, specify the actual values for these parameters in the EXECUTE statement\. See [EXECUTE](r_EXECUTE.md) for more details\. 
+Prepared statements can take parameters: values that are substituted into the statement when it is executed\. To include parameters in a prepared statement, supply a list of data types in the PREPARE statement, and, in the statement to be prepared itself, refer to the parameters by position using the notation $1, $2, \.\.\. When executing the statement, specify the actual values for these parameters in the EXECUTE statement\. For more details, see [EXECUTE](r_EXECUTE.md)\. 
 
 Prepared statements only last for the duration of the current session\. When the session ends, the prepared statement is discarded, so it must be re\-created before being used again\. This also means that a single prepared statement can't be used by multiple simultaneous database clients; however, each client can create its own prepared statement to use\. The prepared statement can be manually removed using the DEALLOCATE command\. 
 

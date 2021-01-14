@@ -11,7 +11,7 @@ Specifies whether UPDATE queries with multiple matches per row throws an error\.
 ## Example<a name="example"></a>
 
 ```
-SSET error_on_nondeterministic_update TO true;
+SET error_on_nondeterministic_update TO true;
             
 CREATE TABLE t1(x1 int, y1 int);
 

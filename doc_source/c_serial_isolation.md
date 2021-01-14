@@ -39,6 +39,9 @@ ERROR:1023 DETAIL: Serializable isolation violation on table in Redshift
 ```
 
 To address a serializable isolation error, you can try the following methods:
++ Retry the aborted transaction\.
+
+   Amazon Redshift detected that a concurrent workload is not serializable\. It suggests gaps in the application logic, which can usually be worked around by retrying the transaction that encountered the error\. If the issue persists, try one of the other methods\.  
 + Move any operations that don't have to be in the same atomic transaction outside of the transaction\.
 
   This method applies when individual operations inside two transactions cross\-reference each other in a way that can affect the outcome of the other transaction\. For example, the following two sessions each start a transaction\.  
@@ -86,9 +89,6 @@ To address a serializable isolation error, you can try the following methods:
   + Lock all tables affected by the transaction, including those affected by read\-only SELECT statements inside the transaction\.
   + Lock tables in the same order, regardless of the order that operations are performed in\.
   + Lock all tables at the beginning of the transaction, before performing any operations\.
-+ Retry the aborted transaction\.
-
-  A transaction can encounter a serializable isolation error if it conflicts with operations performed by another concurrent transaction\. If the conflicting transactions don't need to run at the same time, simply retrying the aborted transaction might succeed\. If the issue persists, try one of the other methods\.
 
 ### ERROR:1018 DETAIL: Relation does not exist<a name="c_serial_isolation-serialization-isolation-1018"></a>
 

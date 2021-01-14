@@ -81,22 +81,7 @@ If you are creating a "wide table," take care that your list of columns doesn't 
 
  *data\_type*   
 Data type of the column being created\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.  
-The following [Data types](c_Supported_data_types.md) are supported:  
-+ SMALLINT \(INT2\)
-+ INTEGER \(INT, INT4\)
-+ BIGINT \(INT8\)
-+ DECIMAL \(NUMERIC\)
-+ REAL \(FLOAT4\)
-+ DOUBLE PRECISION \(FLOAT8\)
-+ BOOLEAN \(BOOL\)
-+ CHAR \(CHARACTER\)
-+ VARCHAR \(CHARACTER VARYING\)
-+ DATE
-+ TIMESTAMP
-+ TIMESTAMPTZ
-+ GEOMETRY
-+ TIME
-+ TIMETZ
+For information about the data types that Amazon Redshift supports, see [Data types](c_Supported_data_types.md)\.
 
 DEFAULT *default\_expr*   <a name="create-table-default"></a>
 Clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions aren't allowed\.  
@@ -180,7 +165,7 @@ A clause that specifies whether the table should be included in automated and ma
 
 DISTSTYLE \{ AUTO \| EVEN \| KEY \| ALL \}  
 Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\. The default is AUTO\.  
-The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Choosing a data distribution style](t_Distributing_data.md)\. Possible distribution styles are as follows:  
+The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\. Possible distribution styles are as follows:  
 + AUTO: Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns ALL distribution style to a small table, then changes the table to EVEN distribution when the table grows larger\. If Amazon Redshift determines that a distribution key will improve the performance of queries, then Amazon Redshift might change the DISTSTYLE to KEY and assign a distribution key to your table \. The change in distribution style occurs in the background with minimal impact to user queries\. 
 
   To view the distribution style applied to a table, query the PG\_CLASS system catalog table\. For more information, see [Viewing distribution styles](viewing-distribution-styles.md)\. 
@@ -193,7 +178,7 @@ Constraint that specifies the column to be used as the distribution key for the 
 
 \[COMPOUND \| INTERLEAVED \] SORTKEY \(* column\_name* \[,\.\.\.\]\) \| \[ SORTKEY AUTO \]  
 Specifies one or more sort keys for the table\. When data is loaded into the table, the data is sorted by the columns that are designated as sort keys\. You can use the SORTKEY keyword after a column name to specify a single\-column sort key, or you can specify one or more columns as sort key columns for the table by using the `SORTKEY (column_name [ , ... ] )` syntax\.   
-You can optionally specify COMPOUND or INTERLEAVED sort style\. If you specify SORTKEY with columns the default is COMPOUND\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.  
+You can optionally specify COMPOUND or INTERLEAVED sort style\. If you specify SORTKEY with columns the default is COMPOUND\. For more information, see [Working with sort keys](t_Sorting_data.md)\.  
 If you don't specify any sort keys options, the default is AUTO\.  
 You can define a maximum of 400 COMPOUND SORTKEY columns or 8 INTERLEAVED SORTKEY columns per table\.     
 AUTO  

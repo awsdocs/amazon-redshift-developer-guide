@@ -58,6 +58,8 @@ public  | venue    |        5
 (7 rows)
 ```
 
+
+
 ## List the schemas and tables in a database<a name="c_join_PG_examples-list-the-schemas-and-tables-in-a-database"></a>
 
 The following query joins STV\_TBL\_PERM to some PG tables to return a list of tables in the TICKIT database and their schema names \(NSPNAME column\)\. The query also returns the total number of rows in each table\. \(This query is helpful when multiple schemas in your system have the same table names\.\)

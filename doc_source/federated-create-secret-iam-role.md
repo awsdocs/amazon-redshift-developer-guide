@@ -5,12 +5,12 @@ The following steps show how to create a secret and an IAM role to use with fede
 ## Prerequisites<a name="federated-create-secret-prerequisites"></a>
 
 Make sure that you have the following prerequisites to create a secret and an IAM role to use with federated queries:
-+ An RDS PostgreSQL or Aurora PostgreSQL DB instance with user name and password authentication\.
++ An RDS PostgreSQL, Aurora PostgreSQL DB instance, RDS MySQL, or Aurora MySQL DB instance with user name and password authentication\.
 + An Amazon Redshift cluster with a cluster maintenance version that supports federated queries\.
 
 **To create a secret \(user name and password\) with AWS Secrets Manager**
 
-1. Sign in to the Secrets Manager console with the account that owns your RDS PostgreSQL or Aurora PostgreSQL instance\.
+1. Sign in to the Secrets Manager console with the account that owns your RDS or Aurora instance\.
 
 1. Choose **Store a new secret**\. 
 

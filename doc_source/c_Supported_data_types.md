@@ -7,6 +7,7 @@
 + [Datetime types](r_Datetime_types.md)
 + [Boolean type](r_Boolean_type.md)
 + [HLLSKETCH type](r_HLLSKTECH_type.md)
++ [SUPER type](r_SUPER_type.md)
 + [Type compatibility and conversion](#r_Type_conversion)
 
 Each value that Amazon Redshift stores or retrieves has a data type with a fixed set of associated properties\. Data types are declared when tables are created\. A data type constrains the set of values that a column or argument can contain\. 
@@ -77,3 +78,9 @@ The table following lists the data types that can be converted implicitly in ass
 **Note**  
 Implicit conversions between TIMESTAMPTZ, TIMESTAMP, DATE, TIME, TIMETZ, or character strings use the current session time zone\. For information about setting the current time zone, see [timezone](r_timezone_config.md)\.  
 The GEOMETRY data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\. 
+
+### Using dynamic typing for the SUPER data type<a name="r_dynamic_typing_SUPER"></a>
+
+Amazon Redshift uses dynamic typing to process schemaless SUPER data without the need to declare the data types before you use them in your query\. Dynamic typing uses the results of navigating into SUPER data columns without having to explicitly cast them into Amazon Redshift types\. For more information about using dynamic typing for SUPER data type, see [Dynamic typing](query-super.md#dynamic-typing-lax-processing)\.
+
+You can cast SUPER values to and from other data types with some exceptions\. For more information, see [Limitations](limitations-super.md)\.

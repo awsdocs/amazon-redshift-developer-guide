@@ -98,7 +98,8 @@ Valid values for *json\_option* are as follows :
 + `'auto'`
 + `'auto ignorecase'`
 + `'s3://jsonpaths_file'` 
-The default is `'auto'`\.  
++ `'noshred'` 
+The default is `'auto'`\. Amazon Redshift doesn't shred the attributes of JSON structures into multiple columns while loading a JSON document\.  
 By default, COPY attempts to match all columns in the target table to JSON field name keys\. To load a subset of the columns, you can optionally specify a column list\. If the JSON field name keys aren't all lowercase, you can use the `'auto ignorecase'` option or a [JSONPaths file](#copy-json-jsonpaths) to explicitly map column names to JSON field name keys\.  
 If a column in the target table is omitted from the column list, then COPY loads the target column's [DEFAULT](r_CREATE_TABLE_NEW.md#create-table-default) expression\. If the target column doesn't have a default, COPY attempts to load NULL\. If a column is included in the column list and COPY doesn't find a matching field in the JSON data, COPY attempts to load NULL to the column\.   
 If COPY attempts to assign NULL to a column that is defined as NOT NULL, the COPY command fails\.   
@@ -110,7 +111,9 @@ With this option, matching is case\-sensitive\. Column names in Amazon Redshift 
 With this option, the matching isn't case\-sensitive\. Column names in Amazon Redshift tables are always lowercase, so when you use the `'auto ignorecase'` option, the corresponding JSON field names can be lowercase, uppercase, or mixed case\.   
 's3://*jsonpaths\_file*'  <a name="copy-json-pathfile"></a>
 With this option, COPY uses the named JSONPaths file to map the data elements in the JSON source data to the columns in the target table\. The *`s3://jsonpaths_file`* argument must be an Amazon S3 object key that explicitly references a single file\. An example is `'s3://mybucket/jsonpaths.txt`'\. The argument can't be a key prefix\. For more information about using a JSONPaths file, see [JSONPaths file](#copy-json-jsonpaths)\.  
-In some cases, the file specified by `jsonpaths_file` has the same prefix as the path specified by `copy_from_s3_objectpath` for the data files\. If so, COPY reads the JSONPaths file as a data file and returns errors\. For example, suppose that your data files use the object path `s3://mybucket/my_data.json` and your JSONPaths file is `s3://mybucket/my_data.jsonpaths`\. In this case, COPY attempts to load `my_data.jsonpaths` as a data file\.
+In some cases, the file specified by `jsonpaths_file` has the same prefix as the path specified by `copy_from_s3_objectpath` for the data files\. If so, COPY reads the JSONPaths file as a data file and returns errors\. For example, suppose that your data files use the object path `s3://mybucket/my_data.json` and your JSONPaths file is `s3://mybucket/my_data.jsonpaths`\. In this case, COPY attempts to load `my_data.jsonpaths` as a data file\.  
+'noshred'  <a name="copy-json-noshred"></a>
+With this option, Amazon Redshift doesn't shred the attributes of JSON structures into multiple columns while loading a JSON document\.
 
 ## JSON data file<a name="copy-json-data-file"></a>
 

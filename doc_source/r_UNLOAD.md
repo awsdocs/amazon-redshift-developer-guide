@@ -2,6 +2,8 @@
 
 Unloads the result of a query to one or more text or Apache Parquet files on Amazon S3, using Amazon S3 server\-side encryption \(SSE\-S3\)\. You can also specify server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\) or client\-side encryption with a customer\-managed key \(CSE\-CMK\)\.
 
+By default, the format of the unloaded file is pipe\-delimited \("\!"\) text\.
+
 You can manage the size of files on Amazon S3, and by extension the number of files, by setting the MAXFILESIZE parameter\.
 
 You can unload the result of an Amazon Redshift query to your Amazon S3 data lake in Apache Parquet, an efficient open columnar storage format for analytics\. Parquet format is up to 2x faster to unload and consumes up to 6x less storage in Amazon S3, compared with text formats\. This enables you to save data transformation and enrichment you have done in Amazon S3 into your Amazon S3 data lake in an open format\. You can then analyze your data with Redshift Spectrum and other AWS services such as Amazon Athena, Amazon EMR, and SageMaker\. 
@@ -54,7 +56,7 @@ The full path, including bucket name, to the location on Amazon S3 where Amazon 
 `<object-path>/<name-prefix><slice-number>_part_<part-number>`\.   
 If MANIFEST is specified, the manifest file is written as follows:  
 `<object_path>/<name_prefix>manifest`\.   
-UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption \(SSE\), including the manifest file if MANIFEST is used\. The COPY command automatically reads server\-side encrypted files during the load operation\. You can transparently download server\-side encrypted files from your bucket using either the Amazon S3 Management Console or API\. For more information, go to [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.   
+UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption \(SSE\), including the manifest file if MANIFEST is used\. The COPY command automatically reads server\-side encrypted files during the load operation\. You can transparently download server\-side encrypted files from your bucket using either the Amazon S3 Management Console or API\. For more information, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.   
 To use Amazon S3 client\-side encryption, specify the ENCRYPTED option\.  
 REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. 
 
@@ -62,6 +64,7 @@ Authorization
 The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD command uses the same parameters the COPY command uses for authorization\. For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command syntax reference\.
 
 \[ FORMAT \[AS\] \] CSV \| PARQUET  <a name="unload-csv"></a>
+Keywords to specify the unload format to override the default format\.   
 When CSV, unloads to a text file in CSV format using a comma \( , \) character as the default delimiter\. If a field contains delimiters, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\.   
 When PARQUET, unloads to a file in Apache Parquet version 1\.0 format\. By default, each row group is compressed using SNAPPY compression\. For more information about Apache Parquet format, see [Parquet](https://parquet.apache.org/)\.   
 The FORMAT and AS keywords are optional\. You can't use CSV with FIXEDWIDTH\. You can't use PARQUET with DELIMITER, FIXEDWIDTH, ADDQUOTES, ESCAPE, NULL AS, HEADER, GZIP, BZIP2, or ZSTD\. PARQUET with ENCRYPTED is only supported with server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\.
@@ -134,6 +137,7 @@ Specifies a string that represents a null value in unload files\. If this option
 If a null string is specified for a fixed\-width unload and the width of an output column is less than the width of the null string, the following behavior occurs:   
 + An empty field is output for non\-character columns 
 + An error is reported for character columns 
+Unlike other data types where a user\-defined string represents a null value, Amazon Redshift exports the SUPER data columns using the JSON format and represents it as null as determined by the JSON format\. As a result, SUPER data columns ignore the NULL \[AS\] option used in UNLOAD commands\.
 
 ESCAPE   
 For CHAR and VARCHAR columns in delimited unload files, an escape character \(`\`\) is placed before every occurrence of the following characters:  
@@ -237,3 +241,7 @@ Be aware of these considerations when using PARTITION BY:
 + The UNLOAD command doesn't make any calls to an external catalog\. To register your new partitions to be part of your existing external table, use a separate ALTER TABLE \.\.\. ADD PARTITION \.\.\. command\. Or you can run a CREATE EXTERNAL TABLE command to register the unloaded data as a new external table\. You can also use an AWS Glue crawler to populate your Data Catalog\. For more information, see [Defining Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. 
 + If you use the MANIFEST option, Amazon Redshift generates only one manifest file in the root Amazon S3 folder\.
 + The column data types that you can use as the partition key are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, BOOLEAN, CHAR, VARCHAR, DATE, and TIMESTAMP\. 
+
+### Using the ASSUMEROLE privilege to grant access to an IAM role for UNLOAD operations<a name="unload-assumerole-privilege-usage"></a>
+
+To provide access for specific users and groups to an IAM role for UNLOAD operations, a superuser can grant the ASSUMEROLE privilege on an IAM role to users and groups\. For information, see [GRANT](r_GRANT.md)\. 

@@ -1,0 +1,3 @@
+# Prerequisites for data sharing<a name="prerequisites"></a>
++  Amazon Redshift only supports data sharing on the ra3\.16xlarge, ra3\.4xlarge, and ra3\.xlplus instance types for producer and consumer clusters\.
++ Amazon Redshift supports data sharing for clusters with homogeneous encryption configuration\. You can share data between two or more encrypted Amazon Redshift clusters, or two or more unencrypted Amazon Redshift clusters for clusters that are within the same AWS account\. When sharing data between encrypted clusters, you can use different encryption keys for each cluster\. 

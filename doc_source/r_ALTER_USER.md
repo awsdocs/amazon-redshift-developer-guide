@@ -44,7 +44,7 @@ For more information, see [Visibility of data in system tables and views](c_visi
 
 PASSWORD \{ '*password*' \| '*md5hash*' \| DISABLE \}  
 Sets the user's password\.   
-By default, users can change their own passwords, unless the password is disabled\. To disable a user's password, specify DISABLE\. When a user's password is disabled, the password is deleted from the system and the user can log on only using temporary AWS Identity and Access Management \(IAM\) user credentials\. For more information, see [Using IAM Authentication to Generate Database User Credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. Only a superuser can enable or disable passwords\. You can't disable a superuser's password\. To enable a password, run ALTER USER and specify a password\.  
+By default, users can change their own passwords, unless the password is disabled\. To disable a user's password, specify DISABLE\. When a user's password is disabled, the password is deleted from the system and the user can log on only using temporary AWS Identity and Access Management \(IAM\) user credentials\. For more information, see [Using IAM authentication to generate database user credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. Only a superuser can enable or disable passwords\. You can't disable a superuser's password\. To enable a password, run ALTER USER and specify a password\.  
 You can specify the password in clear text or as an MD5 hash string\.   
 For clear text, the password must meet the following constraints:  
 + It must be 8 to 64 characters in length\.
@@ -92,7 +92,7 @@ alter user newuser password 'EXAMPLENewPassword11';
 ```
 
 CONNECTION LIMIT \{ *limit* \| UNLIMITED \}   
-The maximum number of database connections the user is permitted to have open concurrently\. The limit isn't enforced for super users\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each database might also apply\. For more information, see [CREATE DATABASE](r_CREATE_DATABASE.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
+The maximum number of database connections the user is permitted to have open concurrently\. The limit isn't enforced for superusers\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each database might also apply\. For more information, see [CREATE DATABASE](r_CREATE_DATABASE.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
 SET   

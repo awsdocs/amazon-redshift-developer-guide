@@ -1,5 +1,7 @@
 # Examples with numeric types<a name="r_Examples_with_numeric_types201"></a>
 
+
+
 ## CREATE TABLE statement<a name="r_Examples_with_numeric_types201-create-table-statement"></a>
 
 The following CREATE TABLE statement demonstrates the declaration of different numeric data types:

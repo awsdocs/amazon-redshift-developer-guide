@@ -1,6 +1,7 @@
 # Aggregate functions<a name="c_Aggregate_Functions"></a>
 
 **Topics**
++ [ANY\_VALUE function](r_ANY_VALUE.md)
 + [APPROXIMATE PERCENTILE\_DISC function](r_APPROXIMATE_PERCENTILE_DISC.md)
 + [AVG function](r_AVG.md)
 + [COUNT function](r_COUNT.md)

@@ -17,14 +17,15 @@ ALTER TABLE locks the table for read and write operations until the transaction 
 ## Syntax<a name="r_ALTER_TABLE-synopsis"></a>
 
 ```
-ALTER TABLE table_name
+ALTER TABLE table_name 
 {
 ADD table_constraint 
 | DROP CONSTRAINT constraint_name [ RESTRICT | CASCADE ] 
 | OWNER TO new_owner 
 | RENAME TO new_name 
 | RENAME COLUMN column_name TO new_name            
-| ALTER COLUMN column_name TYPE new_data_type              
+| ALTER COLUMN column_name TYPE new_data_type
+| ALTER COLUMN column_name ENCODE new_encode_type            
 | ALTER DISTKEY column_name 
 | ALTER DISTSTYLE ALL       
 | ALTER DISTSTYLE EVEN
@@ -109,6 +110,11 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 + You can't alter columns with default values\. 
 + You can't alter columns with UNIQUE, PRIMARY KEY, or FOREIGN KEY\. 
 + You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
+
+ALTER COLUMN *column\_name* ENCODE *new\_encode\_type*   
+A clause that changes the compression encoding of a column\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\. Consider the following limitations:  
++ You can't alter a column to the same encoding as currently defined for the column\. 
++ You can't alter the encoding for a column in a table with an interleaved sortkey\. 
 
 ALTER DISTSTYLE ALL  
 A clause that changes the existing distribution style of a table to `ALL`\. Consider the following:  
@@ -196,21 +202,7 @@ For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
  *column\_type*   
 The data type of the column being added\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65,535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.   
-Amazon Redshift supports the following [Data types](c_Supported_data_types.md):   
-+ SMALLINT \(INT2\)
-+ INTEGER \(INT, INT4\)
-+ BIGINT \(INT8\)
-+ DECIMAL \(NUMERIC\)
-+ REAL \(FLOAT4\)
-+ DOUBLE PRECISION \(FLOAT8\)
-+ BOOLEAN \(BOOL\)
-+ CHAR \(CHARACTER\)
-+ VARCHAR \(CHARACTER VARYING\)
-+ DATE
-+ TIMESTAMP
-+ GEOMETRY
-+ TIME
-+ TIMETZ
+For information about the data types that Amazon Redshift supports, see [Data types](c_Supported_data_types.md)\.
 
 DEFAULT *default\_expr*   <a name="alter-table-default"></a>
 A clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions aren't allowed\.  

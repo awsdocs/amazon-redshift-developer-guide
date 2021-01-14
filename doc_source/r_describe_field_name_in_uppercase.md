@@ -6,7 +6,7 @@
 
 ## Description<a name="description"></a>
 
-Specifies whether column names returned by SELECT statements are uppercase or lowercase\. If on, column names are returned in uppercase\. If off, column names are returned in lowercase\. Amazon Redshift stores column names in lowercase regardless of the setting for `describe_field_name_in_uppercase`\.
+Specifies whether column names returned by SELECT statements are uppercase or lowercase\. If this parameter is on, column names are returned in uppercase\. If this parameter is off, column names are returned in lowercase\. Amazon Redshift stores column names in lowercase regardless of the setting for `describe_field_name_in_uppercase`\.
 
 ## Example<a name="example"></a>
 

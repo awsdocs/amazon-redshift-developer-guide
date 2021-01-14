@@ -1,5 +1,7 @@
 # Creating external tables for Amazon Redshift Spectrum<a name="c-spectrum-external-tables"></a>
 
+
+
 You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
 
 ```

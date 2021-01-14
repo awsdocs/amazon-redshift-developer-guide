@@ -102,7 +102,7 @@ mybucket/tickit/venue_0003_part_00
 mybucket/tickit/venue_manifest
 ```
 
-You can programmatically get a list of the files that were written to Amazon S3 by calling an Amazon S3 list operation after the UNLOAD completes; however, depending on how quickly you issue the call, the list might be incomplete because an Amazon S3 list operation is eventually consistent\. To get a complete, authoritative list immediately, query STL\_UNLOAD\_LOG\.
+You can programmatically get a list of the files that were written to Amazon S3 by calling an Amazon S3 list operation after the UNLOAD completes\. You can also query STL\_UNLOAD\_LOG\.
 
 The following query returns the pathname for files that were created by an UNLOAD\. The [PG\_LAST\_QUERY\_ID](PG_LAST_QUERY_ID.md) function returns the most recent query\. 
 

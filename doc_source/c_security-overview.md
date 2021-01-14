@@ -1,5 +1,7 @@
 # Amazon Redshift security overview<a name="c_security-overview"></a>
 
+
+
 Amazon Redshift database security is distinct from other types of Amazon Redshift security\. In addition to database security, which is described in this section, Amazon Redshift provides these features to manage security:
 +  **Sign\-in credentials** — Access to your Amazon Redshift Management Console is controlled by your AWS account privileges\. For more information, see [Sign\-in credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)\.
 +  **Access management** — To control access to specific Amazon Redshift resources, you define AWS Identity and Access Management \(IAM\) accounts\. For more information, see [Controlling access to Amazon Redshift resources](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html)\.

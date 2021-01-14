@@ -66,6 +66,38 @@ The following example increases the size of the EVENTNAME column to VARCHAR\(300
 alter table event alter column eventname type varchar(300);
 ```
 
+## Alter the compression encoding for a column<a name="r_ALTER_TABLE_examples_alter-column-encoding"></a>
+
+You can alter the compression encoding of a column\. Below, you can find a set of examples demonstrating this approach\. The table definition for these examples is as follows\.
+
+```
+create table t1(c0 int encode lzo, c1 bigint encode zstd, c2 varchar(16) encode lzo, c3 varchar(32) encode zstd);
+```
+
+The following statement alters the compression encoding for column c0 from LZO encoding to AZ64 encoding\. 
+
+```
+alter table t1 alter column c0 encode az64;
+```
+
+The following statement alters the compression encoding for column c1 from Zstandard encoding to AZ64 encoding\. 
+
+```
+alter table t1 alter column c1 encode az64;
+```
+
+The following statement alters the compression encoding for column c2 from LZO encoding to Byte\-dictionary encoding\. 
+
+```
+alter table t1 alter column c2 encode bytedict;
+```
+
+The following statement alters the compression encoding for column c3 from Zstandard encoding to Runlength encoding\. 
+
+```
+alter table t1 alter column c3 encode runlength;
+```
+
 ## Alter a DISTSTYLE KEY DISTKEY column<a name="r_ALTER_TABLE_examples_alter-distkey"></a>
 
 The following examples show how to change the DISTSTYLE and DISTKEY of a table\.

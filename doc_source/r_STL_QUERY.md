@@ -38,7 +38,7 @@ The following query returns the time elapsed in descending order for queries tha
 select query, datediff(seconds, starttime, endtime),
 trim(querytxt) as sqlquery
 from stl_query
-where starttime >= '2013-02-15 00:00' and endtime < '2013-02-15 23:59'
+where starttime >= '2013-02-15 00:00' and endtime < '2013-02-16 00:00'
 order by date_diff desc;
 
  query | date_diff |  sqlquery

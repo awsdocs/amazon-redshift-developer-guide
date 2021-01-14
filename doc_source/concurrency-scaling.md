@@ -65,6 +65,8 @@ GROUP BY 1,2
 ORDER BY 1,2;
 ```
 
+
+
 ## Concurrency scaling system views<a name="concurrency-scaling-monitoring-system-views"></a>
 
 A set of system views with the prefix SVCS provides details from the system log tables about queries on both the main and concurrency scaling clusters\. 

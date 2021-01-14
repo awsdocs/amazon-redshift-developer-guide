@@ -47,6 +47,8 @@ credentials
 'aws_iam_role=arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
+In addition, a superuser can grant the ASSUMEROLE privilege to database users and groups to provide access to a role for COPY operations\. For information, see [GRANT](r_GRANT.md)\.
+
 ## Key\-based access control<a name="copy-usage_notes-access-key-based"></a>
 
 With <a name="copy-usage_notes-access-key-based.phrase"></a>key\-based access control, you provide the access key ID and secret access key for an IAM user that is authorized to access the AWS resources that contain the data\. You can user either the [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id) parameters together or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\.

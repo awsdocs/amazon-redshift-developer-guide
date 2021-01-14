@@ -8,7 +8,7 @@
 
 ## Description<a name="description"></a>
 
-Sets the display format for date and time values as well as the rules for interpreting ambiguous date input values\. The string contains two parameters that can be changed separately or together\.
+Sets the display format for date and time values and also the rules for interpreting ambiguous date input values\. The string contains two parameters that you can change separately or together\.
 
 ## Example<a name="example"></a>
 

@@ -1,13 +1,17 @@
-# Example of using a federated query<a name="federated_query_example"></a>
+# Examples of using a federated query<a name="federated_query_example"></a>
 
-The following example shows how to set up a federated query that references an Amazon Redshift database, an Aurora PostgreSQL database, and Amazon S3\. This example illustrates how federated queries works\. To run it on your own environment, change it to fit your environment\. For prerequisites for doing this, see [Getting started with using federated queries](getting-started-federated.md)\. 
+The following examples show how to run a federated query\.
+
+## Example of using a federated query with PostgreSQL<a name="federated_query_example_postgres"></a>
+
+The following example shows how to set up a federated query that references an Amazon Redshift database, an Aurora PostgreSQL database, and Amazon S3\. This example illustrates how federated queries works\. To run it on your own environment, change it to fit your environment\. For prerequisites for doing this, see [Getting started with using federated queries to PostgreSQL](getting-started-federated.md)\. 
 
 Create an external schema that references an Aurora PostgreSQL database\.
 
 ```
 CREATE EXTERNAL SCHEMA apg
 FROM POSTGRES
-DATABASE ‘database-1’ SCHEMA ’myschema’
+DATABASE 'database-1' SCHEMA 'myschema'
 URI 'endpoint to aurora hostname'
 IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-SecretsManager-RO'
 SECRET_ARN 'arn:aws:secretsmanager:us-west-2:123456789012:secret:federation/test/dataplane-apg-creds-YbVKQw';
@@ -101,4 +105,39 @@ ORDER BY 1,2;
  2017 |     1 |   15414
  2018 |     1 |   15527
  2019 |     1 |     151
+```
+
+## Example of using a federated query with MySQL<a name="federated_query_example_mysql"></a>
+
+
+|  | 
+| --- |
+| The following is prerelease documentation for the federated query to MySQL feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+
+The following example shows how to set up a federated query that references an Aurora MySQL database\. This example illustrates how federated queries works\. To run it on your own environment, change it to fit your environment\. For prerequisites for doing this, see [Getting started with using federated queries to MySQL \(preview\)](getting-started-federated-mysql.md)\. 
+
+It depends on the following prerequisites: 
++ The Amazon Redshift cluster is on the maintenance track for **Preview** with the track named `SQL_PREVIEW`\. For more information, see [Choosing cluster maintenance tracks](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-mgmt-maintenance-tracks) in the *Amazon Redshift Cluster Management Guide*\. 
++ A secret that was set up in Secrets Manager for the Aurora MySQL database\. This secret is referenced in IAM access policies and roles\. For more information, see [Creating a secret and an IAM role to use federated queries](federated-create-secret-iam-role.md)\. 
++ A security group that is set up linking Amazon Redshift and Aurora MySQL\. 
+
+Create an external schema that references an Aurora MySQL database\. 
+
+```
+CREATE EXTERNAL SCHEMA amysql
+FROM MYSQL
+DATABASE 'functional'
+URI 'endpoint to remote hostname'
+IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-SecretsManager-RO'
+SECRET_ARN 'arn:aws:secretsmanager:us-west-2:123456789012:secret:federation/test/dataplane-apg-creds-YbVKQw';
+```
+
+Show an example select of the Aurora MySQL table\. 
+
+```
+SELECT level FROM amysql.employees LIMIT 1;
+            
+ level
+-------
+     8
 ```

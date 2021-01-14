@@ -9,7 +9,7 @@ revoke usage on language sql from PUBLIC;
 grant usage on language sql to group udf_devs;
 ```
 
-To execute a UDF, you must have execute permission for each function\. By default, execute permission for new UDFs is granted to PUBLIC\. To restrict usage, revoke execute from PUBLIC for the function\. Then grant the privilege to specific individuals or groups\. 
+To run a UDF, you must have permission to do so for each function\. By default, permission to run new UDFs is granted to PUBLIC\. To restrict usage, revoke this permission from PUBLIC for the function\. Then grant the privilege to specific individuals or groups\. 
 
 The following example revokes execution on function `f_py_greater` from PUBLIC\. Then it grants usage to the user group `udf_devs`\.
 

@@ -37,7 +37,7 @@ If you need to evaluate more groups than the limit permits, consider using [PERC
 
 ## Examples<a name="r_APPROXIMATE_PERCENTILE_DISC-examples"></a>
 
-The following example returns the number of sales, total sales, and fiftieth percentile value for the top 10 dates\.\. 
+The following example returns the number of sales, total sales, and fiftieth percentile value for the top 10 dates\. 
 
 ```
 select top 10 date.caldate,

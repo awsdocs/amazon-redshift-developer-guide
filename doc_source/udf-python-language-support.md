@@ -24,7 +24,7 @@ Amazon Redshift blocks all network access and write access to the file system th
 
 ## Importing custom Python library modules<a name="udf-importing-custom-python-library-modules"></a>
 
-You define scalar functions using Python language syntax\. In addition to the native Python Standard Library modules and Amazon Redshift preinstalled modules, you can create your own custom Python library modules and import the libraries into your clusters, or use existing libraries provided by Python or third parties\. 
+You define scalar functions using Python language syntax\. You can use the Python Standard Library modules and Amazon Redshift preinstalled modules\. You can also create your own custom Python library modules and import the libraries into your clusters, or use existing libraries from Python or third parties\. 
 
 You cannot create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as a library you create, you must drop the existing library before installing the new library\. 
 

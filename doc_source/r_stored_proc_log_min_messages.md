@@ -6,7 +6,7 @@
 
 ## Description<a name="description"></a>
 
-Specifies the minimum logging level of raised stored procedure messages\. Messages at or above the specfied level are logged\. The default is LOG \(all messages are logged\)\. The order of log levels from highest to lowest is: 
+Specifies the minimum logging level of raised stored procedure messages\. Messages at or above the specified level are logged\. The default is LOG \(all messages are logged\)\. The order of log levels from highest to lowest is as follows: 
 
 1. EXCEPTION
 

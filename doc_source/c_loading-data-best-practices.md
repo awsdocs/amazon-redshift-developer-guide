@@ -2,12 +2,10 @@
 
 **Topics**
 + [Take the loading data tutorial](c_best-practices-loading-take-loading-data-tutorial.md)
-+ [Take the tuning table design tutorial](c_best-practices-loading-take-table-design-tutorial.md)
 + [Use a COPY command to load data](c_best-practices-use-copy.md)
 + [Use a single COPY command to load from multiple files](c_best-practices-single-copy-command.md)
 + [Split your load data into multiple files](c_best-practices-use-multiple-files.md)
 + [Compress your data files](c_best-practices-compress-data-files.md)
-+ [Use a manifest file](best-practices-preventing-load-data-errors.md)
 + [Verify data files before and after a load](c_best-practices-verifying-data-files.md)
 + [Use a multi\-row insert](c_best-practices-multi-row-inserts.md)
 + [Use a bulk insert](c_best-practices-bulk-inserts.md)

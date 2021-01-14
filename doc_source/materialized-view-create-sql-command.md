@@ -8,6 +8,7 @@ Creates a materialized view based on one or more Amazon Redshift tables or exter
 CREATE MATERIALIZED VIEW mv_name
 [ BACKUP { YES | NO } ]
 [ table_attributes ]   
+[ AUTO REFRESH { YES | NO } ]
 AS query
 ```
 
@@ -23,12 +24,15 @@ The `BACKUP NO` setting has no effect on automatic replication of data to other 
 A clause that specifies how the data in the materialized view is distributed, including the following:  
 +  The distribution style for the materialized view, in the format `DISTSTYLE { EVEN | ALL | KEY }`\. If you omit this clause, the distribution style is `EVEN`\. For more information, see [Distribution styles](c_choosing_dist_sort.md)\.
 + The distribution key for the materialized view, in the format `DISTKEY ( distkey_identifier )`\. For more information, see [Designating distribution styles](t_designating_distribution_styles.md)\.
-+ The sort key for the materialized view, in the format `SORTKEY ( column_name [, ...] )`\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.
++ The sort key for the materialized view, in the format `SORTKEY ( column_name [, ...] )`\. For more information, see [Working with sort keys](t_Sorting_data.md)\.
 
 AS *query*  
 A valid `SELECT` statement which defines the materialized view and its content\. The result set from the query defines the columns and rows of the materialized view\. For information about limitations when creating materialized views, see [Limitations](#mv_CREATE_MATERIALIZED_VIEW-limitations)\.  
 Furthermore, specific SQL language constructs used in the query determines whether the materialized view can be incrementally or fully refreshed\. For information about the refresh method, see [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)\. For information about the limitations for incremental refresh, see [Limitations for incremental refresh](materialized-view-refresh-sql-command.md#mv_REFRESH_MARTERIALIZED_VIEW_limitations)\.  
 If the query contains an SQL command that doesn't support incremental refresh, Amazon Redshift displays a message indicating that the materialized view will use a full refresh\. The message may or may not be displayed depending on the SQL client application\. For example, psql displays the message, and a JDBC client may not\. Check the `state` column of the [STV\_MV\_INFO](r_STV_MV_INFO.md) to see the refresh type used by a materialized view\.
+
+AUTO REFRESH  
+A clause that defines whether the materialized view should be automatically refreshed with latest changes from its base tables\. The default value is `NO`\. For more information, see [Refreshing a materialized view](materialized-view-refresh.md)\.
 
 ## Usage notes<a name="mv_CREATE_MARTERIALIZED_VIEW_usage"></a>
 

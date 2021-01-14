@@ -1,0 +1,3 @@
+# Accessing shared data<a name="access_shared_data"></a>
+
+You can discover shared data using standard SQL interfaces and JDBC or ODBC drivers\. You can also query data with high performance from familiar business intelligence \(BI\) and analytic tools\. You can perform queries by referring to the objects from other Amazon Redshift databases that are both local to and remote from your cluster that you have permissions to access\. You can do so simply by staying connected to the Amazon Redshift database in your cluster\. You can then perform cross\-database queries joining the datasets\.

@@ -54,6 +54,8 @@ INFO: f1 = 5, f2 = abc
 CALL
 ```
 
+
+
 The following example shows a procedure with output arguments\. Arguments are input \(IN\), input and output \(INOUT\), and output \(OUT\)\.
 
 ```

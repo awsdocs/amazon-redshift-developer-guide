@@ -1,5 +1,7 @@
 # Examples with TOP<a name="r_Examples_with_TOP"></a>
 
+
+
 Return any 10 rows from the SALES table\. Because no ORDER BY clause is specified, the set of rows that this query returns is unpredictable\.
 
 ```

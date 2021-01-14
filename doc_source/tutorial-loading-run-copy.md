@@ -245,7 +245,7 @@ The following excerpt from the data for the SUPPLIER table uses pipe\-delimited 
 ```
 <a name="tutorial-loading-region"></a>
 **REGION**  
-Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency, minimize eventual consistency issues, and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md) 
+Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md) 
 
 If you must load data from a different AWS region, use the REGION option to specify the AWS region in which the load data is located\. If you specify a region, all of the load data, including manifest files, must be in the named region\. For more information, see [REGION](copy-parameters-data-source-s3.md#copy-region)\. 
 

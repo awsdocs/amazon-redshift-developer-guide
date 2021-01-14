@@ -47,6 +47,8 @@ You can't update, insert into, or delete from a view\.
 
 ## Usage notes<a name="r_CREATE_VIEW_usage_notes"></a>
 
+
+
 ### Late\-binding views<a name="r_CREATE_VIEW_late-binding-views"></a>
 
 A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. If you drop underlying objects, queries to the late\-binding view will fail\. If the query to the late\-binding view references columns in the underlying object that aren't present, the query will fail\. 

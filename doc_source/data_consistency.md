@@ -1,0 +1,5 @@
+# Managing data consistency<a name="data_consistency"></a>
+
+Amazon Redshift enables sharing live and consistent views of the data with all consumers\. The strong snapshot isolation levels available in Amazon Redshift data sharing minimize data inconsistency\. All queries within a transaction read the same state of the database\. Amazon Redshift doesn't take into account the data that was changed by another transaction that was committed since the initial read of the data\.
+
+Amazon Redshift maintains transactional consistency even when the data is being continuously updated\. This approach lowers the risks of lower\-fidelity business reports that might contain invalid results arising from data inconsistencies\. This factor is especially important for financial analysis or where the results might be used to prepare datasets that are used to train machine learning models\.

@@ -1,5 +1,7 @@
 # CREATE FUNCTION<a name="r_CREATE_FUNCTION"></a>
 
+ 
+
 Creates a new scalar user\-defined function \(UDF\) using either a SQL SELECT clause or a Python program\.
 
 ## Syntax<a name="r_CREATE_FUNCTION-synopsis"></a>
@@ -28,7 +30,7 @@ You can define more than one function with the same function name if the data ty
 
  *py\_arg\_name py\_arg\_data\_type \| sql\_arg\_data type*   
 For a Python UDF, a list of input argument names and data types\. For a SQL UDF, a list of data types, without argument names\. In a Python UDF, refer to arguments using the argument names\. In a SQL UDF, refer to arguments using $1, $2, and so on, based on the order of the arguments in the argument list\.   
-For a SQL UDF, the input and return data types can be any standard Amazon Redshift data type\. For a Python UDF, the input and return data types can be SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, or TIMESTAMP\.  In addition, Python user\-defined functions \(UDFs\) support a data type of ANYELEMENT\. This is automatically converted to a standard data type based on the data type of the corresponding argument supplied at runtime\. If multiple arguments use ANYELEMENT, they will all resolve to the same data type at runtime, based on the first ANYELEMENT argument in the list\. For more information, see [Python UDF data types](udf-data-types.md) and [Data types](c_Supported_data_types.md)\.  
+For a SQL UDF, the input and return data types can be any standard Amazon Redshift data type\. For a Python UDF, the input and return data types can be SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE PRECISION, BOOLEAN, CHAR, VARCHAR, DATE, or TIMESTAMP\.  In addition, Python user\-defined functions \(UDFs\) support a data type of ANYELEMENT\. This is automatically converted to a standard data type based on the data type of the corresponding argument supplied at runtime\. If multiple arguments use ANYELEMENT, they all resolve to the same data type at runtime, based on the first ANYELEMENT argument in the list\. For more information, see [Python UDF data types](udf-data-types.md) and [Data types](c_Supported_data_types.md)\.  
 You can specify a maximum of 32 arguments\.
 
  RETURNS *data\_type*   

@@ -4,6 +4,8 @@
 + [Leader node–only functions](c_SQL_functions_leader_node_only.md)
 + [Compute node–only functions](c_SQL_functions_compute_node_only.md)
 + [Aggregate functions](c_Aggregate_Functions.md)
++ [Array functions](array-functions.md)
++ [Boolean functions](c_Boolean_Functions.md)
 + [Bit\-wise aggregate functions](c_bitwise_aggregate_functions.md)
 + [Window functions](c_Window_functions.md)
 + [Conditional expressions](c_conditional_expressions.md)

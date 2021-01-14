@@ -31,7 +31,7 @@ OWNER TO
 Changes the owner of the specified database\. You can change the owner of the current database or some other database\. Only a superuser can change the owner\.
 
  *new\_owner*   
-New database owner\. The new owner must be an existing database user with write privileges\. See [GRANT](r_GRANT.md) for more information about user privileges\.
+New database owner\. The new owner must be an existing database user with write privileges\. For more information about user privileges, see [GRANT](r_GRANT.md)\.
 
 CONNECTION LIMIT \{ *limit* \| UNLIMITED \}   
 The maximum number of database connections users are permitted to have open concurrently\. The limit is not enforced for superusers\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  

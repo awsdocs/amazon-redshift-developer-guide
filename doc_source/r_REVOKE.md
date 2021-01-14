@@ -57,6 +57,15 @@ REVOKE { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES 
      [ CASCADE | RESTRICT ]
 ```
 
+The following is the syntax to revoke the ASSUMEROLE privilege from users and groups with a specified role\. 
+
+```
+REVOKE ASSUMEROLE
+    ON { 'iam_role' [, ...] | ALL }
+    FROM { user_name | GROUP group_name | PUBLIC } [, ...]
+    FOR { ALL | COPY | UNLOAD }
+```
+
 The following is the syntax for Redshift Spectrum integration with Lake Formation\. 
 
 ```
@@ -104,6 +113,9 @@ Revokes privilege to alter a table in an AWS Glue Data Catalog that is enabled f
 
 DROP  
 Revokes privilege to drop a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
+
+ASSUMEROLE  <a name="assumerole"></a>
+Revokes the privilege to run COPY and UNLOAD commands from users and groups with a specified role\. 
 
 ON \[ TABLE \] *table\_name*   
 Revokes the specified privileges on a table or a view\. The TABLE keyword is optional\.
@@ -181,94 +193,107 @@ grant usage on language sql to group udf_devs;
 For more information, see [UDF security and privileges](udf-security-and-privileges.md)\.   
 To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then grant usage on `plpgsql` only to the specific users or groups permitted to create stored procedures\. For more information, see [Security and privileges for stored procedures ](stored-procedure-security-and-privileges.md)\. 
 
-## Usage notes<a name="r_REVOKE-usage-notes"></a>
+FOR \{ ALL \| COPY \| UNLOAD \} \[, \.\.\.\]   <a name="revoke-for"></a>
+Specifes the SQL command for which the privilege is revoked\. You can specify ALL to revoke the privilege on the COPY and UNLOAD statements\. This clause applies only to revoking the ASSUMEROLE privilege\.
 
-To revoke privileges from an object, you must meet one of the following criteria:
-+ Be the object owner\.
-+ Be a superuser\.
-+ Have a grant privilege for that object and privilege\.
+## Syntax for using REVOKE with a data share<a name="r_REVOKE-synopsis-datashare"></a>
 
-  For example, the following command enables the user HR both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users\.
 
-  ```
-  grant select on table employees to HR with grant option;
-  ```
+|  | 
+| --- |
+| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
 
-  HR can't revoke privileges for any operation other than SELECT, or on any other table than employees\. 
-
-Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
-
-PUBLIC represents a group that always includes all users\. By default all members of PUBLIC have CREATE and USAGE privileges on the PUBLIC schema\. To restrict any user's permissions on the PUBLIC schema, you must first revoke all permissions from PUBLIC on the PUBLIC schema, then grant privileges to specific users or groups\. The following example controls table creation privileges in the PUBLIC schema\.
+The following is the syntax for using REVOKE for data share privileges on Amazon Redshift\. 
 
 ```
-revoke create on schema public from public;
+REVOKE { ALTER | SHARE } ON DATASHARE datashare_name     
+    FROM { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
-To revoke privileges from a Lake Formation table, the IAM role associated with the table's external schema must have permission to revoke privileges to the external table\. The following example creates an external schema with an associated IAM role `myGrantor`\. IAM role `myGrantor` has the permission to revoke permissions from others\. The REVOKE command uses the permission of the IAM role `myGrantor` that is associated with the external schema to revoke permission to the IAM role `myGrantee`\.
+The following is the syntax for using REVOKE for data share usage privileges on Amazon Redshift\. 
 
 ```
-create external schema mySchema
-from data catalog
-database 'spectrum_db'
-iam_role 'arn:aws:iam::123456789012:role/myGrantor'
-create external database if not exists;
+REVOKE USAGE 
+    ON DATASHARE datashare_name 
+    FROM NAMESPACE 'namespaceGUID' [, ...]
 ```
 
-```
-revoke select 
-on external table mySchema.mytable
-from iam_role 'arn:aws:iam::123456789012:role/myGrantee';
-```
-
-**Note**  
-If the IAM role also has the `ALL` permission in an AWS Glue Data Catalog that is enabled for Lake Formation, the `ALL` permission isn't revoked\. Only the `SELECT` permission is revoked\. You can view the Lake Formation permissions in the Lake Formation console\.
-
-## Examples<a name="r_REVOKE-examples"></a>
-
-The following example revokes INSERT privileges on the SALES table from the GUESTS user group\. This command prevents members of GUESTS from being able to load data into the SALES table by using the INSERT command\. 
+The following is the REVOKE syntax for data\-sharing usage permissions on the specific database or schema created from a data share\. This USAGE permission doesn't revoke usage permission to databases that are not created from the specified data share\. You can only REVOKE ALTER or SHARE permissions on a data share to users and user groups\.
 
 ```
-revoke insert on table sales from group guests;
+REVOKE USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
+    FROM { username | GROUP group_name | PUBLIC } [, ...]
 ```
 
-The following example revokes the SELECT privilege on all tables in the QA\_TICKIT schema from the user `fred`\.
+### Parameters for using REVOKE with a data share<a name="r_REVOKE-parameters-datashare"></a>
+
+ALTER  
+Revokes the ALTER privilege to users or user groups to allow those that don't own a data share to ALTER the data share\. This privilege is required to add or remove objects from a data share, or setting the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
+
+SHARE  
+Revokes privileges to users and user groups to add consumers to a data share\. This privilege is required to stop the particular consumer  to access the data share from their clusters\. 
+
+ON DATASHARE *datashare\_name *  
+Grants the specified privileges on the referenced data share\.
+
+FROM username  
+A clause that indicates the user losing the privileges\.
+
+FROM GROUP *group\_name*  
+A clause that indicates the user group losing the privileges\.
+
+WITH GRANT OPTION  
+A clause that indicates that the user receiving the privileges can in turn revoke the same privileges to others\. You can't revoke WITH GRANT OPTION to a group or to PUBLIC\.
+
+PUBLIC  
+Revokes the specified privileges to all users, including new users\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\. Granting PUBLIC to an AWS Lake Formation EXTERNAL TABLE results in granting the privilege to the Lake Formation everyone group\.
+
+USAGE  
+When USAGE is revoked to a consumer account or namespace within the same account, the specific  namespace within an account can't access the data share and the objects of the data share for read\-only\.   
+The USAGE privilege revoke from consumers the access to a data share\. 
+
+FROM NAMESPACE 'clusternamespace GUID'   
+A clause that indicates the namespace in the same account that has consumers losing the privileges to the data share\. Namespaces use a 128\-bit alpha\-numeric GUID\.
+
+ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="revoke-datashare"></a>
+Grants the specified usage privileges on the specific database that is created in the specified data share\.
+
+ON SCHEMA* shared\_schema*   <a name="revoke-datashare"></a>
+Grants the specified privileges on the specific schema that is created in the specified data share\.
+
+## Syntax for using REVOKE with a machine learning model<a name="r_REVOKE-synopsis-model"></a>
+
+
+|  | 
+| --- |
+| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+
+The following is the syntax for machine learning model privileges on Amazon Redshift\. For information about model\-specific parameters, see [REVOKE MODEL privileges](#r_REVOKE-MODEL-parameters)\.
 
 ```
-revoke select on all tables in schema qa_tickit from fred;
+REVOKE [ GRANT OPTION FOR ]
+    CREATE MODEL FROM { username | GROUP group_name | PUBLIC } [, ...]
+    [ CASCADE | RESTRICT ]
+
+REVOKE [ GRANT OPTION FOR ]
+    { EXECUTE | ALL [ PRIVILEGES ] }
+    ON MODEL model_name [, ...]
+    FROM { username | GROUP group_name | PUBLIC } [, ...]
+    [ CASCADE | RESTRICT ]
 ```
 
-The following example revokes the privilege to select from a view for user `bobr`\.
+### REVOKE MODEL privileges<a name="r_REVOKE-MODEL-parameters"></a>
 
-```
-revoke select on table eventview from bobr;
-```
+Use the following model\-specific parameters\.
 
-The following example revokes the privilege to create temporary tables in the TICKIT database from all users\.
+MODEL  
+Revokes the MODEL privilege to create machine learning models in the specified database\.
 
-```
-revoke temporary on database tickit from public;
-```
+ON MODEL *model\_name*  
+Revokes the EXECUTE privilege on a specific model\. Because model names can be overloaded, make sure to include the argument list for the model\.
 
-The following example revokes SELECT privilege on the `cust_name` and `cust_phone` columns of the `cust_profile` table from the user `user1`\. 
+ CASCADE   
+Specifies to automatically drop dependent objects when Amazon Redshift drops the model, such as views and other SQL user\-defined functions\.
 
-```
-revoke select(cust_name, cust_phone) on cust_profile from user1;
-```
-
-The following example revokes SELECT privilege on the `cust_name` and `cust_phone` columns and UPDATE privilege on the `cust_contact_preference` column of the `cust_profile` table from the `sales_group` group\. 
-
-```
-revoke select(cust_name, cust_phone), update(cust_contact_preference) on cust_profile from group sales_group;
-```
-
-The following example shows the usage of the ALL keyword to revoke both SELECT and UPDATE privileges on three columns of the table `cust_profile` from the `sales_admin` group\. 
-
-```
-revoke ALL(cust_name, cust_phone,cust_contact_preference) on cust_profile from group sales_admin;
-```
-
-The following example revokes the SELECT privilege on the `cust_name` column of the `cust_profile_vw` view from the `user2` user\. 
-
-```
-revoke select(cust_name) on cust_profile_vw from user2;
-```
+ RESTRICT   
+Specifies to not drop dependent objects when Amazon Redshift drops the model, such as views and other SQL user\-defined functions\. This action is the default\.

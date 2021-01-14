@@ -14,7 +14,7 @@ Returns a CHAR or VARCHAR string\.
 
 ## Example<a name="r_CURRENT_DATABASE-example"></a>
 
-The following query returns the name of the current database: 
+The following query returns the name of the current database\. 
 
 ```
 select current_database();

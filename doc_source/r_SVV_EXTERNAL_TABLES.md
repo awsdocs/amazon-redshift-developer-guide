@@ -1,6 +1,6 @@
 # SVV\_EXTERNAL\_TABLES<a name="r_SVV_EXTERNAL_TABLES"></a>
 
-Use SVV\_EXTERNAL\_TABLES to view details for external tables\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.
+Use SVV\_EXTERNAL\_TABLES to view details for external tables; for more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\. Use SVV\_EXTERNAL\_TABLES also for cross\-database queries to view metadata on all tables on unconnected databases that users have access to\. 
 
 SVV\_EXTERNAL\_TABLES is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\. 
 
