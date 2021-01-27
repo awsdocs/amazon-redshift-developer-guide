@@ -27,7 +27,7 @@ Number of rows to be used as the sample size for compression analysis\. The acce
 
 ## Usage notes<a name="r_ANALYZE_COMPRESSION_usage_notes"></a>
 
-Run ANALYZE COMPRESSION to get recommendations for column encoding schemes, based on a sample of the table's contents\. ANALYZE COMPRESSION is an advisory tool and doesn't modify the column encodings of the table\. You can apply the suggested encoding by recreating the table or by creating a new table with the same schema\. Recreating an uncompressed table with appropriate encoding schemes can significantly reduce its on\-disk footprint\. This approach saves disk space and improves query performance for I/O\-bound workloads\.
+Run ANALYZE COMPRESSION to get recommendations for column encoding schemes, based on a sample of the table's contents\. ANALYZE COMPRESSION is an advisory tool and doesn't modify the column encodings of the table\. You can apply the suggested encoding by running [ALTER TABLE ENCODING](https://aws.amazon.com/about-aws/whats-new/2020/10/amazon-redshift-supports-modifying-column-comprression-encodings-to-optimize-storage-utilization-query-performance/), recreating the table or by creating a new table with the same schema\. Recreating an uncompressed table with appropriate encoding schemes can significantly reduce its on\-disk footprint\. This approach saves disk space and improves query performance for I/O\-bound workloads\.
 
 ANALYZE COMPRESSION skips the actual analysis phase and directly returns the original encoding type on any column that is designated as a SORTKEY\. It does this because range\-restricted scans might perform poorly when SORTKEY columns are compressed much more highly than other columns\.
 
