@@ -115,7 +115,7 @@ Sets the configuration parameter to the default value for all sessions run by th
 When using AWS Identity and Access Management \(IAM\) authentication to create database user credentials, you might want to create a superuser that is able to log on only using temporary credentials\. You can't disable a superuser's password, but you can create an unknown password using a randomly generated MD5 hash string\.
 
 ```
-alter user iam_superuser password 'mdA51234567890123456780123456789012';
+alter user iam_superuser password 'md51234567890123456780123456789012';
 ```
 
 When you set the [search\_path](r_search_path.md) parameter with the ALTER USER command, the modification takes effect on the specified user's next login\. If you want to change the search\_path for the current user and session, use a SET command\. 
