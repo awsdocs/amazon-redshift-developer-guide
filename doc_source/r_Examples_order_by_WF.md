@@ -2,7 +2,7 @@
 
 If an ORDER BY clause for a window function doesn't produce a unique and total ordering of the data, the order of the rows is nondeterministic\. If the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows can vary in multiple runs\. In this case, window functions can also return unexpected or inconsistent results\. 
 
-For example, the following query returns different results over multiple runs\. These different results occur because `order by dateid` doens't produce a unique ordering of the data for the SUM window function\. 
+For example, the following query returns different results over multiple runs\. These different results occur because `order by dateid` doesn't produce a unique ordering of the data for the SUM window function\. 
 
 ```
 select dateid, pricepaid,
