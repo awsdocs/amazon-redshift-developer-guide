@@ -55,7 +55,7 @@ An NVARCHAR column without a length specification is converted to a VARCHAR\(256
 
 ## TEXT and BPCHAR types<a name="r_Character_types-text-and-bpchar-types"></a>
 
-You can create an Amazon Redshift table with a TEXT column, but it is converted to a VARCHAR\(256\) column that accepts variable\-length values with a maximum of 256 characters\. 
+You can create an Amazon Redshift table with a TEXT column, but it is converted to a VARCHAR\(256\) column that accepts variable\-length values with a maximum of 256 bytes\. 
 
 You can create an Amazon Redshift column with a BPCHAR \(blank\-padded character\) type, which Amazon Redshift converts to a fixed\-length CHAR\(256\) column\. 
 
