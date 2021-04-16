@@ -2,9 +2,9 @@
 
 Stores information about the number of rows inserted or deleted since the last ANALYZE\. The PG\_STATISTIC\_INDICATOR table is updated frequently following DML operations, so statistics are approximate\.
 
-PG\_STATISTIC\_INDICATOR is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+PG\_STATISTIC\_INDICATOR is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_PG_STATISTIC_INDICATOR-table-columns"></a>
+## Table columns<a name="r_PG_STATISTIC_INDICATOR-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PG_STATISTIC_INDICATOR.html)
 

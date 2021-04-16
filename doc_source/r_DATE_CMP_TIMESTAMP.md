@@ -1,6 +1,6 @@
-# DATE\_CMP\_TIMESTAMP Function<a name="r_DATE_CMP_TIMESTAMP"></a>
+# DATE\_CMP\_TIMESTAMP function<a name="r_DATE_CMP_TIMESTAMP"></a>
 
-Compares a date to a time stamp and returns `0` if the values are identical, `1` if *date* is greater alphabetically and `-1` if *timestamp* is greater\.
+Compares a date to a timestamp and returns `0` if the values are identical, `1` if *date* is greater alphabetically and `-1` if *timestamp* is greater\.
 
 ## Syntax<a name="r_DATE_CMP_TIMESTAMP-synopsis"></a>
 
@@ -14,9 +14,9 @@ DATE_CMP_TIMESTAMP(date, timestamp)
 A date column or an expression that implicitly converts to a date\.
 
  *timestamp*   
-A timestamp column or an expression that implicitly converts to a time stamp\.
+A timestamp column or an expression that implicitly converts to a timestamp\.
 
-## Return Type<a name="r_DATE_CMP_TIMESTAMP-return-type"></a>
+## Return type<a name="r_DATE_CMP_TIMESTAMP-return-type"></a>
 
 INTEGER
 

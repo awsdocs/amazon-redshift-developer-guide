@@ -1,6 +1,6 @@
-# REGEXP\_SUBSTR Function<a name="REGEXP_SUBSTR"></a>
+# REGEXP\_SUBSTR function<a name="REGEXP_SUBSTR"></a>
 
-Returns the characters extracted from a string by searching for a regular expression pattern\. REGEXP\_SUBSTR is similar to the [SUBSTRING Function](r_SUBSTRING.md) function, but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX Operators](pattern-matching-conditions-posix.md)\.
+Returns the characters extracted from a string by searching for a regular expression pattern\. REGEXP\_SUBSTR is similar to the [SUBSTRING function](r_SUBSTRING.md) function, but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX operators](pattern-matching-conditions-posix.md)\.
 
 ## Syntax<a name="REGEXP_SUBSTR-synopsis"></a>
 
@@ -30,7 +30,7 @@ One or more string literals that indicate how the function matches the pattern\.
 
   If *pattern* includes a subexpression, REGEXP\_SUBSTR matches a substring using the first subexpression in *pattern*\. REGEXP\_SUBSTR considers only the first subexpression; additional subexpressions are ignored\. If the pattern doesn't have a subexpression, REGEXP\_SUBSTR ignores the 'e' parameter\. 
 
-## Return Type<a name="REGEXP_SUBSTR-return-type"></a>
+## Return type<a name="REGEXP_SUBSTR-return-type"></a>
 
 VARCHAR
 

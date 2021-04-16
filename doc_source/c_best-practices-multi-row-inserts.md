@@ -1,4 +1,4 @@
-# Use a Multi\-Row Insert<a name="c_best-practices-multi-row-inserts"></a>
+# Use a multi\-row insert<a name="c_best-practices-multi-row-inserts"></a>
 
 If a COPY command is not an option and you require SQL inserts, use a multi\-row insert whenever possible\. Data compression is inefficient when you add data only one row or a few rows at a time\.
 
@@ -11,4 +11,4 @@ insert into category_stage values
 (21, 'Concerts', 'Rock', default);
 ```
 
-See [INSERT](r_INSERT_30.md) for more details and examples\.
+For more details and examples, see [INSERT](r_INSERT_30.md)\. 

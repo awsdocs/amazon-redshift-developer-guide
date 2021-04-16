@@ -1,6 +1,6 @@
 # analyze\_threshold\_percent<a name="r_analyze_threshold_percent"></a>
 
-## Values \(Default in Bold\)<a name="t_analyze_threshold_percent-values"></a>
+## Values \(default in bold\)<a name="t_analyze_threshold_percent-values"></a>
 
  **10**, 0 to 100\.0
 

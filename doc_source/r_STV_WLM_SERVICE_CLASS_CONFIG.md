@@ -2,15 +2,15 @@
 
 Records the service class configurations for WLM\. 
 
-STV\_WLM\_SERVICE\_CLASS\_CONFIG is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_WLM\_SERVICE\_CLASS\_CONFIG is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_WLM_SERVICE_CLASS_CONFIG-table-columns2"></a>
+## Table columns<a name="r_STV_WLM_SERVICE_CLASS_CONFIG-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_SERVICE_CLASS_CONFIG.html)
 
-## Sample Query<a name="r_STV_WLM_SERVICE_CLASS_CONFIG-sample-query2"></a>
+## Sample query<a name="r_STV_WLM_SERVICE_CLASS_CONFIG-sample-query2"></a>
 
-The first user\-defined service class is service class 6, which is named Service class \#1\. The following query displays the current configuration for service classes greater than 4\. For a list of service class IDs, see [WLM Service Class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\. 
+The first user\-defined service class is service class 6, which is named Service class \#1\. The following query displays the current configuration for service classes greater than 4\. For a list of service class IDs, see [WLM service class IDs](cm-c-wlm-system-tables-and-views.md#wlm-service-class-ids)\. 
 
 ```
 select rtrim(name) as name, 
@@ -25,16 +25,15 @@ where service_class > 4;
 name                         | slots | mem | max_time | user_wildcard | query_wildcard
 -----------------------------+-------+-----+----------+---------------+---------------
 Service class for super user |     1 | 535 |        0 | false         | false   
-Service class #1             |     5 | 125 |        0 | false         | false         
-Service class #2             |     5 | 125 |        0 | false         | false         
-Service class #3             |     5 | 125 |        0 | false         | false         
-Service class #4             |     5 | 627 |        0 | false         | false         
-Service class #5             |     5 | 125 |        0 | true          | true          
-Service class #6             |     5 | 125 |        0 | false         | false      
-(6 rows)
+Queue 1                      |     5 | 125 |        0 | false         | false         
+Queue 2                      |     5 | 125 |        0 | false         | false         
+Queue 3                      |     5 | 125 |        0 | false         | false         
+Queue 4                      |     5 | 627 |        0 | false         | false         
+Queue 5                      |     5 | 125 |        0 | true          | true          
+Default queue                |     5 | 125 |        0 | false         | false
 ```
 
-The following query shows the status of a dynamic WLM transition\. While the transition is in process, `num_query_tasks` and `target_query_working_mem` are updated until they equal the target values\. For more information, see [WLM Dynamic and Static Configuration Properties](cm-c-wlm-dynamic-properties.md)\.
+The following query shows the status of a dynamic WLM transition\. While the transition is in process, `num_query_tasks` and `target_query_working_mem` are updated until they equal the target values\. For more information, see [WLM dynamic and static configuration properties](cm-c-wlm-dynamic-properties.md)\.
 
 ```
 select rtrim(name) as name, 
@@ -49,7 +48,7 @@ and service_class > 5;
 
  name             | slots | target_slots | memory | target_mem 
 ------------------+-------+--------------+--------+------------
- Service class #3 |     5 |           15 |    125 |       375 
- Service class #5 |    10 |            5 |    250 |       125 
+ Queue 3          |     5 |           15 |    125 |       375 
+ Queue 5          |    10 |            5 |    250 |       125 
  (2 rows)
 ```

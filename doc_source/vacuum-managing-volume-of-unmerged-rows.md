@@ -1,4 +1,4 @@
-# Managing the Volume of Merged Rows<a name="vacuum-managing-volume-of-unmerged-rows"></a>
+# Managing the volume of merged rows<a name="vacuum-managing-volume-of-unmerged-rows"></a>
 
 If a vacuum operation needs to merge new rows into a table's sorted region, the time required for a vacuum will increase as the table grows larger\. You can improve vacuum performance by reducing the number of rows that must be merged\. 
 

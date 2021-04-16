@@ -1,4 +1,4 @@
-# PERCENT\_RANK Window Function<a name="r_WF_PERCENT_RANK"></a>
+# PERCENT\_RANK window function<a name="r_WF_PERCENT_RANK"></a>
 
 Calculates the percent rank of a given row\. The percent rank is determined using this formula:
 
@@ -42,12 +42,34 @@ Optional\. An expression that sets the range of records for each group in the OV
 
 ORDER BY *order\_list*   
 Optional\. The expression on which to calculate percent rank\. The expression must have either a numeric data type or be implicitly convertible to one\. If ORDER BY is omitted, the return value is 0 for all rows\.  
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique Ordering of Data for Window Functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 
-## Return Type<a name="r_WF_PERCENT_RANK-return-type"></a>
+## Return type<a name="r_WF_PERCENT_RANK-return-type"></a>
 
 FLOAT8
 
 ## Examples<a name="r_WF_PERCENT_RANK-examples"></a>
 
-See [PERCENT\_RANK Window Function Examples](r_Examples_of_PERCENT_RANK_WF.md)\. 
+The following example calculates the percent rank of the sales quantities for each seller:
+
+```
+select sellerid, qty, percent_rank() 
+over (partition by sellerid order by qty) 
+from winsales;
+
+sellerid	qty		percent_rank
+----------------------------------------
+1		10.00		0.0
+1		10.64		0.5
+1		30.37		1.0
+3		10.04		0.0
+3		15.15		0.33
+3		20.75		0.67
+3		30.55		1.0
+2		20.09		0.0
+2		20.12		1.0
+4		10.12		0.0
+4		40.23		1.0
+```
+
+For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\.

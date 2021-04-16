@@ -1,4 +1,4 @@
-# Working with Recommendations from Amazon Redshift Advisor<a name="advisor"></a>
+# Working with recommendations from Amazon Redshift Advisor<a name="advisor"></a>
 
 To help you improve the performance and decrease the operating costs for your Amazon Redshift cluster, Amazon Redshift Advisor offers you specific recommendations about changes to make\. Advisor develops its customized recommendations by analyzing performance and usage metrics for your cluster\. These tailored recommendations relate to operations and cluster settings\. To help you prioritize your optimizations, Advisor ranks recommendations by order of impact\.
 
@@ -10,16 +10,27 @@ For example, suppose that your data warehouse contains a large number of uncompr
 
 The Amazon Redshift Advisor feature is available only in the following AWS Regions: 
 + US East \(N\. Virginia\) Region \(us\-east\-1\)
++ US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\)
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
++ Canada \(Central\) Region \(ca\-central\-1\)
++ China \(Beijing\) Region \(cn\-north\-1\)
++ China \(Ningxia\) Region \(cn\-northwest\-1\)
 + Europe \(Frankfurt\) Region \(eu\-central\-1\)
 + Europe \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(London\) Region \(eu\-west\-2\)
++ Europe \(Paris\) Region \(eu\-west\-3\)
++ Europe \(Stockholm\) Region \(eu\-north\-1\)
++ Middle East \(Bahrain\) Region \(me\-south\-1\)
++ South America \(São Paulo\) Region \(sa\-east\-1\)
 
 **Topics**
 + [Amazon Redshift Regions](#advisor-regions)
-+ [Viewing Amazon Redshift Advisor Recommendations on the Console](access-advisor.md)
-+ [Amazon Redshift Advisor Recommendations](advisor-recommendations.md)
++ [Viewing Amazon Redshift Advisor recommendations on the console](access-advisor.md)
++ [Amazon Redshift Advisor recommendations](advisor-recommendations.md)

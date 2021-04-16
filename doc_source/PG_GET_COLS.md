@@ -13,11 +13,11 @@ pg_get_cols('name')
  *name*   
 The name of an Amazon Redshift table or view\.
 
-## Return Type<a name="PG_GET_COLS-return-type"></a>
+## Return type<a name="PG_GET_COLS-return-type"></a>
 
 VARCHAR 
 
-## Usage Notes<a name="PG_GET_COLS-usage-notes"></a>
+## Usage notes<a name="PG_GET_COLS-usage-notes"></a>
 
 The PG\_GET\_COLS function returns one row for each column in the table or view definition\. The row contains a comma\-separated list with the schema name, relation name, column name, data type, and column number\. 
 

@@ -1,4 +1,4 @@
-# NVL2 Expression<a name="r_NVL2"></a>
+# NVL2 expression<a name="r_NVL2"></a>
 
 Returns one of two values based on whether a specified expression evaluates to NULL or NOT NULL\.
 
@@ -19,7 +19,7 @@ The value returned if *expression* evaluates to NOT NULL\. The *not\_null\_retur
  *null\_return\_value*   
 The value returned if *expression* evaluates to NULL\. The *null\_return\_value* value must either have the same data type as *expression* or be implicitly convertible to that data type\.
 
-## Return Type<a name="r_NVL2-return-type"></a>
+## Return type<a name="r_NVL2-return-type"></a>
 
 The NVL2 return type is determined as follows:
 + If either *not\_null\_return\_value* or *null\_return\_value* is null, the data type of the not\-null expression is returned\.
@@ -34,9 +34,9 @@ If both *not\_null\_return\_value* and *null\_return\_value* are not null:
 **Important**  
 In the last two cases where the data type of *not\_null\_return\_value* is returned, *null\_return\_value* is implicitly cast to that data type\. If the data types are incompatible, the function fails\.
 
-## Usage Notes<a name="nvl2-usage-notes"></a>
+## Usage notes<a name="nvl2-usage-notes"></a>
 
-[DECODE Expression](r_DECODE_expression.md) can be used in a similar way to NVL2 when the *expression* and *search* parameters are both null\. The difference is that for DECODE, the return will have both the value and the data type of the *result* parameter\. In contrast, for NVL2, the return will have the value of either the *not\_null\_return\_value* or *null\_return\_value* parameter, whichever is selected by the function, but will have the data type of *not\_null\_return\_value*\.
+[DECODE expression](r_DECODE_expression.md) can be used in a similar way to NVL2 when the *expression* and *search* parameters are both null\. The difference is that for DECODE, the return will have both the value and the data type of the *result* parameter\. In contrast, for NVL2, the return will have the value of either the *not\_null\_return\_value* or *null\_return\_value* parameter, whichever is selected by the function, but will have the data type of *not\_null\_return\_value*\.
 
 For example, assuming column1 is NULL, the following queries will return the same value\. However, the DECODE return value data type will be INTEGER and the NVL2 return value data type will be VARCHAR\.
 

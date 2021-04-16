@@ -1,4 +1,4 @@
-# Alter External Table Examples<a name="r_ALTER_TABLE_external-table"></a>
+# ALTER EXTERNAL TABLE examples<a name="r_ALTER_TABLE_external-table"></a>
 
 The following example sets the numRows table property for the SPECTRUM\.SALES external table to 170,000 rows\.
 

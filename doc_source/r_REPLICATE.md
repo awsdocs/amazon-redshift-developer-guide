@@ -1,5 +1,5 @@
-# REPLICATE Function<a name="r_REPLICATE"></a>
+# REPLICATE function<a name="r_REPLICATE"></a>
 
 Synonym for the REPEAT function\. 
 
-See [REPEAT Function](r_REPEAT.md)\. 
+See [REPEAT function](r_REPEAT.md)\. 

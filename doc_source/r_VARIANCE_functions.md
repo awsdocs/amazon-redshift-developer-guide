@@ -1,4 +1,4 @@
-# VAR\_SAMP and VAR\_POP Functions<a name="r_VARIANCE_functions"></a>
+# VAR\_SAMP and VAR\_POP functions<a name="r_VARIANCE_functions"></a>
 
  The VAR\_SAMP and VAR\_POP functions return the sample and population variance of a set of numeric values \(integer, decimal, or floating\-point\)\. The result of the VAR\_SAMP function is equivalent to the squared sample standard deviation of the same set of values\. 
 
@@ -16,7 +16,7 @@ The expression must have an integer, decimal, or floating\-point data type\. Reg
 **Note**  
 The results of these functions might vary across data warehouse clusters, depending on the configuration of the cluster in each case\. 
 
-## Usage Notes<a name="r_VARIANCE_usage_notes"></a>
+## Usage notes<a name="r_VARIANCE_usage_notes"></a>
 
 When the sample variance \(VARIANCE or VAR\_SAMP\) is calculated for an expression that consists of a single value, the result of the function is NULL not 0\. 
 

@@ -1,4 +1,4 @@
-# Step 2: Create a Database User<a name="t_adding_redshift_user_cmd"></a>
+# Step 2: Create a database user<a name="t_adding_redshift_user_cmd"></a>
 
 By default, only the master user that you created when you launched the cluster has access to the initial database in the cluster\. To grant other users access, you must create one or more user accounts\. Database user accounts are global across all the databases in a cluster; they do not belong to individual databases\.
 

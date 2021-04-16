@@ -1,4 +1,4 @@
-# DATE\_CMP Function<a name="r_DATE_CMP"></a>
+# DATE\_CMP function<a name="r_DATE_CMP"></a>
 
 DATE\_CMP compares two dates\. The function returns `0` if the dates are identical, `1` if *date1* is greater, and `-1` if *date2* is greater\.
 
@@ -16,7 +16,7 @@ A date column or an expression that implicitly converts to a date\.
  *date2*   
 A date column or an expression that implicitly converts to a date\.
 
-## Return Type<a name="r_DATE_CMP-return-type"></a>
+## Return type<a name="r_DATE_CMP-return-type"></a>
 
 INTEGER
 

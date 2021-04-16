@@ -6,9 +6,9 @@ You can apply default privileges to users or user groups\. You can set default p
 
 Default privileges apply only to new objects\. Running ALTER DEFAULT PRIVILEGES doesn’t change privileges on existing objects\.
 
-For more information about privileges, see [GRANT](r_GRANT.md)\.
-
 To view information about the default privileges for database users, query the [PG\_DEFAULT\_ACL](r_PG_DEFAULT_ACL.md) system catalog table\. 
+
+For more information about privileges, see [GRANT](r_GRANT.md)\.
 
 ## Syntax<a name="r_ALTER_DEFAULT_PRIVILEGES-synopsis"></a>
 

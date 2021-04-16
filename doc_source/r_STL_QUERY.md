@@ -3,17 +3,17 @@
 Returns execution information about a database query\.
 
 **Note**  
-The STL\_QUERY and STL\_QUERYTEXT tables only contain information about queries, not other utility and DDL commands\. For a listing and information on all statements executed by Amazon Redshift, you can also query the STL\_DDLTEXT and STL\_UTILITYTEXT tables\. For a complete listing of all statements executed by Amazon Redshift, you can query the SVL\_STATEMENTTEXT view\.
+The STL\_QUERY and STL\_QUERYTEXT views only contain information about queries, not other utility and DDL commands\. For a listing and information on all statements executed by Amazon Redshift, you can also query the STL\_DDLTEXT and STL\_UTILITYTEXT views\. For a complete listing of all statements executed by Amazon Redshift, you can query the SVL\_STATEMENTTEXT view\.
 
-To manage disk space, the STL log tables only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
+To manage disk space, the STL log views only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="sub-r_STL_QUERY-table-columns"></a>
+## Table columns<a name="sub-r_STL_QUERY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_QUERY.html)
 
-## Sample Queries<a name="r_STL_QUERY-sample-queries"></a>
+## Sample queries<a name="r_STL_QUERY-sample-queries"></a>
 
 The following query lists the five most recent queries\.
 
@@ -38,7 +38,7 @@ The following query returns the time elapsed in descending order for queries tha
 select query, datediff(seconds, starttime, endtime),
 trim(querytxt) as sqlquery
 from stl_query
-where starttime >= '2013-02-15 00:00' and endtime < '2013-02-15 23:59'
+where starttime >= '2013-02-15 00:00' and endtime < '2013-02-16 00:00'
 order by date_diff desc;
 
  query | date_diff |  sqlquery

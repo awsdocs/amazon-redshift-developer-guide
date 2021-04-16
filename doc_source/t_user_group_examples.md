@@ -1,4 +1,4 @@
-# Example for Controlling User and Group Access<a name="t_user_group_examples"></a>
+# Example for controlling user and group access<a name="t_user_group_examples"></a>
 
 This example creates user groups and user accounts and then grants them various privileges for an Amazon Redshift database that connects to a web application client\. This example assumes three groups of users: regular users of a web application, power users of a web application, and web developers\.
 

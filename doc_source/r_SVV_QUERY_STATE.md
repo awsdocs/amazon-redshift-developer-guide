@@ -4,15 +4,15 @@
 
 The SVV\_QUERY\_STATE view contains a data subset of the STV\_EXEC\_STATE table\.
 
-SVV\_QUERY\_STATE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVV\_QUERY\_STATE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVV_QUERY_STATE-table-columns"></a>
+## Table columns<a name="r_SVV_QUERY_STATE-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_QUERY_STATE.html)
 
-## Sample Queries<a name="r_SVV_QUERY_STATE-sample-queries"></a>
+## Sample queries<a name="r_SVV_QUERY_STATE-sample-queries"></a>
 
- **Determining the Processing Time of a Query by Step** 
+ **Determining the processing time of a query by step** 
 
 The following query shows how long each step of the query with query ID 279 took to execute and how many data rows Amazon Redshift processed: 
 
@@ -38,7 +38,7 @@ query |   seg   | step | maxtime | avgtime |  rows   | label
 (7 rows)
 ```
 
- **Determining If Any Active Queries Are Currently Running on Disk** 
+ **Determining if any active queries are currently running on disk** 
 
 The following query shows if any active queries are currently running on disk: 
 

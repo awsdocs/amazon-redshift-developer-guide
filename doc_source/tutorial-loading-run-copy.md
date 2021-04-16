@@ -1,12 +1,12 @@
-# Step 5: Run the COPY Commands<a name="tutorial-loading-run-copy"></a>
+# Step 5: Run the COPY commands<a name="tutorial-loading-run-copy"></a>
 
 You run COPY commands to load each of the tables in the SSB schema\. The COPY command examples demonstrate loading from different file formats, using several COPY command options, and troubleshooting load errors\.
 
 **Topics**
-+ [COPY Command Syntax](#tutorial-loading-data-copy-syntax)
-+ [Loading the SSB Tables](#tutorial-loading-run-copy-load-tables)
++ [COPY command syntax](#tutorial-loading-data-copy-syntax)
++ [Loading the SSB tables](#tutorial-loading-run-copy-load-tables)
 
-## COPY Command Syntax<a name="tutorial-loading-data-copy-syntax"></a>
+## COPY command syntax<a name="tutorial-loading-data-copy-syntax"></a>
 
 The basic [COPY](r_COPY.md) command syntax is as follows\. 
 
@@ -33,43 +33,70 @@ You can use the COPY command to load data from an Amazon S3 bucket, an Amazon EM
   In some cases, you might need to load files with different prefixes, for example from multiple buckets or folders\. In others, you might need to exclude files that share a prefix\. In these cases, you can use a manifest file\. A *manifest file* explicitly lists each load file and its unique object key\. You use a manifest file to load the PART table later in this tutorial\. 
 <a name="tutorial-loading-syntax-credentials"></a>
 **Credentials**  
-To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\. These credentials are an access key ID and a secret access key\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization Parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing Access Permissions to Your Amazon S3 Resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you need to get them\. For more information, go to [Administering Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
+To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\. These credentials are an access key ID and a secret access key\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you need to get them\. For more information, go to [Administering access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
 
 <a name="tutorial-loading-syntax-options.title"></a>Options
 
 You can specify a number of parameters with the COPY command to specify file formats, manage data formats, manage errors, and control other features\. In this tutorial, you use the following COPY command options and features: 
-+ [Key Prefix](#tutorial-loading-key-prefix)
-+ [CSV Format](#tutorial-loading-csv-format)
-+ [NULL AS](#tutorial-loading-null-as)
-+ [REGION](#tutorial-loading-region)
-+ [Fixed\-Width Format](#tutorial-loading-fixed-width)
-+ [MAXERROR](#tutorial-loading-maxerror)
-+ [ACCEPTINVCHARS](#tutorial-loading-acceptinvchars)
-+ [MANIFEST](#tutorial-loading-manifest)
-+ [DATEFORMAT](#tutorial-loading-dateformat)
-+ [GZIP, LZOP and BZIP2](#tutorial-loading-gzip-lzop)
-+ [COMPUPDATE](#tutorial-loading-compupdate)
-+ [Multiple Files](#tutorial-loading-multiple-files)
++ Key prefix
 
-## Loading the SSB Tables<a name="tutorial-loading-run-copy-load-tables"></a>
+  For information on how to load from multiple files by specifying a key prefix, see [Load the PART table using NULL AS](#tutorial-loading-load-part)\.
++ CSV format
+
+  For information on how to load data that is in CSV format, see [Load the PART table using NULL AS](#tutorial-loading-load-part)\.
++ NULL AS
+
+  For information on how to load PART using the NULL AS option, see [Load the PART table using NULL AS](#tutorial-loading-load-part)\.
++ Character\-delimited format
+
+  For information on how to use the DELIMITER option, see [Load the SUPPLIER table using REGION](#tutorial-loading-load-supplier)\.
++ REGION
+
+  For information on how to use the REGION option, see [Load the SUPPLIER table using REGION](#tutorial-loading-load-supplier)\.
++ Fixed\-format width
+
+  For information on how to load the CUSTOMER table from fixed\-width data, see [Load the CUSTOMER table using MANIFEST](#tutorial-loading-load-customer)\.
++ MAXERROR
+
+  For information on how to use the MAXERROR option, see [Load the CUSTOMER table using MANIFEST](#tutorial-loading-load-customer)\.
++ ACCEPTINVCHARS
+
+  For information on how to use the ACCEPTINVCHARS option, see [Load the CUSTOMER table using MANIFEST](#tutorial-loading-load-customer)\.
++ MANIFEST
+
+  For information on how to use the MANIFEST option, see [Load the CUSTOMER table using MANIFEST](#tutorial-loading-load-customer)\.
++ DATEFORMAT
+
+  For information on how to use the DATEFORMAT option, see [Load the DWDATE table using DATEFORMAT](#tutorial-loading-load-dwdate)\.
++ GZIP, LZOP and BZIP2
+
+  For information on how to compress your files, see [Load the LINEORDER table using multiple files](#tutorial-loading-load-lineorder)\.
++ COMPUPDATE
+
+  For information on how to use the COMPUPDATE option, see [Load the LINEORDER table using multiple files](#tutorial-loading-load-lineorder)\.
++ Multiple files
+
+  For information on how to load multiple files, see [Load the LINEORDER table using multiple files](#tutorial-loading-load-lineorder)\.
+
+## Loading the SSB tables<a name="tutorial-loading-run-copy-load-tables"></a>
 
 You use the following COPY commands to load each of the tables in the SSB schema\. The command to each table demonstrates different COPY options and troubleshooting techniques\.
 
 To load the SSB tables, follow these steps: 
 
-1. [Replace the Bucket Name and AWS Credentials](#tutorial-loading-run-copy-replaceables)
+1. [Replace the bucket name and AWS credentials](#tutorial-loading-run-copy-replaceables)
 
-1. [Load the PART Table Using NULL AS](#tutorial-loading-load-part)
+1. [Load the PART table using NULL AS](#tutorial-loading-load-part)
 
-1. [Load the SUPPLIER table Using REGION](#tutorial-loading-load-supplier)
+1. [Load the SUPPLIER table using REGION](#tutorial-loading-load-supplier)
 
-1. [Load the CUSTOMER Table Using MANIFEST](#tutorial-loading-load-customer)
+1. [Load the CUSTOMER table using MANIFEST](#tutorial-loading-load-customer)
 
-1. [Load the DWDATE Table Using DATEFORMAT](#tutorial-loading-load-dwdate)
+1. [Load the DWDATE table using DATEFORMAT](#tutorial-loading-load-dwdate)
 
-1. [Load the LINEORDER Table Using Multiple Files](#tutorial-loading-load-lineorder)
+1. [Load the LINEORDER table using multiple files](#tutorial-loading-load-lineorder)
 
-### Replace the Bucket Name and AWS Credentials<a name="tutorial-loading-run-copy-replaceables"></a>
+### Replace the bucket name and AWS credentials<a name="tutorial-loading-run-copy-replaceables"></a>
 
 The COPY commands in this tutorial are presented in the following format\.
 
@@ -87,13 +114,13 @@ For each COPY command, do the following:
 
 1. Replace *<Your\-Access\-Key\-ID>* and *<Your\-Secret\-Access\-Key>* with your own AWS IAM account credentials\. The segment of the credentials string that is enclosed in single quotation marks must not contain any spaces or line breaks\. 
 
-### Load the PART Table Using NULL AS<a name="tutorial-loading-load-part"></a>
+### Load the PART table using NULL AS<a name="tutorial-loading-load-part"></a>
 
 In this step, you use the CSV and NULL AS options to load the PART table\. 
 
-The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split Your Load Data into Multiple Files](c_best-practices-use-multiple-files.md)\. 
+The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split your load data into multiple files](c_best-practices-use-multiple-files.md)\. 
 <a name="tutorial-loading-key-prefix"></a>
-**Key Prefix**  
+**Key prefix**  
 You can load from multiple files by specifying a key prefix for the file set, or by explicitly listing the files in a manifest file\. In this step, you use a key prefix\. In a later step, you use a manifest file\. The key prefix `'s3://mybucket/load/part-csv.tbl'` loads the following set of the files in the `load` folder\. 
 
 ```
@@ -107,8 +134,8 @@ part-csv.tbl-006
 part-csv.tbl-007
 ```
 <a name="tutorial-loading-csv-format"></a>
-**CSV Format**  
-CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quote character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quote character by using the QUOTE AS option\. When you use the quote character within the field, escape the character with an additional quote character\.
+**CSV format**  
+CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quotation mark character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quotation mark character by using the QUOTE AS option\. When you use the quotation mark character within the field, escape the character with an additional quotation mark character\.
 
 The following excerpt from a CSV\-formatted data file for the PART table shows strings enclosed in double quotation marks \(`"LARGE ANODIZED BRASS"`\)\. It also shows a string enclosed in two double quotation marks within a quoted string \(`"MEDIUM ""BURNISHED"" TIN"`\)\.
 
@@ -200,7 +227,7 @@ select p_partkey, p_name, p_mfgr, p_category from part where p_mfgr is null;
 (2 rows)
 ```
 
-### Load the SUPPLIER table Using REGION<a name="tutorial-loading-load-supplier"></a>
+### Load the SUPPLIER table using REGION<a name="tutorial-loading-load-supplier"></a>
 
 In this step, you use the DELIMITER and REGION options to load the SUPPLIER table\.
 
@@ -218,7 +245,7 @@ The following excerpt from the data for the SUPPLIER table uses pipe\-delimited 
 ```
 <a name="tutorial-loading-region"></a>
 **REGION**  
-Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency, minimize eventual consistency issues, and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift Best Practices for Loading Data](c_loading-data-best-practices.md) 
+Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md) 
 
 If you must load data from a different AWS region, use the REGION option to specify the AWS region in which the load data is located\. If you specify a region, all of the load data, including manifest files, must be in the named region\. For more information, see [REGION](copy-parameters-data-source-s3.md#copy-region)\. 
 
@@ -242,7 +269,7 @@ gzip
 region 'us-east-1';
 ```
 
-### Load the CUSTOMER Table Using MANIFEST<a name="tutorial-loading-load-customer"></a>
+### Load the CUSTOMER table using MANIFEST<a name="tutorial-loading-load-customer"></a>
 
 In this step, you use the FIXEDWIDTH, MAXERROR, ACCEPTINVCHARS, and MANIFEST options to load the CUSTOMER table\.
 
@@ -386,7 +413,7 @@ Another way to check for unexpected results is to verify the number of rows that
 In this exercise, you use a manifest file to avoid loading the wrong files\. 
 <a name="tutorial-loading-acceptinvchars"></a>
 **ACCEPTINVCHARS**  
-By default, when COPY encounters a character that is not supported by the column's data type, it skips the row and returns an error\. For information about invalid UTF\-8 characters, see [Multibyte Character Load Errors](multi-byte-character-load-errors.md)\. 
+By default, when COPY encounters a character that is not supported by the column's data type, it skips the row and returns an error\. For information about invalid UTF\-8 characters, see [Multibyte character load errors](multi-byte-character-load-errors.md)\. 
 
 You could use the MAXERRORS option to ignore errors and continue loading, then query STL\_LOAD\_ERRORS to locate the invalid characters, and then fix the data files\. However, MAXERRORS is best used for troubleshooting load problems and should generally not be used in a production environment\. 
 
@@ -441,11 +468,11 @@ The following shows the `customer-fw-manifest` text\.
    manifest;
    ```
 
-### Load the DWDATE Table Using DATEFORMAT<a name="tutorial-loading-load-dwdate"></a>
+### Load the DWDATE table using DATEFORMAT<a name="tutorial-loading-load-dwdate"></a>
 
 In this step, you use the DELIMITER and DATEFORMAT options to load the DWDATE table\.
 
-When loading DATE and TIMESTAMP columns, COPY expects the default format, which is YYYY\-MM\-DD for dates and YYYY\-MM\-DD HH:MI:SS for time stamps\. If the load data does not use a default format, you can use DATEFORMAT and TIMEFORMAT to specify the format\. 
+When loading DATE and TIMESTAMP columns, COPY expects the default format, which is YYYY\-MM\-DD for dates and YYYY\-MM\-DD HH:MI:SS for timestamps\. If the load data does not use a default format, you can use DATEFORMAT and TIMEFORMAT to specify the format\. 
 
 The following excerpt shows date formats in the DWDATE table\. Notice that the date formats in column two are inconsistent\.
 
@@ -456,7 +483,7 @@ The following excerpt shows date formats in the DWDATE table\. Notice that the d
 ```
 <a name="tutorial-loading-dateformat"></a>
 **DATEFORMAT**  
-You can specify only one date format\. If the load data contains inconsistent formats, possibly in different columns, or if the format is not known at load time, you use DATEFORMAT with the `'auto'` argument\. When `'auto'` is specified, COPY recognizes any valid date or time format and convert it to the default format\. The `'auto'` option recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. For more information, see [Using Automatic Recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. 
+You can specify only one date format\. If the load data contains inconsistent formats, possibly in different columns, or if the format is not known at load time, you use DATEFORMAT with the `'auto'` argument\. When `'auto'` is specified, COPY recognizes any valid date or time format and convert it to the default format\. The `'auto'` option recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. For more information, see [Using automatic recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. 
 
 To load the DWDATE table, execute the following COPY command\.
 
@@ -467,7 +494,7 @@ delimiter '\t'
 dateformat 'auto';
 ```
 
-### Load the LINEORDER Table Using Multiple Files<a name="tutorial-loading-load-lineorder"></a>
+### Load the LINEORDER table using multiple files<a name="tutorial-loading-load-lineorder"></a>
 
 This step uses the GZIP and COMPUPDATE options to load the LINEORDER table\.
 
@@ -483,9 +510,9 @@ You can compress your files using either gzip, lzop, or bzip2 compression format
 When COPY loads an empty table with no compression encodings, it analyzes the load data to determine the optimal encodings\. It then alters the table to use those encodings before beginning the load\. This analysis process takes time, but it occurs, at most, once per table\. To save time, you can skip this step by turning COMPUPDATE off\. To enable an accurate evaluation of COPY times, you turn COMPUPDATE off for this step\.
 <a name="tutorial-loading-multiple-files"></a>
 **Multiple Files**  
-The COPY command can load data very efficiently when it loads from multiple files in parallel instead of from a single file\. You can split your data into files so that the number of files is a multiple of the number of slices in your cluster\. If you do, Amazon Redshift divides the workload and distributes the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For more information about the number of slices that each node size has, go to [About Clusters and Nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+The COPY command can load data very efficiently when it loads from multiple files in parallel instead of from a single file\. You can split your data into files so that the number of files is a multiple of the number of slices in your cluster\. If you do, Amazon Redshift divides the workload and distributes the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For more information about the number of slices that each node size has, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
-For example, the dc1\.large compute nodes used in this tutorial have two slices each, so the four\-node cluster has eight slices\. In previous steps, the load data was contained in eight files, even though the files are very small\. In this step, you compare the time difference between loading from a single large file and loading from multiple files\. 
+For example, the dc2\.large compute nodes used in this tutorial have two slices each, so the four\-node cluster has eight slices\. In previous steps, the load data was contained in eight files, even though the files are very small\. In this step, you compare the time difference between loading from a single large file and loading from multiple files\. 
 
 The files you use for this tutorial contain about 15 million records and occupy about 1\.2 GB\. These files are very small in Amazon Redshift scale, but sufficient to demonstrate the performance advantage of loading from multiple files\. The files are large enough that the time required to download them and then upload them to Amazon S3 is excessive for this tutorial\. Thus, you load the files directly from an AWS sample bucket\. 
 
@@ -545,6 +572,6 @@ The following screenshot shows the data files for LINEORDER\.
 
    These results are based on using a four\-node cluster\. If your cluster has more nodes, the time savings is multiplied\. For typical Amazon Redshift clusters, with tens to hundreds of nodes, the difference is even more dramatic\. If you have a single node cluster, there is little difference between the execution times\. 
 
-### Next Step<a name="tutorial-loading-next-step6"></a>
+### Next step<a name="tutorial-loading-next-step6"></a>
 
-[Step 6: Vacuum and Analyze the Database](tutorial-loading-data-vacuum.md)
+[Step 6: Vacuum and analyze the database](tutorial-loading-data-vacuum.md)

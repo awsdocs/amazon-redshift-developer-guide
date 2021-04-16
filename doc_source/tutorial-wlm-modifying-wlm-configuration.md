@@ -1,11 +1,11 @@
-# Section 2: Modifying the WLM Query Queue Configuration<a name="tutorial-wlm-modifying-wlm-configuration"></a>
+# Section 2: Modifying the WLM query queue configuration<a name="tutorial-wlm-modifying-wlm-configuration"></a>
 
 Now that you understand how queues work by default, you can learn how to configure query queues using manual WLM\. In this section, you create and configure a new parameter group for your cluster\. You create two additional user queues and configure them to accept queries based on the queries' user group or query group labels\. Any queries that don't get routed to one of these two queues are routed to the default queue at runtime\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="parameter-group-wlm-manual"></a>
+## New console<a name="parameter-group-wlm-manual"></a>
 
 **To create a manual WLM configuration in a parameter group**
 
@@ -56,15 +56,15 @@ Next, associate the parameter group that has the manual WLM configuration with a
 
 After the cluster is rebooted, its status returns to **Available**\. 
 
-## Original Console<a name="parameter-group-wlm-manual-originalconsole"></a>
+## Original console<a name="parameter-group-wlm-manual-originalconsole"></a>
 
 To create a manual WLM configuration and associate it to a cluster\.
 
-### Step 1: Create a Parameter Group<a name="tutorial-wlm-create-parameter-group"></a>
+### Step 1: Create a parameter group<a name="tutorial-wlm-create-parameter-group"></a>
 
 In this step, you create a new parameter group to use to configure WLM for this tutorial\. 
 
-#### To Create a Parameter Group<a name="how-to-wlm-create-parameter-group"></a>
+#### To create a parameter group<a name="how-to-wlm-create-parameter-group"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -79,7 +79,7 @@ In this step, you create a new parameter group to use to configure WLM for this 
 
 In this step, you modify the default settings of your new parameter group\. You add two new query queues to the WLM configuration and specify different settings for each queue\.
 
-#### To Modify Parameter Group Settings<a name="how-to-wlm-configure-wlm"></a>
+#### To modify parameter group settings<a name="how-to-wlm-configure-wlm"></a>
 
 1. On the **Parameter Groups** page of the Amazon Redshift console, choose `wlmtutorial`\. Doing this opens the **Parameters** page for `wlmtutorial`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/console_param_group_list.png)
@@ -93,11 +93,11 @@ In this step, you modify the default settings of your new parameter group\. You 
 
 1. Choose **Save**\.
 
-### Step 3: Associate the Parameter Group with Your Cluster<a name="tutorial-wlm-associate-param-group"></a>
+### Step 3: Associate the parameter group with your cluster<a name="tutorial-wlm-associate-param-group"></a>
 
 In this step, you open your sample cluster and associate it with the new parameter group\. After you do this, you reboot the cluster so that Amazon Redshift can apply the new settings to the database\.
 
-#### To Associate the Parameter Group with Your Cluster<a name="how-to-wlm-associate-param-group"></a>
+#### To associate the parameter group with your cluster<a name="how-to-wlm-associate-param-group"></a>
 
 1. In the navigation pane, choose **Clusters**, and then click your cluster to open it\. If you are using the same cluster from *Amazon Redshift Getting Started*, your cluster is named `examplecluster`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/console_clusters_examplecluster.png)

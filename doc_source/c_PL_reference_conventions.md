@@ -1,4 +1,4 @@
-# PL/pgSQL Reference Conventions<a name="c_PL_reference_conventions"></a>
+# PL/pgSQL reference conventions<a name="c_PL_reference_conventions"></a>
 
 In this section, you can find the conventions that are used to write the syntax for the PL/pgSQL stored procedure language\. 
 

@@ -3,13 +3,13 @@
 **Topics**
 + [Syntax](#r_INSERT_30-synopsis)
 + [Parameters](#r_INSERT_30-parameters)
-+ [Usage Notes](#r_INSERT_30_usage_notes)
-+ [INSERT Examples](c_Examples_of_INSERT_30.md)
++ [Usage notes](#r_INSERT_30_usage_notes)
++ [INSERT examples](c_Examples_of_INSERT_30.md)
 
 Inserts new rows into a table\. You can insert a single row with the VALUES syntax, multiple rows with the VALUES syntax, or one or more rows defined by the results of a query \(INSERT INTO\.\.\.SELECT\)\.
 
 **Note**  
-We strongly encourage you to use the [COPY](r_COPY.md) command to load large amounts of data\. Using individual INSERT statements to populate a table might be prohibitively slow\. Alternatively, if your data already exists in other Amazon Redshift database tables, use INSERT INTO SELECT or [CREATE TABLE AS](r_CREATE_TABLE_AS.md) to improve performance\. For more information about using the COPY command to load tables, see [Loading Data](t_Loading_data.md)\.
+We strongly encourage you to use the [COPY](r_COPY.md) command to load large amounts of data\. Using individual INSERT statements to populate a table might be prohibitively slow\. Alternatively, if your data already exists in other Amazon Redshift database tables, use INSERT INTO SELECT or [CREATE TABLE AS](r_CREATE_TABLE_AS.md) to improve performance\. For more information about using the COPY command to load tables, see [Loading data](t_Loading_data.md)\.
 
 **Note**  
 The maximum size for a single SQL statement is 16 MB\.
@@ -29,7 +29,7 @@ query }
 
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a user with INSERT privilege on the table can insert rows\. If you use the *query* clause to insert rows, you must have SELECT privilege on the tables named in the query\.   
-Amazon Redshift Spectrum external tables are read\-only\. You can't INSERT to an external table\.
+Use INSERT \(external table\) to insert results of a SELECT query into existing tables on external catalog\. For more information, see [INSERT \(external table\)](r_INSERT_external_table.md)\.
 
  *column*   
 You can insert values into one or more columns of the table\. You can list the target column names in any order\. If you don't specify a column list, the values to be inserted must correspond to the table columns in the order in which they were declared in the CREATE TABLE statement\. If the number of values to be inserted is less than the number of columns in the table, the first *n* columns are loaded\.   
@@ -60,10 +60,10 @@ Use this keyword to insert the default value for a column, as defined when the t
  *query*   
 Insert one or more rows into the table by defining any query\. All of the rows that the query produces are inserted into the table\. The query must return a column list that is compatible with the columns in the table, but the column names don't have to match\. 
 
-## Usage Notes<a name="r_INSERT_30_usage_notes"></a>
+## Usage notes<a name="r_INSERT_30_usage_notes"></a>
 
 **Note**  
-We strongly encourage you to use the [COPY](r_COPY.md) command to load large amounts of data\. Using individual INSERT statements to populate a table might be prohibitively slow\. Alternatively, if your data already exists in other Amazon Redshift database tables, use INSERT INTO SELECT or [CREATE TABLE AS](r_CREATE_TABLE_AS.md) to improve performance\. For more information about using the COPY command to load tables, see [Loading Data](t_Loading_data.md)\.
+We strongly encourage you to use the [COPY](r_COPY.md) command to load large amounts of data\. Using individual INSERT statements to populate a table might be prohibitively slow\. Alternatively, if your data already exists in other Amazon Redshift database tables, use INSERT INTO SELECT or [CREATE TABLE AS](r_CREATE_TABLE_AS.md) to improve performance\. For more information about using the COPY command to load tables, see [Loading data](t_Loading_data.md)\.
 
 The data format for the inserted values must match the data format specified by the CREATE TABLE definition\. 
 

@@ -6,7 +6,7 @@ If you are trying to empty a table of rows, without removing the table, use the 
 
 DROP TABLE removes constraints that exist on the target table\. Multiple tables can be removed with a single DROP TABLE command\. 
 
-DROP TABLE with an external table can't be run inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+DROP TABLE with an external table can't be run inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_DROP_TABLE-synopsis"></a>
 
@@ -23,16 +23,16 @@ This clause is useful when scripting, so the script doesn’t fail if DROP TABLE
  *name*   
 Name of the table to drop\. 
 
-CASCADE   
-Clause that indicates to automatically drop objects that depend on the table, such as views\.   
-To create a view that isn't dependent on a table referenced by the view, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
+CASCADE  
+Clause that indicates to automatically drop objects that depend on the view, such as other views\.  
+To create a view that isn't dependent on other database objects, such as views and tables, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
 RESTRICT   
 Clause that indicates not to drop the table if any objects depend on it\. This action is the default\.
 
 ## Examples<a name="r_DROP_TABLE-examples"></a>
 
- **Dropping a Table with No Dependencies** 
+ **Dropping a table with no dependencies** 
 
 The following example creates and drops a table called FEEDBACK that has no dependencies: 
 
@@ -48,7 +48,7 @@ drop table feedback;
 Invalid operation: cannot drop table feedback because other objects depend on it
 ```
 
- **Dropping Two Tables Simultaneously** 
+ **Dropping two tables simultaneously** 
 
 The following command set creates a FEEDBACK table and a BUYERS table and then drops both tables with a single command: 
 
@@ -60,7 +60,7 @@ create table buyers(a int);
 drop table feedback, buyers;
 ```
 
- **Dropping a Table with a Dependency** 
+ **Dropping a table with a dependency** 
 
 The following steps show how to drop a table called FEEDBACK using the CASCADE switch\. 
 
@@ -82,7 +82,7 @@ create view feedback_view as select * from feedback;
 drop table feedback cascade;
 ```
 
- **Viewing the Dependencies for a Table** 
+ **Viewing the dependencies for a table** 
 
 You can create a view that holds the dependency information for all of the tables in a database\. Before dropping a given table, query this view to determine if the table has dependencies\. 
 
@@ -134,7 +134,7 @@ This query returns the following dependencies, showing that the SALES\_VIEW view
 (3 rows)
 ```
 
- **Dropping a Table Using IF EXISTS** 
+ **Dropping a table Using IF EXISTS** 
 
 The following example either drops the FEEDBACK table if it exists, or does nothing and returns a message if it doesn't: 
 

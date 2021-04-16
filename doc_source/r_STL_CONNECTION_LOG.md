@@ -2,13 +2,13 @@
 
 Logs authentication attempts and connections and disconnections\.
 
-This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_CONNECTION_LOG-table-columns2"></a>
+## Table columns<a name="r_STL_CONNECTION_LOG-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_CONNECTION_LOG.html)
 
-## Sample Queries<a name="r_STL_CONNECTION_LOG-sample-queries2"></a>
+## Sample queries<a name="r_STL_CONNECTION_LOG-sample-queries2"></a>
 
 To view the details for open connections, execute the following query\.
 
@@ -43,4 +43,15 @@ authenticated          | 2012-10-25 14:42:10.87613 | 10.49.42.138 | john
 initiating session     | 2012-10-25 14:42:10.87638 | 10.49.42.138 | john                                              
 disconnecting session  | 2012-10-25 14:42:19.95992 | 10.49.42.138 | john                                              
 (4 rows)
+```
+
+The following example shows the version of the ODBC driver, the operating system on the client machine, and the plugin used to connect to the Amazon Redshift cluster\. In this example, the plugin used is for standard ODBC driver authentication using a login name and password\.
+
+```
+select driver_version, os_version, plugin_name from stl_connection_log;
+                
+driver_version                          |  os_version                       | plugin_name
+----------------------------------------+-----------------------------------+--------------------
+Amazon Redshift ODBC Driver 1.4.15.0001 | Darwin 18.7.0 x86_64              | none
+Amazon Redshift ODBC Driver 1.4.15.0001 | Linux 4.15.0-101-generic x86_64   | none
 ```

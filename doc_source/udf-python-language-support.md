@@ -1,6 +1,6 @@
-# Python Language Support for UDFs<a name="udf-python-language-support"></a>
+# Python language support for UDFs<a name="udf-python-language-support"></a>
 
-You can create a custom UDF based on the Python programming language\. The [Python 2\.7 Standard Library](https://docs.python.org/2/library/index.html) is available for use in UDFs, with the exception of the following modules:
+You can create a custom UDF based on the Python programming language\. The [Python 2\.7 standard library](https://docs.python.org/2/library/index.html) is available for use in UDFs, with the exception of the following modules:
 + ScrolledText
 + Tix
 + Tkinter
@@ -17,22 +17,22 @@ In addition to the Python Standard Library, the following modules are part of th
 + [six 1\.3\.0](https://pypi.org/project/six/1.3.0/)
 + [wsgiref 0\.1\.2](https://pypi.python.org/pypi/wsgiref)
 
-You can also import your own custom Python modules and make them available for use in UDFs by executing a [CREATE LIBRARY](r_CREATE_LIBRARY.md) command\. For more information, see [Importing Custom Python Library Modules](#udf-importing-custom-python-library-modules)\.
+You can also import your own custom Python modules and make them available for use in UDFs by executing a [CREATE LIBRARY](r_CREATE_LIBRARY.md) command\. For more information, see [Importing custom Python library modules](#udf-importing-custom-python-library-modules)\.
 
 **Important**  
 Amazon Redshift blocks all network access and write access to the file system through UDFs\.
 
-## Importing Custom Python Library Modules<a name="udf-importing-custom-python-library-modules"></a>
+## Importing custom Python library modules<a name="udf-importing-custom-python-library-modules"></a>
 
-You define scalar functions using Python language syntax\. In addition to the native Python Standard Library modules and Amazon Redshift preinstalled modules, you can create your own custom Python library modules and import the libraries into your clusters, or use existing libraries provided by Python or third parties\. 
+You define scalar functions using Python language syntax\. You can use the Python Standard Library modules and Amazon Redshift preinstalled modules\. You can also create your own custom Python library modules and import the libraries into your clusters, or use existing libraries from Python or third parties\. 
 
 You cannot create a library that contains a module with the same name as a Python Standard Library module or an Amazon Redshift preinstalled Python module\. If an existing user\-installed library uses the same Python package as a library you create, you must drop the existing library before installing the new library\. 
 
 You must be a superuser or have `USAGE ON LANGUAGE plpythonu` privilege to install custom libraries; however, any user with sufficient privileges to create functions can use the installed libraries\. You can query the [PG\_LIBRARY](r_PG_LIBRARY.md) system catalog to view information about the libraries installed on your cluster\.
 
-### To Import a Custom Python Module into Your Cluster<a name="udf-import-custom-python-module-procedure"></a>
+### To import a custom Python module into your cluster<a name="udf-import-custom-python-module-procedure"></a>
 
-This section provides an example of importing a custom Python module into your cluster\. To perform the steps in this section, you must have an Amazon S3 bucket, where you upload the library package\. You then install the package in your cluster\. For more information about creating buckets, go to [ Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service Console User Guide*\.
+This section provides an example of importing a custom Python module into your cluster\. To perform the steps in this section, you must have an Amazon S3 bucket, where you upload the library package\. You then install the package in your cluster\. For more information about creating buckets, go to [ Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 In this example, let's suppose that you create UDFs to work with positions and distances in your data\. Connect to your Amazon Redshift cluster from a SQL client tool, and run the following commands to create the functions\. 
 

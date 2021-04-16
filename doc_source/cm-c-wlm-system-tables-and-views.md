@@ -1,4 +1,4 @@
-# WLM System Tables and Views<a name="cm-c-wlm-system-tables-and-views"></a>
+# WLM system tables and views<a name="cm-c-wlm-system-tables-and-views"></a>
 
 WLM configures query queues according to WLM service classes, which are internally defined\. Amazon Redshift creates several internal queues according to these service classes along with the queues defined in the WLM configuration\. The terms *queue* and *service class* are often used interchangeably in the system tables\. The superuser queue uses service class 5\. User\-defined queues use service class 6 and greater\.
 
@@ -36,7 +36,7 @@ xid |task|query|service_| wlm_start_  |  state  |queue_ | exec_
 (4 rows)
 ```
 
-## WLM Service Class IDs<a name="wlm-service-class-ids"></a>
+## WLM service class IDs<a name="wlm-service-class-ids"></a>
 
 The following table lists the IDs assigned to service classes\.
 

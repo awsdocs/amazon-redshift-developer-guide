@@ -1,8 +1,8 @@
-# Concurrent Write Examples<a name="r_Serializable_isolation_example"></a>
+# Concurrent write examples<a name="r_Serializable_isolation_example"></a>
 
 The following pseudo\-code examples demonstrate how transactions either proceed or wait when they are run concurrently\.
 
-## Concurrent COPY Operations into the Same Table<a name="r_Serializable_isolation_example-concurrent-copy-operations-into-the-same-table"></a>
+## Concurrent COPY operations into the same table<a name="r_Serializable_isolation_example-concurrent-copy-operations-into-the-same-table"></a>
 
 Transaction 1 copies rows into the LISTING table: 
 
@@ -23,7 +23,7 @@ end;
 
 The same behavior would occur if one or both transactions contained an INSERT command instead of a COPY command\.
 
-## Concurrent DELETE Operations from the Same Table<a name="r_Serializable_isolation_example-concurrent-delete-operations-from-the-same-table"></a>
+## Concurrent DELETE operations from the same table<a name="r_Serializable_isolation_example-concurrent-delete-operations-from-the-same-table"></a>
 
 Transaction 1 deletes rows from a table: 
 
@@ -44,7 +44,7 @@ end;
 
 The same behavior would occur if one or both transactions contained an UPDATE command to the same table instead of a DELETE command\.
 
-## Concurrent Transactions with a Mixture of Read and Write Operations<a name="r_Serializable_isolation_example-concurrent-transactions"></a>
+## Concurrent transactions with a mixture of read and write operations<a name="r_Serializable_isolation_example-concurrent-transactions"></a>
 
 In this example, transaction 1 deletes rows from the USERS table, reloads the table, runs a COUNT\(\*\) query, and then ANALYZE, before committing: 
 

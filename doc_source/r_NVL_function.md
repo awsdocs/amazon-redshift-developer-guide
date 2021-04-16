@@ -1,4 +1,4 @@
-# NVL Expression<a name="r_NVL_function"></a>
+# NVL expression<a name="r_NVL_function"></a>
 
 An NVL expression is identical to a COALESCE expression\. NVL and COALESCE are synonyms\.
 

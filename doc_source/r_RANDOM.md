@@ -1,4 +1,4 @@
-# RANDOM Function<a name="r_RANDOM"></a>
+# RANDOM function<a name="r_RANDOM"></a>
 
 The RANDOM function generates a random value between 0\.0 \(inclusive\) and 1\.0 \(exclusive\)\. 
 
@@ -8,11 +8,11 @@ The RANDOM function generates a random value between 0\.0 \(inclusive\) and 1\.0
 RANDOM()
 ```
 
-## Return Type<a name="r_RANDOM-return-type"></a>
+## Return type<a name="r_RANDOM-return-type"></a>
 
 RANDOM returns a DOUBLE PRECISION number\. 
 
-## Usage Notes<a name="r_RANDOM_usage_notes"></a>
+## Usage notes<a name="r_RANDOM_usage_notes"></a>
 
 Call RANDOM after setting a seed value with the [SET](r_SET.md) command to cause RANDOM to generate numbers in a predictable sequence\. 
 

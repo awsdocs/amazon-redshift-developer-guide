@@ -13,7 +13,7 @@ ST_YMax(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. 
 
-## Return Type<a name="ST_YMax-function-return"></a>
+## Return type<a name="ST_YMax-function-return"></a>
 
 `DOUBLE PRECISION` value of the maximum second coordinate\.
 

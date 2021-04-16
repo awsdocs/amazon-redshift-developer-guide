@@ -1,6 +1,6 @@
-# TIMESTAMP\_CMP Function<a name="r_TIMESTAMP_CMP"></a>
+# TIMESTAMP\_CMP function<a name="r_TIMESTAMP_CMP"></a>
 
-Compares the value of two time stamps and returns an integer\. If the time stamps are identical, the function returns 0\. If the first time stamp is greater alphabetically, the function returns 1\. If the second time stamp is greater, the function returns –1\.
+Compares the value of two timestamps and returns an integer\. If the timestamps are identical, the function returns 0\. If the first timestamp is greater alphabetically, the function returns 1\. If the second timestamp is greater, the function returns –1\.
 
 ## Syntax<a name="r_TIMESTAMP_CMP-synopsis"></a>
 
@@ -11,18 +11,18 @@ TIMESTAMP_CMP(timestamp1, timestamp2)
 ## Arguments<a name="r_TIMESTAMP_CMP-arguments"></a>
 
  *timestamp1*   
-A TIMESTAMP column or an expression that implicitly converts to a time stamp\.
+A TIMESTAMP column or an expression that implicitly converts to a timestamp\.
 
  *timestamp2*   
-A TIMESTAMP column or an expression that implicitly converts to a time stamp\.
+A TIMESTAMP column or an expression that implicitly converts to a timestamp\.
 
-## Return Type<a name="r_TIMESTAMP_CMP-return-type"></a>
+## Return type<a name="r_TIMESTAMP_CMP-return-type"></a>
 
 INTEGER
 
 ## Examples<a name="r_TIMESTAMP_CMP-examples"></a>
 
-The following example compares the LISTTIME and SALETIME for a listing\. Note that the value for TIMESTAMP\_CMP is \-1 for all listings because the time stamp for the sale is after the time stamp for the listing: 
+The following example compares the LISTTIME and SALETIME for a listing\. The value for TIMESTAMP\_CMP is \-1 for all listings because the timestamp for the sale is after the timestamp for the listing\.
 
 ```
 select listing.listid, listing.listtime,
@@ -47,7 +47,7 @@ limit 10;
 (10 rows)
 ```
 
-This example shows that TIMESTAMP\_CMP returns a 0 for identical time stamps: 
+This example shows that TIMESTAMP\_CMP returns a 0 for identical timestamps: 
 
 ```
 select listid, timestamp_cmp(listtime, listtime)

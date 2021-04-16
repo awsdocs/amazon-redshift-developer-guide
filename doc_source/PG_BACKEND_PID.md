@@ -11,13 +11,13 @@ The PID is not globally unique\. It can be reused over time\.
 pg_backend_pid()
 ```
 
-## Return Type<a name="PG_BACKEND_PID-return-type"></a>
+## Return type<a name="PG_BACKEND_PID-return-type"></a>
 
 Returns an integer\.
 
 ## Example<a name="PG_BACKEND_PID-example"></a>
 
-You can correlate PG\_BACKEND\_PID\(\) with log tables to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries executed in the current session\.
+You can correlate PG\_BACKEND\_PID with log tables to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries executed in the current session\.
 
 ```
 select query, substring(text,1,40)
@@ -35,7 +35,7 @@ order by query desc;
 (5 rows)
 ```
 
-You can correlate PG\_BACKEND\_PID\(\) with the pid column in the following log tables \(exceptions are noted in parentheses\):
+You can correlate PG\_BACKEND\_PID with the pid column in the following log tables \(exceptions are noted in parentheses\):
 + [STL\_CONNECTION\_LOG](r_STL_CONNECTION_LOG.md)
 + [STL\_DDLTEXT](r_STL_DDLTEXT.md)
 + [STL\_ERROR](r_STL_ERROR.md)

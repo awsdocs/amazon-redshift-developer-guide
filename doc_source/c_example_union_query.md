@@ -1,4 +1,4 @@
-# Example UNION Queries<a name="c_example_union_query"></a>
+# Example UNION queries<a name="c_example_union_query"></a>
 
 In the following UNION query, rows in the SALES table are merged with rows in the LISTING table\. Three compatible columns are selected from each table; in this case, the corresponding columns have the same names and data types\. 
 

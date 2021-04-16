@@ -1,23 +1,23 @@
-# Numeric Types<a name="r_Numeric_types201"></a>
+# Numeric types<a name="r_Numeric_types201"></a>
 
 **Topics**
-+ [Integer Types](#r_Numeric_types201-integer-types)
-+ [DECIMAL or NUMERIC Type](#r_Numeric_types201-decimal-or-numeric-type)
-+ [Notes About Using 128\-bit DECIMAL or NUMERIC Columns](#r_Numeric_types201-notes-about-using-128-bit-decimal-or-numeric-columns)
-+ [Floating\-Point Types](#r_Numeric_types201-floating-point-types)
-+ [Computations with Numeric Values](r_numeric_computations201.md)
-+ [Integer and Floating\-Point Literals](r_numeric_literals201.md)
-+ [Examples with Numeric Types](r_Examples_with_numeric_types201.md)
++ [Integer types](#r_Numeric_types201-integer-types)
++ [DECIMAL or NUMERIC type](#r_Numeric_types201-decimal-or-numeric-type)
++ [Notes about using 128\-bit DECIMAL or NUMERIC columns](#r_Numeric_types201-notes-about-using-128-bit-decimal-or-numeric-columns)
++ [Floating\-Point types](#r_Numeric_types201-floating-point-types)
++ [Computations with numeric values](r_numeric_computations201.md)
++ [Integer and floating\-point literals](r_numeric_literals201.md)
++ [Examples with numeric types](r_Examples_with_numeric_types201.md)
 
 Numeric data types include integers, decimals, and floating\-point numbers\. 
 
-## Integer Types<a name="r_Numeric_types201-integer-types"></a>
+## Integer types<a name="r_Numeric_types201-integer-types"></a>
 
 Use the SMALLINT, INTEGER, and BIGINT data types to store whole numbers of various ranges\. You cannot store values outside of the allowed range for each type\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Numeric_types201.html)
 
-## DECIMAL or NUMERIC Type<a name="r_Numeric_types201-decimal-or-numeric-type"></a>
+## DECIMAL or NUMERIC type<a name="r_Numeric_types201-decimal-or-numeric-type"></a>
 
 Use the DECIMAL or NUMERIC data type to store values with a *user\-defined precision*\. The DECIMAL and NUMERIC keywords are interchangeable\. In this document, *decimal* is the preferred term for this data type\. The term *numeric* is used generically to refer to integer, decimal, and floating\-point data types\. 
 
@@ -53,11 +53,11 @@ pricepaid | salesid
 **Note**  
 The maximum positive value that you can insert into a DECIMAL\(19,0\) column is `9223372036854775807` \(263 \-1\)\. The maximum negative value is `-9223372036854775807`\. For example, an attempt to insert the value `9999999999999999999` \(19 nines\) will cause an overflow error\. Regardless of the placement of the decimal point, the largest string that Amazon Redshift can represent as a DECIMAL number is `9223372036854775807`\. For example, the largest value that you can load into a DECIMAL\(19,18\) column is `9.223372036854775807`\. These rules derive from the internal storage of DECIMAL values as 8\-byte integers\. Amazon Redshift recommends that you do not define DECIMAL values with 19 digits of precision unless that precision is necessary\.
 
-## Notes About Using 128\-bit DECIMAL or NUMERIC Columns<a name="r_Numeric_types201-notes-about-using-128-bit-decimal-or-numeric-columns"></a>
+## Notes about using 128\-bit DECIMAL or NUMERIC columns<a name="r_Numeric_types201-notes-about-using-128-bit-decimal-or-numeric-columns"></a>
 
 Do not arbitrarily assign maximum precision to DECIMAL columns unless you are certain that your application requires that precision\. 128\-bit values use twice as much disk space as 64\-bit values and can slow down query execution time\. 
 
-## Floating\-Point Types<a name="r_Numeric_types201-floating-point-types"></a>
+## Floating\-Point types<a name="r_Numeric_types201-floating-point-types"></a>
 
 Use the REAL and DOUBLE PRECISION data types to store numeric values with *variable precision*\. These types are *inexact* types, meaning that some values are stored as approximations, such that storing and returning a specific value may result in slight discrepancies\. If you require exact storage and calculations \(such as for monetary amounts\), use the DECIMAL data type\.
 

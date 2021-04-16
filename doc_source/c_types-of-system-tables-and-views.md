@@ -1,8 +1,6 @@
-# Types of System Tables and Views<a name="c_types-of-system-tables-and-views"></a>
+# Types of system tables and views<a name="c_types-of-system-tables-and-views"></a>
 
-There are two types of system tables: STL and STV tables\.
-
-STL tables are generated from logs that have been persisted to disk to provide a history of the system\. STV tables are virtual tables that contain snapshots of the current system data\. They are based on transient in\-memory data and are not persisted to disk\-based logs or regular tables\. System views that contain any reference to a transient STV table are called SVV views\. Views containing only references to STL tables are called SVL views\.
+STL views are generated from logs that have been persisted to disk to provide a history of the system\. STV views are virtual views that contain snapshots of the current system data\. They are based on transient in\-memory data and are not persisted to disk\-based logs or regular tables\. System views that contain any reference to a transient STV table are called SVV views\. Views containing only references to STL views are called SVL views\.
 
 System tables and views do not use the same consistency model as regular tables\. It is important to be aware of this issue when querying them, especially for STV tables and SVV views\. For example, given a regular table t1 with a column c1, you would expect that the following query to return no rows:
 

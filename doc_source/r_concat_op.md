@@ -1,4 +1,4 @@
-# \|\| \(Concatenation\) Operator<a name="r_concat_op"></a>
+# \|\| \(Concatenation\) operator<a name="r_concat_op"></a>
 
 Concatenates two strings on either side of the \|\| symbol and returns the concatenated string\. 
 
@@ -18,7 +18,7 @@ string1 || string2
  *string1*, *string2*   
 Both arguments can be fixed\-length or variable\-length character strings or expressions\. 
 
-## Return Type<a name="r_concat_op-return-type"></a>
+## Return type<a name="r_concat_op-return-type"></a>
 
  The \|\| operator returns a string\. The type of string is the same as the input arguments\. 
 
@@ -47,7 +47,7 @@ Aaron Dotson
 (10 rows)
 ```
 
- To concatenate columns that might contain nulls, use the [NVL Expression](r_NVL_function.md) expression\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
+ To concatenate columns that might contain nulls, use the [NVL expression](r_NVL_function.md) expression\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
 
 ```
 select venuename || ' seats ' || nvl(venueseats, 0) 

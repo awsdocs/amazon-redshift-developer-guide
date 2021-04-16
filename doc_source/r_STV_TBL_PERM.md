@@ -4,13 +4,13 @@ The STV\_TBL\_PERM table contains information about the permanent tables in Amaz
 
 This table differs from [STV\_TBL\_TRANS](r_STV_TBL_TRANS.md), which contains information about transient database tables that the system creates during query processing\.
 
-STV\_TBL\_PERM is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+STV\_TBL\_PERM is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STV_TBL_PERM-table-columns"></a>
+## Table columns<a name="r_STV_TBL_PERM-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STV_TBL_PERM.html)
 
-## Sample Queries<a name="r_STV_TBL_PERM-sample-queries"></a>
+## Sample queries<a name="r_STV_TBL_PERM-sample-queries"></a>
 
 The following query returns a list of distinct table IDs and names: 
 
@@ -55,7 +55,7 @@ order by col;
 (8 rows)
 ```
 
-## Usage Notes<a name="r_STV_TBL_PERM-usage-notes"></a>
+## Usage notes<a name="r_STV_TBL_PERM-usage-notes"></a>
 
 The ROWS column includes counts of deleted rows that have not been vacuumed \(or have been vacuumed but with the SORT ONLY option\)\. Therefore, the SUM of the ROWS column in the STV\_TBL\_PERM table might not match the COUNT\(\*\) result when you query a given table directly\. For example, if 2 rows are deleted from VENUE, the COUNT\(\*\) result is 200 but the SUM\(ROWS\) result is still 202: 
 

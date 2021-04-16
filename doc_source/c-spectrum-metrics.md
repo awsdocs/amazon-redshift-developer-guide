@@ -1,4 +1,4 @@
-# Monitoring Metrics in Amazon Redshift Spectrum<a name="c-spectrum-metrics"></a>
+# Monitoring metrics in Amazon Redshift Spectrum<a name="c-spectrum-metrics"></a>
 
 You can monitor Amazon Redshift Spectrum queries using the following system views:
 + [SVL\_S3QUERY](r_SVL_S3QUERY.md)

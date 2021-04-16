@@ -2,9 +2,9 @@
 
 Stores information about user\-defined libraries\.
 
-PG\_LIBRARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+PG\_LIBRARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_PG_LIBRARY-table-columns2"></a>
+## Table columns<a name="r_PG_LIBRARY-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PG_LIBRARY.html)
 

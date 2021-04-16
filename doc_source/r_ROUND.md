@@ -1,4 +1,4 @@
-# ROUND Function<a name="r_ROUND"></a>
+# ROUND function<a name="r_ROUND"></a>
 
 The ROUND function rounds numbers to the nearest integer or decimal\. 
 
@@ -16,7 +16,7 @@ ROUND (number [ , integer ] )
 INTEGER, DECIMAL, and FLOAT data types are supported\.   
 If the first argument is an integer, the parser converts the integer into a decimal data type prior to processing\. If the first argument is a decimal number, the parser processes the function without conversion, resulting in better performance\. 
 
-## Return Type<a name="r_ROUND-return-type"></a>
+## Return type<a name="r_ROUND-return-type"></a>
 
 ROUND returns the same numeric data type as the input argument\(s\)\. 
 

@@ -8,13 +8,13 @@ Returns the name of the database where you are currently connected\.
 current_database()
 ```
 
-## Return Type<a name="r_CURRENT_DATABASE-return-type"></a>
+## Return type<a name="r_CURRENT_DATABASE-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 
 ## Example<a name="r_CURRENT_DATABASE-example"></a>
 
-The following query returns the name of the current database: 
+The following query returns the name of the current database\. 
 
 ```
 select current_database();

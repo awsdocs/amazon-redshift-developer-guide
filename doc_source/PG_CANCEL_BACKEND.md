@@ -13,7 +13,7 @@ pg_cancel_backend( pid )
  *pid*   
 The process ID \(PID\) of the query to be canceled\. You cannot cancel a query by specifying a query ID; you must specify the query's process ID\. Requires an integer value\.
 
-## Return Type<a name="PG_CANCEL_BACKEND-return-type"></a>
+## Return type<a name="PG_CANCEL_BACKEND-return-type"></a>
 
 None
 

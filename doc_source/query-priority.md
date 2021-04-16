@@ -1,4 +1,4 @@
-# Query Priority<a name="query-priority"></a>
+# Query priority<a name="query-priority"></a>
 
 Not all queries are of equal importance, and often performance of one workload or set of users might be more important\. If you have enabled [automatic WLM](automatic-wlm.md), you can define the relative importance of queries in a workload by setting a priority value\. The priority is specified for a queue and inherited by all queries associated with the queue\. You associate queries to a queue by mapping user groups and query groups to the queue\. You can set the following priorities \(listed from highest to lowest priority\):
 
@@ -12,7 +12,7 @@ Not all queries are of equal importance, and often performance of one workload o
 
 1. `LOWEST`
 
-Administrators use these priorities to show the relative importance of their workloads when there are queries with different priorities contending for the same resources\. Amazon Redshift uses the priority when letting queries into the system, and to determine the amount of resources allocated to a query\. By default, queries run with their priority set to `NORMAL`\.
+Administrators use these priorities to show the relative importance of their workloads when there are queries with different priorities contending for the same resources\. Amazon Redshift uses the priority when letting queries into the system, and to determine the amount of resources allocated to a query\. By default, queries run with their priority set to `NORMAL`\. 
 
 An additional priority, `CRITICAL`, which is a higher priority than `HIGHEST`, is available to superusers\. To set this priority, you can use the functions [CHANGE\_QUERY\_PRIORITY](r_CHANGE_QUERY_PRIORITY.md), [CHANGE\_SESSION\_PRIORITY](r_CHANGE_SESSION_PRIORITY.md)\. and [CHANGE\_USER\_PRIORITY](r_CHANGE_USER_PRIORITY.md)\. To grant a database user permission to use these functions, you can create a stored procedure and grant permission to a user\. For an example, see [CHANGE\_SESSION\_PRIORITY](r_CHANGE_SESSION_PRIORITY.md)\. 
 
@@ -25,9 +25,9 @@ Within a given cluster, the predictable performance for a high priority workload
 
 In the preceding example, the administrator can enable [concurrency scaling](concurrency-scaling.md) for the analytics workload\. Doing this enables that workload to maintain its throughput, even though the ETL workload is running at high priority\. 
 
-## Configuring Queue Priority<a name="concurrency-scaling-queues"></a>
+## Configuring queue priority<a name="concurrency-scaling-queues"></a>
 
-If you have enabled automatic WLM, each queue has a priority value\. Queries are routed to queues based on user groups and query groups\. The default queue priority is `NORMAL`\. Set the priority higher or lower based on the workload associated with the queue's user groups and query groups\. 
+If you have enabled automatic WLM, each queue has a priority value\. Queries are routed to queues based on user groups and query groups\. Start with a queue priority set to `NORMAL`\. Set the priority higher or lower based on the workload associated with the queue's user groups and query groups\. 
 
 You can change the priority of a queue on the Amazon Redshift console\. On the Amazon Redshift console, the **Workload Management** page displays the queues and enables editing of queue properties such as **Priority**\. To set the priority using the CLI or API operations, use the `wlm_json_configuration` parameter\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.
 
@@ -60,9 +60,9 @@ The following `wlm_json_configuration` example defines three user groups \(`inge
 ]
 ```
 
-## Changing Query Priority with Query Monitoring Rules<a name="query-priority-qmr"></a>
+## Changing query priority with query monitoring rules<a name="query-priority-qmr"></a>
 
-Query monitoring rules \(QMR\) enable you to change the priority of a query based on its behavior while it is running\. You do this by specifying the priority attribute in a QMR predicate in addition to an action\. For more information, see [WLM Query Monitoring Rules](cm-c-wlm-query-monitoring-rules.md)\. 
+Query monitoring rules \(QMR\) enable you to change the priority of a query based on its behavior while it is running\. You do this by specifying the priority attribute in a QMR predicate in addition to an action\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 
 
 For example, you can define a rule to abort any query classified as `high` priority that runs for more than 10 minutes\.
 
@@ -111,7 +111,7 @@ Another example is to define a rule to change the query priority to `lowest` for
 ]
 ```
 
-## Monitoring Query Priority<a name="query-priority-monitoring"></a>
+## Monitoring query priority<a name="query-priority-monitoring"></a>
 
 To display priority for waiting and running queries, view the `query_priority` column in the stv\_wlm\_query\_state system table\.
 
@@ -148,3 +148,8 @@ from stl_wlm_query order by 3 desc limit 10;
  2723237 |     102 | 2019-06-24 18:14:50.661918 | Highest
  2723236 |     102 | 2019-06-24 18:14:50.643636 | Highest
 ```
+
+To optimize the throughput of your workload, Amazon Redshift might modify the priority of user submitted queries\. Amazon Redshift uses advanced machine learning algorithms to determine when this optimization benefits your workload and automatically applies it when all the following conditions are met\. 
++ Automatic WLM is enabled\.
++ Only one WLM queue is defined\.
++ You have not defined query monitoring rules \(QMRs\) which set query priority\. Such rules include the QMR metric `query_priority` or the QMR action `change_query_priority`\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 

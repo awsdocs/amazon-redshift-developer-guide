@@ -1,4 +1,4 @@
-# LOWER Function<a name="r_LOWER"></a>
+# LOWER function<a name="r_LOWER"></a>
 
 Converts a string to lowercase\. LOWER supports UTF\-8 multibyte characters, up to a maximum of four bytes per character\.
 
@@ -13,7 +13,7 @@ LOWER(string)
  *string*   
 The input parameter is a CHAR or VARCHAR string\. 
 
-## Return Type<a name="r_LOWER-return-type"></a>
+## Return type<a name="r_LOWER-return-type"></a>
 
 The LOWER function returns a character string that is the same data type as the input string \(CHAR or VARCHAR\)\.
 

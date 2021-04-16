@@ -8,7 +8,7 @@ Returns an integer corresponding to the slice number in the cluster where the da
 SLICE_NUM()
 ```
 
-## Return Type<a name="r_SLICE_NUM-return-type"></a>
+## Return type<a name="r_SLICE_NUM-return-type"></a>
 
 The SLICE\_NUM function returns an integer\. 
 

@@ -4,7 +4,7 @@ Stores information about external schemas\.
 
 PG\_EXTERNAL\_SCHEMA is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\. 
 
-## Table Columns<a name="r_PG_EXTERNAL_SCHEMA-table-columns2"></a>
+## Table columns<a name="r_PG_EXTERNAL_SCHEMA-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PG_EXTERNAL_SCHEMA.html)
 

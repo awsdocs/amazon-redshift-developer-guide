@@ -13,7 +13,7 @@ ST_NumPoints(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\.
 
-## Return Type<a name="ST_NumPoints-function-return"></a>
+## Return type<a name="ST_NumPoints-function-return"></a>
 
 `INTEGER`
 

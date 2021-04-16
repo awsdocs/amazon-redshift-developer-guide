@@ -1,4 +1,4 @@
-# Step 4: Get the Public Key for the Host<a name="load-from-host-steps-get-the-host-key"></a>
+# Step 4: Get the public key for the host<a name="load-from-host-steps-get-the-host-key"></a>
 
 You can optionally provide the host's public key in the manifest file so that Amazon Redshift can identify the host\. The COPY command does not require the host public key but, for security reasons, we strongly recommend using a public key to help prevent 'man\-in\-the\-middle' attacks\. 
 

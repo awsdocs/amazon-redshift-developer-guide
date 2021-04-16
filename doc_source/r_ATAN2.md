@@ -1,4 +1,4 @@
-# ATAN2 Function<a name="r_ATAN2"></a>
+# ATAN2 function<a name="r_ATAN2"></a>
 
 ATAN2 is a trigonometric function that returns the arc tangent of a one number divided by another number\. The return value is in radians and is between PI/2 and \-PI/2\. 
 
@@ -16,7 +16,7 @@ The first input parameter is a double precision number\.
  *number2*   
 The second parameter is a double precision number\. 
 
-## Return Type<a name="r_ATAN2-return-type"></a>
+## Return type<a name="r_ATAN2-return-type"></a>
 
 The ATAN2 function returns a double precision number\. 
 

@@ -1,6 +1,6 @@
-# Time Zone Abbreviations<a name="time-zone-abbrevs"></a>
+# Time zone abbreviations<a name="time-zone-abbrevs"></a>
 
-The following list contains all of the valid time zone abbreviations that can be specified with the [CONVERT\_TIMEZONE Function](CONVERT_TIMEZONE.md)\. 
+The following list contains all of the valid time zone abbreviations that can be specified with the [CONVERT\_TIMEZONE function](CONVERT_TIMEZONE.md)\. 
 
 For a current, complete of list time zone abbreviations, execute the following command\.
 

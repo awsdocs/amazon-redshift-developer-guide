@@ -1,4 +1,4 @@
-# Splitting Your Data into Multiple Files<a name="t_splitting-data-files"></a>
+# Splitting your data into multiple files<a name="t_splitting-data-files"></a>
 
 You can load table data from a single file, or you can split the data for each table into multiple files\. The COPY command can load data from multiple files in parallel\. You can load multiple files by specifying a common prefix, or *prefix key*, for the set, or by explicitly listing the files in a manifest file\.
 
@@ -20,4 +20,4 @@ venue.txt.4
 
 If you put multiple files in a folder in your bucket, you can specify the folder name as the prefix and COPY will load all of the files in the folder\. If you explicitly list the files to be loaded by using a manifest file, the files can reside in different buckets or folders\.
 
-For more information about manifest files, see [Using a Manifest to Specify Data Files](r_COPY_command_examples.md#copy-command-examples-manifest)\.
+For more information about manifest files, see [Using a manifest to specify data files](r_COPY_command_examples.md#copy-command-examples-manifest)\.

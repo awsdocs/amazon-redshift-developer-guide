@@ -4,11 +4,13 @@ Records compile time and location for each query segment of queries\.
 
 SVL\_COMPILE is visible to all users\.
 
-## Table Columns<a name="r_SVL_COMPILE-table-rows"></a>
+For information about SVCS\_COMPILE, see [SVCS\_COMPILE](r_SVCS_COMPILE.md)\.
+
+## Table columns<a name="r_SVL_COMPILE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_COMPILE.html)
 
-## Sample Queries<a name="r_SVL_COMPILE-sample-queries"></a>
+## Sample queries<a name="r_SVL_COMPILE-sample-queries"></a>
 
 In this example, queries 35878 and 35879 executed the same SQL statement\. The compile column for query 35878 shows `1` for four query segments, which indicates that the segments were compiled\. Query 35879 shows `0` in the compile column for every segment, indicating that the segments did not need to be compiled again\.
 

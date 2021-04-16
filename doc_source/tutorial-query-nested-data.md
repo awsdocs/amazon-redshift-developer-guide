@@ -1,4 +1,4 @@
-# Tutorial: Querying Nested Data with Amazon Redshift Spectrum<a name="tutorial-query-nested-data"></a>
+# Tutorial: Querying nested data with Amazon Redshift Spectrum<a name="tutorial-query-nested-data"></a>
 
 ## Overview<a name="tutorial-nested-data-overview"></a>
 
@@ -29,11 +29,12 @@ You can use Redshift Spectrum to query this data\. The following tutorial shows 
 
 For tutorial prerequisites, steps, and nested data use cases, see the following topics:
 + [Prerequisites](#tutorial-nested-data-prereq)
-+ [Step 1: Create an External Table That Contains Nested Data](tutorial-nested-data-create-table.md)
-+ [Step 2: Query Your Nested Data in Amazon S3 with SQL Extensions](tutorial-query-nested-data-sqlextensions.md)
-+ [Nested Data Use Cases ](nested-data-use-cases.md)
-+ [Nested Data Limitations](nested-data-restrictions.md)
++ [Step 1: Create an external table that contains nested data](tutorial-nested-data-create-table.md)
++ [Step 2: Query your nested data in Amazon S3 with SQL extensions](tutorial-query-nested-data-sqlextensions.md)
++ [Nested data use cases ](nested-data-use-cases.md)
++ [Nested data limitations](nested-data-restrictions.md)
++ [Serializing complex nested JSON](serializing-complex-JSON.md)
 
 ### Prerequisites<a name="tutorial-nested-data-prereq"></a>
 
-If you are not using Redshift Spectrum yet, follow the steps in the [Getting Started with Amazon Redshift Spectrum](c-getting-started-using-spectrum.md) tutorial before continuing\.
+If you are not using Redshift Spectrum yet, follow the steps in the [Getting started with Amazon Redshift Spectrum](c-getting-started-using-spectrum.md) tutorial before continuing\.

@@ -1,12 +1,12 @@
-# SQL Functions Supported on the Leader Node<a name="c_sql-functions-leader-node"></a>
+# SQL functions supported on the leader node<a name="c_sql-functions-leader-node"></a>
 
-Some Amazon Redshift queries are distributed and executed on the compute nodes, and other queries execute exclusively on the leader node\.
+Some Amazon Redshift queries are distributed and executed on the compute nodes, and other queries run exclusively on the leader node\.
 
 The leader node distributes SQL to the compute nodes whenever a query references user\-created tables or system tables \(tables with an STL or STV prefix and system views with an SVL or SVV prefix\)\. A query that references only catalog tables \(tables with a PG prefix, such as PG\_TABLE\_DEF, which reside on the leader node\) or that does not reference any tables, runs exclusively on the leader node\.
 
-Some Amazon Redshift SQL functions are supported only on the leader node and are not supported on the compute nodes\. A query that uses a leader\-node function must execute exclusively on the leader node, not on the compute nodes, or it will return an error\.
+Some Amazon Redshift SQL functions are supported only on the leader node and are not supported on the compute nodes\. A query that uses a leader\-node function must run exclusively on the leader node, not on the compute nodes, or it will return an error\.
 
-The documentation for each function that must run exclusively on the leader node includes a note stating that the function will return an error if it references user\-defined tables or Amazon Redshift system tables\. See [Leader Node–Only Functions](c_SQL_functions_leader_node_only.md) for a list of functions that run exclusively on the leader node\.
+The documentation for each function that must run exclusively on the leader node includes a note stating that the function will return an error if it references user\-defined tables or Amazon Redshift system tables\. See [Leader node–only functions](c_SQL_functions_leader_node_only.md) for a list of functions that run exclusively on the leader node\.
 
 ## Examples<a name="c_sql-functions-leader-node-examples"></a>
 

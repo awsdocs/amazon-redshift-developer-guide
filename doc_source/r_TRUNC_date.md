@@ -1,6 +1,6 @@
-# TRUNC Date Function<a name="r_TRUNC_date"></a>
+# TRUNC Date function<a name="r_TRUNC_date"></a>
 
-Truncates a time stamp and returns a date\.
+Truncates a timestamp and returns a date\.
 
 ## Syntax<a name="r_TRUNC_date-synopsis"></a>
 
@@ -11,16 +11,16 @@ TRUNC(timestamp)
 ## Arguments<a name="r_TRUNC_date-arguments"></a>
 
  *timestamp*   
-A timestamp column or an expression that implicitly converts to a time stamp\.  
-To return a time stamp value with `00:00:00` as the time, cast the function result to a TIMESTAMP\.
+A timestamp column or an expression that implicitly converts to a timestamp\.  
+To return a timestamp value with `00:00:00` as the time, cast the function result to a TIMESTAMP\.
 
-## Return Type<a name="r_TRUNC_date-return-type"></a>
+## Return type<a name="r_TRUNC_date-return-type"></a>
 
 DATE
 
 ## Examples<a name="r_TRUNC_date-examples"></a>
 
-Return the date portion from the result of the SYSDATE function \(which returns a time stamp\): 
+The following example returns the date portion from the result of the SYSDATE function \(which returns a timestamp\)\. 
 
 ```
 select sysdate;
@@ -38,7 +38,7 @@ trunc
 (1 row)
 ```
 
-Apply the TRUNC function to a TIMESTAMP column\. The return type is a date\. 
+The following example applies the TRUNC function to a TIMESTAMP column\. The return type is a date\. 
 
 ```
 select trunc(starttime) from event

@@ -13,7 +13,7 @@ ST_Y(point)
  *point*   
 A `POINT` value of data type `GEOMETRY`\. 
 
-## Return Type<a name="ST_Y-function-return"></a>
+## Return type<a name="ST_Y-function-return"></a>
 
 `DOUBLE PRECISION` value of the second coordinate\.
 

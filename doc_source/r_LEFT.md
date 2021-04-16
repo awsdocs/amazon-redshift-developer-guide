@@ -1,4 +1,4 @@
-# LEFT and RIGHT Functions<a name="r_LEFT"></a>
+# LEFT and RIGHT functions<a name="r_LEFT"></a>
 
 These functions return the specified number of leftmost or rightmost characters from a character string\.
 
@@ -20,7 +20,7 @@ Any character string or any expression that evaluates to a character string\.
  *integer*   
 A positive integer\. 
 
-## Return Type<a name="r_LEFT-return-type"></a>
+## Return type<a name="r_LEFT-return-type"></a>
 
 LEFT and RIGHT return a VARCHAR string\. 
 

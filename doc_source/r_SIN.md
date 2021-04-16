@@ -1,4 +1,4 @@
-# SIN Function<a name="r_SIN"></a>
+# SIN function<a name="r_SIN"></a>
 
 SIN is a trigonometric function that returns the sine of a number\. The return value is between `-1` and `1`\. 
 
@@ -13,7 +13,7 @@ SIN(number)
  *number*   
 A double precision number in radians\. 
 
-## Return Type<a name="r_SIN-return-type"></a>
+## Return type<a name="r_SIN-return-type"></a>
 
 The SIN function returns a double precision number\. 
 

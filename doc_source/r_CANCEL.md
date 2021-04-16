@@ -18,13 +18,13 @@ Process ID corresponding to the query that you want to cancel\.
 '*message*'   
 An optional confirmation message that displays when the query cancellation completes\. If you don't specify a message, Amazon Redshift displays the default message as verification\. You must enclose the message in single quotation marks\.
 
-## Usage Notes<a name="r_CANCEL-usage-notes"></a>
+## Usage notes<a name="r_CANCEL-usage-notes"></a>
 
 You can't cancel a query by specifying a *query ID*; you must specify the query's *process ID* \(PID\)\. You can only cancel queries currently being run by your user\. Superusers can cancel all queries\.
 
-If queries in multiple sessions hold locks on the same table, you can use the [PG\_TERMINATE\_BACKEND](PG_TERMINATE_BACKEND.md) function to terminate one of the sessions, which forces any currently running transactions in the terminated session to release all locks and roll back the transaction\. Query the [STV\_LOCKS](r_STV_LOCKS.md) system table to view currently held locks\. 
+If queries in multiple sessions hold locks on the same table, you can use the [PG\_TERMINATE\_BACKEND](PG_TERMINATE_BACKEND.md) function to terminate one of the sessions\. Doing this forces any currently running transactions in the terminated session to release all locks and roll back the transaction\. To view currently held locks, query the [STV\_LOCKS](r_STV_LOCKS.md) system table\. 
 
-Following certain internal events, Amazon Redshift might restart an active session and assign a new PID\. If the PID has changed, you might receive the following error message:
+Following certain internal events, Amazon Redshift might restart an active session and assign a new PID\. If the PID has changed, you might receive the following error message\.
 
 ```
 Session <PID> does not exist. The session PID might have changed. Check the stl_restarted_sessions system table for details.

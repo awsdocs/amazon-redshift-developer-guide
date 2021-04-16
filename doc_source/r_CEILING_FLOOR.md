@@ -1,6 +1,6 @@
-# CEILING \(or CEIL\) Function<a name="r_CEILING_FLOOR"></a>
+# CEILING \(or CEIL\) function<a name="r_CEILING_FLOOR"></a>
 
-The CEILING or CEIL function is used to round a number up to the next whole number\. \(The [FLOOR Function](r_FLOOR.md) rounds a number down to the next whole number\.\) 
+The CEILING or CEIL function is used to round a number up to the next whole number\. \(The [FLOOR function](r_FLOOR.md) rounds a number down to the next whole number\.\) 
 
 ## Syntax<a name="r_CEILING_FLOOR-synopsis"></a>
 
@@ -13,7 +13,7 @@ CEIL | CEILING(number)
  *number*   
 DOUBLE PRECISION number to be rounded\. 
 
-## Return Type<a name="r_CEILING_FLOOR-return-type"></a>
+## Return type<a name="r_CEILING_FLOOR-return-type"></a>
 
 CEILING and CEIL return an integer\. 
 

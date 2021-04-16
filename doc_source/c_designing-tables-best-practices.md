@@ -1,14 +1,13 @@
-# Amazon Redshift Best Practices for Designing Tables<a name="c_designing-tables-best-practices"></a>
+# Amazon Redshift best practices for designing tables<a name="c_designing-tables-best-practices"></a>
 
 As you plan your database, certain key table design decisions heavily influence overall query performance\. These design choices also have a significant effect on storage requirements, which in turn affects query performance by reducing the number of I/O operations and minimizing the memory required to process queries\.
 
-In this section, you can find a summary of the most important design decisions and presents best practices for optimizing query performance\. [Designing Tables](t_Creating_tables.md) provides more detailed explanations and examples of table design options\.
+In this section, you can find a summary of the most important design decisions and presents best practices for optimizing query performance\. [Working with automatic table optimization](t_Creating_tables.md) provides more detailed explanations and examples of table design options\.
 
 **Topics**
-+ [Take the Tuning Table Design Tutorial](c_best-practices-tutorial-tuning-tables.md)
-+ [Choose the Best Sort Key](c_best-practices-sort-key.md)
-+ [Choose the Best Distribution Style](c_best-practices-best-dist-key.md)
-+ [Let COPY Choose Compression Encodings](c_best-practices-use-auto-compression.md)
-+ [Define Primary Key and Foreign Key Constraints](c_best-practices-defining-constraints.md)
-+ [Use the Smallest Possible Column Size](c_best-practices-smallest-column-size.md)
-+ [Use Date/Time Data Types for Date Columns](c_best-practices-timestamp-date-columns.md)
++ [Choose the best sort key](c_best-practices-sort-key.md)
++ [Choose the best distribution style](c_best-practices-best-dist-key.md)
++ [Let COPY choose compression encodings](c_best-practices-use-auto-compression.md)
++ [Define primary key and foreign key constraints](c_best-practices-defining-constraints.md)
++ [Use the smallest possible column size](c_best-practices-smallest-column-size.md)
++ [Use date/time data types for date columns](c_best-practices-timestamp-date-columns.md)

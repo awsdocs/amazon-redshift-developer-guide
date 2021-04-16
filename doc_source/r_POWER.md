@@ -1,4 +1,4 @@
-# POWER Function<a name="r_POWER"></a>
+# POWER function<a name="r_POWER"></a>
 
 ## Syntax<a name="r_POWER-synopsis"></a>
 
@@ -18,7 +18,7 @@ Numeric expression to be raised\. Must be an integer, decimal, or floating\-poin
  *expression2*   
 Power to raise *expression1*\. Must be an integer, decimal, or floating\-point data type\. 
 
-## Return Type<a name="r_POWER-return-type"></a>
+## Return type<a name="r_POWER-return-type"></a>
 
 POWER returns a DOUBLE PRECISION number\. 
 

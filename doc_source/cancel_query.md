@@ -1,4 +1,4 @@
-# Step 6: Cancel a Query<a name="cancel_query"></a>
+# Step 6: Cancel a query<a name="cancel_query"></a>
 
 If a user issues a query that is taking too long or is consuming excessive cluster resources, you might need to cancel the query\. For example, a user might want to create a list of ticket sellers that includes the seller's name and quantity of tickets sold\. The following query selects data from the SALES table USERS table and joins the two tables by matching SELLERID and USERID in the WHERE clause\.
 
@@ -62,11 +62,11 @@ abort;
 
 Unless you are signed on as a superuser, you can cancel only your own queries\. A superuser can cancel all queries\.
 
-## Cancel a Query from Another Session<a name="cancel_query-cancel-a-query-from-another-session"></a>
+## Cancel a query from another session<a name="cancel_query-cancel-a-query-from-another-session"></a>
 
 If your query tool does not support running queries concurrently, you will need to start another session to cancel the query\. For example, SQLWorkbench, which is the query tool we use in the Amazon Redshift Getting Started, does not support multiple concurrent queries\. To start another session using SQLWorkbench, select File, New Window and connect using the same connection parameters\. Then you can find the PID and cancel the query\.
 
-## Cancel a Query Using the Superuser Queue<a name="cancel_query-cancel-a-query-using-the-superuser-queue"></a>
+## Cancel a query using the superuser queue<a name="cancel_query-cancel-a-query-using-the-superuser-queue"></a>
 
 If your current session has too many queries running concurrently, you might not be able to run the CANCEL command until another query finishes\. In that case, you will need to issue the CANCEL command using a different workload management query queue\.
 
@@ -80,4 +80,4 @@ cancel 18764;
 reset query_group;
 ```
 
-For information about managing query queues, see [Implementing Workload Management](cm-c-implementing-workload-management.md)\.
+For information about managing query queues, see [Implementing workload management](cm-c-implementing-workload-management.md)\.

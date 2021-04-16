@@ -1,4 +1,4 @@
-# LTRIM Function<a name="r_LTRIM"></a>
+# LTRIM function<a name="r_LTRIM"></a>
 
 The LTRIM function trims a specified set of characters from the beginning of a string\. 
 
@@ -16,7 +16,7 @@ The string column or expression to be trimmed\.
  *trim\_chars*   
 A string column or expression representing the characters to be trimmed from the beginning of *string*\.
 
-## Return Type<a name="r_LTRIM-return-type"></a>
+## Return type<a name="r_LTRIM-return-type"></a>
 
 The LTRIM function returns a character string that is the same data type as the input string \(CHAR or VARCHAR\)\. 
 

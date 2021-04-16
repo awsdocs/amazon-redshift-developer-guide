@@ -1,21 +1,21 @@
-# Amazon Redshift Advisor Recommendations<a name="advisor-recommendations"></a>
+# Amazon Redshift Advisor recommendations<a name="advisor-recommendations"></a>
 
 Amazon Redshift Advisor offers recommendations about how to optimize your Amazon Redshift cluster to increase performance and save on operating costs\. You can find explanations for each recommendation in the console, as described preceding\. You can find further details on these recommendations in the following sections\. 
 
 **Topics**
-+ [Compress Table Data](#cluster-compression-recommendation)
-+ [Compress Amazon S3 File Objects Loaded by COPY](#cluster-compress-s3-recommendation)
-+ [Isolate Multiple Active Databases](#isolate-active-dbs-recommendation)
-+ [Reallocate Workload Management \(WLM\) Memory](#reallocate-wlm-recommendation)
-+ [Skip Compression Analysis During COPY](#skip-compression-analysis-recommendation)
-+ [Split Amazon S3 Objects Loaded by COPY](#split-s3-objects-recommendation)
-+ [Update Table Statistics](#update-table-statistics-recommendation)
-+ [Enable Short Query Acceleration](#enable-sqa-recommendation)
-+ [Replace Single\-Column Interleaved Sort Keys](#single-column-interleaved-sort-recommendation)
-+ [Alter Distribution Keys on Tables](#alter-diststyle-distkey-recommendation)
-+ [Alter Sort Keys on Tables](#alter-sortkey-recommendation)
++ [Compress table data](#cluster-compression-recommendation)
++ [Compress Amazon S3 file objects loaded by COPY](#cluster-compress-s3-recommendation)
++ [Isolate multiple active databases](#isolate-active-dbs-recommendation)
++ [Reallocate workload management \(WLM\) memory](#reallocate-wlm-recommendation)
++ [Skip compression analysis during COPY](#skip-compression-analysis-recommendation)
++ [Split Amazon S3 objects loaded by COPY](#split-s3-objects-recommendation)
++ [Update table statistics](#update-table-statistics-recommendation)
++ [Enable short query acceleration](#enable-sqa-recommendation)
++ [Replace single\-column interleaved sort keys](#single-column-interleaved-sort-recommendation)
++ [Alter distribution keys on tables](#alter-diststyle-distkey-recommendation)
++ [Alter sort keys on tables](#alter-sortkey-recommendation)
 
-## Compress Table Data<a name="cluster-compression-recommendation"></a>
+## Compress table data<a name="cluster-compression-recommendation"></a>
 
 Amazon Redshift is optimized to reduce your storage footprint and improve query performance by using compression encodings\. When you don't use compression, data consumes additional space and requires additional disk I/O\. Applying compression to large uncompressed columns can have a big impact on your cluster\. 
 
@@ -58,14 +58,14 @@ The data returned in the `uncompressed_mb` column represents the total number of
 
 When you rebuild the tables, use the `ENCODE` parameter to explicitly set column compression\.
 
-**Implementation Tips**
+**Implementation tips**
 + Leave any columns that are the first column in a compound sort key uncompressed\. The Advisor analysis doesn't count the storage consumed by those columns\.
 + Compressing large columns has a higher impact on performance and storage than compressing small columns\.
 + If you are unsure which compression is best, use the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command to suggest a compression\.
 + To generate the data definition language \(DDL\) statements for existing tables, you can use the AWS [Generate Table DDL](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql) utility, found on GitHub\.
 + To simplify the compression suggestions and the process of rebuilding tables, you can use the [Amazon Redshift Column Encoding Utility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\.
 
-## Compress Amazon S3 File Objects Loaded by COPY<a name="cluster-compress-s3-recommendation"></a>
+## Compress Amazon S3 file objects loaded by COPY<a name="cluster-compress-s3-recommendation"></a>
 
 The COPY command takes advantage of the massively parallel processing \(MPP\) architecture in Amazon Redshift to read and load data in parallel\. It can read files from Amazon S3, DynamoDB tables, and text output from one or more remote hosts\. 
 
@@ -99,11 +99,11 @@ ORDER BY 6 DESC, 5 DESC;
 
 If the staged data remains in S3 after you load it, which is common in data lake architectures, storing this data in a compressed form can reduce your storage costs\. 
 
-**Implementation Tips**
+**Implementation tips**
 + The ideal object size is 1–128 MB after compression\.
 + You can compress files with gzip, lzop, or bzip2 format\.
 
-## Isolate Multiple Active Databases<a name="isolate-active-dbs-recommendation"></a>
+## Isolate multiple active databases<a name="isolate-active-dbs-recommendation"></a>
 
 As a best practice, we recommend isolating databases in Amazon Redshift from one another\. Queries run in a specific database and can't access data from any other database on the cluster\. However, the queries that you run in all databases of a cluster share the same underlying cluster storage space and compute resources\. When a single cluster contains multiple active databases, their workloads are usually unrelated\.
 
@@ -128,7 +128,7 @@ WHERE userid > 1
 GROUP BY database;
 ```
 
-**Implementation Tips**
+**Implementation tips**
 + Because a user must connect to each database specifically, and queries can only access a single database, moving databases to separate clusters has minimal impact for users\.
 + One option to move a database is to take the following steps: 
 
@@ -138,9 +138,9 @@ GROUP BY database;
 
   1. Resize the cluster to an appropriate node type and count for the database's workload\.
 
-## Reallocate Workload Management \(WLM\) Memory<a name="reallocate-wlm-recommendation"></a>
+## Reallocate workload management \(WLM\) memory<a name="reallocate-wlm-recommendation"></a>
 
-Amazon Redshift routes user queries to [Implementing Manual WLM](cm-c-defining-query-queues.md) for processing\. Workload management \(WLM\) defines how those queries are routed to the queues\. Amazon Redshift allocates each queue a portion of the cluster's available memory\. A queue's memory is divided among the queue's query slots\. 
+Amazon Redshift routes user queries to [Implementing manual WLM](cm-c-defining-query-queues.md) for processing\. Workload management \(WLM\) defines how those queries are routed to the queues\. Amazon Redshift allocates each queue a portion of the cluster's available memory\. A queue's memory is divided among the queue's query slots\. 
 
 When a queue is configured with more slots than the workload requires, the memory allocated to these unused slots goes underutilized\. Reducing the configured slots to match the peak workload requirements redistributes the underutilized memory to active slots, and can result in improved query performance\. 
 
@@ -177,11 +177,11 @@ ORDER BY apex.service_class, maxes.d, maxes.dt_h;
 
 The `max_service_class_slots` column represents the maximum number of WLM query slots in the query queue for that hour\. If underutilized queues exist, implement the slot reduction optimization by [modifying a parameter group](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-parameter-groups-console.html#parameter-group-modify), as described in the *Amazon Redshift Cluster Management Guide\.*
 
-**Implementation Tips**
+**Implementation tips**
 + If your workload is highly variable in volume, make sure that the analysis captured a peak utilization period\. If it didn't, run the preceding SQL repeatedly to monitor peak concurrency requirements\. 
 + For more details on interpreting the query results from the preceding SQL code, see the [wlm\_apex\_hourly\.sql script](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminScripts/wlm_apex_hourly.sql) on GitHub\.
 
-## Skip Compression Analysis During COPY<a name="skip-compression-analysis-recommendation"></a>
+## Skip compression analysis during COPY<a name="skip-compression-analysis-recommendation"></a>
 
 When you load data into an empty table with compression encoding declared with the COPY command, Amazon Redshift applies storage compression\. This optimization ensures that data in your cluster is stored efficiently even when loaded by end users\. The analysis required to apply compression can require significant time\.
 
@@ -223,11 +223,11 @@ LEFT JOIN (SELECT xid,
 WHERE b.complyze_sec IS NOT NULL ORDER BY a.copy_sql, a.starttime;
 ```
 
-**Implementation Tips**
+**Implementation tips**
 + Ensure that all tables of significant size created during your ETL processes \(for example, staging tables and temporary tables\) declare a compression encoding for all columns except the first sort key\.
 + Estimate the expected lifetime size of the table being loaded for each of the COPY commands identified by the SQL command preceding\. If you are confident that the table will remain extremely small, disable compression altogether with the `COMPUPDATE OFF` parameter\. Otherwise, create the table with explicit compression before loading it with the COPY command\.
 
-## Split Amazon S3 Objects Loaded by COPY<a name="split-s3-objects-recommendation"></a>
+## Split Amazon S3 objects loaded by COPY<a name="split-s3-objects-recommendation"></a>
 
 The COPY command takes advantage of the massively parallel processing \(MPP\) architecture in Amazon Redshift to read and load data from files on Amazon S3\. The COPY command loads the data in parallel from multiple files, dividing the workload among the nodes in your cluster\. To achieve optimal throughput, we strongly recommend that you divide your data into multiple files to take advantage of parallel processing\. 
 
@@ -268,12 +268,12 @@ ELSE 2+((COUNT(*) % (SELECT COUNT(*) FROM stv_slices))/(SELECT COUNT(*)::DECIMAL
 END, (SUM(transfer_size)/(1024.0*1024.0))/COUNT(*) DESC;
 ```
 
-**Implementation Tips**
+**Implementation tips**
 + The number of slices in a node depends on the node size of the cluster\. For more information about the number of slices in the various node types, see [Clusters and Nodes in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide\.* 
-+ You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Splitting Your Data into Multiple Files](t_splitting-data-files.md)\.
-+ Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. For optimum parallelism, the ideal size is between 1 MB and 125 MB after compression\. 
++ You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Splitting your data into multiple files](t_splitting-data-files.md)\.
++ Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. 
 
-## Update Table Statistics<a name="update-table-statistics-recommendation"></a>
+## Update table statistics<a name="update-table-statistics-recommendation"></a>
 
 Amazon Redshift uses a cost\-based query optimizer to choose the optimum execution plan for queries\. The cost estimates are based on table statistics gathered using the ANALYZE command\. When statistics are out of date or missing, the database might choose a less efficient plan for query execution, especially for complex queries\. Maintaining current statistics helps complex queries run in the shortest possible time\. 
 
@@ -297,7 +297,7 @@ SELECT
  ORDER BY ti.size DESC;
 ```
 
-**Implementation Tips**
+**Implementation tips**
 
 The default ANALYZE threshold is 10 percent\. This default means that the ANALYZE command skips a given table if fewer than 10 percent of the table's rows have changed since the last ANALYZE\. As a result, you might choose to issue ANALYZE commands at the end of each ETL process\. Taking this approach means that ANALYZE is often skipped but also ensures that ANALYZE runs when needed\.
 
@@ -324,13 +324,13 @@ SELECT schema_name, table_name, col_num, col_name,
 FROM predicate_column_info;
 ```
 
-For more information, see [Analyzing Tables](t_Analyzing_tables.md)\.
+For more information, see [Analyzing tables](t_Analyzing_tables.md)\.
 
-## Enable Short Query Acceleration<a name="enable-sqa-recommendation"></a>
+## Enable short query acceleration<a name="enable-sqa-recommendation"></a>
 
 Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA executes short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. SQA only prioritizes queries that are short\-running and are in a user\-defined queue\. With SQA, short\-running queries begin running more quickly and users see results sooner\. 
 
-If you enable SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Working with Short Query Acceleration](wlm-short-query-acceleration.md)\. 
+If you enable SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Working with short query acceleration](wlm-short-query-acceleration.md)\. 
 
 **Analysis**
 
@@ -342,7 +342,7 @@ Modify the WLM configuration to enable SQA\. Amazon Redshift uses a machine lear
 
 When you enable SQA, WLM sets the maximum run time for short queries to dynamic by default\. We recommend keeping the dynamic setting for SQA maximum run time\. 
 
-**Implementation Tips**
+**Implementation tips**
 
 To check whether SQA is enabled, run the following query\. If the query returns a row, then SQA is enabled\.
 
@@ -353,11 +353,11 @@ where service_class = 14;
 
 For more information, see [Monitoring SQA](wlm-short-query-acceleration.md#wlm-monitoring-sqa)\. 
 
-## Replace Single\-Column Interleaved Sort Keys<a name="single-column-interleaved-sort-recommendation"></a>
+## Replace single\-column interleaved sort keys<a name="single-column-interleaved-sort-recommendation"></a>
 
 Some tables use an interleaved sort key on a single column\. In general, such a table is less efficient and consumes more resources than a table that uses a compound sort key on a single column\.
 
-Interleaved sorting improves performance in certain cases where multiple columns are used by different queries for filtering\. Using an interleaved sort key on a single column is effective only in a particular case\. That case is when queries often filter on CHAR or VARCHAR column values that have a long common prefix in the first 8 bytes\. For example, URL strings are often prefixed with "`https://`"\. For single\-column keys, a compound sort is better than an interleaved sort for any other filtering operations\. A compound sort speeds up joins, GROUP BY and ORDER BY operations, and window functions that use PARTITION BY and ORDER BY on the sorted column\. An interleaved sort doesn't benefit any of those operations\. For more information, see [Choosing Sort Keys](t_Sorting_data.md)\. 
+Interleaved sorting improves performance in certain cases where multiple columns are used by different queries for filtering\. Using an interleaved sort key on a single column is effective only in a particular case\. That case is when queries often filter on CHAR or VARCHAR column values that have a long common prefix in the first 8 bytes\. For example, URL strings are often prefixed with "`https://`"\. For single\-column keys, a compound sort is better than an interleaved sort for any other filtering operations\. A compound sort speeds up joins, GROUP BY and ORDER BY operations, and window functions that use PARTITION BY and ORDER BY on the sorted column\. An interleaved sort doesn't benefit any of those operations\. For more information, see [Working with sort keys](t_Sorting_data.md)\. 
 
 Using compound sort significantly reduces maintenance overhead\. Tables with compound sort keys don't need the expensive VACUUM REINDEX operations that are necessary for interleaved sorts\. In practice, compound sort keys are more effective than interleaved sort keys for the vast majority of Amazon Redshift workloads\. 
 
@@ -388,7 +388,7 @@ WHERE table_id IN (
 
 For additional information about choosing the best sort style, see the AWS Big Data Blog post [Amazon Redshift Engineering's Advanced Table Design Playbook: Compound and Interleaved Sort Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-compound-and-interleaved-sort-keys/)\. 
 
-## Alter Distribution Keys on Tables<a name="alter-diststyle-distkey-recommendation"></a>
+## Alter distribution keys on tables<a name="alter-diststyle-distkey-recommendation"></a>
 
 Amazon Redshift distributes table rows throughout the cluster according to the table distribution style\. Tables with KEY distribution require a column as the distribution key \(DISTKEY\)\. A table row is assigned to a node slice of a cluster based on its DISTKEY column value\. 
 
@@ -411,7 +411,7 @@ If you don't see a recommendation, that doesn't necessarily mean that the curren
 Advisor recommendations apply to a particular table and don't necessarily apply to a table that contains a column with the same name\. Tables that share a column name can have different characteristics for those columns unless data inside the tables is the same\.   
 If you see recommendations for staging tables that are created or dropped by ETL jobs, modify your ETL processes to use the Advisor recommended distribution keys\. 
 
-## Alter Sort Keys on Tables<a name="alter-sortkey-recommendation"></a>
+## Alter sort keys on tables<a name="alter-sortkey-recommendation"></a>
 
 Amazon Redshift sorts table rows according to the table [sort key](t_Sorting_data.md)\. The sorting of table rows is based on the sort key column values\. 
 

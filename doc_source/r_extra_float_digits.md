@@ -1,6 +1,6 @@
 # extra\_float\_digits<a name="r_extra_float_digits"></a>
 
-## Values \(Default in Bold\)<a name="r_extra_float_digits-values"></a>
+## Values \(default in bold\)<a name="r_extra_float_digits-values"></a>
 
  **0**, \-15 to 2 
 

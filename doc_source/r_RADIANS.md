@@ -1,4 +1,4 @@
-# RADIANS Function<a name="r_RADIANS"></a>
+# RADIANS function<a name="r_RADIANS"></a>
 
 Converts an angle in degrees to its equivalent in radians\. 
 
@@ -13,7 +13,7 @@ RADIANS(number)
  *string*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_RADIANS-return-type"></a>
+## Return type<a name="r_RADIANS-return-type"></a>
 
 The RADIANS function returns a double precision number\. 
 

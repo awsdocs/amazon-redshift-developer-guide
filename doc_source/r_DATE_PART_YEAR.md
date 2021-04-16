@@ -1,4 +1,4 @@
-# DATE\_PART\_YEAR Function<a name="r_DATE_PART_YEAR"></a>
+# DATE\_PART\_YEAR function<a name="r_DATE_PART_YEAR"></a>
 
 The DATE\_PART\_YEAR function extracts the year from a date\. 
 
@@ -13,13 +13,13 @@ DATE_PART_YEAR(date)
  *date*   
 A date column or an expression that implicitly converts to a date\.
 
-## Return Type<a name="r_DATE_PART_YEAR-return-type"></a>
+## Return type<a name="r_DATE_PART_YEAR-return-type"></a>
 
 INTEGER
 
 ## Examples<a name="r_DATE_PART_YEAR-examples"></a>
 
-The following example extracts the year from the CALDATE column: 
+The following example extracts the year from the CALDATE column\.
 
 ```
 select caldate, date_part_year(caldate)

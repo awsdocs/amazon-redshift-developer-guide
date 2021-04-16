@@ -1,24 +1,24 @@
-# CTAS Usage Notes<a name="r_CTAS_usage_notes"></a>
+# CTAS usage notes<a name="r_CTAS_usage_notes"></a>
 
 ## Limits<a name="r_CTAS_usage_notes-limits"></a>
 
-Amazon Redshift enforces a maximum limit of 9,900 permanent tables\. 
+Amazon Redshift enforces a quota of the number of tables per cluster by node type\. 
 
 The maximum number of characters for a table name is 127\. 
 
 The maximum number of columns you can define in a single table is 1,600\. 
 
-## Inheritance of Column and Table Attributes<a name="r_CTAS_usage_notes-inheritance-of-column-and-table-attributes"></a>
+## Inheritance of column and table attributes<a name="r_CTAS_usage_notes-inheritance-of-column-and-table-attributes"></a>
 
 CREATE TABLE AS \(CTAS\) tables don't inherit constraints, identity columns, default column values, or the primary key from the table that they were created from\. 
 
 You can't specify column compression encodings for CTAS tables\. Amazon Redshift automatically assigns compression encoding as follows:
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data type are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
 + Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 
-For more information, see [Compression Encodings](c_Compression_encodings.md) and [Data Types](c_Supported_data_types.md)\. 
+For more information, see [Compression encodings](c_Compression_encodings.md) and [Data types](c_Supported_data_types.md)\. 
 
 To explicitly assign column encodings, use [CREATE TABLE](r_CREATE_TABLE_NEW.md)
 
@@ -133,10 +133,10 @@ select eventid, venueid, dateid, eventname
 from event;
 ```
 
-## Distribution of Incoming Data<a name="r_CTAS_usage_notes-distribution-of-incoming-data"></a>
+## Distribution of incoming data<a name="r_CTAS_usage_notes-distribution-of-incoming-data"></a>
 
 When the hash distribution scheme of the incoming data matches that of the target table, no physical distribution of the data is actually necessary when the data is loaded\. For example, if a distribution key is set for the new table and the data is being inserted from another table that is distributed on the same key column, the data is loaded in place, using the same nodes and slices\. However, if the source and target tables are both set to EVEN distribution, data is redistributed into the target table\. 
 
-## Automatic ANALYZE Operations<a name="r_CTAS_usage_notes-automatic-analyze-operations"></a>
+## Automatic ANALYZE operations<a name="r_CTAS_usage_notes-automatic-analyze-operations"></a>
 
 Amazon Redshift automatically analyzes tables that you create with CTAS commands\. You do not need to run the ANALYZE command on these tables when they are first created\. If you modify them, you should analyze them in the same way as other tables\. 

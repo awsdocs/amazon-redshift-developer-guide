@@ -1,10 +1,12 @@
-# Step 1: Create a Database<a name="t_creating_database"></a>
+# Step 1: Create a database<a name="t_creating_database"></a>
+
+
 
 After you have verified that your cluster is up and running, you can create your first database\. This database is where you will actually create tables, load data, and run queries\. A single cluster can host multiple databases\. For example, you can have a TICKIT database and an ORDERS database on the same cluster\.
 
 After you connect to the initial cluster database, the database you created when you launched the cluster, you use the initial database as the base for creating a new database\.
 
-For example, to create a database named **tickit**, issue the following command: 
+For example, to create a database named **tickit**, issue the following command in your SQL client tool: 
 
 ```
 create database tickit;

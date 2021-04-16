@@ -1,4 +1,4 @@
-# AVG Function<a name="r_AVG"></a>
+# AVG function<a name="r_AVG"></a>
 
  The AVG function returns the average \(arithmetic mean\) of the input expression values\. The AVG function works with numeric values and ignores NULL values\.
 
@@ -16,7 +16,7 @@ The target column or expression that the function operates on\.
 DISTINCT \| ALL   
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before calculating the average\. With the argument ALL, the function retains all duplicate values from the expression for calculating the average\. ALL is the default\.
 
-## Data Types<a name="r_AVG-data-types"></a>
+## Data types<a name="r_AVG-data-types"></a>
 
  The argument types supported by the AVG function are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, and DOUBLE PRECISION\.
 

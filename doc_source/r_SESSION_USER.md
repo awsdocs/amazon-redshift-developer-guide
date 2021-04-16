@@ -11,7 +11,7 @@ Do not use trailing parentheses when calling SESSION\_USER\.
 session_user
 ```
 
-## Return Type<a name="r_SESSION_USER-return-type"></a>
+## Return type<a name="r_SESSION_USER-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

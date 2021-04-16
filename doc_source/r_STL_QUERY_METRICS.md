@@ -1,25 +1,25 @@
 # STL\_QUERY\_METRICS<a name="r_STL_QUERY_METRICS"></a>
 
-Contains metrics information, such as the number of rows processed, CPU usage, input/output, and disk use, for queries that have completed running in user\-defined query queues \(service classes\)\. To view metrics for active queries that are currently running, see the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) system table\. 
+Contains metrics information, such as the number of rows processed, CPU usage, input/output, and disk use, for queries that have completed running in user\-defined query queues \(service classes\)\. To view metrics for active queries that are currently running, see the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) system view\. 
 
 Query metrics are sampled at one second intervals\. As a result, different runs of the same query might return slightly different times\. Also, query segments that run in less than one second might not be recorded\. 
 
-STL\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query Planning and Execution Workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data Warehouse System Architecture](c_high_level_system_architecture.md)\. 
+STL\_QUERY\_METRICS tracks and aggregates metrics at the query, segment, and step level\. For information about query segments and steps, see [Query planning and execution workflow](c-query-planning.md)\. Many metrics \(such as `max_rows`, `cpu_time`, and so on\) are summed across node slices\. For more information about node slices, see [Data warehouse system architecture](c_high_level_system_architecture.md)\. 
 
 To determine the level at which the row reports metrics, examine the `segment` and `step_type` columns\.
 + If both `segment` and `step_type` are `-1`, then the row reports metrics at the query level\. 
 + If `segment` is not `-1` and `step_type` is `-1`, then the row reports metrics at the segment level\. 
 + If both `segment` and `step_type` are not `-1`, then the row reports metrics at the step level\. 
 
-The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view and the [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view aggregate the data in this table and present the information in a more accessible form\.
+The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view and the [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view aggregate the data in this view and present the information in a more accessible form\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Rows<a name="r_STL_QUERY_METRICS-table-rows2"></a>
+## Table columns<a name="r_STL_QUERY_METRICS-table-rows2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_QUERY_METRICS.html)
 
-## Sample Query<a name="r_STL_QUERY_METRICS-sample-query2"></a>
+## Sample query<a name="r_STL_QUERY_METRICS-sample-query2"></a>
 
 To find queries with high CPU time \(more the 1,000 seconds\), run the following query\.
 

@@ -1,4 +1,4 @@
-# System Catalog Tables<a name="c_intro_catalog_views"></a>
+# System catalog tables<a name="c_intro_catalog_views"></a>
 
 **Topics**
 + [PG\_ATTRIBUTE\_INFO](r_PG_ATTRIBUTE_INFO.md)
@@ -10,8 +10,8 @@
 + [PG\_PROC\_INFO](r_PG_PROC_INFO.md)
 + [PG\_STATISTIC\_INDICATOR](r_PG_STATISTIC_INDICATOR.md)
 + [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md)
-+ [Querying the Catalog Tables](c_join_PG.md)
++ [Querying the catalog tables](c_join_PG.md)
 
 The system catalogs store schema metadata, such as information about tables and columns\. System catalog tables have a PG prefix\.
 
-The standard PostgreSQL catalog tables are accessible to Amazon Redshift users\. For more information about PostgreSQL system catalogs, see [PostgreSQL System Tables](https://www.postgresql.org/docs/8.0/static/catalogs.html#CATALOGS-OVERVIEW) 
+The standard PostgreSQL catalog tables are accessible to Amazon Redshift users\. For more information about PostgreSQL system catalogs, see [PostgreSQL system tables](https://www.postgresql.org/docs/8.0/static/catalogs.html#CATALOGS-OVERVIEW) 

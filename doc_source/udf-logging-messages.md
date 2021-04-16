@@ -1,4 +1,4 @@
-# Logging Errors and Warnings in UDFs<a name="udf-logging-messages"></a>
+# Logging errors and warnings in UDFs<a name="udf-logging-messages"></a>
 
 You can use the Python logging module to create user\-defined error and warning messages in your UDFs\. Following query execution, you can query the [SVL\_UDF\_LOG](r_SVL_UDF_LOG.md) system view to retrieve logged messages\.
 

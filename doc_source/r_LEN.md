@@ -1,10 +1,10 @@
-# LEN Function<a name="r_LEN"></a>
+# LEN function<a name="r_LEN"></a>
 
 Returns the length of the specified string as the number of characters\. 
 
 ## Syntax<a name="r_LEN-synopsis"></a>
 
-LEN is a synonym of [LENGTH Function](r_LENGTH.md), [CHAR\_LENGTH Function](r_CHAR_LENGTH.md), [CHARACTER\_LENGTH Function](r_CHARACTER_LENGTH.md), and [TEXTLEN Function](r_TEXTLEN.md)\. 
+LEN is a synonym of [LENGTH function](r_LENGTH.md), [CHAR\_LENGTH function](r_CHAR_LENGTH.md), [CHARACTER\_LENGTH function](r_CHARACTER_LENGTH.md), and [TEXTLEN function](r_TEXTLEN.md)\. 
 
 ```
 LEN(expression)
@@ -15,11 +15,11 @@ LEN(expression)
  *expression*   
 The input parameter is a CHAR or VARCHAR text string\. 
 
-## Return Type<a name="r_LEN-return-type"></a>
+## Return type<a name="r_LEN-return-type"></a>
 
 The LEN function returns an integer indicating the number of characters in the input string\. The LEN function returns the actual number of characters in multi\-byte strings, not the number of bytes\. For example, a VARCHAR\(12\) column is required to store three four\-byte Chinese characters\. The LEN function will return 3 for that same string\. To get the length of a string in bytes, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\.
 
-## Usage Notes<a name="r_LEN_usage_notes"></a>
+## Usage notes<a name="r_LEN_usage_notes"></a>
 
 Length calculations do not count trailing spaces for fixed\-length character strings but do count them for variable\-length strings\. 
 

@@ -1,6 +1,6 @@
-# EXP Function<a name="r_EXP"></a>
+# EXP function<a name="r_EXP"></a>
 
-The EXP function implements the exponential function for a numeric expression, or the base of the natural logarithm, `e`, raised to the power of expression\. The EXP function is the inverse of [LN Function](r_LN.md)\. 
+The EXP function implements the exponential function for a numeric expression, or the base of the natural logarithm, `e`, raised to the power of expression\. The EXP function is the inverse of [LN function](r_LN.md)\. 
 
 ## Syntax<a name="r_EXP-synopsis"></a>
 
@@ -13,7 +13,7 @@ EXP (expression)
  *expression*   
 The expression must be an INTEGER, DECIMAL, or DOUBLE PRECISION data type\. 
 
-## Return Type<a name="r_EXP-return-type"></a>
+## Return type<a name="r_EXP-return-type"></a>
 
 EXP returns a DOUBLE PRECISION number\. 
 

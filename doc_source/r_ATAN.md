@@ -1,4 +1,4 @@
-# ATAN Function<a name="r_ATAN"></a>
+# ATAN function<a name="r_ATAN"></a>
 
 ATAN is a trigonometric function that returns the arc tangent of a number\. The return value is in radians and is between PI/2 and \-PI/2\. 
 
@@ -13,7 +13,7 @@ ATAN(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_ATAN-return-type"></a>
+## Return type<a name="r_ATAN-return-type"></a>
 
 The ATAN function returns a double precision number\. 
 

@@ -16,7 +16,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *srid*   
 A value of data type `INTEGER` that represents a SRID\. 
 
-## Return Type<a name="ST_SetSRID-function-return"></a>
+## Return type<a name="ST_SetSRID-function-return"></a>
 
 `GEOMETRY`
 

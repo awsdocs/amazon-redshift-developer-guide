@@ -1,8 +1,8 @@
-# Returning a Result Set<a name="stored-procedure-result-set"></a>
+# Returning a result set<a name="stored-procedure-result-set"></a>
 
 You can return a result set using a cursor or a temp table\.
 
-## Returning a Cursor<a name="stored-procedure-return-cursor"></a>
+## Returning a cursor<a name="stored-procedure-return-cursor"></a>
 
 To return a cursor, create a procedure with an INOUT argument defined with a `refcursor` data type\. When you call the procedure, give the cursor a name, then you can fetch the results from the cursor by name\.
 
@@ -44,7 +44,7 @@ In the end, the transaction is either committed or rolled back\.
 COMMIT;   
 ```
 
-A cursor returned by a stored procedure is subject to the same constraints and performance considerations as described in DECLARE CURSOR\. For more information, see [Cursor Constraints](declare.md#declare-constraints)\.
+A cursor returned by a stored procedure is subject to the same constraints and performance considerations as described in DECLARE CURSOR\. For more information, see [Cursor constraints](declare.md#declare-constraints)\.
 
 The following example shows the calling of the `get_result_set` stored procedure using a `refcursor` data type from JDBC\. The literal `'mycursor'` \(the name of the cursor\) is passed to the `prepareStatement`\. Then the results are fetched from the `ResultSet`\.
 
@@ -60,7 +60,7 @@ static void refcursor_example(Connection conn) throws SQLException {
     }
 ```
 
-## Using a Temp Table<a name="stored-procedure-return-cursor"></a>
+## Using a temp table<a name="stored-procedure-return-cursor"></a>
 
 To return results, you can return a handle to a temp table containing result rows\. The client can supply a name as a parameter to the stored procedure\. Inside the stored procedure, dynamic SQL can be used to operate on the temp table\. The following shows an example\.
 

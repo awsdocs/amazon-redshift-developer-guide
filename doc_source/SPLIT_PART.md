@@ -1,4 +1,4 @@
-# SPLIT\_PART Function<a name="SPLIT_PART"></a>
+# SPLIT\_PART function<a name="SPLIT_PART"></a>
 
 Splits a string on the specified delimiter and returns the part at the specified position\.
 
@@ -15,18 +15,18 @@ The string to be split\. The string can be CHAR or VARCHAR\.
 
  *delimiter*   
 The delimiter string\.   
-If *delimiter* is a literal, enclose it in single quotes\. 
+If *delimiter* is a literal, enclose it in single quotation marks\. 
 
  *part*   
 Position of the portion to return \(counting from 1\)\. Must be an integer greater than 0\. If *part* is larger than the number of string portions, SPLIT\_PART returns an empty string\. If *delimiter* is not found in *string*, then the returned value contains the contents of the specified part, which might be the entire *string* or an empty value\.
 
-## Return Type<a name="SPLIT_PART-return-type"></a>
+## Return type<a name="SPLIT_PART-return-type"></a>
 
 A CHAR or VARCHAR string, the same as the string parameter\.
 
 ## Examples<a name="SPLIT_PART-examples"></a>
 
-The following example splits the time stamp field LISTTIME into year, month, and day components\.
+The following example splits the timestamp field LISTTIME into year, month, and day components\.
 
 ```
 select listtime, split_part(listtime,'-',1) as year,
@@ -44,7 +44,7 @@ from listing limit 5;
 (5 rows)
 ```
 
-The following example selects the LISTTIME time stamp field and splits it on the `'-'` character to get the month \(the second part of the LISTTIME string\), then counts the number of entries for each month:
+The following example selects the LISTTIME timestamp field and splits it on the `'-'` character to get the month \(the second part of the LISTTIME string\), then counts the number of entries for each month:
 
 ```
 select split_part(listtime,'-',2) as month, count(*)

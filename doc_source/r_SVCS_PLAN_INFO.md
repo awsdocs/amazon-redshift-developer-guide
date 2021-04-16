@@ -5,13 +5,13 @@ Use the SVCS\_PLAN\_INFO table to look at the EXPLAIN output for a query in term
 **Note**  
 System views with the prefix SVCS provide details about queries on both the main and concurrency scaling clusters\. The views are similar to the tables with the prefix STL except that the STL tables provide information only for queries run on the main cluster\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVCS_PLAN_INFO-table-columns"></a>
+## Table columns<a name="r_SVCS_PLAN_INFO-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_PLAN_INFO.html)
 
-## Sample Queries<a name="r_SVCS_PLAN_INFO-sample-queries"></a>
+## Sample queries<a name="r_SVCS_PLAN_INFO-sample-queries"></a>
 
 The following examples compare the query plans for a simple SELECT query returned by using the EXPLAIN command and by querying the SVCS\_PLAN\_INFO table\. 
 

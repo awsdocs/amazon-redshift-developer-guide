@@ -1,4 +1,4 @@
-# OCTET\_LENGTH Function<a name="r_OCTET_LENGTH"></a>
+# OCTET\_LENGTH function<a name="r_OCTET_LENGTH"></a>
 
 Returns the length of the specified string as the number of bytes\. 
 
@@ -13,11 +13,11 @@ OCTET_LENGTH(expression)
  *expression*   
 The input parameter is a CHAR or VARCHAR text string\. 
 
-## Return Type<a name="r_OCTET_LENGTH-return-type"></a>
+## Return type<a name="r_OCTET_LENGTH-return-type"></a>
 
 The OCTET\_LENGTH function returns an integer indicating the number of bytes in the input string\. The [LEN](r_LEN.md) function returns the actual number of characters in multi\-byte strings, not the number of bytes\. For example, to store three four\-byte Chinese characters, you need a VARCHAR\(12\) column\. The LEN function will return 3 for that same string\.
 
-## Usage Notes<a name="r_OCTET_LENGTH_usage_notes"></a>
+## Usage notes<a name="r_OCTET_LENGTH_usage_notes"></a>
 
 Length calculations do not count trailing spaces for fixed\-length character strings but do count them for variable\-length strings\. 
 

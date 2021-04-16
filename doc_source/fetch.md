@@ -6,7 +6,7 @@ FETCH retrieves rows based on the current position within the cursor\. When a cu
 
 FORWARD 0 fetches the current row without moving the cursor; that is, it fetches the most recently fetched row\. If the cursor is positioned before the first row or after the last row, no row is returned\. 
 
-When the first row of a cursor is fetched, the entire result set is materialized on the leader node, in memory or on disk, if needed\. Because of the potential negative performance impact of using cursors with large result sets, we recommend using alternative approaches whenever possible\. For more information, see [Performance Considerations When Using Cursors](declare.md#declare-performance)\.
+When the first row of a cursor is fetched, the entire result set is materialized on the leader node, in memory or on disk, if needed\. Because of the potential negative performance impact of using cursors with large result sets, we recommend using alternative approaches whenever possible\. For more information, see [Performance considerations when using cursors](declare.md#declare-performance)\.
 
 For more information, see [DECLARE](declare.md), [CLOSE](close.md)\. 
 
@@ -30,7 +30,7 @@ Fetches the next *count* rows, or all remaining rows\. `FORWARD 0` fetches the c
 *cursor*   
 Name of the new cursor\. 
 
-## FETCH Example<a name="fetch-example"></a>
+## FETCH example<a name="fetch-example"></a>
 
 The following example declares a cursor named LOLLAPALOOZA to select sales information for the Lollapalooza event, and then fetches rows from the result set using the cursor:
 

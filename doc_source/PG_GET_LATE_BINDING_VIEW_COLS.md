@@ -1,6 +1,6 @@
 # PG\_GET\_LATE\_BINDING\_VIEW\_COLS<a name="PG_GET_LATE_BINDING_VIEW_COLS"></a>
 
-Returns the column metadata for all late\-binding views in the database\. For more information, see [Late\-Binding Views](r_CREATE_VIEW.md#r_CREATE_VIEW_late-binding-views)
+Returns the column metadata for all late\-binding views in the database\. For more information, see [Late\-binding views](r_CREATE_VIEW.md#r_CREATE_VIEW_late-binding-views)
 
 ## Syntax<a name="PG_GET_LATE_BINDING_VIEW_COLS-synopsis"></a>
 
@@ -8,11 +8,11 @@ Returns the column metadata for all late\-binding views in the database\. For mo
 pg_get_late_binding_view_cols()
 ```
 
-## Return Type<a name="PG_GET_LATE_BINDING_VIEW_COLS-return-type"></a>
+## Return type<a name="PG_GET_LATE_BINDING_VIEW_COLS-return-type"></a>
 
 VARCHAR 
 
-## Usage Notes<a name="PG_GET_LATE_BINDING_VIEW_COLS-usage-notes"></a>
+## Usage notes<a name="PG_GET_LATE_BINDING_VIEW_COLS-usage-notes"></a>
 
 The `PG_GET_LATE_BINDING_VIEW_COLS` function returns one row for each column in late\-binding views\. The row contains a comma\-separated list with the schema name, relation name, column name, data type, and column number\.
 

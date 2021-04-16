@@ -1,4 +1,4 @@
-# WITH Clause<a name="r_WITH_clause"></a>
+# WITH clause<a name="r_WITH_clause"></a>
 
 A WITH clause is an optional clause that precedes the SELECT list in a query\. The WITH clause defines one or more subqueries\. Each subquery defines a temporary table, similar to a view definition\. These temporary tables can be referenced in the FROM clause and are used only during the execution of the query to which they belong\. Each subquery in the WITH clause specifies a table name, an optional list of column names, and a query expression that evaluates to a table \(a SELECT statement\)\. 
 
@@ -19,7 +19,7 @@ with_subquery_table_name [ ( column_name [, ...] ) ] AS ( query )
 ## Parameters<a name="r_WITH_clause-parameters"></a>
 
  *with\_subquery\_table\_name*   
-A unique name for a temporary table that defines the results of a WITH clause subquery\. You can't use duplicate names within a single WITH clause\. Each subquery must be given a table name that can be referenced in the [FROM Clause](r_FROM_clause30.md)\.
+A unique name for a temporary table that defines the results of a WITH clause subquery\. You can't use duplicate names within a single WITH clause\. Each subquery must be given a table name that can be referenced in the [FROM clause](r_FROM_clause30.md)\.
 
  *column\_name*   
  An optional list of output column names for the WITH clause subquery, separated by commas\. The number of column names specified must be equal to or less than the number of columns defined by the subquery\. 
@@ -27,7 +27,7 @@ A unique name for a temporary table that defines the results of a WITH clause su
  *query*   
  Any SELECT query that Amazon Redshift supports\. See [SELECT](r_SELECT_synopsis.md)\. 
 
-## Usage Notes<a name="r_WITH_clause-usage-notes"></a>
+## Usage notes<a name="r_WITH_clause-usage-notes"></a>
 
 You can use a WITH clause in the following SQL statements: 
 + SELECT \(including subqueries within SELECT statements\)

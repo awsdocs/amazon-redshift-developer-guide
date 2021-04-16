@@ -1,11 +1,11 @@
-# Unsupported PostgreSQL Functions<a name="c_unsupported-postgresql-functions"></a>
+# Unsupported PostgreSQL functions<a name="c_unsupported-postgresql-functions"></a>
 
 Many functions that are not excluded have different semantics or usage\. For example, some supported functions will run only on the leader node\. Also, some unsupported functions will not return an error when run on the leader node\. The fact that these functions do not return an error in some cases should not be taken to indicate that the function is supported by Amazon Redshift\. 
 
 **Important**  
-Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL have in common are identical\. Make sure to consult the *Amazon Redshift Database Developer Guide * [SQL Commands](c_SQL_commands.md) to understand the often subtle differences\.
+Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL have in common are identical\. Make sure to consult the *Amazon Redshift Database Developer Guide * [SQL commands](c_SQL_commands.md) to understand the often subtle differences\.
 
- For more information, see [SQL Functions Supported on the Leader Node](c_sql-functions-leader-node.md)\.
+ For more information, see [SQL functions supported on the leader node](c_sql-functions-leader-node.md)\.
 
 These PostgreSQL functions are not supported in Amazon Redshift\.
 + Access privilege inquiry functions

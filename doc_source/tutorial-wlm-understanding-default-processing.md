@@ -1,8 +1,8 @@
-# Section 1: Understanding the Default Queue Processing Behavior<a name="tutorial-wlm-understanding-default-processing"></a>
+# Section 1: Understanding the default queue processing behavior<a name="tutorial-wlm-understanding-default-processing"></a>
 
-Before you start to configure manual WLM, it’s useful to understand the default behavior of queue processing in Amazon Redshift\. In this section, you create two database views that return information from several system tables\. Then you run some test queries to see how queries are routed by default\. For more information about system tables, see [System Tables Reference](cm_chap_system-tables.md)\. 
+Before you start to configure manual WLM, it’s useful to understand the default behavior of queue processing in Amazon Redshift\. In this section, you create two database views that return information from several system tables\. Then you run some test queries to see how queries are routed by default\. For more information about system tables, see [System tables reference](cm_chap_system-tables.md)\. 
 
-## Step 1: Create the WLM\_QUEUE\_STATE\_VW View<a name="tutorial-wlm-create-queue-state-view"></a>
+## Step 1: Create the WLM\_QUEUE\_STATE\_VW view<a name="tutorial-wlm-create-queue-state-view"></a>
 
 In this step, you create a view called WLM\_QUEUE\_STATE\_VW\. This view returns information from the following system tables\.
 + [STV\_WLM\_CLASSIFICATION\_CONFIG](r_STV_WLM_CLASSIFICATION_CONFIG.md)
@@ -13,7 +13,7 @@ You use this view throughout the tutorial to monitor what happens to queues afte
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-wlm-understanding-default-processing.html)
 
-### To Create the WLM\_QUEUE\_STATE\_VW View<a name="how-to-wlm-create-queue-state-view"></a>
+### To create the WLM\_QUEUE\_STATE\_VW view<a name="how-to-wlm-create-queue-state-view"></a>
 
 1. Open psql and connect to your TICKIT sample database\. If you do not have this database, see [Prerequisites](tutorial-configuring-workload-management.md#tutorial-wlm-prereq)\.
 
@@ -51,7 +51,7 @@ You use this view throughout the tutorial to monitor what happens to queues afte
    The following is an example result\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_010.png)
 
-## Step 2: Create the WLM\_QUERY\_STATE\_VW View<a name="tutorial-wlm-create-query-state-view"></a>
+## Step 2: Create the WLM\_QUERY\_STATE\_VW view<a name="tutorial-wlm-create-query-state-view"></a>
 
 In this step, you create a view called WLM\_QUERY\_STATE\_VW\. This view returns information from the [STV\_WLM\_QUERY\_STATE](r_STV_WLM_QUERY_STATE.md) system table\.
 
@@ -59,7 +59,7 @@ You use this view throughout the tutorial to monitor the queries that are runnin
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-wlm-understanding-default-processing.html)
 
-### To Create the WLM\_QUERY\_STATE\_VW View<a name="how-to-wlm-create-query-state-view"></a>
+### To create the WLM\_QUERY\_STATE\_VW view<a name="how-to-wlm-create-query-state-view"></a>
 
 1. In psql, run the following query to create the WLM\_QUERY\_STATE\_VW view\.
 
@@ -78,7 +78,7 @@ You use this view throughout the tutorial to monitor the queries that are runnin
    The following is an example result\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_020.png)
 
-## Step 3: Run Test Queries<a name="tutorial-wlm-run-test-queries"></a>
+## Step 3: Run test queries<a name="tutorial-wlm-run-test-queries"></a>
 
 In this step, you run queries from multiple connections in psql and review the system tables to determine how the queries were routed for processing\. 
 
@@ -86,7 +86,7 @@ For this step, you need two psql windows open:
 + In psql window 1, you run queries that monitor the state of the queues and queries using the views you already created in this tutorial\.
 + In psql window 2, you run long\-running queries to change the results you find in psql window 1\.
 
-### To Run the Test Queries<a name="how-to-wlm-run-test-queries"></a>
+### To run the test queries<a name="how-to-wlm-run-test-queries"></a>
 
 1. Open two psql windows\. If you already have one window open, you only need to open a second window\. You can use the same user account for both of these connections\.
 

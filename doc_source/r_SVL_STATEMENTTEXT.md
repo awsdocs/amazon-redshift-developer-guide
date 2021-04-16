@@ -4,13 +4,13 @@ Use the SVL\_STATEMENTTEXT view to get a complete record of all of the SQL comma
 
 The SVL\_STATEMENTTEXT view contains the union of all of the rows in the [STL\_DDLTEXT](r_STL_DDLTEXT.md), [STL\_QUERYTEXT](r_STL_QUERYTEXT.md), and [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md) tables\. This view also includes a join to the STL\_QUERY table\.
 
-SVL\_STATEMENTTEXT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_STATEMENTTEXT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_STATEMENTTEXT-table-columns"></a>
+## Table columns<a name="r_SVL_STATEMENTTEXT-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_STATEMENTTEXT.html)
 
-## Sample Query<a name="r_SVL_STATEMENTTEXT-sample-query"></a>
+## Sample query<a name="r_SVL_STATEMENTTEXT-sample-query"></a>
 
 The following query returns DDL statements that were run on June 16th, 2009: 
 
@@ -28,7 +28,7 @@ starttime                  | type |              rtrim
 ...
 ```
 
-### Reconstructing Stored SQL<a name="r_SVL_STATEMENTTEXT-reconstruct-sql"></a>
+### Reconstructing stored SQL<a name="r_SVL_STATEMENTTEXT-reconstruct-sql"></a>
 
 To reconstruct the SQL stored in the `text` column of SVL\_STATEMENTTEXT, run a SELECT statement to create SQL from 1 or more parts in the `text` column\. Before running the reconstructed SQL, replace any \(`\n`\) special characters with a new line\. The result of the following SELECT statement is rows of reconstructed SQL in the `query_statement` field\.
 

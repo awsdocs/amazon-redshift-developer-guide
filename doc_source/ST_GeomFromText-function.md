@@ -18,9 +18,9 @@ ST_GeomFromText(wkt_string, srid)
 A value of data type `VARCHAR` that is a WKT representation of a geometry\.
 
  *srid*   
-A value of data type `INTEGER` that is a spatial reference identifier \(SRID\)\. If an SRID value is provided, the returned geometry has this SRID value\. Otherwise, the SRID value of the returned geometry is set to 0\.
+A value of data type `INTEGER` that is a spatial reference identifier \(SRID\)\. If an SRID value is provided, the returned geometry has this SRID value\. Otherwise, the SRID value of the returned geometry is set to zero \(0\)\.
 
-## Return Type<a name="ST_GeomFromText-function-return"></a>
+## Return type<a name="ST_GeomFromText-function-return"></a>
 
 `GEOMETRY`
 

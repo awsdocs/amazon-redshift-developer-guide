@@ -1,4 +1,4 @@
-# SUBSTRING Function<a name="r_SUBSTRING"></a>
+# SUBSTRING function<a name="r_SUBSTRING"></a>
 
 Returns the characters extracted from a string based on the specified character position for a specified number of characters\. 
 
@@ -25,11 +25,11 @@ The position within the string to begin the extraction, starting at 1\. The *sta
  *number\_characters*   
 The number of characters to extract \(the length of the substring\)\. The *number\_characters* is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\. This number cannot be negative\.
 
-## Return Type<a name="r_SUBSTRING-return-type"></a>
+## Return type<a name="r_SUBSTRING-return-type"></a>
 
 VARCHAR
 
-## Usage Notes<a name="r_SUBSTRING_usage_notes"></a>
+## Usage notes<a name="r_SUBSTRING_usage_notes"></a>
 
 The following example returns a four\-character string beginning with the sixth character\. 
 

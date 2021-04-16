@@ -13,7 +13,7 @@ ST_GeomFromEWKB(ewkb_string)
  *ewkb\_string*   
 A value of data type `VARCHAR` that is a hexadecimal EWKB representation of a geometry\.
 
-## Return Type<a name="ST_GeomFromEWKB-function-return"></a>
+## Return type<a name="ST_GeomFromEWKB-function-return"></a>
 
 `GEOMETRY`
 

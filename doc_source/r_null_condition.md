@@ -1,4 +1,4 @@
-# Null Condition<a name="r_null_condition"></a>
+# Null condition<a name="r_null_condition"></a>
 
 The null condition tests for nulls, when a value is missing or unknown\. 
 

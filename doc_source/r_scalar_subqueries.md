@@ -1,4 +1,4 @@
-# Scalar Subqueries<a name="r_scalar_subqueries"></a>
+# Scalar subqueries<a name="r_scalar_subqueries"></a>
 
 A scalar subquery is a regular SELECT query in parentheses that returns exactly one value: one row with one column\. The query is executed and the returned value is used in the outer query\. If the subquery returns zero rows, the value of the subquery expression is null\. If it returns more than one row, Amazon Redshift returns an error\. The subquery can refer to variables from the parent query, which will act as constants during any one invocation of the subquery\.
 

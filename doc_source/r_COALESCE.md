@@ -2,4 +2,4 @@
 
 Synonym of the NVL expression\. 
 
-See [NVL Expression](r_NVL_function.md)\. 
+See [NVL expression](r_NVL_function.md)\. 

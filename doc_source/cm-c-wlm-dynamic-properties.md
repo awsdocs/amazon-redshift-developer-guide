@@ -1,4 +1,4 @@
-# WLM Dynamic and Static Configuration Properties<a name="cm-c-wlm-dynamic-properties"></a>
+# WLM dynamic and static configuration properties<a name="cm-c-wlm-dynamic-properties"></a>
 
 The WLM configuration properties are either dynamic or static\. You can apply dynamic properties to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. However, if you change dynamic and static properties at the same time, then you must reboot the cluster for all the property changes to take effect\. This is true whether the changed properties are dynamic or static\. 
 
@@ -29,5 +29,5 @@ When using manual WLM, if the timeout value is changed, the new value is applied
 When using automatic WLM, timeout is ignored\.
 
 **Topics**
-+ [WLM Dynamic Memory Allocation](cm-c-wlm-dynamic-memory-allocation.md)
-+ [Dynamic WLM Example](cm-c-wlm-dynamic-example.md)
++ [WLM dynamic memory allocation](cm-c-wlm-dynamic-memory-allocation.md)
++ [Dynamic WLM example](cm-c-wlm-dynamic-example.md)

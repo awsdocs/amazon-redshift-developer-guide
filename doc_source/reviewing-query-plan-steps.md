@@ -1,6 +1,6 @@
-# Reviewing Query Plan Steps<a name="reviewing-query-plan-steps"></a>
+# Reviewing query plan steps<a name="reviewing-query-plan-steps"></a>
 
-You can see the steps in a query plan by running the EXPLAIN command\. The following example shows an SQL query and explains the output\. Reading the query plan from the bottom up, you can see each of the logical operations used to perform the query\. For more information, see [Query Plan](c-the-query-plan.md)\.
+You can see the steps in a query plan by running the EXPLAIN command\. The following example shows an SQL query and explains the output\. Reading the query plan from the bottom up, you can see each of the logical operations used to perform the query\. For more information, see [Query plan](c-the-query-plan.md)\.
 
 ```
 explain
@@ -25,7 +25,7 @@ XN Merge  (cost=1002815366604.92..1002815366606.36 rows=576 width=27)
                                 ->  XN Seq Scan on event  (cost=0.00..87.98 rows=8798 width=21)
 ```
 
-As part of generating a query plan, the query optimizer breaks down the plan into streams, segments, and steps\. The query optimizer breaks the plan down to prepare for distributing the data and query workload to the compute nodes\. For more information about streams, segments, and steps, see [Query Planning and Execution Workflow](c-query-planning.md)\. 
+As part of generating a query plan, the query optimizer breaks down the plan into streams, segments, and steps\. The query optimizer breaks the plan down to prepare for distributing the data and query workload to the compute nodes\. For more information about streams, segments, and steps, see [Query planning and execution workflow](c-query-planning.md)\. 
 
 The following illustration shows the preceding query and associated query plan\. It displays how the query operations involved map to steps that Amazon Redshift uses to generate compiled code for the compute node slices\. Each query plan operation maps to multiple steps within the segments, and sometimes to multiple segments within the streams\.
 

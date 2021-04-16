@@ -1,4 +1,4 @@
-# Function Expressions<a name="r_function_expressions"></a>
+# Function expressions<a name="r_function_expressions"></a>
 
 ## Syntax<a name="r_function_expressions-syntax"></a>
 

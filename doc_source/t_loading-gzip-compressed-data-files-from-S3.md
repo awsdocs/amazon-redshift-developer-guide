@@ -1,4 +1,4 @@
-# Loading Compressed Data Files from Amazon S3<a name="t_loading-gzip-compressed-data-files-from-S3"></a>
+# Loading compressed data files from Amazon S3<a name="t_loading-gzip-compressed-data-files-from-S3"></a>
 
 To load data files that are compressed using gzip, lzop, or bzip2, include the corresponding option: GZIP, LZOP, or BZIP2\.
 

@@ -1,4 +1,4 @@
-# Viewing Distribution Styles<a name="viewing-distribution-styles"></a>
+# Viewing distribution styles<a name="viewing-distribution-styles"></a>
 
 To view the distribution style of a table, query the PG\_CLASS\_INFO view or the SVV\_TABLE\_INFO view\.
 
@@ -7,7 +7,7 @@ The RELEFFECTIVEDISTSTYLE column in PG\_CLASS\_INFO indicates the current distri
 The following table gives the distribution style for each value in RELEFFECTIVEDISTSTYLE column: 
 
 
-| RELEFFECTIVEDISTSTYLE | Current Distribution style | 
+| RELEFFECTIVEDISTSTYLE | Current distribution style | 
 | --- | --- | 
 | 0 | EVEN | 
 | 1 | KEY | 
@@ -20,19 +20,28 @@ The DISTSTYLE column in SVV\_TABLE\_INFO indicates the current distribution styl
 The following example creates four tables using the three distribution styles and automatic distribution, then queries SVV\_TABLE\_INFO to view the distribution styles\. 
 
 ```
-create table dist_key (col1 int)
+create table public.dist_key (col1 int)
 diststyle key distkey (col1);
 
-create table dist_even (col1 int)
+insert into public.dist_key values (1);
+
+create table public.dist_even (col1 int)
 diststyle even;
 
-create table dist_all (col1 int)
+insert into public.dist_even values (1);
+
+create table public.dist_all (col1 int)
 diststyle all;
 
-create table dist_auto (col1 int);
+insert into public.dist_all values (1);
+
+create table public.dist_auto (col1 int);
+
+insert into public.dist_auto values (1);
 
 select "schema", "table", diststyle from SVV_TABLE_INFO
 where "table" like 'dist%';
+
         schema   |    table        | diststyle
      ------------+-----------------+------------
       public     | dist_key        | KEY(col1)

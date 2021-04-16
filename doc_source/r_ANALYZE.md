@@ -16,7 +16,7 @@ VERBOSE
 A clause that returns progress information messages about the ANALYZE operation\. This option is useful when you don't specify a table\.
 
  *table\_name*   
-You can analyze specific tables, including temporary tables\. You can qualify the table with its schema name\. You can optionally specify a table\_name to analyze a single table\. You can't specify more than one *table\_name* with a single ANALYZE *table\_name* statement\. If you don't specify a *table\_name* value, all of the tables in the currently connected database are analyzed, including the persistent tables in the system catalog\. Amazon Redshift skips analyzing a table if the percentage of rows that have changed since the last ANALYZE is lower than the analyze threshold\. For more information, see [Analyze Threshold](#r_ANALYZE-threshold)\.  
+You can analyze specific tables, including temporary tables\. You can qualify the table with its schema name\. You can optionally specify a table\_name to analyze a single table\. You can't specify more than one *table\_name* with a single ANALYZE *table\_name* statement\. If you don't specify a *table\_name* value, all of the tables in the currently connected database are analyzed, including the persistent tables in the system catalog\. Amazon Redshift skips analyzing a table if the percentage of rows that have changed since the last ANALYZE is lower than the analyze threshold\. For more information, see [Analyze threshold](#r_ANALYZE-threshold)\.  
 You don't need to analyze Amazon Redshift system tables \(STL and STV tables\)\.
 
  *column\_name*   
@@ -28,9 +28,9 @@ A column is included in the set of predicate columns if any of the following is 
 + The column has been used in a query as a part of a filter, join condition, or group by clause\.
 + The column is a distribution key\.
 + The column is part of a sort key\.
-If no columns are marked as predicate columns, for example because the table has not yet been queried, all of the columns are analyzed even when PREDICATE COLUMNS is specified\. For more information about predicate columns, see [Analyzing Tables](t_Analyzing_tables.md)\.
+If no columns are marked as predicate columns, for example because the table has not yet been queried, all of the columns are analyzed even when PREDICATE COLUMNS is specified\. For more information about predicate columns, see [Analyzing tables](t_Analyzing_tables.md)\.
 
-## Usage Notes<a name="r_ANALYZE-usage-notes"></a>
+## Usage notes<a name="r_ANALYZE-usage-notes"></a>
 
 Amazon Redshift automatically runs ANALYZE on tables that you create with the following commands: 
 + CREATE TABLE AS
@@ -41,7 +41,7 @@ Amazon Redshift automatically runs ANALYZE on tables that you create with the fo
 
 You don't need to run the ANALYZE command on these tables when they are first created\. If you modify them, you should analyze them in the same way as other tables\.
 
-### Analyze Threshold<a name="r_ANALYZE-threshold"></a>
+### Analyze threshold<a name="r_ANALYZE-threshold"></a>
 
 To reduce processing time and improve overall system performance, Amazon Redshift skips ANALYZE for a table if the percentage of rows that have changed since the last ANALYZE command run is lower than the analyze threshold specified by the [analyze\_threshold\_percent](r_analyze_threshold_percent.md) parameter\. By default, `analyze_threshold_percent` is 10\. To change `analyze_threshold_percent` for the current session, execute the [SET](r_SET.md) command\. The following example changes `analyze_threshold_percent` to 20 percent\.
 
@@ -65,7 +65,7 @@ To analyze all tables even if no rows have changed, set `analyze_threshold_perce
 
 To view the results of ANALYZE operations, query the [STL\_ANALYZE](r_STL_ANALYZE.md) system table\. 
 
-For more information about analyzing tables, see [Analyzing Tables](t_Analyzing_tables.md)\.
+For more information about analyzing tables, see [Analyzing tables](t_Analyzing_tables.md)\.
 
 ## Examples<a name="r_ANALYZE-examples"></a>
 

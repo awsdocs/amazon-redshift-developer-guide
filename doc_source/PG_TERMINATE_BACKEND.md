@@ -13,11 +13,11 @@ pg_terminate_backend( pid )
 *pid*  
 The process ID of the session to be terminated\. Requires an integer value\.
 
-## Return Type<a name="PG_TERMINATE_BACKEND-return-type"></a>
+## Return type<a name="PG_TERMINATE_BACKEND-return-type"></a>
 
 None
 
-## Usage Notes<a name="PG_TERMINATE_BACKEND-usage-notes"></a>
+## Usage notes<a name="PG_TERMINATE_BACKEND-usage-notes"></a>
 
  If you are close to reaching the limit for concurrent connections, use PG\_TERMINATE\_BACKEND to terminate idle sessions and free up the connections\. For more information, see [Limits in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)\. 
 

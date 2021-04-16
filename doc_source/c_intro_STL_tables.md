@@ -1,10 +1,10 @@
-# STL Tables for Logging<a name="c_intro_STL_tables"></a>
+# STL views for logging<a name="c_intro_STL_tables"></a>
 
-STL system tables are generated from Amazon Redshift log files to provide a history of the system\.
+STL system views are generated from Amazon Redshift log files to provide a history of the system\.
 
-These files reside on every node in the data warehouse cluster\. The STL tables take the information from the logs and format them into usable tables for system administrators\.
+These files reside on every node in the data warehouse cluster\. The STL views take the information from the logs and format them into usable views for system administrators\.
 
-To manage disk space, the STL log tables only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
+To manage disk space, the STL log views only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
 
 **Topics**
 + [STL\_AGGR](r_STL_AGGR.md)
@@ -45,6 +45,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_S3CLIENT\_ERROR](r_STL_S3CLIENT_ERROR.md)
 + [STL\_SAVE](r_STL_SAVE.md)
 + [STL\_SCAN](r_STL_SCAN.md)
++ [STL\_SCHEMA\_QUOTA\_VIOLATIONS](r_STL_SCHEMA_QUOTA_VIOLATIONS.md)
 + [STL\_SESSIONS](r_STL_SESSIONS.md)
 + [STL\_SORT](r_STL_SORT.md)
 + [STL\_SSHCLIENT\_ERROR](r_STL_SSHCLIENT_ERROR.md)
@@ -53,6 +54,7 @@ To manage disk space, the STL log tables only retain approximately two to five d
 + [STL\_UNDONE](r_STL_UNDONE.md)
 + [STL\_UNIQUE](r_STL_UNIQUE.md)
 + [STL\_UNLOAD\_LOG](r_STL_UNLOAD_LOG.md)
++ [STL\_USAGE\_CONTROL](r_STL_USAGE_CONTROL.md)
 + [STL\_USERLOG](r_STL_USERLOG.md)
 + [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md)
 + [STL\_VACUUM](r_STL_VACUUM.md)

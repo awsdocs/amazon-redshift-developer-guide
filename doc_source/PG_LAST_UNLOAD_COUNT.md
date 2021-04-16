@@ -8,7 +8,7 @@ Returns the number of rows that were unloaded by the last UNLOAD command execute
 pg_last_unload_count()
 ```
 
-## Return Type<a name="PG_LAST_UNLOAD_COUNT-return-type"></a>
+## Return type<a name="PG_LAST_UNLOAD_COUNT-return-type"></a>
 
 Returns BIGINT\.
 

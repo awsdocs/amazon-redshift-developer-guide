@@ -1,4 +1,4 @@
-# HAVING Clause<a name="r_HAVING_clause"></a>
+# HAVING clause<a name="r_HAVING_clause"></a>
 
 The HAVING clause applies a condition to the intermediate grouped result set that a query returns\.
 
@@ -18,7 +18,7 @@ The HAVING condition is applied after all WHERE clause conditions are applied an
 
 The condition itself takes the same form as any WHERE clause condition\.
 
-## Usage Notes<a name="r_HAVING_clause_usage_notes"></a>
+## Usage notes<a name="r_HAVING_clause_usage_notes"></a>
 + Any column that is referenced in a HAVING clause condition must be either a grouping column or a column that refers to the result of an aggregate function\.
 + In a HAVING clause, you can't specify:
   + An alias that was defined in the select list\. You must repeat the original, unaliased expression\.

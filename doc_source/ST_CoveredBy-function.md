@@ -18,7 +18,7 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
  *geom2*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. 
 
-## Return Type<a name="ST_CoveredBy-function-return"></a>
+## Return type<a name="ST_CoveredBy-function-return"></a>
 
 `BOOLEAN`
 

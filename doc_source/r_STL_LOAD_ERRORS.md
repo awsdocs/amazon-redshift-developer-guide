@@ -2,17 +2,17 @@
 
 Displays the records of all Amazon Redshift load errors\.
 
-STL\_LOAD\_ERRORS contains a history of all Amazon Redshift load errors\. See [Load Error Reference](r_Load_Error_Reference.md) for a comprehensive list of possible load errors and explanations\.
+STL\_LOAD\_ERRORS contains a history of all Amazon Redshift load errors\. See [Load error reference](r_Load_Error_Reference.md) for a comprehensive list of possible load errors and explanations\.
 
 Query [STL\_LOADERROR\_DETAIL](r_STL_LOADERROR_DETAIL.md) for additional details, such as the exact data row and column where a parse error occurred, after you query STL\_LOAD\_ERRORS to find out general information about the error\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_LOAD_ERRORS-table-columns2"></a>
+## Table columns<a name="r_STL_LOAD_ERRORS-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_LOAD_ERRORS.html)
 
-## Sample Queries<a name="r_STL_LOAD_ERRORS-sample-queries2"></a>
+## Sample queries<a name="r_STL_LOAD_ERRORS-sample-queries2"></a>
 
 The following query joins STL\_LOAD\_ERRORS to STL\_LOADERROR\_DETAIL to view the details errors that occurred during the most recent load\.
 

@@ -1,4 +1,4 @@
-# Compute Node–Only Functions<a name="c_SQL_functions_compute_node_only"></a>
+# Compute node–only functions<a name="c_SQL_functions_compute_node_only"></a>
 
 Some Amazon Redshift queries must execute only on the compute nodes\. If a query references a user\-created table, the SQL runs on the compute nodes\.
 

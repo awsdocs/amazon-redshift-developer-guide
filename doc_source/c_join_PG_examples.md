@@ -1,8 +1,8 @@
-# Examples of Catalog Queries<a name="c_join_PG_examples"></a>
+# Examples of catalog queries<a name="c_join_PG_examples"></a>
 
 The following queries show a few of the ways in which you can query the catalog tables to get useful information about an Amazon Redshift database\.
 
-## View Table ID, Database, Schema, and Table Name<a name="c_join_PG_examples-view-tableid-db-schema-tablename"></a>
+## View table ID, database, schema, and table name<a name="c_join_PG_examples-view-tableid-db-schema-tablename"></a>
 
 The following view definition joins the STV\_TBL\_PERM system table with the PG\_CLASS, PG\_NAMESPACE, and PG\_DATABASE system catalog tables to return the table ID, database name, schema name, and table name\.
 
@@ -30,7 +30,7 @@ table_id | db_name   | schema_name | table_name
   117855 |       dev | public      | customer
 ```
 
-## List the Number of Columns per Amazon Redshift Table<a name="c_join_PG_examples-list-the-number-of-columns-per-amazon-redshift-table"></a>
+## List the number of columns per Amazon Redshift table<a name="c_join_PG_examples-list-the-number-of-columns-per-amazon-redshift-table"></a>
 
 The following query joins some catalog tables to find out how many columns each Amazon Redshift table contains\. Amazon Redshift table names are stored in both PG\_TABLES and STV\_TBL\_PERM; where possible, use PG\_TABLES to return Amazon Redshift table names\.
 
@@ -58,7 +58,9 @@ public  | venue    |        5
 (7 rows)
 ```
 
-## List the Schemas and Tables in a Database<a name="c_join_PG_examples-list-the-schemas-and-tables-in-a-database"></a>
+
+
+## List the schemas and tables in a database<a name="c_join_PG_examples-list-the-schemas-and-tables-in-a-database"></a>
 
 The following query joins STV\_TBL\_PERM to some PG tables to return a list of tables in the TICKIT database and their schema names \(NSPNAME column\)\. The query also returns the total number of rows in each table\. \(This query is helpful when multiple schemas in your system have the same table names\.\)
 
@@ -84,7 +86,7 @@ tickit  | public  | venue    |    202
 (7 rows)
 ```
 
-## List Table IDs, Data Types, Column Names, and Table Names<a name="c_join_PG_examples-list-table-ids-data-types-column-names-and-table-names"></a>
+## List table IDs, data types, column names, and table names<a name="c_join_PG_examples-list-table-ids-data-types-column-names-and-table-names"></a>
 
 The following query lists some information about each user table and its columns: the table ID, the table name, its column names, and the data type of each column:
 
@@ -109,7 +111,7 @@ attrelid |  rtrim   |    attname     |  typname
 ...
 ```
 
-## Count the Number of Data Blocks for Each Column in a Table<a name="c_join_PG_examples-count-the-number-of-data-blocks-for-each-column-in-a-table"></a>
+## Count the number of data blocks for each column in a table<a name="c_join_PG_examples-count-the-number-of-data-blocks-for-each-column-in-a-table"></a>
 
 The following query joins the STV\_BLOCKLIST table to PG\_CLASS to return storage information for the columns in the SALES table\.
 

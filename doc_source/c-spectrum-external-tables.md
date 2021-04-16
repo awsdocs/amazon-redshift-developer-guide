@@ -1,6 +1,6 @@
-# Creating External Tables for Amazon Redshift Spectrum<a name="c-spectrum-external-tables"></a>
+# Creating external tables for Amazon Redshift Spectrum<a name="c-spectrum-external-tables"></a>
 
-Amazon Redshift Spectrum uses external tables to query data that is stored in Amazon S3\. You can query an external table using the same SELECT syntax you use with other Amazon Redshift tables\. External tables are read\-only\. You can't write to an external table\.
+
 
 You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
 
@@ -26,9 +26,9 @@ grant temp on database spectrumdb to group spectrumusers;
 
 You can create an external table in Amazon Redshift, AWS Glue, Amazon Athena, or an Apache Hive metastore\. For more information, see [Getting Started Using AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/getting-started.html) in the *AWS Glue Developer Guide*, [Getting Started](https://docs.aws.amazon.com/athena/latest/ug/getting-started.html) in the *Amazon Athena User Guide*, or [Apache Hive](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hive.html) in the *Amazon EMR Developer Guide*\. 
 
-If your external table is defined in AWS Glue, Athena, or a Hive metastore, you first create an external schema that references the external database\. Then you can reference the external table in your SELECT statement by prefixing the table name with the schema name, without needing to create the table in Amazon Redshift\. For more information, see [Creating External Schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\. 
+If your external table is defined in AWS Glue, Athena, or a Hive metastore, you first create an external schema that references the external database\. Then you can reference the external table in your SELECT statement by prefixing the table name with the schema name, without needing to create the table in Amazon Redshift\. For more information, see [Creating external schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)\. 
 
-To allow Amazon Redshift to view tables in the AWS Glue Data Catalog, add `glue:GetTable` to the Amazon Redshift IAM role\. Otherwise you might get an error similar to:
+To allow Amazon Redshift to view tables in the AWS Glue Data Catalog, add `glue:GetTable` to the Amazon Redshift IAM role\. Otherwise you might get an error similar to the following\.
 
 ```
 RedshiftIamRoleSession is not authorized to perform: glue:GetTable on resource: *;
@@ -80,7 +80,7 @@ You can disable creation of pseudocolumns for a session by setting the `spectrum
 **Important**  
 Selecting `$size` or `$path` incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
 
-### Pseudocolumns Example<a name="c-spectrum-external-tables-pseudocolumns-example"></a>
+### Pseudocolumns example<a name="c-spectrum-external-tables-pseudocolumns-example"></a>
 
 The following example returns the total size of related data files for an external table\.
 
@@ -95,7 +95,7 @@ s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  144
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/ |  1644
 ```
 
-## Partitioning Redshift Spectrum External Tables<a name="c-spectrum-external-tables-partitioning"></a>
+## Partitioning Redshift Spectrum external tables<a name="c-spectrum-external-tables-partitioning"></a>
 
 When you partition your data, you can restrict the amount of data that Redshift Spectrum scans by filtering on the partition key\. You can partition your data by any key\. 
 
@@ -107,7 +107,7 @@ The following procedure describes how to partition your data\.
 
 1. Store your data in folders in Amazon S3 according to your partition key\. 
 
-   Create one folder for each partition value and name the folder with the partition key and value\. For example, if you partition by date, you might have folders named `saledate=2017-04-30`, `saledate=2017-04-30`, and so on\. Redshift Spectrum scans the files in the partition folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\. 
+   Create one folder for each partition value and name the folder with the partition key and value\. For example, if you partition by date, you might have folders named `saledate=2017-04-01`, `saledate=2017-04-02`, and so on\. Redshift Spectrum scans the files in the partition folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\. 
 
 1. Create an external table and specify the partition key in the PARTITIONED BY clause\. 
 
@@ -127,7 +127,7 @@ The following procedure describes how to partition your data\.
 **Note**  
 If you use the AWS Glue catalog, you can add up to 100 partitions using a single ALTER TABLE statement\.
 
-### Partitioning Data Examples<a name="c-spectrum-external-tables-partitioning-example"></a>
+### Partitioning data examples<a name="c-spectrum-external-tables-partitioning-example"></a>
 
 In this example, you create an external table that is partitioned by a single partition key and an external table that is partitioned by two partition keys\.
 
@@ -153,7 +153,7 @@ iam_role 'arn:aws:iam::123456789012:role/myspectrumrole'
 create external database if not exists;
 ```
 
-#### Example 1: Partitioning with a Single Partition Key<a name="c-spectrum-external-tables-single-partition-example"></a>
+#### Example 1: Partitioning with a single partition key<a name="c-spectrum-external-tables-single-partition-example"></a>
 
 In the following example, you create an external table that is partitioned by month\.
 
@@ -230,7 +230,7 @@ spectrum   | sales_part | ["2008-02"] | s3://awssampledbuswest2/tickit/spectrum/
 spectrum   | sales_part | ["2008-03"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03
 ```
 
-#### Example 2: Partitioning with a Multiple Partition Key<a name="c-spectrum-external-tables-multi-partition-example"></a>
+#### Example 2: Partitioning with a multiple partition key<a name="c-spectrum-external-tables-multi-partition-example"></a>
 
 To create an external table partitioned by `date` and `eventid`, run the following command\.
 
@@ -308,7 +308,7 @@ salesmonth | eventname       | sum
 2008-02    | Die Walkure     |  534.00
 ```
 
-## Mapping External Table Columns to ORC Columns<a name="c-spectrum-column-mapping-orc"></a>
+## Mapping external table columns to ORC columns<a name="c-spectrum-column-mapping-orc"></a>
 
 You use Amazon Redshift Spectrum external tables to query data from files in ORC format\. Optimized row columnar \(ORC\) format is a columnar storage file format that supports nested data structures\. For more information about querying nested data, see [Querying Nested Data with Amazon Redshift Spectrum](tutorial-query-nested-data.md#tutorial-nested-data-overview)\. 
 
@@ -318,7 +318,7 @@ When you create an external table that references data in an ORC file, you map e
 
 Mapping by column name is the default\. 
 
-### Mapping by Position<a name="orc-mapping-by-position"></a>
+### Mapping by position<a name="orc-mapping-by-position"></a>
 
 With position mapping, the first column defined in the external table maps to the first column in the ORC data file, the second to the second, and so on\. Mapping by position requires that the order of columns in the external table and in the ORC file match\. If the order of the columns doesn't match, then you can map the columns by name\. 
 
@@ -375,7 +375,7 @@ In this example, you can map each column in the external table to a column in OR
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-tables.html)
 
-### Mapping by Column Name<a name="orc-mapping-by-name"></a>
+### Mapping by column name<a name="orc-mapping-by-name"></a>
 
 Using name mapping, you map columns in an external table to named columns in ORC files on the same level, with the same name\. 
 
@@ -400,3 +400,118 @@ Using position mapping, Redshift Spectrum attempts the following mapping\.
 When you query a table with the preceding position mapping, the SELECT command fails on type validation because the structures are different\. 
 
 You can map the same external table to both file structures shown in the previous examples by using column name mapping\. The table columns `int_col`, `float_col`, and `nested_col` map by column name to columns with the same names in the ORC file\. The column named `nested_col` in the external table is a `struct` column with subcolumns named `map_col` and `int_col`\. The subcolumns also map correctly to the corresponding columns in the ORC file by column name\. 
+
+## Creating external tables for data managed in Apache Hudi<a name="c-spectrum-column-mapping-hudi"></a>
+
+To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/concepts.html#copy-on-write-table) in the open source Apache Hudi documentation\. 
+
+When you create an external table that references data in Hudi CoW format, you map each column in the external table to a column in the Hudi data\. Mapping is done by column\. 
+
+The data definition language \(DDL\) statements for partitioned and unpartitioned Hudi tables are similar to those for other Apache Parquet file formats\. For Hudi tables, you define `INPUTFORMAT` as `org.apache.hudi.hadoop.HoodieParquetInputFormat`\. The `LOCATION` parameter must point to the Hudi table base folder that contains the `.hoodie` folder, which is required to establish the Hudi commit timeline\. In some cases, a SELECT operation on a Hudi table might fail with the message No valid Hudi commit timeline found\. If so, check if the `.hoodie` folder is in the correct location and contains a valid Hudi commit timeline\. 
+
+**Note**  
+Apache Hudi format is only supported when you use an AWS Glue Data Catalog\. It's not supported when you use an Apache Hive metastore as the external catalog\. 
+
+The DDL to define an unpartitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hudi.hadoop.HoodieParquetInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
+```
+
+The DDL to define a partitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+PARTITIONED BY(pcolumn1 pcolumn1-type[,...])
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hudi.hadoop.HoodieParquetInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
+```
+
+To add partitions to a partitioned Hudi table, run an ALTER TABLE ADD PARTITION command where the `LOCATION` parameter points to the Amazon S3 subfolder with the files that belong to the partition\.
+
+The DDL to add partitions has the following format\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION 's3://s3-bucket/prefix/partition-path'
+```
+
+## Creating external tables for data managed in Delta Lake<a name="c-spectrum-column-mapping-delta"></a>
+
+To query data in Delta Lake tables, you can use Amazon Redshift Spectrum external tables\. 
+
+To access a Delta Lake table from Redshift Spectrum, generate a manifest before the query\. A Delta Lake *manifest* contains a listing of files that make up a consistent snapshot of the Delta Lake table\. In a partitioned table, there is one manifest per partition\. A Delta Lake table is a collection of Apache Parquet files stored in Amazon S3\.  For more information, see [Delta Lake](https://delta.io) in the open source Delta Lake documentation\. 
+
+When you create an external table that references data in Delta Lake tables, you map each column in the external table to a column in the Delta Lake table\. Mapping is done by column name\. 
+
+The DDL for partitioned and unpartitioned Delta Lake tables is similar to that for other Apache Parquet file formats\. For Delta Lake tables, you define `INPUTFORMAT` as `org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat` and `OUTPUTFORMAT` as `org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat`\. The `LOCATION` parameter must point to the manifest folder in the table base folder\. If a SELECT operation on a Delta Lake table fails, for possible reasons see [Limitations and troubleshooting for Delta Lake tables](#c-spectrum-column-mapping-delta-limitations)\. 
+
+The DDL to define an unpartitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://s3-bucket/prefix/_symlink_format_manifest'
+```
+
+The DDL to define a partitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+PARTITIONED BY(pcolumn1 pcolumn1-type[,...])
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://s3-bucket>/prefix/_symlink_format_manifest'
+```
+
+To add partitions to a partitioned Delta Lake table, run an ALTER TABLE ADD PARTITION command where the `LOCATION` parameter points to the Amazon S3 subfolder that contains the manifest for the partition\.
+
+The DDL to add partitions has the following format\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION
+'s3://s3-bucket/prefix/_symlink_format_manifest/partition-path'
+```
+
+Or run DDL that points directly to the Delta Lake manifest file\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION
+'s3://s3-bucket/prefix/_symlink_format_manifest/partition-path/manifest'
+```
+
+### Limitations and troubleshooting for Delta Lake tables<a name="c-spectrum-column-mapping-delta-limitations"></a>
+
+Consider the following when querying Delta Lake tables from Redshift Spectrum:
++ If a manifest points to a snapshot or partition that no longer exists, queries fail until a new valid manifest has been generated\. For example, this might result from a VACUUM operation on the underlying table,
++ Delta Lake manifests only provide partition\-level consistency\. 
+
+The following table explains some potential reasons for certain errors when you query a Delta Lake table\. 
+
+
+| Error message | Possible reason | 
+| --- | --- | 
+| Empty Delta Lake manifests are not valid\. | The manifest file is empty\.  | 
+| Delta Lake manifest in bucket *s3\-bucket\-1* cannot contain entries in bucket *s3\-bucket\-2*\. | The manifest entries point to files in a different Amazon S3 bucket than the specified one\.  | 
+| Delta Lake files are expected to be in the same folder\. | The manifest entries point to files that have a different Amazon S3 prefix than the specified one\. | 
+| File *filename* listed in Delta Lake manifest *manifest\-path* was not found\. | A file listed in the manifest wasn't found in Amazon S3\.  | 
+| Error fetching Delta Lake manifest\. | The manifest wasn't found in Amazon S3\.  | 
+| Invalid S3 Path\. | An entry in the manifest file isn't a valid Amazon S3 path, or the manifest file has been corrupted\.  | 

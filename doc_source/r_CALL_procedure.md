@@ -16,15 +16,15 @@ The name of the procedure to run\.
  *argument*   
 The value of the input argument\. This parameter can also be a function name, for example `pg_last_query_id()`\. You can't use queries as CALL arguments\. 
 
-## Usage Notes<a name="r_CALL_procedure-usage-notes"></a>
+## Usage notes<a name="r_CALL_procedure-usage-notes"></a>
 
 Amazon Redshift stored procedures support nested and recursive calls, as described following\. In addition, make sure your driver support is up\-to\-date, also described following\.
 
 **Topics**
-+ [Nested Calls](#r_CALL_procedure-nested-calls)
-+ [Driver Support](#r_CALL_procedure-driver-support)
++ [Nested calls](#r_CALL_procedure-nested-calls)
++ [Driver support](#r_CALL_procedure-driver-support)
 
-### Nested Calls<a name="r_CALL_procedure-nested-calls"></a>
+### Nested calls<a name="r_CALL_procedure-nested-calls"></a>
 
 Amazon Redshift stored procedures support nested and recursive calls\. The maximum number of nesting levels allowed is 16\. Nested calls can encapsulate business logic into smaller procedures, which can be shared by multiple callers\. 
 
@@ -65,7 +65,7 @@ SELECT * from test_tbl;
 (1 row)
 ```
 
-### Driver Support<a name="r_CALL_procedure-driver-support"></a>
+### Driver support<a name="r_CALL_procedure-driver-support"></a>
 
 We recommend that you upgrade your Java Database Connectivity \(JDBC\) and Open Database Connectivity \(ODBC\) drivers to the latest version that has support for Amazon Redshift stored procedures\. 
 

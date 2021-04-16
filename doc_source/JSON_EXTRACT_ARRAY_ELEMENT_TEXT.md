@@ -1,8 +1,8 @@
-# JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT Function<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT"></a>
+# JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT function<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT"></a>
 
 JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT returns a JSON array element in the outermost array of a JSON string, using a zero\-based index\. The first element in an array is at position 0\. If the index is negative or out of bound, JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT returns empty string\. If the *null\_if\_invalid* argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
 
-For more information, see [JSON Functions](json-functions.md)\. 
+For more information, see [JSON functions](json-functions.md)\. 
 
 ## Syntax<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT-synopsis"></a>
 
@@ -21,13 +21,13 @@ An integer representing the index of the array element to be returned, using a z
 *null\_if\_invalid*  
 A Boolean value that specifies whether to return NULL if the input JSON string is invalid instead of returning an error\. To return NULL if the JSON is invalid, specify `true` \(`t`\)\. To return an error if the JSON is invalid, specify `false` \(`f`\)\. The default is `false`\.
 
-## Return Type<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT-return"></a>
+## Return type<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT-return"></a>
 
 A VARCHAR string representing the JSON array element referenced by *pos*\.
 
 ## Example<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT-examples"></a>
 
-The following example returns array element at position 2: 
+The following example returns array element at position 2, which is the third element of a zero\-based array index: 
 
 ```
 select json_extract_array_element_text('[111,112,113]', 2);

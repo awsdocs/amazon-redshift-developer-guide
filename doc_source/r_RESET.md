@@ -13,7 +13,7 @@ RESET { parameter_name | ALL }
 ## Parameters<a name="r_RESET-parameters"></a>
 
  *parameter\_name*   
-Name of the parameter to reset\. See [Modifying the Server Configuration](t_Modifying_the_default_settings.md) for more documentation about parameters\.
+Name of the parameter to reset\. See [Modifying the server configuration](t_Modifying_the_default_settings.md) for more documentation about parameters\.
 
 ALL   
 Resets all runtime parameters\.

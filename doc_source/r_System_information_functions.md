@@ -1,16 +1,23 @@
-# System Information Functions<a name="r_System_information_functions"></a>
+# System information functions<a name="r_System_information_functions"></a>
+
+Amazon Redshift supports numerous system information functions\.
 
 **Topics**
++ [CURRENT\_AWS\_ACCOUNT](r_CURRENT_AWS_ACCOUNT.md)
 + [CURRENT\_DATABASE](r_CURRENT_DATABASE.md)
++ [CURRENT\_NAMESPACE](r_CURRENT_NAMESPACE.md)
 + [CURRENT\_SCHEMA](r_CURRENT_SCHEMA.md)
 + [CURRENT\_SCHEMAS](r_CURRENT_SCHEMAS.md)
 + [CURRENT\_USER](r_CURRENT_USER.md)
 + [CURRENT\_USER\_ID](r_CURRENT_USER_ID.md)
++ [HAS\_ASSUMEROLE\_PRIVILEGE](r_HAS_ASSUMEROLE_PRIVILEGE.md)
 + [HAS\_DATABASE\_PRIVILEGE](r_HAS_DATABASE_PRIVILEGE.md)
 + [HAS\_SCHEMA\_PRIVILEGE](r_HAS_SCHEMA_PRIVILEGE.md)
 + [HAS\_TABLE\_PRIVILEGE](r_HAS_TABLE_PRIVILEGE.md)
 + [PG\_BACKEND\_PID](PG_BACKEND_PID.md)
 + [PG\_GET\_COLS](PG_GET_COLS.md)
++ [PG\_GET\_GRANTEE\_BY\_IAM\_ROLE](PG_GET_GRANTEE_BY_IAMROLE.md)
++ [PG\_GET\_IAM\_ROLE\_BY\_USER](PG_GET_IAM_ROLE_BY_USER.md)
 + [PG\_GET\_LATE\_BINDING\_VIEW\_COLS](PG_GET_LATE_BINDING_VIEW_COLS.md)
 + [PG\_LAST\_COPY\_COUNT](PG_LAST_COPY_COUNT.md)
 + [PG\_LAST\_COPY\_ID](PG_LAST_COPY_ID.md)
@@ -21,5 +28,3 @@
 + [SLICE\_NUM Function](r_SLICE_NUM.md)
 + [USER](r_USER.md)
 + [VERSION](r_VERSION.md)
-
-Amazon Redshift supports numerous system information functions\.

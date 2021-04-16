@@ -1,4 +1,4 @@
-# Step 2: Add the Amazon Redshift Cluster Public Key to the Host's Authorized Keys File<a name="load-from-host-steps-add-key-to-host"></a>
+# Step 2: Add the Amazon Redshift cluster public key to the host's authorized keys file<a name="load-from-host-steps-add-key-to-host"></a>
 
 You add the cluster public key to each host's authorized keys file so that the host will recognize Amazon Redshift and accept the SSH connection\. 
 

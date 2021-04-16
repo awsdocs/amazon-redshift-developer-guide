@@ -1,4 +1,4 @@
-# Designating Distribution Styles<a name="t_designating_distribution_styles"></a>
+# Designating distribution styles<a name="t_designating_distribution_styles"></a>
 
  The considerations and recommendations for designating distribution styles in this section use a star schema as an example\. Your database design might be based on a star schema, some variant of a star schema, or an entirely different schema\. Amazon Redshift is designed to work effectively with whatever schema design you choose\. The principles in this section can be applied to any design schema\. 
 
@@ -8,7 +8,7 @@
 
 1.  **Distribute the fact table and its largest dimension table on their common columns\.** 
 
-   Choose the largest dimension based on the size of dataset that participates in the most common join, not just the size of the table\. If a table is commonly filtered, using a WHERE clause, only a portion of its rows participate in the join\. Such a table has less impact on redistribution than a smaller table that contributes more data\. Designate both the dimension table's primary key and the fact table's corresponding foreign key as DISTKEY\. If multiple tables use the same distribution key, they will also be collocated with the fact table\. Your fact table can have only one distribution key\. Any tables that join on another key will not be collocated with the fact table\. 
+   Choose the largest dimension based on the size of dataset that participates in the most common join, not just the size of the table\. If a table is commonly filtered, using a WHERE clause, only a portion of its rows participate in the join\. Such a table has less impact on redistribution than a smaller table that contributes more data\. Designate both the dimension table's primary key and the fact table's corresponding foreign key as DISTKEY\. If multiple tables use the same distribution key, they are also collocated with the fact table\. Your fact table can have only one distribution key\. Any tables that join on another key isn't collocated with the fact table\. 
 
 1.  **Designate distribution keys for the other dimension tables\.** 
 
@@ -23,5 +23,3 @@
    If a table is largely denormalized and does not participate in joins, or if you don't have a clear choice for another distribution style, use EVEN distribution\. 
 
 To let Amazon Redshift choose the appropriate distribution style, don't explicitly specify a distribution style\.
-
- You cannot change the distribution style of a table after it is created\. To use a different distribution style, you can recreate the table and populate the new table with a deep copy\. For more information, see [Performing a Deep Copy](performing-a-deep-copy.md)\. 

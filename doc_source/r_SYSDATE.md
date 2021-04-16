@@ -1,4 +1,4 @@
-# SYSDATE Function<a name="r_SYSDATE"></a>
+# SYSDATE function<a name="r_SYSDATE"></a>
 
 SYSDATE returns the current date and time in the current session time zone \(UTC by default\)\. 
 
@@ -13,13 +13,13 @@ SYSDATE
 
 This function requires no arguments\. 
 
-## Return Type<a name="r_SYSDATE-return-type"></a>
+## Return type<a name="r_SYSDATE-return-type"></a>
 
 TIMESTAMP
 
 ## Examples<a name="r_SYSDATE-examples"></a>
 
-The following example uses the SYSDATE function to return the full time stamp for the current date: 
+The following example uses the SYSDATE function to return the full timestamp for the current date\.
 
 ```
 select sysdate;
@@ -30,7 +30,7 @@ timestamp
 (1 row)
 ```
 
-The following example uses the SYSDATE function inside the TRUNC function to return the current date without the time: 
+The following example uses the SYSDATE function inside the TRUNC function to return the current date without the time\.
 
 ```
 select trunc(sysdate);
@@ -41,7 +41,7 @@ trunc
 (1 row)
 ```
 
-The following query returns sales information for dates that fall between the date when the query is issued and whatever date is 120 days earlier: 
+The following query returns sales information for dates that fall between the date when the query is issued and whatever date is 120 days earlier\.
 
 ```
 select salesid, pricepaid, trunc(saletime) as saletime, trunc(sysdate) as now

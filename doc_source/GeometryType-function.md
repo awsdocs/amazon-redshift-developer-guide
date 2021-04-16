@@ -13,7 +13,7 @@ GeometryType(geom)
  *geom*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\.
 
-## Return Type<a name="GeometryType-function-return"></a>
+## Return type<a name="GeometryType-function-return"></a>
 
 `VARCHAR` representing the subtype of *geom*\. 
 
@@ -22,7 +22,7 @@ If *geom* is null, then null is returned\.
 The values returned are as follows\.
 
 
-| Returned String Value | Geometry Subtype | 
+| Returned string value | Geometry subtype | 
 | --- | --- | 
 | `POINT` | Returned if *geom* is a `POINT` subtype  | 
 | `LINESTRING` | Returned if *geom* is a `LINESTRING` subtype  | 

@@ -1,4 +1,4 @@
-# Step 4: Create the Sample Tables<a name="tutorial-loading-data-create-tables"></a>
+# Step 4: Create the sample tables<a name="tutorial-loading-data-create-tables"></a>
 
 For this tutorial, you use a set of five tables based on the Star Schema Benchmark \(SSB\) schema\. The following diagram shows the SSB data model\. 
 
@@ -99,6 +99,6 @@ The SSB tables might already exist in the current database\. If so, drop the tab
    );
    ```
 
-## Next Step<a name="tutorial-loading-next-step5"></a>
+## Next step<a name="tutorial-loading-next-step5"></a>
 
-[Step 5: Run the COPY Commands](tutorial-loading-run-copy.md)
+[Step 5: Run the COPY commands](tutorial-loading-run-copy.md)

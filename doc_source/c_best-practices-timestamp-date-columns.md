@@ -1,3 +1,3 @@
-# Use Date/Time Data Types for Date Columns<a name="c_best-practices-timestamp-date-columns"></a>
+# Use date/time data types for date columns<a name="c_best-practices-timestamp-date-columns"></a>
 
-Amazon Redshift stores DATE and TIMESTAMP data more efficiently than CHAR or VARCHAR, which results in better query performance\. Use the DATE or TIMESTAMP data type, depending on the resolution you need, rather than a character type when storing date/time information\. For more information, see [Datetime Types](r_Datetime_types.md)\.
+Amazon Redshift stores DATE and TIMESTAMP data more efficiently than CHAR or VARCHAR, which results in better query performance\. Use the DATE or TIMESTAMP data type, depending on the resolution you need, rather than a character type when storing date/time information\. For more information, see [Datetime types](r_Datetime_types.md)\.

@@ -1,4 +1,4 @@
-# AT TIME ZONE Function<a name="r_AT_TIME_ZONE"></a>
+# AT TIME ZONE function<a name="r_AT_TIME_ZONE"></a>
 
 AT TIME ZONE specifies which time zone to use with a TIMESTAMP or TIMESTAMPTZ expression\.
 
@@ -22,15 +22,15 @@ select pg_timezone_names();
 ```
 select pg_timezone_abbrevs();
 ```
- For more information and examples, see [Time Zone Usage Notes](CONVERT_TIMEZONE.md#CONVERT_TIMEZONE-usage-notes)\.
+ For more information and examples, see [Time zone usage notes](CONVERT_TIMEZONE.md#CONVERT_TIMEZONE-usage-notes)\.
 
-## Return Type<a name="r_AT_TIME_ZONE-return-type"></a>
+## Return type<a name="r_AT_TIME_ZONE-return-type"></a>
 
 TIMESTAMPTZ when used with a TIMESTAMP expression\. TIMESTAMP when used with a TIMESTAMPTZ expression\. 
 
 ## Examples<a name="r_AT_TIME_ZONE-examples"></a>
 
-The following example converts a time stamp value without time zone and interprets it as MST time \(UTC–7\), which is then converted to PST \(UTC–8\) for display\.
+The following example converts a timestamp value without time zone and interprets it as MST time \(UTC–7\), which is then converted to PST \(UTC–8\) for display\.
 
 ```
 SELECT TIMESTAMP '2001-02-16 20:38:40' AT TIME ZONE 'MST';
@@ -40,7 +40,7 @@ SELECT TIMESTAMP '2001-02-16 20:38:40' AT TIME ZONE 'MST';
 '2001-02-16 19:38:40-08'
 ```
 
-The following example takes an input time stamp with a time zone value where the specified time zone is UTC\-5 \(EST\) and converts it to MST \(UTC\-7\)\. 
+The following example takes an input timestamp with a time zone value where the specified time zone is UTC\-5 \(EST\) and converts it to MST \(UTC\-7\)\. 
 
 ```
 SELECT TIMESTAMP WITH TIME ZONE '2001-02-16 20:38:40-05' AT TIME ZONE 'MST';

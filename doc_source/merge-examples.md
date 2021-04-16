@@ -1,10 +1,10 @@
-# Merge Examples<a name="merge-examples"></a>
+# Merge examples<a name="merge-examples"></a>
 
 The following examples perform a merge to update the SALES table\. The first example uses the simpler method of deleting from the target table and then inserting all of the rows from the staging table\. The second example requires updating on select columns in the target table, so it includes an extra update step\. 
 
 **Sample merge data source**
 
-The examples in this section need a sample data source that includes both updates and inserts\. For the examples, we will create a sample table named SALES\_UPDATE that uses data from the SALES table\. We’ll populate the new table with random data that represents new sales activity for December\. We will use the SALES\_UPDATE sample table to create the staging table in the examples that follow\. 
+The examples in this section need a sample data source that includes both updates and inserts\. For the examples, we will create a sample table named SALES\_UPDATE that uses data from the SALES table\. We'll populate the new table with random data that represents new sales activity for December\. We will use the SALES\_UPDATE sample table to create the staging table in the examples that follow\. 
 
 ```
 -- Create a sample table as a copy of the SALES table

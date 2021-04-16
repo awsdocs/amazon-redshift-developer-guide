@@ -1,6 +1,6 @@
-# Multibyte Character Load Errors<a name="multi-byte-character-load-errors"></a>
+# Multibyte character load errors<a name="multi-byte-character-load-errors"></a>
 
-Columns with a CHAR data type only accept single\-byte UTF\-8 characters, up to byte value 127, or 7F hex, which is also the ASCII character set\. VARCHAR columns accept multibyte UTF\-8 characters, to a maximum of four bytes\. For more information, see [Character Types](r_Character_types.md)\. 
+Columns with a CHAR data type only accept single\-byte UTF\-8 characters, up to byte value 127, or 7F hex, which is also the ASCII character set\. VARCHAR columns accept multibyte UTF\-8 characters, to a maximum of four bytes\. For more information, see [Character types](r_Character_types.md)\. 
 
 If a line in your load data contains a character that is invalid for the column data type, COPY returns an error and logs a row in the STL\_LOAD\_ERRORS system log table with error number 1220\. The ERR\_REASON field includes the byte sequence, in hex, for the invalid character\. 
 

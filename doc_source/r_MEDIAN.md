@@ -1,4 +1,4 @@
-# MEDIAN Function<a name="r_MEDIAN"></a>
+# MEDIAN function<a name="r_MEDIAN"></a>
 
 Calculates the median value for the range of values\. NULL values in the range are ignored\.
 
@@ -19,13 +19,13 @@ MEDIAN ( median_expression )
  *median\_expression*   
 The target column or expression that the function operates on\.
 
-## Data Types<a name="r_MEDIAN-data-types"></a>
+## Data types<a name="r_MEDIAN-data-types"></a>
 
 The return type is determined by the data type of *median\_expression*\. The following table shows the return type for each *median\_expression* data type\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_MEDIAN.html)
 
-## Usage Notes<a name="w6aac49c11c13c27c17"></a>
+## Usage notes<a name="r_MEDIAN-data-type-usage-notes"></a>
 
 If the *median\_expression* argument is a DECIMAL data type defined with the maximum precision of 38 digits, it is possible that MEDIAN will return either an inaccurate result or an error\. If the return value of the MEDIAN function exceeds 38 digits, the result is truncated to fit, which causes a loss of precision\. If, during interpolation, an intermediate result exceeds the maximum precision, a numeric overflow occurs and the function returns an error\. To avoid these conditions, we recommend either using a data type with lower precision or casting the *median\_expression* argument to a lower precision\. 
 

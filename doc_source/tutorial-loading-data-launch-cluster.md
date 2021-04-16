@@ -1,16 +1,16 @@
-# Step 1: Create a Cluster<a name="tutorial-loading-data-launch-cluster"></a>
+# Step 1: Create a cluster<a name="tutorial-loading-data-launch-cluster"></a>
 
 If you already have a cluster that you want to use, you can skip this step\. 
 
 For the exercises in this tutorial, use a four\-node cluster\. 
 
-## New Console<a name="tutorial-loading-data-newconsole"></a>
+## New console<a name="tutorial-loading-data-newconsole"></a>
 
 **To create a cluster**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 **Important**  
-If you use IAM user credentials, make sure that you have the necessary permissions to perform the cluster operations\. For more information, see [Controlling Access to IAM Users](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) in the *Amazon Redshift Cluster Management Guide*\.
+If you use IAM user credentials, make sure that you have the necessary permissions to perform the cluster operations\. For more information, see [Controlling access to IAM users](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) in the *Amazon Redshift Cluster Management Guide*\.
 
 1. At top right, choose the AWS Region in which you want to create the cluster\. For the purposes of this tutorial, choose **US West \(Oregon\)**\.
 
@@ -24,7 +24,7 @@ If you use IAM user credentials, make sure that you have the necessary permissio
 
 1. Choose **Create cluster**\. 
 
-## Original Console<a name="tutorial-loading-data-originalconsole"></a>
+## Original console<a name="tutorial-loading-data-originalconsole"></a>
 
 Follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but choose **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
 
@@ -32,6 +32,6 @@ Follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.co
 
 Follow the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) steps to connect to your cluster from a SQL client and test a connection\. You don't need to complete the remaining Getting Started steps to create tables, upload data, and try example queries\. 
 
-## Next Step<a name="tutorial-loading-next-step2"></a>
+## Next step<a name="tutorial-loading-next-step2"></a>
 
-[Step 2: Download the Data Files](tutorial-loading-data-download-files.md)
+[Step 2: Download the data files](tutorial-loading-data-download-files.md)

@@ -6,13 +6,13 @@ The SVL\_QUERY\_QUEUE\_INFO view filters queries executed by the system and show
 
 The SVL\_QUERY\_QUEUE\_INFO view summarizes information from the [STL\_QUERY](r_STL_QUERY.md), [STL\_WLM\_QUERY](r_STL_WLM_QUERY.md), and [STL\_COMMIT\_STATS](r_STL_COMMIT_STATS.md) system tables\. 
 
-This view is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_QUERY_QUEUE_INFO-table-columns"></a>
+## Table columns<a name="r_SVL_QUERY_QUEUE_INFO-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_QUEUE_INFO.html)
 
-## Sample Queries<a name="r_SVL_QUERY_QUEUE_INFO-sample-queries"></a>
+## Sample queries<a name="r_SVL_QUERY_QUEUE_INFO-sample-queries"></a>
 
 The following example shows the time that queries spent in WLM queues\.
 

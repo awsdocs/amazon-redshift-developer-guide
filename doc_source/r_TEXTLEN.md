@@ -1,5 +1,5 @@
-# TEXTLEN Function<a name="r_TEXTLEN"></a>
+# TEXTLEN function<a name="r_TEXTLEN"></a>
 
 Synonym of LEN function\. 
 
-See [LEN Function](r_LEN.md)\. 
+See [LEN function](r_LEN.md)\. 

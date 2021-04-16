@@ -1,8 +1,8 @@
-# TRANSLATE Function<a name="r_TRANSLATE"></a>
+# TRANSLATE function<a name="r_TRANSLATE"></a>
 
 For a given expression, replaces all occurrences of specified characters with specified substitutes\. Existing characters are mapped to replacement characters by their positions in the *characters\_to\_replace* and *characters\_to\_substitute* arguments\. If more characters are specified in the *characters\_to\_replace* argument than in the *characters\_to\_substitute* argument, the extra characters from the *characters\_to\_replace* argument are omitted in the return value\.
 
-TRANSLATE is similar to the [REPLACE Function](r_REPLACE.md) and the [REGEXP\_REPLACE Function](REGEXP_REPLACE.md), except that REPLACE substitutes one entire string with another string and REGEXP\_REPLACE lets you search a string for a regular expression pattern, while TRANSLATE makes multiple single\-character substitutions\.
+TRANSLATE is similar to the [REPLACE function](r_REPLACE.md) and the [REGEXP\_REPLACE function](REGEXP_REPLACE.md), except that REPLACE substitutes one entire string with another string and REGEXP\_REPLACE lets you search a string for a regular expression pattern, while TRANSLATE makes multiple single\-character substitutions\.
 
 If any argument is null, the return is NULL\.
 
@@ -23,7 +23,7 @@ A string containing the characters to be replaced\.
  *characters\_to\_substitute*   
 A string containing the characters to substitute\.
 
-## Return Type<a name="r_TRANSLATE-return-type"></a>
+## Return type<a name="r_TRANSLATE-return-type"></a>
 
 VARCHAR
 

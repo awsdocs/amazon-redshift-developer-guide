@@ -1,6 +1,6 @@
-# REGEXP\_COUNT Function<a name="REGEXP_COUNT"></a>
+# REGEXP\_COUNT function<a name="REGEXP_COUNT"></a>
 
-Searches a string for a regular expression pattern and returns an integer that indicates the number of times the pattern occurs in the string\. If no match is found, then the function returns 0\. For more information about regular expressions, see [POSIX Operators](pattern-matching-conditions-posix.md)\.
+Searches a string for a regular expression pattern and returns an integer that indicates the number of times the pattern occurs in the string\. If no match is found, then the function returns 0\. For more information about regular expressions, see [POSIX operators](pattern-matching-conditions-posix.md)\.
 
 ## Syntax<a name="REGEXP_COUNT-synopsis"></a>
 
@@ -19,7 +19,7 @@ A string literal that represents a SQL standard regular expression pattern\.
  *position*   
 A positive integer that indicates the position within *source\_string* to begin searching\. The position is based on the number of characters, not bytes, so that multibyte characters are counted as single characters\. The default is 1\. If *position* is less than 1, the search begins at the first character of *source\_string*\. If *position* is greater than the number of characters in *source\_string*, the result is 0\.
 
-## Return Type<a name="REGEXP_COUNT-return-type"></a>
+## Return type<a name="REGEXP_COUNT-return-type"></a>
 
 Integer
 

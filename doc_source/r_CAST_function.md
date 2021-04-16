@@ -1,8 +1,8 @@
-# CAST and CONVERT Functions<a name="r_CAST_function"></a>
+# CAST and CONVERT functions<a name="r_CAST_function"></a>
 
 You can do runtime conversions between compatible data types by using the CAST and CONVERT functions\. 
 
-Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using the CAST or CONVERT function\. See [Type Compatibility and Conversion](r_Type_conversion.md)\. 
+Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using the CAST or CONVERT function\. See [Type compatibility and conversion](c_Supported_data_types.md#r_Type_conversion)\. 
 
 ## CAST<a name="r_CAST_function-cast"></a>
 
@@ -19,9 +19,9 @@ expression :: type
 An expression that evaluates to one or more values, such as a column name or a literal\. Converting null values returns nulls\. The expression cannot contain blank or empty strings\. 
 
  *type*   
-One of the supported [Data Types](c_Supported_data_types.md)\. 
+One of the supported [Data types](c_Supported_data_types.md)\. 
 
-## Return Type<a name="r_CAST_function-return-type"></a>
+## Return type<a name="r_CAST_function-return-type"></a>
 
 CAST returns the data type specified by the *type* argument\. 
 
@@ -48,12 +48,12 @@ CONVERT ( type, expression )
 ## Arguments<a name="r_CAST_function-arguments2"></a>
 
  *type*   
-One of the supported [Data Types](c_Supported_data_types.md)\. 
+One of the supported [Data types](c_Supported_data_types.md)\. 
 
  *expression*   
 An expression that evaluates to one or more values, such as a column name or a literal\. Converting null values returns nulls\. The expression cannot contain blank or empty strings\. 
 
-## Return Type<a name="r_CAST_function-return-type2"></a>
+## Return type<a name="r_CAST_function-return-type2"></a>
 
 CONVERT returns the data type specified by the *type* argument\. 
 
@@ -93,7 +93,7 @@ pricepaid
 (1 row)
 ```
 
-In this example, the values in a time stamp column are cast as dates: 
+In this example, the values in a timestamp column are cast as dates: 
 
 ```
 select cast(saletime as date), salesid
@@ -114,7 +114,7 @@ from sales order by salesid limit 10;
 (10 rows)
 ```
 
-In this example, the values in a date column are cast as time stamps: 
+In this example, the values in a date column are cast as timestamps: 
 
 ```
 select cast(caldate as timestamp), dateid

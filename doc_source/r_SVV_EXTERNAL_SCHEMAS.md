@@ -4,9 +4,12 @@ Use SVV\_EXTERNAL\_SCHEMAS to view information about external schemas\. For more
 
 SVV\_EXTERNAL\_SCHEMAS is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\. 
 
-## Table Columns<a name="r_SVV_EXTERNAL_SCHEMAS-table-columns2"></a>
+## Table columns<a name="r_SVV_EXTERNAL_SCHEMAS-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_SCHEMAS.html)
+
+**Note**  
+In the eskind column, the Amazon Redshift type is only available for the data sharing feature preview\.
 
 ## Example<a name="r_SVV_EXTERNAL_SCHEMAS-example"></a>
 

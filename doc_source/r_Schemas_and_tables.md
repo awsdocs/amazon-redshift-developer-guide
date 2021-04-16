@@ -4,14 +4,14 @@ A database contains one or more named schemas\. Each schema in a database contai
 
 Identical database object names can be used in different schemas in the same database without conflict\. For example, both MY\_SCHEMA and YOUR\_SCHEMA can contain a table named MYTABLE\. Users with the necessary privileges can access objects across multiple schemas in a database\.
 
-By default, an object is created within the first schema in the search path of the database\. For information, see [Search Path](#c_Search_path) later in this section\.
+By default, an object is created within the first schema in the search path of the database\. For information, see [Search path](#c_Search_path) later in this section\.
 
 Schemas can help with organization and concurrency issues in a multi\-user environment in the following ways:
 + To allow many developers to work in the same database without interfering with each other\.
 + To organize database objects into logical groups to make them more manageable\.
 + To give applications the ability to put their objects into separate schemas so that their names will not collide with the names of objects used by other applications\.
 
-## Creating, Altering, and Deleting Schemas<a name="r_Schemas_and_tables-creating-altering-and-deleting-schemas"></a>
+## Creating, altering, and deleting schemas<a name="r_Schemas_and_tables-creating-altering-and-deleting-schemas"></a>
 
 Any user can create schemas and alter or drop schemas they own\.
 
@@ -34,7 +34,7 @@ select distinct(tablename) from pg_table_def
 where schemaname = 'pg_catalog';
 ```
 
-## Search Path<a name="c_Search_path"></a>
+## Search path<a name="c_Search_path"></a>
 
 The search path is defined in the search\_path parameter with a comma\-separated list of schema names\. The search path specifies the order in which schemas are searched when an object, such as a table or function, is referenced by a simple name that does not include a schema qualifier\.
 
@@ -44,7 +44,7 @@ To change the default schema for the current session, use the [SET](r_SET.md) co
 
 For more information, see the [search\_path](r_search_path.md) description in the Configuration Reference\.
 
-## Schema\-Based Privileges<a name="r_Schemas_and_tables-schema-based-privileges"></a>
+## Schema\-based privileges<a name="r_Schemas_and_tables-schema-based-privileges"></a>
 
  Schema\-based privileges are determined by the owner of the schema: 
 + By default, all users have CREATE and USAGE privileges on the PUBLIC schema of a database\. To disallow users from creating objects in the PUBLIC schema of a database, use the [REVOKE](r_REVOKE.md) command to remove that privilege\.

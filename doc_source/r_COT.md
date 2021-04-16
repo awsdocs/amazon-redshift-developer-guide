@@ -1,4 +1,4 @@
-# COT Function<a name="r_COT"></a>
+# COT function<a name="r_COT"></a>
 
 COT is a trigonometric function that returns the cotangent of a number\. The input parameter must be nonzero\. 
 
@@ -13,7 +13,7 @@ COT(number)
  *number*   
 The input parameter is a double precision number\. 
 
-## Return Type<a name="r_COT-return-type"></a>
+## Return type<a name="r_COT-return-type"></a>
 
 The COT function returns a double precision number\. 
 

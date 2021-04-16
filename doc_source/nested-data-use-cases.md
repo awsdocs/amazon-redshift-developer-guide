@@ -1,13 +1,13 @@
-# Nested Data Use Cases<a name="nested-data-use-cases"></a>
+# Nested data use cases<a name="nested-data-use-cases"></a>
 
 You can combine the extensions described previously with the usual SQL features\. The following use cases illustrate some common combinations\. These examples help demonstrate how you can use nested data\. They aren't part of the tutorial\.
 
 **Topics**
-+ [Ingesting Nested Data](#ingesting-nested-data)
-+ [Aggregating Nested Data with Subqueries](#aggregating-with-subquery)
-+ [Joining Amazon Redshift and Nested Data](#joining-redshift-data)
++ [Ingesting nested data](#ingesting-nested-data)
++ [Aggregating nested data with subqueries](#aggregating-with-subquery)
++ [Joining Amazon Redshift and nested data](#joining-redshift-data)
 
-## Ingesting Nested Data<a name="ingesting-nested-data"></a>
+## Ingesting nested data<a name="ingesting-nested-data"></a>
 
 You can use a `CREATE TABLE AS` statement to ingest data from an external table that contains complex data types\. The following query extracts all customers and their phone numbers from the external table, using `LEFT JOIN`, and stores them in the Amazon Redshift table `CustomerPhones`\. 
 
@@ -17,7 +17,7 @@ SELECT  c.name.given, c.name.family, p AS phone
 FROM    spectrum.customers c LEFT JOIN c.phones p ON true
 ```
 
-## Aggregating Nested Data with Subqueries<a name="aggregating-with-subquery"></a>
+## Aggregating nested data with subqueries<a name="aggregating-with-subquery"></a>
 
 You can use a subquery to aggregate nested data\. The following example illustrates this approach\. 
 
@@ -53,7 +53,7 @@ SELECT c.name.given, c.name.family, s.count AS ordercount
 FROM   spectrum.customers c, (SELECT count(*) AS count FROM c.orders o) s
 ```
 
-## Joining Amazon Redshift and Nested Data<a name="joining-redshift-data"></a>
+## Joining Amazon Redshift and nested data<a name="joining-redshift-data"></a>
 
 You can also join Amazon Redshift data with nested data in an external table\. For example, suppose that you have the following nested data in Amazon S3\. 
 

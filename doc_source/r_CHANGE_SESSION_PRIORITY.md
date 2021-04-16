@@ -16,7 +16,7 @@ The process identifier of the session whose priority is changed\. The value `-1`
  *priority*   
 The new priority to be assigned to the session\. This argument must be a string with the value `CRITICAL`, `HIGHEST`, `HIGH`, `NORMAL`, `LOW`, or `LOWEST`\. 
 
-## Return Type<a name="r_CHANGE_SESSION_PRIORITY-return-type"></a>
+## Return type<a name="r_CHANGE_SESSION_PRIORITY-return-type"></a>
 
 None
 

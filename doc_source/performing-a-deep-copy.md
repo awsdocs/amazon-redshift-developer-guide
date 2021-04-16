@@ -1,6 +1,6 @@
-# Performing a Deep Copy<a name="performing-a-deep-copy"></a>
+# Performing a deep copy<a name="performing-a-deep-copy"></a>
 
-A deep copy recreates and repopulates a table by using a bulk insert, which automatically sorts the table\. If a table has a large unsorted region, a deep copy is much faster than a vacuum\. The trade off is that you should not make concurrent updates during a deep copy operation unless you can track it and move the delta updates into the new table after the process has completed\. A VACUUM operation supports concurrent updates automatically\.
+A deep copy recreates and repopulates a table by using a bulk insert, which automatically sorts the table\. If a table has a large unsorted Region, a deep copy is much faster than a vacuum\. The trade off is that you should not make concurrent updates during a deep copy operation unless you can track it and move the delta updates into the new table after the process has completed\. A VACUUM operation supports concurrent updates automatically\.
 
 You can choose one of the following methods to create a copy of the original table: 
 + Use the original table DDL\. 

@@ -1,6 +1,6 @@
-# UNLOAD Examples<a name="r_UNLOAD_command_examples"></a>
+# UNLOAD examples<a name="r_UNLOAD_command_examples"></a>
 
-## Unload VENUE to a Pipe\-Delimited File \(Default Delimiter\)<a name="unload-examples-venue"></a>
+## Unload VENUE to a pipe\-delimited file \(default delimiter\)<a name="unload-examples-venue"></a>
 
 **Note**  
 These examples contain line breaks for readability\. Do not include line breaks or spaces in your *credentials\-args* string\.
@@ -69,6 +69,18 @@ s3://mybucket/lineitem/l_shipdate=1992-01-04/0000_part_00.parquet
 ...
 ```
 
+**Note**  
+In some cases, the UNLOAD command used the INCLUDE option as shown in the following SQL statement\.   
+
+```
+unload ('select * from lineitem')
+to 's3://mybucket/lineitem/'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+PARQUET
+PARTITION BY (l_shipdate) INCLUDE;
+```
+In these cases, the `l_shipdate` column is also in the data in the Parquet files\. Otherwise, the `l_shipdate` column data isn't in the Parquet files\.
+
 ## Unload VENUE to a CSV file<a name="unload-examples-csv"></a>
 
 The following example unloads the VENUE table and writes the data in CSV format to `s3://mybucket/unload/`\.
@@ -80,17 +92,17 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 CSV;
 ```
 
-Suppose the VENUE table contains the following rows\.
+Suppose that the VENUE table contains the following rows\.
 
 ```
 venueid | venuename                  | venuecity       | venuestate | venueseats
--\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-\-+-\-\-\-\-\-\-\-\-\-\-
-      1 | Pinewood Racetrack         | Akron           | OH         |          0
-      2 | Columbus "Crew" Stadium    | Columbus        | OH         |          0
-      4 | Community, Ballpark, Arena | Kansas City     | KS         |          0
+--------+----------------------------+-----------------+------------+-----------
+      1 | Pinewood Racetrack         | Akron           | OH         | 0
+      2 | Columbus "Crew" Stadium    | Columbus        | OH         | 0
+      4 | Community, Ballpark, Arena | Kansas City     | KS         | 0
 ```
 
-The unload file would look similar to the following\.
+The unload file looks similar to the following\.
 
 ```
 1,Pinewood Racetrack,Akron,OH,0
@@ -98,7 +110,36 @@ The unload file would look similar to the following\.
 4,"Community, Ballpark, Arena",Kansas City,KS,0
 ```
 
-## Unload VENUE with a Manifest File<a name="unload-examples-manifest"></a>
+## Unload VENUE to a CSV file using a delimiter<a name="unload-examples-csv-delimiter"></a>
+
+The following example unloads the VENUE table and writes the data in CSV format using the pipe character \(\|\) as the delimiter\. The unloaded file is written to `s3://mybucket/unload/`\. The VENUE table in this example contains the pipe character in the value of the first row \(`Pinewood Race|track`\)\. It does this to show that the value in the result is enclosed in double quotation marks\. A double quotation mark is escaped by a double quotation mark, and the entire field is enclosed in double quotation marks\. 
+
+```
+unload ('select * from venue')
+to 's3://mybucket/unload/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+CSV DELIMITER AS '|';
+```
+
+Suppose that the VENUE table contains the following rows\.
+
+```
+venueid | venuename                  | venuecity       | venuestate | venueseats
+--------+----------------------------+-----------------+------------+-------------
+      1 | Pinewood Race|track        | Akron           | OH         | 0
+      2 | Columbus "Crew" Stadium    | Columbus        | OH         | 0
+      4 | Community, Ballpark, Arena | Kansas City     | KS         | 0
+```
+
+The unload file looks similar to the following\.
+
+```
+1|"Pinewood Race|track"|Akron|OH|0
+2|"Columbus ""Crew"" Stadium"|Columbus|OH|0
+4|Community, Ballpark, Arena|Kansas City|KS|0
+```
+
+## Unload VENUE with a manifest file<a name="unload-examples-manifest"></a>
 
 To create a manifest file, include the MANIFEST option\. The following example unloads the VENUE table and writes a manifest file along with the data files to s3://mybucket/venue\_pipe\_: 
 
@@ -180,7 +221,7 @@ The following shows the contents of the manifest file\.
 }
 ```
 
-## Unload VENUE with a Header<a name="unload-examples-header"></a>
+## Unload VENUE with a header<a name="unload-examples-header"></a>
 
 The following example unloads VENUE with a header row\.
 
@@ -202,7 +243,7 @@ venueid|venuename|venuecity|venuestate|venueseats
 79|Arrowhead Stadium|Kansas City|MO|79451
 ```
 
-## Unload VENUE to Smaller Files<a name="unload-examples-maxfilesize"></a>
+## Unload VENUE to smaller files<a name="unload-examples-maxfilesize"></a>
 
 By default, the maximum file size is 6\.2 GB\. If the unload data is larger than 6\.2 GB, UNLOAD creates a new file for each 6\.2 GB data segment\. To create smaller files, include the MAXFILESIZE parameter\. Assuming the size of the data in the previous example was 20 GB, the following UNLOAD command creates 20 files, each 1 GB in size\.
 
@@ -213,7 +254,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 maxfilesize 1 gb;
 ```
 
-## Unload VENUE Serially<a name="unload-examples-serial"></a>
+## Unload VENUE serially<a name="unload-examples-serial"></a>
 
 To unload serially, specify PARALLEL OFF\. UNLOAD then writes one file at a time, up to a maximum of 6\.2 GB per file\. 
 
@@ -263,7 +304,7 @@ venue_pipe_0002_part_00
 venue_pipe_0003_part_00
 ```
 
-## Load VENUE from Unload Files<a name="unload-examples-load"></a>
+## Load VENUE from unload files<a name="unload-examples-load"></a>
 
 To load a table from a set of unload files, simply reverse the process by using a COPY command\. The following example creates a new table, LOADVENUE, and loads the table from the data files created in the previous example\.
 
@@ -281,9 +322,9 @@ from 's3://mybucket/venue_pipe_manifest' iam_role 'arn:aws:iam::0123456789012:ro
 manifest;
 ```
 
-## Unload VENUE to Encrypted Files<a name="unload-examples-unload-encrypted"></a>
+## Unload VENUE to encrypted files<a name="unload-examples-unload-encrypted"></a>
 
-The following example unloads the VENUE table to a set of encrypted files using a KMS key\. If you specify a manifest file with the ENCRYPTED option, the manifest file is also encrypted\. For more information, see [Unloading Encrypted Data Files](t_unloading_encrypted_files.md)\.
+The following example unloads the VENUE table to a set of encrypted files using a KMS key\. If you specify a manifest file with the ENCRYPTED option, the manifest file is also encrypted\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)\.
 
 ```
 unload ('select * from venue')
@@ -304,7 +345,7 @@ master_symmetric_key 'EXAMPLEMASTERKEYtkbjk/OpCwtYSx/M4/t7DMCDIK722'
 encrypted;
 ```
 
-## Load VENUE from Encrypted Files<a name="unload-examples-load-encrypted"></a>
+## Load VENUE from encrypted files<a name="unload-examples-load-encrypted"></a>
 
 To load tables from a set of files that were created by using UNLOAD with the ENCRYPT option, reverse the process by using a COPY command\. With that command, use the ENCRYPTED option and specify the same master symmetric key that was used for the UNLOAD command\. The following example loads the LOADVENUE table from the encrypted data files created in the previous example\.
 
@@ -319,7 +360,7 @@ manifest
 encrypted;
 ```
 
-## Unload VENUE Data to a Tab\-Delimited File<a name="unload-examples-venue-tab"></a>
+## Unload VENUE data to a tab\-delimited file<a name="unload-examples-venue-tab"></a>
 
 ```
 unload ('select venueid, venuename, venueseats from venue')
@@ -339,9 +380,9 @@ The output data files look like this:
 ...
 ```
 
-## Unload VENUE Using Temporary Credentials<a name="unload-venue-using-temporary-credentials"></a>
+## Unload VENUE using temporary credentials<a name="unload-venue-using-temporary-credentials"></a>
 
-You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and can't be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary Security Credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials) in the usage notes for the COPY command\.
+You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and can't be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials) in the usage notes for the COPY command\.
 
 The following example unloads the LISTING table using temporary credentials:
 
@@ -355,7 +396,7 @@ delimiter as '\t';
 **Important**  
 The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD fails and the transaction is rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD fails before it completes\.
 
-## Unload VENUE to a Fixed\-Width Data File<a name="unload-venue-fixed-width"></a>
+## Unload VENUE to a fixed\-width data file<a name="unload-venue-fixed-width"></a>
 
 ```
 unload ('select * from venue')
@@ -375,7 +416,7 @@ The output data files look like the following\.
 ...
 ```
 
-## Unload VENUE to a Set of Tab\-Delimited GZIP\-Compressed Files<a name="unload-examples-venue-gzip"></a>
+## Unload VENUE to a set of tab\-delimited GZIP\-compressed files<a name="unload-examples-venue-gzip"></a>
 
 ```
 unload ('select * from venue') 
@@ -385,7 +426,7 @@ delimiter as '\t'
 gzip;
 ```
 
-## Unload Data That Contains a Delimiter<a name="unload-examples-delimiter"></a>
+## Unload data that contains a delimiter<a name="unload-examples-delimiter"></a>
 
 This example uses the ADDQUOTES option to unload comma\-delimited data where some of the actual data fields contain a comma\.
 
@@ -415,7 +456,7 @@ The unloaded data files look like this:
 ...
 ```
 
-## Unload the Results of a Join Query<a name="unload-examples-join"></a>
+## Unload the results of a join query<a name="unload-examples-join"></a>
 
 The following example unloads the results of a join query that contains a window function\. 
 
@@ -442,7 +483,7 @@ Atlanta|GA|2008-01-11|268.00|7630.00
 ...
 ```
 
-## Unload Using NULL AS<a name="unload-examples-null-as"></a>
+## Unload using NULL AS<a name="unload-examples-null-as"></a>
 
 UNLOAD outputs null values as empty strings by default\. The following examples show how to use NULL AS to substitute a text string for nulls\.
 
@@ -573,7 +614,7 @@ select * from loadvenuenulls where venuestate is null or venueseats is null;
 ...
 ```
 
-## ALLOWOVERWRITE Example<a name="unload-examples-allowoverwrite"></a>
+## ALLOWOVERWRITE example<a name="unload-examples-allowoverwrite"></a>
 
 By default, UNLOAD doesn't overwrite existing files in the destination bucket\. For example, if you run the same UNLOAD statement twice without modifying the files in the destination bucket, the second UNLOAD fails\. To overwrite the existing files, including the manifest file, specify the ALLOWOVERWRITE option\.
 

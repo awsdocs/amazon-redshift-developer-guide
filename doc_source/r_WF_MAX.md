@@ -1,4 +1,4 @@
-# MAX Window Function<a name="r_WF_MAX"></a>
+# MAX window function<a name="r_WF_MAX"></a>
 
  The MAX window function returns the maximum of the input expression values\. The MAX function works with numeric values and ignores NULL values\. 
 
@@ -30,12 +30,60 @@ ORDER BY *order\_list*
 Sorts the rows within each partition\. If no PARTITION BY is specified, ORDER BY uses the entire table\.
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window Function Syntax Summary](r_Window_function_synopsis.md)\.
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\.
 
-## Data Types<a name="r_WF_MAX-data-types"></a>
+## Data types<a name="r_WF_MAX-data-types"></a>
 
 Accepts any data type as input\. Returns the same data type as *expression*\.
 
 ## Examples<a name="r_WF_MAX-examples"></a>
 
-See [MAX Window Function Examples](r_Examples_of_max_WF.md)\.
+The following example shows the sales ID, quantity, and maximum quantity from the beginning of the data window: 
+
+```
+select salesid, qty,
+max(qty) over (order by salesid rows unbounded preceding) as max
+from winsales
+order by salesid;
+
+salesid | qty | max
+---------+-----+-----
+10001 |  10 |  10
+10005 |  30 |  30
+10006 |  10 |  30
+20001 |  20 |  30
+20002 |  20 |  30
+30001 |  10 |  30
+30003 |  15 |  30
+30004 |  20 |  30
+30007 |  30 |  30
+40001 |  40 |  40
+40005 |  10 |  40
+(11 rows)
+```
+
+For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+
+The following example shows the salesid, quantity, and maximum quantity in a restricted frame: 
+
+```
+select salesid, qty,
+max(qty) over (order by salesid rows between 2 preceding and 1 preceding) as max
+from winsales
+order by salesid;
+
+salesid | qty | max
+---------+-----+-----
+10001 |  10 |
+10005 |  30 |  10
+10006 |  10 |  30
+20001 |  20 |  30
+20002 |  20 |  20
+30001 |  10 |  20
+30003 |  15 |  20
+30004 |  20 |  15
+30007 |  30 |  20
+40001 |  40 |  30
+40005 |  10 |  40
+(11 rows)
+```

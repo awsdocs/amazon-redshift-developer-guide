@@ -2,15 +2,15 @@
 
 Displays information to identify and resolve transaction conflicts with database tables\.
 
-A transaction conflict occurs when two or more users are querying and modifying data rows from tables such that their transactions cannot be serialized\. The transaction that executes a statement that would break serializability is aborted and rolled back\. Every time a transaction conflict occurs, Amazon Redshift writes a data row to the STL\_TR\_CONFLICT system table containing details about the aborted transaction\. For more information, see [Serializable Isolation](c_serial_isolation.md)\.
+A transaction conflict occurs when two or more users are querying and modifying data rows from tables such that their transactions cannot be serialized\. The transaction that executes a statement that would break serializability is aborted and rolled back\. Every time a transaction conflict occurs, Amazon Redshift writes a data row to the STL\_TR\_CONFLICT system table containing details about the aborted transaction\. For more information, see [Serializable isolation](c_serial_isolation.md)\.
 
-This table is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_TR_CONFLICT-table-columns"></a>
+## Table columns<a name="r_STL_TR_CONFLICT-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_TR_CONFLICT.html)
 
-## Sample Query<a name="r_STL_TR_CONFLICT-sample-query"></a>
+## Sample query<a name="r_STL_TR_CONFLICT-sample-query"></a>
 
 To return information about conflicts that involved a particular table, run a query that specifies the table ID: 
 

@@ -1,4 +1,4 @@
-# Loading Your Data in Sort Key Order<a name="vacuum-load-in-sort-key-order"></a>
+# Loading your data in sort key order<a name="vacuum-load-in-sort-key-order"></a>
 
 If you load your data in sort key order using a COPY command, you might reduce or even eliminate the need to vacuum\. 
 

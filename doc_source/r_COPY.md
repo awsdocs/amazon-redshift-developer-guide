@@ -13,13 +13,13 @@ The maximum size of a single input row from any source is 4 MB\.
 To use the COPY command, you must have [INSERT](r_GRANT.md#grant-insert) privilege for the Amazon Redshift table\. 
 
 **Topics**
-+ [COPY Syntax](#r_COPY-syntax)
-+ [COPY Syntax Overview](#r_COPY-syntax-overview)
-+ [COPY Parameter Reference](r_COPY-parameters.md)
-+ [Usage Notes](r_COPY_usage_notes.md)
-+ [COPY Examples](r_COPY_command_examples.md)
++ [COPY syntax](#r_COPY-syntax)
++ [COPY syntax overview](#r_COPY-syntax-overview)
++ [COPY parameter reference](r_COPY-parameters.md)
++ [Usage notes](r_COPY_usage_notes.md)
++ [COPY examples](r_COPY_command_examples.md)
 
-## COPY Syntax<a name="r_COPY-syntax"></a>
+## COPY syntax<a name="r_COPY-syntax"></a>
 
 ```
 COPY table-name 
@@ -30,7 +30,7 @@ authorization
 [ parameter [ argument ] [, ... ] ]
 ```
 
-## COPY Syntax Overview<a name="r_COPY-syntax-overview"></a>
+## COPY syntax overview<a name="r_COPY-syntax-overview"></a>
 
 You can perform a COPY operation with as few as three parameters: a table name, a data source, and authorization to access the data\. 
 
@@ -39,11 +39,11 @@ Amazon Redshift extends the functionality of the COPY command to enable you to l
 This section presents the required COPY command parameters and groups the optional parameters by function\. Subsequent topics describe each parameter and explain how various options work together\. You can also go directly to a parameter description by using the alphabetical parameter list\. 
 
 **Topics**
-+ [Required Parameters](#r_COPY-syntax-required-parameters)
-+ [Optional Parameters](#r_COPY-syntax-overview-optional-parameters)
-+ [Using the COPY Command](#r_COPY-using-the-copy-command)
++ [Required parameters](#r_COPY-syntax-required-parameters)
++ [Optional parameters](#r_COPY-syntax-overview-optional-parameters)
++ [Using the COPY command](#r_COPY-using-the-copy-command)
 
-### Required Parameters<a name="r_COPY-syntax-required-parameters"></a>
+### Required parameters<a name="r_COPY-syntax-required-parameters"></a>
 
 The COPY command requires three elements: 
 + [Table Name](#r_COPY-syntax-overview-table-name)
@@ -64,7 +64,7 @@ The following example creates a table named CATDEMO, and then loads the table wi
 create table catdemo(catid smallint, catgroup varchar(10), catname varchar(10), catdesc varchar(50));
 ```
 
-In the following example, the data source for the COPY command is a data file named `category_pipe.txt` in the `tickit` folder of an Amazon S3 bucket named `awssampledbuswest2`\. The COPY command is authorized to access the Amazon S3 bucket through an AWS Identity and Access Management \(IAM\) role\. If your cluster has an existing IAM role with permission to access Amazon S3 attached, you can substitute your role's Amazon Resource Name \(ARN\) in the following COPY command and execute it\.
+In the following example, the data source for the COPY command is a data file named `category_pipe.txt` in the `tickit` folder of an Amazon S3 bucket named `awssampledbuswest2`\. The COPY command is authorized to access the Amazon S3 bucket through an AWS Identity and Access Management \(IAM\) role\. If your cluster has an existing IAM role with permission to access Amazon S3 attached, you can substitute your role's Amazon Resource Name \(ARN\) in the following COPY command and run it\.
 
 ```
 copy catdemo
@@ -83,30 +83,30 @@ The location of the source data to be loaded into the target table\. A manifest 
 The most commonly used data repository is an Amazon S3 bucket\. You can also load from data files located in an Amazon EMR cluster, an Amazon EC2 instance, or a remote host that your cluster can access using an SSH connection, or you can load directly from a DynamoDB table\.   
 + [COPY from Amazon S3](copy-parameters-data-source-s3.md)
 + [COPY from Amazon EMR](copy-parameters-data-source-emr.md) 
-+ [COPY from Remote Host \(SSH\)](copy-parameters-data-source-ssh.md)
++ [COPY from remote host \(SSH\)](copy-parameters-data-source-ssh.md)
 + [COPY from Amazon DynamoDB](copy-parameters-data-source-dynamodb.md)
 
 Authorization  <a name="r_COPY-syntax-overview-credentials"></a>
 A clause that indicates the method that your cluster uses for authentication and authorization to access other AWS resources\. The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an IAM role that is attached to your cluster or by providing the access key ID and secret access key for an IAM user\.   
-+ [Authorization Parameters](copy-parameters-authorization.md) 
-+ [Role\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based) 
-+ [Key\-Based Access Control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based) 
++ [Authorization parameters](copy-parameters-authorization.md) 
++ [Role\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based) 
++ [Key\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based) 
 
-### Optional Parameters<a name="r_COPY-syntax-overview-optional-parameters"></a>
+### Optional parameters<a name="r_COPY-syntax-overview-optional-parameters"></a>
 
 You can optionally specify how COPY maps field data to columns in the target table, define source data attributes to enable the COPY command to correctly read and parse the source data, and manage which operations the COPY command performs during the load process\. 
-+ [Column Mapping Options](copy-parameters-column-mapping.md)
-+ [Data Format Parameters](#r_COPY-syntax-overview-data-format)
-+ [Data Conversion Parameters](#r_COPY-syntax-overview-data-conversion)
-+ [Data Load Operations](#r_COPY-syntax-overview-data-load)
++ [Column mapping options](copy-parameters-column-mapping.md)
++ [Data format parameters](#r_COPY-syntax-overview-data-format)
++ [Data conversion parameters](#r_COPY-syntax-overview-data-conversion)
++ [Data load operations](#r_COPY-syntax-overview-data-load)
 
-#### Column Mapping<a name="r_COPY-syntax-overview-column-mapping"></a>
+#### Column mapping<a name="r_COPY-syntax-overview-column-mapping"></a>
 
 By default, COPY inserts field values into the target table's columns in the same order as the fields occur in the data files\. If the default column order will not work, you can specify a column list or use JSONPath expressions to map source data fields to the target columns\. 
 + [Column List](copy-parameters-column-mapping.md#copy-column-list)
 + [JSONPaths File](copy-parameters-column-mapping.md#copy-column-mapping-jsonpaths)
 
-#### Data Format Parameters<a name="r_COPY-syntax-overview-data-format"></a>
+#### Data format parameters<a name="r_COPY-syntax-overview-data-format"></a>
 
 You can load data from text files in fixed\-width, character\-delimited, comma\-separated values \(CSV\), or JSON format, or from Avro files\.
 
@@ -115,6 +115,7 @@ By default, the COPY command expects the source data to be in character\-delimit
 + [CSV](copy-parameters-data-format.md#copy-csv)
 + [DELIMITER](copy-parameters-data-format.md#copy-delimiter) 
 + [FIXEDWIDTH](copy-parameters-data-format.md#copy-fixedwidth) 
++ [SHAPEFILE](copy-parameters-data-format.md#copy-shapefile) 
 + [AVRO](copy-parameters-data-format.md#copy-avro) 
 + [JSON](copy-parameters-data-format.md#copy-json) 
 + [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) 
@@ -125,7 +126,7 @@ By default, the COPY command expects the source data to be in character\-delimit
 + [ORC](copy-parameters-data-format.md#copy-orc) 
 + [ZSTD](copy-parameters-file-compression.md#copy-zstd) 
 
-#### Data Conversion Parameters<a name="r_COPY-syntax-overview-data-conversion"></a>
+#### Data conversion parameters<a name="r_COPY-syntax-overview-data-conversion"></a>
 
 As it loads the table, COPY attempts to implicitly convert the strings in the source data to the data type of the target column\. If you need to specify a conversion that is different from the default behavior, or if the default conversion results in errors, you can manage data conversions by specifying the following parameters\.
 + [ACCEPTANYDATE](copy-parameters-data-conversion.md#copy-acceptanydate) 
@@ -146,7 +147,7 @@ As it loads the table, COPY attempts to implicitly convert the strings in the so
 + [TRIMBLANKS](copy-parameters-data-conversion.md#copy-trimblanks) 
 + [TRUNCATECOLUMNS](copy-parameters-data-conversion.md#copy-truncatecolumns) 
 
-#### Data Load Operations<a name="r_COPY-syntax-overview-data-load"></a>
+#### Data load operations<a name="r_COPY-syntax-overview-data-load"></a>
 
 Manage the default behavior of the load operation for troubleshooting or to reduce load times by specifying the following parameters\. 
 + [COMPROWS](copy-parameters-data-load.md#copy-comprows) 
@@ -155,16 +156,16 @@ Manage the default behavior of the load operation for troubleshooting or to redu
 + [NOLOAD](copy-parameters-data-load.md#copy-noload) 
 + [STATUPDATE](copy-parameters-data-load.md#copy-statupdate) 
 
-### Using the COPY Command<a name="r_COPY-using-the-copy-command"></a>
+### Using the COPY command<a name="r_COPY-using-the-copy-command"></a>
 
 For more information about how to use the COPY command, see the following topics: 
-+ [COPY Examples](r_COPY_command_examples.md)
-+ [Usage Notes](r_COPY_usage_notes.md)
-+ [Tutorial: Loading Data from Amazon S3](tutorial-loading-data.md)
-+ [Amazon Redshift Best Practices for Loading Data](c_loading-data-best-practices.md)
-+ [Using a COPY Command to Load Data](t_Loading_tables_with_the_COPY_command.md)
-  + [Loading Data from Amazon S3](t_Loading-data-from-S3.md)
-  + [Loading Data from Amazon EMR](loading-data-from-emr.md)
-  + [Loading Data from Remote Hosts](loading-data-from-remote-hosts.md) 
-  + [Loading Data from an Amazon DynamoDB Table](t_Loading-data-from-dynamodb.md)
-+ [Troubleshooting Data Loads](t_Troubleshooting_load_errors.md)
++ [COPY examples](r_COPY_command_examples.md)
++ [Usage notes](r_COPY_usage_notes.md)
++ [Tutorial: Loading data from Amazon S3](tutorial-loading-data.md)
++ [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md)
++ [Using a COPY command to load data](t_Loading_tables_with_the_COPY_command.md)
+  + [Loading data from Amazon S3](t_Loading-data-from-S3.md)
+  + [Loading data from Amazon EMR](loading-data-from-emr.md)
+  + [Loading data from remote hosts](loading-data-from-remote-hosts.md) 
+  + [Loading data from an Amazon DynamoDB table](t_Loading-data-from-dynamodb.md)
++ [Troubleshooting data loads](t_Troubleshooting_load_errors.md)

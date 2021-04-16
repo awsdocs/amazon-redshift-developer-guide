@@ -1,4 +1,4 @@
-# LISTAGG Function<a name="r_LISTAGG"></a>
+# LISTAGG function<a name="r_LISTAGG"></a>
 
 For each group in a query, the LISTAGG aggregate function orders the rows for that group according to the ORDER BY expression, then concatenates the values into a single string\. 
 
@@ -14,7 +14,7 @@ LISTAGG( [DISTINCT] aggregate_expression [, 'delimiter' ] )
 ## Arguments<a name="r_LISTAGG-arguments"></a>
 
 DISTINCT  
-\(Optional\) A clause that eliminates duplicate values from the specified expression before concatenating\. Trailing spaces are ignored, so the strings `'a'` and `'a '` are treated as duplicates\. LISTAGG uses the first value encountered\. For more information, see [Significance of Trailing Blanks](r_Character_types.md#r_Character_types-significance-of-trailing-blanks)\.
+\(Optional\) A clause that eliminates duplicate values from the specified expression before concatenating\. Trailing spaces are ignored, so the strings `'a'` and `'a '` are treated as duplicates\. LISTAGG uses the first value encountered\. For more information, see [Significance of trailing blanks](r_Character_types.md#r_Character_types-significance-of-trailing-blanks)\.
 
  *aggregate\_expression*   
  Any valid expression \(such as a column name\) that provides the values to aggregate\. NULL values and empty strings are ignored\. 
@@ -33,7 +33,7 @@ VARCHAR\(MAX\)\. If the result set is larger than the maximum VARCHAR size \(64K
 Invalid operation: Result size exceeds LISTAGG limit
 ```
 
-## Usage Notes<a name="r_LISTAGG-usage-notes"></a>
+## Usage notes<a name="r_LISTAGG-usage-notes"></a>
 
 If a statement includes multiple LISTAGG functions that use WITHIN GROUP clauses, each WITHIN GROUP clause must use the same ORDER BY values\.
 

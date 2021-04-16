@@ -1,4 +1,4 @@
-# CHARINDEX Function<a name="r_CHARINDEX"></a>
+# CHARINDEX function<a name="r_CHARINDEX"></a>
 
 Returns the location of the specified substring within a string\. Synonym of the STRPOS function\.
 
@@ -16,11 +16,11 @@ The substring to search for within the *string*\.
  *string*   
 The string or column to be searched\.
 
-## Return Type<a name="charindex-return-type"></a>
+## Return type<a name="charindex-return-type"></a>
 
-The CHARINDEX function returns an integer corresponding to the position of the substring \(one\-based, not zerobased\)\. The position is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\.
+The CHARINDEX function returns an integer corresponding to the position of the substring \(one\-based, not zero\-based\)\. The position is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\.
 
-## Usage Notes<a name="charindex-usage_notes"></a>
+## Usage notes<a name="charindex-usage_notes"></a>
 
 CHARINDEX returns 0 if the substring is not found within the `string`:
 
@@ -58,4 +58,4 @@ charindex | count
 (1 row)
 ```
 
-See [STRPOS Function](r_STRPOS.md) for details\. 
+See [STRPOS function](r_STRPOS.md) for details\. 

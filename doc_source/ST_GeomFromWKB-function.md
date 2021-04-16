@@ -20,7 +20,7 @@ A value of data type `VARCHAR` that is a hexadecimal WKB representation of a geo
  *srid*   
 A value of data type `INTEGER` that is a spatial reference identifier \(SRID\)\. If an SRID value is provided, the returned geometry has this SRID value\. Otherwise, the SRID value of the returned geometry is set to 0\.
 
-## Return Type<a name="ST_GeomFromWKB-function-return"></a>
+## Return type<a name="ST_GeomFromWKB-function-return"></a>
 
 `GEOMETRY`
 

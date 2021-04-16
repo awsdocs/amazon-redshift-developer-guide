@@ -18,12 +18,12 @@ $$ LANGUAGE plpgsql
 
  OR REPLACE   
 A clause that specifies that if a procedure with the same name and input argument data types, or signature, as this one already exists, the existing procedure is replaced\. You can only replace a procedure with a new procedure that defines an identical set of data types\. You must be a superuser or the owner to replace a procedure\.  
-If you define a procedure with the same name as an existing procedure, but a different signature, you create a new procedure\. In other words, the procedure name is overloaded\. For more information, see [Overloading Procedure Names](stored-procedure-naming.md#stored-procedure-overloading-name)\. 
+If you define a procedure with the same name as an existing procedure, but a different signature, you create a new procedure\. In other words, the procedure name is overloaded\. For more information, see [Overloading procedure names](stored-procedure-naming.md#stored-procedure-overloading-name)\. 
 
  *sp\_procedure\_name*   
-The name of the procedure\. If you specify a schema name \(such as **myschema\.myprocedure**\), the procedure is created in the specified schema\. Otherwise, the procedure is created in the current schema\. For more information about valid names, see [Names and Identifiers](r_names.md)\.   
-We recommend that you prefix all stored procedure names with `sp_`\. Amazon Redshift reserves the `sp_` prefix for stored procedure names\. By using the `sp_` prefix, you ensure that your stored procedure name doesn't conflict with any existing or future Amazon Redshift built\-in stored procedure or function names\. For more information, see [Naming Stored Procedures](stored-procedure-naming.md)\.  
-You can define more than one procedure with the same name if the data types for the input arguments, or signatures, are different\. In other words, in this case the procedure name is overloaded\. For more information, see [Overloading Procedure Names](stored-procedure-naming.md#stored-procedure-overloading-name)
+The name of the procedure\. If you specify a schema name \(such as **myschema\.myprocedure**\), the procedure is created in the specified schema\. Otherwise, the procedure is created in the current schema\. For more information about valid names, see [Names and identifiers](r_names.md)\.   
+We recommend that you prefix all stored procedure names with `sp_`\. Amazon Redshift reserves the `sp_` prefix for stored procedure names\. By using the `sp_` prefix, you ensure that your stored procedure name doesn't conflict with any existing or future Amazon Redshift built\-in stored procedure or function names\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.  
+You can define more than one procedure with the same name if the data types for the input arguments, or signatures, are different\. In other words, in this case the procedure name is overloaded\. For more information, see [Overloading procedure names](stored-procedure-naming.md#stored-procedure-overloading-name)
 
 *\[argname\] \[ argmode\] argtype*   
 A list of argument names, argument modes, and data types\. Only the data type is required\. Name and mode are optional and their position can be switched\.  
@@ -50,7 +50,7 @@ $test$ my statement $test$
 This syntax is also useful for nested dollar quoting\. For more information about dollar quoting, see "Dollar\-quoted String Constants" under [Lexical Structure](https://www.postgresql.org/docs/9.0/sql-syntax-lexical.html) in the PostgreSQL documentation\.
 
  *procedure\_body*   
-A set of valid PL/pgSQL statements\. PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used in the procedure body, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For more information, see [PL/pgSQL Language Reference](c_pl_pgSQL_reference.md)\.  
+A set of valid PL/pgSQL statements\. PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used in the procedure body, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For more information, see [PL/pgSQL language reference](c_pl_pgSQL_reference.md)\.  
 
 LANGUAGE *plpgsql*  
 A language value\. Specify `plpgsql`\. You must have permission for usage on language to use `plpgsql`\. For more information, see [GRANT](r_GRANT.md)\. 
@@ -71,7 +71,7 @@ If when running these examples you encounter an error similar to:
 ```
 ERROR: 42601: [Amazon](500310) unterminated dollar-quoted string at or near "$$
 ```
-See [Overview of Stored Procedures in Amazon Redshift](stored-procedure-create.md)\. 
+See [Overview of stored procedures in Amazon Redshift](stored-procedure-create.md)\. 
 
 The following example creates a procedure with two input parameters\.
 

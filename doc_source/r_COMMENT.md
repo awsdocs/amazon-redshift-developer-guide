@@ -41,7 +41,7 @@ Name of a table containing the constraint\. Parameter of CONSTRAINT\.
  *arg1\_type, arg2\_type, \.\.\.*   
 Data types of the arguments for a function\. Parameter of FUNCTION\. 
 
-## Usage Notes<a name="r_COMMENT-usage-notes"></a>
+## Usage notes<a name="r_COMMENT-usage-notes"></a>
 
 Comments on databases may only be applied to the current database\. A warning message is displayed if you attempt to comment on a different database\. The same warning is displayed for comments on databases that don't exist\.
 

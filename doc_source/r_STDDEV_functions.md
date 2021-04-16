@@ -1,4 +1,4 @@
-# STDDEV\_SAMP and STDDEV\_POP Functions<a name="r_STDDEV_functions"></a>
+# STDDEV\_SAMP and STDDEV\_POP functions<a name="r_STDDEV_functions"></a>
 
  The STDDEV\_SAMP and STDDEV\_POP functions return the sample and population standard deviation of a set of numeric values \(integer, decimal, or floating\-point\)\. The result of the STDDEV\_SAMP function is equivalent to the square root of the sample variance of the same set of values\. 
 
@@ -16,7 +16,7 @@ The expression must have an integer, decimal, or floating point data type\. Rega
 **Note**  
 Standard deviation is calculated using floating point arithmetic, which might result in slight imprecision\.
 
-## Usage Notes<a name="r_STDDEV_usage_notes"></a>
+## Usage notes<a name="r_STDDEV_usage_notes"></a>
 
 When the sample standard deviation \(STDDEV or STDDEV\_SAMP\) is calculated for an expression that consists of a single value, the result of the function is NULL not 0\. 
 

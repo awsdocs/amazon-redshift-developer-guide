@@ -1,8 +1,8 @@
-# Subquery Examples<a name="r_Subquery_examples"></a>
+# Subquery examples<a name="r_Subquery_examples"></a>
 
-The following examples show different ways in which subqueries fit into SELECT queries\. See [Join Examples](r_Join_examples.md) for another example of the use of subqueries\. 
+The following examples show different ways in which subqueries fit into SELECT queries\. See [Join examples](r_Join_examples.md) for another example of the use of subqueries\. 
 
-## SELECT List Subquery<a name="r_Subquery_examples-select-list-subquery"></a>
+## SELECT list subquery<a name="r_Subquery_examples-select-list-subquery"></a>
 
 The following example contains a subquery in the SELECT list\. This subquery is *scalar*: it returns only one column and one value, which is repeated in the result for each row that is returned from the outer query\. The query compares the Q1SALES value that the subquery computes with sales values for two other quarters \(2 and 3\) in 2008, as defined by the outer query\. 
 
@@ -23,7 +23,7 @@ qtr  |  qtrsales   |   q1sales
 (2 rows)
 ```
 
-## WHERE Clause Subquery<a name="r_Subquery_examples-where-clause-subquery"></a>
+## WHERE clause subquery<a name="r_Subquery_examples-where-clause-subquery"></a>
 
 The following example contains a table subquery in the WHERE clause\. This subquery produces multiple rows\. In this case, the rows contain only one column, but table subqueries can contain multiple columns and rows, just like any other table\. 
 
@@ -52,6 +52,6 @@ Patricia   | Anderson | South Portland |       8
 (10 rows)
 ```
 
-## WITH Clause Subqueries<a name="r_Subquery_examples-with-clause-subqueries"></a>
+## WITH clause subqueries<a name="r_Subquery_examples-with-clause-subqueries"></a>
 
-See [WITH Clause](r_WITH_clause.md)\. 
+See [WITH clause](r_WITH_clause.md)\. 

@@ -1,18 +1,18 @@
-# Computations with Numeric Values<a name="r_numeric_computations201"></a>
+# Computations with numeric values<a name="r_numeric_computations201"></a>
 
 In this context, *computation* refers to binary mathematical operations: addition, subtraction, multiplication, and division\. This section describes the expected return types for these operations, as well as the specific formula that is applied to determine precision and scale when DECIMAL data types are involved\. 
 
 When numeric values are computed during query processing, you might encounter cases where the computation is impossible and the query returns a numeric overflow error\. You might also encounter cases where the scale of computed values varies or is unexpected\. For some operations, you can use explicit casting \(type promotion\) or Amazon Redshift configuration parameters to work around these problems\. 
 
-For information about the results of similar computations with SQL functions, see [Aggregate Functions](c_Aggregate_Functions.md)\. 
+For information about the results of similar computations with SQL functions, see [Aggregate functions](c_Aggregate_Functions.md)\. 
 
-## Return Types for Computations<a name="r_numeric_computations201-return-types-for-computations"></a>
+## Return types for computations<a name="r_numeric_computations201-return-types-for-computations"></a>
 
 Given the set of numeric data types supported in Amazon Redshift, the following table shows the expected return types for addition, subtraction, multiplication, and division operations\. The first column on the left side of the table represents the first operand in the calculation, and the top row represents the second operand\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_numeric_computations201.html)
 
-## Precision and Scale of Computed DECIMAL Results<a name="r_numeric_computations201-precision-and-scale-of-computed-decimal-results"></a>
+## Precision and scale of computed DECIMAL results<a name="r_numeric_computations201-precision-and-scale-of-computed-decimal-results"></a>
 
 The following table summarizes the rules for computing resulting precision and scale when mathematical operations return DECIMAL results\. In this table, `p1` and `s1` represent the precision and scale of the first operand in a calculation and `p2` and `s2` represent the precision and scale of the second operand\. \(Regardless of these calculations, the maximum result precision is 38, and the maximum result scale is 38\.\) 
 
@@ -64,7 +64,7 @@ Scale = max(2,3) = 3
 Result = DECIMAL(15,3)
 ```
 
-## Notes on Division Operations<a name="r_numeric_computations201-notes-on-division-operations"></a>
+## Notes on division operations<a name="r_numeric_computations201-notes-on-division-operations"></a>
 
 For division operations, divide\-by\-zero conditions return errors\. 
 
@@ -74,7 +74,7 @@ The scale limit of 100 is applied after the precision and scale are calculated\.
 
 If the calculated precision is greater than the maximum precision \(38\), the precision is reduced to 38, and the scale becomes the result of: `max(38 + scale - precision), min(4, 100))` 
 
-## Overflow Conditions<a name="r_numeric_computations201-overflow-conditions"></a>
+## Overflow conditions<a name="r_numeric_computations201-overflow-conditions"></a>
 
 Overflow is checked for all numeric computations\. DECIMAL data with a precision of 19 or less is stored as 64\-bit integers\. DECIMAL data with a precision that is greater than 19 is stored as 128\-bit integers\. The maximum precision for all DECIMAL values is 38, and the maximum scale is 37\. Overflow errors occur when a value exceeds these limits, which apply to both intermediate and final result sets: 
 + Explicit casting results in runtime overflow errors when specific data values do not fit the requested precision or scale specified by the cast function\. For example, you cannot cast all values from the PRICEPAID column in the SALES table \(a DECIMAL\(8,2\) column\) and return a DECIMAL\(7,3\) result: 
@@ -87,7 +87,7 @@ Overflow is checked for all numeric computations\. DECIMAL data with a precision
   This error occurs because *some* of the larger values in the PRICEPAID column cannot be cast\.
 + Multiplication operations produce results in which the result scale is the sum of the scale of each operand\. If both operands have a scale of 4, for example, the result scale is 8, leaving only 10 digits for the left side of the decimal point\. Therefore, it is relatively easy to run into overflow conditions when multiplying two large numbers that both have significant scale\.
 
-## Numeric Calculations with INTEGER and DECIMAL Types<a name="r_numeric_computations201-numeric-calculations-with-integer-and-decimal-types"></a>
+## Numeric calculations with INTEGER and DECIMAL types<a name="r_numeric_computations201-numeric-calculations-with-integer-and-decimal-types"></a>
 
 When one of the operands in a calculation has an INTEGER data type and the other operand is DECIMAL, the INTEGER operand is implicitly cast as a DECIMAL: 
 + INT2 \(SMALLINT\) is cast as DECIMAL\(5,0\) 

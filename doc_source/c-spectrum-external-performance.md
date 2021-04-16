@@ -1,4 +1,4 @@
-# Improving Amazon Redshift Spectrum Query Performance<a name="c-spectrum-external-performance"></a>
+# Improving Amazon Redshift Spectrum query performance<a name="c-spectrum-external-performance"></a>
 
 Look at the query plan to find what steps have been pushed to the Amazon Redshift Spectrum layer\. 
 
@@ -49,7 +49,7 @@ Note the following elements in the query plan:
 + The `S3 HashAggregate` node indicates aggregation in the Redshift Spectrum layer for the group by clause \(`group by spectrum.sales.eventid`\)\.
 
 Following are ways to improve Redshift Spectrum performance:
-+ Use Parquet formatted data files\. Parquet stores data in a columnar format, so Redshift Spectrum can eliminate unneeded columns from the scan\. When data is in text\-file format, Redshift Spectrum needs to scan the entire file\.
++ Use Apache Parquet formatted data files\. Parquet stores data in a columnar format, so Redshift Spectrum can eliminate unneeded columns from the scan\. When data is in text\-file format, Redshift Spectrum needs to scan the entire file\.
 + Use the fewest columns possible in your queries\.
 + Use multiple files to optimize for parallel processing\. Keep your file sizes larger than 64 MB\. Avoid data size skew by keeping files about the same size\.
 + Put your large fact tables in Amazon S3 and keep your frequently used, smaller dimension tables in your local Amazon Redshift database\.
@@ -64,6 +64,6 @@ Following are ways to improve Redshift Spectrum performance:
   + String functions\.
 
   Operations that can't be pushed to the Redshift Spectrum layer include DISTINCT and ORDER BY\.
-+ Use partitions to limit the data that is scanned\. Partition your data based on your most common query predicates, then prune partitions by filtering on partition columns\. For more information, see [Partitioning Redshift Spectrum External Tables](c-spectrum-external-tables.md#c-spectrum-external-tables-partitioning)\.
++ Use partitions to limit the data that is scanned\. Partition your data based on your most common query predicates, then prune partitions by filtering on partition columns\. For more information, see [Partitioning Redshift Spectrum external tables](c-spectrum-external-tables.md#c-spectrum-external-tables-partitioning)\.
 
   Query [SVL\_S3PARTITION](r_SVL_S3PARTITION.md) to view total partitions and qualified partitions\.

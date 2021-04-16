@@ -14,17 +14,17 @@ has_schema_privilege( [ user, ] schema, privilege)
 ## Arguments<a name="r_HAS_SCHEMA_PRIVILEGE-arguments"></a>
 
  *user*   
-Name of the user to check for schema privileges\. Default is to check the current user\. 
+The name of the user to check for schema privileges\. The default is to check the current user\. 
 
  *schema*   
-Schema associated with the privilege\. 
+The schema associated with the privilege\. 
 
  *privilege*   
-Privilege to check\. Valid values are:   
+The privilege to check\. Valid values are the following:   
 + CREATE
 + USAGE
 
-## Return Type<a name="r_HAS_SCHEMA_PRIVILEGE-return-type"></a>
+## Return type<a name="r_HAS_SCHEMA_PRIVILEGE-return-type"></a>
 
 Returns a CHAR or VARCHAR string\. 
 

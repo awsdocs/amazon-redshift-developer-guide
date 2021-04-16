@@ -1,4 +1,4 @@
-# CASE Expression<a name="r_CASE_function"></a>
+# CASE expression<a name="r_CASE_function"></a>
 
 ## Syntax<a name="r_CASE_function-syntax"></a>
 
@@ -46,7 +46,7 @@ A Boolean condition is valid or true when the value is equal to the constant\. W
 
 ## Examples<a name="r_CASE_function-examples"></a>
 
-Use a simple CASE expression is used to replace `New York City` with `Big Apple` in a query against the VENUE table\. Replace all other city names with `other`\.
+Use a simple CASE expression to replace `New York City` with `Big Apple` in a query against the VENUE table\. Replace all other city names with `other`\.
 
 ```
 select venuecity,

@@ -1,12 +1,12 @@
-# Step 1\. Create an IAM Role for Amazon Redshift<a name="c-getting-started-using-spectrum-create-role"></a>
+# Step 1\. Create an IAM role for Amazon Redshift<a name="c-getting-started-using-spectrum-create-role"></a>
 
-Your cluster needs authorization to access your external data catalog in AWS Glue or Amazon Athena and your data files in Amazon S3\. You provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster\. For more information about using roles with Amazon Redshift, see [Authorizing COPY and UNLOAD Operations Using IAM Roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html)\.
+Your cluster needs authorization to access your external Data Catalog in AWS Glue or Amazon Athena and your data files in Amazon S3\. You provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster\. For more information about using roles with Amazon Redshift, see [Authorizing COPY and UNLOAD Operations Using IAM Roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html)\.
 
 **Note**  
-In certain cases, you can migrate your Athena data catalog to an AWS Glue Data Catalog\. You can do this if your cluster is in an AWS Region where AWS Glue is supported and you have Redshift Spectrum external tables in the Athena data catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
+In certain cases, you can migrate your Athena Data Catalog to an AWS Glue Data Catalog\. You can do this if your cluster is in an AWS Region where AWS Glue is supported and you have Redshift Spectrum external tables in the Athena Data Catalog\. To use the AWS Glue Data Catalog with Redshift Spectrum, you might need to change your IAM policies\. For more information, see [Upgrading to the AWS Glue Data Catalog](https://docs.aws.amazon.com/athena/latest/ug/glue-athena.html#glue-upgrade) in the *Athena User Guide*\.
 
 When you create a role for Amazon Redshift, choose one of the following approaches:
-+ If you are using Redshift Spectrum with either an Athena data catalog or AWS Glue Data Catalog, follow the steps outlined in [To create an IAM role for Amazon Redshift](#spectrum-get-started-create-role)\. 
++ If you are using Redshift Spectrum with either an Athena Data Catalog or AWS Glue Data Catalog, follow the steps outlined in [To create an IAM role for Amazon Redshift](#spectrum-get-started-create-role)\. 
 + If you are using Redshift Spectrum with an AWS Glue Data Catalog that is enabled for AWS Lake Formation, follow the steps outlined in these procedures:
   +  [To create an IAM role for Amazon Redshift using an AWS Glue Data Catalog enabled for AWS Lake Formation ](#spectrum-get-started-create-role-lake-formation) 
   +  [To grant SELECT permissions on the table to query in the Lake Formation database](#spectrum-get-started-grant-lake-formation-table) <a name="spectrum-get-started-create-role"></a>
@@ -23,7 +23,7 @@ When you create a role for Amazon Redshift, choose one of the following approach
 
 1. Under **Select your use case**, choose **Redshift \- Customizable** and then choose **Next: Permissions**\.
 
-1. The **Attach permissions policy** page appears\. Choose `AmazonS3ReadOnlyAccess` and `AWSGlueConsoleFullAccess`, if you're using the AWS Glue Data Catalog\. Or choose `AmazonAthenaFullAccess` if you're using the Athena data catalog\. Choose **Next: Review**\.
+1. The **Attach permissions policy** page appears\. Choose `AmazonS3ReadOnlyAccess` and `AWSGlueConsoleFullAccess`, if you're using the AWS Glue Data Catalog\. Or choose `AmazonAthenaFullAccess` if you're using the Athena Data Catalog\. Choose **Next: Review**\.
 **Note**  
 The `AmazonS3ReadOnlyAccess` policy gives your cluster read\-only access to all Amazon S3 buckets\. To grant access to only the AWS sample data bucket, create a new policy and add the following permissions\.  
 

@@ -1,18 +1,18 @@
-# Using a COPY Command to Load Data<a name="t_Loading_tables_with_the_COPY_command"></a>
+# Using a COPY command to load data<a name="t_Loading_tables_with_the_COPY_command"></a>
 
 **Topics**
-+ [Credentials and Access Permissions](loading-data-access-permissions.md)
-+ [Preparing Your Input Data](t_preparing-input-data.md)
-+ [Loading Data from Amazon S3](t_Loading-data-from-S3.md)
-+ [Loading Data from Amazon EMR](loading-data-from-emr.md)
-+ [Loading Data from Remote Hosts](loading-data-from-remote-hosts.md)
-+ [Loading Data from an Amazon DynamoDB Table](t_Loading-data-from-dynamodb.md)
-+ [Verifying That the Data Was Loaded Correctly](verifying-that-data-loaded-correctly.md)
-+ [Validating Input Data](t_Validating_input_files.md)
-+ [Loading Tables with Automatic Compression](c_Loading_tables_auto_compress.md)
-+ [Optimizing Storage for Narrow Tables](c_load_compression_hidden_cols.md)
-+ [Loading Default Column Values](c_loading_default_values.md)
-+ [Troubleshooting Data Loads](t_Troubleshooting_load_errors.md)
++ [Credentials and access permissions](loading-data-access-permissions.md)
++ [Preparing your input data](t_preparing-input-data.md)
++ [Loading data from Amazon S3](t_Loading-data-from-S3.md)
++ [Loading data from Amazon EMR](loading-data-from-emr.md)
++ [Loading data from remote hosts](loading-data-from-remote-hosts.md)
++ [Loading data from an Amazon DynamoDB table](t_Loading-data-from-dynamodb.md)
++ [Verifying that the data loaded correctly](verifying-that-data-loaded-correctly.md)
++ [Validating input data](t_Validating_input_files.md)
++ [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)
++ [Optimizing storage for narrow tables](c_load_compression_hidden_cols.md)
++ [Loading default column values](c_loading_default_values.md)
++ [Troubleshooting data loads](t_Troubleshooting_load_errors.md)
 
 The COPY command leverages the Amazon Redshift massively parallel processing \(MPP\) architecture to read and load data in parallel from files on Amazon S3, from a DynamoDB table, or from text output from one or more remote hosts\.
 

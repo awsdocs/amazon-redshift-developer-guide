@@ -6,7 +6,7 @@ PG\_TABLE\_DEF only returns information about tables that are visible to the use
 
 You can use [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md) to view more comprehensive information about a table, including data distribution skew, key distribution skew, table size, and statistics\. 
 
-## Table Columns<a name="r_PG_TABLE_DEF-table-columns2"></a>
+## Table columns<a name="r_PG_TABLE_DEF-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PG_TABLE_DEF.html)
 

@@ -1,17 +1,17 @@
-# Character Types<a name="r_Character_types"></a>
+# Character types<a name="r_Character_types"></a>
 
 **Topics**
-+ [Storage and Ranges](#r_Character_types-storage-and-ranges)
++ [Storage and ranges](#r_Character_types-storage-and-ranges)
 + [CHAR or CHARACTER](#r_Character_types-char-or-character)
 + [VARCHAR or CHARACTER VARYING](#r_Character_types-varchar-or-character-varying)
-+ [NCHAR and NVARCHAR Types](#r_Character_types-nchar-and-nvarchar-types)
-+ [TEXT and BPCHAR Types](#r_Character_types-text-and-bpchar-types)
-+ [Significance of Trailing Blanks](#r_Character_types-significance-of-trailing-blanks)
-+ [Examples with Character Types](r_Examples_with_character_types.md)
++ [NCHAR and NVARCHAR types](#r_Character_types-nchar-and-nvarchar-types)
++ [TEXT and BPCHAR types](#r_Character_types-text-and-bpchar-types)
++ [Significance of trailing blanks](#r_Character_types-significance-of-trailing-blanks)
++ [Examples with character types](r_Examples_with_character_types.md)
 
 Character data types include CHAR \(character\) and VARCHAR \(character varying\)\. 
 
-## Storage and Ranges<a name="r_Character_types-storage-and-ranges"></a>
+## Storage and ranges<a name="r_Character_types-storage-and-ranges"></a>
 
 CHAR and VARCHAR data types are defined in terms of bytes, not characters\. A CHAR column can only contain single\-byte characters, so a CHAR\(10\) column can contain a string with a maximum length of 10 bytes\. A VARCHAR can contain multibyte characters, up to a maximum of four bytes per character\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters, 6 two\-byte characters, 4 three\-byte characters, or 3 four\-byte characters\. 
 
@@ -43,9 +43,9 @@ Use a VARCHAR or CHARACTER VARYING column to store variable\-length strings with
 varchar(120)
 ```
 
-If you use the VARCHAR data type without a length specifier, the default length is 256\.
+If you use the VARCHAR data type without a length specifier in a CREATE TABLE statement, the default length is 256\. If used in an expression, the size of the output is determined using the input expression \(up to 65535\)\.
 
-## NCHAR and NVARCHAR Types<a name="r_Character_types-nchar-and-nvarchar-types"></a>
+## NCHAR and NVARCHAR types<a name="r_Character_types-nchar-and-nvarchar-types"></a>
 
 You can create columns with the NCHAR and NVARCHAR types \(also known as NATIONAL CHARACTER and NATIONAL CHARACTER VARYING types\)\. These types are converted to CHAR and VARCHAR types, respectively, and are stored in the specified number of bytes\. 
 
@@ -53,13 +53,13 @@ An NCHAR column without a length specification is converted to a CHAR\(1\) colum
 
 An NVARCHAR column without a length specification is converted to a VARCHAR\(256\) column\. 
 
-## TEXT and BPCHAR Types<a name="r_Character_types-text-and-bpchar-types"></a>
+## TEXT and BPCHAR types<a name="r_Character_types-text-and-bpchar-types"></a>
 
 You can create an Amazon Redshift table with a TEXT column, but it is converted to a VARCHAR\(256\) column that accepts variable\-length values with a maximum of 256 characters\. 
 
 You can create an Amazon Redshift column with a BPCHAR \(blank\-padded character\) type, which Amazon Redshift converts to a fixed\-length CHAR\(256\) column\. 
 
-## Significance of Trailing Blanks<a name="r_Character_types-significance-of-trailing-blanks"></a>
+## Significance of trailing blanks<a name="r_Character_types-significance-of-trailing-blanks"></a>
 
 Both CHAR and VARCHAR data types store strings up to *n* bytes in length\. An attempt to store a longer string into a column of these types results in an error, unless the extra characters are all spaces \(blanks\), in which case the string is truncated to the maximum length\. If the string is shorter than the maximum length, CHAR values are padded with blanks, but VARCHAR values store the string without blanks\.
 

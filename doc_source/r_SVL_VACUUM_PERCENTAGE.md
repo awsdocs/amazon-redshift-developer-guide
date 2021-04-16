@@ -2,13 +2,13 @@
 
 The SVL\_VACUUM\_PERCENTAGE view reports the percentage of data blocks allocated to a table after performing a vacuum\. This percentage number shows how much disk space was reclaimed\. See the [VACUUM](r_VACUUM_command.md) command for more information about the vacuum utility\.
 
-SVL\_VACUUM\_PERCENTAGE is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVL\_VACUUM\_PERCENTAGE is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_VACUUM_PERCENTAGE-table-rows"></a>
+## Table columns<a name="r_SVL_VACUUM_PERCENTAGE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_VACUUM_PERCENTAGE.html)
 
-## Sample Query<a name="r_SVL_VACUUM_PERCENTAGE-sample-query"></a>
+## Sample query<a name="r_SVL_VACUUM_PERCENTAGE-sample-query"></a>
 
 The following query displays the percentage for a specific operation on table 100238: 
 

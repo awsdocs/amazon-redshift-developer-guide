@@ -1,4 +1,4 @@
-# Security and Privileges for Stored Procedures<a name="stored-procedure-security-and-privileges"></a>
+# Security and privileges for stored procedures<a name="stored-procedure-security-and-privileges"></a>
 
 By default, all users have permission to create a procedure\. To create a procedure, you must have USAGE permission on the language PL/pgSQL, which is granted to PUBLIC by default\. Only superusers and owners have the permission to call a procedure by default\. Superusers can run REVOKE USAGE on PL/pgSQL from a user if they want to prevent the user from creating a stored procedure\. 
 

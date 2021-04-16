@@ -1,16 +1,18 @@
-# Loading Tables with Automatic Compression<a name="c_Loading_tables_auto_compress"></a>
+# Loading tables with automatic compression<a name="c_Loading_tables_auto_compress"></a>
 
 **Topics**
-+ [How Automatic Compression Works](#c_Loading_tables_auto_compress-how-automatic-compression-works)
-+ [Automatic Compression Example](#r_COPY_COMPRESS_examples)
++ [How automatic compression works](#c_Loading_tables_auto_compress-how-automatic-compression-works)
++ [Automatic compression example](#r_COPY_COMPRESS_examples)
 
-You can apply compression encodings to columns in tables manually, based on your own evaluation of the data, or you can use the COPY command with COMPUPDATE set to ON to analyze and apply compression automatically based on sample data\. 
+You can apply compression encodings to columns in tables manually, based on your own evaluation of the data\. Or you can use the COPY command with COMPUPDATE set to ON to analyze and apply compression automatically based on sample data\. 
 
-You can use automatic compression when you create and load a brand new table\. The COPY command will perform a compression analysis\. You can also perform a compression analysis without loading data or changing the compression on a table by running the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command against an already populated table\. For example, you can run the ANALYZE COMPRESSION command when you want to analyze compression on a table for future use, while preserving the existing DDL\.
+You can use automatic compression when you create and load a brand new table\. The COPY command performs a compression analysis\. You can also perform a compression analysis without loading data or changing the compression on a table by running the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command on an already populated table\. For example, you can run ANALYZE COMPRESSION when you want to analyze compression on a table for future use, while preserving the existing data definition language \(DDL\) statements\.
 
-Automatic compression balances overall performance when choosing compression encodings\. Range\-restricted scans might perform poorly if sort key columns are compressed much more highly than other columns in the same query\. As a result, automatic compression will choose a less efficient compression encoding to keep the sort key columns balanced with other columns\. However, ANALYZE COMPRESSION does not take sort keys into account, so it might recommend a different encoding for the sort key than what automatic compression would choose\. If you use ANALYZE COMPRESSION, consider changing the encoding to RAW for sort keys\.
+Automatic compression balances overall performance when choosing compression encodings\. Range\-restricted scans might perform poorly if sort key columns are compressed much more highly than other columns in the same query\. As a result, automatic compression skips the data analyzing phase on the sort key columns and keeps the user\-defined encoding types\. 
 
-## How Automatic Compression Works<a name="c_Loading_tables_auto_compress-how-automatic-compression-works"></a>
+Automatic compression chooses RAW encoding if you haven't explicitly defined a type of encoding\. ANALYZE COMPRESSION behaves the same\. For optimal query performance, consider using RAW for sort keys\.
+
+## How automatic compression works<a name="c_Loading_tables_auto_compress-how-automatic-compression-works"></a>
 
 When the COMPUPDATE parameter is ON, the COPY command applies automatic compression whenever you run the COPY command with an empty target table and all of the table columns either have RAW encoding or no encoding\.
 
@@ -37,9 +39,9 @@ After you run the COPY command, the table is fully loaded, compressed, and ready
 
 If you only want to perform a compression analysis, run ANALYZE COMPRESSION, which is more efficient than running a full COPY\. Then you can evaluate the results to decide whether to use automatic compression or recreate the table manually\.
 
-Automatic compression is supported only for the COPY command\. Alternatively, you can manually apply compression encoding when you create the table\. For information about manual compression encoding, see [Choosing a Column Compression Type](t_Compressing_data_on_disk.md)\.
+Automatic compression is supported only for the COPY command\. Alternatively, you can manually apply compression encoding when you create the table\. For information about manual compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.
 
-## Automatic Compression Example<a name="r_COPY_COMPRESS_examples"></a>
+## Automatic compression example<a name="r_COPY_COMPRESS_examples"></a>
 
 In this example, assume that the TICKIT database contains a copy of the LISTING table called BIGLIST, and you want to apply automatic compression to this table when it is loaded with approximately 3 million rows\.
 
@@ -90,4 +92,4 @@ In this example, assume that the TICKIT database contains a copy of the LISTING 
    (1 row)
    ```
 
-When rows are later appended to this table using COPY or INSERT statements, the same compression encodings will be applied\.
+When rows are later appended to this table using COPY or INSERT statements, the same compression encodings are applied\.

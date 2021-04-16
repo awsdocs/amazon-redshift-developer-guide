@@ -1,4 +1,4 @@
-# Working with Short Query Acceleration<a name="wlm-short-query-acceleration"></a>
+# Working with short query acceleration<a name="wlm-short-query-acceleration"></a>
 
 Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA runs short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. SQA only prioritizes queries that are short\-running and are in a user\-defined queue\. With SQA, short\-running queries begin running more quickly and users see results sooner\. 
 
@@ -10,7 +10,7 @@ Amazon Redshift uses a machine learning algorithm to analyze each eligible query
 
 SQA is enabled by default in the default parameter group and for all new parameter groups\. To disable SQA in the Amazon Redshift console, edit the WLM configuration for a parameter group and deselect **Enable short query acceleration**\.   As a best practice, we recommend using a WLM query slot count of 15 or fewer to maintain optimum overall system performance\. For information about modifying WLM configurations, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.
 
-## Maximum Runtime for Short Queries<a name="wlm-sqa-max-run-time"></a>
+## Maximum runtime for short queries<a name="wlm-sqa-max-run-time"></a>
 
 When you enable SQA, WLM sets the maximum runtime for short queries to dynamic by default\. We recommend keeping the dynamic setting for SQA maximum runtime\. You can override the default setting by specifying a fixed value of 1–20 seconds\.
 

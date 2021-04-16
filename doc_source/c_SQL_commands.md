@@ -1,10 +1,12 @@
-# SQL Commands<a name="c_SQL_commands"></a>
+# SQL commands<a name="c_SQL_commands"></a>
 
 **Topics**
 + [ABORT](r_ABORT.md)
 + [ALTER DATABASE](r_ALTER_DATABASE.md)
++ [ALTER DATASHARE](r_ALTER_DATASHARE.md)
 + [ALTER DEFAULT PRIVILEGES](r_ALTER_DEFAULT_PRIVILEGES.md)
 + [ALTER GROUP](r_ALTER_GROUP.md)
++ [ALTER MATERIALIZED VIEW](r_ALTER_MATERIALIZED_VIEW.md)
 + [ALTER PROCEDURE](r_ALTER_PROCEDURE.md)
 + [ALTER SCHEMA](r_ALTER_SCHEMA.md)
 + [ALTER TABLE](r_ALTER_TABLE.md)
@@ -20,12 +22,15 @@
 + [COMMIT](r_COMMIT.md)
 + [COPY](r_COPY.md)
 + [CREATE DATABASE](r_CREATE_DATABASE.md)
++ [CREATE DATASHARE](r_CREATE_DATASHARE.md)
 + [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)
 + [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)
++ [CREATE EXTERNAL FUNCTION](r_CREATE_EXTERNAL_FUNCTION.md)
 + [CREATE FUNCTION](r_CREATE_FUNCTION.md)
 + [CREATE GROUP](r_CREATE_GROUP.md)
 + [CREATE LIBRARY](r_CREATE_LIBRARY.md)
 + [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)
++ [CREATE MODEL](r_CREATE_MODEL.md)
 + [CREATE PROCEDURE](r_CREATE_PROCEDURE.md)
 + [CREATE SCHEMA](r_CREATE_SCHEMA.md)
 + [CREATE TABLE](r_CREATE_TABLE_NEW.md)
@@ -35,10 +40,13 @@
 + [DEALLOCATE](r_DEALLOCATE.md)
 + [DECLARE](declare.md)
 + [DELETE](r_DELETE.md)
++ [DESC DATASHARE](r_DESC_DATASHARE.md)
 + [DROP DATABASE](r_DROP_DATABASE.md)
++ [DROP DATASHARE](r_DROP_DATASHARE.md)
 + [DROP FUNCTION](r_DROP_FUNCTION.md)
 + [DROP GROUP](r_DROP_GROUP.md)
 + [DROP LIBRARY](r_DROP_LIBRARY.md)
++ [DROP MODEL](r_DROP_MODEL.md)
 + [DROP MATERIALIZED VIEW](materialized-view-drop-sql-command.md)
 + [DROP PROCEDURE](r_DROP_PROCEDURE.md)
 + [DROP SCHEMA](r_DROP_SCHEMA.md)
@@ -51,6 +59,7 @@
 + [FETCH](fetch.md)
 + [GRANT](r_GRANT.md)
 + [INSERT](r_INSERT_30.md)
++ [INSERT \(external table\)](r_INSERT_external_table.md)
 + [LOCK](r_LOCK.md)
 + [PREPARE](r_PREPARE.md)
 + [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)
@@ -63,6 +72,8 @@
 + [SET SESSION AUTHORIZATION](r_SET_SESSION_AUTHORIZATION.md)
 + [SET SESSION CHARACTERISTICS](r_SET_SESSION_CHARACTERISTICS.md)
 + [SHOW](r_SHOW.md)
++ [SHOW MODEL](r_SHOW_MODEL.md)
++ [SHOW DATASHARES](r_SHOW_DATASHARES.md)
 + [SHOW PROCEDURE](r_SHOW_PROCEDURE.md)
 + [START TRANSACTION](r_START_TRANSACTION.md)
 + [TRUNCATE](r_TRUNCATE.md)
@@ -70,10 +81,9 @@
 + [UPDATE](r_UPDATE.md)
 + [VACUUM](r_VACUUM_command.md)
 
-The SQL language consists of commands that you use to create and manipulate database objects, run queries, load tables, and modify the data in tables\.
+The SQL language consists of commands that you use to create and manipulate database objects, run queries, load tables, and modify the data in tables\. 
 
-**Note**  
-Amazon Redshift is based on PostgreSQL 8\.0\.2\. Amazon Redshift and PostgreSQL have a number of very important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
+Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of very important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
 
 **Note**  
 The maximum size for a single SQL statement is 16 MB\.

@@ -4,8 +4,8 @@ PG\_DATABASE\_INFO is an Amazon Redshift system view that extends the PostgreSQL
 
 PG\_DATABASE\_INFO is visible to all users\.
 
-## Table Columns<a name="r_PG_DATABASE_INFO-table-columns2"></a>
+## Table columns<a name="r_PG_DATABASE_INFO-table-columns2"></a>
 
-PG\_DATABASE\_INFO contains the following columns in addition to columns in PG\_DATABASE\. For more information, see the [PostgreSQL 8\.0 documentation](https://www.postgresql.org/docs/8.0/catalog-pg-database.html)\. 
+PG\_DATABASE\_INFO contains the following columns in addition to columns in PG\_DATABASE\. For more information, see the [PostgreSQL documentation](https://www.postgresql.org/docs/8.0/catalog-pg-database.html)\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PG_DATABASE_INFO.html)

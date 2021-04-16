@@ -1,8 +1,8 @@
-# REPEAT Function<a name="r_REPEAT"></a>
+# REPEAT function<a name="r_REPEAT"></a>
 
 Repeats a string the specified number of times\. If the input parameter is numeric, REPEAT treats it as a string\. 
 
-Synonym for [REPLICATE Function](r_REPLICATE.md)\. 
+Synonym for [REPLICATE function](r_REPLICATE.md)\. 
 
 ## Syntax<a name="r_REPEAT-synopsis"></a>
 
@@ -18,7 +18,7 @@ The first input parameter is the string to be repeated\.
  *integer*   
 The second parameter is an integer indicating the number of times to repeat the string\. 
 
-## Return Type<a name="r_REPEAT-return-type"></a>
+## Return type<a name="r_REPEAT-return-type"></a>
 
 The REPEAT function returns a string\. 
 

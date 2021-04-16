@@ -1,4 +1,4 @@
-# SIGN Function<a name="r_SIGN"></a>
+# SIGN function<a name="r_SIGN"></a>
 
  The SIGN function returns the sign \(positive or negative\) of a number\. The result of the SIGN function is `1`, `-1`, or `0` indicating the sign of the argument\. 
 
@@ -13,7 +13,7 @@ SIGN (number)
  *number*   
 Number to be evaluated\. The data type can be `numeric` or `double precision`\. Other data types can be converted by Amazon Redshift per the implicit conversion rules\.
 
-## Return Type<a name="r_SIGN-return-type"></a>
+## Return type<a name="r_SIGN-return-type"></a>
 
 The output type is `numeric(1, 0)` for a numeric input, and `double precision` for a double precision input\.
 

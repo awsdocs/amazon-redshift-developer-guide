@@ -1,4 +1,4 @@
-# BETWEEN Range Condition<a name="r_range_condition"></a>
+# BETWEEN range condition<a name="r_range_condition"></a>
 
 A `BETWEEN` condition tests expressions for inclusion in a range of values, using the keywords `BETWEEN` and `AND`\. 
 

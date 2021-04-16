@@ -7,11 +7,13 @@ System views with the prefix SVCS provide details about queries on both the main
 
 SVCS\_COMPILE is visible to all users\.
 
-## Table Columns<a name="r_SVCS_COMPILE-table-rows"></a>
+For information about SCL\_COMPILE, see [SVL\_COMPILE](r_SVL_COMPILE.md)\.
+
+## Table columns<a name="r_SVCS_COMPILE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_COMPILE.html)
 
-## Sample Queries<a name="r_SVCS_COMPILE-sample-queries"></a>
+## Sample queries<a name="r_SVCS_COMPILE-sample-queries"></a>
 
 In this example, queries 35878 and 35879 executed the same SQL statement\. The compile column for query 35878 shows `1` for four query segments, which indicates that the segments were compiled\. Query 35879 shows `0` in the compile column for every segment, indicating that the segments did not need to be compiled again\.
 

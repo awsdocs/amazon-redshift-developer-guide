@@ -1,4 +1,4 @@
-# BTRIM Function<a name="r_BTRIM"></a>
+# BTRIM function<a name="r_BTRIM"></a>
 
 The BTRIM function trims a string by removing leading and trailing blanks or by removing characters that match an optional specified string\. 
 
@@ -16,7 +16,7 @@ The first input parameter is a VARCHAR string\.
  *matching\_string*   
 The second parameter, if present, is a VARCHAR string\. 
 
-## Return Type<a name="r_BTRIM-return-type"></a>
+## Return type<a name="r_BTRIM-return-type"></a>
 
 The BTRIM function returns a VARCHAR string\. 
 

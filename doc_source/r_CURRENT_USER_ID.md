@@ -8,7 +8,7 @@ Returns the unique identifier for the Amazon Redshift user logged in to the curr
 CURRENT_USER_ID
 ```
 
-## Return Type<a name="r_CURRENT_USER_ID-return-type"></a>
+## Return type<a name="r_CURRENT_USER_ID-return-type"></a>
 
 The CURRENT\_USER\_ID function returns an integer\. 
 

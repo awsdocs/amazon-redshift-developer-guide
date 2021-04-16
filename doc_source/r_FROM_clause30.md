@@ -1,4 +1,4 @@
-# FROM Clause<a name="r_FROM_clause30"></a>
+# FROM clause<a name="r_FROM_clause30"></a>
 
 The FROM clause in a query lists the table references \(tables, views, and subqueries\) that data is selected from\. If multiple table references are listed, the tables must be joined, using appropriate syntax in either the FROM clause or the WHERE clause\. If no join criteria are specified, the system processes the query as a cross\-join \(Cartesian product\)\. 
 
@@ -21,7 +21,7 @@ table_reference [ NATURAL ] join_type table_reference
 ## Parameters<a name="r_FROM_clause30-parameters"></a>
 
  *with\_subquery\_table\_name*   
-A table defined by a subquery in the [WITH Clause](r_WITH_clause.md)\. 
+A table defined by a subquery in the [WITH clause](r_WITH_clause.md)\. 
 
  *table\_name*   
 Name of a table or view\. 
@@ -69,7 +69,7 @@ sales join listing
 using (listid,eventid)
 ```
 
-## Join Types<a name="r_FROM_clause30-join-types"></a>
+## Join types<a name="r_FROM_clause30-join-types"></a>
 
 Cross\-joins are unqualified joins; they return the Cartesian product of the two tables\. 
 
@@ -77,7 +77,7 @@ Inner and outer joins are qualified joins\. They are qualified either implicitly
 
 An inner join returns matching rows only, based on the join condition or list of joining columns\. An outer join returns all of the rows that the equivalent inner join would return plus non\-matching rows from the "left" table, "right" table, or both tables\. The left table is the first\-listed table, and the right table is the second\-listed table\. The non\-matching rows contain NULL values to fill the gaps in the output columns\. 
 
-## Usage Notes<a name="r_FROM_clause_usage_notes"></a>
+## Usage notes<a name="r_FROM_clause_usage_notes"></a>
 
 Joining columns must have comparable data types\. 
 
@@ -85,4 +85,4 @@ A NATURAL or USING join retains only one of each pair of joining columns in the 
 
 A join with the ON syntax retains both joining columns in its intermediate result set\. 
 
-See also [WITH Clause](r_WITH_clause.md)\. 
+See also [WITH clause](r_WITH_clause.md)\. 

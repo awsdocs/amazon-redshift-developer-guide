@@ -1,8 +1,8 @@
-# Step 7: Clean Up Your Resources<a name="cm-dev-t-clean-up-resources"></a>
+# Step 7: Clean up your resources<a name="cm-dev-t-clean-up-resources"></a>
 
 If you deployed a cluster in order to complete this exercise, when you are finished with the exercise, you should delete the cluster so that it will stop accruing charges to your AWS account\.
 
-To delete the cluster, follow the steps in [Deleting a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#delete-cluster) in the Amazon Redshift Cluster Management Guide\.
+To delete the cluster, follow the steps in [Deleting a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#delete-cluster) in the Amazon Redshift Cluster Management Guide\.
 
 If you want to keep the cluster, you might want to keep the sample data for reference\. Most of the examples in this guide use the tables you created in this exercise\. The size of the data will not have any significant effect on your available storage\.
 

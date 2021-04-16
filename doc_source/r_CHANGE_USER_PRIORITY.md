@@ -16,7 +16,7 @@ The database user name whose query priority is changed\.
  *priority*   
 The new priority to be assigned to all queries issued by `user_name`\. This argument must be a string with the value `CRITICAL`, `HIGHEST`, `HIGH`, `NORMAL`, `LOW`, `LOWEST`, or `RESET`\. Only superusers can change the priority to `CRITICAL`\. Changing the priority to `RESET` removes the priority setting for `user_name`\.
 
-## Return Type<a name="r_CHANGE_USER_PRIORITY-return-type"></a>
+## Return type<a name="r_CHANGE_USER_PRIORITY-return-type"></a>
 
 None
 

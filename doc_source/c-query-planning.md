@@ -1,4 +1,4 @@
-# Query Planning and Execution Workflow<a name="c-query-planning"></a>
+# Query planning and execution workflow<a name="c-query-planning"></a>
 
 The following illustration provides a high\-level view of the query planning and execution workflow\.
 
@@ -14,7 +14,7 @@ The query planning and execution workflow follow these steps:
 
 1. The optimizer generates a query plan \(or several, if the previous step resulted in multiple queries\) for the execution with the best performance\. The query plan specifies execution options such as join types, join order, aggregation options, and data distribution requirements\. 
 
-   You can use the [EXPLAIN](r_EXPLAIN.md) command to view the query plan\. The query plan is a fundamental tool for analyzing and tuning complex queries\. For more information, see [Query Plan](c-the-query-plan.md)\.
+   You can use the [EXPLAIN](r_EXPLAIN.md) command to view the query plan\. The query plan is a fundamental tool for analyzing and tuning complex queries\. For more information, see [Query plan](c-the-query-plan.md)\.
 
 1. The execution engine translates the query plan into *steps*, *segments* and *streams*:  
 **Step**  
@@ -24,9 +24,9 @@ A combination of several steps that can be done by a single process, also the sm
 **Stream**  
 A collection of segments to be parceled out over the available compute node slices\.
 
-   The execution engine generates compiled C\+\+ code based on steps, segments, and streams\. Compiled code executes faster than interpreted code and uses less compute capacity\. This compiled code is then broadcast to the compute nodes\.
+   The execution engine generates compiled code based on steps, segments, and streams\. Compiled code executes faster than interpreted code and uses less compute capacity\. This compiled code is then broadcast to the compute nodes\.
 **Note**  
-When benchmarking your queries, you should always compare the times for the second execution of a query, because the first execution time includes the overhead of compiling the code\. For more information, see [Factors Affecting Query Performance](c-query-performance.md)\.
+When benchmarking your queries, you should always compare the times for the second execution of a query, because the first execution time includes the overhead of compiling the code\. For more information, see [Factors affecting query performance](c-query-performance.md)\.
 
 1. The compute node slices execute the query segments in parallel\. As part of this process, Amazon Redshift takes advantage of optimized network communication, memory, and disk management to pass intermediate results from one query plan step to the next, which also helps to speed query execution\.
 

@@ -1,4 +1,4 @@
-# NEXT\_DAY Function<a name="r_NEXT_DAY"></a>
+# NEXT\_DAY function<a name="r_NEXT_DAY"></a>
 
 NEXT\_DAY returns the date of the first instance of the specified day that is later than the given date\.
 
@@ -13,14 +13,14 @@ NEXT_DAY ( { date | timestamp }, day )
 ## Arguments<a name="r_NEXT_DAY-arguments"></a>
 
  *date* \| *timestamp*  
-A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
+A date or timestamp column or an expression that implicitly converts to a date or timestamp\.
 
  *day*   
 A string containing the name of any day\. Capitalization does not matter\.  
 Valid values are as follows\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_NEXT_DAY.html)
 
-## Return Type<a name="r_NEXT_DAY-return-type"></a>
+## Return type<a name="r_NEXT_DAY-return-type"></a>
 
 DATE
 
@@ -36,7 +36,7 @@ next_day
 2014-08-26
 ```
 
-The following example gets target marketing dates for the third quarter: 
+The following example gets target marketing dates for the third quarter\.
 
 ```
 select username, (firstname ||' '|| lastname) as name,

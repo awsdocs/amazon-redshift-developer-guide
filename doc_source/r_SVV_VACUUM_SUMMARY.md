@@ -2,13 +2,17 @@
 
 The SVV\_VACUUM\_SUMMARY view joins the STL\_VACUUM, STL\_QUERY, and STV\_TBL\_PERM tables to summarize information about vacuum operations logged by the system\. The view returns one row per table per vacuum transaction\. The view records the elapsed time of the operation, the number of sort partitions created, the number of merge increments required, and deltas in row and block counts before and after the operation was performed\.
 
-SVV\_VACUUM\_SUMMARY is visible only to superusers\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+SVV\_VACUUM\_SUMMARY is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVV_VACUUM_SUMMARY-table-columns"></a>
+For information about SVV\_VACUUM\_PROGRESS, see [SVV\_VACUUM\_PROGRESS](r_SVV_VACUUM_PROGRESS.md)\.
+
+For information about SVL\_VACUUM\_PERCENTAGE, see [SVL\_VACUUM\_PERCENTAGE](r_SVL_VACUUM_PERCENTAGE.md)\.
+
+## Table columns<a name="r_SVV_VACUUM_SUMMARY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_VACUUM_SUMMARY.html)
 
-## Sample Query<a name="r_SVV_VACUUM_SUMMARY-sample-query"></a>
+## Sample query<a name="r_SVV_VACUUM_SUMMARY-sample-query"></a>
 
 The following query returns statistics for vacuum operations on three different tables\. The SALES table was vacuumed twice\. 
 

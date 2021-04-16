@@ -2,7 +2,7 @@
 
 Removes a materialized view\.
 
-For more information about materialized views, see [Creating Materialized Views in Amazon Redshift](materialized-view-overview.md)\.
+For more information about materialized views, see [Creating materialized views in Amazon Redshift](materialized-view-overview.md)\.
 
 ## Syntax<a name="mv_DROP_MATERIALIZED_VIEW-synopsis"></a>
 

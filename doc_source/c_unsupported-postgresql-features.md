@@ -1,9 +1,9 @@
-# Unsupported PostgreSQL Features<a name="c_unsupported-postgresql-features"></a>
+# Unsupported PostgreSQL features<a name="c_unsupported-postgresql-features"></a>
 
 These PostgreSQL features are not supported in Amazon Redshift\.
 
 **Important**  
-Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL have in common are identical\. Make sure to consult the *Amazon Redshift Developer Guide * [SQL Commands](c_SQL_commands.md) to understand the often subtle differences\.
+Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL have in common are identical\. Make sure to consult the *Amazon Redshift Developer Guide * [SQL commands](c_SQL_commands.md) to understand the often subtle differences\.
 + Only the 8\.x version of the PostgreSQL query tool *psql* is supported\.
 + Table partitioning \(range and list partitioning\)
 + Tablespaces
@@ -24,7 +24,7 @@ Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL
 + NULLS clause in Window functions
 + Collations
 
-  Amazon Redshift does not support locale\-specific or user\-defined collation sequences\. See [Collation Sequences](c_collation_sequences.md)\.
+  Amazon Redshift does not support locale\-specific or user\-defined collation sequences\. See [Collation sequences](c_collation_sequences.md)\.
 + Value expressions
   + Subscripted expressions
   + Array constructors

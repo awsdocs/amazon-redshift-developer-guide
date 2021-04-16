@@ -2,15 +2,15 @@
 
 Returns the files that Amazon Redshift read while loading data via the COPY command\.
 
-Querying this table can help troubleshoot data load errors\. STL\_FILE\_SCAN can be particularly helpful with pinpointing issues in parallel data loads because parallel data loads typically load many files with a single COPY command\.
+Querying this view can help troubleshoot data load errors\. STL\_FILE\_SCAN can be particularly helpful with pinpointing issues in parallel data loads because parallel data loads typically load many files with a single COPY command\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of Data in System Tables and Views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_STL_FILE_SCAN-table-columns2"></a>
+## Table columns<a name="r_STL_FILE_SCAN-table-columns2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_FILE_SCAN.html)
 
-## Sample Queries<a name="r_STL_FILE_SCAN-sample-queries2"></a>
+## Sample queries<a name="r_STL_FILE_SCAN-sample-queries2"></a>
 
 The following query retrieves the names and load times of any files that took over 1000000 microseconds for Amazon Redshift to read:
 

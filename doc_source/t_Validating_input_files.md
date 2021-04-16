@@ -1,4 +1,4 @@
-# Validating Input Data<a name="t_Validating_input_files"></a>
+# Validating input data<a name="t_Validating_input_files"></a>
 
 To validate the data in the Amazon S3 input files or Amazon DynamoDB table before you actually load the data, use the NOLOAD option with the [COPY](r_COPY.md) command\. Use NOLOAD with the same COPY commands and options you would use to actually load the data\. NOLOAD checks the integrity of all of the data without loading it into the database\. The NOLOAD option displays any errors that would occur if you had attempted to load the data\.
 
@@ -16,4 +16,4 @@ process:   xenmaster [pid=22199]
 -----------------------------------------------
 ```
 
-To troubleshoot error messages, see the [Load Error Reference](r_Load_Error_Reference.md)\. 
+To troubleshoot error messages, see the [Load error reference](r_Load_Error_Reference.md)\. 

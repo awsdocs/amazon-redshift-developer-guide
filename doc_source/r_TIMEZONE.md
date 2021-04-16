@@ -1,6 +1,6 @@
-# TIMEZONE Function<a name="r_TIMEZONE"></a>
+# TIMEZONE function<a name="r_TIMEZONE"></a>
 
-TIMEZONE returns a time stamp for the specified time zone and time stamp value\.
+TIMEZONE returns a timestamp for the specified time zone and timestamp value\.
 
 For information and examples about how to set time zone, see [timezone](r_timezone_config.md)\.
 
@@ -25,15 +25,15 @@ select pg_timezone_names();
 ```
 select pg_timezone_abbrevs();
 ```
-For more information and examples, see [Time Zone Usage Notes](CONVERT_TIMEZONE.md#CONVERT_TIMEZONE-usage-notes)\.
+For more information and examples, see [Time zone usage notes](CONVERT_TIMEZONE.md#CONVERT_TIMEZONE-usage-notes)\.
 
 *timestamp*  
-An expression that results in a TIMESTAMP type, or a value that can implicitly be coerced to a time stamp\.
+An expression that results in a TIMESTAMP type, or a value that can implicitly be coerced to a timestamp\.
 
 *timestamptz*  
-An expression that results in a TIMESTAMPTZ type, or a value that can implicitly be coerced to a time stamp with time zone\.
+An expression that results in a TIMESTAMPTZ type, or a value that can implicitly be coerced to a timestamp with time zone\.
 
-## Return Type<a name="r_TIMEZONE-return-type"></a>
+## Return type<a name="r_TIMEZONE-return-type"></a>
 
 TIMESTAMPTZ when used with a TIMESTAMP expression\. 
 

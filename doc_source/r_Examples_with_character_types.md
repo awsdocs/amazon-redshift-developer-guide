@@ -1,6 +1,6 @@
-# Examples with Character Types<a name="r_Examples_with_character_types"></a>
+# Examples with character types<a name="r_Examples_with_character_types"></a>
 
-## CREATE TABLE Statement<a name="r_Examples_with_character_types-create-table-statement"></a>
+## CREATE TABLE statement<a name="r_Examples_with_character_types-create-table-statement"></a>
 
 The following CREATE TABLE statement demonstrates the use of VARCHAR and CHAR data types: 
 
@@ -18,7 +18,7 @@ postal_code char(5)
 
 The following examples use this table\. 
 
-## Trailing Blanks in Variable\-Length Character Strings<a name="r_Examples_with_character_types-trailing-blanks-in-variable-length-character-strings"></a>
+## Trailing blanks in variable\-length character strings<a name="r_Examples_with_character_types-trailing-blanks-in-variable-length-character-strings"></a>
 
 Because ADDRESS1 is a VARCHAR column, the trailing blanks in the second inserted address are semantically insignificant\. In other words, these two inserted addresses *match*\. 
 
@@ -40,7 +40,7 @@ count
 
 If the ADDRESS1 column were a CHAR column and the same values were inserted, the COUNT\(\*\) query would recognize the character strings as the same and return `2`\.
 
-## Results of the LENGTH Function<a name="r_Examples_with_character_types-results-of-the-length-function"></a>
+## Results of the LENGTH function<a name="r_Examples_with_character_types-results-of-the-length-function"></a>
 
 The LENGTH function recognizes trailing blanks in VARCHAR columns: 
 
@@ -56,7 +56,7 @@ length
 
 A value of `Augusta` in the CITY\_NAME column, which is a CHAR column, would always return a length of 7 characters, regardless of any trailing blanks in the input string\. 
 
-## Values That Exceed the Length of the Column<a name="r_Examples_with_character_types-values-that-exceed-the-length-of-the-column"></a>
+## Values that exceed the length of the column<a name="r_Examples_with_character_types-values-that-exceed-the-length-of-the-column"></a>
 
 Character strings are not truncated to fit the declared width of the column: 
 

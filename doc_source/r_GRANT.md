@@ -4,15 +4,17 @@ Defines access privileges for a user or user group\.
 
 Privileges include access options such as being able to read data in tables and views, write data, and create tables\. Use this command to give specific privileges for a table, database, schema, function, procedure, language, or column\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. 
 
+Privileges also include access options such as being able to add or remove objects or consumers from a data share\. To add or remove database objects from a data share to a user or user group, use the ALTER privilege\. Similarly, to add or remove consumers from a data share, use the SHARE privilege\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. ALTER and SHARE are the only privileges that you can grant to users and user groups\. 
+
 You can only GRANT or REVOKE USAGE permissions on an external schema to database users and user groups that use the ON SCHEMA syntax\. When using ON EXTERNAL SCHEMA with AWS Lake Formation, you can only GRANT and REVOKE privileges to an AWS Identity and Access Management \(IAM\) role\. For the list of privileges, see the syntax\.
 
 For stored procedures, the only privilege that you can grant is EXECUTE\.
 
-You can't run GRANT \(on an external resource\) within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable Isolation](c_serial_isolation.md)\. 
+You can't run GRANT \(on an external resource\) within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_GRANT-synopsis"></a>
 
-  
+
 
 ```
 GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
@@ -37,6 +39,7 @@ GRANT { EXECUTE | ALL [ PRIVILEGES ] }
 
 GRANT USAGE 
     ON LANGUAGE language_name [, ...]
+
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
@@ -46,6 +49,15 @@ The following is the syntax for column\-level privileges on Amazon Redshift tabl
 GRANT { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES ] ( column_name [,...] ) }
      ON { [ TABLE ] table_name [, ...] }
      TO { username | GROUP group_name | PUBLIC } [, ...]
+```
+
+The following is the syntax for the ASSUMEROLE privilege granted to users and groups with a specified role\. 
+
+```
+GRANT ASSUMEROLE
+    ON { 'iam_role' [, ...] | ALL }
+    TO { username | GROUP group_name | PUBLIC } [, ...]
+    FOR { ALL | COPY | UNLOAD } [, ...]
 ```
 
 The following is the syntax for Redshift Spectrum integration with Lake Formation\. 
@@ -62,6 +74,22 @@ GRANT { { SELECT | ALTER | DROP | DELETE | INSERT }  [, ...] | ALL [ PRIVILEGES 
 GRANT { { CREATE | ALTER | DROP }  [, ...] | ALL [ PRIVILEGES ] }
     ON EXTERNAL SCHEMA schema_name [, ...] 
     TO { IAM_ROLE iam_role } [, ...] [ WITH GRANT OPTION ]
+```
+
+
+|  | 
+| --- |
+| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+
+The following is the syntax for machine learning model privileges on Amazon Redshift\. For information about each parameter, see [GRANT MODEL privileges](#r_GRANT-MODEL-parameters)\.
+
+```
+GRANT CREATE MODEL
+    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+
+GRANT { EXECUTE | ALL [ PRIVILEGES ] }
+    ON MODEL model_name [, ...]
+    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
 ## Parameters<a name="r_GRANT-parameters"></a>
@@ -92,6 +120,9 @@ Grants privilege to alter a table in an AWS Glue Data Catalog that is enabled fo
 DROP  <a name="grant-drop"></a>
 Grants privilege to drop a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
 
+ASSUMEROLE  <a name="assumerole"></a>
+Grants privilege to run COPY and UNLOAD commands to users and groups with a specified role\. The user or group assumes that role when running the specified command\. 
+
 ON \[ TABLE \] *table\_name*   <a name="grant-on-table"></a>
 Grants the specified privileges on a table or a view\. The TABLE keyword is optional\. You can list multiple tables and views in one statement\.
 
@@ -110,14 +141,17 @@ Grants the specified privileges to an IAM role on the specified Lake Formation t
 ON EXTERNAL SCHEMA *schema\_name*   <a name="grant-external-schema"></a>
 Grants the specified privileges to an IAM role on the referenced schema\.
 
+ON *iam\_role*   <a name="grant-iam_role"></a>
+Grants the specified privileges to an IAM role\.
+
 TO *username*   <a name="grant-to"></a>
-Indicates the user receiving the privileges\.
+A clause that indicates the user receiving the privileges\.
 
 TO IAM\_ROLE *iam\_role*   <a name="grant-to-iam-role"></a>
-Indicates the IAM role receiving the privileges\.
+A clause that indicates the IAM role receiving the privileges\.
 
 WITH GRANT OPTION   <a name="grant-with-grant"></a>
-Indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can not be granted to a group or to PUBLIC\.
+A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can't be granted to a group or to PUBLIC\.
 
 GROUP *group\_name*   <a name="grant-group"></a>
 Grants the privileges to a user group\.
@@ -153,190 +187,99 @@ EXECUTE ON ALL FUNCTIONS IN SCHEMA *schema\_name*  <a name="grant-all-functions"
 Grants the specified privileges on all functions in the referenced schema\.
 
 EXECUTE ON PROCEDURE *procedure\_name*   <a name="grant-procedure"></a>
-Grants the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming Stored Procedures](stored-procedure-naming.md)\.
+Grants the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.
 
 EXECUTE ON ALL PROCEDURES IN SCHEMA *schema\_name*  <a name="grant-all-procedures"></a>
 Grants the specified privileges on all stored procedures in the referenced schema\.
 
 USAGE ON LANGUAGE *language\_name*   
 Grants the USAGE privilege on a language\.   
-The USAGE ON LANGUAGE privilege is required to create user\-defined functions \(UDFs\) by running the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. For more information, see [UDF Security and Privileges](udf-security-and-privileges.md)\.   
-The USAGE ON LANGUAGE privilege is required to create stored procedures by running the [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) command\. For more information, see [Security and Privileges for Stored Procedures ](stored-procedure-security-and-privileges.md)\.  
-For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.
+The USAGE ON LANGUAGE privilege is required to create user\-defined functions \(UDFs\) by running the [CREATE FUNCTION](r_CREATE_FUNCTION.md) command\. For more information, see [UDF security and privileges](udf-security-and-privileges.md)\.   
+The USAGE ON LANGUAGE privilege is required to create stored procedures by running the [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) command\. For more information, see [Security and privileges for stored procedures ](stored-procedure-security-and-privileges.md)\.  
+For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.  
+ 
 
-## Usage Notes<a name="r_GRANT-usage-notes"></a>
+FOR \{ ALL \| COPY \| UNLOAD \} \[, \.\.\.\]   <a name="grant-for"></a>
+Specifes the SQL command for which the privilege is granted\. You can specify ALL to grant the privilege on the COPY and UNLOAD statements\. This clause applies only to granting the ASSUMEROLE privilege\.
 
-To grant privileges on an object, you must meet one of the following criteria:
-+ Be the object owner\.
-+ Be a superuser\.
-+ Have a grant privilege for that object and privilege\.
+### GRANT MODEL privileges<a name="r_GRANT-MODEL-parameters"></a>
 
-For example, the following command enables the user HR both to perform SELECT commands on the employees table and to grant and revoke the same privilege for other users\.
 
-```
-grant select on table employees to HR with grant option;
-```
+|  | 
+| --- |
+| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
-HR can't grant privileges for any operation other than SELECT, or on any other table than employees\. 
+Use the following model\-specific parameters\.
 
-Having privileges granted on a view doesn't imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema doesn't imply having privileges on the tables in the schema\. Instead, grant access to the underlying tables explicitly\.
+CREATE MODEL  
+Grants the CREATE MODEL privilege to specific users or user groups\.
 
-To grant privileges to an AWS Lake Formation table, the IAM role associated with the table's external schema must have permission to grant privileges to the external table\. The following example creates an external schema with an associated IAM role `myGrantor`\. The IAM role `myGrantor` has the permission to grant permissions to others\. The GRANT command uses the permission of the IAM role `myGrantor` that is associated with the external schema to grant permission to the IAM role `myGrantee`\.
+ON MODEL *model\_name*  
+Grants the EXECUTE privilege on a specific model\. Because model names can be overloaded, make sure to include the argument list for the model\.
 
-```
-create external schema mySchema
-from data catalog
-database 'spectrum_db'
-iam_role 'arn:aws:iam::123456789012:role/myGrantor'
-create external database if not exists;
-```
+## Syntax for using GRANT with a data share<a name="r_GRANT-datashare-synopsis"></a>
 
-```
-grant select 
-on external table mySchema.mytable
-to iam_role 'arn:aws:iam::123456789012:role/myGrantee';
-```
 
-If you GRANT ALL privileges to an IAM role, individual privileges are granted in the related Lake Formation–enabled Data Catalog\. For example, the following GRANT ALL results in the granted individual privileges \(SELECT, ALTER, DROP, DELETE, and INSERT\) showing in the Lake Formation console\.
+|  | 
+| --- |
+| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
+
+The following is the syntax for using GRANT for data share privileges on Amazon Redshift\. ALTER and SHARE are the only privileges that you can grant to users and user groups\.
 
 ```
-grant all 
-on external table mySchema.mytable
-to iam_role 'arn:aws:iam::123456789012:role/myGrantee';
+GRANT { ALTER | SHARE } ON DATASHARE datashare_name     
+    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
-Superusers can access all objects regardless of GRANT and REVOKE commands that set object privileges\.
-
-## Usage Notes for Column\-Level Privileges<a name="r_GRANT-usage-notes-clp"></a>
-
-The following usage notes apply to column\-level privileges on Amazon Redshift tables and views\. These notes describe tables; the same notes apply to views unless we explicitly note an exception\. 
-
-For an Amazon Redshift table, you can grant only the SELECT and UPDATE privileges at the column level\. For an Amazon Redshift view, you can grant only the SELECT privilege at the column level\. 
-
-The ALL keyword is a synonym for SELECT and UPDATE privileges combined when used in the context of a column\-level GRANT on a table\. 
-
-If you don't have SELECT privilege on all columns in a table, performing a SELECT operation for all columns \(`SELECT *`\) fails\.
-
-If you have SELECT or UPDATE privilege on a table or view and add a column, you still have the same privileges on the table or view and thus all its columns\. 
-
-Only a table's owner or a superuser can grant column\-level privileges\. 
-
-The WITH GRANT OPTION clause isn't supported for column\-level privileges\.
-
-You can't hold the same privilege at both the table level and the column level\. For example, the user `data_scientist` can't have both SELECT privilege on the table `employee` and SELECT privilege on the column `employee.department`\. Consider the following results when granting the same privilege to a table and a column within the table:
-+ If a user has a table\-level privilege on a table, then granting the same privilege at the column level has no effect\. 
-+ If a user has a table\-level privilege on a table, then revoking the same privilege for one or more columns of the table returns an error\. Instead, revoke the privilege at the table level\. 
-+ If a user has a column\-level privilege, then granting the same privilege at the table level returns an error\. 
-+ If a user has a column\-level privilege, then revoking the same privilege at the table level revokes both column and table privileges for all columns on the table\. 
-
-You can't grant column\-level privileges on late\-binding views\.
-
-You must have table\-level SELECT privilege on the base tables to create a materialized view\. Even if you have column\-level privileges on specific columns, you can't create a materialized view on only those columns\. However, you can grant SELECT privilege to columns of a materialized view, similar to regular views\. 
-
-To look up grants of column\-level privileges, use the [PG\_ATTRIBUTE\_INFO](r_PG_ATTRIBUTE_INFO.md) view\. 
-
-## Examples<a name="r_GRANT-examples"></a>
-
- The following example grants the SELECT privilege on the SALES table to the user `fred`\. 
+The following is the syntax for using GRANT for data share usage privileges on Amazon Redshift\. You can grant access to a data share to a consumer using the USAGE privilege\. You can't grant this privilege to users or user groups\. This privilege also doesn't support the WITH GRANT OPTION for the GRANT statement\. Only users or user groups with the SHARE privilege previously granted to them on the data share can run this type of GRANT statement\.
 
 ```
-grant select on table sales to fred;
+GRANT USAGE 
+    ON DATASHARE datashare_name 
+    TO NAMESPACE 'namespaceGUID' [, ...]
 ```
 
-The following example grants the SELECT privilege on all tables in the QA\_TICKIT schema to the user `fred`\. 
+The following is the syntax for GRANT data\-sharing usage permissions on the specific database or schema created from a data share\. This USAGE permission doesn't grant usage permission to databases that are not created from the specified data share\. You can only GRANT or REVOKE ALTER or SHARE permissions on a data share to users and user groups\.
 
 ```
-grant select on all tables in schema qa_tickit to fred;
+GRANT USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
+    TO { username | GROUP group_name | PUBLIC } [, ...]
 ```
 
-The following example grants all schema privileges on the schema QA\_TICKIT to the user group QA\_USERS\. Schema privileges are CREATE and USAGE\. USAGE grants users access to the objects in the schema, but doesn't grant privileges such as INSERT or SELECT on those objects\. Grant privileges on each object separately\.
+### Parameters for using GRANT with a data share<a name="r_GRANT-parameters-datashare"></a>
 
-```
-create group qa_users;
-grant all on schema qa_tickit to group qa_users;
-```
+ALTER  
+Grants the ALTER privilege to users to add or remove objects from a data share, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
 
-The following example grants all privileges on the SALES table in the QA\_TICKIT schema to all users in the group QA\_USERS\. 
+SHARE  
+Grants privileges to users and user groups to add data consumers to a data share\. This privilege is required to enable the particular consumer  to access the data share from their clusters\. 
 
-```
-grant all on table qa_tickit.sales to group qa_users;
-```
+ON DATASHARE *datashare\_name*   <a name="grant-datashare"></a>
+Grants the specified privileges on the referenced data share\.
 
-The following sequence of commands shows how access to a schema doesn't grant privileges on a table in the schema\. 
+TO *username*  
+A clause that indicates the user receiving the privileges\.
 
-```
-create user schema_user in group qa_users password 'Abcd1234';
-create schema qa_tickit;
-create table qa_tickit.test (col1 int);
-grant all on schema qa_tickit to schema_user;
+TO GROUP* group\_name*  
+A clause that indicates the user group receiving the privileges\.
 
-set session authorization schema_user;
-select current_user;
+WITH GRANT OPTION  
+A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. You can't grant WITH GRANT OPTION to a group or to PUBLIC\.
 
-current_user
---------------
-schema_user
-(1 row)
+GROUP group\_name  
+Grants the privileges to a user group\.
 
-select count(*) from qa_tickit.test;
+PUBLIC  
+Grants the specified privileges to all users, including new users\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\. Granting PUBLIC to an AWS Lake Formation EXTERNAL TABLE results in granting the privilege to the Lake Formation everyone group\.
 
-ERROR: permission denied for relation test [SQL State=42501] 
+USAGE  
+When USAGE is granted to a consumer account or namespace within the same account, the specific  namespace within an account can access the data share and the objects of the data share for read\-only\. 
 
-set session authorization dw_user;
-grant select on table qa_tickit.test to schema_user;
-set session authorization schema_user;
-select count(*) from qa_tickit.test;
+TO NAMESPACE 'namespace GUID'  
+A clause that indicates that the namespace in the same account that consumers can receive the privileges to the data share\. Namespaces uses a 128\-bit alpha\-numeric GUID\.
 
-count
--------
-0
-(1 row)
-```
+ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="grant-datashare"></a>
+Grants the specified usage privileges on the specific database that is created in the specified data share\.
 
-The following sequence of commands shows how access to a view doesn't imply access to its underlying tables\. The user called VIEW\_USER can't select from the DATE table, although this user has been granted all privileges on VIEW\_DATE\. 
-
-```
-create user view_user password 'Abcd1234';
-create view view_date as select * from date;
-grant all on view_date to view_user;
-set session authorization view_user;
-select current_user;
-
-current_user
---------------
-view_user
-(1 row)
-
-select count(*) from view_date;
-count
--------
-365
-(1 row)
-
-select count(*) from date;
-ERROR:  permission denied for relation date
-```
-
-The following example grants SELECT privilege on the `cust_name` and `cust_phone` columns of the `cust_profile` table to the user `user1`\. 
-
-```
-grant select(cust_name, cust_phone) on cust_profile to user1;
-```
-
-The following example grants SELECT privilege on the `cust_name` and `cust_phone` columns and UPDATE privilege on the `cust_contact_preference` column of the `cust_profile` table to the `sales_group` group\. 
-
-```
-grant select(cust_name, cust_phone), update(cust_contact_preference) on cust_profile to group sales_group;
-```
-
-The following example shows the usage of the ALL keyword to grant both SELECT and UPDATE privileges on three columns of the table `cust_profile` to the `sales_admin` group\. 
-
-```
-grant ALL(cust_name, cust_phone,cust_contact_preference) on cust_profile to group sales_admin;
-```
-
-The following example grants the SELECT privilege on the `cust_name` column of the `cust_profile_vw` view to the `user2` user\. 
-
-```
-grant select(cust_name) on cust_profile_vw to user2;
-```
+ON SCHEMA* shared\_schema*   <a name="grant-datashare"></a>
+Grants the specified privileges on the specific schema that is created in the specified data share\.

@@ -1,6 +1,6 @@
-# DATE\_TRUNC Function<a name="r_DATE_TRUNC"></a>
+# DATE\_TRUNC function<a name="r_DATE_TRUNC"></a>
 
-The DATE\_TRUNC function truncates a time stamp expression or literal based on the date part that you specify, such as hour, week, or month\. DATE\_TRUNC returns the first day of the specified year, the first day of the specified month, or the Monday of the specified week\. 
+The DATE\_TRUNC function truncates a timestamp expression or literal based on the date part that you specify, such as hour, week, or month\. DATE\_TRUNC returns the first day of the specified year, the first day of the specified month, or the Monday of the specified week\. 
 
 ## Syntax<a name="r_DATE_TRUNC-synopsis"></a>
 
@@ -11,18 +11,18 @@ DATE_TRUNC('datepart', timestamp)
 ## Arguments<a name="r_DATE_TRUNC-arguments"></a>
 
  *datepart*   
-The date part to which to truncate the time stamp value\. See [Dateparts for Date or Time Stamp Functions](r_Dateparts_for_datetime_functions.md) for valid formats\. 
+The date part to which to truncate the timestamp value\. For valid formats, see [Date parts for date or timestamp functions](r_Dateparts_for_datetime_functions.md)\. 
 
  *timestamp*   
-A timestamp column or an expression that implicitly converts to a time stamp\.
+A timestamp column or an expression that implicitly converts to a timestamp\.
 
-## Return Type<a name="r_DATE_TRUNC-return-type"></a>
+## Return type<a name="r_DATE_TRUNC-return-type"></a>
 
 TIMESTAMP
 
 ## Example<a name="r_DATE_TRUNC-example"></a>
 
-In the following example, the DATE\_TRUNC function uses the 'week' datepart to return the date for the Monday of each week\. 
+In the following example, the DATE\_TRUNC function uses the 'week' date part to return the date for the Monday of each week\. 
 
 ```
 select date_trunc('week', saletime), sum(pricepaid) from sales where

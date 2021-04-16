@@ -1,4 +1,4 @@
-# CBRT Function<a name="r_CBRT"></a>
+# CBRT function<a name="r_CBRT"></a>
 
  The CBRT function is a mathematical function that calculates the cube root of a number\. 
 
@@ -12,7 +12,7 @@ CBRT (number)
 
 CBRT takes a DOUBLE PRECISION number as an argument\. 
 
-## Return Type<a name="r_CBRT-return-type"></a>
+## Return type<a name="r_CBRT-return-type"></a>
 
 CBRT returns a DOUBLE PRECISION number\. 
 

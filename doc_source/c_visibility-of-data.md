@@ -1,4 +1,4 @@
-# Visibility of Data in System Tables and Views<a name="c_visibility-of-data"></a>
+# Visibility of data in system tables and views<a name="c_visibility-of-data"></a>
 
 There are two classes of visibility for data in system tables and views: visible to users and visible to superusers\.
 
@@ -11,7 +11,7 @@ Giving a user unrestricted access to system tables gives the user visibility to 
 
 A superuser can see all rows in all tables\. To give a regular user access to superuser\-visible tables, [GRANT](r_GRANT.md) SELECT privilege on that table to the regular user\.
 
-## Filtering System\-Generated Queries<a name="sub-c_visibility-of-data-filtering"></a>
+## Filtering system\-generated queries<a name="sub-c_visibility-of-data-filtering"></a>
 
 The query\-related system tables and views, such as SVL\_QUERY\_SUMMARY, SVL\_QLOG, and others, usually contain a large number of automatically generated statements that Amazon Redshift uses to monitor the status of the database\. These system\-generated queries are visible to a superuser, but are seldom useful\. To filter them out when selecting from a system table or system view that uses the `userid` column, add the condition `userid > 1` to the WHERE clause\. For example:
 

@@ -1,8 +1,8 @@
 # Using SQL<a name="c_SQL_reference"></a>
 
 **Topics**
-+ [SQL Reference Conventions](c_SQL_reference_conventions.md)
-+ [Basic Elements](c_Basic_elements.md)
++ [SQL reference conventions](c_SQL_reference_conventions.md)
++ [Basic elements](c_Basic_elements.md)
 + [Expressions](r_expressions.md)
 + [Conditions](r_conditions.md)
 

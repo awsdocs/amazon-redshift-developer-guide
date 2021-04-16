@@ -1,4 +1,4 @@
-# Loading Default Column Values<a name="c_loading_default_values"></a>
+# Loading default column values<a name="c_loading_default_values"></a>
 
 You can optionally define a column list in your COPY command\. If a column in the table is omitted from the column list, COPY will load the column with either the value supplied by the DEFAULT option that was specified in the CREATE TABLE command, or with NULL if the DEFAULT option was not specified\.
 
@@ -13,4 +13,4 @@ The following restrictions apply when using the COPY command to load DEFAULT val
 + Because the evaluated DEFAULT expression for a given column is the same for all loaded rows, a DEFAULT expression that uses a RANDOM\(\) function will assign to same value to all the rows\.
 + DEFAULT expressions that contain CURRENT\_DATE or SYSDATE are set to the timestamp of the current transaction\.
 
-For an example, see "Load data from a file with default values" in [COPY Examples](r_COPY_command_examples.md)\.
+For an example, see "Load data from a file with default values" in [COPY examples](r_COPY_command_examples.md)\.

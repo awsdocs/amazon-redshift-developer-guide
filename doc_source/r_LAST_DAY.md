@@ -1,4 +1,4 @@
-# LAST\_DAY Function<a name="r_LAST_DAY"></a>
+# LAST\_DAY function<a name="r_LAST_DAY"></a>
 
 LAST\_DAY returns the date of the last day of the month that contains *date*\. The return type is always DATE, regardless of the data type of the *date* argument\.
 
@@ -12,15 +12,15 @@ LAST_DAY ( { date | timestamp } )
 
 *date* \| *timestamp*
 
-A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
+A date or timestamp column or an expression that implicitly converts to a date or timestamp\.
 
-## Return Type<a name="r_LAST_DAY-return-type"></a>
+## Return type<a name="r_LAST_DAY-return-type"></a>
 
 DATE
 
 ## Examples<a name="r_LAST_DAY-examples"></a>
 
-The following example returns the date of the last day in the current month:
+The following example returns the date of the last day in the current month\.
 
 ```
 select last_day(sysdate);
@@ -31,7 +31,7 @@ select last_day(sysdate);
 (1 row)
 ```
 
-The following example returns the number of tickets sold for each of the last 7 days of the month:
+The following example returns the number of tickets sold for each of the last 7 days of the month\.
 
 ```
 select datediff(day, saletime, last_day(saletime)) as "Days Remaining", sum(qtysold)

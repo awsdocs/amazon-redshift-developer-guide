@@ -1,6 +1,6 @@
 # enable\_result\_cache\_for\_session<a name="r_enable_result_cache_for_session"></a>
 
-## Values \(Default in Bold\)<a name="r_enable_result_cache_for_session-values"></a>
+## Values \(default in bold\)<a name="r_enable_result_cache_for_session-values"></a>
 
 **on \(true\)**, off \(false\)
 

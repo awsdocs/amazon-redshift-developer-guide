@@ -1,4 +1,4 @@
-# INITCAP Function<a name="r_INITCAP"></a>
+# INITCAP function<a name="r_INITCAP"></a>
 
 Capitalizes the first letter of each word in a specified string\. INITCAP supports UTF\-8 multibyte characters, up to a maximum of four bytes per character\.
 
@@ -13,11 +13,11 @@ INITCAP(string)
  *string*   
 The input parameter is a CHAR or VARCHAR string\. 
 
-## Return Type<a name="r_INITCAP-return-type"></a>
+## Return type<a name="r_INITCAP-return-type"></a>
 
 The INITCAP function returns a VARCHAR string\.
 
-## Usage Notes<a name="r_INITCAP_usage_notes"></a>
+## Usage notes<a name="r_INITCAP_usage_notes"></a>
 
 The INITCAP function makes the first letter of each word in a string uppercase, and any subsequent letters are made \(or left\) lowercase\. Therefore, it is important to understand which characters \(other than space characters\) function as word separators\. A *word separator* character is any non\-alphanumeric character, including punctuation marks, symbols, and control characters\. All of the following characters are word separators: 
 
