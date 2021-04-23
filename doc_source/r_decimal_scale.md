@@ -12,8 +12,8 @@ CREATE TABLE t(s super);
 INSERT INTO t VALUES (3.14159);
 
 SELECT decimal_scale(s) FROM t;
- decimal_precision
+ decimal_scale
 -----------------------
-              6
+              5
 (1 row)
 ```

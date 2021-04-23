@@ -1,6 +1,6 @@
 # CURRENT\_AWS\_ACCOUNT<a name="r_CURRENT_AWS_ACCOUNT"></a>
 
-Returns the AWS account associated withe the Amazon Redshift cluster that submitted a query\.
+Returns the AWS account associated with the Amazon Redshift cluster that submitted a query\.
 
 ## Syntax<a name="r_CURRENT_AWS_ACCOUNT-synopsis"></a>
 

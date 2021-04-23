@@ -1,4 +1,4 @@
-# SUPER configurations<a name="super-configration"></a>
+# SUPER configurations<a name="super-configurations"></a>
 
 Note the following considerations of SUPER configurations when you use Amazon Redshift SUPER data type and PartiQL\.
 
@@ -10,7 +10,7 @@ The following example uses session parameters to enable lax mode\.
 
 ```
 SET navigate_super_null_on_error=ON;  --default lax mode for navigation
-            
+
 SET cast_super_null_on_error=ON;  --default lax mode for casting
 
 SET parse_super_null_on_error=OFF;  --default strict mode for ingestion
@@ -22,4 +22,28 @@ When your JSON fields are in upper cases or mixed cases, then you must configure
 
 ```
 SET downcase_delimited_identifier to FALSE;
+ 
+-- Accessing JSON fields with uppercase and mixed-case names
+SELECT json_table.data."ITEMS"."Name",
+       json_table.data."price"
+FROM
+  (SELECT json_parse('{"ITEMS":{"Name":"TV"}, "price": 345}') AS data) AS json_table;
+
+ Name | price
+------+-------
+ "TV" | 345
+(1 row)
+ 
+RESET downcase_delimited_identifier;
+ 
+-- After resetting the above configuration, the following query accessing JSON fields with uppercase and mixed-case names should return null (if in lax mode).
+SELECT json_table.data."ITEMS"."Name",
+       json_table.data."price"
+FROM
+  (SELECT json_parse('{"ITEMS":{"Name":"TV"}, "price": 345}') AS data) AS json_table;
+
+ name | price
+------+-------
+      | 345
+(1 row)
 ```

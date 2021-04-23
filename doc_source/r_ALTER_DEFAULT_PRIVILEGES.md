@@ -20,7 +20,7 @@ ALTER DEFAULT PRIVILEGES
 
 where grant_or_revoke_clause is one of:
 
-GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] } 
+GRANT { { SELECT | INSERT | UPDATE | DELETE | DROP | REFERENCES } [,...] | ALL [ PRIVILEGES ] } 
 	ON TABLES 
 	TO { user_name [ WITH GRANT OPTION ]| GROUP group_name | PUBLIC } [, ...]	 
 

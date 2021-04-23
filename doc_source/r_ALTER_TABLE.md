@@ -169,6 +169,7 @@ Consider the following:
 + You can define a maximum of 400 columns for a sort key per table\. 
 + You can only alter a compound sort key\. You can't alter an interleaved sort key\. 
 + If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
++ Amazon Redshift recommends using RAW encoding \(no compression\) for columns defined as sort keys\. When you alter a column to choose it as a sort key, the column’s compression is changed to RAW compression \(no compression\)\. This can increase the amount of storage required by the table\. How much the table size increases depend on the specific table definition and table contents\. For more information about compression, see [Compression encodings](c_Compression_encodings.md) 
 When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER SORTKEY AUTO  

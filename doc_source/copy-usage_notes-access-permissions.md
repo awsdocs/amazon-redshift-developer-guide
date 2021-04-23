@@ -4,7 +4,7 @@
 
 To get authorization to access the resource, your cluster must be authenticated\. You can choose either of the following authentication methods: 
 + [Role\-based access control](#copy-usage_notes-access-role-based) – For role\-based access control, you specify an AWS Identity and Access Management \(IAM\) role that your cluster uses for authentication and authorization\. To safeguard your AWS credentials and sensitive data, we strongly recommend using role\-based authentication\.
-+ [Key\-based access control](#copy-usage_notes-access-key-based) – For key\-based access control, you provide the AWS access credentials \(access key ID and secret access key\) for an IAM user as plain text\. 
++ [Key\-based access control](#copy-usage_notes-access-key-based) – For key\-based access control, you provide the AWS access credentials \(access key ID and secret access key\) for an IAM user as plain text\.
 
 ## Role\-based access control<a name="copy-usage_notes-access-role-based"></a>
 

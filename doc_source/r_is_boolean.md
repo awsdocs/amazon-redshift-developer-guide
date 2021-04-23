@@ -12,4 +12,8 @@ CREATE TABLE t(s super);
 INSERT INTO t VALUES (TRUE);
 
 SELECT s, is_boolean(s) FROM t;
+   s    | is_boolean
+--------+-----------
+ "true" |   True
+(1 row)
 ```

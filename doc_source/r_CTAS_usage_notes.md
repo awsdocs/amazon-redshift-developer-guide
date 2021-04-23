@@ -84,7 +84,7 @@ explain create table sales5_groupby as select listid, dateid, sum(qtysold) from 
 (2 rows)
 ```
 
-To view the distribution key and sortkey for each table, query the PG\_TABLE\_DEF system catalog table, as shown following\. 
+To view the distribution key and sort key for each table, query the PG\_TABLE\_DEF system catalog table, as shown following\. 
 
 ```
 select * from pg_table_def where tablename like 'sales%';

@@ -1,6 +1,6 @@
 # JSON\_ARRAY\_LENGTH function<a name="JSON_ARRAY_LENGTH"></a>
 
-JSON\_ARRAY\_LENGTH returns the number of elements in the outer array of a JSON string\. If the *null\_if\_invalid* argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
+The JSON\_ARRAY\_LENGTH function returns the number of elements in the outer array of a JSON string\. If the *null\_if\_invalid* argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
 
 For more information, see [JSON functions](json-functions.md)\. 
 

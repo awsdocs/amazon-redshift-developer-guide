@@ -22,6 +22,7 @@ Amazon Redshift supports the following arithmetic functions for SUPER columns\. 
 + FLOOR\. For more information, see [FLOOR function](r_FLOOR.md)\.
 + CEIL and CEILING\. For more information, see [CEILING \(or CEIL\) function](r_CEILING_FLOOR.md)\.
 + ROUND\. For more information, see [ROUND function](r_ROUND.md)\.
++ TRUNC\. For more information, see [TRUNC function](r_TRUNC.md)\.
 + ABS\. For more information, see [ABS function](r_ABS.md)\.
 
 The following example uses arithmetic functions to query data:

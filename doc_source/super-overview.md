@@ -1,9 +1,4 @@
-# Ingesting and querying semistructured data in Amazon Redshift \(preview\)<a name="super-overview"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the semistructured data feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+# Ingesting and querying semistructured data in Amazon Redshift<a name="super-overview"></a>
 
 By using *semistructured data support* in Amazon Redshift, you can ingest and store semistructured data in your Amazon Redshift data warehouses\. Using the SUPER data type and PartiQL language, Amazon Redshift expands data warehouse capability to integrate with both SQL and NoSQL data sources\. This way, Amazon Redshift enables efficient analytics on relational and semistructured stored data such as JSON\.
 
@@ -29,6 +24,8 @@ The materialized views with the shredded data are a good example of performance 
 
 After your PartiQL materialized views have extracted the data found in JSON or SUPER into conventional columnar materialized views, you can query the materialized views\. For more information on how the SUPER data type works with materialized views, see [Using SUPER data type with materialized views](r_SUPER_MV.md)\.
 
+For information about the SUPER data type, see [SUPER type](r_SUPER_type.md)\.
+
 ## Concepts for SUPER data type use<a name="super-overview-concepts"></a>
 
 Following, you can find some Amazon Redshift SUPER data type concepts\.
@@ -39,29 +36,40 @@ Following, you can find some Amazon Redshift SUPER data type concepts\.
 
 The SUPER column requires no schema modifications while ingesting the irregular structures of schemaless JSON\. For example, while analyzing a click\-stream, you initially store in the SUPER column “click” structures with attributes “IP” and “time”\. You can add an attribute “customer id” without changing your schema in order to ingest such changes\.
 
-The native format used for the SUPER data type is a binary format that requires lesser space than the JSON value in its textual form\. This enables faster ingestion and runtime processing of SUPER values at query time\. 
+The native format used for the SUPER data type is a binary format that requires lesser space than the JSON value in its textual form\. This enables faster ingestion and runtime processing of SUPER values at query\. 
 
 **Query SUPER data with PartiQL** – PartiQL is a backward\-compatible extension of SQL\-92 that many AWS services currently use\. With the use of PartiQL, familiar SQL constructs seamlessly combine access to both the classic, tabular SQL data and the semistructured data of SUPER\. You can perform object and array navigation and unnest arrays\. PartiQL extends the standard SQL language to declaratively express and process nested and multivalued data\.
 
-PartiQL is an extension of SQL where the nested and schemaless data of SUPER columns are first\-class citizens\. PartiQL doesn't require all query expressions to be type\-checked during query compilation time\. This approach enables query expressions that contain the SUPER data type to be dynamically typed during query execution when the actual types of the data inside the SUPER columns are accessed\. Also, PartiQL operates in a lax mode where type inconsistencies don't cause failures\. The combination of schemaless and lax query processing makes PartiQL ideal for extract, load, transfer \(ELT\) applications where your SQL query evaluates the JSON data that are ingested in the SUPER columns\.
+PartiQL is an extension of SQL where the nested and schemaless data of SUPER columns are first\-class citizens\. PartiQL doesn't require all query expressions to be type\-checked during query compilation time\. This approach enables query expressions that contain the SUPER data type to be dynamically typed during query execution when the actual types of the data inside the SUPER columns are accessed\. Also, PartiQL operates in a lax mode where type inconsistencies don't cause failures but return null\. The combination of schemaless and lax query processing makes PartiQL ideal for extract, load, transfer \(ELT\) applications where your SQL query evaluates the JSON data that are ingested in the SUPER columns\.
 
 **Integrate with Redshift Spectrum** – Amazon Redshift supports multiple aspects of PartiQL when running Redshift Spectrum queries over JSON, Parquet, and other formats that have nested data\. Redshift Spectrum only supports nested data that has schemas\. For example, with Redshift Spectrum you can declare that your JSON data have an attribute *nested\_schemaful\_example* in a schema *ARRAY<STRUCT<a:INTEGER, b:DECIMAL\(5,2\)>>*\. The schema of this attribute determines that the data always contains an array, which contains a structure with integer *a* and decimal *b*\. If the data changes to include more attributes, the type also changes\. In contrast, the SUPER data type requires no schema\. You can store arrays with structure elements that have different attributes or types\. Also, some values can be stored outside arrays\. 
 
-## Considerations for SUPER data use<a name="super-overview-considerations"></a>
+For information about functions that support the SUPER data type, see the following:
++ [ABS function](r_ABS.md)
++ [CEILING \(or CEIL\) function](r_CEILING_FLOOR.md)
++ [FLOOR function](r_FLOOR.md)
++ [ROUND function](r_ROUND.md)
++ [SIGN function](r_SIGN.md)
++ [TRUNC function](r_TRUNC.md)
 
-When working with the preview, be aware of the following:
-+ Amazon Redshift clusters must be on the **SQL\_PREVIEW** maintenance track\.
-+ You can create a new Amazon Redshift cluster from the **SQL\_PREVIEW** track or restore a snapshot from the current track to the **SQL\_PREVIEW** track\.
-+ You can't switch an existing Amazon Redshift cluster from the current or trailing state to this preview track, or vice versa\.
-+ The semistructured data preview period is expected to run until February 28, 2021 and possibly later\. 
-+ You can use a cluster in any AWS Region to preview the semistructured data feature using the **SQL\_PREVIEW** track\. For any questions, issues, or feedback related to the preview features during the preview period, email `redshift-super@amazon.com`\.
-+ Use JDBC driver version 1\.2\.50 and ODBC driver version 1\.4\.17 or later for this preview\.
-+ Find the schema examples used in this document at [SUPER sample dataset](r_SUPER_sample_dataset.md)\.
-+ All the SQLs including DDL and COPY used in this doc and copy of selective TPCH modified queries that work with SUPER are included in the same S3 prefix for download\. To view or download the sql files, do one of the following:
-  + Download the [SUPER tutorial SQL file](https://s3.amazonaws.com/redshift-downloads/semistructured/tutorialscripts/semistructured-tutorial.sql) and [TPCH file](https://s3.amazonaws.com/redshift-downloads/semistructured/tutorialscripts/super_tpch_queries.sql)\.
-  + Using the AWS Amazon S3 CLI, run the following command\. You can use your own target path\.
+## Considerations for SUPER data<a name="super-overview-considerations"></a>
+
+When working with SUPER data, consider the following:
++ Use JDBC driver version 1\.2\.50, ODBC driver version 1\.4\.17 or later, and Amazon Redshift Python driver version 2\.0\.872 or later\.
+
+  For information about JDBC drivers, see [Configuring a JDBC connection]( https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html)\.
+
+  For information about ODBC drivers, see [Configuring an ODBC connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-odbc-connection.html)\.
++ Find the schema examples used in the following topics at [SUPER sample dataset](r_SUPER_sample_dataset.md)\.
++ All the SQL code examples used in the following topics are included with the same S3 prefix for download\. These include the data definition language \(DDL\) and COPY statements, and also certain TPC\-H modified queries that work with SUPER\. 
+
+  To view or download the SQL files, do one of the following:
+  + Download the [SUPER tutorial SQL file](https://s3.amazonaws.com/redshift-downloads/semistructured/tutorialscripts/semistructured-tutorial.sql) and [TPC\-H file](https://s3.amazonaws.com/redshift-downloads/semistructured/tutorialscripts/super_tpch_queries.sql)\.
+  + Using the Amazon S3 CLI, run the following command\. You can use your own target path\.
 
     ```
     aws s3 cp s3://redshift-downloads/semistructured/tutorialscripts/semistructured-tutorial.sql /target/path
     aws s3 cp s3://redshift-downloads/semistructured/tutorialscripts/super_tpch_queries.sql /target/path
     ```
+
+For more information about SUPER configurations, see [SUPER configurations](super-configurations.md)\.

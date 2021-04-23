@@ -1,6 +1,6 @@
 # SVL views<a name="svl_views"></a>
 
-SVL views are system views that contain references to STL tables and logs for more detailed information\.
+SVL views are system views in Amazon Redshift that contain references to STL tables and logs for more detailed information\.
 
 These views provide quicker and easier access to commonly queried data found in those tables\.
 
@@ -11,7 +11,8 @@ The SVL\_QUERY\_SUMMARY view only contains information about queries executed by
 + [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)
 + [SVL\_COMPILE](r_SVL_COMPILE.md)
 + [SVL\_DATASHARE\_CHANGE\_LOG](r_SVL_DATASHARE_CHANGE_LOG.md)
-+ [SVL\_DATASHARE\_USAGE](r_SVL_DATASHARE_USAGE.md)
++ [SVL\_DATASHARE\_USAGE\_CONSUMER](r_SVL_DATASHARE_USAGE_CONSUMER.md)
++ [SVL\_DATASHARE\_USAGE\_PRODUCER](r_SVL_DATASHARE_USAGE_PRODUCER.md)
 + [SVL\_FEDERATED\_QUERY](r_SVL_FEDERATED_QUERY.md)
 + [SVL\_MULTI\_STATEMENT\_VIOLATIONS](r_SVL_MULTI_STATEMENT_VIOLATIONS.md)
 + [SVL\_MV\_REFRESH\_STATUS](r_SVL_MV_REFRESH_STATUS.md)

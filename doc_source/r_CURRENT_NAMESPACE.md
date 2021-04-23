@@ -1,6 +1,6 @@
 # CURRENT\_NAMESPACE<a name="r_CURRENT_NAMESPACE"></a>
 
-Returns the namespace of the current Amazon Redshift cluster\.
+Returns the cluster namespace of the current Amazon Redshift cluster\. Amazon Redshift cluster namespace is the unique ID of the Amazon Redshift cluster\.
 
 ## Syntax<a name="r_CURRENT_NAMESPACE-synopsis"></a>
 

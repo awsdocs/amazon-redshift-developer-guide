@@ -2,9 +2,9 @@
 
 Defines access privileges for a user or user group\.
 
-Privileges include access options such as being able to read data in tables and views, write data, and create tables\. Use this command to give specific privileges for a table, database, schema, function, procedure, language, or column\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. 
+Privileges include access options such as being able to read data in tables and views, write data, create tables, and drop tables\. Use this command to give specific privileges for a table, database, schema, function, procedure, language, or column\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. 
 
-Privileges also include access options such as being able to add or remove objects or consumers from a data share\. To add or remove database objects from a data share to a user or user group, use the ALTER privilege\. Similarly, to add or remove consumers from a data share, use the SHARE privilege\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. ALTER and SHARE are the only privileges that you can grant to users and user groups\. 
+Privileges also include access options such as being able to add objects or consumers to or remove objects or consumers from a datashare\. To add database objects to or remove database objects from a datashare for a user or user group, use the ALTER privilege\.  Similarly, to add or remove consumers from a datashare, use the SHARE privilege\. To revoke privileges from a database object, use the [REVOKE](r_REVOKE.md) command\. ALTER and SHARE are the only privileges that you can grant to users and user groups\. 
 
 You can only GRANT or REVOKE USAGE permissions on an external schema to database users and user groups that use the ON SCHEMA syntax\. When using ON EXTERNAL SCHEMA with AWS Lake Formation, you can only GRANT and REVOKE privileges to an AWS Identity and Access Management \(IAM\) role\. For the list of privileges, see the syntax\.
 
@@ -17,7 +17,7 @@ You can't run GRANT \(on an external resource\) within a transaction block \(BEG
 
 
 ```
-GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
+GRANT { { SELECT | INSERT | UPDATE | DELETE | DROP | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
     ON { [ TABLE ] table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...] }
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 
@@ -76,6 +76,28 @@ GRANT { { CREATE | ALTER | DROP }  [, ...] | ALL [ PRIVILEGES ] }
     TO { IAM_ROLE iam_role } [, ...] [ WITH GRANT OPTION ]
 ```
 
+The following is the syntax for using GRANT for datashare privileges on Amazon Redshift\. ALTER and SHARE are the only privileges that you can grant to users and user groups in this case\.
+
+```
+GRANT { ALTER | SHARE } ON DATASHARE datashare_name     
+    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+```
+
+The following is the syntax for using GRANT for datashare usage privileges on Amazon Redshift\. You grant access to a datashare to a consumer using the USAGE privilege\. You can't grant this privilege to users or user groups\. This privilege also doesn't support the WITH GRANT OPTION for the GRANT statement\. Only users or user groups with the SHARE privilege previously granted to them FOR the datashare can run this type of GRANT statement\.
+
+```
+GRANT USAGE 
+    ON DATASHARE datashare_name 
+    TO NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [, ...]
+```
+
+The following is the syntax for GRANT data\-sharing usage permissions on a specific database or schema created from a datashare\. This USAGE permission doesn't grant usage permission to databases that aren't created from the specified datashare\. You can only GRANT or REVOKE ALTER or SHARE permissions on a datashare to users and user groups\.
+
+```
+GRANT USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
+    TO { username | GROUP group_name | PUBLIC } [, ...]
+```
+
 
 |  | 
 | --- |
@@ -92,7 +114,7 @@ GRANT { EXECUTE | ALL [ PRIVILEGES ] }
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
-## Parameters<a name="r_GRANT-parameters"></a>
+### Parameters<a name="r_GRANT-parameters"></a>
 
 SELECT   <a name="grant-select"></a>
 Grants privilege to select data from a table or view using a SELECT statement\. The SELECT privilege is also required to reference existing column values for UPDATE or DELETE operations\.
@@ -118,7 +140,7 @@ ALTER  <a name="grant-alter"></a>
 Grants privilege to alter a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
 
 DROP  <a name="grant-drop"></a>
-Grants privilege to drop a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
+Grants privilege to drop a table\. This privilege applies in Amazon Redshift and in an AWS Glue Data Catalog that is enabled for Lake Formation\.
 
 ASSUMEROLE  <a name="assumerole"></a>
 Grants privilege to run COPY and UNLOAD commands to users and groups with a specified role\. The user or group assumes that role when running the specified command\. 
@@ -145,13 +167,13 @@ ON *iam\_role*   <a name="grant-iam_role"></a>
 Grants the specified privileges to an IAM role\.
 
 TO *username*   <a name="grant-to"></a>
-A clause that indicates the user receiving the privileges\.
+Indicates the user receiving the privileges\.
 
 TO IAM\_ROLE *iam\_role*   <a name="grant-to-iam-role"></a>
-A clause that indicates the IAM role receiving the privileges\.
+Indicates the IAM role receiving the privileges\.
 
 WITH GRANT OPTION   <a name="grant-with-grant"></a>
-A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can't be granted to a group or to PUBLIC\.
+Indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can't be granted to a group or to PUBLIC\.
 
 GROUP *group\_name*   <a name="grant-group"></a>
 Grants the privileges to a user group\.
@@ -200,9 +222,33 @@ For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedur
  
 
 FOR \{ ALL \| COPY \| UNLOAD \} \[, \.\.\.\]   <a name="grant-for"></a>
-Specifes the SQL command for which the privilege is granted\. You can specify ALL to grant the privilege on the COPY and UNLOAD statements\. This clause applies only to granting the ASSUMEROLE privilege\.
+Specifies the SQL command for which the privilege is granted\. You can specify ALL to grant the privilege on the COPY and UNLOAD statements\. This clause applies only to granting the ASSUMEROLE privilege\.
 
-### GRANT MODEL privileges<a name="r_GRANT-MODEL-parameters"></a>
+ALTER  
+Grants the ALTER privilege to users to add or remove objects from a datashare, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
+
+SHARE  
+Grants privileges to users and user groups to add data consumers to a datashare\. This privilege is required to enable the particular consumer \(account or namespace\) to access the datashare from their clusters\. The consumer can be the same or a different AWS account, with the same or a different cluster namespace as specified by a globally unique identifier \(GUID\)\.
+
+ON DATASHARE *datashare\_name*   <a name="grant-datashare"></a>
+Grants the specified privileges on the referenced datashare\.
+
+USAGE  
+When USAGE is granted to a consumer account or namespace within the same account, the specific consumer account or namespace within the account can access the datashare and the objects of the datashare in read\-only fashion\.  
+
+TO NAMESPACE 'clusternamespace GUID'  
+Indicates a namespace in the same account where consumers can receive the specified privileges to the datashare\. Namespaces use a 128\-bit alphanumeric GUID\.
+
+TO ACCOUNT 'accountnumber'  
+Indicates the number of another account whose consumers can receive the specified privileges to the datashare\.
+
+ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="grant-datashare"></a>
+Grants the specified usage privileges on the specified database that is created in the specified datashare\.
+
+ON SCHEMA* shared\_schema*   <a name="grant-datashare"></a>
+Grants the specified privileges on the specified schema that is created in the specified datashare\.
+
+#### GRANT MODEL privileges<a name="r_GRANT-MODEL-parameters"></a>
 
 
 |  | 
@@ -216,70 +262,3 @@ Grants the CREATE MODEL privilege to specific users or user groups\.
 
 ON MODEL *model\_name*  
 Grants the EXECUTE privilege on a specific model\. Because model names can be overloaded, make sure to include the argument list for the model\.
-
-## Syntax for using GRANT with a data share<a name="r_GRANT-datashare-synopsis"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-The following is the syntax for using GRANT for data share privileges on Amazon Redshift\. ALTER and SHARE are the only privileges that you can grant to users and user groups\.
-
-```
-GRANT { ALTER | SHARE } ON DATASHARE datashare_name     
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
-```
-
-The following is the syntax for using GRANT for data share usage privileges on Amazon Redshift\. You can grant access to a data share to a consumer using the USAGE privilege\. You can't grant this privilege to users or user groups\. This privilege also doesn't support the WITH GRANT OPTION for the GRANT statement\. Only users or user groups with the SHARE privilege previously granted to them on the data share can run this type of GRANT statement\.
-
-```
-GRANT USAGE 
-    ON DATASHARE datashare_name 
-    TO NAMESPACE 'namespaceGUID' [, ...]
-```
-
-The following is the syntax for GRANT data\-sharing usage permissions on the specific database or schema created from a data share\. This USAGE permission doesn't grant usage permission to databases that are not created from the specified data share\. You can only GRANT or REVOKE ALTER or SHARE permissions on a data share to users and user groups\.
-
-```
-GRANT USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
-    TO { username | GROUP group_name | PUBLIC } [, ...]
-```
-
-### Parameters for using GRANT with a data share<a name="r_GRANT-parameters-datashare"></a>
-
-ALTER  
-Grants the ALTER privilege to users to add or remove objects from a data share, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
-
-SHARE  
-Grants privileges to users and user groups to add data consumers to a data share\. This privilege is required to enable the particular consumer  to access the data share from their clusters\. 
-
-ON DATASHARE *datashare\_name*   <a name="grant-datashare"></a>
-Grants the specified privileges on the referenced data share\.
-
-TO *username*  
-A clause that indicates the user receiving the privileges\.
-
-TO GROUP* group\_name*  
-A clause that indicates the user group receiving the privileges\.
-
-WITH GRANT OPTION  
-A clause that indicates that the user receiving the privileges can in turn grant the same privileges to others\. You can't grant WITH GRANT OPTION to a group or to PUBLIC\.
-
-GROUP group\_name  
-Grants the privileges to a user group\.
-
-PUBLIC  
-Grants the specified privileges to all users, including new users\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\. Granting PUBLIC to an AWS Lake Formation EXTERNAL TABLE results in granting the privilege to the Lake Formation everyone group\.
-
-USAGE  
-When USAGE is granted to a consumer account or namespace within the same account, the specific  namespace within an account can access the data share and the objects of the data share for read\-only\. 
-
-TO NAMESPACE 'namespace GUID'  
-A clause that indicates that the namespace in the same account that consumers can receive the privileges to the data share\. Namespaces uses a 128\-bit alpha\-numeric GUID\.
-
-ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="grant-datashare"></a>
-Grants the specified usage privileges on the specific database that is created in the specified data share\.
-
-ON SCHEMA* shared\_schema*   <a name="grant-datashare"></a>
-Grants the specified privileges on the specific schema that is created in the specified data share\.

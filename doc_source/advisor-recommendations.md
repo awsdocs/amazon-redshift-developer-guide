@@ -29,7 +29,7 @@ The compression analysis in Advisor tracks uncompressed storage allocated to per
 | DC2\.LARGE | 480 GB | 
 | DC2\.8XLARGE | 2\.56 TB | 
 | DS2\.XLARGE | 4 TB | 
-| DS2\.8XLAGE | 16 TB | 
+| DS2\.8XLARGE | 16 TB | 
 
 **Recommendation**
 
@@ -62,7 +62,7 @@ When you rebuild the tables, use the `ENCODE` parameter to explicitly set column
 + Leave any columns that are the first column in a compound sort key uncompressed\. The Advisor analysis doesn't count the storage consumed by those columns\.
 + Compressing large columns has a higher impact on performance and storage than compressing small columns\.
 + If you are unsure which compression is best, use the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command to suggest a compression\.
-+ To generate the data definition language \(DDL\) statements for existing tables, you can use the AWS [Generate Table DDL](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql) utility, found on GitHub\.
++ To generate the data definition language \(DDL\) statements for existing tables, you can use the AWS[Generate Table DDL](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql) utility, found on GitHub\.
 + To simplify the compression suggestions and the process of rebuilding tables, you can use the [Amazon Redshift Column Encoding Utility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\.
 
 ## Compress Amazon S3 file objects loaded by COPY<a name="cluster-compress-s3-recommendation"></a>
@@ -197,7 +197,7 @@ To improve COPY responsiveness by skipping the compression analysis phase, imple
 + Use the column `ENCODE` parameter when creating any tables that you load using the COPY command\.
 + Disable compression altogether by supplying the `COMPUPDATE OFF` parameter in the COPY command\.
 
-The best solution is generally to use column encoding during table creation, because this approach also maintains the benefit of storing compressed data on disk\. You can use the ANALYZE COMPRESSION command to suggest compression encodings, but you must recreate the table to apply these encodings\. To automate this process, you can use the AWS [ColumnEncodingUtility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\. 
+The best solution is generally to use column encoding during table creation, because this approach also maintains the benefit of storing compressed data on disk\. You can use the ANALYZE COMPRESSION command to suggest compression encodings, but you must recreate the table to apply these encodings\. To automate this process, you can use the AWS[ColumnEncodingUtility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\. 
 
 To identify recent COPY operations that triggered automatic compression analysis, run the following SQL command\.
 

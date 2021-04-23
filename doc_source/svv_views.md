@@ -1,6 +1,6 @@
 # SVV views<a name="svv_views"></a>
 
-SVV views are system views that contain references to STV tables and snapshots for more detailed information\.
+SVV views are system views in Amazon Redshift that contain references to STV tables and snapshots for more detailed information\.
 
 **Topics**
 + [SVV\_ALL\_COLUMNS](r_SVV_ALL_COLUMNS.md)

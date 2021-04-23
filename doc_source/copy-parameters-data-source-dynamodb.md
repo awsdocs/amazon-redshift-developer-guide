@@ -41,7 +41,7 @@ The name of the DynamoDB table that contains the data, for example `'dynamodb://
 A DynamoDB table name is unique to an AWS account, which is identified by the AWS access credentials\.
 
 *authorization*  
-The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for an IAM user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.
+The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for an IAM user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.
 
 READRATIO \[AS\] *ratio*  <a name="copy-readratio"></a>
 The percentage of the DynamoDB table's provisioned throughput to use for the data load\. READRATIO is required for COPY from DynamoDB\. It can't be used with COPY from Amazon S3\. We highly recommend setting the ratio to a value less than the average unused provisioned throughput\. Valid values are integers 1–200\.  

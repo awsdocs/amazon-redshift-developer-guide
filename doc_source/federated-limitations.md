@@ -11,6 +11,7 @@ The following are limitations and considerations when using federated queries wi
 + Federated queries are only available in AWS Regions where both Amazon Redshift and Amazon RDS or Aurora are available\. 
 + Federated queries currently don't support `ALTER SCHEMA`\. To change a schema, use `DROP` and then `CREATE EXTERNAL SCHEMA`\. 
 + Federated queries don't work with concurrency scaling\. 
++ Federated queries currently don't support access through a PostgreSQL foreign data wrapper\. 
 
 The following are considerations for transactions when working with federated queries to PostgreSQL databases: 
 + If a query consists of federated tables, the leader node starts a READ ONLY REPEATABLE READ transaction on the remote database\. This transaction remains for the duration of the Amazon Redshift transaction\.

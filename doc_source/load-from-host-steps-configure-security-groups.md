@@ -4,7 +4,7 @@
 
 Use the Private IP addresses when: 
 + You have an Amazon Redshift cluster that is not in a Virtual Private Cloud \(VPC\), and an Amazon EC2 \-Classic instance, both of which are in the same AWS Region\. 
-+  You have an Amazon Redshift cluster that is in a VPC, and an Amazon EC2 \-VPC instance, both of which are in the same AWS Region and in the same VPC\. 
++  You have an Amazon Redshift cluster that is in a VPC, and an Amazon EC2 \-VPC instance, both of which are in the same AWS Region and in the same VPC\.
 
  Otherwise, use the Public IP addresses\.
 

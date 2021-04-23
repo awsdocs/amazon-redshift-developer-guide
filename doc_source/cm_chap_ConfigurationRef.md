@@ -7,6 +7,7 @@
 + [datestyle](r_datestyle.md)
 + [describe\_field\_name\_in\_uppercase](r_describe_field_name_in_uppercase.md)
 + [downcase\_delimited\_identifier](r_downcase_delimited_identifier.md)
++ [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)
 + [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md)
 + [enable\_vacuum\_boost](r_enable_vacuum_boost.md)
 + [error\_on\_nondeterministic\_update](r_error_on_nondeterministic_update.md)

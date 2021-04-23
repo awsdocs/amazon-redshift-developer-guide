@@ -2,7 +2,7 @@
 
 The ROUND function rounds numbers to the nearest integer or decimal\. 
 
-The ROUND function can optionally include a second argument: an integer to indicate the number of decimal places for rounding, in either direction\. If the second argument is not provided, the function rounds to the nearest whole number; if the second argument *n* is specified, the function rounds to the nearest number with *n* decimal places of precision\. 
+The ROUND function can optionally include a second argument as an integer to indicate the number of decimal places for rounding, in either direction\. When you don't provide the second argument, the function rounds to the nearest whole number\. When the second argument *>n* is specified, the function rounds to the nearest number with *n* decimal places of precision\. 
 
 ## Syntax<a name="r_ROUND-synopsis"></a>
 
@@ -13,12 +13,16 @@ ROUND (number [ , integer ] )
 ## Argument<a name="r_ROUND-argument"></a>
 
  *number*   
-INTEGER, DECIMAL, and FLOAT data types are supported\.   
-If the first argument is an integer, the parser converts the integer into a decimal data type prior to processing\. If the first argument is a decimal number, the parser processes the function without conversion, resulting in better performance\. 
+A number or expression that evaluates to a number\. It can be the DECIMAL, FLOAT8 or SUPER type\. Amazon Redshift can convert other data types per the implicit conversion rules\. 
+
+*integer* \(optional\)  
+An integer that indicates the number of decimal places for rounding in either directions\. The extra argument isn't supported for the SUPER data type\.
 
 ## Return type<a name="r_ROUND-return-type"></a>
 
 ROUND returns the same numeric data type as the input argument\(s\)\. 
+
+When the input is of the SUPER type, the output retains the same dynamic type as the input while the static type remains the SUPER type\. When the dynamic type of SUPER isn't a number, Amazon Redshift returns a null\.
 
 ## Examples<a name="r_ROUND-examples"></a>
 

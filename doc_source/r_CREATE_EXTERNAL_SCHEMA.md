@@ -1,6 +1,6 @@
 # CREATE EXTERNAL SCHEMA<a name="r_CREATE_EXTERNAL_SCHEMA"></a>
 
-Creates a new external schema in the current database\. You can use this external schema to connect to Amazon RDS for PostgreSQL or Amazon Aurora with PostgreSQL compatibility databases\. You can also create an external schema that references a database in an external data catalog such as AWS Glue, Athena, or a database in an Apache Hive metastore, such as Amazon EMR\.
+Creates a new external schema in the current database\. You can use this external schema to connect to Amazon RDS for PostgreSQL or Amazon Aurora PostgreSQL\-Compatible Edition databases\. You can also create an external schema that references a database in an external data catalog such as AWS Glue, Athena, or a database in an Apache Hive metastore, such as Amazon EMR\.
 
 The owner of this schema is the issuer of the CREATE EXTERNAL SCHEMA command\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. To grant access to the schema to other users or user groups, use the [GRANT](r_GRANT.md) command\. 
 
@@ -53,11 +53,6 @@ URI 'hostname' [ PORT port_number ]
 IAM_ROLE 'iam-role-arn-string'
 SECRET_ARN 'ssm-secret-arn'
 ```
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the cross\-database queries feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-crossdb@amazon\.com\.   | 
 
 The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a cross\-database query\.
 

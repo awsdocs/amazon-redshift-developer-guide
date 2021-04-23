@@ -1,8 +1,8 @@
 # Loading semistructured data into Amazon Redshift<a name="ingest-super"></a>
 
-Use the SUPER data type to persist and query hierarchical and generic data in Amazon Redshift\. Amazon Redshift introduces the `json_parse` function to parse data in JSON format and convert it into the SUPER representation\. Amazon Redshift also supports loading a JSON document without shredding the attributes of its JSON structures into multiple columns\.
+Use the SUPER data type to persist and query hierarchical and generic data in Amazon Redshift\. Amazon Redshift introduces the `json_parse` function to parse data in JSON format and convert it into the SUPER representation\. Amazon Redshift also supports loading SUPER columns using the COPY command\. The supported file formats are JSON, Avro, text, comma\-separated value \(CSV\) format, Parquet, and ORC\.
 
-The default encoding for SUPER data type is LZO\. 
+The default encoding for SUPER data type is ZSTD\. 
 
 ## Parsing JSON documents to SUPER columns<a name="parse_json"></a>
 
@@ -41,13 +41,25 @@ INSERT INTO region_nations VALUES(0,
 }'));
 ```
 
-## Using COPY to load JSON data in Amazon Redshift<a name="copy_json"></a>
+## Using COPY to load SUPER columns in Amazon Redshift<a name="copy_json"></a>
 
-Use the COPY command to load data formatted as JSON, ORC, and Parquet into SUPER data columns\. Semistructured data support in Amazon Redshift enables you to load a JSON document without shredding the attributes of its JSON structures into multiple columns\. Amazon Redshift provides two methods to ingest JSON document using the COPY even with JSON structure that is fully unknown or partially unknown: 
-+ Store the data deriving from a JSON document into a single SUPER data column\. This method is useful when the schema isn't known or is expected to change\. Thus it is easier to store the entire tuple in a single SUPER column\.
-+ Shred the JSON document into multiple Amazon Redshift columns\. Attributes can be Amazon Redshift scalars or SUPER values\. 
+In the following sections, you can learn about different ways to use the COPY command to load JSON data into Amazon Redshift\.
 
-**Copying JSON document into a single SUPER data column**
+### Copying data from JSON and Avro<a name="copy_json-from-JSON"></a>
+
+By using semistructured data support in Amazon Redshift, you can load a JSON document without shredding the attributes of its JSON structures into multiple columns\. 
+
+Amazon Redshift provides two methods to ingest JSON document using COPY, even with a JSON structure that is fully or partially unknown: 
+
+1. Store the data deriving from a JSON document into a single SUPER data column using the `noshred` option\. This method is useful when the schema isn't known or is expected to change\. Thus, this method makes it easier to store the entire tuple in a single SUPER column\.
+
+1. Shred the JSON document into multiple Amazon Redshift columns using the `auto` or `jsonpaths` option\. Attributes can be Amazon Redshift scalars or SUPER values\. 
+
+You can use these options with the JSON or Avro formats\.
+
+The maximum size for a JSON object before shredding is 4 MB\.
+
+### Copying a JSON document into a single SUPER data column<a name="copy_json-one-column"></a>
 
 To copy a JSON document into a single SUPER data column, create a table with a single SUPER data column\.
 
@@ -55,7 +67,7 @@ To copy a JSON document into a single SUPER data column, create a table with a s
 CREATE TABLE region_nations_noshred (rdata SUPER);
 ```
 
-Copy the data from Amazon S3 into the single SUPER data column\. Specify the `noshred` option in the FORMAT JSON clause to ingest the JSON source data into a single SUPER data column\.
+Copy the data from Amazon S3 into the single SUPER data column\. To ingest the JSON source data into a single SUPER data column, specify the `noshred` option in the FORMAT JSON clause\.
 
 ```
 COPY region_nations_noshred FROM 's3://redshift-downloads/semistructured/tpch-nested/data/json/region_nation'
@@ -63,19 +75,19 @@ REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
 FORMAT JSON 'noshred';
 ```
 
-After the COPY has successfully ingested the JSON, the customers table has a cdata SUPER data column that contains the data of the entire JSON object\. The ingested data maintains all the properties of the JSON hierarchy but the leaves are converted to Amazon Redshift scalar types for efficient query processing\.
+After COPY has successfully ingested the JSON, your table has a `rdata` SUPER data column that contains the data of the entire JSON object\. The ingested data maintains all the properties of the JSON hierarchy\. However, the leaves are converted to Amazon Redshift scalar types for efficient query processing\.
 
-Use the following query to retrieve the original JSON string with the following query:
+Use the following query to retrieve the original JSON string\.
 
 ```
 SELECT rdata FROM region_nations_noshred;
 ```
 
-Furthermore, when Amazon Redshift generates a SUPER data column, it becomes accessible using JDBC as a string through JSON serialization\. For more information, see [Serializing complex nested JSON](serializing-complex-JSON.md)\.
+When Amazon Redshift generates a SUPER data column, it becomes accessible using JDBC as a string through JSON serialization\. For more information, see [Serializing complex nested JSON](serializing-complex-JSON.md)\.
 
-**Copying JSON document into multiple SUPER data columns**
+### Copying a JSON document into multiple SUPER data columns<a name="copy_json-multiple-columns"></a>
 
-You can shred a JSON document into multiple columns that can be SUPER data columns or Amazon Redshift scalar types\. Amazon Redshift spreads different portions of the JSON object to different columns\.
+You can shred a JSON document into multiple columns that can be either SUPER data columns or Amazon Redshift scalar types\. Amazon Redshift spreads different portions of the JSON object to different columns\.
 
 ```
 CREATE TABLE region_nations
@@ -87,12 +99,44 @@ CREATE TABLE region_nations
  );
 ```
 
-In order to COPY the data of the previous example into this table, run a COPY command with the AUTO option with FORMAT JSON to split the JSON value across multiple columns\. The COPY matches the JSON attributes with column names and allows nested values, such as JSON arrays and objects, to be ingested as SUPER values\. 
+To copy the data of the previous example into the table, specify the AUTO option in the FORMAT JSON clause to split the JSON value across multiple columns\. COPY matches the top\-level JSON attributes with column names and allows nested values to be ingested as SUPER values, such as JSON arrays and objects\. 
 
 ```
 COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/json/region_nation'
 REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
 FORMAT JSON 'auto';
+```
+
+In some cases, there is a mismatch between column names and JSON attributes or the attribute to load is nested more than a level deep\. If so, use a `jsonpaths` file to manually map JSON attributes to Amazon Redshift columns\.
+
+```
+CREATE TABLE nations
+(
+ regionkey smallint
+ ,name varchar
+ ,comment super
+ ,nations super
+ );
+```
+
+Suppose that you want to load data to a table where the column names don't match the JSON attributes\. In the following example, the `nations` table is such a table\. You can create a `jsonpaths` file that maps the paths of attributes to the table columns by their position in the `jsonpaths` array\.
+
+```
+{"jsonpaths": [
+       "$.r_regionkey",
+       "$.r_name",
+       "$.r_comment",
+       "$.r_nations
+    ]
+}
+```
+
+The location of the `jsonpaths` file is used as the argument to FORMAT JSON\.
+
+```
+COPY nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/json/region_nation'
+REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
+FORMAT JSON 's3://redshift-downloads/semistructured/tpch-nested/data/jsonpaths/nations_jsonpaths.json';
 ```
 
 Use the following query to access the table that shows data spread to multiple columns\. The SUPER data columns are printed using the JSON format\.
@@ -101,9 +145,28 @@ Use the following query to access the table that shows data spread to multiple c
 SELECT r_regionkey,r_name,r_comment,r_nations[0].n_nationkey FROM region_nations ORDER BY 1,2,3 LIMIT 1;
 ```
 
-**Copying data from columnar format Parquet and ORC**
+### Copying data from text and CSV<a name="copy_json-from-text-csv"></a>
 
-If your semistructured or nested data is already available in either Apache Parquet or Apache ORC formats, then you can use the COPY command to ingest data into Amazon Redshift\. The Amazon Redshift table structure should match the number of columns and the column data types of the Parquet or ORC files\. By specifying SERIALIZETOJSON in the COPY command, any column type in the file that aligns with a SUPER column in the table can be loaded as SUPER, including structure and array types\.
+Amazon Redshift represents SUPER columns in text and CSV formats as single\-line JSON objects\. The double quotation marks used for escaping in CSV require no intervention from users\. However, for text format, when the chosen delimiter might also appear in a SUPER field, use the ESCAPE option during COPY and UNLOAD\. 
+
+```
+COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/csv/region_nation'
+REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
+FORMAT CSV;
+```
+
+```
+COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/text/region_nation'
+REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
+DELIMITER ','
+ESCAPE;
+```
+
+### Copying data from columnar\-format Parquet and ORC<a name="copy_json-from-parquet-orc"></a>
+
+If your semistructured or nested data is already available in either Apache Parquet or Apache ORC format, you can use the COPY command to ingest data into Amazon Redshift\. 
+
+The Amazon Redshift table structure should match the number of columns and the column data types of the Parquet or ORC files\. By specifying SERIALIZETOJSON in the COPY command, you can load any column type in the file that aligns with a SUPER column in the table as SUPER\. This includes structure and array types\.
 
 ```
 COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/parquet/region_nation'
@@ -118,3 +181,5 @@ COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/dat
 IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
 FORMAT ORC SERIALIZETOJSON;
 ```
+
+When the attributes of the date or time data types are in ORC, Amazon Redshift converts them to varchar upon encoding them in SUPER\.

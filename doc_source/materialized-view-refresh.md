@@ -1,6 +1,6 @@
 # Refreshing a materialized view<a name="materialized-view-refresh"></a>
 
-When you create a materialized view, its contents reflect the state of the underlying database table or tables at that time\. The data in the materialized view remains unchanged, even when applications make changes to the data in the underlying tables\. To update the data in the materialized view, you can use the `REFRESH MATERIALIZED VIEW` statement at any time to manually refresh materialized views\. When you use this statement, Amazon Redshift identifies changes that have taken place in the base table or tables, and then applies those changes to the materialized view\.
+When you create a materialized view, its contents reflect the state of the underlying database table or tables at that time\. The data in the materialized view remains unchanged, even when applications make changes to the data in the underlying tables\. To update the data in the materialized view, you can use the `REFRESH MATERIALIZED VIEW` statement at any time to manually refresh materialized views\. When you use this statement, Amazon Redshift identifies changes that have taken place in the base table or tables and applies those changes to the materialized view\.
 
 Amazon Redshift has two strategies for refreshing a materialized view: 
 + In many cases, Amazon Redshift can perform an incremental refresh\. In an *incremental refresh*, Amazon Redshift quickly identifies the changes to the data in the base tables since the last refresh and updates the data in the materialized view\. Incremental refresh is supported on the following SQL constructs used in the query when defining the materialized view:
@@ -15,7 +15,7 @@ Amazon Redshift currently has the following limitations for incremental refresh 
 Amazon Redshift doesn't support incremental refresh for materialized views that are defined with a query using the following SQL elements:
 + OUTER JOIN \(RIGHT, LEFT, or FULL\)\.
 + The set operations UNION, INTERSECT, EXCEPT, and MINUS\.
-+ The aggregate functions AVG, MEDIAN, PERCENTILE\_CONT, MAX, MIN, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
++ The aggregate functions AVG, MEDIAN, PERCENTILE\_CONT, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
 **Note**  
 The COUNT and SUM aggregate functions are supported\.
 + DISTINCT aggregate functions, such as DISTINCT COUNT, DISTINCT SUM, and so on\.

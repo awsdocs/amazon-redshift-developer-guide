@@ -2,19 +2,17 @@
 
 ST\_Collect has two variants\. One accepts two geometries, and one accepts an aggregate expression\. 
 
-The first variant of ST\_Collect creates a geometry from the input geometries\. This variant works as follows: 
+The first variant of ST\_Collect creates a geometry from the input geometries\. The order of the input geometries is preserved\. This variant works as follows: 
 + If both input geometries are points, then a `MULTIPOINT` with two points is returned\. 
 + If both input geometries are linestrings, then a `MULTILINESTRING` with two linestrings is returned\. 
 + If both input geometries are polygons, then a `MULTIPOLYGON` with two polygons is returned\. 
 + Otherwise, a `GEOMETRYCOLLECTION` with two input geometries is returned\. 
 
-The second variant of ST\_Collect creates a geometry from geometries in a geometry column\. The order of the input geometries is preserved\. This variant works as follows: 
+The second variant of ST\_Collect creates a geometry from geometries in a geometry column\. There isn't a determined return order of the geometries\. Specify the WITHIN GROUP \(ORDER BY \.\.\.\) clause to specify the order of the returned geometries\. This variant works as follows: 
 + If all non\-NULL rows in the input aggregate expression are points, then a multipoint containing all the points in the aggregate expression is returned\. 
 + If all non\-NULL rows in the aggregate expression are linestrings, then a multilinestring containing all the linestrings in the aggregate expression is returned\. 
 + If all non\-NULL rows in the aggregate expression are polygons, the result is a multipolygon containing all the polygons in the aggregate expression is returned\. 
 + Otherwise, a `GEOMETRYCOLLECTION` containing all the geometries in the aggregate expression is returned\. 
-
-The order of the input geometries is preserved\.
 
 ## Syntax<a name="ST_Collect-function-syntax"></a>
 
@@ -23,7 +21,7 @@ ST_Collect(geom1, geom2)
 ```
 
 ```
-ST_Collect(aggregate_expression)
+ST_Collect(aggregate_expression)  [WITHIN GROUP (ORDER BY sort_expression1 [ASC | DESC] [, sort_expression2 [ASC | DESC] ...])]
 ```
 
 ## Arguments<a name="ST_Collect-function-arguments"></a>
@@ -36,6 +34,9 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 
  *aggregate\_expression*   
 A column of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. 
+
+ \[WITHIN GROUP \(ORDER BY *sort\_expression1* \[ASC \| DESC\] \[, *sort\_expression2* \[ASC \| DESC\] \.\.\.\]\)\]   
+An optional clause that specifies the sort order of the aggregated values\. The ORDER BY clause contains a list of sort expressions\. Sort expressions are expressions similar to valid sort expressions in a query select list, such as a column name\. You can specify ascending \(`ASC`\) or descending \(`DESC`\) order\. The default is `ASC`\. 
 
 ## Return type<a name="ST_Collect-function-return"></a>
 
@@ -115,4 +116,27 @@ SELECT id, ST_AsEWKT(ST_Collect(g)) FROM tbl GROUP BY id ORDER BY id;
   3 | SRID=4326;GEOMETRYCOLLECTION(MULTIPOINT((13 4),(8 5),(4 4)),MULTILINESTRING((-1 -1,-2 -2),(-3 -3,-5 -5)))
   4 | SRID=4326;MULTIPOLYGON(((0 0,10 0,0 10,0 0)),((20 20,20 30,30 20,20 20)))
   5 |
+```
+
+The following SQL collects all geometries from a table in a geometry collection\. Results are ordered in descending order by `id`, and then lexicographically based on their minimum and maximum x\-coordinates\. 
+
+```
+WITH tbl(id, g) AS (
+SELECT 1, ST_GeomFromText('POINT(4 5)', 4326) UNION ALL
+SELECT 1, ST_GeomFromText('POINT(1 2)', 4326) UNION ALL
+SELECT 2, ST_GeomFromText('LINESTRING(10 0,20 -5)', 4326) UNION ALL
+SELECT 2, ST_GeomFromText('LINESTRING(0 0,10 0)', 4326) UNION ALL
+SELECT 3, ST_GeomFromText('MULTIPOINT(13 4,8 5,4 4)', 4326) UNION ALL
+SELECT 3, ST_GeomFromText('MULTILINESTRING((-1 -1,-2 -2),(-3 -3,-5 -5))', 4326) UNION ALL
+SELECT 4, ST_GeomFromText('POLYGON((20 20,20 30,30 20,20 20))', 4326) UNION ALL
+SELECT 4, ST_GeomFromText('POLYGON((0 0,10 0,0 10,0 0))', 4326) UNION ALL
+SELECT 1, NULL::geometry UNION ALL SELECT 2, NULL::geometry UNION ALL
+SELECT 5, NULL::geometry UNION ALL SELECT 5, NULL::geometry)
+SELECT ST_AsEWKT(ST_Collect(g) WITHIN GROUP (ORDER BY id DESC, ST_XMin(g), ST_XMax(g))) FROM tbl;
+```
+
+```
+                                                                                                                  st_asewkt                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ SRID=4326;GEOMETRYCOLLECTION(POLYGON((0 0,10 0,0 10,0 0)),POLYGON((20 20,20 30,30 20,20 20)),MULTILINESTRING((-1 -1,-2 -2),(-3 -3,-5 -5)),MULTIPOINT((13 4),(8 5),(4 4)),LINESTRING(0 0,10 0),LINESTRING(10 0,20 -5),POINT(1 2),POINT(4 5)
 ```

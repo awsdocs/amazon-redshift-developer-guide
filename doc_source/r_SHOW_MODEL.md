@@ -41,7 +41,7 @@ The SHOW MODEL command returns the following:
   + The prediction function input argument types\.
   + The IAM Role\. Only the owner of the model can see this\.
   + The S3 bucket used\. Only the owner of the model can see this\.
-  + The KMS key, if one was provided\. Only the owner of the model can see this\.
+  + The AWS KMS key, if one was provided\. Only the owner of the model can see this\.
   + The maximum time that the model can run\.
 + If the model type is not AUTO, then Amazon Redshift also shows the list of hyperparameters provided and their values\.
 

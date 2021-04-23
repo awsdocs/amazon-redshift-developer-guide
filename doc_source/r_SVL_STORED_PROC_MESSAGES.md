@@ -49,7 +49,7 @@ SELECT query, recordtime, loglevel, loglevel_text, trim(message) as message, abo
    193 | 2020-03-17 23:57:18.277987 |       60 | EXCEPTION     | EXCEPTION level: Exception Handling |       1
 ```
 
-The following SQL statments show how to use SVL\_STORED\_PROC\_MESSAGES to review raised messages with the SET option when creating a stored procedure\. Because test\_proc\(\) has a minimum log level of NOTICE, only NOTICE, WARNING, and EXCEPTION level messages are logged in SVL\_STORED\_PROC\_MESSAGES\.
+The following SQL statements show how to use SVL\_STORED\_PROC\_MESSAGES to review raised messages with the SET option when creating a stored procedure\. Because test\_proc\(\) has a minimum log level of NOTICE, only NOTICE, WARNING, and EXCEPTION level messages are logged in SVL\_STORED\_PROC\_MESSAGES\.
 
 ```
 -- Create a stored procedure with minimum log level of NOTICE 

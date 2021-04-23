@@ -33,30 +33,25 @@ CONNECTION LIMIT \{ *limit* \| UNLIMITED \}
 The maximum number of database connections users are permitted to have open concurrently\. The limit isn't enforced for superusers\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
-## Syntax for using CREATE DATABASE with a data share<a name="r_CREATE_DATABASE-datashare-synopsis"></a>
+## Syntax for using CREATE DATABASE with a datashare<a name="r_CREATE_DATABASE-datashare-synopsis"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-The following syntax describes the CREATE DATABASE command used to create databases from a data share\.
+The following syntax describes the CREATE DATABASE command used to create databases from a datashare\.
 
 ```
 CREATE DATABASE database_name
 FROM DATASHARE datashare_name OF NAMESPACE namespace_guid
 ```
 
-### Parameters for using CREATE DATABASE with a data share<a name="r_CREATE_DATABASE-parameters-datashare"></a>
+### Parameters for using CREATE DATABASE with a datashare<a name="r_CREATE_DATABASE-parameters-datashare"></a>
 
 FROM DATASHARE   
-A keyword that indicates where the data share is located\.
+A keyword that indicates where the datashare is located\.
 
  *datashare\_name*   
-The name of the data share that the external database is created upon\.
+The name of the datashare that the consumer database is created on\.
 
  NAMESPACE *namespace\_guid*   
-A value that specifies the namespace that the data share uses\.
+A value that specifies the namespace that the datashare uses\.
 
 ## CREATE DATABASE limits<a name="r_CREATE_DATABASE-create-database-limits"></a>
 
@@ -88,13 +83,8 @@ where datdba > 1;
  tickit      |    100 | 100
 ```
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-The following example creates the database Salesdb from the data share SalesShare\.
+The following example creates the database Salesdb from the datashare SalesShare\.
 
 ```
-CREATE DATABASE Sales_db FROM DATASHARE SalesShare OF NAMESPACE 'dd8772e1-d792-4fa4-996b-1870577efc0d';
+CREATE DATABASE Sales_db FROM DATASHARE SalesShare OF NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
 ```

@@ -4,7 +4,7 @@
 + [Leader node–only functions](c_SQL_functions_leader_node_only.md)
 + [Compute node–only functions](c_SQL_functions_compute_node_only.md)
 + [Aggregate functions](c_Aggregate_Functions.md)
-+ [Array functions](array-functions.md)
++ [Array functions](#c_Array_Functions)
 + [Boolean functions](c_Boolean_Functions.md)
 + [Bit\-wise aggregate functions](c_bitwise_aggregate_functions.md)
 + [Window functions](c_Window_functions.md)
@@ -24,3 +24,15 @@ Amazon Redshift supports a number of functions that are extensions to the SQL st
 
 **Note**  
 Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of very important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
+
+## Array functions<a name="c_Array_Functions"></a>
+
+Following, you can find a description for the array functions for SQL that Amazon Redshift supports to access and manipulate arrays\.
+
+**Topics**
++ [array function](r_array.md)
++ [array\_concat function](r_array_concat.md)
++ [array\_flatten function](array_flatten.md)
++ [get\_array\_length function](get_array_length.md)
++ [split\_to\_array function](split_to_array.md)
++ [subarray function](r_subarray.md)

@@ -25,6 +25,12 @@ The following example grants all privileges on the SALES table in the QA\_TICKIT
 grant all on table qa_tickit.sales to group qa_users;
 ```
 
+The following example grants the DROP privilege on the SALES table in the QA\_TICKIT schema to all users in the group QA\_USERS\.
+
+```
+grant drop on table qa_tickit.sales to group qa_users;
+```
+
 The following sequence of commands shows how access to a schema doesn't grant privileges on a table in the schema\. 
 
 ```
@@ -104,17 +110,14 @@ The following example grants the SELECT privilege on the `cust_name` column of t
 grant select(cust_name) on cust_profile_vw to user2;
 ```
 
-## Examples of granting the USAGE privilege for data shares<a name="r_GRANT-examples-datashare"></a>
+## Examples of granting the USAGE privilege for datashares<a name="r_GRANT-examples-datashare"></a>
 
+The following examples show GRANT datasharing usage permissions on a specific database or schema created from a datashare\. This USAGE permission doesn't grant usage permission to databases that aren't created from the specified datashare\. You can only GRANT or REVOKE ALTER or SHARE permissions on a datashare to users and user groups\.
 
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-The following example grants the USAGE privilege on the `Salesshare` data share to the specified namespace\. 
+The following example grants the USAGE privilege on the `Salesshare` datashare to the specified namespace\. 
 
 ```
-GRANT USAGE ON DATASHARE Salesshare TO NAMESPACE 'f5a0b31c-f2c7-45d6-ba3e-0d53ad027e8b';
+GRANT USAGE ON DATASHARE Salesshare TO NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
 ```
 
 The following example grants the USAGE privilege on the `Sales_db` to Bob\.

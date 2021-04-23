@@ -59,10 +59,21 @@ SETTINGS (
 );
 ```
 
-Once the model customer\_churn is created, the function ml\_fn\_customer\_churn\_auto becomes available\. The following example uses the inference function from the previous CREATE MODEL example for a different user case where Amazon Redshift predicts the proportion of churners and non\-churners among customers from different states because 2020\-01\-01\.
+Once the training data is exported, the CREATE MODEL command completes\. Training will continue in the background\. To check the status of training, use the [STV\_ML\_MODEL\_INFO](r_STV_ML_MODEL_INFO.md)\.
 
 ```
-WITH infered AS (SELECT state,
+select schema_name, model_name, model_state from stv_ml_model_info;
+
+ schema_name |        model_name         |             model_state
+-------------+---------------------------+--------------------------------------
+ public      | customer_churn_auto_model | Train Model On SageMaker In Progress
+(1 row)
+```
+
+Once the model\_state becomes `Model is Ready`, the function ml\_fn\_customer\_churn\_auto becomes available\. The following example uses the inference function from the previous CREATE MODEL example for a different user case where Amazon Redshift predicts the proportion of churners and non\-churners among customers from different states because 2020\-01\-01\.
+
+```
+WITH inferred AS (SELECT state,
        ml_fn_customer_churn_auto( 
           state,
           account_length,
@@ -74,7 +85,7 @@ WITH infered AS (SELECT state,
 SELECT state, SUM(CASE WHEN active = 'True.' THEN 1 ELSE 0 END) AS churners,
        SUM(CASE WHEN active = 'False.' THEN 1 ELSE 0 END) AS nonchurners,
        COUNT(*) AS total_per_state
-FROM infered
+FROM inferred
 GROUP BY state
 ORDER BY state;
 ```

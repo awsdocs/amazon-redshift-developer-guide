@@ -2,11 +2,11 @@
 
 When using SUPER data type, you can find related limitations following:
 + You can't define SUPER columns as either a distribution or sort key\.
-+ Aggregations involving SUPER columns aren't supported and will follow in upcoming patch updates\. 
-+ The SUPER data type only supports up to 1MB of data for individual rows\.
++ The SUPER data type only supports up to 1MB of data for an individual SUPER field or object\.
 + You can't perform partial update or transform operations on SUPER columns\.
 + You can't use the SUPER data type and its alias in right joins or full outer joins\.
-+ Manifest option isn't supported with UNLOAD queries involving super column references\.
++ The SUPER data type doesn't support XML as inbound or outbound serialization format\. 
++ In the FROM clause of a subquery \(that is correlated or not\) that references a table variable for unnesting, the query can only refer to its parent table and not other tables\.
 + Casting limitations
 
   SUPER values can be cast to and from other data types, with the following exceptions:
@@ -85,3 +85,4 @@ When using SUPER data type, you can find related limitations following:
      [1,"abc",null]
     (1 row)
     ```
++ Amazon Redshift doesn't support volatile functions, such as RANDOM \( \) or TIMEOFDAY \( \), in subqueries that unnest an outer table or a left\-hand side \(LHS\) of IN functions with such subqueries\.

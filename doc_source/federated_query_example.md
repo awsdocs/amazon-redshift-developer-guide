@@ -107,6 +107,72 @@ ORDER BY 1,2;
  2019 |     1 |     151
 ```
 
+## Example of using a mixed\-case name<a name="federated_query_example_postgres-mixed"></a>
+
+To query a supported PostgreSQL remote database that has a mixed\-case name of a database, schema, table, or column, then set `downcase_delimited_identifier` to `off`\. For more information about this session parameter, see [downcase\_delimited\_identifier](r_downcase_delimited_identifier.md)\. 
+
+```
+SET downcase_delimited_identifier TO OFF;
+```
+
+Typically, the database and schema names are in lowercase\. The following example shows how you can connect to a supported PostgreSQL remote database that has lowercase names for database and schema and mixed\-case names for table and column\. 
+
+Create an external schema that references an Aurora PostgreSQL database that has a lowercase database name \(`dblower`\) and lowercase schema name \(`schemalower`\)\. 
+
+```
+CREATE EXTERNAL SCHEMA apg_lower
+FROM POSTGRES
+DATABASE 'dblower' SCHEMA 'schemalower'
+URI 'endpoint to aurora hostname'
+IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-SecretsManager-RO'
+SECRET_ARN 'arn:aws:secretsmanager:us-west-2:123456789012:secret:federation/test/dataplane-apg-creds-YbVKQw';
+```
+
+In the session where the query runs, set `downcase_delimited_identifier` to `off`\.
+
+```
+SET downcase_delimited_identifier TO OFF;
+```
+
+Run a federated query to select all data from the PostgreSQL database\. The table \(`MixedCaseTab`\) and column \(`MixedCaseName`\) have mixed\-case names\. The result is one row \(`Harry`\)\. 
+
+```
+select * from apg_lower."MixedCaseTab";
+```
+
+```
+ MixedCaseName
+-------
+ Harry
+```
+
+The following example shows how you can connect to a supported PostgreSQL remote database that has a mixed\-case name for the database, schema, table, and column\. 
+
+Set `downcase_delimited_identifier` to `off` before you create the external schema\. If `downcase_delimited_identifier` is not set to `off` before creating the external schema, then a database does not exist error occurs\.
+
+Create an external schema that references an Aurora PostgreSQL database that has a mixed\-case database \(`UpperDB`\) and schema \(`UpperSchema`\) name\.
+
+```
+CREATE EXTERNAL SCHEMA apg_upper
+FROM POSTGRES
+DATABASE 'UpperDB' SCHEMA 'UpperSchema'
+URI 'endpoint to aurora hostname'
+IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-SecretsManager-RO'
+SECRET_ARN 'arn:aws:secretsmanager:us-west-2:123456789012:secret:federation/test/dataplane-apg-creds-YbVKQw';
+```
+
+Run a federated query to select all data from the PostgreSQL database\. The table \(`MixedCaseTab`\) and column \(`MixedCaseName`\) have mixed\-case names\. The result is one row \(`Harry`\)\. 
+
+```
+select * from apg_upper."MixedCaseTab";
+```
+
+```
+ MixedCaseName
+-------
+ Harry
+```
+
 ## Example of using a federated query with MySQL<a name="federated_query_example_mysql"></a>
 
 

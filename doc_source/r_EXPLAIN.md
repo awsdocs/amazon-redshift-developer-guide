@@ -32,7 +32,9 @@ The EXPLAIN command will fail if you use it for other SQL commands, such as data
 
 ## Query planning and execution steps<a name="r_EXPLAIN-query-planning-and-execution-steps"></a>
 
-The execution plan for a specific Amazon Redshift query statement breaks down execution and calculation of a query into a discrete sequence of steps and table operations that eventually produce a final result set for the query\. The following table provides a summary of steps that Amazon Redshift can use in developing an execution plan for any query a user submits for execution\.
+The execution plan for a specific Amazon Redshift query statement breaks down execution and calculation of a query into a discrete sequence of steps and table operations that eventually produce a final result set for the query\. For information about query planning, see [Query processing](c-query-processing.md)\.
+
+The following table provides a summary of steps that Amazon Redshift can use in developing an execution plan for any query a user submits for execution\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_EXPLAIN.html)
 

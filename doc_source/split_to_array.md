@@ -2,13 +2,13 @@
 
 Uses a delimiter as an optional parameter\. If no delimiter is present, then the default is a comma\.
 
-## Syntax<a name="split_to_array-syntax"></a>
+### Syntax<a name="split_to_array-syntax"></a>
 
 ```
 split_to_array(string,delimiter)
 ```
 
-## Arguments<a name="split_to_array-arguments"></a>
+### Arguments<a name="split_to_array-arguments"></a>
 
  **string**   
 The input string to be split\.
@@ -16,9 +16,9 @@ The input string to be split\.
  **delimiter**   
 An optional value on which the input string will be split\. The default is a comma\.
 
-## Return type<a name="split_to_array-returm-type"></a>
+### Return type<a name="split_to_array-returm-type"></a>
 
-## Example<a name="split_to_array-example"></a>
+### Example<a name="split_to_array-example"></a>
 
 The following example show a split\_to\_array function\.
 

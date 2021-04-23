@@ -7,7 +7,7 @@
 
 Removes a model from the database\. Only the model owner or a superuser can drop a model\. 
 
-DROP MODEL also deletes all prediction functions that are derived from this model, all Amazon Redshift artifacts related to the model, and all Amazon S3 data related to the model\. 
+DROP MODEL also deletes all prediction functions that are derived from this model, all Amazon Redshift artifacts related to the model, and all Amazon S3 data related to the model\. While the model is still being trained in Amazon SageMaker, DROP MODEL will cancel those operations\.
 
 This command isn't reversible\. The DROP MODEL command commits immediately\.
 

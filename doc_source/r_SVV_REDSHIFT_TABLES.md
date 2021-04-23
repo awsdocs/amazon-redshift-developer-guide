@@ -1,11 +1,6 @@
 # SVV\_REDSHIFT\_TABLES<a name="r_SVV_REDSHIFT_TABLES"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-Use SVV\_REDSHIFT\_TABLES to view a list of all tables that a user has access to\. This includes the tables on the cluster and the tables from data shares provided by remote clusters\.
+Use SVV\_REDSHIFT\_TABLES to view a list of all tables that a user has access to\. This set of tables includes the tables on the cluster and the tables from datashares provided by remote clusters\.
 
 ## Table columns<a name="r_SVV_REDSHIFT_TABLES-table-columns"></a>
 
@@ -17,13 +12,18 @@ The following example returns the output of SVV\_REDSHIFT\_TABLES\.
 
 ```
 SELECT *
-FROM svv_redshift_tablesWHERE database_name 
-IN ('prod','test')
-AND table_name 
-LIKE 'sales'ORDER BY database_name, schema_name;
+FROM svv_redshift_tables
+WHERE database_name = 'tickit_db' AND TABLE_NAME LIKE 'tickit_%'
+ORDER BY database_name,
+    TABLE_NAME;
 
- database_name | schema_name | table_name | table_type | table_acl | remarks
----------------+-------------+------------+------------+-----------+---------
- prod          | public      | sales      | TABLE      |           |
- test          | public      | sales      | TABLE      |           |
+database_name | schema_name |         table_name       | table_type | table_acl | remarks
+--------------+-------------+--------------------------+------------+-----------+---------
+   tickit_db  |    public   | tickit_category_redshift |    TABLE   |           |
+   tickit_db  |    public   |   tickit_date_redshift   |    TABLE   |           |
+   tickit_db  |    public   |   tickit_event_redshift  |    TABLE   |           |
+   tickit_db  |    public   |  tickit_listing_redshift |    TABLE   |           |
+   tickit_db  |    public   |   tickit_sales_redshift  |    TABLE   |           |
+   tickit_db  |    public   |   tickit_users_redshift  |    TABLE   |           |
+   tickit_db  |    public   |   tickit_venue_redshift  |    TABLE   |           |
 ```

@@ -17,6 +17,8 @@ If the original DDL is not available, you might be able to recreate the DDL by r
 
   Using a temporary table improves performance significantly compared to using a permanent table, but there is a risk of losing data\. A temporary table is automatically dropped at the end of the session in which it is created\. TRUNCATE commits immediately, even if it is inside a transaction block\. If the TRUNCATE succeeds but the session terminates before the subsequent INSERT completes, the data is lost\. If data loss is unacceptable, use a permanent table\. 
 
+After you create a copy of a table, you may need to grant access to the new table\. You can use [GRANT](r_GRANT.md) to define access privileges\.
+
 **To perform a deep copy using the original table DDL**
 
 1. \(Optional\) Recreate the table DDL by running a script called `v_generate_tbl_ddl`\. 

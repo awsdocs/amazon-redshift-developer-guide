@@ -513,7 +513,7 @@ Before you can use a cursor to retrieve rows, it must be opened\. PL/pgSQL has t
   The following shows an example\.
 
   ```
-  OPEN curs1 FOR EXECUTE ’SELECT * FROM ’ || quote_ident($1);
+  OPEN curs1 FOR EXECUTE 'SELECT * FROM ' || quote_ident($1);
   ```
 + Open a bound cursor: This form of OPEN is used to open a cursor variable whose query was bound to it when it was declared\. The cursor can't be open already\. A list of actual argument value expressions must appear if and only if the cursor was declared to take arguments\. These values are substituted in the query\. 
 
@@ -567,7 +567,7 @@ Inside the format string, % is replaced by the next optional argument's string r
 In the following example, the value of `v_job_id` replaces the % in the string\.
 
 ```
-RAISE NOTICE ’Calling cs_create_job(%)’, v_job_id;
+RAISE NOTICE 'Calling cs_create_job(%)', v_job_id;
 ```
 
 ## Transaction control<a name="r_PLpgSQL-transaction-control"></a>

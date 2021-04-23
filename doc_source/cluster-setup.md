@@ -56,7 +56,7 @@ As an Amazon Redshift administrator, do the following one\-time setup:
                      "arn:aws:s3:::redshift-downloads"
                  ]
              }
-             // Optional section needed if you use KMS keys.
+             // Optional section needed if you use AWS KMS keys.
              ,{
                  "Effect": "Allow",
                  "Action": [
@@ -98,9 +98,9 @@ As an Amazon Redshift administrator, do the following one\-time setup:
 
    The **your\-account\-id**, **your\-role**, and **your\-s3\-bucket** are the ones you specify as part of your CREATE MODEL command\.
 
-   \(Optional\) Use the KMS keys section of the sample policy if you specify a KMS key while using Amazon Redshift ML\. The **your\-kms\-key** is the key that you use as part of your CREATE MODEL command22\.
+   \(Optional\) Use the AWS KMS keys section of the sample policy if you specify an AWS KMS key while using Amazon Redshift ML\. The **your\-kms\-key** value is the key that you use as part of your CREATE MODEL command22\.
 
-1. \(Optional\) Create an Amazon S3 bucket and a AWS KMS key that Amazon Redshift uses to store the training data sent to Amazon SageMaker and receive the trained model from Amazon SageMaker\.
+1. \(Optional\) Create an Amazon S3 bucket and an AWS KMS key that Amazon Redshift uses to store the training data sent to Amazon SageMaker and receive the trained model from Amazon SageMaker\.
 
 1. \(Optional\) Create different combinations of IAM roles and Amazon S3 buckets for controlling access to different user groups\.
 

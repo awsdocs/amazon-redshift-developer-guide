@@ -5,7 +5,7 @@
 | --- |
 | This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
-Amazon Redshift machine learning \(Amazon Redshift ML\) is a robust, cloud\-based service that makes it easy for analysts and data scientists of all skill levels to use machine learning technology\. You provide the data that you want to train a model and metadata associated with data inputs to Amazon Redshift\. Then Amazon Redshift ML creates models that capture patterns in the input data\. You can then use these models to generate predictions for new input data without incurring additional costs\.
+Amazon Redshift machine learning \(Amazon Redshift ML\) is a robust, cloud\-based service that makes it easier for analysts and data scientists of all skill levels to use machine learning technology\. You provide the data that you want to train a model and metadata associated with data inputs to Amazon Redshift\. Then Amazon Redshift ML creates models that capture patterns in the input data\. You can then use these models to generate predictions for new input data without incurring additional costs\.
 
 When working with the preview, consider the following:
 + New Amazon Redshift clusters must be created with the **SQL\_PREVIEW** maintenance track\. For more information about preview tracks, see [Choosing cluster maintenance tracks](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-mgmt-maintenance-tracks)\.
@@ -27,7 +27,7 @@ When working with the preview, consider the following:
 
 **Topics**
 + [Machine learning overview](machine_learning_overview.md)
-+ [Getting started with Amazon Redshift ML](geting-started-machine-learning.md)
++ [Getting started with Amazon Redshift ML](getting-started-machine-learning.md)
 + [Examples](examples.md)
 + [Costs for using Amazon Redshift ML](cost.md)
 + [How Amazon Redshift ML works with Amazon SageMaker](working_with_sagemaker.md)

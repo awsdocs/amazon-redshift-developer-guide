@@ -14,7 +14,8 @@ CREATE [ OR REPLACE ] VIEW name [ ( column_name [, ...] ) ] AS query
 ## Parameters<a name="r_CREATE_VIEW-parameters"></a>
 
 OR REPLACE   
-If a view of the same name already exists, the view is replaced\. You can only replace a view with a new query that generates the identical set of columns, using the same column names and data types\. CREATE OR REPLACE VIEW locks the view for reads and writes until the operation completes\.
+If a view of the same name already exists, the view is replaced\. You can only replace a view with a new query that generates the identical set of columns, using the same column names and data types\. CREATE OR REPLACE VIEW locks the view for reads and writes until the operation completes\.  
+When a view is replaced, its other properties such as ownership and granted privileges are preserved\. 
 
  *name*   
 The name of the view\. If a schema name is given \(such as `myschema.myview`\) the view is created using the specified schema\. Otherwise, the view is created in the current schema\. The view name must be different from the name of any other view or table in the same schema\.   

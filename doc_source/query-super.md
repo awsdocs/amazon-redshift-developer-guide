@@ -60,14 +60,48 @@ Amazon Redshift also supports array index when iterating over the array using th
 ```
 SELECT c_name,
        orders.o_orderkey AS orderkey,
-       INDEX AS orderkey_index
-FROM customer_orders_lineitem c, c.c_orders AS orders AT INDEX ORDER BY orderkey_index;
+       index AS orderkey_index
+FROM customer_orders_lineitem c, c.c_orders AS orders AT index 
+ORDER BY orderkey_index;
 
 c_name             | orderkey | orderkey_index
 -------------------+----------+----------------
 Customer#000008251 | 3020007  |        0
 Customer#000009452 | 4043971  |        0
   (2 rows)
+```
+
+The following example iterates over a scalar array:
+
+```
+CREATE TABLE bar AS SELECT json_parse('{"scalar_array": [1, 2.3, 45000000]}') AS data;
+
+SELECT index, element FROM bar AS b, b.data.scalar_array AS element AT index;
+
+ index | element
+-------+----------
+     0 | 1
+     1 | 2.3
+     2 | 45000000
+(3 rows)
+```
+
+The following example iterates over an array of multiple levels\. Multiple unnest clauses are used to iterate into the innermost arrays\. f\.multi\_level\_array AS array iterates over the multi\_level\_array\. The array AS element is the iteration over the arrays within the multi\_level\_array\.
+
+```
+CREATE TABLE foo AS SELECT json_parse('[[1.1, 1.2], [2.1, 2.2], [3.1, 3.2]]') AS multi_level_array;
+
+SELECT array, element FROM foo AS f, f.multi_level_array AS array, array AS element;
+
+   array   | element
+-----------+---------
+ [1.1,1.2] | 1.1
+ [1.1,1.2] | 1.2
+ [2.1,2.2] | 2.1
+ [2.1,2.2] | 2.2
+ [3.1,3.2] | 3.1
+ [3.1,3.2] | 3.2
+(6 rows)
 ```
 
 For more information about the FROM clause, see [FROM clause](r_FROM_clause30.md)\.
@@ -84,7 +118,7 @@ WHERE c_orders[0].o_orderstatus = 'P';
 
 The equality sign in this query evaluates to `true` when c\_orders\[0\]\.o\_orderstatus is the string ‘P’\. In all other cases, the equality sign evaluates to `false`, including the cases where the arguments of the equality are different types\.
 
-**Dynamic and static typing**
+### Dynamic and static typing<a name="dynamic-typing-lax-processing-dynamic-and-static"></a>
 
 Without using dynamic typing, you can't determine whether c\_orders\[0\]\.o\_orderstatus is a string, an integer, or a structure\. You can only determine that c\_orders\[0\]\.o\_orderstatus is a SUPER data type, which can be an Amazon Redshift scalar, an array, or a structure\. The static type of c\_orders\[0\]\.o\_orderstatus is a SUPER data type\. Conventionally, a type is implicitly a static type in SQL\.
 
@@ -122,7 +156,9 @@ WHERE CASE WHEN JSON_TYPEOF(c_orders[0].o_orderstatus) = 'string'
 
 Dynamic typing doesn't exclude from comparisons of types that are minimally comparable\. For example, you can convert both CHAR and VARCHAR Amazon Redshift scalar types to SUPER\. They are comparable as strings, including ignoring trailing white\-space characters similar to Amazon Redshift CHAR and VARCHAR types\. Similarly, integers, decimals, and floating\-point values are comparable as SUPER values\. Specifically for decimal columns, each value can also have a different scale\. Amazon Redshift still considers them as dynamic types\.
 
-**Using dynamic typing for joins**
+Amazon Redshift also supports equality on objects and arrays that are evaluated as deep equal, such as evaluating deep into objects or arrays and comparing all attributes\. Use deep equal with caution, because the process of performing deep equal can be time\-consuming\.
+
+### Using dynamic typing for joins<a name="dynamic-typing-lax-processing-joins"></a>
 
 For joins, dynamic typing automatically matches values with different dynamic types without performing a long CASE WHEN analysis to find out what data types may appear\. For example, assume that your organization changed the format that it was using for part keys over time\.
 
@@ -159,7 +195,7 @@ WHERE CASE WHEN IS_INTEGER(l.l_partkey) AND IS_INTEGER(ps.ps_partkey)
            THEN l.l_partkey::varchar = ps.ps_partkey::varchar
            WHEN IS_ARRAY(l.l_partkey) AND IS_ARRAY(ps.ps_partkey)
                 AND IS_VARCHAR(l.l_partkey[0]) AND IS_VARCHAR(ps.ps_partkey[0])
-                AND IS_INTEGER(l.l_partkey[0]) AND IS_INTEGER(ps.ps_partkey[0])
+                AND IS_INTEGER(l.l_partkey[1]) AND IS_INTEGER(ps.ps_partkey[1])
            THEN l.l_partkey[0]::varchar = ps.ps_partkey[0]::varchar
                 AND l.l_partkey[1]::integer = ps.ps_partkey[1]::integer
            ELSE FALSE END

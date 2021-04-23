@@ -324,7 +324,7 @@ manifest;
 
 ## Unload VENUE to encrypted files<a name="unload-examples-unload-encrypted"></a>
 
-The following example unloads the VENUE table to a set of encrypted files using a KMS key\. If you specify a manifest file with the ENCRYPTED option, the manifest file is also encrypted\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)\.
+The following example unloads the VENUE table to a set of encrypted files using an AWS KMS key\. If you specify a manifest file with the ENCRYPTED option, the manifest file is also encrypted\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)\.
 
 ```
 unload ('select * from venue')

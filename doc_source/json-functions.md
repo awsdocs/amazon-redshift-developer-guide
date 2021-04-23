@@ -31,7 +31,7 @@ JSON strings must be properly formatted JSON, according to the following rules:
   + boolean
   + null 
 + Empty objects and empty arrays are valid JSON values\.
-+ JSON fields are case sensitive\. 
++ JSON fields are case\-sensitive\. 
 + White space between JSON structural elements \(such as `{ }, [ ]`\) is ignored\. 
 
 The Amazon Redshift JSON functions and the Amazon Redshift COPY command use the same methods to work with JSON\-formatted data\. For more information about working with JSON, see [COPY from JSON format](copy-usage_notes-copy-from-json.md)

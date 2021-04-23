@@ -1,4 +1,4 @@
-# Limitations for using SUPER data type with materialized views<a name="r_partiql_super_limitation"></a>
+# Limitations for using the SUPER data type with materialized views<a name="r_partiql_super_limitation"></a>
 
 When using SUPER data type with materialized views, observe the following limitations\.
 

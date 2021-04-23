@@ -11,11 +11,13 @@ CEIL | CEILING(number)
 ## Arguments<a name="r_CEILING_FLOOR-arguments"></a>
 
  *number*   
-DOUBLE PRECISION number to be rounded\. 
+The number or expression that evaluates to a number\. It can be the SMALLINT, INTEGER, BIGINT, DECIMAL, FLOAT4, FLOAT8, or SUPER type\.
 
 ## Return type<a name="r_CEILING_FLOOR-return-type"></a>
 
-CEILING and CEIL return an integer\. 
+CEILING and CEIL return the same data type as its argument\. 
+
+When the input is of the SUPER type, the output retains the same dynamic type as the input while the static type remains the SUPER type\. When the dynamic type of SUPER isn't a number, Amazon Redshift returns a null\.
 
 ## Example<a name="r_CEILING_FLOOR-example"></a>
 

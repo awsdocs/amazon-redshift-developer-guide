@@ -10,34 +10,37 @@ STV\_NODE\_STORAGE\_CAPACITY is visible only to superusers\. For more informatio
 
 ## Sample queries<a name="r_STV_NODE_STORAGE_CAPACITY-sample-query"></a>
 
-The results of the following examples vary based on the node specifications of your cluster\. 
+**Note**  
+The results of the following examples vary based on the node specifications of your cluster\. Add column `capacity` to your SQL SELECT to retrieve the capacity of your cluster\. 
 
-The following query returns used space and total capacity in 1 MB disk blocks\. This example ran on a two\-node dc2\.8xlarge cluster\. Total capacity is 3,043,824 MB per node\. 
-
-```
-select node, used, capacity from stv_node_storage_capacity order by node;
-```
-
-This query returns the following sample output\. 
+The following query returns used space and total capacity in 1 MB disk blocks\. This example ran on a two\-node dc2\.8xlarge cluster\. 
 
 ```
- node | used  | capacity
-------+-------+----------
-    0 | 30597 |  3043824
-    1 | 27089 |  3043824
-```
-
-The following query returns used space and total capacity in 1 MB disk blocks\. This example ran on a two\-node ra3\.16xlarge cluster\. The capacity is 64 TB per node\. 
-
-```
-select node, used, capacity from stv_node_storage_capacity order by node;
+select node, used from stv_node_storage_capacity order by node;
 ```
 
 This query returns the following sample output\. 
 
 ```
- node | used  | capacity
-------+-------+----------
-    0 | 30591 | 64000000
-    1 | 27103 | 64000000
+ 
+ node | used  
+------+-------
+    0 | 30597 
+    1 | 27089
+```
+
+The following query returns used space and total capacity in 1 MB disk blocks\. This example ran on a two\-node ra3\.16xlarge cluster\.  
+
+```
+select node, used from stv_node_storage_capacity order by node;
+```
+
+This query returns the following sample output\. 
+
+```
+ 
+ node | used  
+------+-------
+    0 | 30591 
+    1 | 27103
 ```

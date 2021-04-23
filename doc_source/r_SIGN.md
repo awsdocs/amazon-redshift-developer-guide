@@ -11,11 +11,13 @@ SIGN (number)
 ## Argument<a name="r_SIGN-argument"></a>
 
  *number*   
-Number to be evaluated\. The data type can be `numeric` or `double precision`\. Other data types can be converted by Amazon Redshift per the implicit conversion rules\.
+Number or expression that evaluates to a number\. It can be the DECIMAL, FLOAT8, or SUPER type\. Amazon Redshift can convert other data types per the implicit conversion rules\.
 
 ## Return type<a name="r_SIGN-return-type"></a>
 
-The output type is `numeric(1, 0)` for a numeric input, and `double precision` for a double precision input\.
+SIGN returns the same numeric data type as the input argument\(s\)\. If the input is DECIMAL, the output is DECIMAL\(1,0\)\. 
+
+When the input is of the SUPER type, the output retains the same dynamic type as the input while the static type remains the SUPER type\. When the dynamic type of SUPER isn't a number, Amazon Redshift returns a null\.
 
 ## Examples<a name="r_SIGN-examples"></a>
 

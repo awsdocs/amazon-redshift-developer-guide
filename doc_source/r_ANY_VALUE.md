@@ -36,23 +36,35 @@ A value from the input expression values\. The following data types are returned
 
 ## Usage notes<a name="r_ANY_VALUE-usage-notes"></a>
 
-The geometry and HLL data types are not supported\. 
+If a statement that specifies the ANY\_VALUE function for a column also includes a second column reference, the second column must appear in a GROUP BY clause or be included in an aggregate function\. 
 
 ## Examples<a name="r_ANY_VALUE-examples"></a>
 
-The following example returns an instance of any employee name from each department\. 
+The examples use the event table that is created in [Step 6: Load sample data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the *Amazon Redshift Getting Started*\. The following example returns an instance of any dateid where the eventname is Eagles\. 
 
 ```
-select any_value(name) as name, department_id from employee group by department_id;
+select any_value(dateid) as dateid, eventname from event where eventname ='Eagles' group by eventname;
 ```
 
 Following are the results\.
 
 ```
- name  | department_id
+ dateid  | eventname
 -------+---------------
- Smith |           106
- Jack  |           100
- Mark  |           102
-(3 rows)
+ 1878  |           Eagles
+```
+
+The following example returns an instance of any dateid where the eventname is Eagles or Cold War Kids\. 
+
+```
+select any_value(dateid) as dateid, eventname from event where eventname in('Eagles', 'Cold War Kids') group by eventname;
+```
+
+Following are the results\.
+
+```
+ dateid  | eventname
+-------+---------------
+ 1922  |           Cold War Kids
+ 1878  |           Eagles
 ```

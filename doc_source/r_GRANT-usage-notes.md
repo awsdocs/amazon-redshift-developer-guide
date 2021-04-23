@@ -19,7 +19,7 @@ As another example, the following command enables the user HR both to perform AL
 grant ALTER on datashare employees to HR with grant option;
 ```
 
-HR can't grant privileges for any operation other than ALTER, or on any other data share than employees\. 
+HR can't grant privileges for any operation other than ALTER, or on any other datashare than employees\. 
 
 Having privileges granted on a view doesn't imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema doesn't imply having privileges on the tables in the schema\. Instead, grant access to the underlying tables explicitly\.
 

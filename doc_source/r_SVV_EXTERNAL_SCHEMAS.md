@@ -8,9 +8,6 @@ SVV\_EXTERNAL\_SCHEMAS is visible to all users\. Superusers can see all rows; re
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_SCHEMAS.html)
 
-**Note**  
-In the eskind column, the Amazon Redshift type is only available for the data sharing feature preview\.
-
 ## Example<a name="r_SVV_EXTERNAL_SCHEMAS-example"></a>
 
 The following example shows details for external schemas\. 

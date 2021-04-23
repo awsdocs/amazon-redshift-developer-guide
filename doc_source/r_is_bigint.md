@@ -15,8 +15,8 @@ INSERT INTO t VALUES (5);
 
 SELECT s, is_bigint(s) FROM t;
 
- s   is_bigint
----+-----------
+ s  | is_bigint
+----+-----------
  5  |   True
 (1 row)
 ```

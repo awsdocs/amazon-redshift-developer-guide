@@ -44,15 +44,17 @@ Next, associate the parameter group that has the manual WLM configuration with a
 
 1. On the navigation menu, choose **CLUSTERS**, then choose **Clusters** to display a list of your clusters\. 
 
-1. Choose your cluster, such as `examplecluster`, and for **Actions** choose **Modify**\. 
+1. Choose your cluster, such as `examplecluster` to display the details of the cluster\. Then choose the **Properties** tab to display the properties of that cluster\. 
 
-1. In the **Database configuration** section, choose the **wlmtutorial** parameter group that you created for **Parameter groups**\. 
+1. In the **Database configurations** section, choose **Edit**, **Edit parameter group** to display the parameter groups window\. 
 
-1. Choose **Modify cluster** to associate the parameter group\. 
+1. For **Parameter groups** choose the **wlmtutorial** parameter group that you previously created\. 
+
+1. Choose **Save changes** to associate the parameter group\. 
 
    The cluster is modified with the changed parameter group\. However, you need to reboot the cluster for the changes to also be applied to the database\.
 
-1. Choose your cluster, and then choose **Reboot cluster** for **Actions**\. 
+1. Choose your cluster, and then choose **Reboot** for **Actions**\. 
 
 After the cluster is rebooted, its status returns to **Available**\. 
 

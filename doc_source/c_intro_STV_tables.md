@@ -10,6 +10,7 @@ STV tables are virtual system tables that contain snapshots of the current syste
 + [STV\_INFLIGHT](r_STV_INFLIGHT.md)
 + [STV\_LOAD\_STATE](r_STV_LOAD_STATE.md)
 + [STV\_LOCKS](r_STV_LOCKS.md)
++ [STV\_ML\_MODEL\_INFO](r_STV_ML_MODEL_INFO.md)
 + [STV\_MV\_INFO](r_STV_MV_INFO.md)
 + [STV\_NODE\_STORAGE\_CAPACITY](r_STV_NODE_STORAGE_CAPACITY.md)
 + [STV\_PARTITIONS](r_STV_PARTITIONS.md)

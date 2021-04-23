@@ -1,6 +1,6 @@
 # Querying data with federated queries in Amazon Redshift<a name="federated-overview"></a>
 
-By using *federated queries* in Amazon Redshift, you can query and analyze data across operational databases, data warehouses, and data lakes\. With the Federated Query feature, you can integrate queries from Amazon Redshift on live data in external databases with queries across your Amazon Redshift and Amazon S3 environments\. Federated queries can work with external databases in Amazon RDS for PostgreSQL, Amazon Aurora with PostgreSQL compatibility, Amazon RDS for MySQL \(preview\), and Amazon Aurora with MySQL compatibility \(preview\)\. 
+By using *federated queries* in Amazon Redshift, you can query and analyze data across operational databases, data warehouses, and data lakes\. With the Federated Query feature, you can integrate queries from Amazon Redshift on live data in external databases with queries across your Amazon Redshift and Amazon S3 environments\. Federated queries can work with external databases in Amazon RDS for PostgreSQL, Amazon Aurora PostgreSQL\-Compatible Edition, Amazon RDS for MySQL \(preview\), and Amazon Aurora MySQL\-Compatible Edition \(preview\)\. 
 
 You can use federated queries to incorporate live data as part of your business intelligence \(BI\) and reporting applications\. For example, to make data ingestion to Amazon Redshift easier you can use federated queries to do the following:
 + Query operational databases directly\. 

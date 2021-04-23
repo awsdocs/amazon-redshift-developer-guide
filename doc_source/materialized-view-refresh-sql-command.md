@@ -37,7 +37,7 @@ Amazon Redshift currently doesn't support incremental refresh for materialized v
 + OUTER JOIN \(RIGHT, LEFT, or FULL\)\.
 + Set operations: UNION, INTERSECT, EXCEPT, MINUS\.
 + UNION ALL when it occurs in a subquery and an aggregate function or a GROUP BY clause is present in the query\.
-+ Aggregate functions: AVG, MEDIAN, PERCENTILE\_CONT, MAX, MIN, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
++ Aggregate functions: AVG, MEDIAN, PERCENTILE\_CONT, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
 **Note**  
 The COUNT and SUM aggregate functions are supported\.
 + DISTINCT aggregate functions, such as DISTINCT COUNT, DISTINCT SUM, and so on\.

@@ -44,17 +44,17 @@ You can disable automatic query rewriting at the session level by using SET mv\_
 Automatic query rewriting works with materialized views that don't reference or include any of the following:
 + Subqueries
 + Left, right, or full outer joins
-+ Set operations with an ORDER BY clause
++ Set operations 
 + DISTINCT aggregates
 + Window functions
-+ Any aggregates except SUM, COUNT, or AVERAGE
++ Any aggregates except SUM or COUNT
++ SELECT DISTINCT or HAVING clauses
 + External tables
 
 Automatic query rewriting rewrites SELECT queries that refer to user\-defined Amazon Redshift tables\. Amazon Redshift doesn't rewrite the following queries:
-+ CREATE TABLE AS statements
-+ SELECT INTO statements
++ CREATE TABLE AS or SELECT INTO statements
 + Queries on catalogs or system tables
-+ Queries with outer joins or a SELECT DISTINCT clause
++ Queries containing a set operation with an ORDER BY clause
 
 If a query isn't automatically rewritten, check whether you have the SELECT privilege on the specified materialized view and the mv\_enable\_aqmv\_for\_session option is set to TRUE\. For more information about mv\_enable\_aqmv\_for\_session, see [mv\_enable\_aqmv\_for\_session](r_mv_enable_aqmv_for_session.md)\. 
 

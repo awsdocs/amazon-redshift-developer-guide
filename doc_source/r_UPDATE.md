@@ -14,13 +14,17 @@ The maximum size for a single SQL statement is 16 MB\.
 ## Syntax<a name="r_UPDATE-synopsis"></a>
 
 ```
-UPDATE table_name [ [ AS ] alias ] SET column = { expression | DEFAULT } [,...]
+[ WITH [RECURSIVE] common_table_expression [, common_table_expression , ...] ]
+            UPDATE table_name [ [ AS ] alias ] SET column = { expression | DEFAULT } [,...]
 
 [ FROM fromlist ]
 [ WHERE condition ]
 ```
 
 ## Parameters<a name="r_UPDATE-parameters"></a>
+
+WITH clause  
+Optional clause that specifies one or more *common\-table\-expressions*\. See [WITH clause](r_WITH_clause.md)\. 
 
  *table\_name*   
 A temporary or persistent table\. Only the owner of the table or a user with UPDATE privilege on the table may update rows\. If you use the FROM clause or select from tables in an expression or condition, you must have SELECT privilege on those tables\. You can't give the table an alias here; however, you can specify an alias in the FROM clause\.   

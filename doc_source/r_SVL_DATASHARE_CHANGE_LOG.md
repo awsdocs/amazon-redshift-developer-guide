@@ -1,13 +1,8 @@
 # SVL\_DATASHARE\_CHANGE\_LOG<a name="r_SVL_DATASHARE_CHANGE_LOG"></a>
 
+Records the consolidated view for tracking changes to datashares on both producer and consumer clusters\.
 
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-Records the consolidated view for tracking changes to data shares on both producer and consumer clusters\.
-
-Super users can see all rows\. Regular users can see only their own data\.
+Superusers can see all rows; regular users can see only their own data\.
 
 ## Table columns<a name="r_SVL_DATASHARE_CHANGE_LOG-table-rows"></a>
 
@@ -15,37 +10,14 @@ Super users can see all rows\. Regular users can see only their own data\.
 
 ## Sample queries<a name="r_SVL_DATASHARE_CHANGE_LOG-sample-queries"></a>
 
-The following example shows a SVL\_DATASHARE\_CHANGE\_LOG view for a producer cluster\.
+The following example shows a SVL\_DATASHARE\_CHANGE\_LOG view\.
 
 ```
-select * from svl_datashare_change_log;
+SELECT DISTINCT action
+FROM svl_datashare_change_log
+WHERE share_object_name LIKE 'tickit%';
 
- userid | username |  pid  | xid  | share_id | share_name | source_database_id | source_database_name | consumer_database_id | consumer_database_name |         recordtime         |          action          | status | share_object_type | share_object_id | share_object_name | target_user_type | target_userid | target_username | consumer_account |          consumer_namespace          | producer_account | producer_namespace |       attribute_name       | attribute_value | message
---------+----------+-------+------+----------+------------+--------------------+----------------------+----------------------+------------------------+----------------------------+--------------------------+--------+-------------------+-----------------+-------------------+------------------+---------------+-----------------+------------------+--------------------------------------+------------------+--------------------+----------------------------+-----------------+---------
-      1 | rdsdb    | 27204 | 7142 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:27:06.805873 | DROP DATASHARE           |      0 |                   |                 |                   |                  |               |                 |                  |                                      |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 6986 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:21:38.748955 | GRANT ALTER ON DATASHARE |      0 |                   |                 |                   | USER             |           101 | alice           |                  |                                      |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 7343 |   118528 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:35:11.847471 | CREATE DATASHARE         |      0 |                   |                 |                   |                  |               |                 |                  |                                      |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 6993 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:21:48.908651 | GRANT SHARE ON DATASHARE |      0 |                   |                 |                   | GROUP            |           100 | g               |                  |                                      |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 7045 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:23:41.136237 | GRANT USAGE ON DATASHARE |      0 |                   |                 |                   |                  |               |                 |                  | 5b6d7c5c-35dc-4802-b8c8-b7ff09348cee |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 7013 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:22:36.453991 | ALTER DATASHARE ADD      |      0 | RELATION          |          118526 | t                 |                  |               |                 |                  |                                      |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 7347 |   118528 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:35:23.121148 | ALTER DATASHARE SET      |      0 |                   |                 |                   |                  |               |                 |                  |                                      |                  |                    | DATASHARE_PUBLICACCESSIBLE | True            |
-      1 | rdsdb    | 27204 | 6979 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:21:18.490211 | CREATE DATASHARE         |      0 |                   |                 |                   |                  |               |                 |                  |                                      |                  |                    |                            |                 |
-      1 | rdsdb    | 27204 | 6999 |   118525 | test       |             101458 | dev                  |                      |                        | 2020-11-30 19:22:01.754429 | ALTER DATASHARE ADD      |      0 | SCHEMA            |            2200 | public            |                  |               |                 |                  |                                      |                  |                    |                            |                 |
-(9 rows)
-```
-
-The following example shows a SVL\_DATASHARE\_CHANGE\_LOG view for a consumer cluster\.
-
-```
-select * from svl_datashare_change_log;
-                
- userid | username |  pid  | xid  | share_id | share_name | source_database_id | source_database_name | consumer_database_id | consumer_database_name |         recordtime         |             action             | status | share_object_type | share_object_id | share_object_name | target_user_type | target_userid | target_username | consumer_account | consumer_namespace | producer_account |          producer_namespace          | attribute_name | attribute_value | message
---------+----------+-------+------+----------+------------+--------------------+----------------------+----------------------+------------------------+----------------------------+--------------------------------+--------+-------------------+-----------------+-------------------+------------------+---------------+-----------------+------------------+--------------------+------------------+--------------------------------------+----------------+-----------------+---------
-      1 | rdsdb    | 29487 | 7206 |          | test       |                    |                      |               118525 | sharedb                | 2020-11-30 19:26:23.676199 | CREATE DATABASE FROM DATASHARE |      0 |                   |                 |                   |                  |               |                 |                  |                    | 294284061811     | b5d16a58-bb49-4b83-bfc6-ee2cd6515820 |                |                 |
-      1 | rdsdb    | 29487 | 7260 |          | test       |                    |                      |               118525 | sharedb                | 2020-11-30 19:27:59.190588 | GRANT USAGE ON DATABASE        |      0 |                   |                 |                   | GROUP            |             0 | public          |                  |                    | 294284061811     | b5d16a58-bb49-4b83-bfc6-ee2cd6515820 |                |                 |
-      1 | rdsdb    | 29487 | 7259 |          | test       |                    |                      |               118525 | sharedb                | 2020-11-30 19:27:51.598165 | GRANT USAGE ON DATABASE        |      0 |                   |                 |                   | GROUP            |             0 | public          |                  |                    | 294284061811     | b5d16a58-bb49-4b83-bfc6-ee2cd6515820 |                |                 |
-      1 | rdsdb    | 29487 | 7274 |          | test       |                    |                      |               118525 | sharedb                | 2020-11-30 19:28:41.390332 | ALTER DATABASE                 |      0 |                   |                 |                   |                  |               |                 |                  |                    | 294284061811     | b5d16a58-bb49-4b83-bfc6-ee2cd6515820 | DATABASE_NAME  | sharedatabase   |
-      1 | rdsdb    | 29487 | 7318 |          | test       |                    |                      |               118525 | sharedatabase          | 2020-11-30 19:30:27.613065 | DROP DATABASE                  |      0 |                   |                 |                   |                  |               |                 |                  |                    | 294284061811     | b5d16a58-bb49-4b83-bfc6-ee2cd6515820 |                |                 |
-      1 | rdsdb    | 29487 | 7242 |          | test       |                    |                      |               118525 | sharedb                | 2020-11-30 19:27:27.1834   | GRANT USAGE ON DATABASE        |      0 |                   |                 |                   | USER             |           101 | alice           |                  |                    | 294284061811     | b5d16a58-bb49-4b83-bfc6-ee2cd6515820 |                |                 |
-(6 rows)
+         action
+ -----------------------
+  "ALTER DATASHARE ADD"
 ```

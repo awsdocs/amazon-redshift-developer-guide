@@ -65,11 +65,11 @@ For more information, see [Improving query performance](query-performance-improv
 
 ## User groups<a name="cm-c-defining-query-queues-user-groups"></a>
 
-You can assign a set of user groups to a queue by specifying each user group name or by using wildcards\. When a member of a listed user group runs a query, that query runs in the corresponding queue\. There is no set limit on the number of user groups that can be assigned to a queue\. For more information, see [Wildcards](#wlm-wildcards)
+You can assign a set of user groups to a queue by specifying each user group name or by using wildcards\. When a member of a listed user group runs a query, that query runs in the corresponding queue\. There is no set limit on the number of user groups that can be assigned to a queue\. For more information, see [Assigning queries to queues based on user groups](cm-c-executing-queries.md#cm-c-executing-queries-assigning-queries-to-queues-based-on-user-groups)\. 
 
 ## Query groups<a name="cm-c-defining-query-queues-query-groups"></a>
 
-You can assign a set of query groups to a queue by specifying each query group name or by using wildcards\. A query group is simply a label\. At runtime, you can assign the query group label to a series of queries\. Any queries that are assigned to a listed query group run in the corresponding queue\. There is no set limit to the number of query groups that can be assigned to a queue\. For more information, see [Wildcards](#wlm-wildcards)
+You can assign a set of query groups to a queue by specifying each query group name or by using wildcards\. A query group is simply a label\. At runtime, you can assign the query group label to a series of queries\. Any queries that are assigned to a listed query group run in the corresponding queue\. There is no set limit to the number of query groups that can be assigned to a queue\. For more information, see [Assigning a query to a query group](cm-c-executing-queries.md#cm-c-executing-queries-assigning-a-query-to-a-query-group)\. 
 
 ## Wildcards<a name="wlm-wildcards"></a>
 

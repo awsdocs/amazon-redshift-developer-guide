@@ -26,7 +26,7 @@ The process works like this:
 
 1. UNLOAD then stores the encrypted data files in Amazon S3 and stores the encrypted envelope key and IV as object metadata with each file\. The encrypted envelope key is stored as object metadata `x-amz-meta-x-amz-key` and the IV is stored as object metadata `x-amz-meta-x-amz-iv`\. 
 
-For more information about the envelope encryption process, see the [Client\-side data encryption with the AWS SDK for Java and amazon S3](https://aws.amazon.com/articles/2850096021478074) article\. 
+For more information about the envelope encryption process, see the [Client\-side data encryption with the AWS SDK for Java and Amazon S3](https://aws.amazon.com/articles/2850096021478074) article\. 
 
 To unload encrypted data files, add the master key value to the credentials string and include the ENCRYPTED option\. If you use the MANIFEST option, the manifest file is also encrypted\.
 

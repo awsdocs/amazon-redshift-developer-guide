@@ -63,14 +63,15 @@ ALTER DISTKEY c_custkey, ALTER SORTKEY (c_custkey);
 Use the EXPLAIN statement to verify that Amazon Redshift performs a merge join on the rewritten queries\.
 
 ```
-EXPLAIN SELECT c.c_name, v.o_orderstatus
-FROM customer_orders_lineitem c
-JOIN super_mv v ON c.c_custkey = v.c_custkey;
-                                                     QUERY PLAN                                              
------------------------------------------------------------------------------------------------------- 
-XN Hash Join DS_DIST_NONE  (cost=0.06..2.40 rows=72 width=30)
-  Hash Cond: (""outer"".c_custkey = ""inner"".c_custkey)
-  ->  XN Seq Scan on mv_tbl__super_mv__0 derived_table2  (cost=0.00..0.72 rows=72 width=16)
-  ->  XN Hash  (cost=0.05..0.05 rows=5 width=30)
-        ->  XN Seq Scan on customer_orders_lineitem c  (cost=0.00..0.05 rows=5 width=30)
+EXPLAIN
+      SELECT c.c_name, v.o_orderstatus
+      FROM customer_orders_lineitem c JOIN super_mv v ON c.c_custkey = v.c_custkey;
+      
+      QUERY PLAN                                              
+      ------------------------------------------------------------------------------------------------------
+      XN Merge Join DS_DIST_NONE  (cost=0.00..34701.82 rows=1470776 width=27)
+      Merge Cond: ("outer".c_custkey = "inner".c_custkey)
+      ->  XN Seq Scan on mv_tbl__super_mv__0 derived_table2  (cost=0.00..14999.86 rows=1499986 width=13)
+      ->  XN Seq Scan on customer_orders_lineitem c  (cost=0.00..999.96 rows=99996 width=30)
+      (4 rows)
 ```

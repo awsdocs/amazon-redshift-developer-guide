@@ -1,6 +1,6 @@
 # REVOKE<a name="r_REVOKE"></a>
 
-Removes access privileges, such as privileges to create or update tables, from a user or user group\. 
+Removes access privileges, such as privileges to create, drop, or update tables, from a user or user group\.
 
 You can only GRANT or REVOKE USAGE permissions on an external schema to database users and user groups using the ON SCHEMA syntax\. When using ON EXTERNAL SCHEMA with AWS Lake Formation, you can only GRANT and REVOKE privileges to an AWS Identity and Access Management \(IAM\) role\. For the list of privileges, see the syntax\.
 
@@ -12,7 +12,7 @@ Specify in the REVOKE command the privileges that you want to remove\. To give p
 
 ```
 REVOKE [ GRANT OPTION FOR ]
-{ { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
+{ { SELECT | INSERT | UPDATE | DELETE | DROP | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
 ON { [ TABLE ] table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...] }
 FROM { username | GROUP group_name | PUBLIC } [, ...]
 [ CASCADE | RESTRICT ]
@@ -85,6 +85,28 @@ REVOKE [ GRANT OPTION FOR ]
     FROM { IAM_ROLE iam_role } [, ...]
 ```
 
+The following is the syntax for using REVOKE for datashare privileges for Amazon Redshift\. 
+
+```
+REVOKE { ALTER | SHARE } ON DATASHARE datashare_name     
+    FROM { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+```
+
+The following is the syntax for using REVOKE for datashare usage privileges for Amazon Redshift\. 
+
+```
+REVOKE USAGE 
+    ON DATASHARE datashare_name 
+    FROM NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [, ...]
+```
+
+The following is the REVOKE syntax for data\-sharing usage permissions on a specific database or schema created from a datashare\. This USAGE permission doesn't revoke usage permission to databases that are not created from the specified datashare\. You can only REVOKE, ALTER, or SHARE permissions on a datashare to users and user groups\.
+
+```
+REVOKE USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
+    FROM { username | GROUP group_name | PUBLIC } [, ...]
+```
+
 ## Parameters<a name="r_REVOKE-parameters"></a>
 
 GRANT OPTION FOR   
@@ -112,7 +134,7 @@ ALTER
 Revokes privilege to alter a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
 
 DROP  
-Revokes privilege to drop a table in an AWS Glue Data Catalog that is enabled for Lake Formation\. This privilege only applies when using Lake Formation\. 
+Revokes privilege to drop a table\. This privilege applies in Amazon Redshift and in an AWS Glue Data Catalog that is enabled for Lake Formation\.
 
 ASSUMEROLE  <a name="assumerole"></a>
 Revokes the privilege to run COPY and UNLOAD commands from users and groups with a specified role\. 
@@ -196,70 +218,39 @@ To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then gra
 FOR \{ ALL \| COPY \| UNLOAD \} \[, \.\.\.\]   <a name="revoke-for"></a>
 Specifes the SQL command for which the privilege is revoked\. You can specify ALL to revoke the privilege on the COPY and UNLOAD statements\. This clause applies only to revoking the ASSUMEROLE privilege\.
 
-## Syntax for using REVOKE with a data share<a name="r_REVOKE-synopsis-datashare"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-The following is the syntax for using REVOKE for data share privileges on Amazon Redshift\. 
-
-```
-REVOKE { ALTER | SHARE } ON DATASHARE datashare_name     
-    FROM { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
-```
-
-The following is the syntax for using REVOKE for data share usage privileges on Amazon Redshift\. 
-
-```
-REVOKE USAGE 
-    ON DATASHARE datashare_name 
-    FROM NAMESPACE 'namespaceGUID' [, ...]
-```
-
-The following is the REVOKE syntax for data\-sharing usage permissions on the specific database or schema created from a data share\. This USAGE permission doesn't revoke usage permission to databases that are not created from the specified data share\. You can only REVOKE ALTER or SHARE permissions on a data share to users and user groups\.
-
-```
-REVOKE USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
-    FROM { username | GROUP group_name | PUBLIC } [, ...]
-```
-
-### Parameters for using REVOKE with a data share<a name="r_REVOKE-parameters-datashare"></a>
-
 ALTER  
-Revokes the ALTER privilege to users or user groups to allow those that don't own a data share to ALTER the data share\. This privilege is required to add or remove objects from a data share, or setting the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
+Revokes the ALTER privilege for users or user groups that allows those that don't own a datashare to alter the datashare\. This privilege is required to add or remove objects from a datashare, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
 
 SHARE  
-Revokes privileges to users and user groups to add consumers to a data share\. This privilege is required to stop the particular consumer  to access the data share from their clusters\. 
+Revokes privileges for users and user groups to add consumers to a datashare\. Revoing this privilege is required to stop the particular consumer  from accessing the datashare from its clusters\. 
 
 ON DATASHARE *datashare\_name *  
-Grants the specified privileges on the referenced data share\.
+Grants the specified privileges on the referenced datashare\.
 
 FROM username  
-A clause that indicates the user losing the privileges\.
+Indicates the user losing the privileges\.
 
 FROM GROUP *group\_name*  
-A clause that indicates the user group losing the privileges\.
+Indicates the user group losing the privileges\.
 
 WITH GRANT OPTION  
-A clause that indicates that the user receiving the privileges can in turn revoke the same privileges to others\. You can't revoke WITH GRANT OPTION to a group or to PUBLIC\.
-
-PUBLIC  
-Revokes the specified privileges to all users, including new users\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\. Granting PUBLIC to an AWS Lake Formation EXTERNAL TABLE results in granting the privilege to the Lake Formation everyone group\.
+Indicates that the user losing the privileges can in turn revoke the same privileges for others\. You can't revoke WITH GRANT OPTION for a group or for PUBLIC\.  
 
 USAGE  
-When USAGE is revoked to a consumer account or namespace within the same account, the specific  namespace within an account can't access the data share and the objects of the data share for read\-only\.   
-The USAGE privilege revoke from consumers the access to a data share\. 
+When USAGE is revoked for a consumer account or namespace within the same account, the specified consumer account or namespace within an account can't access the datashare and the objects of the datashare in read\-only fashion\.   
+Revoking the USAGE privilege revokes the access to a datashare from consumers\. 
 
 FROM NAMESPACE 'clusternamespace GUID'   
-A clause that indicates the namespace in the same account that has consumers losing the privileges to the data share\. Namespaces use a 128\-bit alpha\-numeric GUID\.
+Indicates the namespace in the same account that has consumers losing the privileges to the datashare\. Namespaces use a 128\-bit alphanumeric globally unique identifier \(GUID\)\.
+
+FROM ACCOUNT 'accountnumber'   
+Indicates the account number of another account that has the consumers losing the privileges to the datashare\.
 
 ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="revoke-datashare"></a>
-Grants the specified usage privileges on the specific database that is created in the specified data share\.
+Revokes the specified usage privileges on the specified database that was created in the specified datashare\.  
 
 ON SCHEMA* shared\_schema*   <a name="revoke-datashare"></a>
-Grants the specified privileges on the specific schema that is created in the specified data share\.
+Revokes the specified privileges on the specified schema that was created in the specified datashare\.
 
 ## Syntax for using REVOKE with a machine learning model<a name="r_REVOKE-synopsis-model"></a>
 

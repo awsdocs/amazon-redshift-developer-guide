@@ -48,17 +48,12 @@ The following example revokes the SELECT privilege on the `cust_name` column of 
 revoke select(cust_name) on cust_profile_vw from user2;
 ```
 
-## Examples of revoking the USAGE privilege for data shares<a name="r_REVOKE-examples-datashare"></a>
+## Examples of revoking the USAGE privilege for datashares<a name="r_REVOKE-examples-datashare"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-The following example revokes access to the SalesShare data share for the Marketing namespace\.
+The following example revokes access to the SalesShare datashare for the Marketing namespace\.
 
 ```
-REVOKE USAGE ON DATASHARE SalesShare FROM NAMESPACE 'f5a0b31c-f2c7-45d6-ba3e-0d53ad027e8b';
+REVOKE USAGE ON DATASHARE SalesShare FROM NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
 ```
 
 The following example revokes the USAGE privilege on the `Sales_db` to Bob\.

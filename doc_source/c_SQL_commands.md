@@ -1,5 +1,12 @@
 # SQL commands<a name="c_SQL_commands"></a>
 
+The SQL language consists of commands that you use to create and manipulate database objects, run queries, load tables, and modify the data in tables\.
+
+Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of very important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
+
+**Note**  
+The maximum size for a single SQL statement is 16 MB\.
+
 **Topics**
 + [ABORT](r_ABORT.md)
 + [ALTER DATABASE](r_ALTER_DATABASE.md)
@@ -23,9 +30,9 @@
 + [COPY](r_COPY.md)
 + [CREATE DATABASE](r_CREATE_DATABASE.md)
 + [CREATE DATASHARE](r_CREATE_DATASHARE.md)
++ [CREATE EXTERNAL FUNCTION](r_CREATE_EXTERNAL_FUNCTION.md)
 + [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)
 + [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)
-+ [CREATE EXTERNAL FUNCTION](r_CREATE_EXTERNAL_FUNCTION.md)
 + [CREATE FUNCTION](r_CREATE_FUNCTION.md)
 + [CREATE GROUP](r_CREATE_GROUP.md)
 + [CREATE LIBRARY](r_CREATE_LIBRARY.md)
@@ -80,10 +87,3 @@
 + [UNLOAD](r_UNLOAD.md)
 + [UPDATE](r_UPDATE.md)
 + [VACUUM](r_VACUUM_command.md)
-
-The SQL language consists of commands that you use to create and manipulate database objects, run queries, load tables, and modify the data in tables\. 
-
-Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of very important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
-
-**Note**  
-The maximum size for a single SQL statement is 16 MB\.
