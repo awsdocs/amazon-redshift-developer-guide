@@ -33,6 +33,5 @@ Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL
 + Management of External Data \(SQL/MED\)
 + Table functions
 + VALUES list used as constant tables
-+ Recursive common table expressions
 + Sequences
 + Full text search
