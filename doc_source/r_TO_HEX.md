@@ -5,7 +5,7 @@ The TO\_HEX function converts a number to its equivalent hexadecimal value\.
 ## Syntax<a name="r_TO_HEX-syntax"></a>
 
 ```
-TO_HEX(string)
+TO_HEX(number)
 ```
 
 ## Arguments<a name="r_TO_HEX-arguments"></a>
