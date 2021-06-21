@@ -51,7 +51,7 @@ When using materialized views in Amazon Redshift, follow these usage notes for d
 ## Limitations<a name="mv_CREATE_MATERIALIZED_VIEW-limitations"></a>
 
 You can't define a materialized view that references or includes any of the following:
-+ Any other materialized view, a standard view, or system tables and views\.
++ Any standard view or system tables and views\.
 + Temporary tables\.
 + User\-defined functions\.
 + The ORDER BY, LIMIT, or OFFSET clause\.
