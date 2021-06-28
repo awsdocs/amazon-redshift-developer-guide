@@ -2,6 +2,8 @@
 
 ST\_GeometryType returns the subtype of an input geometry as a string\. 
 
+For 3DM, 3DZ, and 4D geometry inputs, ST\_GeometryType returns the same result as for 2D geometry inputs\.
+
 ## Syntax<a name="ST_GeometryType-function-syntax"></a>
 
 ```

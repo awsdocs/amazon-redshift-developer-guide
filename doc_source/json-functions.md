@@ -6,12 +6,14 @@
 + [JSON\_ARRAY\_LENGTH function](JSON_ARRAY_LENGTH.md)
 + [JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT function](JSON_EXTRACT_ARRAY_ELEMENT_TEXT.md)
 + [JSON\_EXTRACT\_PATH\_TEXT function](JSON_EXTRACT_PATH_TEXT.md)
++ [JSON\_PARSE function](JSON_PARSE.md)
++ [JSON\_SERIALIZE function](JSON_SERIALIZE.md)
 
 When you need to store a relatively small set of key\-value pairs, you might save space by storing the data in JSON format\. Because JSON strings can be stored in a single column, using JSON might be more efficient than storing your data in tabular format\. For example, suppose you have a sparse table, where you need to have many columns to fully represent all possible attributes, but most of the column values are NULL for any given row or any given column\. By using JSON for storage, you might be able to store the data for a row in key:value pairs in a single JSON string and eliminate the sparsely\-populated table columns\. 
 
 In addition, you can easily modify JSON strings to store additional key:value pairs without needing to add columns to a table\. 
 
-We recommend using JSON sparingly\. JSON is not a good choice for storing larger datasets because, by storing disparate data in a single column, JSON does not use the Amazon Redshift column store architecture\. 
+We recommend using JSON sparingly\. JSON isn't a good choice for storing larger datasets because, by storing disparate data in a single column, JSON doesn't use the Amazon Redshift column store architecture\. Though Amazon Redshift supports JSON functions over CHAR and VARCHAR columns, we recommend using SUPER for processing data in JSON serialization format\. SUPER uses a post\-parse schemaless representation that can efficiently query hierarchical data\. For more information about the SUPER data type, see [Ingesting and querying semistructured data in Amazon Redshift](super-overview.md)\.
 
 JSON uses UTF\-8 encoded text strings, so JSON strings can be stored as CHAR or VARCHAR data types\. Use VARCHAR if the strings include multi\-byte characters\.
 

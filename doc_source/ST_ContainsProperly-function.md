@@ -1,6 +1,6 @@
 # ST\_ContainsProperly<a name="ST_ContainsProperly-function"></a>
 
-ST\_ContainsProperly returns true if both input geometries are nonempty, and all points of the second geometry are interior points of the first geometry\. 
+ST\_ContainsProperly returns true if both input geometries are nonempty, and all points of the 2D projection of the second geometry are interior points of the 2D projection of the first geometry\. 
 
 ## Syntax<a name="ST_ContainsProperly-function-syntax"></a>
 

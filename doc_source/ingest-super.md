@@ -2,13 +2,15 @@
 
 Use the SUPER data type to persist and query hierarchical and generic data in Amazon Redshift\. Amazon Redshift introduces the `json_parse` function to parse data in JSON format and convert it into the SUPER representation\. Amazon Redshift also supports loading SUPER columns using the COPY command\. The supported file formats are JSON, Avro, text, comma\-separated value \(CSV\) format, Parquet, and ORC\.
 
+For information about the `json_parse` function, see [JSON\_PARSE function](JSON_PARSE.md)\.
+
 The default encoding for SUPER data type is ZSTD\. 
 
 ## Parsing JSON documents to SUPER columns<a name="parse_json"></a>
 
-You can insert or update JSON data into a SUPER column using the JSON\_PARSE function\. The function parses data in JSON format and converts it into the SUPER data type, which you can use in INSERT or UPDATE statements\. 
+You can insert or update JSON data into a SUPER column using the `json_parse` function\. The function parses data in JSON format and converts it into the SUPER data type, which you can use in INSERT or UPDATE statements\. 
 
-The following example inserts JSON data into a SUPER column\. If the JSON\_PARSE function is missing in the query, Amazon Redshift treats the value as a single string instead of a JSON\-formatted string that must be parsed\.
+The following example inserts JSON data into a SUPER column\. If the `json_parse` function is missing in the query, Amazon Redshift treats the value as a single string instead of a JSON\-formatted string that must be parsed\.
 
 If you update a SUPER data column, Amazon Redshift requires the complete document to be passed to column values\. Amazon Redshift doesn't support partial update\. 
 
@@ -106,6 +108,8 @@ COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/dat
 REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
 FORMAT JSON 'auto';
 ```
+
+When the JSON attribute names are in mixed upper and lower cases, specify the `auto ignorecase` option in the FORMAT JSON clause\. For more information about the COPY command, see [Load from JSON data using the 'auto ignorecase' option](r_COPY_command_examples.md#copy-from-json-examples-using-auto-ignorecase)\.
 
 In some cases, there is a mismatch between column names and JSON attributes or the attribute to load is nested more than a level deep\. If so, use a `jsonpaths` file to manually map JSON attributes to Amazon Redshift columns\.
 

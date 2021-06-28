@@ -1,12 +1,10 @@
 # Costs for using Amazon Redshift ML<a name="cost"></a>
 
-Amazon Redshift ML use your existing cluster resources for prediction so you can avoid additional Amazon Redshift charges\. There is no additional Amazon Redshift charge for creating or using a model, and prediction happens locally in your Amazon Redshift cluster, so you don't have to pay extra unless you need to resize your cluster\. Amazon Redshift ML uses Amazon SageMaker for training your model, which does have an additional associated cost\.
+Amazon Redshift ML uses your existing cluster resources for prediction so you can avoid additional Amazon Redshift charges\. There is no additional Amazon Redshift charge for creating or using a model, and prediction happens locally in your Amazon Redshift cluster, so you don't have to pay extra unless you need to resize your cluster\. Amazon Redshift ML uses Amazon SageMaker for training your model, which does have an additional associated cost\.
 
 There is no additional charge for prediction functions that run within your Amazon Redshift cluster\. The CREATE MODEL statement uses Amazon SageMaker and incurs an additional cost\. The cost increases with the number of cells in your training data\. The number of cells is the product of the number of records \(in the training query or table times\) times the number of columns\. For example, when a SELECT query of the CREATE MODEL statement creates 10,000 records and 5 columns, then the number of cells it creates is 50,000\.
 
-In some cases, the training data produced by the SELECT query of the CREATE MODEL exceeds the MAX\_CELLS limit that you provided \(or the default 1 million if you didn't provide one\)\. In these cases, the CREATE MODEL randomly chooses approximately MAX\_CELLS \(that is the “number of columns” records from the training dataset\) and performs training using these randomly chosen tuples\. The random choice ensures that the reduced training dataset won't have any bias\. Thus, by setting the MAX\_CELLS, you can control your training costs\.
-
-## Controlling costs for using Amazon Redshift ML<a name="cost_control"></a>
+In some cases, the training data produced by the SELECT query of the CREATE MODEL exceeds the MAX\_CELLS limit that you provided \(or the default 1 million if you didn't provide one\)\. In these cases, the CREATE MODEL randomly chooses approximately MAX\_CELLS \(that is the “number of columns” records from the training dataset\) and performs training using these randomly chosen tuples\. The random sampling ensures that the reduced training dataset won't have any bias\. Thus, by setting the MAX\_CELLS, you can control your training costs\.
 
 When using the CREATE MODEL command statement, you can use the MAX\_CELLS and MAX\_RUNTIME options to control the costs, time, and potential model accuracy\. 
 

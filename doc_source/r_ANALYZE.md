@@ -23,7 +23,7 @@ You don't need to analyze Amazon Redshift system tables \(STL and STV tables\)\.
 If you specify a *table\_name*, you can also specify one or more columns in the table \(as a column\-separated list within parentheses\)\. If a column list is specified, only the listed columns are analyzed\.
 
  PREDICATE COLUMNS \| ALL COLUMNS   
-Clauses that indicates whether ANALYZE should include only predicate columns\. Specify PREDICATE COLUMNS to analyze only columns that have been used as predicates in previous queries or are likely candidates to be used as predicates\. Specify ALL COLUMNS to analyze all columns\. The default is ALL COLUMNS\.   
+Clauses that indicate whether ANALYZE should include only predicate columns\. Specify PREDICATE COLUMNS to analyze only columns that have been used as predicates in previous queries or are likely candidates to be used as predicates\. Specify ALL COLUMNS to analyze all columns\. The default is ALL COLUMNS\.   
 A column is included in the set of predicate columns if any of the following is true:  
 + The column has been used in a query as a part of a filter, join condition, or group by clause\.
 + The column is a distribution key\.
@@ -43,7 +43,7 @@ You don't need to run the ANALYZE command on these tables when they are first cr
 
 ### Analyze threshold<a name="r_ANALYZE-threshold"></a>
 
-To reduce processing time and improve overall system performance, Amazon Redshift skips ANALYZE for a table if the percentage of rows that have changed since the last ANALYZE command run is lower than the analyze threshold specified by the [analyze\_threshold\_percent](r_analyze_threshold_percent.md) parameter\. By default, `analyze_threshold_percent` is 10\. To change `analyze_threshold_percent` for the current session, execute the [SET](r_SET.md) command\. The following example changes `analyze_threshold_percent` to 20 percent\.
+To reduce processing time and improve overall system performance, Amazon Redshift skips ANALYZE for a table if the percentage of rows that have changed since the last ANALYZE command run is lower than the analyze threshold specified by the [analyze\_threshold\_percent](r_analyze_threshold_percent.md) parameter\. By default, `analyze_threshold_percent` is 10\. To change `analyze_threshold_percent` for the current session, run the [SET](r_SET.md) command\. The following example changes `analyze_threshold_percent` to 20 percent\.
 
 ```
 set analyze_threshold_percent to 20;

@@ -4,7 +4,7 @@ Amazon Redshift can automatically sort and perform a VACUUM DELETE operation on 
 
 **Note**  
 Only the table owner or a superuser can effectively vacuum a table\. If you don't have owner or superuser privileges for a table, a VACUUM operation that specifies a single table fails\. If you run a VACUUM of the entire database without specifying a table name, the operation completes successfully\. However, the operation has no effect on tables for which you don't have owner or superuser privileges\.   
-For this reason, we recommend vacuuming individual tables as needed\. We also recommend this approach because vacuuming the entire database is potentially an expensive operation, 
+For this reason, we recommend vacuuming individual tables as needed\. We also recommend this approach because vacuuming the entire database is potentially an expensive operation\.
 
 ## Automatic table sort<a name="automatic-table-sort"></a>
 

@@ -1,6 +1,6 @@
 # ST\_ExteriorRing<a name="ST_ExteriorRing-function"></a>
 
-ST\_ExteriorRing returns a closed linestring that represents the exterior ring of an input polygon\. 
+ST\_ExteriorRing returns a closed linestring that represents the exterior ring of an input polygon\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_ExteriorRing-function-syntax"></a>
 

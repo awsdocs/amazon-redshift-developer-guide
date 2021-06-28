@@ -23,7 +23,6 @@ Only the owner of a materialized view can perform a `REFRESH MATERIALIZED VIEW` 
 
 The `REFRESH MATERIALIZED VIEW` command runs as a transaction of its own\. Amazon Redshift transaction semantics are followed to determine what data from base tables is visible to the `REFRESH` command, or when the changes made by the `REFRESH` command are made visible to other transactions running in Amazon Redshift\.
 + For incremental materialized views, `REFRESH MATERIALIZED VIEW` uses only those base table rows that are already committed\. Therefore, if the refresh operation runs after a data manipulation language \(DML\) statement in the same transaction, then changes of that DML statement aren't visible to refresh\. 
-+ Furthermore, take a case where a transaction B follows a transaction A\. In such a case, `REFRESH MATERIALIZED VIEW` issued after committing B doesn't see some committed base table rows that are updated by transaction B while the older transaction A is in progress\. These omitted rows are updated by subsequent refresh operations, after transaction A is committed\.
 + For a full refresh of a materialized view, `REFRESH MATERIALIZED VIEW` sees all base table rows visible to the refresh transaction, according to usual Amazon Redshift transaction semantics\. 
 + Depending on the input argument type, Amazon Redshift still supports incremental refresh for materialized views for the following functions with specific input argument types: DATE \(timestamp\), DATE\_PART \(date, time, interval, time\-tz\), DATE\_TRUNC \(timestamp, interval\)\.
 
@@ -45,6 +44,7 @@ The COUNT and SUM aggregate functions are supported\.
 + A query that uses temporary tables for query optimization, such as optimizing common subexpressions\.
 + Subqueries in any place other than the FROM clause\.
 + External tables referenced as base tables in the query that defines the materialized view\.
++ Mutable functions, such as date\-time functions, RANDOM and non\-STABLE user\-defined functions\.
 
 ## Examples<a name="mv_REFRESH_MARTERIALIZED_VIEW_examples"></a>
 

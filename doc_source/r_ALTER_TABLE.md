@@ -25,7 +25,9 @@ ADD table_constraint
 | RENAME TO new_name 
 | RENAME COLUMN column_name TO new_name            
 | ALTER COLUMN column_name TYPE new_data_type
-| ALTER COLUMN column_name ENCODE new_encode_type            
+| ALTER COLUMN column_name ENCODE new_encode_type     
+| ALTER COLUMN column_name ENCODE encode_type, 
+| ALTER COLUMN column_name ENCODE encode_type, .....;      
 | ALTER DISTKEY column_name 
 | ALTER DISTSTYLE ALL       
 | ALTER DISTSTYLE EVEN
@@ -34,6 +36,7 @@ ADD table_constraint
 | ALTER [COMPOUND] SORTKEY ( column_name [,...] ) 
 | ALTER SORTKEY AUTO 
 | ALTER SORTKEY NONE
+| ALTER ENCODE AUTO
 | ADD [ COLUMN ] column_name column_type
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
@@ -112,7 +115,14 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 + You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ALTER COLUMN *column\_name* ENCODE *new\_encode\_type*   
-A clause that changes the compression encoding of a column\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\. Consider the following limitations:  
+A clause that changes the compression encoding of a column\. If you specify compression encoding for a column, the table is no longer set to ENCODE AUTO\. Amazon Redshift no longer automatically manages compression encoding for all columns in the table\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.   
+Consider the following limitations:  
++ You can't alter a column to the same encoding as currently defined for the column\. 
++ You can't alter the encoding for a column in a table with an interleaved sortkey\. 
+
+ALTER COLUMN *column\_name* ENCODE *encode\_type*, ALTER COLUMN *column\_name* ENCODE *encode\_type*, \.\.\.\.\.;   
+A clause that changes the compression encoding of multiple columns in a single command\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\. Consider the following limitations:  
++ You can't alter a column to the same or different encoding type multiple times in a single command\.
 + You can't alter a column to the same encoding as currently defined for the column\. 
 + You can't alter the encoding for a column in a table with an interleaved sortkey\. 
 
@@ -183,6 +193,16 @@ ALTER SORTKEY NONE
 A clause that removes the sort key of the target table\.   
 If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 
+ALTER ENCODE AUTO  
+A clause that changes the encoding type of the target table columns to AUTO\. When you alter encoding to AUTO, Amazon Redshift preserves the existing encoding type of the columns in the table\. Then, if Amazon Redshift determines that a new encoding type can improve query performance, Amazon Redshift can change the encoding type of the table columns\.   
+If you alter one or more columns to specify an encoding, Amazon Redshift no longer automatically adjusts encoding for all columns in the table\. The columns retain the current encode settings\.  
+The following actions don't affect the ENCODE AUTO setting for the table:   
++ Renaming the table\.
++ Altering the DISTSTYLE or SORTKEY setting for the table\.
++ Adding or dropping a column with an ENCODE setting\.
++ Using the COMPUPDATE option of the COPY command\. For more information, see [ Data load operations](copy-parameters-data-load.md)\.
+To view the encoding of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\.
+
 RENAME COLUMN *column\_name* TO *new\_name*   
 A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
@@ -212,7 +232,8 @@ If a COPY operation encounters a null field on a column that has a DEFAULT value
 DEFAULT isn't supported for external tables\.
 
 ENCODE *encoding*   
-The compression encoding for a column\. If no compression is selected, Amazon Redshift automatically assigns compression encoding as follows:  
+The compression encoding for a column\. By default, Amazon Redshift automatically manages compression encoding for all columns in a table if you don't specify compression encoding for any column in the table or if you specify the ENCODE AUTO option for the table\.  
+If you specify compression encoding for any column in the table or if you don't specify the ENCODE AUTO option for the table, Amazon Redshift automatically assigns compression encoding to columns for which you don't specify compression encoding as follows:  
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
 + Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data types are assigned RAW compression\.

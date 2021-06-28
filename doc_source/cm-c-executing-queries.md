@@ -20,7 +20,7 @@ You can assign a query to a queue at runtime by assigning your query to the appr
 SET query_group TO group_label             
 ```
 
-Here, **group\_label* *is a query group label that is listed in the WLM configuration\.
+Here, *`group_label`* is a query group label that is listed in the WLM configuration\.
 
 All queries that you run after the `SET query_group` command run as members of the specified query group until you either reset the query group or end your current login session\. For information about setting and resetting Amazon Redshift objects, see [SET](r_SET.md) and [RESET](r_RESET.md) in the SQL Command Reference\.
 

@@ -17,10 +17,11 @@ The name of the user to check for IAM role privileges\. The default is to check 
 The role that has been granted the command privileges\. 
 
  *cmd\_type*   
-The command for which access has been granted\. Valid values are the following:    
-+ ALL
+The command for which access has been granted\. Valid values are the following:   
 + COPY
 + UNLOAD
++ EXTERNAL FUNCTION
++ CREATE MODEL
 
 ## Return type<a name="r_HAS_ASSUMEROLE_PRIVILEGE-return-type"></a>
 

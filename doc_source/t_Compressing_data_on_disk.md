@@ -2,6 +2,8 @@
 
 *Compression* is a column\-level operation that reduces the size of data when it is stored\. Compression conserves storage space and reduces the size of data that is read from storage, which reduces the amount of disk I/O and therefore improves query performance\.
 
+ENCODE AUTO is the default for tables\. Amazon Redshift automatically manages compression encoding for all columns in the table\. If you specify compression encoding for any column in the table, the table is no longer set to ENCODE AUTO\. Amazon Redshift no longer automatically manages compression encoding for all columns in the table\. You can specify the ENCODE AUTO option for the table to enable Amazon Redshift to automatically manage compression encoding for all columns in the table\. For more information, see [CREATE TABLE](r_CREATE_TABLE_NEW.md) and [ALTER TABLE](r_ALTER_TABLE.md)\.
+
 You can apply a compression type, or *encoding*, to the columns in a table manually when you create the table\. Or you can use the COPY command to analyze and apply compression automatically\. For more information, see [Let COPY choose compression encodings](c_best-practices-use-auto-compression.md)\. For details about applying automatic compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
 **Note**  

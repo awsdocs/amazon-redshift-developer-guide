@@ -6,6 +6,8 @@ ST\_Angle returns the angle in radians between points measured clockwise as foll
 
 The return value is in radians and in the range \[0, 2π\)\. 
 
+ST\_Angle operates on 2D projections of the input geometries\.
+
 ## Syntax<a name="ST_Angle-function-syntax"></a>
 
 ```
@@ -38,9 +40,9 @@ If *geom1* equals *geom2*, or *geom2* equals *geom3*, then a null is returned\.
 
 If *geom1*, *geom2*, *geom3*, or *geom4* is null, then a null is returned\. 
 
-If *geom1*, *geom2*, *geom3*, *geom4* are not two\-dimensional points, then an error is returned\. 
+If any of *geom1*, *geom2*, *geom3*, or *geom4* is the empty point, then an error is returned\. 
 
-If *geom1*, *geom2*, *geom3*, *geom4* don't have the same value for the spatial reference system identifier \(SRID\), then an error is returned\. 
+If *geom1*, *geom2*, *geom3*, and *geom4* don't have the same value for the spatial reference system identifier \(SRID\), then an error is returned\. 
 
 ## Examples<a name="ST_Angle-function-examples"></a>
 

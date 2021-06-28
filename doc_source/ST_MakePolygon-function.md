@@ -6,6 +6,8 @@ ST\_MakePolygon has two variants that return a polygon\. One takes a single geom
 
   The boundary of the exterior ring of the output polygon is the input linestring, and the boundaries of the interior rings of the polygon are the linestrings in the input multilinestring\. If the input linestring is empty, an empty polygon is returned\. Empty linestrings in the multilinestring are disregarded\. The spatial reference system identifier \(SRID\) of the resulting geometry is the common SRID of the two input geometries\.
 
+The dimension of the returned geometry is the same as that of the input geometries\. The exterior ring and interior rings must of the same dimension\.
+
 ## Syntax<a name="ST_MakePolygon-function-syntax"></a>
 
 ```
@@ -43,6 +45,8 @@ If *geom1* is a single point or is not closed, then an error is returned\.
 If *geom2* contains at least one linestring that has a single point or is not closed, then an error is returned\. 
 
 If *geom1* and *geom2* have different SRID values, then an error is returned\. 
+
+If *geom1* and *geom2* have different dimensions, then an error is returned\. 
 
 ## Examples<a name="ST_MakePolygon-function-examples"></a>
 

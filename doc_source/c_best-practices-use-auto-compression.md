@@ -2,6 +2,8 @@
 
 You can specify compression encodings when you create a table, but in most cases,  automatic compression produces the best results\.
 
+ENCODE AUTO is the default for tables\. Amazon Redshift automatically manages compression encoding for all columns in the table\. If you specify compression encoding for any column in the table, the table is no longer set to ENCODE AUTO\. Amazon Redshift no longer automatically manages compression encoding for all columns in the table\. You can specify the ENCODE AUTO option for the table to enable Amazon Redshift to automatically manage compression encoding for all columns in the table\. For more information, see [CREATE TABLE](r_CREATE_TABLE_NEW.md) and [ALTER TABLE](r_ALTER_TABLE.md)\.
+
 The COPY command analyzes your data and applies compression encodings to an empty table automatically as part of the load operation\. 
 
 Automatic compression balances overall performance when choosing compression encodings\. Range\-restricted scans might perform poorly if sort key columns are compressed much more highly than other columns in the same query\. As a result, automatic compression chooses a less efficient compression encoding to keep the sort key columns balanced with other columns\.

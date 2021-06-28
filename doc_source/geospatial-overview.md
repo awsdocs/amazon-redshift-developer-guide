@@ -11,7 +11,13 @@ Using spatial data, you can run queries to do the following:
 + Check whether one area \(polygon\) contains another\.
 + Check whether one linestring intersects another linestring or polygon\.
 
-You can use the `GEOMETRY` data type to hold the values of spatial data\. A `GEOMETRY` value in Amazon Redshift can define two\-dimensional \(2D\) geometry primitive data types\. Currently, Amazon Redshift doesn't support 3D or 4D geometry primitive data types\. For more information about geometry primitive data types, see [Well\-known text representation of geometry](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) in Wikipedia\.   
+You can use the `GEOMETRY` data type to hold the values of spatial data\. A `GEOMETRY` value in Amazon Redshift can define two\-dimensional \(2D\), three\-dimensional \(3DZ\), two\-dimensional with a measure \(3DM\), and four\-dimensional \(4D\) geometry primitive data types:
++ A two\-dimensional \(2D\) geometry is specified by two Cartesian coordinates \(x, y\) in a plane\.
++ A three\-dimensional \(3DZ\) geometry is specified by three Cartesian coordinates \(x, y, z\) in space\.
++ A two\-dimensional with measure \(3DM\) geometry is specified by three coordinates \(x, y, m\), where the first two are Cartesian coordinates in a plane and the third is a measurement\.
++ A four\-dimensional \(4D\) geometry is specified by four coordinates \(x, y, z, m\), where the first three are Cartesian coordinates in a space and the fourth is a measurement\.
+
+For more information about geometry primitive data types, see [Well\-known text representation of geometry](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) in Wikipedia\.   
 
 The `GEOMETRY` data type has the following subtypes: 
 + `POINT`

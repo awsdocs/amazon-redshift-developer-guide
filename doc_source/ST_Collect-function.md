@@ -14,6 +14,8 @@ The second variant of ST\_Collect creates a geometry from geometries in a geomet
 + If all non\-NULL rows in the aggregate expression are polygons, the result is a multipolygon containing all the polygons in the aggregate expression is returned\. 
 + Otherwise, a `GEOMETRYCOLLECTION` containing all the geometries in the aggregate expression is returned\. 
 
+The ST\_Collect returns the geometry of the same dimension as the input geometries\. All input geometries must be of the same dimension\.
+
 ## Syntax<a name="ST_Collect-function-syntax"></a>
 
 ```
@@ -55,6 +57,10 @@ If *geom1* and *geom2* have different SRID values, then an error is returned\.
 If two geometries in *aggregate\_expression* have different SRID values, then an error is returned\. 
 
 If the returned geometry is larger than the maximum size of a `GEOMETRY`, then an error is returned\. 
+
+If *geom1* and *geom2* are of different dimensions, then an error is returned\. 
+
+If two geometries in *aggregate\_expression* are of different dimensions, then an error is returned\. 
 
 ## Examples<a name="ST_Collect-function-examples"></a>
 

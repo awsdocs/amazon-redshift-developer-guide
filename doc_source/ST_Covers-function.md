@@ -1,6 +1,6 @@
 # ST\_Covers<a name="ST_Covers-function"></a>
 
-ST\_Covers returns true if the first input geometry covers the second input geometry\. Geometry `A` covers geometry `B` if both are nonempty and every point in `B` is a point in `A`\. 
+ST\_Covers returns true if the 2D projection of the first input geometry covers the 2D projection of the second input geometry\. Geometry `A` covers geometry `B` if both are nonempty and every point in `B` is a point in `A`\. 
 
 ST\_Covers\(`A`, `B`\) is equivalent to ST\_CoveredBy\(`B`, `A`\)\. 
 

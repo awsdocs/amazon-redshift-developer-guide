@@ -33,6 +33,7 @@ A value from the input expression values\. The following data types are returned
 + TIMESTAMPTZ
 + TIME
 + TIMETZ
++ GEOMETRY
 
 ## Usage notes<a name="r_ANY_VALUE-usage-notes"></a>
 

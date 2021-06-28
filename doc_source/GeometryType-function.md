@@ -22,15 +22,15 @@ If *geom* is null, then null is returned\.
 The values returned are as follows\.
 
 
-| Returned string value | Geometry subtype | 
-| --- | --- | 
-| `POINT` | Returned if *geom* is a `POINT` subtype  | 
-| `LINESTRING` | Returned if *geom* is a `LINESTRING` subtype  | 
-| `POLYGON` | Returned if *geom* is a `POLYGON` subtype  | 
-| `MULTIPOINT` | Returned if *geom* is a `MULTIPOINT` subtype  | 
-| `MULTILINESTRING` | Returned if *geom* is a `MULTILINESTRING` subtype  | 
-| `MULTIPOLYGON` | Returned if *geom* is a `MULTIPOLYGON` subtype  | 
-| `GEOMETRYCOLLECTION` | Returned if *geom* is a `GEOMETRYCOLLECTION` subtype  | 
+| Returned string value for 2D, 3DZ, 4D geometries | Returned string value for 3DM geometries | Geometry subtype | 
+| --- | --- | --- | 
+| `POINT` | `POINTM` | Returned if *geom* is a `POINT` subtype  | 
+| `LINESTRING` | `LINESTRINGM` | Returned if *geom* is a `LINESTRING` subtype  | 
+| `POLYGON` | `POLYGONM` | Returned if *geom* is a `POLYGON` subtype  | 
+| `MULTIPOINT` | `MULTIPOINTM` | Returned if *geom* is a `MULTIPOINT` subtype  | 
+| `MULTILINESTRING` | `MULTILINESTRINGM` | Returned if *geom* is a `MULTILINESTRING` subtype  | 
+| `MULTIPOLYGON` | `MULTIPOLYGONM` | Returned if *geom* is a `MULTIPOLYGON` subtype  | 
+| `GEOMETRYCOLLECTION` | `GEOMETRYCOLLECTIONM` | Returned if *geom* is a `GEOMETRYCOLLECTION` subtype  | 
 
 ## Examples<a name="GeometryType-function-examples"></a>
 

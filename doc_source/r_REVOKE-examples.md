@@ -72,15 +72,11 @@ REVOKE USAGE ON SCHEMA Sales_schema FROM GROUP Analyst_group;
 
 The following are examples of revoking the ASSUMEROLE privilege\. 
 
-### Enable the use of the ASSUMEROLE privilege<a name="r_REVOKE-usage-notes-assumerole-enable"></a>
-
 A superuser must enable the use of the ASSUMEROLE privilege for users and groups by running the following statement once on the cluster: 
 
 ```
 revoke assumerole on all from public for all;          
 ```
-
-### Revoking the ASSUMEROLE privilege from a user<a name="r_REVOKE-examples-assumerole-user"></a>
 
 The following statement revokes the ASSUMEROLE privilege from user reg\_user1 on all roles for all operations\. 
 

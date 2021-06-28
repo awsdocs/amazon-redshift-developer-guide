@@ -58,7 +58,7 @@ You can use a WITH clause in the following SQL statements:
 + UPDATE \(within a WHERE clause subquery\. You can't define a recursive CTE in the subquery\. The recursive CTE must precede the UPDATE clause\.\)
 + DELETE
 
-If the FROM clause of a query that contains a WITH clause doesn't reference any of the tables defined by the WITH clause, the WITH clause is ignored and the query executes as normal\.
+If the FROM clause of a query that contains a WITH clause doesn't reference any of the tables defined by the WITH clause, the WITH clause is ignored and the query runs as normal\.
 
 A table defined by a WITH clause subquery can be referenced only in the scope of the SELECT query that the WITH clause begins\. For example, you can reference such a table in the FROM clause of a subquery in the SELECT list, WHERE clause, or HAVING clause\. You can't use a WITH clause in a subquery and reference its table in the FROM clause of the main query or another subquery\. This query pattern results in an error message of the form `relation table_name doesn't exist` for the WITH clause table\.
 
@@ -79,6 +79,10 @@ A WITH clause subquery may not consist of a SELECT INTO statement; however, you 
 A recursive *common table expression \(CTE\)* is a CTE that references itself\. A recursive CTE is useful in querying hierarchical data, such as organization charts that show reporting relationships between employees and managers\. See [Example: Recursive CTE](#r_WITH_clause-recursive-cte-example)\.
 
 Another common use is a multilevel bill of materials, when a product consists of many components and each component itself also consists of other components or subassemblies\.
+
+Be sure to limit the depth of recursion by including a WHERE clause in the second SELECT subquery of the recursive query\. For an example, see [Example: Recursive CTE](#r_WITH_clause-recursive-cte-example)\. Otherwise, an error can occur similar to the following:
++ `Recursive CTE out of working buffers.`
++ `Exceeded recursive CTE max rows limit.`
 
  You can specify a sort order and limit on the result of the recursive CTE\. You can include group by and distinct options on the final result of the recursive CTE\.
 
@@ -191,7 +195,7 @@ ERROR:  relation "holidays" does not exist
 
 ## Example: Recursive CTE<a name="r_WITH_clause-recursive-cte-example"></a>
 
-The following is an example of a recursive CTE that returns the number of employees that report directly or indirectly to John\.
+The following is an example of a recursive CTE that returns the number of employees that report directly or indirectly to John\. The recursive query contains a WHERE clause to limit the depth of recursion to less than 4 levels\.
 
 ```
 with recursive john_org(id, name, manager_id, level) as

@@ -65,19 +65,19 @@ time_val
 00:58:00
 ```
 
-The following example extracts the seconds from each time\_val\.
+The following example extracts the minutes from each time\_val\.
 
 ```
-select extract(minute from time_val) as secs from time_test;
+select extract(minute from time_val) as minutes from time_test;
             
-secs
+minutes
 -----------
          0
          0
          58
 ```
 
-The following example extracts the hours from each timetz\_val\.
+The following example extracts the hours from each time\_val\.
 
 ```
 select extract(hour from time_val) as hours from time_test;
@@ -127,8 +127,8 @@ hours
 The following example extracts milliseconds from a literal value\. Literals aren't converted to UTC before the extraction is processed\. 
 
 ```
-select extract(hour from time '18:25:33.123456 EST');
+select extract(ms from time '18:25:33.123456 EST');
  date_part
 -----------
-     18
+     123
 ```

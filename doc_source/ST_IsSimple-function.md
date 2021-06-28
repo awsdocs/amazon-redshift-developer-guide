@@ -1,6 +1,6 @@
 # ST\_IsSimple<a name="ST_IsSimple-function"></a>
 
-ST\_IsSimple returns true if the input geometry is simple\. For more information about the definition of a simple geometry, see [Geometric simplicity](spatial-terminology.md#spatial-terminology-simplicity)\. 
+ST\_IsSimple returns true if the 2D projection of the input geometry is simple\. For more information about the definition of a simple geometry, see [Geometric simplicity](spatial-terminology.md#spatial-terminology-simplicity)\. 
 
 ## Syntax<a name="ST_IsSimple-function-syntax"></a>
 

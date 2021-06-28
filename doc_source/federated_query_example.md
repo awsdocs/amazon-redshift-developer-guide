@@ -109,10 +109,10 @@ ORDER BY 1,2;
 
 ## Example of using a mixed\-case name<a name="federated_query_example_postgres-mixed"></a>
 
-To query a supported PostgreSQL remote database that has a mixed\-case name of a database, schema, table, or column, then set `downcase_delimited_identifier` to `off`\. For more information about this session parameter, see [downcase\_delimited\_identifier](r_downcase_delimited_identifier.md)\. 
+To query a supported PostgreSQL remote database that has a mixed\-case name of a database, schema, table, or column, then set `enable_case_sensitive_identifier` to `true`\. For more information about this session parameter, see [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)\. 
 
 ```
-SET downcase_delimited_identifier TO OFF;
+SET enable_case_sensitive_identifier TO TRUE;
 ```
 
 Typically, the database and schema names are in lowercase\. The following example shows how you can connect to a supported PostgreSQL remote database that has lowercase names for database and schema and mixed\-case names for table and column\. 
@@ -128,10 +128,10 @@ IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-SecretsManager-RO'
 SECRET_ARN 'arn:aws:secretsmanager:us-west-2:123456789012:secret:federation/test/dataplane-apg-creds-YbVKQw';
 ```
 
-In the session where the query runs, set `downcase_delimited_identifier` to `off`\.
+In the session where the query runs, set `enable_case_sensitive_identifier` to `true`\.
 
 ```
-SET downcase_delimited_identifier TO OFF;
+SET enable_case_sensitive_identifier TO TRUE;
 ```
 
 Run a federated query to select all data from the PostgreSQL database\. The table \(`MixedCaseTab`\) and column \(`MixedCaseName`\) have mixed\-case names\. The result is one row \(`Harry`\)\. 
@@ -148,7 +148,7 @@ select * from apg_lower."MixedCaseTab";
 
 The following example shows how you can connect to a supported PostgreSQL remote database that has a mixed\-case name for the database, schema, table, and column\. 
 
-Set `downcase_delimited_identifier` to `off` before you create the external schema\. If `downcase_delimited_identifier` is not set to `off` before creating the external schema, then a database does not exist error occurs\.
+Set `enable_case_sensitive_identifier` to `true` before you create the external schema\. If `enable_case_sensitive_identifier` is not set to `true` before creating the external schema, then a database does not exist error occurs\.
 
 Create an external schema that references an Aurora PostgreSQL database that has a mixed\-case database \(`UpperDB`\) and schema \(`UpperSchema`\) name\.
 

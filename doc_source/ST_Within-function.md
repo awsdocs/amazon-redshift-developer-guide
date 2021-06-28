@@ -1,6 +1,6 @@
 # ST\_Within<a name="ST_Within-function"></a>
 
-ST\_Within returns true if the first input geometry is within the second input geometry\. 
+ST\_Within returns true if the 2D projection of the first input geometry is within the 2D projection of the second input geometry\. 
 
 For example, geometry `A` is within geometry `B` if every point in `A` is a point in `B` and their interiors have nonempty intersection\. 
 

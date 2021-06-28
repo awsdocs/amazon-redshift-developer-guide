@@ -1,6 +1,6 @@
 # ST\_Area<a name="ST_Area-function"></a>
 
-ST\_Area returns the Cartesian area of an input geometry\. The area units are the same as the units in which the coordinates of the input geometry are expressed\. For points, linestrings, multipoints, and multilinestrings, the function returns 0\. For geometry collections, it returns the sum of the areas of the geometries in the collection\. 
+ST\_Area returns the Cartesian area of the 2D projection of an input geometry\. The area units are the same as the units in which the coordinates of the input geometry are expressed\. For points, linestrings, multipoints, and multilinestrings, the function returns 0\. For geometry collections, it returns the sum of the areas of the geometries in the collection\. 
 
 ## Syntax<a name="ST_Area-function-syntax"></a>
 

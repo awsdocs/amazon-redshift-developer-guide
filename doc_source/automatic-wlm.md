@@ -27,7 +27,7 @@ You can define the relative importance of queries in a workload by setting a pri
 
 ## Concurrency scaling mode<a name="wlm-auto-concurrency-scaling-mode"></a>
 
-When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
+When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent queries\. Your users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
 
 You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\.
 

@@ -1,6 +1,6 @@
 # ST\_NPoints<a name="ST_NPoints-function"></a>
 
-ST\_NPoints returns the number of points in an input geometry\. 
+ST\_NPoints returns the number of nonempty points in an input geometry\. 
 
 ## Syntax<a name="ST_NPoints-function-syntax"></a>
 
@@ -16,6 +16,8 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 ## Return type<a name="ST_NPoints-function-return"></a>
 
 `INTEGER`
+
+If *geom* is an empty point, then `0` is returned\. 
 
 If *geom* is null, then null is returned\. 
 

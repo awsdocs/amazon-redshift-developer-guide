@@ -10,6 +10,7 @@
 + [CHARACTER\_LENGTH function](r_CHARACTER_LENGTH.md)
 + [CHARINDEX function](r_CHARINDEX.md)
 + [CHR function](r_CHR.md)
++ [COLLATE function](r_COLLATE.md)
 + [CONCAT](r_CONCAT.md)
 + [CRC32 function](crc32-function.md)
 + [DIFFERENCE function](DIFFERENCE.md)

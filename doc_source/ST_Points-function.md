@@ -21,7 +21,7 @@ The spatial reference system identifier \(SRID\) value of the returned geometry 
 
 If *geom* is null, then null is returned\. 
 
-If *geom* has zero nonempty points, then an empty multipoint is returned\. 
+If *geom* is empty, then the empty multipoint is returned\. 
 
 ## Examples<a name="ST_Points-function-examples"></a>
 

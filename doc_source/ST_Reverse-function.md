@@ -2,6 +2,8 @@
 
 ST\_Reverse reverses the order of the vertices for linear and areal geometries\. For point or multipoint geometries, a copy of the original geometry is returned\. For geometry collections, ST\_Reverse reverses the order of the vertices for each of the geometries in the collection\.
 
+The dimension of the returned geometry is the same as that of the input geometry\.
+
 ## Syntax<a name="ST_Reverse-function-syntax"></a>
 
 ```

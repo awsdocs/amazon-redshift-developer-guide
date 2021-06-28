@@ -10,7 +10,7 @@ The following constraints apply when you use Amazon Redshift stored procedures\.
 ## Limits<a name="stored-procedure-limits"></a>
 
 The following are limits on stored procedures in Amazon Redshift:
-+ The maximum number of stored procedures for a database is 3000\.
++ The maximum number of stored procedures for a database is 10,000\.
 + The maximum size of the source code for a procedure is 2 MB\.
 + The maximum number of explicit and implicit cursors that you can open concurrently in a user session is one\. FOR loops that iterate over the result set of a SQL statement open implicit cursors\. Nested cursors aren't supported\.
 + Explicit and implicit cursors have the same restrictions on the result set size as standard Amazon Redshift cursors\. For more information, see [Cursor constraints](declare.md#declare-constraints)\. 

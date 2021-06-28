@@ -1,6 +1,6 @@
 # Supported PL/pgSQL statements<a name="c_PLpgSQL-statements"></a>
 
- PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
+ PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data manipulation language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
 
 **Topics**
 + [Assignment](#r_PLpgSQL-assignment)

@@ -22,7 +22,7 @@ unload/0002_part_00
 unload/0003_part_00
 ```
 
-To better differentiate the output files, you can include a prefix in the location\. The following example unloads the VENUE table and writes the data to `s3://mybucket/venue_pipe_`: 
+To better differentiate the output files, you can include a prefix in the location\. The following example unloads the VENUE table and writes the data to `s3://mybucket/unload/venue_pipe_`: 
 
 ```
 unload ('select * from venue')
@@ -598,7 +598,7 @@ copy loadvenuenulls from 's3://mybucket/nulls/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole' EMPTYASNULL;
 ```
 
-To verify that the columns contain NULL, not just whitespace or empty, select from LOADVENUENULLS and filter for null\.
+To verify that the columns contain NULL, not just whitespace or empty strings, select from LOADVENUENULLS and filter for null\.
 
 ```
 select * from loadvenuenulls where venuestate is null or venueseats is null;

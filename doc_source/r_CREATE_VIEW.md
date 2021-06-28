@@ -36,7 +36,7 @@ When you include the WITH NO SCHEMA BINDING clause, tables and views referenced 
 create view myevent as select eventname from event
 with no schema binding;
 ```
-The following statement executes successfully\.  
+The following statement runs successfully\.  
 
 ```
 create view myevent as select eventname from public.event
@@ -54,7 +54,7 @@ You can't update, insert into, or delete from a view\.
 
 A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. If you drop underlying objects, queries to the late\-binding view will fail\. If the query to the late\-binding view references columns in the underlying object that aren't present, the query will fail\. 
 
- If you drop and then re\-create a late\-binding view's underlying table or view, the new object is created with default access permissions\. You might need to grant permissions to the underling objects for users who will query the view\. 
+ If you drop and then re\-create a late\-binding view's underlying table or view, the new object is created with default access permissions\. You might need to grant permissions to the underlying objects for users who will query the view\. 
 
 To create a late\-binding view, include the WITH NO SCHEMA BINDING clause\. The following example creates a view with no schema binding\. 
 

@@ -7,7 +7,7 @@ We recommend that you use the COPY command to load data whenever possible, and a
 
 To perform a meaningful test of data compression, you need a large number of rows\. For this example, we create a table and insert rows by using a statement that selects from two tables; VENUE and LISTING\. We leave out the WHERE clause that would normally join the two tables\. The result is that *each* row in the VENUE table is joined to *all* of the rows in the LISTING table, for a total of over 32 million rows\. This is known as a Cartesian join and normally is not recommended\. However, for this purpose, it's a convenient method of creating a lot of rows\. If you have an existing table with data that you want to test, you can skip this step\.
 
-After we have a table with sample data, we create a table with seven columns\. Each has a different compression encoding: raw, bytedict, lzo, runlength, text255, text32k, and zstd\. We populate each column with exactly the same data by running an INSERT command that selects the data from the first table\.
+After we have a table with sample data, we create a table with seven columns\. Each has a different compression encoding: raw, bytedict, lzo, run length, text255, text32k, and zstd\. We populate each column with exactly the same data by running an INSERT command that selects the data from the first table\.
 
 To test compression encodings, do the following:
 

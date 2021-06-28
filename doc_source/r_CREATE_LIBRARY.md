@@ -80,7 +80,7 @@ By default, CREATE LIBRARY assumes that the Amazon S3 bucket is located in the s
 
 The following two examples install the [urlparse](https://docs.python.org/2/library/urlparse.html#module-urlparse) Python module, which is packaged in a file named `urlparse3-1.0.3.zip`\. 
 
-The following command installs a UDF library named `f_urlparse` from a package that has been uploaded to an Amazon S3 bucket located in the US East region\.
+The following command installs a UDF library named `f_urlparse` from a package that has been uploaded to an Amazon S3 bucket located in the US East Region\.
 
 ```
 create library f_urlparse 

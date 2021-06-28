@@ -29,7 +29,7 @@ If the SELECT clause is a simple select operation from a single table, without a
 For complex queries, such as queries that include joins, aggregations, an order by clause, or a limit clause, CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\. 
 
 **Note**  
-For best performance with large data sets or complex queries, we recommend testing using typical data sets\.
+For best performance with large datasets or complex queries, we recommend testing using typical datasets\.
 
 You can often predict which distribution key and sort key CTAS chooses by examining the query plan to see which columns, if any, the query optimizer chooses for sorting and distributing data\. If the top node of the query plan is a simple sequential scan from a single table \(XN Seq Scan\), then CTAS generally uses the source table's distribution style and sort key\. If the top node of the query plan is anything other a sequential scan \(such as XN Limit, XN Sort, XN HashAggregate, and so on\), CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\.
 

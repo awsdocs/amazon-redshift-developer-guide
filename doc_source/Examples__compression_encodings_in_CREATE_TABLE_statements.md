@@ -26,4 +26,4 @@ The following table shows the column encodings that were chosen for the CUSTOMER
 | CITY | varchar\(30\) | text255 | CITY is a large domain, with some repeated values\. Certain city names are used much more commonly than others\. Text255 is a good choice for the same reasons as ADDRESS\. | 
 | STATE | char\(2\) | raw | In the United States, STATE is a precise domain of 50 two\-character values\. Bytedict encoding would yield some compression, but because the column size is only two characters, compression might not be worth the overhead of uncompressing the data\. | 
 | ZIPCODE | char\(5\) | bytedict | ZIPCODE is a known domain of fewer than 50,000 unique values\. Certain zip codes occur much more commonly than others\. Bytedict encoding is very effective when a column contains a limited number of unique values\.  | 
-| START\_DATE | date | delta32k | Delta encodings are very useful for datetime columns, especially if the rows are loaded in date order\. | 
+| START\_DATE | date | delta32k | Delta encodings are very useful for date time columns, especially if the rows are loaded in date order\. | 

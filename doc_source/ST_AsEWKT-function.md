@@ -1,6 +1,6 @@
 # ST\_AsEWKT<a name="ST_AsEWKT-function"></a>
 
-ST\_AsEWKT returns the extended well\-known text \(EWKT\) representation of an input geometry\. 
+ST\_AsEWKT returns the extended well\-known text \(EWKT\) representation of an input geometry\. For 3DZ, 3DM, and 4D geometries, ST\_AsEWKT appends Z, M, or ZM to the WKT value for the geometry type\.
 
 ## Syntax<a name="ST_AsEWKT-function-syntax"></a>
 
