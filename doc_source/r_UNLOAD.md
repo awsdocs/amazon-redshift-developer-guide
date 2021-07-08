@@ -130,6 +130,7 @@ Places quotation marks around each unloaded data field, so that Amazon Redshift 
 ```
 Without the added quotation marks, the string `Hello, World` would be parsed as two separate fields\.  
 If you use ADDQUOTES, you must specify REMOVEQUOTES in the COPY if you reload the data\.
+ADDQUOTES is not supported for UNLOAD to CSV.
 
 NULL AS '*null\-string*'   
 Specifies a string that represents a null value in unload files\. If this option is used, all output files contain the specified string in place of any null values found in the selected data\. If this option isn't specified, null values are unloaded as:   
@@ -246,6 +247,7 @@ Be aware of these considerations when using PARTITION BY:
 + Make sure to include partition columns in the SELECT query used in the UNLOAD statement\. You can specify any number of partition columns in the UNLOAD command\. However, there is a limitation that there should be at least one nonpartition column to be part of the file\.
 + If the partition key value is null, Amazon Redshift automatically unloads that data into a default partition called `partition_column=__HIVE_DEFAULT_PARTITION__`\. 
 + The UNLOAD command doesn't make any calls to an external catalog\. To register your new partitions to be part of your existing external table, use a separate ALTER TABLE \.\.\. ADD PARTITION \.\.\. command\. Or you can run a CREATE EXTERNAL TABLE command to register the unloaded data as a new external table\. You can also use an AWS Glue crawler to populate your Data Catalog\. For more information, see [Defining Crawlers](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html) in the *AWS Glue Developer Guide*\. 
+
 + If you use the MANIFEST option, Amazon Redshift generates only one manifest file in the root Amazon S3 folder\.
 + The column data types that you can use as the partition key are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, BOOLEAN, CHAR, VARCHAR, DATE, and TIMESTAMP\. 
 
