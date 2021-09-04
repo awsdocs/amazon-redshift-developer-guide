@@ -26,11 +26,11 @@ If you use IAM user credentials, make sure that you have the necessary permissio
 
 ## Original console<a name="tutorial-loading-data-originalconsole"></a>
 
-Follow the steps in [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but choose **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
+Follow the steps in [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/), but choose **Multi Node** for **Cluster Type** and set **Number of Compute Nodes** to **4**\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/tutorial-optimize-tables-console-cluster-type.png)
 
-Follow the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) steps to connect to your cluster from a SQL client and test a connection\. You don't need to complete the remaining Getting Started steps to create tables, upload data, and try example queries\. 
+Follow the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/) steps to connect to your cluster from a SQL client and test a connection\. You don't need to complete the remaining Getting Started steps to create tables, upload data, and try example queries\. 
 
 ## Next step<a name="tutorial-loading-next-step2"></a>
 

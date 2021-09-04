@@ -64,6 +64,7 @@ Redshift Spectrum is available only in the following AWS Regions:
 Note the following considerations when you use Amazon Redshift Spectrum:
 + The Amazon Redshift cluster and the Amazon S3 bucket must be in the same AWS Region\. 
 + If your cluster uses Enhanced VPC Routing, you might need to perform additional configuration steps\. For more information, see [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html)\. 
++ Redshift Spectrum supports Amazon S3 access point aliases\. For more information, see [Using a bucket–style alias for your access point](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-alias.html) in the *Amazon Simple Storage Service Console User Guide*\. However, Redshift Spectrum doesn't support VPC with Amazon S3 access point aliases\. For more information, see [Using Redshift Spectrum with enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Cluster Management Guide*\.
 + You can't perform update or delete operations on external tables\. To create a new external table in the specified schema, you can use CREATE EXTERNAL TABLE\. For more information about CREATE EXTERNAL TABLE, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\. To insert the results of a SELECT query into existing external tables on external catalogs, you can use INSERT \(external table\)\. For more information about INSERT \(external table\), see [INSERT \(external table\)](r_INSERT_external_table.md)\.
 + Unless you are using an AWS Glue Data Catalog that is enabled for AWS Lake Formation, you can't control user permissions on an external table\. Instead, you can grant and revoke permissions on the external schema\. For more information about working with AWS Lake Formation, see [Using Redshift Spectrum with AWS Lake Formation](spectrum-lake-formation.md)\.
 + To run Redshift Spectrum queries, the database user must have permission to create temporary tables in the database\. The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
@@ -73,4 +74,5 @@ Note the following considerations when you use Amazon Redshift Spectrum:
   ```
 
   For more information, see [GRANT](r_GRANT.md)\.
-+ When using the Athena Data Catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide\.* 
++ When using the Athena Data Catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide*\. 
++ Redshift Spectrum doesn't support Amazon EMR with Kerberos\.

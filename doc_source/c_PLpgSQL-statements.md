@@ -560,7 +560,7 @@ Use the RAISE statement to report messages and raise errors\.
 RAISE level 'format' [, variable [, ...]];
 ```
 
-Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally aborts the current transaction\. The other levels generate only messages of different priority levels\. 
+Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally cancels the current transaction\. The other levels generate only messages of different priority levels\. 
 
 Inside the format string, % is replaced by the next optional argument's string representation\. Write %% to emit a literal %\. Currently, optional arguments must be simple variables, not expressions, and the format must be a simple string literal\.
 

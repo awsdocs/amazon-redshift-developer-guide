@@ -14,7 +14,7 @@
 + [JSON functions](json-functions.md)
 + [Math functions](Math_functions.md)
 + [String functions](String_functions_header.md)
-+ [Type information functions](c_Type_Info_Functions.md)
++ [SUPER type information functions](c_Type_Info_Functions.md)
 + [Window functions](c_Window_functions.md)
 + [Data type formatting functions](r_Data_type_formatting.md)
 + [System administration functions](r_System_administration_functions.md)

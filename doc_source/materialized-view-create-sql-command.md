@@ -57,6 +57,7 @@ You can't define a materialized view that references or includes any of the foll
 + The ORDER BY, LIMIT, or OFFSET clause\.
 + Late binding references to base tables\. In other words, any base tables or related columns referenced in the defining SQL query of the materialized view must exist and must be valid\. 
 + Leader node\-only functions: CURRENT\_SCHEMA, CURRENT\_SCHEMAS, HAS\_DATABASE\_PRIVILEGE, HAS\_SCHEMA\_PRIVILEGE, HAS\_TABLE\_PRIVILEGE\.
++ You can't use the AUTO REFRESH YES option when the materialized view definition includes mutable functions or external schemas\.
 
 ## Examples<a name="mv_CREATE_MARTERIALIZED_VIEW_examples"></a>
 

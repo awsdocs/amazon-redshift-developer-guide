@@ -10,7 +10,7 @@ You can choose one of the following methods to create a copy of the original tab
 If the original DDL is not available, you might be able to recreate the DDL by running a script called `v_generate_tbl_ddl`\. You can download the script from [amazon\-redshift\-utils](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql), which is part of the [Amazon Web Services \- Labs](https://github.com/awslabs) git hub repository\.
 + Use CREATE TABLE LIKE\. 
 
-  If the original DDL is not available, you can use CREATE TABLE LIKE to recreate the original table\. The new table inherits the encoding, distkey, sortkey, and notnull attributes of the parent table\. The new table doesn't inherit the primary key and foreign key attributes of the parent table, but you can add them using [ALTER TABLE](r_ALTER_TABLE.md)\.
+  If the original DDL is not available, you can use CREATE TABLE LIKE to recreate the original table\. The new table inherits the encoding, distribution key, sort key, and not\-null attributes of the parent table\. The new table doesn't inherit the primary key and foreign key attributes of the parent table, but you can add them using [ALTER TABLE](r_ALTER_TABLE.md)\.
 + Create a temporary table and truncate the original table\. 
 
   If you need to retain the primary key and foreign key attributes of the parent table, or if the parent table has dependencies, you can use CREATE TABLE \.\.\. AS \(CTAS\) to create a temporary table, then truncate the original table and populate it from the temporary table\. 

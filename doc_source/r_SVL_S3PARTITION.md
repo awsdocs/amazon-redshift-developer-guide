@@ -10,7 +10,7 @@ SVL\_S3PARTITION is visible to all users\. Superusers can see all rows; regular 
 
 ## Sample query<a name="r_SVL_S3PARTITION-sample-query"></a>
 
-The following example gets the partition details for the last query executed\.
+The following example gets the partition details for the last query completed\.
 
 ```
 SELECT query, segment,

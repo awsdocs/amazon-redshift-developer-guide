@@ -108,7 +108,7 @@ As an Amazon Redshift administrator, do the following one\-time setup:
 
 1. \(Optional\) Create different combinations of IAM roles and Amazon S3 buckets for controlling access to different user groups\.
 
-1. \(Optional\) When you enabled virtual private cloud \(VPC\) routing on your Amazon Redshift cluster, create an Amazon VPC endpoint and an SageMaker endpoint for the VPC that your Amazon Redshift cluster is in\. This enables that traffic can run through your VPC between services during CREATE MODEL\. For more information about VPC routing, see [Enhanced VPC routing in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html)\.
+1. \(Optional\) When you enabled virtual private cloud \(VPC\) routing on your Amazon Redshift cluster, create an Amazon S3 endpoint and an SageMaker endpoint for the VPC that your Amazon Redshift cluster is in\. This enables that traffic can run through your VPC between services during CREATE MODEL\. For more information about VPC routing, see [Enhanced VPC routing in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html)\.
 
    When you specify a private VPC for your hyperparameter tuning job, add the following permissions:
 
@@ -158,7 +158,7 @@ GRANT USAGE ON SCHEMA demo_ml TO GROUP marketing_analyst_grp;
 You can enable other users to use the machine learning inference function by granting the EXECUTE privilege\. The following example uses the EXECUTE privilege to grant the marketing\_analyst\_grp GROUP the privilege to use the model\.
 
 ```
-GRANT EXECUTE ON MODEL demo_ml.customer_churn_auto_model TO marketing_analyst_grp;
+GRANT EXECUTE ON MODEL demo_ml.customer_churn_auto_model TO GROUP marketing_analyst_grp;
 ```
 
 Use the REVOKE statement with CREATE MODEL and EXECUTE to revoke those privileges from users or groups\. For more information on permission control commands, see [GRANT](r_GRANT.md) and [REVOKE](r_REVOKE.md)\.

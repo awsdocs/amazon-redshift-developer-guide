@@ -84,7 +84,7 @@ venue.txt.4
 The following COPY command loads the VENUE table using the pipe\-delimited data in the data files with the prefix 'venue' in the Amazon S3 bucket `mybucket`\. 
 
 **Note**  
-The Amazon S3 bucket `mybucket` in the following examples does not exist\. For sample COPY commands that use real data in an existing Amazon S3 bucket, see [ Step 4: Load sample data](cm-dev-t-load-sample-data.md)\.
+The Amazon S3 bucket `mybucket` in the following examples does not exist\. For sample COPY commands that use real data in an existing Amazon S3 bucket, see [Load sample data](https://docs.aws.amazon.com/redshift/latest/gsg/cm-dev-t-load-sample-data.html)\.
 
 ```
 copy venue from 's3://mybucket/venue'

@@ -2,6 +2,21 @@
 
 Checks the number of decimal digits to be stored to the right of the decimal point\. The range of the scale is from 0 to the precision point, with a default of 0\.
 
+## Syntax<a name="r_decimal_scale-synopsis"></a>
+
+```
+decimal_scale (super_expression)
+```
+
+## Arguments<a name="r_decimal_scale-arguments"></a>
+
+*super\_expression*  
+A SUPER expression or column\.
+
+## Returns<a name="r_decimal_scale-returns"></a>
+
+Integer
+
 ## Example<a name="r_decimal_scale_example"></a>
 
 The following query applies the decimal\_scale function to the table t\.

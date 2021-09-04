@@ -1,6 +1,6 @@
-# Associating datashares \(preview\)<a name="accept-datashare-console"></a>
+# Associating datashares<a name="accept-datashare-console"></a>
 
-As a consumer cluster administrator, you can associate one or more datashares that are shared from other accounts to your entire AWS account \(preview\) or specific cluster namespaces in your account\. 
+As a consumer cluster administrator, you can associate one or more datashares that are shared from other accounts to your entire AWS account or specific cluster namespaces in your account\. 
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -14,6 +14,6 @@ As a consumer cluster administrator, you can associate one or more datashares th
 
 1. Choose **Associate**\. 
 
-After the AWS account \(preview\) or specific cluster namespaces are associated, the datashares become available\.
+After the AWS account or specific cluster namespaces are associated, the datashares become available\.
 
-You can also change datashare association at any time\. When changing association from individual cluster namespaces to an AWS account, Amazon Redshift overwrites the cluster namespaces with the AWS account information\. When changing association from an AWS account to specific cluster namespaces, Amazon Redshift overwrites the AWS account information with the cluster namespace information \(preview\)\.
+You can also change datashare association at any time\. When changing association from individual cluster namespaces to an AWS account, Amazon Redshift overwrites the cluster namespaces with the AWS account information\. When changing association from an AWS account to specific cluster namespaces, Amazon Redshift overwrites the AWS account information with the cluster namespace information\.

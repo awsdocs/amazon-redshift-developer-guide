@@ -1,4 +1,4 @@
-# How data sharing works<a name="how_it_works"></a>
+# How data sharing works in Amazon Redshift<a name="how_it_works"></a>
 
 Data sharing between Amazon Redshift clusters is a two\-step process: 
 

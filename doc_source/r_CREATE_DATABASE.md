@@ -39,11 +39,18 @@ A clause that specifies whether string search or comparison is CASE\_SENSITIVE o
 
 ## Syntax for using CREATE DATABASE with a datashare<a name="r_CREATE_DATABASE-datashare-synopsis"></a>
 
-The following syntax describes the CREATE DATABASE command used to create databases from a datashare\.
+The following syntax describes the CREATE DATABASE command used to create databases from a datashare for sharing data within the same AWS account\.
 
 ```
 CREATE DATABASE database_name
-FROM DATASHARE datashare_name OF { [ ACCOUNT account_id ] | [ NAMESPACE namespace_guid ] }
+FROM DATASHARE datashare_name OF [ ACCOUNT account_id ] NAMESPACE namespace_guid
+```
+
+The following syntax describes the CREATE DATABASE command used to create databases from a datashare for sharing data across AWS accounts\.
+
+```
+CREATE DATABASE database_name
+FROM DATASHARE datashare_name OF ACCOUNT account_id NAMESPACE namespace_guid
 ```
 
 ### Parameters for using CREATE DATABASE with a datashare<a name="r_CREATE_DATABASE-parameters-datashare"></a>
@@ -55,14 +62,18 @@ A keyword that indicates where the datashare is located\.
 The name of the datashare that the consumer database is created on\.
 
  NAMESPACE *namespace\_guid*   
-A value that specifies the namespace that the datashare uses\.
+A value that specifies the producer namespace that the datashare belongs to\.
 
 ACCOUNT *account\_id*  
-A value that specifies the account that the datashare belongs to\.
+A value that specifies the producer account that the datashare belongs to\.
 
 ## Usage notes for CREATE DATABASE for data sharing<a name="r_CREATE_DATABASE-usage"></a>
 
-As a consumer account administrator, when you use CREATE DATABASE to create databases from datashares within the AWS account, specify the NAMESPACE option\. When you use CREATE DATABASE to create databases from datashares across AWS accounts, specify the ACCOUNT and NAMESPACE options\.
+As a consumer account administrator, when you use CREATE DATABASE to create databases from datashares within the AWS account, specify the NAMESPACE option\. The ACCOUNT option is optional\.
+
+When you use CREATE DATABASE to create databases from datashares across AWS accounts, specify both the ACCOUNT and NAMESPACE options\.
+
+You can create only one consumer database for one datashare on a consumer cluster\. You can't create multiple consumer databases referring to the same datashare\.
 
 ## CREATE DATABASE limits<a name="r_CREATE_DATABASE-create-database-limits"></a>
 

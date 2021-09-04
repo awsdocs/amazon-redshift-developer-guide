@@ -1,4 +1,4 @@
-# Cluster management and data sharing<a name="cluster-mgmt"></a>
+# Cluster management and data sharing in Amazon Redshift<a name="cluster-mgmt"></a>
 
 Consider the following for cluster management tasks:
 + Data sharing continues to work when clusters are resized\.

@@ -5,7 +5,7 @@ Creates a new stored procedure or replaces an existing procedure for the current
 ## Syntax<a name="r_CREATE_PROCEDURE-synopsis"></a>
 
 ```
-CREATE [ OR REPLACE ] PROCEDURE sp_procedure_name 888888888888888888888888888888888888
+CREATE [ OR REPLACE ] PROCEDURE sp_procedure_name 
   ( [ [ argname ] [ argmode ] argtype [, ...] ] )
 AS $$
   procedure_body

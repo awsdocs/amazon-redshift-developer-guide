@@ -56,3 +56,19 @@ catname character varying(10) ENCODE lzo,
 catdesc character varying(50) ENCODE lzo 
 ) DISTSTYLE KEY SORTKEY ( catid );
 ```
+
+The following example creates table `foo` with a primary key\.
+
+```
+create table foo(a int PRIMARY KEY, b int);
+```
+
+The SHOW TABLE results display the create statement with all properties of the `foo` table\.
+
+```
+show table foo;
+```
+
+```
+CREATE TABLE public.foo ( a integer NOT NULL ENCODE az64, b integer ENCODE az64, PRIMARY KEY (a) ) DISTSTYLE AUTO;
+```

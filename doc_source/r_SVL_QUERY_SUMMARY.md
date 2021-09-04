@@ -5,7 +5,7 @@ Use the SVL\_QUERY\_SUMMARY view to find general information about the execution
 The SVL\_QUERY\_SUMMARY view contains a subset of data from the SVL\_QUERY\_REPORT view\. Note that the information in SVL\_QUERY\_SUMMARY is aggregated from all nodes\. 
 
 **Note**  
- The SVL\_QUERY\_SUMMARY view only contains information about queries executed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements executed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view\.
+ The SVL\_QUERY\_SUMMARY view only contains information about queries performed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements performed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view\.
 
 SVL\_QUERY\_SUMMARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 

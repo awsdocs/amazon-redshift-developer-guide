@@ -12,7 +12,7 @@ This view is visible to all users\. Superusers can see all rows; regular users c
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_SCAN.html)
 
-## Usage notes<a name="w79aac64c13c11c97c11"></a>
+## Usage notes<a name="w93aac64c13c11c97c11"></a>
 
 Ideally `rows` should be relatively close to `rows_pre_filter`\. A large difference between `rows` and `rows_pre_filter` is an indication that the execution engine is scanning rows that are later discarded, which is inefficient\. The difference between `rows_pre_filter` and `rows_pre_user_filter` is the number of ghost rows in the scan\. Run a VACUUM to remove rows marked for deletion\. The difference between `rows` and `rows_pre_user_filter` is the number of rows filtered by the query\. If a lot of rows are discarded by the user filter, review your choice of sort column or, if this is due to a large unsorted region, run a vacuum\.
 

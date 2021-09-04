@@ -4,6 +4,21 @@ Checks whether a variable is a scalar\. The is\_scalar function returns true for
 
 The set of is\_array, is\_object, and is\_scalar cover all values except nulls\.
 
+## Syntax<a name="r_is_scalar-synopsis"></a>
+
+```
+is_scalar (super_expression)
+```
+
+## Arguments<a name="r_is_scalar-arguments"></a>
+
+*super\_expression*  
+A SUPER expression or column\.
+
+## Returns<a name="r_is_scalar-returns"></a>
+
+Boolean
+
 ## Example<a name="r_is_scalar_example"></a>
 
 The following query shows an is\_scalar function\.

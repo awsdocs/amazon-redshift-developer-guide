@@ -1,4 +1,4 @@
-# Authorizing or removing authorization from datashares \(preview\)<a name="authorize-datashare-console"></a>
+# Authorizing or removing authorization from datashares<a name="authorize-datashare-console"></a>
 
 As a producer cluster administrator, choose which data consumers to authorize to access datashares or to remove authorization from\. Authorized data consumers receive notifications to take actions on datashares\. If you are adding a cluster namespace as a data consumer, you don't have to perform authorization\.
 

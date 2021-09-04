@@ -12,7 +12,7 @@ Use the following queries to identify issues with queries or underlying tables t
 
 ## Identifying queries that are top candidates for tuning<a name="identify-queries-that-are-top-candidates-for-tuning"></a>
 
-The following query identifies the top 50 most time\-consuming statements that have been executed in the last 7 days\. You can use the results to identify queries that are taking unusually long, and also to identify queries that are run frequently \(those that appear more than once in the result set\)\. These queries are frequently good candidates for tuning to improve system performance\.
+The following query identifies the top 50 most time\-consuming statements that have been run in the last 7 days\. You can use the results to identify queries that are taking unusually long, and also to identify queries that are run frequently \(those that appear more than once in the result set\)\. These queries are frequently good candidates for tuning to improve system performance\.
 
 This query also provides a count of the alert events associated with each query identified\. These alerts provide details that you can use to improve the query’s performance\. For more information, see [Reviewing query alerts](c-reviewing-query-alerts.md)\.
 
@@ -102,7 +102,7 @@ order by starttime desc;
 
 ## Reviewing queue wait times for queries<a name="review-queue-wait-times-for-queries"></a>
 
-The following query shows how long recent queries waited for an open slot in a query queue before being executed\. If you see a trend of high wait times, you might want to modify your query queue configuration for better throughput\. For more information, see [Implementing manual WLM](cm-c-defining-query-queues.md)\.
+The following query shows how long recent queries waited for an open slot in a query queue before running\. If you see a trend of high wait times, you might want to modify your query queue configuration for better throughput\. For more information, see [Implementing manual WLM](cm-c-defining-query-queues.md)\.
 
 ```
 select trim(database) as DB , w.query, 

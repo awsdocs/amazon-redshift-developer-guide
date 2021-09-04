@@ -2,7 +2,7 @@
 
 Displays information to identify and resolve transaction conflicts with database tables\.
 
-A transaction conflict occurs when two or more users are querying and modifying data rows from tables such that their transactions cannot be serialized\. The transaction that executes a statement that would break serializability is aborted and rolled back\. Every time a transaction conflict occurs, Amazon Redshift writes a data row to the STL\_TR\_CONFLICT system table containing details about the aborted transaction\. For more information, see [Serializable isolation](c_serial_isolation.md)\.
+A transaction conflict occurs when two or more users are querying and modifying data rows from tables such that their transactions cannot be serialized\. The transaction that runs a statement that would break serializability is stopped and rolled back\. Every time a transaction conflict occurs, Amazon Redshift writes a data row to the STL\_TR\_CONFLICT system table containing details about the canceled transaction\. For more information, see [Serializable isolation](c_serial_isolation.md)\.
 
 This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 

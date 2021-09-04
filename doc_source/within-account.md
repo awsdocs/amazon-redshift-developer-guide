@@ -35,12 +35,13 @@ You can share data for read purposes across different Amazon Redshift clusters w
    You can also add views to a datashare\.
 
    ```
+   CREATE VIEW public.sales_data_summary_view AS SELECT * FROM public.tickit_sales_redshift;
    ALTER DATASHARE SalesShare ADD TABLE public.sales_data_summary_view;
    ```
 
    Use ALTER DATASHARE to share schemas, and tables, views, and functions in a given schema\. Superusers, datashare owners, or users who have ALTER or ALL privilege on the datashare can alter the datashare to add objects to or remove objects from it\. Users should have the privileges to add or remove objects from the datashare\. Users should also be the owners of the objects or have SELECT, USAGE or ALL privileges on the objects\.
 
-   Use the INCLUDENEW clause to add any new tables or views created in a specified schema to the datashare\. Only superusers can change this property for each datashare\-schema pair\.
+   Use the INCLUDENEW clause to add any new tables, views, or SQL user\-defined functions \(UDFs\) created in a specified schema to the datashare\. Only superusers can change this property for each datashare\-schema pair\.
 
    ```
    ALTER DATASHARE SalesShare ADD SCHEMA PUBLIC;

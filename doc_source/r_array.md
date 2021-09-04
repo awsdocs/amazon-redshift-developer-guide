@@ -5,7 +5,7 @@ Creates an array of a specified type\.
 ## Syntax<a name="r_array-synopsis"></a>
 
 ```
-ARRAY( INT (type )
+ARRAY( INT (type) )
 ```
 
 ## Argument<a name="r_array-argument"></a>

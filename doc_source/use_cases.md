@@ -1,4 +1,4 @@
-# Data sharing use cases<a name="use_cases"></a>
+# Data sharing use cases for Amazon Redshift<a name="use_cases"></a>
 
 Amazon Redshift data sharing is especially useful for these use cases:
 + **Supporting different kinds of business\-critical workloads** – Use a central extract, transform, and load \(ETL\) cluster that shares data with multiple business intelligence \(BI\) or analytic clusters\. This approach provides read workload isolation and chargeback for individual workloads\. You can size and scale your individual workload compute according to the workload\-specific requirements of price and performance\.

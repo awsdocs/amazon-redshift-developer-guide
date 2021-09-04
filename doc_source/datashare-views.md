@@ -1,6 +1,6 @@
-# Working with views in data sharing<a name="datashare-views"></a>
+# Working with views in Amazon Redshift data sharing<a name="datashare-views"></a>
 
-A producer cluster can share regular, late\-binding, and materialized views\. When sharing regular or late\-binding views, you don't have to share the base tables\. The following table shows how views are supported with data sharing\.
+A producer cluster can share regular, late\-binding, and materialized views\. When sharing regular or late\-binding views, you don't have to share the base tables\. Add all schemas under producer views to the datashare\. The following table shows how views are supported with data sharing\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/datashare-views.html)
 

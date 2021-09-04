@@ -271,9 +271,3 @@ Revokes the CREATE MODEL privilege to create machine learning models in the spec
 
 ON MODEL *model\_name*  
 Revokes the EXECUTE privilege for a specific model\. 
-
- CASCADE   
-Specifies to automatically drop dependent objects when Amazon Redshift drops the model\. Dependent objects include objects such as views and other SQL user\-defined functions\.
-
- RESTRICT   
-Specifies to not drop dependent objects when Amazon Redshift drops the model\. Dependent objects include objects such as views and other SQL user\-defined functions\. This action is the default\.

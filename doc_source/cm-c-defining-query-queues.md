@@ -77,7 +77,7 @@ If wildcards are enabled in the WLM queue configuration, you can assign user gro
 
 For example, the '\*' wildcard character matches any number of characters\. Thus, if you add `dba_*` to the list of user groups for a queue, any user\-run query that belongs to a group with a name that begins with `dba_` is assigned to that queue\. Examples are `dba_admin` or `DBA_primary`, \. The '?' wildcard character matches any single character\. Thus, if the queue includes user\-group `dba?1`, then user groups named `dba11` and `dba21` match, but `dba12` doesn't match\. 
 
-Wildcards are disabled by default\.
+Wildcards are turned off by default\.
 
 ## WLM memory percent to use<a name="wlm-memory-percent"></a>
 
@@ -103,4 +103,4 @@ If [statement\_timeout](r_statement_timeout.md) is also specified, the lower of 
 
 ## Query monitoring rules<a name="wlm-query-monitoring-rules"></a>
 
-Query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that aborts queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.
+Query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that cancels queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.

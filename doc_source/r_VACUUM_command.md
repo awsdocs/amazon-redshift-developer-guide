@@ -21,7 +21,7 @@ For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\.
 ## Syntax<a name="r_VACUUM_command-synopsis"></a>
 
 ```
-VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX ] 
+VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX | RECLUSTER ] 
 [ [ table_name ] [ TO threshold PERCENT ] [ BOOST ] ]
 ```
 
@@ -54,6 +54,15 @@ VACUUM REINDEX isn't supported with TO *threshold* PERCENT\. 
  *table\_name*   
 The name of a table to vacuum\. If you don't specify a table name, the vacuum operation applies to all tables in the current database\. You can specify any permanent or temporary user\-created table\. The command isn't meaningful for other objects, such as views and system tables\.  
  If you include the TO *threshold* PERCENT parameter, a table name is required\.
+
+RECLUSTER *tablename*  <a name="vacuum-recluster"></a>
+Sorts the portions of the table that are unsorted\. Portions of the table that are already sorted by automatic table sort are left intact\. This command doesn't merge the newly sorted data with the sorted region\. It also doesn't reclaim all space that is marked for deletion\. When this command completes, the table might not appear fully sorted, as indicated by the `unsorted` field in SVV\_TABLE\_INFO\.   
+ We recommend that you use VACUUM RECLUSTER for large tables with frequent ingestion and queries that access only the most recent data\.   
+ VACUUM RECLUSTER isn't supported with TO threshold PERCENT\. If RECLUSTER is used, a table name is required\.  
+VACUUM RECLUSTER isn't supported on tables with interleaved sort keys and tables with ALL distribution style\.
+
+ *table\_name*   
+The name of a table to vacuum\. You can specify any permanent or temporary user\-created table\. The command isn't meaningful for other objects, such as views and system tables\.
 
  TO *threshold* PERCENT   
 A clause that specifies the threshold above which VACUUM skips the sort phase and the target threshold for reclaiming space in the delete phase\. The *sort threshold* is the percentage of total rows that are already in sort order for the specified table prior to vacuuming\.  The *delete threshold* is the minimum percentage of total rows not marked for deletion after vacuuming\.   

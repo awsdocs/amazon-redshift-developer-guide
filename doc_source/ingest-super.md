@@ -149,6 +149,35 @@ Use the following query to access the table that shows data spread to multiple c
 SELECT r_regionkey,r_name,r_comment,r_nations[0].n_nationkey FROM region_nations ORDER BY 1,2,3 LIMIT 1;
 ```
 
+Jsonpaths files map fields in the JSON document to table columns\. You can extract additional columns, such as distribution and sort keys, while still loading the complete document as a SUPER column\. The following query loads the complete document to the nations column\. The `name` column is the sort key and the `regionkey` column is the distribution key\.
+
+```
+CREATE TABLE nations_sorted (
+    regionkey smallint,
+    name varchar,
+    nations super
+) DISTKEY(regionkey) SORTKEY(name);
+```
+
+The root jsonpath "$" maps to the root of the document as follows:
+
+```
+{"jsonpaths": [
+       "$.r_regionkey",
+       "$.r_name",
+       "$"
+    ]
+}
+```
+
+The location of the jsonpaths file is used as the argument to FORMAT JSON\.
+
+```
+COPY nations_sorted FROM 's3://redshift-downloads/semistructured/tpch-nested/data/json/region_nation'
+REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
+FORMAT JSON 's3://redshift-downloads/semistructured/tpch-nested/data/jsonpaths/nations_sorted_jsonpaths.json';
+```
+
 ### Copying data from text and CSV<a name="copy_json-from-text-csv"></a>
 
 Amazon Redshift represents SUPER columns in text and CSV formats as single\-line JSON objects\. The double quotation marks used for escaping in CSV require no intervention from users\. However, for text format, when the chosen delimiter might also appear in a SUPER field, use the ESCAPE option during COPY and UNLOAD\. 

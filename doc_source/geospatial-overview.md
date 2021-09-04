@@ -39,6 +39,8 @@ Amazon Redshift provides many SQL functions to query spatial data\. Except for t
 
 For details about SQL functions to query spatial data, see [Spatial functions](geospatial-functions.md)\. 
 
+For details about loading spatial data, see [Loading a column of the GEOMETRY data type](copy-usage_notes-spatial-data.md)\. 
+
 **Topics**
 + [Tutorial: Using spatial SQL functions with Amazon Redshift](spatial-tutorial.md)
 + [Loading a shapefile into Amazon Redshift](spatial-copy-shapefile.md)

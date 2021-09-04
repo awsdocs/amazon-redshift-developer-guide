@@ -1,4 +1,4 @@
-# Declining datashares \(preview\)<a name="decline-datashare-console"></a>
+# Declining datashares<a name="decline-datashare-console"></a>
 
 As a consumer cluster administrator, you can decline one or more datashares that are shared from other accounts\. 
 

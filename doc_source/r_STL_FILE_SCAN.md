@@ -1,8 +1,8 @@
 # STL\_FILE\_SCAN<a name="r_STL_FILE_SCAN"></a>
 
-Returns the files that Amazon Redshift read while loading data via the COPY command\.
+Returns the files that Amazon Redshift read while loading data by using the COPY command\.
 
-Querying this view can help troubleshoot data load errors\. STL\_FILE\_SCAN can be particularly helpful with pinpointing issues in parallel data loads because parallel data loads typically load many files with a single COPY command\.
+Querying this view can help troubleshoot data load errors\. STL\_FILE\_SCAN can be particularly helpful with pinpointing issues in parallel data loads, because parallel data loads typically load many files with a single COPY command\.
 
 This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 

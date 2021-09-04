@@ -118,15 +118,23 @@ If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '
 ROW FORMAT SERDE '*serde\_name*' \[WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 A clause that specifies the SERDE format for the underlying data\.     
 '*serde\_name*'  
-The name of the SerDe\. The following are supported:  
+The name of the SerDe\. You can specify the following formats:  
 + org\.apache\.hadoop\.hive\.serde2\.RegexSerDe 
 + com\.amazonaws\.glue\.serde\.GrokSerDe 
 + org\.apache\.hadoop\.hive\.serde2\.OpenCSVSerde 
+
+  This parameter supports the following SerDe property for OpenCSVSerde: 
+
+  ```
+  'wholeFile' = 'true' 
+  ```
+
+  Set the `wholeFile` property to `true` to properly parse new line characters \(\\n\) within quoted strings for OpenCSV requests\. 
 + org\.openx\.data\.jsonserde\.JsonSerDe
   + The JSON SERDE also supports Ion files\. 
   + The JSON must be well\-formed\. 
   + Timestamps in Ion and JSON must use ISO8601 format\.
-  + The following SerDe property is supported for the JsonSerDe: 
+  + This parameter supports the following SerDe property for JsonSerDe: 
 
     ```
     'strip.outer.array'='true' 
@@ -208,6 +216,10 @@ The COPY command maps to ORC data files only by position\. The *orc\.schema\.res
 A property that sets whether CREATE EXTERNAL TABLE AS should write data in parallel\. By default, CREATE EXTERNAL TABLE AS writes data in parallel to multiple files, according to the number of slices in the cluster\. The default option is on\. When 'write\.parallel' is set to off, CREATE EXTERNAL TABLE AS writes to one or more data files serially onto Amazon S3\. This table property also applies to any subsequent INSERT statement into the same external table\.  
 ‘write\.maxfilesize\.mb’=‘size’  
 A property that sets the maximum size \(in MB\) of each file written to Amazon S3 by CREATE EXTERNAL TABLE AS\. The size must be a valid integer between 5 and 6200\. The default maximum file size is 6,200 MB\. This table property also applies to any subsequent INSERT statement into the same external table\.  
+‘write\.kms\.key\.id’=‘*value*’  
+You can specify an AWS Key Management Service key to enable Server–Side Encryption \(SSE\) for Amazon S3 objects, where *value* is one of the following:   
++ `auto` to use the default AWS KMS key stored in the Amazon S3 bucket\.
++ *kms\-key* that you specify to encrypt data\.  
 *select\_statement*  
 A statement that inserts one or more rows into the external table by defining any query\. All rows that the query produces are written to Amazon S3 in either text or Parquet format based on the table definition\.
 

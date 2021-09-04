@@ -1,4 +1,4 @@
-# Type information functions<a name="c_Type_Info_Functions"></a>
+# SUPER type information functions<a name="c_Type_Info_Functions"></a>
 
 Following, you can find a description for the type information functions for SQL that Amazon Redshift supports to derive the dynamic information from inputs of the SUPER data type\.
 

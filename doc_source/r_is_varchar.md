@@ -4,6 +4,21 @@ Checks whether a variable is a varchar\. The is\_varchar function returns true f
 
 The is\_varchar function is a superset of the is\_char function\.
 
+## Syntax<a name="r_is_varchar-synopsis"></a>
+
+```
+is_varchar (super_expression)
+```
+
+## Arguments<a name="r_is_varchar-arguments"></a>
+
+*super\_expression*  
+A SUPER expression or column\.
+
+## Returns<a name="r_is_varchar-returns"></a>
+
+Boolean
+
 ## Example<a name="r_is_varchar_example"></a>
 
 The following query shows an is\_varchar function\.

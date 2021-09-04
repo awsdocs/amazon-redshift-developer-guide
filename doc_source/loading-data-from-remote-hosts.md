@@ -1,6 +1,6 @@
 # Loading data from remote hosts<a name="loading-data-from-remote-hosts"></a>
 
-You can use the COPY command to load data in parallel from one or more remote hosts, such Amazon EC2 instances or other computers\. COPY connects to the remote hosts using SSH and executes commands on the remote hosts to generate text output\. 
+You can use the COPY command to load data in parallel from one or more remote hosts, such as Amazon EC2 instances or other computers\. COPY connects to the remote hosts using SSH and executes commands on the remote hosts to generate text output\. 
 
 The remote host can be an Amazon EC2 Linux instance or another Unix or Linux computer configured to accept SSH connections\. This guide assumes your remote host is an Amazon EC2 instance\. Where the procedure is different for another computer, the guide will point out the difference\. 
 
@@ -18,7 +18,7 @@ Before you begin, you should have the following in place:
   For an Amazon EC2 instance, you will use an SSH connection to access the host\. You will need to access the host to add the Amazon Redshift cluster's public key to the host's authorized keys file\.
 + A running Amazon Redshift cluster\. 
 
-  For information about how to launch a cluster, see [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\. 
+  For information about how to launch a cluster, see [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/)\. 
 
 ## Loading data process<a name="load-from-host-process"></a>
 

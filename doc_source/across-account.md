@@ -1,12 +1,4 @@
-# Sharing data across AWS accounts \(preview\)<a name="across-account"></a>
-
-When working with the preview, consider the following:
-+ New Amazon Redshift clusters must be created with the **PREVIEW\_2020** maintenance track\. For more information about preview tracks, see [Choosing cluster maintenance tracks](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-mgmt-maintenance-tracks)\.
-+ This feature is currently available for test purposes only\. Don't use the feature for production use cases\.
-+ You can't switch an existing Amazon Redshift cluster from the current or trailing state to this preview track, or vice versa\. However, you can restore data from a cluster snapshot running on the current or trailing track\.
-+  The data sharing preview period is expected to run until June 30, 2021\. Unless the preview period is extended, clusters should be deleted by June 30, 2021\. Clusters remaining on this track will be automatically deleted\.
-+ You can use a cluster in any AWS Regions with Amazon Redshift RA3 instance types to preview the data sharing feature\. For more information, see [RA3 node type availability in AWS Regions](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#ra3-regions) in the *Amazon Redshift Cluster Management Guide*\.
-+ For any questions, issues, or feedback related to the preview features during the preview period, email `redshift-datasharing@amazon.com` or open a support case with AWS Support\. 
+# Sharing data across AWS accounts<a name="across-account"></a>
 
 You can share data for read purposes across AWS accounts\. Sharing data across AWS accounts work similarly to sharing data within an account\. The difference is that there is a two\-way handshake required in sharing data across AWS accounts\. A producer account administrators can either authorize consumer accounts to access datashares or choose not to authorize any access\. To use an authorized datashare, a consumer account administrator can associate the datashare with the entire AWS account, authorize it with specific clusters in the consumer account, or decline the datashare\. For more information about sharing data within an account, see [Sharing data within an account](within-account.md)\.
 
@@ -70,15 +62,15 @@ When sharing data with AWS accounts, producer cluster administrators share with 
 
 After granting usage to the AWS account, the datashare status is `pending_authorization`\. The producer account administrator should authorize datashares using the Amazon Redshift console and choose the data consumers\.
 
-Sign in to the [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/) and choose which data consumers to authorize to access datashares or to remove authorization from\. Authorized data consumers receive notifications to take actions on datashares\. If you are adding a cluster namespace as a data consumer, you don't have to perform authorization\. After data consumers are authorized, they can access datashare objects and create a consumer database to query the data\. For more information, see [Authorizing or removing authorization from datashares \(preview\)](authorize-datashare-console.md)\.
+Sign in to the [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/) and choose which data consumers to authorize to access datashares or to remove authorization from\. Authorized data consumers receive notifications to take actions on datashares\. If you are adding a cluster namespace as a data consumer, you don't have to perform authorization\. After data consumers are authorized, they can access datashare objects and create a consumer database to query the data\. For more information, see [Authorizing or removing authorization from datashares](authorize-datashare-console.md)\.
 
 **If you are a consumer account administrator** – follow these steps:
 
-To associate one or more datashares that are shared from other accounts to your entire AWS account \(preview\) or specific cluster namespaces in your account, use the Amazon Redshift console\. If you aren't interested in the datashare, then you can also choose to decline the datashare\.
+To associate one or more datashares that are shared from other accounts to your entire AWS account or specific cluster namespaces in your account, use the Amazon Redshift console\. If you aren't interested in the datashare, then you can also choose to decline the datashare\.
 
-Sign in to the [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/) and associate one or more datashares that are shared from other accounts to your entire AWS account \(preview\) or specific cluster namespaces in your account\. For more information, see [Associating datashares \(preview\)](accept-datashare-console.md)\.
+Sign in to the [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/) and associate one or more datashares that are shared from other accounts to your entire AWS account  or specific cluster namespaces in your account\. For more information, see [Associating datashares](accept-datashare-console.md)\.
 
-After the AWS account \(preview\) or specific cluster namespaces are associated, the datashares become available for consumption\. You can also change datashare association at any time\. When changing association from individual cluster namespaces to an AWS account, Amazon Redshift overwrites the cluster namespaces with the AWS account information\. When changing association from an AWS account to specific cluster namespaces, Amazon Redshift overwrites the AWS account information with the cluster namespace information \(preview\)\. All cluster namespaces in the account get access to the data\.
+After the AWS account or specific cluster namespaces are associated, the datashares become available for consumption\. You can also change datashare association at any time\. When changing association from individual cluster namespaces to an AWS account, Amazon Redshift overwrites the cluster namespaces with the AWS account information\. When changing association from an AWS account to specific cluster namespaces, Amazon Redshift overwrites the AWS account information with the cluster namespace information\. All cluster namespaces in the account get access to the data\.
 
 **If you are a consumer cluster administrator** – follow these steps:
 
@@ -91,7 +83,7 @@ After the AWS account \(preview\) or specific cluster namespaces are associated,
    
    share_name | share_owner | source_database | consumer_database | share_type | createdate | is_publicaccessible | share_acl | producer_account |          producer_namespace
    -----------+-------------+-----------------+-------------------+------------+------------+---------------------+-----------+------------------+---------------------------------------
-   salesshare |             |                 |                   | INBOUND    |            |        t            |           | 123456789012      | 'dd8772e1-d792-4fa4-996b-1870577efc0d'
+   salesshare |             |                 |                   | INBOUND    |            |        t            |           | 123456789012    | 'dd8772e1-d792-4fa4-996b-1870577efc0d'
    ```
 
    ```

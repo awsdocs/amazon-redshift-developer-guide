@@ -252,3 +252,7 @@ Be aware of these considerations when using PARTITION BY:
 ### Using the ASSUMEROLE privilege to grant access to an IAM role for UNLOAD operations<a name="unload-assumerole-privilege-usage"></a>
 
 To provide access for specific users and groups to an IAM role for UNLOAD operations, a superuser can grant the ASSUMEROLE privilege on an IAM role to users and groups\. For information, see [GRANT](r_GRANT.md)\. 
+
+### UNLOAD doesn't support Amazon S3 access point aliases<a name="unload-usage-s3-access-point-alias"></a>
+
+You can't use Amazon S3 access point aliases with the UNLOAD command\. 

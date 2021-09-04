@@ -1,29 +1,89 @@
-# Controlling shared data access<a name="control-access"></a>
+# Controlling access for cross\-account datashares<a name="control-access"></a>
 
-As a producer cluster administrator, you retain control for the datasets you are sharing\. You can add new objects to or remove them from the datashare\. You can also grant or revoke access to datashares as a whole for the consumer clusters and AWS accounts \(preview\)\. When permissions are revoked, consumer clusters immediately lose access to the shared objects and stop seeing them in list of INBOUND datashare in SVV\_DATASHARES\.
+Following are considerations for controlling cross\-account datashare access\.
 
-The following example creates a datashare SalesShare, adds a table public\.tickit\_sales\_redshift to SalesShare, and grants usage privileges on SalesShare to a cluster namespace\.
+**Topics**
++ [Managing datashares at different states](#manage-status)
++ [Managing access to data sharing API operations with IAM policies](#iam-policy)
++ [Managing cluster encryption](#encryption)
++ [Integrating Amazon Redshift data sharing with AWS CloudTrail](cloudtrail.md)
+
+## Managing datashares at different states<a name="manage-status"></a>
+
+With cross\-account datashares, there are different statuses of datashares that require your actions\. Your datashare can have the status are active, action required, or inactive\. 
+
+Following describes each datashare status and its required action:
++ When a producer cluster administrator creates a datashare, the datashare status on the producer cluster is **Pending authorization**\. The producer cluster administrator can authorize data consumers to access the datashare\. There isn't any action for the consumer cluster administrator\.
++ When a producer cluster administrator authorizes the datashare, the datashare status becomes **Authorized** on the producer cluster\. There isn't any action for the producer cluster administrator\. When there is at least one association with a data consumer for the datashare, the datashare status changes from **Authorized** to **Active**\.
+
+  The datashare share status then becomes **Available \(Action required on the Amazon Redshift console\)** on the consumer cluster\. The consumer cluster administrator can associate the datashare with data consumers or reject the datashare\. The consumer cluster administrator can also use the AWS CLI command `describeDatashareforConsumer` to view the status of datashares\. Or the administrator can use the CLI command `describeDatashare` and provide the datashare Amazon Resource Name \(ARN\) to view the status of the datashare\.
++ When the consumer cluster administrator associates a datashare with data consumers, the datashare status becomes **Active** on the producer cluster\. When there is at least one association with a data consumer for the datashare, the datashare status changes from **Authorized** to **Active**\. There isn't any action required for the producer cluster administrator\.
+
+  The datashare status becomes **Active** on the consumer cluster\. There isn't any action required for the consumer cluster administrator\.
++ When the consumer cluster administrator removes a consumer association from a datashare, the datashare status becomes either **Active** or **Authorized**\. It becomes **Active** when there is at least one association exists for the datashare with another data consumer\. It becomes **Authorized** when there isn't any consumer association with the datashare on the producer cluster\. There isn't any action for the producer cluster administrator\.
+
+  The datashare status becomes **Action required** on the consumer cluster if all associations are removed\. The consumer cluster administrator can reassociate a datashare with data consumers when the datashare is available to the consumers\.
++ When a consumer cluster administrator declines a datashare, the datashare status on the producer cluster becomes **Action required** and **Declined** on the consumer cluster\. The producer cluster administrator can reauthorize the datashare\. There isn't any action for the consumer cluster administrator\.
++ When the producer cluster administrator removes authorization from a datashare, the datashare's status becomes **Action required** on the producer cluster\. The producer cluster administrator can choose to reauthorize the datashare, if required\. There isn't any action required for the consumer cluster administrator\.
+
+## Managing access to data sharing API operations with IAM policies<a name="iam-policy"></a>
+
+To control the access to the data sharing API operations, use IAM action\-based policies to control the access to the data sharing API operations\. For information about how to manage IAM policies, see [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\.
+
+For information on the permissions required to use the data sharing API operations, see [Permissions required to use the data sharing API operations](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html) in the *Amazon Redshift Cluster Management Guide*\.
+
+To make cross\-account data sharing more secure, you can use a conditional key `ConsumerIdentifier` for the `AuthorizeDataShare` and `DeauthorizeDataShare` APIs to explicitly control which AWS accounts can make calls to the two APIs\.
+
+You can deny authorizing or deauthorizing data sharing against any consumer that isn't your own account by specifying the AWS account number in the IAM policy\.
 
 ```
-CREATE DATASHARE SalesShare;
-
-ALTER DATASHARE SalesShare ADD TABLE public.tickit_sales_redshift; 
-
-GRANT USAGE ON DATASHARE SalesShare TO NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Deny",
+            "Action": [
+                "redshift:AuthorizeDataShare",
+                "redshift:DeauthorizeDataShare"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringNotEquals": {
+                    "redshift:ConsumerIdentifier": "555555555555"
+                }
+            }
+        }
+    ]
+}
 ```
 
-For CREATE DATASHARE, superusers and database owners can create datashares\. For more information, see [CREATE DATASHARE](r_CREATE_DATASHARE.md)\. For ALTER DATASHARE, the owner of the datashare with the required permissions on the datashare objects to be added or removed can alter the datashare\. For information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\. 
-
-As a producer administrator, when you drop a datashare, it stops being listed on consumer clusters\. The databases and schema references created on the consumer cluster from the dropped datashare continue to exist with no objects in them\. The consumer cluster administrator needs to delete these databases manually\.
-
-On the consumer side, a consumer cluster administrator can determine which users and groups should get access to the shared data\. An administrator can control access at the database or schema level\.
-
-The following example grants privileges to access a shared table at the database level and schema level\.
+You can allow a producer with a DataShareArn **testshare2** to explicitly share with a consumer with an AWS account of 111122223333 in the IAM policy\.
 
 ```
-GRANT USAGE ON DATABASE Sales_db TO Bob;
-
-GRANT USAGE ON SCHEMA Sales_schema TO GROUP Analyst_group;
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "redshift:AuthorizeDataShare",
+                "redshift:DeauthorizeDataShare"
+            ],
+            "Resource": "arn:aws:redshift:us-east-1:666666666666:datashare:af06285e-8a45-4ee9-b598-648c218c8ff1/testshare2",
+            "Condition": {
+                "StringEquals": {
+                    "redshift:ConsumerIdentifier": "111122223333"
+                }
+            }
+        }
+    ]
+}
 ```
 
-To further restrict access, you can create views on top of shared objects, exposing only the necessary data\. You can then use these views to give access to the users and groups\.
+## Managing cluster encryption<a name="encryption"></a>
+
+To share data across AWS account, both the producer and consumer clusters must be encrypted\.
+
+In Amazon Redshift, you can enable database encryption for your clusters to help protect data at rest\. When you enable encryption for a cluster, the data blocks and system metadata are encrypted for the cluster and its snapshots\. You can enable encryption when you launch your cluster, or you can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption\. For more information about Amazon Redshift database encryption, see [Amazon Redshift database encryption](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html) in the *Amazon Redshift Cluster Management Guide*\.

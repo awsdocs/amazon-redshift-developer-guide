@@ -1,4 +1,4 @@
-# Integrating data sharing with business intelligence tools<a name="tool-integration"></a>
+# Integrating Amazon Redshift data sharing with business intelligence tools<a name="tool-integration"></a>
 
 To integrate data sharing with business intelligence \(BI\) tools, we recommend that you use the Amazon Redshift JDBC or ODBC drivers\. You can also query the following system metadata views to view information about Amazon Redshift database objects\. 
 + These views include objects from the Amazon Redshift database that you are currently connected to\. They also include objects from all the other databases that you have access to on the cluster, including the databases created from the datashares\.

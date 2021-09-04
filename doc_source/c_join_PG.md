@@ -51,7 +51,7 @@ The catalog tables that are not listed here are either inaccessible or unlikely 
 
 You can use the OID columns in the Postgres catalog tables as joining columns\. For example, the join condition `pg_database.oid = stv_tbl_perm.db_id` matches the internal database object ID for each PG\_DATABASE row with the visible DB\_ID column in the STV\_TBL\_PERM table\. The OID columns are internal primary keys that are not visible when you select from the table\. The catalog views do not have OID columns\.
 
-Some Amazon Redshift functions must execute only on the compute nodes\. If a query references a user\-created table, the SQL runs on the compute nodes\.
+Some Amazon Redshift functions must run only on the compute nodes\. If a query references a user\-created table, the SQL runs on the compute nodes\.
 
 A query that references only catalog tables \(tables with a PG prefix, such as PG\_TABLE\_DEF\) or that does not reference any tables, runs exclusively on the leader node\.
 

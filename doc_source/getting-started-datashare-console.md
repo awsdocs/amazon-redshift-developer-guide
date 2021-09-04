@@ -3,20 +3,20 @@
 **Topics**
 + [Connecting to a database](connect-database-console.md)
 + [Viewing datashares](view-datashare-console.md)
-+ [Authorizing or removing authorization from datashares \(preview\)](authorize-datashare-console.md)
-+ [Associating datashares \(preview\)](accept-datashare-console.md)
-+ [Declining datashares \(preview\)](decline-datashare-console.md)
++ [Authorizing or removing authorization from datashares](authorize-datashare-console.md)
++ [Associating datashares](accept-datashare-console.md)
++ [Declining datashares](decline-datashare-console.md)
 + [Creating datashares](create-datashare-console.md)
 + [Adding datashare objects to datashares](add-datashare-object-console.md)
 + [Removing datashare objects from datashares](remove-datashare-object-console.md)
 + [Adding data consumers to datashares](add-data-consumer-console.md)
 + [Removing data consumers from datashares](remove-data-consumer-console.md)
-+ [Removing association of datashare from data consumers \(preview\)](disassociate-datashare-console.md)
++ [Removing association of datashare from data consumers](disassociate-datashare-console.md)
 + [Editing datashares created in your account](edit-datashare-console.md)
 + [Deleting datashares created in your account](delete-datashare-console.md)
 + [Creating databases from datashares](create-database-from-datashare-console.md)
 
-Use the Amazon Redshift console to manage datashares created in your account or shared from other accounts\. For datashare concepts, see [Data sharing concepts](concepts.md)\.
+Use the Amazon Redshift console to manage datashares created in your account or shared from other accounts\. For datashare concepts, see [Data sharing concepts for Amazon Redshift](concepts.md)\.
 + If you are a producer cluster administrator, you can create datashares, add data consumers, add datashare objects, create databases from datashares, edit datashares, or delete datashares from the **CLUSTERS** tab\. 
 
   From the navigation menu, navigate the **Clusters** tab, choose a cluster from the cluster list\. Then do one of the following:

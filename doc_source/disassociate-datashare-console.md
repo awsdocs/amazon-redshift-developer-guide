@@ -1,4 +1,4 @@
-# Removing association of datashare from data consumers \(preview\)<a name="disassociate-datashare-console"></a>
+# Removing association of datashare from data consumers<a name="disassociate-datashare-console"></a>
 
 As a consumer cluster administrator, you can remove association of datashares from data consumers\.
 

@@ -145,7 +145,7 @@ When you load data as part of a structured process, such as in an overnight extr
 
 To improve COPY responsiveness by skipping the compression analysis phase, implement either of the following two options:
 + Use the column `ENCODE` parameter when creating any tables that you load using the COPY command\.
-+ Disable compression altogether by supplying the `COMPUPDATE OFF` parameter in the COPY command\.
++ Turn off compression altogether by supplying the `COMPUPDATE OFF` parameter in the COPY command\.
 
 The best solution is generally to use column encoding during table creation, because this approach also maintains the benefit of storing compressed data on disk\. You can use the ANALYZE COMPRESSION command to suggest compression encodings, but you must recreate the table to apply these encodings\. To automate this process, you can use the AWS[ColumnEncodingUtility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\. 
 
@@ -175,7 +175,7 @@ WHERE b.complyze_sec IS NOT NULL ORDER BY a.copy_sql, a.starttime;
 
 **Implementation tips**
 + Ensure that all tables of significant size created during your ETL processes \(for example, staging tables and temporary tables\) declare a compression encoding for all columns except the first sort key\.
-+ Estimate the expected lifetime size of the table being loaded for each of the COPY commands identified by the SQL command preceding\. If you are confident that the table will remain extremely small, disable compression altogether with the `COMPUPDATE OFF` parameter\. Otherwise, create the table with explicit compression before loading it with the COPY command\.
++ Estimate the expected lifetime size of the table being loaded for each of the COPY commands identified by the SQL command preceding\. If you are confident that the table will remain extremely small, turn off compression altogether with the `COMPUPDATE OFF` parameter\. Otherwise, create the table with explicit compression before loading it with the COPY command\.
 
 ## Split Amazon S3 objects loaded by COPY<a name="split-s3-objects-recommendation"></a>
 

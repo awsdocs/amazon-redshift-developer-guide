@@ -14,7 +14,7 @@ The basic [COPY](r_COPY.md) command syntax is as follows\.
 COPY table_name [ column_list ] FROM data_source CREDENTIALS access_credentials [options] 
 ```
 
-To execute a COPY command, you provide the following values\. 
+To run a COPY command, you provide the following values\. 
 <a name="tutorial-loading-syntax-table-name"></a>
 **Table name**  
 The target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\. 
@@ -147,7 +147,7 @@ The following excerpt from a CSV\-formatted data file for the PART table shows s
 
 The data for the PART table contains characters that cause COPY to fail\. In this exercise, you troubleshoot the errors and correct them\. 
 
-To load data that is in CSV format, add `csv` to your COPY command\. Execute the following command to load the PART table\. 
+To load data that is in CSV format, add `csv` to your COPY command\. Run the following command to load the PART table\. 
 
 ```
 copy part from 's3://<your-bucket-name>/load/part-csv.tbl' 
@@ -203,7 +203,7 @@ By default, COPY treats a NUL terminator character as an EOR character and termi
 **Note**  
 The table column that receives the NULL value must be configured as *nullable\.* That is, it must not include the NOT NULL constraint in the CREATE TABLE specification\.
 
-To load PART using the NULL AS option, execute the following COPY command\.
+To load PART using the NULL AS option, run the following COPY command\.
 
 ```
 copy part from 's3://<your-bucket-name>/load/part-csv.tbl' 
@@ -212,7 +212,7 @@ csv
 null as '\000';
 ```
 
-To verify that COPY loaded NULL values, execute the following command to select only the rows that contain NULL\.
+To verify that COPY loaded NULL values, run the following command to select only the rows that contain NULL\.
 
 ```
 select p_partkey, p_name, p_mfgr, p_category from part where p_mfgr is null;
@@ -249,7 +249,7 @@ Whenever possible, you should locate your load data in the same AWS region as yo
 
 If you must load data from a different AWS region, use the REGION option to specify the AWS region in which the load data is located\. If you specify a region, all of the load data, including manifest files, must be in the named region\. For more information, see [REGION](copy-parameters-data-source-s3.md#copy-region)\. 
 
-If your cluster is in the US East \(N\. Virginia\) region, execute the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US West \(Oregon\) region\. For this example, do not change the bucket name\. 
+If your cluster is in the US East \(N\. Virginia\) region, run the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US West \(Oregon\) region\. For this example, do not change the bucket name\. 
 
 ```
 copy supplier from 's3://awssampledbuswest2/ssbgz/supplier.tbl' 
@@ -259,7 +259,7 @@ gzip
 region 'us-west-2';
 ```
 
-If your cluster is *not* in the US East \(N\. Virginia\) region, execute the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US East \(N\. Virginia\) region\. For this example, do not change the bucket name\.
+If your cluster is *not* in the US East \(N\. Virginia\) region, run the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US East \(N\. Virginia\) region\. For this example, do not change the bucket name\.
 
 ```
 copy supplier from 's3://awssampledb/ssbgz/supplier.tbl' 
@@ -293,7 +293,7 @@ fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15,
 c_region :12, c_phone:15,c_mktsegment:10'
 ```
 
-To load the CUSTOMER table from fixed\-width data, execute the following command\.
+To load the CUSTOMER table from fixed\-width data, run the following command\.
 
 ```
 copy customer
@@ -320,7 +320,7 @@ Execution time: 2.95s
 **MAXERROR**  
 By default, the first time COPY encounters an error, the command fails and returns an error message\. To save time during testing, you can use the MAXERROR option to instruct COPY to skip a specified number of errors before it fails\. Because we expect errors the first time we test loading the CUSTOMER table data, add `maxerror 10` to the COPY command\. 
 
-To test using the FIXEDWIDTH and MAXERROR options, execute the following command\.
+To test using the FIXEDWIDTH and MAXERROR options, run the following command\.
 
 ```
 copy customer
@@ -381,7 +381,7 @@ By examining the results, you can see that there are two messages in the `error_
 
   The VARCHAR data type supports multibyte UTF\-8 characters up to three bytes\. If the load data contains unsupported or invalid characters, you can use the ACCEPTINVCHARS option to replace each invalid character with a specified alternative character\.
 
-Another problem with the load is more difficult to detect—the load produced unexpected results\. To investigate this problem, execute the following command to query the CUSTOMER table\.
+Another problem with the load is more difficult to detect—the load produced unexpected results\. To investigate this problem, run the following command to query the CUSTOMER table\.
 
 ```
 select c_custkey, c_name, c_address        
@@ -457,7 +457,7 @@ The following shows the `customer-fw-manifest` text\.
 
 1. Upload the file to the load folder on your bucket\.
 
-1. Execute the following COPY command\.
+1. Run the following COPY command\.
 
    ```
    copy customer from 's3://<your-bucket-name>/load/customer-fw-manifest'
@@ -485,7 +485,7 @@ The following excerpt shows date formats in the DWDATE table\. Notice that the d
 **DATEFORMAT**  
 You can specify only one date format\. If the load data contains inconsistent formats, possibly in different columns, or if the format is not known at load time, you use DATEFORMAT with the `'auto'` argument\. When `'auto'` is specified, COPY recognizes any valid date or time format and convert it to the default format\. The `'auto'` option recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. For more information, see [Using automatic recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. 
 
-To load the DWDATE table, execute the following COPY command\.
+To load the DWDATE table, run the following COPY command\.
 
 ```
 copy dwdate from 's3://<your-bucket-name>/load/dwdate-tab.tbl'
@@ -522,7 +522,7 @@ The following screenshot shows the data files for LINEORDER\.
 
 **To evaluate the performance of COPY with multiple files**
 
-1. Execute the following command to COPY from a single file\. Do not change the bucket name\.
+1. Run the following command to COPY from a single file\. Do not change the bucket name\.
 
    ```
    copy lineorder from 's3://awssampledb/load/lo/lineorder-single.tbl' 
@@ -544,7 +544,7 @@ The following screenshot shows the data files for LINEORDER\.
    Execution time: 51.56s
    ```
 
-1. Execute the following command to COPY from multiple files\. Do not change the bucket name\.
+1. Run the following command to COPY from multiple files\. Do not change the bucket name\.
 
    ```
    copy lineorder from 's3://awssampledb/load/lo/lineorder-multi.tbl' 
