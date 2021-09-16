@@ -27,7 +27,7 @@ A clause that specifies how the data in the materialized view is distributed, in
 + The sort key for the materialized view, in the format `SORTKEY ( column_name [, ...] )`\. For more information, see [Working with sort keys](t_Sorting_data.md)\.
 
 AS *query*  
-A valid `SELECT` statement which defines the materialized view and its content\. The result set from the query defines the columns and rows of the materialized view\. For information about limitations when creating materialized views, see [Limitations](#mv_CREATE_MATERIALIZED_VIEW-limitations)\.  
+A valid `SELECT` statement that defines the materialized view and its content\. The result set from the query defines the columns and rows of the materialized view\. For information about limitations when creating materialized views, see [Limitations](#mv_CREATE_MATERIALIZED_VIEW-limitations)\.  
 Furthermore, specific SQL language constructs used in the query determines whether the materialized view can be incrementally or fully refreshed\. For information about the refresh method, see [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)\. For information about the limitations for incremental refresh, see [Limitations for incremental refresh](materialized-view-refresh-sql-command.md#mv_REFRESH_MARTERIALIZED_VIEW_limitations)\.  
 If the query contains an SQL command that doesn't support incremental refresh, Amazon Redshift displays a message indicating that the materialized view will use a full refresh\. The message may or may not be displayed depending on the SQL client application\. For example, psql displays the message, and a JDBC client may not\. Check the `state` column of the [STV\_MV\_INFO](r_STV_MV_INFO.md) to see the refresh type used by a materialized view\.
 
@@ -51,21 +51,17 @@ When using materialized views in Amazon Redshift, follow these usage notes for d
 ## Limitations<a name="mv_CREATE_MATERIALIZED_VIEW-limitations"></a>
 
 You can't define a materialized view that references or includes any of the following:
-+ Any other materialized view, a standard view, or system tables and views\.
++ Standard views, or system tables and views\.
 + Temporary tables\.
 + User\-defined functions\.
 + The ORDER BY, LIMIT, or OFFSET clause\.
 + Late binding references to base tables\. In other words, any base tables or related columns referenced in the defining SQL query of the materialized view must exist and must be valid\. 
-+ System administration functions\. For a list, see [System administration functions](r_System_administration_functions.md)\. 
-+ System information functions\. For a list, see [System information functions](r_System_information_functions.md)\. 
-+ Leader node\-only functions: CURRENT\_SCHEMA, CURRENT\_SCHEMAS, HAS\_DATABASE\_PRIVILEGE, HAS\_SCHEMA\_PRIVILEGE, HAS\_TABLE\_PRIVILEGE, AGE, CURRENT\_TIME, CURRENT\_TIMESTAMP, LOCALTIME, NOW\.
-+ Date functions: CURRENT\_DATE, DATE, DATE\_PART, DATE\_TRUNC, DATE\_CMP\_TIMESTAMPTZ, SYSDATE, TIMEOFDAY, TO\_TIMESTAMP\. When defining a materialized view, consider the following functions with specific input argument types: DATE is immutable for timestamp, DATE\_PART is immutable for date, time, interval, and time\-tz, DATE\_TRUNC is immutable for the following data type: date, timestamp, and interval\. You must use functions that are immutable in order to successfully create materialized views\. Otherwise, Amazon Redshift blocks the creation of materialized views that contain functions that are not immutable\. For more information about functions, see [Function volatility categories](https://www.postgresql.org/docs/8.0/xfunc-volatility.html)\.
-+ Math functions: RANDOM\.
-+ Date type formatting functions: TO\_CHAR WITH TIMESTAMPTZ\. 
++ Leader node\-only functions: CURRENT\_SCHEMA, CURRENT\_SCHEMAS, HAS\_DATABASE\_PRIVILEGE, HAS\_SCHEMA\_PRIVILEGE, HAS\_TABLE\_PRIVILEGE\.
++ You can't use the AUTO REFRESH YES option when the materialized view definition includes mutable functions or external schemas\.
 
 ## Examples<a name="mv_CREATE_MARTERIALIZED_VIEW_examples"></a>
 
-The following example creates a materialized view from three base tables which are joined and aggregated\. Each row represents a category with the number of tickets sold\. When you query the tickets\_mv materialized view, you directly access the precomputed data in the tickets\_mv materialized view\.
+The following example creates a materialized view from three base tables that are joined and aggregated\. Each row represents a category with the number of tickets sold\. When you query the tickets\_mv materialized view, you directly access the precomputed data in the tickets\_mv materialized view\.
 
 ```
 CREATE MATERIALIZED VIEW tickets_mv AS

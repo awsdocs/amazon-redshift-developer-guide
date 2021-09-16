@@ -1,6 +1,6 @@
 # ST\_AsBinary<a name="ST_AsBinary-function"></a>
 
-ST\_AsBinary returns the hexadecimal well\-known binary \(WKB\) representation of an input geometry using ASCII hexadecimal characters \(0–9, A–F\)\. 
+ST\_AsBinary returns the hexadecimal well\-known binary \(WKB\) representation of an input geometry using ASCII hexadecimal characters \(0–9, A–F\)\. For 3DZ, 3DM, and 4D geometries, ST\_AsBinary uses the Open Geospatial Consortium \(OGC\) standard value for the geometry type\. 
 
 ## Syntax<a name="ST_AsBinary-function-syntax"></a>
 

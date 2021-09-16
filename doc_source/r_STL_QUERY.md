@@ -3,7 +3,7 @@
 Returns execution information about a database query\.
 
 **Note**  
-The STL\_QUERY and STL\_QUERYTEXT views only contain information about queries, not other utility and DDL commands\. For a listing and information on all statements executed by Amazon Redshift, you can also query the STL\_DDLTEXT and STL\_UTILITYTEXT views\. For a complete listing of all statements executed by Amazon Redshift, you can query the SVL\_STATEMENTTEXT view\.
+The STL\_QUERY and STL\_QUERYTEXT views only contain information about queries, not other utility and DDL commands\. For a listing and information on all statements run by Amazon Redshift, you can also query the STL\_DDLTEXT and STL\_UTILITYTEXT views\. For a complete listing of all statements run by Amazon Redshift, you can query the SVL\_STATEMENTTEXT view\.
 
 To manage disk space, the STL log views only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
 

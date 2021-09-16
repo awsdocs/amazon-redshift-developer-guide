@@ -64,7 +64,7 @@ The following `wlm_json_configuration` example defines three user groups \(`inge
 
 Query monitoring rules \(QMR\) enable you to change the priority of a query based on its behavior while it is running\. You do this by specifying the priority attribute in a QMR predicate in addition to an action\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 
 
-For example, you can define a rule to abort any query classified as `high` priority that runs for more than 10 minutes\.
+For example, you can define a rule to cancel any query classified as `high` priority that runs for more than 10 minutes\.
 
 ```
 "rules" :[

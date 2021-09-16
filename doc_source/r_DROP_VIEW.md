@@ -66,7 +66,7 @@ ERROR: can't drop view eventview because other objects depend on it
 HINT: Use DROP ... CASCADE to drop the dependent objects too.
 ```
 
-To remedy this, execute the following command \(as suggested in the error message\): 
+To remedy this, run the following command \(as suggested in the error message\): 
 
 ```
 drop view eventview cascade;
@@ -74,7 +74,7 @@ drop view eventview cascade;
 
 Both *eventview* and *myeventview* have now been dropped successfully\.
 
-The following example either drops the *eventview* view if it exists, or does nothing and returns a message if it doesn't
+The following example either drops the *eventview* view if it exists, or does nothing and returns a message if it doesn't:
 
 ```
 drop view if exists eventview;

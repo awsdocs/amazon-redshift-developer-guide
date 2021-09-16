@@ -2,6 +2,8 @@
 
 ST\_GeomFromEWKB constructs a geometry object from the extended well\-known binary \(EWKB\) representation of an input geometry\. 
 
+ST\_GeomFromEWKB accepts 3DZ, 3DM, and 4D geometries written in WKB and EWKB hexadecimal format\.
+
 ## Syntax<a name="ST_GeomFromEWKB-function-syntax"></a>
 
 ```

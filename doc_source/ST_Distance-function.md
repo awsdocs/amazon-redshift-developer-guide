@@ -1,6 +1,8 @@
 # ST\_Distance<a name="ST_Distance-function"></a>
 
-ST\_Distance returns the Euclidean distance between the two input geometry values\. 
+ST\_Distance returns the minimum Euclidean distance between the 2D projections of the two input geometry values\. 
+
+For 3DM, 3DZ, 4D geometries, ST\_Distance returns the Euclidean distance between the 2D projections of two input geometry values\.
 
 ## Syntax<a name="ST_Distance-function-syntax"></a>
 

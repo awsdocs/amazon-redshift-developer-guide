@@ -1,6 +1,6 @@
 # Supported PL/pgSQL statements<a name="c_PLpgSQL-statements"></a>
 
- PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
+ PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data manipulation language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
 
 **Topics**
 + [Assignment](#r_PLpgSQL-assignment)
@@ -560,7 +560,7 @@ Use the RAISE statement to report messages and raise errors\.
 RAISE level 'format' [, variable [, ...]];
 ```
 
-Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally aborts the current transaction\. The other levels generate only messages of different priority levels\. 
+Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally cancels the current transaction\. The other levels generate only messages of different priority levels\. 
 
 Inside the format string, % is replaced by the next optional argument's string representation\. Write %% to emit a literal %\. Currently, optional arguments must be simple variables, not expressions, and the format must be a simple string literal\.
 

@@ -1,6 +1,8 @@
 # ST\_IsEmpty<a name="ST_IsEmpty-function"></a>
 
-ST\_IsEmpty returns true if the input geometry is empty\. A geometry is empty if it contains no points\. 
+ST\_IsEmpty returns true if the input geometry is empty\. A geometry is not empty if it contains at least one nonempty point\. 
+
+ST\_IsEmpty returns true if the input geometry has at least one nonempty point\. 
 
 ## Syntax<a name="ST_IsEmpty-function-syntax"></a>
 

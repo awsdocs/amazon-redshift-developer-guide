@@ -2,22 +2,22 @@
 
 Returns the length of the specified array\. The GET\_ARRAY\_LENGTH function returns the length of a SUPER array given an object or array path\.
 
-### Syntax<a name="get_array_length-syntax"></a>
+## Syntax<a name="get_array_length-syntax"></a>
 
 ```
-get_array_length(super_expr)
+get_array_length( super_expr )
 ```
 
-### Arguments<a name="get_array_length-arguments"></a>
+## Arguments<a name="get_array_length-arguments"></a>
 
  *super\_expr*   
-A valid super expression of array form\.
+A valid SUPER expression of array form\.
 
-### Return type<a name="get_array_length-returm-type"></a>
+## Return type<a name="get_array_length-returm-type"></a>
 
 The get\_array\_length function returns a BIGINT\. 
 
-### Example<a name="get_array_length-example"></a>
+## Example<a name="get_array_length-example"></a>
 
 The following example shows a get\_array\_length function\.
 

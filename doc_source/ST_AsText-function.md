@@ -1,6 +1,6 @@
 # ST\_AsText<a name="ST_AsText-function"></a>
 
-ST\_AsText returns the well\-known text \(WKT\) representation of an input geometry\. 
+ST\_AsText returns the well\-known text \(WKT\) representation of an input geometry\. For 3DZ, 3DM, and 4D geometries, ST\_AsEWKT appends Z, M, or ZM to the WKT value for the geometry type\.
 
 ## Syntax<a name="ST_AsText-function-syntax"></a>
 

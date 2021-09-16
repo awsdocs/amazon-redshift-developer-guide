@@ -85,4 +85,5 @@ When using SUPER data type, you can find related limitations following:
      [1,"abc",null]
     (1 row)
     ```
+  + For case\-insensitive databases, Amazon Redshift doesn't support the SUPER data type\. For case\-insensitive columns, Amazon Redshift doesn't cast them to the SUPER type\. Thus, Amazon Redshift doesn't support SUPER columns interacting with case\-insensitive columns that trigger casting\.
 + Amazon Redshift doesn't support volatile functions, such as RANDOM \( \) or TIMEOFDAY \( \), in subqueries that unnest an outer table or a left\-hand side \(LHS\) of IN functions with such subqueries\.

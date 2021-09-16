@@ -18,9 +18,9 @@ As a producer cluster administrator, you can create datashares from the **Databa
 
    When you change the database name, make a new database connection\.
 
-1. In the **Datashare objects** section, to add objects to a datashare, follow [Adding datashare objects to datashares ](add-datashare-object-console.md)\.
+1. In the **Datashare objects** section, to add objects to a datashare, follow [Adding datashare objects to datashares](add-datashare-object-console.md)\.
 
-1. In the **Data consumers** section, to add data consumers to a datashare, follow [Adding data consumers to datashares ](add-data-consumer-console.md)\.
+1. In the **Data consumers** section, to add data consumers to a datashare, follow [Adding data consumers to datashares](add-data-consumer-console.md)\.
 
 1. Choose **Create datashare**\.
 

@@ -10,7 +10,7 @@ If there is no local connection, do one of the following:
   + In the **Datashares from other clusters** section, choose **Connect to database** to view datashares from other clusters\.
   + In the **Datashares created in my cluster** section, choose **Connect to database** to view datashares in your cluster\.
 + On the **Connect to database** window, do one of the following:
-  + If you choose **Create a new connection**, choose **AWS Secrets Manager** to use a stored secret to authenticate access for the connection\. 
+  + If you choose **Create a new connection**, choose **AWS Secrets Manager** to use a stored secret to authenticate access for the connection\. For information on how to create stored secrets, see [Creating a secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) in the *AWS Secrets Manager User Guide*\.
 
     Or, choose **Temporary credentials** to use database credentials to authenticate access for the connection\. Specify values for **Database name** and **Database user**\.
 

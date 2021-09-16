@@ -1,6 +1,6 @@
 # ST\_AsEWKB<a name="ST_AsEWKB-function"></a>
 
-ST\_AsEWKB returns the extended well\-known binary \(EWKB\) representation of an input geometry using ASCII hexadecimal characters \(0–9, A–F\)\. 
+ST\_AsEWKB returns the extended well\-known binary \(EWKB\) representation of an input geometry using ASCII hexadecimal characters \(0–9, A–F\)\. For 3DZ, 3DM, and 4D geometries, ST\_AsEWKB uses the PostGIS extended WKB value for the geometry type\.
 
 ## Syntax<a name="ST_AsEWKB-function-syntax"></a>
 

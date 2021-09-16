@@ -10,7 +10,7 @@ This view is visible only to superusers\. For more information, see [Visibility 
 
 ## Sample queries<a name="r_STL_CONNECTION_LOG-sample-queries2"></a>
 
-To view the details for open connections, execute the following query\.
+To view the details for open connections, run the following query\.
 
 ```
 select recordtime, username, dbname, remotehost, remoteport
@@ -54,4 +54,16 @@ driver_version                          |  os_version                       | pl
 ----------------------------------------+-----------------------------------+--------------------
 Amazon Redshift ODBC Driver 1.4.15.0001 | Darwin 18.7.0 x86_64              | none
 Amazon Redshift ODBC Driver 1.4.15.0001 | Linux 4.15.0-101-generic x86_64   | none
+```
+
+The following example shows the version of the operating system on the client machine, the driver version, and the protocol version\.
+
+```
+select os_version, driver_version, protocol_version from stl_connection_log;
+                
+os_version                      |  driver_version              | protocol_version
+--------------------------------+------------------------------+--------------------
+Linux 4.15.0-101-generic x86_64 | Redshift JDBC Driver 2.0.0.0 | 2
+Linux 4.15.0-101-generic x86_64 | Redshift JDBC Driver 2.0.0.0 | 2 
+Linux 4.15.0-101-generic x86_64 | Redshift JDBC Driver 2.0.0.0 | 2
 ```

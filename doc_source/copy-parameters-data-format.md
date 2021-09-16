@@ -54,7 +54,7 @@ Avro format is supported for COPY from these services and protocols:
 + Amazon EMR 
 + Remote hosts \(SSH\) 
 Avro isn't supported for COPY from DynamoDB\.   
-Avro is a data serialization protocol\. An Avro source file includes a schema that defines the structure of the data\. The Avro schema type must be `record`\. COPY accepts Avro files creating using the default uncompressed codec as well as the `deflate` and `snappy` compression codecs\. For more information about Avro, go to [Apache Avro](https://avro.apache.org/)\.   
+Avro is a data serialization protocol\. An Avro source file includes a schema that defines the structure of the data\. The Avro schema type must be `record`\. COPY accepts Avro files created using the default uncompressed codec as well as the `deflate` and `snappy` compression codecs\. For more information about Avro, go to [Apache Avro](https://avro.apache.org/)\.   
 Valid values for *avro\_option* are as follows:  
 + `'auto'`
 + `'auto ignorecase'`

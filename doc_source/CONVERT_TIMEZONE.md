@@ -42,6 +42,8 @@ select pg_timezone_names();
 select pg_timezone_abbrevs();
 ```
 
+See a list of each at [Appendix: Time zone names and abbreviations](appendix-timezone-names.md)\.
+
 ### Using a time zone name<a name="CONVERT_TIMEZONE-using-name"></a>
 
 If you specify a time zone using a time zone name, CONVERT\_TIMEZONE automatically adjusts for Daylight Saving Time \(DST\), or any other local seasonal protocol, such as Summer Time, Standard Time, or Winter Time, that is in force for that time zone during the date and time specified by '*timestamp*'\. For example, 'Europe/London' represents UTC in the winter and UTC\+1 in the summer\. 

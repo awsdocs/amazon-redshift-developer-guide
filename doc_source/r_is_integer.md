@@ -4,6 +4,21 @@ Returns true for numbers of scale 0 in the 32\-bit range, and false for anything
 
 The is\_integer function is a superset of the is\_smallint function\.
 
+## Syntax<a name="r_is_integer-synopsis"></a>
+
+```
+is_integer (super_expression)
+```
+
+## Arguments<a name="r_is_integer-arguments"></a>
+
+*super\_expression*  
+A SUPER expression or column\.
+
+## Returns<a name="r_is_integer-returns"></a>
+
+Boolean
+
 ## Example<a name="r_is_integer_example"></a>
 
 The following example shows an is\_integer function\.

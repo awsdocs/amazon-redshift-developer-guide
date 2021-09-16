@@ -59,7 +59,7 @@ The following step describes an Amazon Redshift console that is running in an AW
 
 ### Convert the schema and set up the datasets for the proof of concept<a name="proof-of-concept-convert-schema"></a>
 
-If you don't have an existing data warehouse, skip this section and see [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\. *Amazon Redshift Getting Started* provides a tutorial to create a cluster and examples of setting up data in Amazon Redshift\. 
+If you don't have an existing data warehouse, skip this section and see [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/)\. *Amazon Redshift Getting Started Guide* provides a tutorial to create a cluster and examples of setting up data in Amazon Redshift\. 
 
 When migrating from your existing data warehouse, you can convert schema, code, and data using the AWS Schema Conversion Tool and the AWS Database Migration Service\. Your choice of tools depends on the source of your data and optional ongoing replications\. For more information, see [What Is the AWS Schema Conversion Tool?](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Welcome.html) in the *AWS Schema Conversion Tool User Guide* and [What Is AWS Database Migration Service?](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) in the *AWS Database Migration Service User Guide*\. The following can help you set up your data in Amazon Redshift: 
 + [Migrate Your Data Warehouse to Amazon Redshift Using the AWS Schema Conversion Tool](https://aws.amazon.com/blogs/database/how-to-migrate-your-data-warehouse-to-amazon-redshift-using-the-aws-schema-conversion-tool-data-extractors/) – this blog post provides an overview on how you can use the AWS SCT data extractors to migrate your existing data warehouse to Amazon Redshift\. The AWS SCT tool can migrate your data from many legacy platforms \(such as Oracle, Greenplum, Netezza, Teradata, Microsoft SQL Server, or Vertica\)\. 
@@ -121,7 +121,7 @@ At this stage, you're ready to execute on your project plan and evaluate results
 
 To help your Amazon Redshift evaluation, see the following:
 + [Service highlights and pricing](https://aws.amazon.com/redshift/) – this product detail page provides the Amazon Redshift value proposition, service highlights, and pricing\.
-+ [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/) – this guide provides a tutorial of using Amazon Redshift to create a sample cluster and work with sample data\.
++ [Amazon Redshift Getting Started Guide](http://docs.aws.amazon.com/redshift/latest/gsg/) – this guide provides a tutorial of using Amazon Redshift to create a sample cluster and work with sample data\.
 + [Getting started with Amazon Redshift Spectrum](c-getting-started-using-spectrum.md) – in this tutorial, you learn how to use Redshift Spectrum to query data directly from files on Amazon S3\. 
 + [Amazon Redshift management overview](http://docs.aws.amazon.com/redshift/latest/mgmt/overview.html) – this topic in the *Amazon Redshift Cluster Management Guide* provides an overview of Amazon Redshift\. 
 + Optimize Amazon Redshift for performance with BI tools – consider integration with tools such as [Tableau](https://www.tableau.com/learn/whitepapers/optimize-tableau-redshift-better-deployment), [Power BI](https://aws.amazon.com/blogs/big-data/integrate-power-bi-with-amazon-redshift-for-insights-and-analytics/), and others\. 

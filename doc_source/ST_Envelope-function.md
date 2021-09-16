@@ -8,6 +8,8 @@ ST\_Envelope returns the minimum bounding box of the input geometry, as follows:
 
 The spatial reference system identifier \(SRID\) of the returned geometry is the same as that of the input geometry\. 
 
+For all nonempty input, the function operates on the 2D projection of the input geometry\. 
+
 ## Syntax<a name="ST_Envelope-function-syntax"></a>
 
 ```

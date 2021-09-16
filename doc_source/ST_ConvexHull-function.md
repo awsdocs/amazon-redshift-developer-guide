@@ -2,6 +2,8 @@
 
 ST\_ConvexHull returns a geometry that represents the convex hull of the nonempty points contained in the input geometry\. 
 
+For empty input, the resulting geometry is the same as the input geometry\. For all nonempty input, the function operates on the 2D projection of the input geometry\. However, the dimension of the output geometry depends on the dimension of the input geometry\. More specifically, when the input geometry is a nonempty 3DM or 3D geometry, `m` coordinates are dropped\. That is, the dimension of the returned geometry is 2D or 3DZ, respectively\. If the input is a nonempty 2D or 3DZ geometry, the resulting geometry has the same dimension\.
+
 ## Syntax<a name="ST_ConvexHull-function-syntax"></a>
 
 ```

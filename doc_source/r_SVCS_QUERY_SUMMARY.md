@@ -5,7 +5,7 @@ Use the SVCS\_QUERY\_SUMMARY view to find general information about the executio
  Note that the information in SVCS\_QUERY\_SUMMARY is aggregated from all nodes\. 
 
 **Note**  
- The SVCS\_QUERY\_SUMMARY view only contains information about queries executed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements executed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view\.  
+ The SVCS\_QUERY\_SUMMARY view only contains information about queries completed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements completed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view\.  
 System views with the prefix SVCS provide details about queries on both the main and concurrency scaling clusters\. The views are similar to the views with the prefix SVL except that the SVL views provide information only for queries run on the main cluster\.
 
 SVCS\_QUERY\_SUMMARY is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.

@@ -8,7 +8,8 @@ Changes the attributes of a database\.
 ALTER DATABASE database_name
 | RENAME TO new_name 
 | OWNER TO new_owner
-| CONNECTION LIMIT { limit | UNLIMITED } ]
+| CONNECTION LIMIT { limit | UNLIMITED } 
+| COLLATE CASE_SENSITIVE | COLLATE CASE_INSENSITIVE ]
 ```
 
 ## Parameters<a name="r_ALTER_DATABASE-parameters"></a>
@@ -37,6 +38,11 @@ CONNECTION LIMIT \{ *limit* \| UNLIMITED \}
 The maximum number of database connections users are permitted to have open concurrently\. The limit is not enforced for superusers\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
+COLLATE CASE\_SENSITIVE \| COLLATE CASE\_INSENSITIVE  
+A clause that specifies whether string search or comparison is case\-sensitive or case\-insensitive\.   
+You can change the case sensitivity of the current database which is empty\.  
+You must have the privilege to the current database to change case sensitivity\. Super users or database owners with the CREATE DATABASE privilege can also change database case sensitivity\.
+
 ## Usage notes<a name="r_ALTER_DATABASE-usage-notes"></a>
 
 ALTER DATABASE commands apply to subsequent sessions not current sessions\. You need to reconnect to the altered database to see the effect of the change\.
@@ -53,4 +59,10 @@ The following example changes the owner of the TICKIT database \(the current dat
 
 ```
 alter database tickit owner to dwuser;
+```
+
+The following example changes the database case sensitivity of the sampledb database:
+
+```
+ALTER DATABASE sampledb COLLATE CASE_INSENSITIVE;
 ```

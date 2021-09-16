@@ -4,7 +4,7 @@ Amazon Redshift can automatically sort and perform a VACUUM DELETE operation on 
 
 **Note**  
 Only the table owner or a superuser can effectively vacuum a table\. If you don't have owner or superuser privileges for a table, a VACUUM operation that specifies a single table fails\. If you run a VACUUM of the entire database without specifying a table name, the operation completes successfully\. However, the operation has no effect on tables for which you don't have owner or superuser privileges\.   
-For this reason, we recommend vacuuming individual tables as needed\. We also recommend this approach because vacuuming the entire database is potentially an expensive operation, 
+For this reason, we recommend vacuuming individual tables as needed\. We also recommend this approach because vacuuming the entire database is potentially an expensive operation\.
 
 ## Automatic table sort<a name="automatic-table-sort"></a>
 
@@ -56,28 +56,13 @@ Amazon Redshift performs a vacuum operation in two stages: first, it sorts the r
 
 Users can access tables while they are being vacuumed\. You can perform queries and write operations while a table is being vacuumed, but when DML and a vacuum run concurrently, both might take longer\. If you execute UPDATE and DELETE statements during a vacuum, system performance might be reduced\. Incremental merges temporarily block concurrent UPDATE and DELETE operations, and UPDATE and DELETE operations in turn temporarily block incremental merge steps on the affected tables\. DDL operations, such as ALTER TABLE, are blocked until the vacuum operation finishes with the table\.
 
+**Note**  
+Various modifiers to VACUUM control the way that it works\. You can use them to tailor the vacuum operation for the current need\. For example, using VACUUM RECLUSTER shortens the vacuum operation by not performing a full merge operation\. For more information, see [VACUUM](r_VACUUM_command.md)\.
+
 ## Vacuum threshold<a name="vacuum-sort-threshold"></a>
 
 By default, VACUUM skips the sort phase for any table where more than 95 percent of the table's rows are already sorted\. Skipping the sort phase can significantly improve VACUUM performance\. To change the default sort threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run the VACUUM command\. 
 
 ## Vacuum types<a name="vacuum-types"></a>
 
-You can run a full vacuum, a delete only vacuum, a sort only vacuum, or a reindex with full vacuum\.
-+  **VACUUM FULL** 
-
-  VACUUM FULL re\-sorts rows and reclaims space from deleted rows\. Amazon Redshift automatically performs VACUUM DELETE ONLY operations in the background, so for most applications, VACUUM FULL and VACUUM SORT ONLY are equivalent\. VACUUM FULL is the same as VACUUM\. Full vacuum is the default vacuum operation\.
-+  **VACUUM DELETE ONLY** 
-
-  A DELETE ONLY vacuum is the same as a full vacuum except that it skips the sort\. Amazon Redshift automatically performs a DELETE ONLY vacuum in the background, so you rarely, if ever, need to run a DELETE ONLY vacuum\. 
-+  **VACUUM SORT ONLY** 
-
-  A SORT ONLY doesn't reclaim disk space\. In most cases there is little benefit compared to a full vacuum\.
-+  **VACUUM REINDEX** 
-
-  Use VACUUM REINDEX for tables that use interleaved sort keys\. For more information about interleaved sort keys, see [Interleaved sort key](t_Sorting_data.md#t_Sorting_data-interleaved)\. 
-
-  When you initially load an empty interleaved table using COPY or CREATE TABLE AS, Amazon Redshift automatically builds the interleaved index\. If you initially load an interleaved table using INSERT, you need to run VACUUM REINDEX afterwards to initialize the interleaved index\.
-
-  REINDEX reanalyzes the distribution of the values in the table's sort key columns, then performs a full VACUUM operation\. VACUUM REINDEX takes significantly longer than VACUUM FULL because it needs to take an extra analysis pass over the data, and because merging in new interleaved data can involve touching all the data blocks\.
-
-  If a VACUUM REINDEX operation terminates before it completes, the next VACUUM resumes the reindex operation before performing the vacuum\. 
+For information about different vacuum types, see [VACUUM](r_VACUUM_command.md)\.

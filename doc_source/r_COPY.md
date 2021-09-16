@@ -73,7 +73,7 @@ iam_role 'arn:aws:iam::<aws-account-id>:role/<role-name>'
 region 'us-west-2';
 ```
 
-For steps to create an IAM role, see [Step 2: Create an IAM Role](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-an-iam-role.html) in the Amazon Redshift Getting Started\. For complete instructions on how to use COPY commands to load sample data, including instructions for loading data from other AWS regions, see [Step 6: Load Sample Data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started\.\.
+For steps to create an IAM role, see [Step 2: Create an IAM Role](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-an-iam-role.html) in the Amazon Redshift Getting Started Guide\. For complete instructions on how to use COPY commands to load sample data, including instructions for loading data from other AWS regions, see [Step 6: Load Sample Data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started Guide\.\.
 
 *table\-name*  <a name="r_COPY-syntax-overview-table-name"></a>
 The name of the target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\.

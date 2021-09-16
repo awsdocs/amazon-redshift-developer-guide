@@ -2,7 +2,7 @@
 
 If you are a first\-time user of Amazon Redshift, we recommend that you begin by reading the following sections\.
 + Service Highlights and Pricing – The [product detail page](https://aws.amazon.com/redshift/) provides the Amazon Redshift value proposition, service highlights, and pricing\.
-+ Getting Started – [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) includes an example that walks you through the process of creating an Amazon Redshift data warehouse cluster, creating database tables, uploading data, and testing queries\. 
++ Getting Started – [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/) includes an example that walks you through the process of creating an Amazon Redshift data warehouse cluster, creating database tables, uploading data, and testing queries\. 
 
 After you complete the Getting Started guide, we recommend that you explore one of the following guides:
 + [Amazon Redshift Cluster Management Guide](https://docs.aws.amazon.com/redshift/latest/mgmt/) – The Cluster Management guide shows you how to create and manage Amazon Redshift clusters\. 

@@ -5,10 +5,74 @@ When you create a materialized view, its contents reflect the state of the under
 Amazon Redshift has two strategies for refreshing a materialized view: 
 + In many cases, Amazon Redshift can perform an incremental refresh\. In an *incremental refresh*, Amazon Redshift quickly identifies the changes to the data in the base tables since the last refresh and updates the data in the materialized view\. Incremental refresh is supported on the following SQL constructs used in the query when defining the materialized view:
   + Constructs that contain the clauses SELECT, FROM, \[INNER\] JOIN, WHERE, GROUP BY, or HAVING\.
-  + Constructs that contain aggregations, such as SUM and COUNT\.
+  + Constructs that contain aggregations, such as SUM, MIN, MAX, and COUNT\.
   + Most built\-in SQL functions, specifically the ones that are immutable, given that these have the same input arguments and always produce the same output\. 
 + If an incremental refresh isn't possible, then Amazon Redshift performs a full refresh\. A *full refresh* reruns the underlying SQL statement, replacing all of the data in the materialized view\.
 + Amazon Redshift automatically chooses the refresh method for a materialize view depending on the SELECT query used to define the materialized view\. 
+
+Refreshing a materialized view on a materialized view isn't a cascading process\. In other words, suppose that you have a materialized view A that depends on materialized view B\. In this case, when the REFRESH MATERIALIZED VIEW A is invoked, A is refreshed using the current version of B, even when B is out\-of\-date\. To bring A fully up\-to\-date, before refreshing A, first refresh B in a separate transaction\.
+
+The following example shows how you can create a full refresh plan for a materialized view programmatically\. To refresh the materialized view v, first refresh materialized view u\. To refresh materialized view w, first refresh materialized view u and then materialized view v\.
+
+```
+CREATE TABLE t(a INT);
+CREATE MATERIALIZED VIEW u AS SELECT * FROM t;
+CREATE MATERIALIZED VIEW v AS SELECT * FROM u;
+CREATE MATERIALIZED VIEW w AS SELECT * FROM v;
+
+WITH RECURSIVE recursive_deps (mv_tgt, lvl, mv_dep) AS
+( SELECT trim(name) as mv_tgt, 0 as lvl, trim(ref_name) as mv_dep
+  FROM stv_mv_deps
+  UNION ALL
+  SELECT R.mv_tgt, R.lvl+1 as lvl, trim(S.ref_name) as mv_dep
+  FROM stv_mv_deps S, recursive_deps R
+  WHERE R.mv_dep = S.name
+)
+
+SELECT mv_tgt, mv_dep from recursive_deps
+ORDER BY mv_tgt, lvl DESC;
+
+ mv_tgt | mv_dep
+--------+--------
+ v      | u
+ w      | u
+ w      | v
+(3 rows)
+```
+
+The following example shows an informative message when you run REFRESH MATERIALIZED VIEW on a materialized view that depends on an out\-of\-date materialized view\.
+
+```
+create table a(a int);
+```
+
+```
+create materialized view b as select * from a;
+```
+
+```
+create materialized view c as select * from b;
+```
+
+```
+insert into a values (1);
+```
+
+```
+refresh materialized view c;
+
+INFO:  Materialized view c is already up to date.  However, it depends on another materialized view that is not up to date.
+```
+
+```
+REFRESH MATERIALIZED VIEW b;
+INFO:  Materialized view b was incrementally updated successfully.
+```
+
+```
+REFRESH MATERIALIZED VIEW c;
+INFO:  Materialized view c was incrementally updated successfully.
+```
 
 Amazon Redshift currently has the following limitations for incremental refresh for materialized views\. 
 

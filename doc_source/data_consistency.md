@@ -1,4 +1,4 @@
-# Managing data consistency<a name="data_consistency"></a>
+# Managing data consistency in Amazon Redshift<a name="data_consistency"></a>
 
 Amazon Redshift provides transactional consistency on all producer and consumer clusters and shares up\-to\-date and consistent views of the data with all consumers\. 
 

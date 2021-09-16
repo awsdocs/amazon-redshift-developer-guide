@@ -2,7 +2,7 @@
 
 ST\_LengthSphere returns the length of a linear geometry in meters\. For point, multipoint, and areal geometries, ST\_LengthSphere returns 0\. For geometry collections, ST\_LengthSphere returns the total length of the linear geometries in the collection in meters\. 
 
-ST\_LengthSphere interprets the coordinates of each point of the input geometry as longitude and latitude in degrees\. 
+ST\_LengthSphere interprets the coordinates of each point of the input geometry as longitude and latitude in degrees\. For 3DZ, 3DM, or 4D geometries, only the first two coordinates are used\.
 
 ## Syntax<a name="ST_LengthSphere-function-syntax"></a>
 

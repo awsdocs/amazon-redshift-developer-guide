@@ -96,7 +96,7 @@ To grant access to an Amazon S3 bucket only using Redshift Spectrum, include a c
 }
 ```
 
-Similarly, you might want to create an IAM role that allows access for COPY operations, but excludes Redshift Spectrum access\. To do so, include a condition that denies access for the user agent "AWS Redshift/Spectrum"\. The following policy allows access to an Amazon S3 bucket with the exception of Redshift Spectrum\.
+Similarly, you might want to create an IAM role that allows access for COPY operations, but excludes Redshift Spectrum access\. To do so, include a condition that denies access for the user agent **AWS Redshift/Spectrum**\. The following policy allows access to an Amazon S3 bucket with the exception of Redshift Spectrum\.
 
 ```
 {

@@ -34,9 +34,9 @@ The Amazon Redshift query execution engine incorporates a query optimizer that i
 
 ## Result caching<a name="result-caching"></a>
 
-To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When a user submits a query, Amazon Redshift checks the results cache for a valid, cached copy of the query results\. If a match is found in the result cache, Amazon Redshift uses the cached results and doesn't execute the query\. Result caching is transparent to the user\.
+To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When a user submits a query, Amazon Redshift checks the results cache for a valid, cached copy of the query results\. If a match is found in the result cache, Amazon Redshift uses the cached results and doesn't run the query\. Result caching is transparent to the user\.
 
-Result caching is enabled by default\. To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`\.
+Result caching is turned on by default\. To turn off result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`\.
 
 Amazon Redshift uses cached results for a new query when all of the following are true:
 + The user submitting the query has access privilege to the objects used in the query\.

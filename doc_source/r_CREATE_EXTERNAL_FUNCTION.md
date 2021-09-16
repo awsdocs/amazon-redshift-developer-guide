@@ -13,6 +13,16 @@ IAM_ROLE 'iam-role-arn'
 RETRY_TIMEOUT milliseconds;
 ```
 
+The following is the syntax for machine learning on Amazon Redshift\. For information about the model\-specific parameters, see [Parameters](r_GRANT.md#r_GRANT-parameters)\.
+
+```
+CREATE [ OR REPLACE ] EXTERNAL FUNCTION external_fn_name ( [data_type] [, ...] )
+RETURNS data_type
+{ VOLATILE | STABLE | IMMUTABLE } 
+SAGEMAKER'endpoint_name'
+IAM_ROLE 'iam-role-arn';
+```
+
 ## Parameters<a name="r_CREATE_EXTERNAL_FUNCTION-parameters"></a>
 
 OR REPLACE  

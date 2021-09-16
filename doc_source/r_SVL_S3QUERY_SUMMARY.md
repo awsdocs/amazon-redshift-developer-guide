@@ -12,7 +12,7 @@ For SVCS\_S3QUERY\_SUMMARY, see [SVCS\_S3QUERY\_SUMMARY](r_SVCS_S3QUERY_SUMMARY.
 
 ## Sample query<a name="r_SVL_S3QUERY_SUMMARY-sample-query"></a>
 
-The following example gets the scan step details for the last query executed\.
+The following example gets the scan step details for the last query completed\.
 
 ```
 select query, segment, elapsed, s3_scanned_rows, s3_scanned_bytes, s3query_returned_rows, s3query_returned_bytes, files 

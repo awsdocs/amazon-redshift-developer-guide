@@ -1,4 +1,4 @@
-# Getting started data sharing<a name="getting-started-datashare"></a>
+# Getting started data sharing in Amazon Redshift<a name="getting-started-datashare"></a>
 
 You can get started with data sharing by using either the SQL interface or the Amazon Redshift console\.
 

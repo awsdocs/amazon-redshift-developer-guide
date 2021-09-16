@@ -134,7 +134,13 @@ GRANT USAGE ON SCHEMA Sales_schema TO GROUP Analyst_group;
 
 ## Examples of granting the ASSUMEROLE privilege<a name="r_GRANT-examples-assumerole"></a>
 
-The following are examples of granting the ASSUMEROLE privilege\. 
+The following are examples of granting the ASSUMEROLE privilege\.
+
+The following example shows the REVOKE statement that a superuser runs once on the cluster to enable the use of the ASSUMEROLE privilege for users and groups\. Then, the superuser grants the ASSUMEROLE privilege to users and groups for the appropriate commands\. For information on enabling the use of the ASSUMEROLE privilege for users and groups, see [Usage notes for granting the ASSUMEROLE privilege ](r_GRANT-usage-notes.md#r_GRANT-usage-notes-assumerole)\.
+
+```
+revoke assumerole on all from public for all;
+```
 
 The following example grants the ASSUMEROLE privilege to the user `reg_user1` for the IAM role `Redshift-S3-Read` to perform COPY operations\. 
 
@@ -158,4 +164,18 @@ The following is an example of the UNLOAD command using the IAM role chain `Role
 unload ('select * from venue limit 10')
 to 's3://companyb/redshift/venue_pipe_'
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
+```
+
+The following example grants the ASSUMEROLE privilege to the user `reg_user1` for the IAM role `Redshift-Exfunc` to create external functions\. 
+
+```
+grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-Exfunc' 
+to reg_user1 for external function;
+```
+
+The following example grants the ASSUMEROLE privilege to the user `reg_user1` for the IAM role `Redshift-model` to create machine learning models\. 
+
+```
+grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-ML' 
+to reg_user1 for create model;
 ```

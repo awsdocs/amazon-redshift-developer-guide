@@ -81,19 +81,21 @@ To look up grants of column\-level privileges, use the [PG\_ATTRIBUTE\_INFO](r_P
 
 The following usage notes apply to granting the ASSUMEROLE privilege in Amazon Redshift\. 
 
-You use the ASSUMEROLE privilege to control IAM role access privileges for database users and groups on commands such as COPY and UNLOAD\. After you grant the ASSUMEROLE privilege to a user or group on an IAM role, the user or group is able to assume that role when running the command\. This enables you to grant access to the appropriate commands as required\.
+You use the ASSUMEROLE privilege to control IAM role access privileges for database users and groups on commands such as COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL\. After you grant the ASSUMEROLE privilege to a user or group for an IAM role, the user or group can assume that role when running the command\. The ASSUMEROLE privilege enables you to grant access to the appropriate commands as required\.
 
-Only a database superuser can grant or revoke the ASSUMEROLE privilege for users and groups\. A superuser always retains the ASSUMEROLE privilege\.  
+Only a database superuser can grant or revoke the ASSUMEROLE privilege for users and groups\. A superuser always retains the ASSUMEROLE privilege\. 
 
-To enable the use of the ASSUMEROLE privilege for users and groups, a superuser runs the following statement once on the cluster\. The superuser must run the following statement once on the cluster before granting the ASSUMEROLE privilege to users and groups\.
+To enable the use of the ASSUMEROLE privilege for users and groups, a superuser performs the following two actions:
++ Run the following statement once on the cluster:
 
-```
-revoke assumerole on all from public for all;
-```
+  ```
+  revoke assumerole on all from public for all;
+  ```
++ Grant the ASSUMEROLE privilege to users and groups for the appropriate commands\.
 
-You can specify role chaining in the ON clause when granting the ASSUMEROLE privilege\. You use commas to separate roles in a role chain, for example, `Role1,Role2,Role3`\. If role chaining was specified when granting the ASSUMEROLE privilege, you must specify the role chain when performing operations granted by the ASSUMEROLE privilege\. You can't specify individual roles within the role chain when performing operations granted by the ASSUMEROLE privilege\. For example, if a user or group is granted the role chain `Role1,Role2,Role3`, you can't specify only `Role1` to perform operations\.  
+You can specify role chaining in the ON clause when granting the ASSUMEROLE privilege\. You use commas to separate roles in a role chain, for example, `Role1,Role2,Role3`\. If role chaining was specified when granting the ASSUMEROLE privilege, you must specify the role chain when performing operations granted by the ASSUMEROLE privilege\. You can't specify individual roles within the role chain when performing operations granted by the ASSUMEROLE privilege\. For example, if a user or group is granted the role chain `Role1,Role2,Role3`, you can't specify only `Role1` to perform operations\. 
 
-If a user attempts to perform a COPY or UNLOAD operation and has not been granted the ASSUMEROLE privilege, a message similar to the following appears\.
+If a user attempts to perform a COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL operation and has not been granted the ASSUMEROLE privilege, a message similar to the following appears\.
 
 ```
 ERROR:  User awsuser does not have ASSUMEROLE permission on IAM role "arn:aws:iam::123456789012:role/RoleA" for COPY 

@@ -53,7 +53,7 @@ The following example drops two user accounts, danny and billybob:
 drop user danny, billybob;
 ```
 
-The following example drops the user account danny if it exists, or does nothing and returns a message if it doesn't
+The following example drops the user account danny if it exists, or does nothing and returns a message if it doesn't:
 
 ```
 drop user if exists danny;

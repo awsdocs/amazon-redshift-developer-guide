@@ -10,7 +10,7 @@ SVL\_S3QUERY is visible to all users\. Superusers can see all rows; regular user
 
 ## Sample query<a name="r_SVL_S3QUERY-sample-query"></a>
 
-The following example gets the scan step details for the last query executed\.
+The following example gets the scan step details for the last query completed\.
 
 ```
 select query, segment, slice, elapsed, s3_scanned_rows, s3_scanned_bytes, s3query_returned_rows, s3query_returned_bytes, files 

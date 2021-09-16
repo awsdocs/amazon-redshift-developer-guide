@@ -15,7 +15,7 @@ For information about SVL\_S3PARTITION, see [SVL\_S3PARTITION](r_SVL_S3PARTITION
 
 ## Sample query<a name="r_SVCS_S3PARTITION_SUMMARY-sample-query"></a>
 
-The following example gets the partition scan details for the last query executed\.
+The following example gets the partition scan details for the last query performed\.
 
 ```
 select query, segment, assignment, min_starttime, max_endtime, min_dureation, avg_duration 

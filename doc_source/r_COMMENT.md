@@ -68,7 +68,7 @@ objoid | classoid | objsubid | description
 116658 |     1259 |        0 | Contains listings of individual events.
 ```
 
-The following example uses the psql `\dd` command to view the comments\. Amazon Redshift doesn't support psql directly\. You must execute psql commands from the PostgreSQL psql client\. 
+The following example uses the psql `\dd` command to view the comments\. Amazon Redshift doesn't support psql directly\. You must run psql commands from the PostgreSQL psql client\. 
 
 **Note**  
 The `\dd` command returns comments only with the psql 8\.x versions\. 

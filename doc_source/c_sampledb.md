@@ -9,7 +9,7 @@
 + [LISTING table](r_listingtable.md)
 + [SALES table](r_salestable.md)
 
-Most of the examples in the Amazon Redshift documentation use a sample database called TICKIT\. This small database consists of seven tables: two fact tables and five dimensions\. You can load the TICKIT dataset by following the steps in [Step 6: Load sample data from amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started\.
+Most of the examples in the Amazon Redshift documentation use a sample database called TICKIT\. This small database consists of seven tables: two fact tables and five dimensions\. You can load the TICKIT dataset by following the steps in [Step 6: Load sample data from amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started Guide\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/tickitdb.png)
 

@@ -21,7 +21,7 @@ SET parse_super_null_on_error=OFF;  --default strict mode for ingestion
 When your JSON fields are in upper cases or mixed cases, then you must configure the following setting to query data\.
 
 ```
-SET downcase_delimited_identifier to FALSE;
+SET enable_case_sensitive_identifier to TRUE;
  
 -- Accessing JSON fields with uppercase and mixed-case names
 SELECT json_table.data."ITEMS"."Name",
@@ -34,7 +34,7 @@ FROM
  "TV" | 345
 (1 row)
  
-RESET downcase_delimited_identifier;
+RESET enable_case_sensitive_identifier;
  
 -- After resetting the above configuration, the following query accessing JSON fields with uppercase and mixed-case names should return null (if in lax mode).
 SELECT json_table.data."ITEMS"."Name",

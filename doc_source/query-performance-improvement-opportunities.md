@@ -27,7 +27,7 @@ To fix this issue, run [ANALYZE](r_ANALYZE.md)\.
 
 If a nested loop is present, you might see a nested loop alert event in STL\_ALERT\_EVENT\_LOG\. You can also identify this type of event by running the query at [Identifying queries with nested loops](diagnostic-queries-for-query-tuning.md#identify-queries-with-nested-loops)\. For more information, see [Reviewing query alerts](c-reviewing-query-alerts.md)\.
 
-To fix this, review your query for cross\-joins and remove them if possible\. Cross\-joins are joins without a join condition that result in the Cartesian product of two tables\. They are typically executed as nested loop joins, which are the slowest of the possible join types\.
+To fix this, review your query for cross\-joins and remove them if possible\. Cross\-joins are joins without a join condition that result in the Cartesian product of two tables\. They are typically run as nested loop joins, which are the slowest of the possible join types\.
 
 ## Hash join<a name="hash-join"></a>
 

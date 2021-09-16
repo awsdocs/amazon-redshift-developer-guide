@@ -8,7 +8,7 @@ true, **false**
 
 A configuration value that determines whether name identifiers of databases, tables, and columns are case sensitive\. The case of name identifiers is perserved when enclosed within double quotation marks\. When you set `enable_case_sensitive_identifier` to `true`, the case of name identifiers is preserved\. When you set `enable_case_sensitive_identifier` to `false`, the case of name identifiers is not preserved\. 
 
-### Examples<a name="w67aac66c33b3b7"></a>
+### Examples<a name="w93aac66c39b3b7"></a>
 
 The following example shows how to create and use case sensitive identifiers for at table and column name\.
 

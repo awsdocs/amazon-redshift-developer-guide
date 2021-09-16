@@ -10,7 +10,7 @@ This view is visible to all users\. Superusers can see all rows; regular users c
 
 ## Sample queries<a name="r_STL_UNIQUE-sample-queries"></a>
 
-Suppose you execute the following query: 
+Suppose you run the following query: 
 
 ```
 select distinct eventname

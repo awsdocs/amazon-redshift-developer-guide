@@ -61,7 +61,7 @@ eventid |   sum
 ...
 ```
 
- If this query's ID is 15, the following system view query returns the plan nodes that were executed\. In this case, the order of the nodes is reversed to show the actual order of execution: 
+ If this query's ID is 15, the following system view query returns the plan nodes that were completed\. In this case, the order of the nodes is reversed to show the actual order of execution: 
 
 ```
 select query,nodeid,parentid,substring(plannode from 1 for 56)

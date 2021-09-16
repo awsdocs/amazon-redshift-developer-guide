@@ -1,6 +1,6 @@
-# Boolean functions<a name="c_Boolean_Functions"></a>
+# SUPER type information functions<a name="c_Type_Info_Functions"></a>
 
-Following, you can find a description for the Boolean functions for SQL that Amazon Redshift supports to derive Boolean output from Boolean inputs\.
+Following, you can find a description for the type information functions for SQL that Amazon Redshift supports to derive the dynamic information from inputs of the SUPER data type\.
 
 **Topics**
 + [decimal\_precision function](r_decimal_precision.md)

@@ -6,4 +6,6 @@
 
 ## Description<a name="description"></a>
 
-Enables the super parser to read JSON fields that are in uppercase or mixed case\. Also enables federated query support to supported PostgreSQL databases with mixed\-case names of database, schema, table, and column\. To enable case\-sensitive identifier support, set this parameter to off\. 
+This configuration is being retired\. Instead use `enable_case_sensitive_identifier`\.
+
+Enables the super parser to read JSON fields that are in uppercase or mixed case\. Also enables federated query support to supported PostgreSQL databases with mixed\-case names of database, schema, table, and column\. To use case\-sensitive identifiers, set this parameter to off\. 

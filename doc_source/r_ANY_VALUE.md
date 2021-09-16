@@ -33,6 +33,7 @@ A value from the input expression values\. The following data types are returned
 + TIMESTAMPTZ
 + TIME
 + TIMETZ
++ GEOMETRY
 
 ## Usage notes<a name="r_ANY_VALUE-usage-notes"></a>
 
@@ -40,7 +41,7 @@ If a statement that specifies the ANY\_VALUE function for a column also includes
 
 ## Examples<a name="r_ANY_VALUE-examples"></a>
 
-The examples use the event table that is created in [Step 6: Load sample data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the *Amazon Redshift Getting Started*\. The following example returns an instance of any dateid where the eventname is Eagles\. 
+The examples use the event table that is created in [Step 6: Load sample data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the *Amazon Redshift Getting Started Guide*\. The following example returns an instance of any dateid where the eventname is Eagles\. 
 
 ```
 select any_value(dateid) as dateid, eventname from event where eventname ='Eagles' group by eventname;

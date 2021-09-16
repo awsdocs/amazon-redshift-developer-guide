@@ -1,6 +1,6 @@
 # ST\_Perimeter<a name="ST_Perimeter-function"></a>
 
-ST\_Perimeter returns the Cartesian perimeter \(length of the boundary\) of an input areal geometry\. The perimeter units are the same as the units in which the coordinates of the input geometry are expressed\. The function returns zero \(0\) for points, multipoints, and linear geometries\. When the input is a geometry collection, the function returns the sum of the perimeters of the geometries in the collection\. 
+ST\_Perimeter returns the Cartesian perimeter \(length of the boundary\) of the 2D projection of an input areal geometry\. The perimeter units are the same as the units in which the coordinates of the input geometry are expressed\. The function returns zero \(0\) for points, multipoints, and linear geometries\. When the input is a geometry collection, the function returns the sum of the perimeters of the geometries in the collection\. 
 
 ## Syntax<a name="ST_Perimeter-function-syntax"></a>
 

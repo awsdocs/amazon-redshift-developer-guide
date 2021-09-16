@@ -2,6 +2,7 @@
 
 **Topics**
 + [Permissions to access other AWS Resources](copy-usage_notes-access-permissions.md)
++ [Using COPY with Amazon S3 access point aliases](copy-usage_notes-s3-access-point-alias.md)
 + [Loading multibyte data from Amazon S3](copy-usage_notes-multi-byte.md)
 + [Loading a column of the GEOMETRY data type](copy-usage_notes-spatial-data.md)
 + [Loading the HLLSKETCH data type](copy-usage_notes-hll.md)

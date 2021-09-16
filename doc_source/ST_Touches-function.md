@@ -1,6 +1,6 @@
 # ST\_Touches<a name="ST_Touches-function"></a>
 
-ST\_Touches returns true if the two input geometries touch\. The two geometries touch if they are nonempty, intersect, and have no interior points in common\. 
+ST\_Touches returns true if the 2D projections of the two input geometries touch\. The two geometries touch if they are nonempty, intersect, and have no interior points in common\. 
 
 ## Syntax<a name="ST_Touches-function-syntax"></a>
 

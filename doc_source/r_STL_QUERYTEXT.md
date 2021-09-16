@@ -13,7 +13,7 @@ Query the STL\_QUERYTEXT view to capture the SQL that was logged for the followi
 To query activity for these statements over a given time period, join the STL\_QUERYTEXT and STL\_QUERY views\.
 
 **Note**  
-The STL\_QUERY and STL\_QUERYTEXT views only contain information about queries, not other utility and DDL commands\. For a listing and information on all statements executed by Amazon Redshift, you can also query the STL\_DDLTEXT and STL\_UTILITYTEXT views\. For a complete listing of all statements executed by Amazon Redshift, you can query the SVL\_STATEMENTTEXT view\.
+The STL\_QUERY and STL\_QUERYTEXT views only contain information about queries, not other utility and DDL commands\. For a listing and information on all statements run by Amazon Redshift, you can also query the STL\_DDLTEXT and STL\_UTILITYTEXT views\. For a complete listing of all statements run by Amazon Redshift, you can query the SVL\_STATEMENTTEXT view\.
 
 See also [STL\_DDLTEXT](r_STL_DDLTEXT.md), [STL\_UTILITYTEXT](r_STL_UTILITYTEXT.md), and [SVL\_STATEMENTTEXT](r_SVL_STATEMENTTEXT.md)\.
 
@@ -25,7 +25,7 @@ This view is visible to all users\. Superusers can see all rows; regular users c
 
 ## Sample queries<a name="r_STL_QUERYTEXT-sample-queries"></a>
 
-You can use the PG\_BACKEND\_PID\(\) function to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries executed in the current session\.
+You can use the PG\_BACKEND\_PID\(\) function to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries completed in the current session\.
 
 ```
 select query, substring(text,1,60)

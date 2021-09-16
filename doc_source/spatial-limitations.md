@@ -15,3 +15,4 @@ The following nonspatial functions can accept an input of type `GEOMETRY` or col
 + The aggregate function COUNT
 + The conditional expressions COALESCE and NVL
 + CASE expressions
++ The default encoding for GEOMETRY is RAW\. For more information, see [Compression encodings](c_Compression_encodings.md)\.

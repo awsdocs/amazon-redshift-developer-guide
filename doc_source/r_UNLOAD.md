@@ -57,7 +57,7 @@ The full path, including bucket name, to the location on Amazon S3 where Amazon 
 `<object-path>/<name-prefix><slice-number>_part_<part-number>`\.   
 If MANIFEST is specified, the manifest file is written as follows:  
 `<object_path>/<name_prefix>manifest`\.   
-UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption \(SSE\), including the manifest file if MANIFEST is used\. The COPY command automatically reads server\-side encrypted files during the load operation\. You can transparently download server\-side encrypted files from your bucket using either the Amazon S3 Management Console or API\. For more information, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.   
+UNLOAD automatically creates encrypted files using Amazon S3 server\-side encryption \(SSE\), including the manifest file if MANIFEST is used\. The COPY command automatically reads server\-side encrypted files during the load operation\. You can transparently download server\-side encrypted files from your bucket using either the Amazon S3 console or API\. For more information, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.   
 To use Amazon S3 client\-side encryption, specify the ENCRYPTED option\.  
 REGION is required when the Amazon S3 bucket isn't in the same AWS Region as the Amazon Redshift cluster\. 
 
@@ -252,3 +252,7 @@ Be aware of these considerations when using PARTITION BY:
 ### Using the ASSUMEROLE privilege to grant access to an IAM role for UNLOAD operations<a name="unload-assumerole-privilege-usage"></a>
 
 To provide access for specific users and groups to an IAM role for UNLOAD operations, a superuser can grant the ASSUMEROLE privilege on an IAM role to users and groups\. For information, see [GRANT](r_GRANT.md)\. 
+
+### UNLOAD doesn't support Amazon S3 access point aliases<a name="unload-usage-s3-access-point-alias"></a>
+
+You can't use Amazon S3 access point aliases with the UNLOAD command\. 

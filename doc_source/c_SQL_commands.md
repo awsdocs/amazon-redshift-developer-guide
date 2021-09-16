@@ -2,7 +2,7 @@
 
 The SQL language consists of commands that you use to create and manipulate database objects, run queries, load tables, and modify the data in tables\.
 
-Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of very important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
+Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of important differences that you must be aware of as you design and develop your data warehouse applications\. For more information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
 
 **Note**  
 The maximum size for a single SQL statement is 16 MB\.
@@ -79,9 +79,12 @@ The maximum size for a single SQL statement is 16 MB\.
 + [SET SESSION AUTHORIZATION](r_SET_SESSION_AUTHORIZATION.md)
 + [SET SESSION CHARACTERISTICS](r_SET_SESSION_CHARACTERISTICS.md)
 + [SHOW](r_SHOW.md)
++ [SHOW EXTERNAL TABLE](r_SHOW_EXTERNAL_TABLE.md)
 + [SHOW MODEL](r_SHOW_MODEL.md)
 + [SHOW DATASHARES](r_SHOW_DATASHARES.md)
 + [SHOW PROCEDURE](r_SHOW_PROCEDURE.md)
++ [SHOW TABLE](r_SHOW_TABLE.md)
++ [SHOW VIEW](r_SHOW_VIEW.md)
 + [START TRANSACTION](r_START_TRANSACTION.md)
 + [TRUNCATE](r_TRUNCATE.md)
 + [UNLOAD](r_UNLOAD.md)

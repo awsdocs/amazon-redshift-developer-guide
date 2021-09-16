@@ -2,7 +2,7 @@
 
 Summarizes details for queries that spent time in a workload management \(WLM\) query queue or a commit queue\. 
 
-The SVL\_QUERY\_QUEUE\_INFO view filters queries executed by the system and shows only queries executed by a user\. 
+The SVL\_QUERY\_QUEUE\_INFO view filters queries performed by the system and shows only queries performed by a user\. 
 
 The SVL\_QUERY\_QUEUE\_INFO view summarizes information from the [STL\_QUERY](r_STL_QUERY.md), [STL\_WLM\_QUERY](r_STL_WLM_QUERY.md), and [STL\_COMMIT\_STATS](r_STL_COMMIT_STATS.md) system tables\. 
 

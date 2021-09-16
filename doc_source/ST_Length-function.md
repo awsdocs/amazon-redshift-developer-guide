@@ -1,6 +1,6 @@
 # ST\_Length<a name="ST_Length-function"></a>
 
-ST\_Length returns the Cartesian length of an input linear geometry\. The length units are the same as the units in which the coordinates of the input geometry are expressed\. The function returns zero \(0\) for points, multipoints, and areal geometries\. When the input is a geometry collection, the function returns the sum of the lengths of the geometries in the collection\. 
+ST\_Length returns the Cartesian length of a 2D projection of an input linear geometry\. The length units are the same as the units in which the coordinates of the input geometry are expressed\. The function returns zero \(0\) for points, multipoints, and areal geometries\. When the input is a geometry collection, the function returns the sum of the lengths of the geometries in the collection\. 
 
 ## Syntax<a name="ST_Length-function-syntax"></a>
 

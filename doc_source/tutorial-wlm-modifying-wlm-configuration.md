@@ -101,7 +101,7 @@ In this step, you open your sample cluster and associate it with the new paramet
 
 #### To associate the parameter group with your cluster<a name="how-to-wlm-associate-param-group"></a>
 
-1. In the navigation pane, choose **Clusters**, and then click your cluster to open it\. If you are using the same cluster from *Amazon Redshift Getting Started*, your cluster is named `examplecluster`\.  
+1. In the navigation pane, choose **Clusters**, and then click your cluster to open it\. If you are using the same cluster from *Amazon Redshift Getting Started Guide*, your cluster is named `examplecluster`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/console_clusters_examplecluster.png)
 
 1. On the **Configuration** tab, choose **Modify** for **Cluster**\.  

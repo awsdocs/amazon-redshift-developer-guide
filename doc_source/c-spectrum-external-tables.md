@@ -403,7 +403,7 @@ You can map the same external table to both file structures shown in the previou
 
 ## Creating external tables for data managed in Apache Hudi<a name="c-spectrum-column-mapping-hudi"></a>
 
-To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/concepts.html#copy-on-write-table) in the open source Apache Hudi documentation\. 
+To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\. You can read Copy On Write \(CoW\) tables in Apache Hudi versions 0\.5\.2, 0\.6\.0, and 0\.7\.0\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/concepts.html#copy-on-write-table) in the open source Apache Hudi documentation\. 
 
 When you create an external table that references data in Hudi CoW format, you map each column in the external table to a column in the Hudi data\. Mapping is done by column\. 
 
@@ -509,7 +509,6 @@ The following table explains some potential reasons for certain errors when you 
 
 | Error message | Possible reason | 
 | --- | --- | 
-| Empty Delta Lake manifests are not valid\. | The manifest file is empty\.  | 
 | Delta Lake manifest in bucket *s3\-bucket\-1* cannot contain entries in bucket *s3\-bucket\-2*\. | The manifest entries point to files in a different Amazon S3 bucket than the specified one\.  | 
 | Delta Lake files are expected to be in the same folder\. | The manifest entries point to files that have a different Amazon S3 prefix than the specified one\. | 
 | File *filename* listed in Delta Lake manifest *manifest\-path* was not found\. | A file listed in the manifest wasn't found in Amazon S3\.  | 

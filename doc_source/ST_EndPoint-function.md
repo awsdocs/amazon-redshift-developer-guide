@@ -1,6 +1,6 @@
 # ST\_EndPoint<a name="ST_EndPoint-function"></a>
 
-ST\_EndPoint returns the last point of an input linestring\. The spatial reference system identifier \(SRID\) value of the result is the same as that of the input geometry\. 
+ST\_EndPoint returns the last point of an input linestring\. The spatial reference system identifier \(SRID\) value of the result is the same as that of the input geometry\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_EndPoint-function-syntax"></a>
 

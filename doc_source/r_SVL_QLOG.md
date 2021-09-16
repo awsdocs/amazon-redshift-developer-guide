@@ -12,7 +12,7 @@ SVL\_QLOG is visible to all users\. Superusers can see all rows; regular users c
 
 ## Sample queries<a name="r_SVL_QLOG-sample-queries"></a>
 
-The following example returns the query ID, execution time, and truncated query text for the five most recent database queries executed by the user with `userid = 100`\.
+The following example returns the query ID, execution time, and truncated query text for the five most recent database queries run by the user with `userid = 100`\.
 
 ```
 select query, pid, elapsed, substring from svl_qlog

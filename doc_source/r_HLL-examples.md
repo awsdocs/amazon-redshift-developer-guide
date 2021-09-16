@@ -92,7 +92,7 @@ The output looks similar to the following\.
 -- +-------+
 ```
 
-## Example: Cache HyperLogLog sketches for cardinality estimation<a name="hll-examples-cache-sketches"></a>
+## Example: Generate HyperLogLog sketches over S3 data using external tables<a name="hll-examples-cache-sketches"></a>
 
 The following examples cache HyperLogLog sketches to avoid directly accessing Amazon S3 for cardinality estimation\. 
 

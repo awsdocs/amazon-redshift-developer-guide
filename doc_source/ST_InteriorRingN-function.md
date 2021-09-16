@@ -1,6 +1,6 @@
 # ST\_InteriorRingN<a name="ST_InteriorRingN-function"></a>
 
-ST\_InteriorRingN returns a closed linestring corresponding to the interior ring of an input polygon at the index position\. 
+ST\_InteriorRingN returns a closed linestring corresponding to the interior ring of an input polygon at the index position\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_InteriorRingN-function-syntax"></a>
 

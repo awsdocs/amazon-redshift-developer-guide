@@ -15,10 +15,10 @@ ST_DistanceSphere(geom1, geom2, radius)
 ## Arguments<a name="ST_DistanceSphere-function-arguments"></a>
 
  *geom1*   
-A point value in degrees of data type `GEOMETRY` lying on a sphere\. The first coordinate of the point is the longitude value\. The second coordinate of the point is the latitude value\. 
+A point value in degrees of data type `GEOMETRY` lying on a sphere\. The first coordinate of the point is the longitude value\. The second coordinate of the point is the latitude value\. For 3DZ, 3DM, or 4D geometries, only the first two coordinates are used\.
 
  *geom2*   
-A point value in degrees of data type `GEOMETRY` lying on a sphere\. The first coordinate of the point is the longitude value\. The second coordinate of the point is the latitude value\. 
+A point value in degrees of data type `GEOMETRY` lying on a sphere\. The first coordinate of the point is the longitude value\. The second coordinate of the point is the latitude value\. For 3DZ, 3DM, or 4D geometries, only the first two coordinates are used\.
 
  *radius*   
 The radius of a sphere of data type `DOUBLE PRECISION`\. If no *radius* is provided, the sphere defaults to Earth and the radius is computed from the World Geodetic System \(WGS\) 84 representation of the ellipsoid\. 

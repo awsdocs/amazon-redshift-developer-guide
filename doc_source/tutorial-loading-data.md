@@ -21,7 +21,7 @@ You need the following prerequisites:
 + An SQL client such as the Amazon Redshift console query editor\. 
 
 This tutorial is designed so that it can be taken by itself\. In addition to this tutorial, we recommend completing the following tutorials to gain a more complete understanding of how to design and use Amazon Redshift databases: 
-+ [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) walks you through the process of creating an Amazon Redshift cluster and loading sample data\. 
++ [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/) walks you through the process of creating an Amazon Redshift cluster and loading sample data\. 
 
 ## Overview<a name="tutorial-loading-data-overview"></a>
 

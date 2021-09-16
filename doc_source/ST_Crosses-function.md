@@ -1,6 +1,6 @@
 # ST\_Crosses<a name="ST_Crosses-function"></a>
 
-ST\_Crosses returns true if the two input geometries cross each other\. 
+ST\_Crosses returns true if the 2D projections of the two input geometries cross each other\. 
 
 ## Syntax<a name="ST_Crosses-function-syntax"></a>
 

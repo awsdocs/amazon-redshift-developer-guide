@@ -2,6 +2,8 @@
 
 ST\_AsGeoJSON returns the GeoJSON representation of an input geometry\. For more information about GeoJSON, see [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) in Wikipedia\.
 
+For 3DZ and 4D geometries, the output geometry is a 3DZ projection of the input 3DZ or 4D geometry\. That is, the `x`, `y`, and `z` coordinates are present in the output\. For 3DM geometries, the output geometry is a 2D projection of the input 3DM geometry\. That is, only `x` and `y` coordinates are present in the output\.
+
 ## Syntax<a name="ST_AsGeoJSON-function-syntax"></a>
 
 ```

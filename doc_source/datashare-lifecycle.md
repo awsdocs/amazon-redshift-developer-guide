@@ -1,4 +1,4 @@
-# Managing the data sharing lifecycle<a name="datashare-lifecycle"></a>
+# Managing the data sharing lifecycle in Amazon Redshift<a name="datashare-lifecycle"></a>
 
 The lifecycle of a datashare object follows the same paradigm as for any Amazon Redshift object, from creation to deletion\. 
 

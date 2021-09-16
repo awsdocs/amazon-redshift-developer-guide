@@ -1,18 +1,13 @@
 # CREATE MODEL<a name="r_CREATE_MODEL"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
 The CREATE MODEL statement offers flexibility in the number of parameters used to create the model\. Depending on their needs or problem type, users can choose their preferred preprocessors, algorithms, problem types, or hyperparameters\.
 
-Before you use the CREATE MODEL statement, complete the prerequisites in [Cluster setup for using Amazon Redshift ML](cluster-setup.md)\. The following is a high\-level summary of the prerequisites\.
-+ Create an Amazon Redshift cluster with the AWS console or the AWS Command Line Interface \(AWS CLI\)\.
+Before you use the CREATE MODEL statement, complete the prerequisites in [Cluster setup for using Amazon Redshift ML](admin-setup.md#cluster-setup)\. The following is a high\-level summary of the prerequisites\.
++ Create an Amazon Redshift cluster with the AWS Management Console or the AWS Command Line Interface \(AWS CLI\)\.
 + Attach the AWS Identity and Access Management \(IAM\) policy while creating the cluster\.
 + To allow Amazon Redshift and SageMaker to assume the role to interact with other services, add the appropriate trust policy to the IAM role\.
 
-For details for the IAM role, trust policy, and other prerequisites, see [Cluster setup for using Amazon Redshift ML](cluster-setup.md)\.
+For details for the IAM role, trust policy, and other prerequisites, see [Cluster setup for using Amazon Redshift ML](admin-setup.md#cluster-setup)\.
 
 Following, you can find different use cases for the CREATE MODEL statement\.
 + [Simple CREATE MODEL](#r_simple_create_model)
@@ -45,7 +40,7 @@ SETTINGS (
 The name of the model\. The model name in a schema must be unique\.
 
 FROM \{ *table\_name* \| \( *select\_query* \) \}  
-The table\_name or the query that specifies the training data\. They can either be an existing table in the system, or an Amazon Redshift\-compatible SELECT query enclosed with parentheses, that is \(\)\. There must be at least two columns in the query result\. They must be only strings and numerics\. 
+The table\_name or the query that specifies the training data\. They can either be an existing table in the system, or an Amazon Redshift\-compatible SELECT query enclosed with parentheses, that is \(\)\. There must be at least two columns in the query result\. 
 
 TARGET *column\_name*  
 The name of the column that becomes the prediction target\. The column must exist in the FROM clause\. 
@@ -83,11 +78,12 @@ Then the CREATE MODEL follows your suggestions on the specified aspects, such as
 CREATE MODEL offers more flexibility on the aspects that you can specify and the aspects that Amazon Redshift automatically discovers\.
 
 ```
-CREATE MODEL model-name 
+CREATE MODEL model_name 
 FROM { table_name | ( select_statement ) }
 TARGET column_name
 FUNCTION function_name
 IAM_ROLE 'iam_role_arn'
+[ MODEL_TYPE { XGBOOST | MLP } ]              
 [ PROBLEM_TYPE ( REGRESSION | BINARY_CLASSIFICATION | MULTICLASS_CLASSIFICATION ) ]
 [ OBJECTIVE ( 'MSE' | 'Accuracy' | 'F1' | 'F1Macro' | 'AUC') ]
 SETTINGS (
@@ -100,6 +96,9 @@ SETTINGS (
 ```
 
 ### CREATE MODEL with user guidance parameters<a name="r_user_guidance-create-model-parameters"></a>
+
+ *MODEL\_TYPE \{ XGBOOST \| MLP \}*   
+\(Optional\) Specifies the model type\. You can specify if you want to train a model of a specific model type, such as XGBoost or multilayer perceptron \(MLP\)\. MLP is a deep learning algorithm that Amazon SageMaker Autopilot supports\. If you don't specify the parameter, then all supported model types are searched during training for the best model\.
 
  *PROBLEM\_TYPE \( REGRESSION \| BINARY\_CLASSIFICATION \| MULTICLASS\_CLASSIFICATION \)*   
 \(Optional\) Specifies the problem type\. If you know the problem type, you can restrict Amazon Redshift to only search of the best model of that specific model type\. If you don't specify this parameter, a problem type is discovered during the training, based on your data\.
@@ -163,18 +162,22 @@ SETTINGS (
 ```
 
 Amazon Redshift supports the following transformers:
-+ OneHotEncoder — Typically used to encode a discrete value into a binary vector with one non\-zero value that is more suitable for machine learning models\.
-+ NumericPassthrough — Passes input as is into the model\.
-+ Imputer — Fills in missing values and NaN values\.
-+ Normalizer — Normalizes values that often improves the performance of many machine learning algorithms\.
++ OneHotEncoder – Typically used to encode a discrete value into a binary vector with one nonzero value\. This transformer is suitable for many machine learning models\.  
++ OrdinalEncoder – Encodes discrete values into a single integer\. This transformer is suitable for certain machine learning models, such as MLP\. 
++ NumericPassthrough – Passes input as is into the model\.
++ Imputer – Fills in missing values and not a number \(NaN\) values\.
++ ImputerWithIndicator – Fills in missing values and NaN values\. This transformer also creates an indicator of whether any values were missing and filled in\.
++ Normalizer – Normalizes values, which can improve the performance of many machine learning algorithms\.
++ DateTimeVectorizer – Creates a vector embedding, representing a column of datetime data type that can be used in machine learning models\.
++ PCA – Projects the data into a lower dimensional space to reduce the number of features while keeping as much information as possible\.
 
-Amazon Redshift ML stores the trained transformers, and automatically applies them as part of the prediction query\. You don't need to specify them when generating predictions from the model\. 
+Amazon Redshift ML stores the trained transformers, and automatically applies them as part of the prediction query\. You don't need to specify them when generating predictions from your model\. 
 
 ## CREATE XGBoost models with AUTO OFF<a name="r_auto_off_create_model"></a>
 
 The AUTO OFF CREATE MODEL has generally different objectives from the default CREATE MODEL\.
 
-As an advanced user who already know the model type that you want and hyperparameters to use when training these models, you can use CREATE MODEL with AUTO OFF to turn off the CREATE MODEL automatic discovery of preprocessors and hyperparameters\. To do so, you explicitly specify the model type\. XGBoost is currently the only model type supported when AUTO is set to OFF\. You can specify hyperparameters\. Amazon Redshift uses default values for any hyperparameters that you specified\.  
+As an advanced user who already knows the model type that you want and hyperparameters to use when training these models, you can use CREATE MODEL with AUTO OFF to turn off the CREATE MODEL automatic discovery of preprocessors and hyperparameters\. To do so, you explicitly specify the model type\. XGBoost is currently the only model type supported when AUTO is set to OFF\. You can specify hyperparameters\. Amazon Redshift uses default values for any hyperparameters that you specified\.  
 
 ### CREATE MODEL with AUTO OFF syntax<a name="r_auto_off-create-model-synposis"></a>
 
@@ -208,7 +211,7 @@ SETTINGS (
 ### CREATE XGBoost models with AUTO OFF parameters<a name="r_auto_off-create-model-parameters"></a>
 
  *AUTO OFF*   
-Turns off CREATE MODEL automatic discovery of preprocessor, algorithm and hyper\-parameters selection\.
+Turns off CREATE MODEL automatic discovery of preprocessor, algorithm, and hyper\-parameters selection\.
 
 MODEL\_TYPE XGBOOST  
 Specifies to use XGBOOST to train the model\. 
@@ -217,7 +220,7 @@ OBJECTIVE str
 Specifies an objective recognized by the algorithm\. Amazon Redshift supports reg:squarederror, reg:squaredlogerror, reg:logistic, reg:pseudohubererror, reg:tweedie, binary:logistic, binary:hinge, multi:softmax\. For more information about these objectives, see [Learning task parameters](https://xgboost.readthedocs.io/en/latest/parameter.html#learning-task-parameters) in the XGBoost documentation\.
 
 HYPERPARAMETERS \{ DEFAULT \| DEFAULT EXCEPT \( key ‘value’ \(,\.\.\) \) \}  
-Specifies whether the default XGBoost parameters are used or over\-ridden by user\-specified values\. The values must be enclosed with single quotes\. Following are examples of parameters for XGBoost and their defaults\.      
+Specifies whether the default XGBoost parameters are used or overridden by user\-specified values\. The values must be enclosed with single quotes\. Following are examples of parameters for XGBoost and their defaults\.      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_MODEL.html)
 
 The following example prepares data for XGBoost\.
@@ -265,7 +268,7 @@ MODEL_TYPE XGBOOST
 OBJECTIVE 'multi:softmax'
 PREPROCESSORS 'none'
 HYPERPARAMETERS DEFAULT EXCEPT (NUM_ROUND '100', NUM_CLASS '30')
-settings (S3_BUCKET 'your-bucket');
+SETTINGS (S3_BUCKET 'your-bucket');
 ```
 
 The following example uses an inference query to predict the age of the fish with a record number greater than 200\. It uses the function ml\_fn\_abalone\_xgboost\_multi\_predict\_age created from the above command\. 
@@ -283,7 +286,9 @@ from abalone_xgb where record_number > 2500;
 
 ## Bring your own model \(BYOM\)<a name="r_byom_create_model"></a>
 
-Amazon Redshift ML supports using BYOM for local inference\. The following summarizes the options of the CREATE MODEL syntax for BYOM\.
+Amazon Redshift ML supports using bring your own model \(BYOM\) for local or remote inference\. 
+
+The following summarizes the options for the CREATE MODEL syntax for BYOM\. You can use a model trained outside of Amazon Redshift with Amazon SageMaker for in\-database inference locally in Amazon Redshift\. Amazon Redshift ML supports using BYOM in either local or remote inference\.
 
 ### CREATE MODEL syntax for local inference<a name="r_local-create-model"></a>
 
@@ -291,25 +296,26 @@ The following describes the CREATE MODEL syntax for local inference\.
 
 ```
 CREATE MODEL model_name
-FROM 'job_name'
+FROM ('job_name' | 's3_path' )
 FUNCTION function_name ( data_type [, ...] )
 RETURNS data_type
 IAM_ROLE 'iam-role-arn'
 [ SETTINGS (
-  S3_BUCKET 'bucket', |
-  KMS_KEY_ID 'kms_string')
+  S3_BUCKET 'bucket', | --required
+  KMS_KEY_ID 'kms_string') --optional
 ];
 ```
 
-Amazon Redshift currently only supports pretrained XGBoost models for BYOM\. You can import SageMaker Autopilot and direct Amazon SageMaker trained models for local inference using this path\. 
+Amazon Redshift currently only supports pretrained XGBoost and MLP models for BYOM\. You can import SageMaker Autopilot and models directly trained in Amazon SageMaker for local inference using this path\.  
 
 #### CREATE MODEL parameters for local inference<a name="r_local-create-model-parameters"></a>
 
  *model\_name*   
 The name of the model\. The model name in a schema must be unique\.
 
-FROM *'job\_name'*   
-The FROM clause uses an Amazon SageMaker job name as the input\. The job name can either be a training job name or an AutoML job name\.
+FROM \(*'job\_name'* \| *'s3\_path'* \)  
+The *job\_name* uses an Amazon SageMaker job name as the input\. The job name can either be an Amazon SageMaker training job name or an Amazon SageMaker Autopilot job name\. The job must be created in the same AWS account that owns the Amazon Redshift cluster\.   
+The *'s3\_path'* specifies the S3 location of the \.tar\.gz model artifacts file that is to be used when creating the model\.
 
 FUNCTION *function\_name* \( *data\_type* \[, \.\.\.\] \)  
 The name of the function to be created and the data types of the input arguments\. You can provide a schema name\.
@@ -326,7 +332,7 @@ IAM_ROLE 'arn:aws:iam::aws-account-id:role/role-name'
 ```
 
 SETTINGS \( S3\_BUCKET *'bucket'*, \| KMS\_KEY\_ID *'kms\_string'*\)  
-\(Optional\) The S3\_BUCKET clause specifies the Amazon S3 location that is used to store intermediate results\. If you don't choose an Amazon S3 bucket, Amazon Redshift uses the location where the trained model is located to store intermediate results\.  
+The S3\_BUCKET clause specifies the Amazon S3 location that is used to store intermediate results\.  
 \(Optional\) The KMS\_KEY\_ID clause specifies if Amazon Redshift uses server\-side encryption with an AWS KMS key to protect data at rest\. Data in transit is protected with Secure Sockets Layer \(SSL\)\.  
 For more information, see [CREATE MODEL with user guidance](#r_user_guidance_create_model)\.
 
@@ -339,10 +345,68 @@ CREATE MODEL customer_churn
 FROM 'training-job-customer-churn-v4'
 FUNCTION customer_churn_predict (varchar, int, float, float)
 RETURNS int
-IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-ML';
+IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-ML'
+SETTINGS (S3_BUCKET 'your-bucket');
 ```
 
 After the model is created, you can use the function *customer\_churn\_predict* with the specified argument types to make predictions\.
+
+### CREATE MODEL syntax for remote inference<a name="r_remote-create-model"></a>
+
+The following describes the CREATE MODEL syntax for remote inference\.
+
+```
+CREATE MODEL model_name 
+FUNCTION function_name ( data_type [, ...] ) 
+RETURNS data_type
+SAGEMAKER 'endpoint_name'[:'model_name']
+IAM_ROLE 'iam-role-arn';
+```
+
+#### CREATE MODEL parameters for remote inference<a name="r_remote-create-model-parameters"></a>
+
+ *model\_name*   
+The name of the model\. The model name in a schema must be unique\.
+
+FUNCTION *fn\_name* \( \[*data\_type*\] \[, \.\.\.\] \)  
+The name of the function and the data types of the input arguments\. You can provide a schema name\.
+
+RETURNS *data\_type*  
+The data type of the value returned by the function\.
+
+SAGEMAKER *'endpoint\_name'*\[:*'model\_name'*\]   
+The name of the Amazon SageMaker endpoint\. If the endpoint name points to a multimodel endpoint, add the name of the model to use\. The endpoint must be hosted in the same AWS Region as the Amazon Redshift cluster\.
+
+IAM\_ROLE *'iam\_role\_arn'*  
+The Amazon Resource Name \(ARN\) for an AWS Identity and Access Management \(IAM\) role that your cluster uses for authentication and authorization\. At a minimum, the IAM role must have access to Amazon SageMaker to access the endpoint that stages any Amazon SageMaker artifacts\.   
+The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
+
+```
+IAM_ROLE 'arn:aws:iam::aws-account-id:role/role-name'
+```
+
+When the model is deployed to a SageMaker endpoint, SageMaker creates the information of the model in Amazon Redshift\. It then performs inference through the external function\. You can use the SHOW MODEL command to view the model information on your Amazon Redshift cluster\.
+
+#### CREATE MODEL for remote inference usage notes<a name="r_remote-create-model-usage-notes"></a>
+
+Before using CREATE MODEL for remote inference, consider the following:
++ The model must accept inputs in the format of comma\-separated values \(CSV\) through a content type of text or CSV in SageMaker\.
++ The endpoint must be hosted by the same AWS account that owns the Amazon Redshift cluster\.
++ The outputs of models must be a single value of the type specified on creating the function, in the format of comma\-separated values \(CSV\) through a content type of text or CSV in SageMaker\. 
++ Models accept nulls as empty strings\.
++ Make sure either that the Amazon SageMaker endpoint has enough resources to accommodate inference calls from Amazon Redshift or that the Amazon SageMaker endpoint can be automatically scaled\. 
+
+##### CREATE MODEL for remote inference example<a name="r_remote-create-model-example"></a>
+
+The following example creates a model that uses a SageMaker endpoint to make predictions\. Make sure that the endpoint is running to make predictions and specify its name in the CREATE MODEL command\.
+
+```
+CREATE MODEL remote_customer_churn
+FUNCTION remote_fn_customer_churn_predict (varchar, int, float, float)
+RETURNS int
+SAGEMAKER 'customer-churn-endpoint'
+IAM_ROLE 'arn:aws:iam::0123456789012:role/Redshift-ML';
+```
 
 ## Full CREATE MODEL<a name="r_full_create_model"></a>
 
@@ -352,16 +416,19 @@ The following summarizes the basic options of the full CREATE MODEL syntax\.
 
 The following is the full syntax of the CREATE MODEL statement\. This syntax is used when the AUTO ON semiautomatic [CREATE MODEL with user guidance](#r_user_guidance_create_model) and the AUTO OFF [CREATE XGBoost models with AUTO OFF](#r_auto_off_create_model) work together\. This syntax also includes the CREATE MODEL statement for BYOM\.
 
+**Important**  
+When creating a model using the CREATE MODEL statement, follow the order of the keywords in the syntax following\.
+
 ```
 CREATE MODEL model_name
 FROM { table_name | ( select_statement )  | 'job_name' }
 [ TARGET column_name ]   
-FUNCTION function_name ( [data_type] [, ...] ) 
+FUNCTION function_name ( data_type [, ...] ) 
 IAM_ROLE 'iam_role_arn' 
 [ AUTO ON / OFF ]
   -- default is AUTO ON 
-[ MODEL_TYPE { XGBOOST } ]
-  -- not required for non AUTO OFF case, default is the list of all supported type
+[ MODEL_TYPE { XGBOOST | MLP } ]
+  -- not required for non AUTO OFF case, default is the list of all supported types
   -- required for AUTO OFF 
 [ PROBLEM_TYPE ( REGRESSION | BINARY_CLASSIFICATION | MULTICLASS_CLASSIFICATION ) ]
   -- not supported when AUTO OFF 
@@ -389,20 +456,24 @@ IAM_ROLE 'iam_role_arn'
   MAX_CELLS integer, |
     -- optional, default is 1,000,000
   MAX_RUNTIME integer (, ...)
-    -- optional, default is 5400 (1.5 hours) ]
-)
+    -- optional, default is 5400 (1.5 hours) 
+) ]
 ```
 
 ## Usage notes<a name="r_create_model_usage_notes"></a>
 
 When using CREATE MODEL, consider the following:
-+ The CREATE MODEL statement operates in an asynchronous mode and returns upon the export of training data to Amazon S3\. The remaining steps of training in Amazon SageMaker occur in the background\. While training is in progress, the corresponding inference function is visible but can't be run\. You can query [STV\_ML\_MODEL\_INFO](r_STV_ML_MODEL_INFO.md) to see the state of training\. The training can run for up to 90 minutes in the background, by default in the Auto model and can be extended\. To cancel the training, simply run the [DROP MODEL](r_DROP_MODEL.md) command\.
-+ CREATE MODEL operates in a synchronous mode and can run for up to 90 minutes by default in the AUTO mode\.
++ The CREATE MODEL statement operates in an asynchronous mode and returns upon the export of training data to Amazon S3\. The remaining steps of training in Amazon SageMaker occur in the background\. While training is in progress, the corresponding inference function is visible but can't be run\. You can query [STV\_ML\_MODEL\_INFO](r_STV_ML_MODEL_INFO.md) to see the state of training\. 
++ The training can run for up to 90 minutes in the background, by default in the Auto model and can be extended\. To cancel the training, simply run the [DROP MODEL](r_DROP_MODEL.md) command\.
 + The Amazon Redshift cluster that you use to create the model and the Amazon S3 bucket that is used to stage the training data and model artifacts must be in the same AWS Region\.
-+ During the model training, Amazon Redshift and SageMaker store intermediate artifacts in the Amazon S3 bucket that you provide\. By default, Amazon Redshift performs garbage collection at the end of CREATE MODEL and removes those objects from Amazon S3\. To retain those artifacts on Amazon S3, you can set the S3\_GARBAGE COLLECT OFF option\.
++ During the model training, Amazon Redshift and SageMaker store intermediate artifacts in the Amazon S3 bucket that you provide\. By default, Amazon Redshift performs garbage collection at the end of the CREATE MODEL operaton\. Amazon Redshift removes those objects from Amazon S3\. To retain those artifacts on Amazon S3, set the S3\_GARBAGE COLLECT OFF option\.
 + You must use at least 500 rows in the training data provided in the FROM clause\.
-+ You can only specify up to 32 feature \(input\) columns in the FROM \{ table\_name \| \( select\_query \) \} clause when using the CREATE MODEL statement\.
-+ For AUTO ON, the column types that you can use as the training set are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE, BOOLEAN, CHAR, and VARCHAR\. For AUTO OFF, the column types that you can use as the training set are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE, and BOOLEAN\.
-+ You can't use DECIMAL as the target column type\.
-+ The CREATE MODEL statement execution returns as soon as the training data have been computed and exported on the Amazon S3 bucket\. After that point, you can check the status of the training using the SHOW MODEL command\. For more information about SHOW MODEL, see [SHOW MODEL](r_SHOW_MODEL.md)\.
-+ Local BYOM supports the same kind of models that Amazon Redshift ML supports for non\-BYOM cases\. Amazon Redshift supports plain XGBoost models \(using XGBoost version 1\.0 or later\) without preprocessors and XGBoost models trained by Amazon SageMaker Autopilot\. It supports the latter with preprocessors that Autopilot has specified that are also supported by Amazon SageMaker Neo\.
++ You can only specify up to 256 feature \(input\) columns in the FROM \{ table\_name \| \( select\_query \) \} clause when using the CREATE MODEL statement\.
++ For AUTO ON, the column types that you can use as the training set are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE, BOOLEAN, CHAR, VARCHAR, DATE, TIME, TIMETZ, TIMESTAMP, and TIMESTAMPTZ\. For AUTO OFF, the column types that you can use as the training set are SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, DOUBLE, and BOOLEAN\.
++ You can't use DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, TIMESTAMPTZ, GEOMETRY, HLLSKETCH, or SUPER as the target column type\.
++ To improve model accuracy, do one of the following:
+  + Add as many relevant columns in the CREATE MODEL command as possible when you specify the training data in the FROM clause\.
+  + Use a larger value for MAX\_RUNTIME and MAX\_CELLS\. Larger values for this parameter increase the cost of training a model\.
++ The CREATE MODEL statement execution returns as soon as the training data is computed and exported to the Amazon S3 bucket\. After that point, you can check the status of the training using the SHOW MODEL command\. When a model being trained in the background fails, you can check the error using SHOW MODEL\. You can't retry a failed model\. Use DROP MODEL to remove a failed model and recreate a new model\. For more information about SHOW MODEL, see [SHOW MODEL](r_SHOW_MODEL.md)\.
++ Local BYOM supports the same kind of models that Amazon Redshift ML supports for non\-BYOM cases\. Amazon Redshift supports plain XGBoost or MLP models \(using XGBoost version 1\.0 or later\) without preprocessors and XGBoost models trained by Amazon SageMaker Autopilot\. It supports the latter with preprocessors that Autopilot has specified that are also supported by Amazon SageMaker Neo\.
++ If your Amazon Redshift cluster has enhanced routing enabled for your virtual private cloud \(VPC\), make sure to create an Amazon S3 VPC endpoint and an SageMaker VPC endpoint for the VPC that your cluster is in\. Doing this enables the traffic to run through your VPC between these services during CREATE MODEL\.
