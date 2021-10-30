@@ -1,8 +1,8 @@
 # STRPOS function<a name="r_STRPOS"></a>
 
-Returns the position of a substring within a specified string\. 
+Returns the position of a substring within a specified string\.
 
-Synonym of [CHARINDEX function](r_CHARINDEX.md) and [POSITION function](r_POSITION.md)\. 
+Similar to the [CHARINDEX](r_CHARINDEX.md) and [POSITION](r_POSITION.md) functions\.
 
 ## Syntax<a name="r_STRPOS-synopsis"></a>
 

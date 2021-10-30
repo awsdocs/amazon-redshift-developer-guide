@@ -2,7 +2,7 @@
 
 Returns the location of the specified substring within a string\.
 
-Synonym of the [STRPOS function](r_STRPOS.md) function\.
+Similar to the [STRPOS](r_STRPOS.md) and [CHARINDEX](r_CHARINDEX.md) functions\.
 
 ## Syntax<a name="position-synopsis"></a>
 

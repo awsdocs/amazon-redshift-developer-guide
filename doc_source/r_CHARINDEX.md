@@ -1,6 +1,8 @@
 # CHARINDEX function<a name="r_CHARINDEX"></a>
 
-Returns the location of the specified substring within a string\. Synonym of the STRPOS function\.
+Returns the location of the specified substring within a string\.
+
+Similar to the [POSITION](r_POSITION.md) and [STRPOS](r_STRPOS.md) functions\.
 
 ## Syntax<a name="r_CHARINDEX-synopsis"></a>
 
@@ -57,5 +59,3 @@ charindex | count
 5 |	629
 (1 row)
 ```
-
-See [STRPOS function](r_STRPOS.md) for details\. 
