@@ -1,6 +1,6 @@
 # Automatic query rewriting to use materialized views<a name="materialized-view-auto-rewrite"></a>
 
-You can use automatic query rewriting of materialized views in Amazon Redshift to have Amazon Redshift rewrite queries to use materialized views\. Doing this accelerates query workloads even for queries that don't explicitly reference a materialized view\. When Amazon Redshift rewrites queries, it only uses materialized views that are up\-to\-date\.
+You can use automatic query rewriting of materialized views in Amazon Redshift to have Amazon Redshift rewrite queries to use materialized views\. Doing this accelerates query workloads even for queries that don't explicitly reference a materialized view\. When Amazon Redshift rewrites queries, it only uses materialized views that are up to date\.
 
 ## Usage notes<a name="mv_auto-rewrite_usage"></a>
 

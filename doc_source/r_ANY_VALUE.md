@@ -14,17 +14,13 @@ DISTINCT \| ALL
 Specify either DISTINCT or ALL to return any value from the input expression values\. The DISTINCT argument has no effect and is ignored\.
 
  *expression *   
-The target column or expression on which the function operates\.
-
-## Returns<a name="r_ANY_VALUE-returns"></a>
-
-A value from the input expression values\. The following data types are returned:
+The target column or expression on which the function operates\. The *expression* is one of the following data types:  
 + SMALLINT
 + INTEGER
 + BIGINT
 + DECIMAL
 + REAL
-+ DOUBLE
++ DOUBLE PRECISON
 + BOOLEAN
 + CHAR
 + VARCHAR
@@ -33,7 +29,15 @@ A value from the input expression values\. The following data types are returned
 + TIMESTAMPTZ
 + TIME
 + TIMETZ
++ VARBYTE
++ SUPER
++ HLLSKETCH
 + GEOMETRY
++ GEOGRAPHY
+
+## Returns<a name="r_ANY_VALUE-returns"></a>
+
+Returns the same data type as *expression*\. 
 
 ## Usage notes<a name="r_ANY_VALUE-usage-notes"></a>
 

@@ -11,7 +11,7 @@ EXECUTE plan_name [ (parameter [, ...]) ]
 ## Parameters<a name="r_EXECUTE-parameters"></a>
 
  *plan\_name*   
-Name of the prepared statement to be executed\. 
+Name of the prepared statement to be run\. 
 
  *parameter*   
 The actual value of a parameter to the prepared statement\. This must be an expression yielding a value of a type compatible with the data type specified for this parameter position in the PREPARE command that created the prepared statement\. 

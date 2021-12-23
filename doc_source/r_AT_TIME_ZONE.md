@@ -12,12 +12,12 @@ AT TIME ZONE 'timezone'
 
 *timezone*  
 The time zone for the return value\. The time zone can be specified as a time zone name \(such as **'Africa/Kampala'** or **'Singapore'**\) or as a time zone abbreviation \(such as **'UTC'** or **'PDT'**\)\.   
-To view a list of supported time zone names, execute the following command\.   
+To view a list of supported time zone names, run the following command\.   
 
 ```
 select pg_timezone_names();
 ```
- To view a list of supported time zone abbreviations, execute the following command\.   
+ To view a list of supported time zone abbreviations, run the following command\.   
 
 ```
 select pg_timezone_abbrevs();

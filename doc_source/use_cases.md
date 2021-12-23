@@ -5,3 +5,4 @@ Amazon Redshift data sharing is especially useful for these use cases:
 + **Enabling cross\-group collaboration** – Enable seamless collaboration across teams and business groups for broader analytics, data science, and cross\-product impact analysis\.
 + **Delivering data as a service** – Share data as a service across your organization\.
 + **Sharing data between environments** – Share data among development, test, and production environments\. You can improve team agility by sharing data at different levels of granularity\.
++ **Licensing access to data in Amazon Redshift** \(preview\) – List Amazon Redshift data sets in the AWS Data Exchange catalog that customers can find, subscribe to, and query in minutes\.

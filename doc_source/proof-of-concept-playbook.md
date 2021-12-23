@@ -12,7 +12,7 @@ Conducting a proof of concept is a three\-step process:
 
 1. Set up the proof of concept environment – most of the setup process is a click of few buttons to create your resources\. Within minutes, you can have a data warehouse environment ready with data loaded\. 
 
-1. Execute the proof of concept project plan to ensure that the goals are met\. 
+1. Complete the proof of concept project plan to ensure that the goals are met\. 
 
 In the following sections, we go into the details of each step\.
 
@@ -115,7 +115,7 @@ Some of the following techniques for creating query benchmarks might help suppor
   + Concurrency settings
 + Reduce the cost of your proof of concept by pausing your cluster during off\-hours and weekends\. When a cluster is paused, on\-demand compute billing is suspended\. To run tests on the cluster, resume per\-second billing\. You can also create a schedule to pause and resume your cluster automatically\. For more information, see [Pausing and resuming clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-mgmt-pause-resume-cluster) in the *Amazon Redshift Cluster Management Guide*\. 
 
-At this stage, you're ready to execute on your project plan and evaluate results\. 
+At this stage, you're ready to complete your project plan and evaluate results\. 
 
 ## Additional resources to help your evaluation<a name="proof-of-concept-evaluation-additional-resources"></a>
 

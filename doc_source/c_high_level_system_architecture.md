@@ -8,10 +8,6 @@ This section introduces the elements of the Amazon Redshift data warehouse archi
 
 Amazon Redshift integrates with various data loading and ETL \(extract, transform, and load\) tools and business intelligence \(BI\) reporting, data mining, and analytics tools\. Amazon Redshift is based on industry\-standard PostgreSQL, so most existing SQL client applications will work with only minimal changes\. For information about important differences between Amazon Redshift SQL and PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
 
- **Connections** 
-
-Amazon Redshift communicates with client applications by using industry\-standard JDBC and ODBC drivers for PostgreSQL\. For more information, see [Amazon Redshift and PostgreSQL JDBC and ODBC](c_redshift-postgres-jdbc.md)\.
-
  **Clusters** 
 
 The core infrastructure component of an Amazon Redshift data warehouse is a *cluster*\.

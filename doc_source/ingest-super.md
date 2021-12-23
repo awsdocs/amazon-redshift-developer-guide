@@ -180,7 +180,7 @@ FORMAT JSON 's3://redshift-downloads/semistructured/tpch-nested/data/jsonpaths/n
 
 ### Copying data from text and CSV<a name="copy_json-from-text-csv"></a>
 
-Amazon Redshift represents SUPER columns in text and CSV formats as single\-line JSON objects\. The double quotation marks used for escaping in CSV require no intervention from users\. However, for text format, when the chosen delimiter might also appear in a SUPER field, use the ESCAPE option during COPY and UNLOAD\. 
+Amazon Redshift represents SUPER columns in text and CSV formats as serialized JSON\. Valid JSON formatting is required for SUPER columns to load with the correct type information\. Unquote objects, arrays, numbers, booleans, and null values\. Wrap string values in double quotes\. SUPER columns use standard escaping rules for text and CSV formats\. For CSV, delimiters are escaped according to the CSV standard\. For text, if the chosen delimiter might also appear in a SUPER field, use the ESCAPE option during COPY and UNLOAD\.
 
 ```
 COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/csv/region_nation'

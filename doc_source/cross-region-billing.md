@@ -1,0 +1,3 @@
+# Managing cost control for cross\-Region data sharing<a name="cross-region-billing"></a>
+
+To share data between different AWS Regions, you pay the cross\-Region data transfer from the producer Region to the consumer Region in addition to the cost of using your Amazon Redshift cluster\. The price of data transfer is different for different Regions\. The charge is based on the bytes of data scanned for every successful query run\. For more information about Amazon Redshift pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\.

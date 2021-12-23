@@ -1,6 +1,6 @@
 # Refreshing a materialized view<a name="materialized-view-refresh"></a>
 
-When you create a materialized view, its contents reflect the state of the underlying database table or tables at that time\. The data in the materialized view remains unchanged, even when applications make changes to the data in the underlying tables\. To update the data in the materialized view, you can use the `REFRESH MATERIALIZED VIEW` statement at any time to manually refresh materialized views\. When you use this statement, Amazon Redshift identifies changes that have taken place in the base table or tables and applies those changes to the materialized view\.
+When you create a materialized view, its contents reflect the state of the underlying database table or tables at that time\. The data in the materialized view remains unchanged, even when applications change the data in the underlying tables\. To update the data in the materialized view, you can use the `REFRESH MATERIALIZED VIEW` statement at any time to manually refresh materialized views\. When you use this statement, Amazon Redshift identifies changes that have taken place in the base table or tables and applies those changes to the materialized view\.
 
 Amazon Redshift has two strategies for refreshing a materialized view: 
 + In many cases, Amazon Redshift can perform an incremental refresh\. In an *incremental refresh*, Amazon Redshift quickly identifies the changes to the data in the base tables since the last refresh and updates the data in the materialized view\. Incremental refresh is supported on the following SQL constructs used in the query when defining the materialized view:
@@ -10,7 +10,7 @@ Amazon Redshift has two strategies for refreshing a materialized view:
 + If an incremental refresh isn't possible, then Amazon Redshift performs a full refresh\. A *full refresh* reruns the underlying SQL statement, replacing all of the data in the materialized view\.
 + Amazon Redshift automatically chooses the refresh method for a materialize view depending on the SELECT query used to define the materialized view\. 
 
-Refreshing a materialized view on a materialized view isn't a cascading process\. In other words, suppose that you have a materialized view A that depends on materialized view B\. In this case, when the REFRESH MATERIALIZED VIEW A is invoked, A is refreshed using the current version of B, even when B is out\-of\-date\. To bring A fully up\-to\-date, before refreshing A, first refresh B in a separate transaction\.
+Refreshing a materialized view on a materialized view isn't a cascading process\. In other words, suppose that you have a materialized view A that depends on materialized view B\. In this case, when the REFRESH MATERIALIZED VIEW A is invoked, A is refreshed using the current version of B, even when B is out\-of\-date\. To bring A fully up to date, before refreshing A, first refresh B in a separate transaction\.
 
 The following example shows how you can create a full refresh plan for a materialized view programmatically\. To refresh the materialized view v, first refresh materialized view u\. To refresh materialized view w, first refresh materialized view u and then materialized view v\.
 

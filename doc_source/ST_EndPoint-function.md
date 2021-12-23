@@ -28,7 +28,7 @@ If *geom* isn't a `LINESTRING`, then null is returned\.
 The following SQL returns an extended well\-known text \(EWKT\) representation of a four\-point `LINESTRING` to a `GEOMETRY` object and returns the end point of the linestring\. 
 
 ```
-SELECT ST_AsEWKT(ST_StartPoint(ST_GeomFromText('LINESTRING(0 0,10 0,10 10,5 5,0 5)',4326)));
+SELECT ST_AsEWKT(ST_EndPoint(ST_GeomFromText('LINESTRING(0 0,10 0,10 10,5 5,0 5)',4326)));
 ```
 
 ```

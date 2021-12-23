@@ -12,14 +12,14 @@ This view is visible to all users\. Superusers can see all rows; regular users c
 
 ## Sample queries<a name="r_STL_FILE_SCAN-sample-queries2"></a>
 
-The following query retrieves the names and load times of any files that took over 1000000 microseconds for Amazon Redshift to read:
+The following query retrieves the names and load times of any files that took over 1,000,000 microseconds for Amazon Redshift to read\.
 
 ```
 select trim(name)as name, loadtime from stl_file_scan
 where loadtime > 1000000;
 ```
 
-This query returns the following example output:
+This query returns the following example output\.
 
 ```
            name            | loadtime

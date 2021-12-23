@@ -16,6 +16,14 @@ table_name [ * ] [ [ AS ] alias [ ( column_alias [, ...] ) ] ]
 ( subquery ) [ AS ] alias [ ( column_alias [, ...] ) ]
 table_reference [ NATURAL ] join_type table_reference
 [ ON join_condition | USING ( join_column [, ...] ) ]
+table_reference [ PIVOT ] ( aggregate(expr) [ [ AS ] aggregate_alias ]
+ FOR column_name IN ( expression [ [ AS ] in_alias [, ...] 
+   ) 
+) [ [ AS ] in_alias [, ...] ) ] ]
+table_reference [ UNPIVOT [INCLUDE NULLS | EXCLUDE NULLS] ] ( value_column_name FOR name_column_name 
+               IN ( column_reference [ [ AS ] in_alias [, ...] 
+   ) 
+) [ [ AS ] alias [(column_alias, ...] ) ] ]
 ```
 
 ## Parameters<a name="r_FROM_clause30-parameters"></a>
@@ -40,6 +48,12 @@ Temporary alternative name for a column in a table or view\.
  *subquery*   
 A query expression that evaluates to a table\. The table exists only for the duration of the query and is typically given a name or *alias*\. However, an alias isn't required\. You can also define column names for tables that derive from subqueries\. Naming column aliases is important when you want to join the results of subqueries to other tables and when you want to select or constrain those columns elsewhere in the query\.   
 A subquery may contain an ORDER BY clause, but this clause may have no effect if a LIMIT or OFFSET clause isn't also specified\. 
+
+ *PIVOT*   
+Rotates output from rows to columns, for the purpose of representing tabular data in a format that is easy to read\. Output is represented horizontally across multiple columns\. PIVOT is similar to a GROUP BY query with an aggregation, using an aggregate expression to specify an output format\. However, in contrast to GROUP BY, the results are returned in columns instead of rows\.
+
+ *UNPIVOT*   
+The UNPIVOT operator transforms result columns, from an input table or query results, into rows, to make the output easier to read\. UNPIVOT combines the data of its input columns into two result columns: a name column and a value column\. The name column contains column names from the input, as row entries\. The value column contains values from the input columns, such as results of an aggregation\. For example, the counts of items in various categories\.
 
 NATURAL   
 Defines a join that automatically uses all pairs of identically named columns in the two tables as the joining columns\. No explicit join condition is required\. For example, if the CATEGORY and EVENT tables both have columns named CATID, a natural join of those tables is a join over their CATID columns\.   

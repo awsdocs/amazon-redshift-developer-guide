@@ -12,7 +12,7 @@ The COPY command loads data from files on the Amazon EMR Hadoop Distributed File
 **Important**  
 The file names must not include asterisks \( \* \) or question marks \( ? \)\.
 
-1. Specify **No** for the **Auto\-terminate** option in the Amazon EMR cluster configuration so that the cluster remains available while the COPY command executes\. 
+1. Specify **No** for the **Auto\-terminate** option in the Amazon EMR cluster configuration so that the cluster remains available while the COPY command runs\. 
 **Important**  
 If any of the data files are changed or deleted before the COPY completes, you might have unexpected results, or the COPY operation might fail\. 
 

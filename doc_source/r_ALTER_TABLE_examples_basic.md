@@ -175,6 +175,40 @@ select "table", "diststyle" from svv_table_info;
  inventory |     ALL
 ```
 
+## Alter a table SORTKEY<a name="r_ALTER_TABLE_examples_alter-sortkey"></a>
+
+You can alter a table to have a compound sort key or no sort key\.
+
+In the following table definition, table `t1` is defined with an interleaved sortkey\.
+
+```
+create table t1 (c0 int, c1 int) interleaved sortkey(c0, c1);
+```
+
+The following command alters the table from an interleaved sort key to a compound sort key\.
+
+```
+alter table t1 alter sortkey(c0, c1);
+```
+
+The following command alters the table to remove the interleaved sort key\.
+
+```
+alter table t1 alter sortkey none;
+```
+
+In the following table definition, table `t1` is defined with column `c0` as a sortkey\.
+
+```
+create table t1 (c0 int, c1 int) sortkey(c0);
+```
+
+The following command alters the table `t1` to a compound sort key\.
+
+```
+alter table t1 alter sortkey(c0, c1);
+```
+
 ## Alter a table to ENCODE AUTO<a name="r_ALTER_TABLE_examples_alter-encode-auto"></a>
 
 The following example shows how to alter a table to ENCODE AUTO\. 

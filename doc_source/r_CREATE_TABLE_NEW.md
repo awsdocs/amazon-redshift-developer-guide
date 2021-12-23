@@ -115,9 +115,9 @@ The compression encoding for a column\. ENCODE AUTO is the default for tables\. 
 Amazon Redshift automatically assigns an initial compression encoding to columns for which you don't specify compression encoding as follows:  
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
-+ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data type are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, GEOMETRY, or GEOGRAPHY data type are assigned RAW compression\.
 + Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
-+ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
++ Columns that are defined as CHAR, VARCHAR, or VARBYTE are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
  The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  
 + AZ64

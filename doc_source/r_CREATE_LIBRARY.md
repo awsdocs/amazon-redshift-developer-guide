@@ -17,6 +17,7 @@ FROM
 | 's3://bucketname/file_name'
 authorization
   [ REGION [AS] 'aws_region']
+  IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’ }
 }
 ```
 
@@ -53,23 +54,13 @@ If you specify an Amazon S3 bucket, you must also provide credentials for an AWS
 *authorization*   
 A clause that indicates the method your cluster uses for authentication and authorization to access the Amazon S3 bucket that contains the library file\. Your cluster must have permission to access the Amazon S3 with the LIST and GET actions\.  
 The syntax for authorization is the same as for the COPY command authorization\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.  
-To specify an AWS Identity and Access Management \(IAM\) role, replace *<account\-id>* and *<role\-name>* with the account ID and role name in the CREDENTIALS *credentials\-args* string\. An example is shown following\.  
 
 ```
-'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
+IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
 ```
+ Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREATE LIBRARY command runs\.  
+Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. If you specify IAM\_ROLE, you can't use ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, SESSION\_TOKEN, or CREDENTIALS\.  
 Optionally, if the Amazon S3 bucket uses server\-side encryption, provide the encryption key in the credentials\-args string\. If you use temporary security credentials, provide the temporary token in the *credentials\-args* string\.  
-To specify key\-based access control, provide the *credentials\-args* in the following format\.  
-
-```
-'aws_access_key_id=<access-key-id>;aws_secret_access_key=<secret-access-key>'
-```
-To use temporary token credentials, you must provide the temporary access key ID, the temporary secret access key, and the temporary token\. The *credentials\-args* string is in the following format\.   
-
-```
-WITH CREDENTIALS AS 
-'aws_access_key_id=<temporary-access-key-id>;aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>'
-```
 For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)\.
 
  REGION \[AS\] *aws\_region*   
@@ -86,7 +77,7 @@ The following command installs a UDF library named `f_urlparse` from a package t
 create library f_urlparse 
 language plpythonu 
 from 's3://mybucket/urlparse3-1.0.3.zip' 
-credentials 'aws_access_key_id=<access-key-id>;aws_secret_access_key=<secret-access-key>'
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 region as 'us-east-1';
 ```
 

@@ -14,4 +14,4 @@ As a consumer cluster administrator, you can remove association of datashares fr
 
 1. When the Remove association page appears, choose **Remove association**\.
 
-After association is removed, data consumers will lose access to the datashare\. You can make changes to the data consumer association at any time\.
+After association is removed, data consumers will lose access to the datashare\. You can change the data consumer association at any time\.

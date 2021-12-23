@@ -79,7 +79,19 @@ The following [Data types](c_Supported_data_types.md) are supported:
 + VARCHAR \(CHARACTER VARYING\)
 + DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
 + TIMESTAMP
-Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
+  
+For DATE, you can use the formats as described following\. For month values represented using digits, the following formats are supported:  
++ `mm-dd-yyyy` For example, `05-01-2017`\. This is the default\.
++ `yyyy-mm-dd`, where the year is represented by more than 2 digits\. For example, `2017-05-01`\.
+For month values represented using the three letter abbreviation, the following formats are supported:  
++ `mmm-dd-yyyy` For example, `may-01-2017`\. This is the default\.
++ `dd-mmm-yyyy`, where the year is represented by more than 2 digits\. For example, `01-may-2017`\.
++ `yyyy-mmm-dd`, where the year is represented by more than 2 digits\. For example, `2017-may-01`\.
+For year values that are consistently less than 100, the year is calculated in the following manner:  
++ If year is less than 70, the year is calculated as the year plus 2000\. For example, the date 05\-01\-17 in the `mm-dd-yyyy` format is converted into `05-01-2017`\.
++ If year is less than 100 and greater than 69, the year is calculated as the year plus 1900\. For example the date 05\-01\-89 in the `mm-dd-yyyy` format is converted into `05-01-1989`\.
++ For year values represented by two digits, add leading zeroes to represent the year in 4 digits\.
+Timestamp values in text files must be in the format `yyyy-mm-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000`\.  
 The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and ranges](r_Character_types.md#r_Character_types-storage-and-ranges)\.   
 For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\. The following example returns the maximum size of values in the email column\.  
 
@@ -140,7 +152,10 @@ The name of the SerDe\. You can specify the following formats:
     'strip.outer.array'='true' 
     ```
 
-    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\.   
+    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\. 
++ com\.amazon\.ionhiveserde\.IonHiveSerDe
+
+  The Amazon ION format provides text and binary formats, in addition to data types\. For an external table that references data in ION format, you map each column in the external table to the corresponding element in the ION format data\. For more information, see [Amazon Ion](https://amzn.github.io/ion-docs/)\. You also need to specify the input and output formats\.  
 WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 Optionally, specify property names and values, separated by commas\.
 If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' \(start of heading\) and LINES TERMINATED BY '\\n' \(newline\)\. 
@@ -636,4 +651,15 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
 WITH SERDEPROPERTIES (
 'input.regex' = '([^ ]*) ([^ ]*) \\[(.*?)\\] ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) \"([^ ]*)\\s*([^ ]*)\\s*([^ ]*)\" (- |[^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\") ([^ ]*).*$')
 LOCATION 's3://mybucket/s3logs’;
+```
+
+The following shows an example of specifying the ROW FORMAT SERDE parameters for ION format data\.
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'com.amazon.ionhiveserde.IonHiveSerDe'
+STORED AS
+INPUTFORMAT 'com.amazon.ionhiveserde.formats.IonInputFormat'
+OUTPUTFORMAT 'com.amazon.ionhiveserde.formats.IonOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
 ```

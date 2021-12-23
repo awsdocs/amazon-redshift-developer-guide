@@ -1,6 +1,6 @@
 # Accessing metadata for datashares in Amazon Redshift<a name="access-datashare"></a>
 
-To help cluster administrators discover datashares, Amazon Redshift provides a set of metadata views to list datashares\. These views list datashares created in your cluster and also those received from other clusters within the same account and from other accounts\. These views display the following information:
+To help cluster administrators discover datashares, Amazon Redshift provides a set of metadata views to list datashares\. These views list datashares created in your cluster and also those received from other clusters within the same account, from other accounts, or other AWS Regions \(preview\)\. These views display the following information:
 + Datashares that are shared and received by the clusters
 + Contents of database objects in the datashares, including the basic share metadata, objects, and consumers
 

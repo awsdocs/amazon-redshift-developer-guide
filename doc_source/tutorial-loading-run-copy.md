@@ -33,7 +33,7 @@ You can use the COPY command to load data from an Amazon S3 bucket, an Amazon EM
   In some cases, you might need to load files with different prefixes, for example from multiple buckets or folders\. In others, you might need to exclude files that share a prefix\. In these cases, you can use a manifest file\. A *manifest file* explicitly lists each load file and its unique object key\. You use a manifest file to load the PART table later in this tutorial\. 
 <a name="tutorial-loading-syntax-credentials"></a>
 **Credentials**  
-To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\. These credentials are an access key ID and a secret access key\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you need to get them\. For more information, go to [Administering access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
+To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\.   These credentials include an IAM role Amazon Resource Name \(ARN\)\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted\.  For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. 
 
 <a name="tutorial-loading-syntax-options.title"></a>Options
 
@@ -102,7 +102,7 @@ The COPY commands in this tutorial are presented in the following format\.
 
 ```
 copy table from 's3://<your-bucket-name>/load/key_prefix' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 options;
 ```
 
@@ -112,13 +112,13 @@ For each COPY command, do the following:
 
    This step assumes the bucket and the cluster are in the same region\. Alternatively, you can specify the region using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
 
-1. Replace *<Your\-Access\-Key\-ID>* and *<Your\-Secret\-Access\-Key>* with your own AWS IAM account credentials\. The segment of the credentials string that is enclosed in single quotation marks must not contain any spaces or line breaks\. 
+1. Replace *<aws\-account\-id>* and *<role\-name>* with your own AWS account and IAM role\. The segment of the credentials string that is enclosed in single quotation marks must not contain any spaces or line breaks\. 
 
 ### Load the PART table using NULL AS<a name="tutorial-loading-load-part"></a>
 
 In this step, you use the CSV and NULL AS options to load the PART table\. 
 
-The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split your load data into multiple files](c_best-practices-use-multiple-files.md)\. 
+The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split your load data](c_best-practices-use-multiple-files.md)\. 
 <a name="tutorial-loading-key-prefix"></a>
 **Key prefix**  
 You can load from multiple files by specifying a key prefix for the file set, or by explicitly listing the files in a manifest file\. In this step, you use a key prefix\. In a later step, you use a manifest file\. The key prefix `'s3://mybucket/load/part-csv.tbl'` loads the following set of the files in the `load` folder\. 
@@ -151,11 +151,11 @@ To load data that is in CSV format, add `csv` to your COPY command\. Run the fol
 
 ```
 copy part from 's3://<your-bucket-name>/load/part-csv.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>'
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 csv;
 ```
 
-You should get an error message similar to the following\.
+You might get an error message similar to the following\.
 
 ```
 An error occurred when executing the SQL command:
@@ -207,7 +207,7 @@ To load PART using the NULL AS option, run the following COPY command\.
 
 ```
 copy part from 's3://<your-bucket-name>/load/part-csv.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 csv
 null as '\000';
 ```
@@ -249,11 +249,11 @@ Whenever possible, you should locate your load data in the same AWS region as yo
 
 If you must load data from a different AWS region, use the REGION option to specify the AWS region in which the load data is located\. If you specify a region, all of the load data, including manifest files, must be in the named region\. For more information, see [REGION](copy-parameters-data-source-s3.md#copy-region)\. 
 
-If your cluster is in the US East \(N\. Virginia\) region, run the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US West \(Oregon\) region\. For this example, do not change the bucket name\. 
+If your cluster is in the US East \(N\. Virginia\) Region, run the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US West \(Oregon\) Region\. For this example, do not change the bucket name\. 
 
 ```
 copy supplier from 's3://awssampledbuswest2/ssbgz/supplier.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 delimiter '|' 
 gzip
 region 'us-west-2';
@@ -263,7 +263,7 @@ If your cluster is *not* in the US East \(N\. Virginia\) region, run the followi
 
 ```
 copy supplier from 's3://awssampledb/ssbgz/supplier.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 delimiter '|' 
 gzip
 region 'us-east-1';
@@ -298,7 +298,7 @@ To load the CUSTOMER table from fixed\-width data, run the following command\.
 ```
 copy customer
 from 's3://<your-bucket-name>/load/customer-fw.tbl'
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15, c_region :12, c_phone:15,c_mktsegment:10';
 ```
 
@@ -308,7 +308,7 @@ You should get an error message, similar to the following\.
 An error occurred when executing the SQL command:
 copy customer
 from 's3://mybucket/load/customer-fw.tbl'
-credentials'aws_access_key_id=...
+credentials'...
 
 ERROR: Load into table 'customer' failed.  Check 'stl_load_errors' system table for details. [SQL State=XX000] 
 
@@ -325,7 +325,7 @@ To test using the FIXEDWIDTH and MAXERROR options, run the following command\.
 ```
 copy customer
 from 's3://<your-bucket-name>/load/customer-fw.tbl'
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15, c_region :12, c_phone:15,c_mktsegment:10'
 maxerror 10;
 ```
@@ -461,7 +461,7 @@ The following shows the `customer-fw-manifest` text\.
 
    ```
    copy customer from 's3://<your-bucket-name>/load/customer-fw-manifest'
-   credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+   credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
    fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15, c_region :12, c_phone:15,c_mktsegment:10'
    maxerror 10 
    acceptinvchars as '^'
@@ -489,7 +489,7 @@ To load the DWDATE table, run the following COPY command\.
 
 ```
 copy dwdate from 's3://<your-bucket-name>/load/dwdate-tab.tbl'
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 delimiter '\t' 
 dateformat 'auto';
 ```
@@ -526,7 +526,7 @@ The following screenshot shows the data files for LINEORDER\.
 
    ```
    copy lineorder from 's3://awssampledb/load/lo/lineorder-single.tbl' 
-   credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+   credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
    gzip
    compupdate off
    region 'us-east-1';
@@ -548,7 +548,7 @@ The following screenshot shows the data files for LINEORDER\.
 
    ```
    copy lineorder from 's3://awssampledb/load/lo/lineorder-multi.tbl' 
-   credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+   credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
    gzip
    compupdate off
    region 'us-east-1';

@@ -1,8 +1,8 @@
 # Overview of data sharing in Amazon Redshift<a name="data_sharing_intro"></a>
 
-With *data sharing*, you can share live data across Amazon Redshift clusters for read purposes with relative security and ease\.
+With *data sharing*, you can securely and easily share live data across Amazon Redshift clusters for read purposes\.
 
-For information about how to get started working with data sharing and how to manage datashares using the AWS Management Console, see [Getting started data sharing in Amazon Redshift](getting-started-datashare.md)\.
+For information about how to get started working with data sharing and manage datashares using the AWS Management Console, see [Getting started data sharing](getting-started-datashare.md)\.
 
 **Topics**
 + [Data sharing use cases for Amazon Redshift](use_cases.md)
@@ -12,4 +12,4 @@ For information about how to get started working with data sharing and how to ma
 + [Accessing shared data in Amazon Redshift](access_shared_data.md)
 + [Data sharing considerations in Amazon Redshift](considerations.md)
 + [How data sharing works in Amazon Redshift](how_it_works.md)
-+ [Controlling access for cross\-account datashares](control-access.md)
++ [Controlling access for cross\-account datashares](access-cross-account.md)

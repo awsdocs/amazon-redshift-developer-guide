@@ -15,7 +15,7 @@
 
    You will use the IP addresses in Step 3 to configure the host to accept the connection from Amazon Redshift\. Depending on what type of host you connect to and whether it is in a VPC, you will use either the public IP addresses or the private IP addresses\.
 
-To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift CLI, execute the describe\-clusters command\. 
+To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift CLI, run the describe\-clusters command\. 
 
 For example: 
 

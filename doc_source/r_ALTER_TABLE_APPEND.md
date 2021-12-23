@@ -119,7 +119,7 @@ select count(*) from sales;
 (1 row)
 ```
 
-Now execute the following ALTER TABLE APPEND command\.
+Now run the following ALTER TABLE APPEND command\.
 
 ```
 alter table sales append from sales_monthly;         

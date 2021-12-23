@@ -5,6 +5,7 @@
 + [activate\_aqua](r_activate_aqua.md)
 + [analyze\_threshold\_percent](r_analyze_threshold_percent.md)
 + [cast\_super\_null\_on\_error](r_cast_super_null_on_error.md)
++ [datashare\_break\_glass\_session\_var \(preview\)](r_datashare_break_glass_session_var.md)
 + [datestyle](r_datestyle.md)
 + [default\_geometry\_encoding](r_default_geometry_encoding.md)
 + [describe\_field\_name\_in\_uppercase](r_describe_field_name_in_uppercase.md)

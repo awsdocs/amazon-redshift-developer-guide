@@ -2,7 +2,7 @@
 
 Prepare a statement for execution\. 
 
-PREPARE creates a prepared statement\. When the PREPARE statement is executed, the specified statement \(SELECT, INSERT, UPDATE, or DELETE\) is parsed, rewritten, and planned\. When an EXECUTE command is then issued for the prepared statement, Amazon Redshift may optionally revise the query execution plan \(to improve performance based on the specified parameter values\) before running the prepared statement\. 
+PREPARE creates a prepared statement\. When the PREPARE statement is run, the specified statement \(SELECT, INSERT, UPDATE, or DELETE\) is parsed, rewritten, and planned\. When an EXECUTE command is then issued for the prepared statement, Amazon Redshift may optionally revise the query execution plan \(to improve performance based on the specified parameter values\) before running the prepared statement\. 
 
 ## Syntax<a name="r_PREPARE-synopsis"></a>
 

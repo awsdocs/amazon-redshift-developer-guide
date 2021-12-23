@@ -90,3 +90,35 @@ and exists
   7583 | listings_pipe.txt         | 23445
 (25 rows)
 ```
+
+The following examples highlight is\_partial and start\_offset column values\.
+
+```
+-- Single large file copy without scan range
+SELECT count(*) FROM stl_load_commits WHERE query = pg_last_copy_id();
+1
+
+-- Single large uncompressed, delimited file copy with scan range
+SELECT count(*) FROM stl_load_commits WHERE query = pg_last_copy_id();
+16
+
+-- Scan range offset logging in the file at 64MB boundary. 
+SELECT start_offset FROM stl_load_commits
+WHERE query = pg_last_copy_id() ORDER BY start_offset;
+0
+67108864
+134217728
+201326592
+268435456
+335544320
+402653184
+469762048
+536870912
+603979776
+671088640
+738197504
+805306368
+872415232
+939524096
+1006632960
+```

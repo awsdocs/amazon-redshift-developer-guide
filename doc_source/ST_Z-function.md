@@ -39,7 +39,7 @@ st_z
  3
 ```
 
-The following SQL returns the `m` coordinate of a point in a 4D geometry\. 
+The following SQL returns the `z` coordinate of a point in a 4D geometry\. 
 
 ```
 SELECT ST_Z(ST_GeomFromEWKT('POINT ZM (1 2 3 4)'));
@@ -48,5 +48,5 @@ SELECT ST_Z(ST_GeomFromEWKT('POINT ZM (1 2 3 4)'));
 ```
 st_z
 -----------
- 4
+ 3
 ```

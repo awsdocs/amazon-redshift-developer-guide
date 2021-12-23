@@ -28,18 +28,18 @@ As a consumer account administrator, when you run DESC DATASHARE to see inbound 
 The following example displays the information for outbound datashares on a producer cluster\.
 
 ```
-DESC DATASHARE SalesShare;
+DESC DATASHARE salesshare;
           
 producer_account |          producer_namespace           | share_type  | share_name   | object_type |        object_name           |  include_new
 -----------------+---------------------------------------+-------------+--------------+-------------+------------------------------+--------------
- 123456789012    | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d  | OUTBOUND    |  SalesShare  | TABLE       | public.tickit_sales_redshift |     
- 123456789012    | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d  | OUTBOUND    |  SalesShare  | SCHEMA      | public                       |   t
+ 123456789012    | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d  | OUTBOUND    |  salesshare  | TABLE       | public.tickit_sales_redshift |     
+ 123456789012    | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d  | OUTBOUND    |  salesshare  | SCHEMA      | public                       |   t
 ```
 
 The following example displays the information for inbound datashares on a consumer cluster\.
 
 ```
-DESC DATASHARE SalesShare of ACCOUNT '123456789012' NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
+DESC DATASHARE salesshare of ACCOUNT '123456789012' NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
             
  producer_account |          producer_namespace          | share_type | share_name | object_type |         object_name          |  include_new
 ------------------+--------------------------------------+------------+------------+-------------+------------------------------+--------------

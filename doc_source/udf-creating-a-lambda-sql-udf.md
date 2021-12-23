@@ -124,7 +124,7 @@ The order of the JSON array determines the order of batch processing\. The Lambd
 {
   "request_id" : "23FF1F97-F28A-44AA-AB67-266ED976BF40",
   "cluster" : 'arn:aws:redshift:xxxx',
-  "user" : "master",
+  "user" : "adminuser",
   "database" : "db1",
   "external_function": "public.foo",
   "query_id" : 5678234,

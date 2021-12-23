@@ -61,7 +61,7 @@ The following is the syntax to revoke the ASSUMEROLE privilege from users and gr
 
 ```
 REVOKE ASSUMEROLE
-    ON { 'iam_role' [, ...] | ALL }
+    ON { 'iam_role' [, ...]  | default | ALL }
     FROM { user_name | GROUP group_name | PUBLIC } [, ...]
     FOR { ALL | COPY | UNLOAD | EXTERNAL FUNCTION | CREATE MODEL }
 ```

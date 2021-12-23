@@ -114,22 +114,22 @@ grant select(cust_name) on cust_profile_vw to user2;
 
 The following examples show GRANT datasharing usage permissions on a specific database or schema created from a datashare\. This USAGE permission doesn't grant usage permission to databases that aren't created from the specified datashare\. You can only GRANT or REVOKE ALTER or SHARE permissions on a datashare to users and user groups\.
 
-The following example grants the USAGE privilege on the `Salesshare` datashare to the specified namespace\. 
+The following example grants the USAGE privilege on the `salesshare` datashare to the specified namespace\. 
 
 ```
-GRANT USAGE ON DATASHARE Salesshare TO NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
+GRANT USAGE ON DATASHARE salesshare TO NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
 ```
 
-The following example grants the USAGE privilege on the `Sales_db` to Bob\.
+The following example grants the USAGE privilege on the `sales_db` to Bob\.
 
 ```
-GRANT USAGE ON DATABASE Sales_db TO Bob;
+GRANT USAGE ON DATABASE sales_db TO Bob;
 ```
 
-The following example GRANT USAGE privilege on the `Sales_schema` to the `Analyst_group`\.
+The following example GRANT USAGE privilege on the `sales_schema` to the `Analyst_group`\.
 
 ```
-GRANT USAGE ON SCHEMA Sales_schema TO GROUP Analyst_group;
+GRANT USAGE ON SCHEMA sales_schema TO GROUP Analyst_group;
 ```
 
 ## Examples of granting the ASSUMEROLE privilege<a name="r_GRANT-examples-assumerole"></a>

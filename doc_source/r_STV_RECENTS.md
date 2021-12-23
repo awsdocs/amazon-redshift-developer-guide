@@ -27,7 +27,7 @@ dwuser    | tickit  |  19996  |select venuename, venueseats from
 venue where venueseats > 50000 order by venueseats desc;
 ```
 
-The following example returns a list of queries \(if any\) that are running or waiting in queue to be executed: 
+The following example returns a list of queries \(if any\) that are running or waiting in queue to run: 
 
 ```
 select * from stv_recents where status<>'Done';

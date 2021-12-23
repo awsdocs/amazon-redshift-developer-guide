@@ -1,6 +1,6 @@
 # Querying data with federated queries in Amazon Redshift<a name="federated-overview"></a>
 
-By using *federated queries* in Amazon Redshift, you can query and analyze data across operational databases, data warehouses, and data lakes\. With the Federated Query feature, you can integrate queries from Amazon Redshift on live data in external databases with queries across your Amazon Redshift and Amazon S3 environments\. Federated queries can work with external databases in Amazon RDS for PostgreSQL, Amazon Aurora PostgreSQL\-Compatible Edition, Amazon RDS for MySQL \(preview\), and Amazon Aurora MySQL\-Compatible Edition \(preview\)\. 
+By using *federated queries* in Amazon Redshift, you can query and analyze data across operational databases, data warehouses, and data lakes\. With the Federated Query feature, you can integrate queries from Amazon Redshift on live data in external databases with queries across your Amazon Redshift and Amazon S3 environments\. Federated queries can work with external databases in Amazon RDS for PostgreSQL, Amazon Aurora PostgreSQL\-Compatible Edition, Amazon RDS for MySQL, and Amazon Aurora MySQL\-Compatible Edition\. 
 
 You can use federated queries to incorporate live data as part of your business intelligence \(BI\) and reporting applications\. For example, to make data ingestion to Amazon Redshift easier you can use federated queries to do the following:
 + Query operational databases directly\. 
@@ -15,7 +15,8 @@ Details about queries sent to the Amazon Aurora PostgreSQL database or Amazon RD
 
 **Topics**
 + [Getting started with using federated queries to PostgreSQL](getting-started-federated.md)
-+ [Getting started with using federated queries to MySQL \(preview\)](getting-started-federated-mysql.md)
++ [Getting started using federated queries to PostgreSQL with AWS CloudFormation](getting-started-federated-CF.md)
++ [Getting started with using federated queries to MySQL](getting-started-federated-mysql.md)
 + [Creating a secret and an IAM role to use federated queries](federated-create-secret-iam-role.md)
 + [Examples of using a federated query](federated_query_example.md)
 + [Data type differences between Amazon Redshift and supported PostgreSQL and MySQL databases](federated-data-types.md)

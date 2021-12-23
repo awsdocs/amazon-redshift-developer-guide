@@ -1,6 +1,6 @@
 # DROP USER<a name="r_DROP_USER"></a>
 
-Drops a user from a database\. Multiple users can be dropped with a single DROP USER command\. You must be a database superuser to execute this command\.
+Drops a user from a database\. Multiple users can be dropped with a single DROP USER command\. You must be a database superuser to run this command\.
 
 ## Syntax<a name="r_DROP_USER-synopsis"></a>
 

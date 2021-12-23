@@ -24,9 +24,9 @@ The following illustration shows how queries are assigned to the queues in the p
 
 In this example, WLM makes the following assignments:
 
-1. The first set of statements shows three ways to assign users to user groups\. The statements are executed by the user `masteruser`, which is not a member of a user group listed in any WLM queue\. No query group is set, so the statements are routed to the default queue\.
+1. The first set of statements shows three ways to assign users to user groups\. The statements are run by the user `adminuser`, which is not a member of a user group listed in any WLM queue\. No query group is set, so the statements are routed to the default queue\.
 
-1. The user `masteruser` is a superuser and the query group is set to `'superuser'`, so the query is assigned to the superuser queue\.
+1. The user `adminuser` is a superuser and the query group is set to `'superuser'`, so the query is assigned to the superuser queue\.
 
 1. The user `admin1` is a member of the user group listed in queue 1, so the query is assigned to queue 1\.
 

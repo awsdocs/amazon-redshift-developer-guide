@@ -42,7 +42,7 @@ The error context provides more details about the type of throttling\. Following
 
 ### Access throttled by Amazon S3<a name="spectrum-troubleshooting-access-throttled-s3"></a>
 
-Amazon S3 might throttle a Redshift Spectrum request if the read request rate on a [prefix](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) is too high\. For information about a GET/HEAD request rate that you can achieve in Amazon S3, see [Optimizing Amazon S3 Performance](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html) in *Amazon Simple Storage Service Developer Guide\.* The Amazon S3 GET/HEAD request rate takes into account all GET/HEAD requests on a prefix so different applications accessing the same prefix share the total requests rate\.
+Amazon S3 might throttle a Redshift Spectrum request if the read request rate on a [prefix](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) is too high\. For information about a GET/HEAD request rate that you can achieve in Amazon S3, see [Optimizing Amazon S3 Performance](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html) in *Amazon Simple Storage Service User Guide\.* The Amazon S3 GET/HEAD request rate takes into account all GET/HEAD requests on a prefix so different applications accessing the same prefix share the total requests rate\.
 
 If your Redshift Spectrum requests frequently get throttled by Amazon S3, reduce the number of Amazon S3 GET/HEAD requests that Redshift Spectrum makes to Amazon S3\. To do this, try merging small files into larger files\. We recommend using file sizes of 64 MB or larger\.
 
@@ -50,7 +50,7 @@ Also consider partitioning your Redshift Spectrum tables to benefit from early f
 
 ### Access throttled by AWS KMS<a name="spectrum-troubleshooting-access-throttled-kms"></a>
 
-If you store your data in Amazon S3 using server\-side encryption \(SSE\-S3 or SSE\-KMS\), Amazon S3 calls an API operation to AWS KMS for each file that Redshift Spectrum accesses\. These requests count toward your cryptographic operations quota; for more information, see [AWS KMS Request Quotas](https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html)\. For more information on SSE\-S3 and SSE\-KMS, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) and [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in *Amazon Simple Storage Service Developer Guide\.*
+If you store your data in Amazon S3 using server\-side encryption \(SSE\-S3 or SSE\-KMS\), Amazon S3 calls an API operation to AWS KMS for each file that Redshift Spectrum accesses\. These requests count toward your cryptographic operations quota; for more information, see [AWS KMS Request Quotas](https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html)\. For more information on SSE\-S3 and SSE\-KMS, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) and [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS KMS](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in *Amazon Simple Storage Service User Guide\.*
 
 A first step to reduce the number of requests that Redshift Spectrum makes to AWS KMS is to reduce the number of files accessed\. To do this, try merging small files into larger files\. We recommend using file sizes of 64 MB or larger\.
 
@@ -89,7 +89,7 @@ for column ‘s3://s3bucket/location.col1'. Column type: VARCHAR, Par
 
 The error message might be truncated due to the limit on message length\. To retrieve the complete error message, including column name and column type, query the [SVL\_S3LOG](r_SVL_S3LOG.md) system view\.
 
-The following example queries SVL\_S3LOG for the last query executed\.
+The following example queries SVL\_S3LOG for the last query completed\.
 
 ```
 select message 

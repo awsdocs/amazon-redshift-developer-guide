@@ -73,7 +73,7 @@ CREATE MATERIALIZED VIEW tickets_mv AS
     group by catgroup;
 ```
 
-The following example creates a materialized view similar to the previous example and uses the aggregate function MAX\(\) that is currently not supported for incremental refresh\. You can verify that by querying the STV\_MV\_INFO table and see that the ‘state' column is 0\.
+The following example creates a materialized view similar to the previous example and uses the aggregate function MAX\(\)\.   
 
 ```
 CREATE MATERIALIZED VIEW tickets_mv_max AS
@@ -84,11 +84,7 @@ CREATE MATERIALIZED VIEW tickets_mv_max AS
     and      e.eventid = s.eventid
     group by catgroup;
     
-SELECT name, state FROM STV_MV_INFO
-     name        | state
------------------+--------
- tickets_mv      | 1
- tickets_mv_max  | 0
+SELECT name, state FROM STV_MV_INFO;
 ```
 
 The following example uses a UNION ALL clause to join the Amazon Redshift `public_sales` table and the Redshift Spectrum `spectrum.sales` table to create a material view `mv_sales_vw`\. For information about the CREATE EXTERNAL TABLE command for Amazon Redshift Spectrum, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\. The Redshift Spectrum external table references the data on Amazon S3\.

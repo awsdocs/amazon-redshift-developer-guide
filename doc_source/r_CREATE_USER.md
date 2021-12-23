@@ -6,7 +6,7 @@ Creates a new database user account\. You must be a database superuser to run th
 
 ```
 CREATE USER name [ WITH ] 
-PASSWORD { 'password' | 'md5hash' | DISABLE }
+PASSWORD { 'password' | 'md5hash' | 'sha256hash' | DISABLE }
 [ option [ ... ] ]
 
 where option can be:
@@ -28,11 +28,11 @@ The name of the user account to create\. The user name can't be `PUBLIC`\. For m
 WITH  
 Optional keyword\. WITH is ignored by Amazon Redshift
 
-PASSWORD \{ '*password*' \| '*md5hash*' \| DISABLE \}  
+PASSWORD \{ '*password*' \| '*md5hash*' \| '*sha256hash*' \| DISABLE \}  
 Sets the user's password\.   
 By default, users can change their own passwords, unless the password is disabled\. To disable a user's password, specify DISABLE\. When a user's password is disabled, the password is deleted from the system and the user can log on only using temporary AWS Identity and Access Management \(IAM\) user credentials\. For more information, see [Using IAM Authentication to Generate Database User Credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. Only a superuser can enable or disable passwords\. You can't disable a superuser's password\. To enable a password, run [ALTER USER](r_ALTER_USER.md) and specify a password\.  
-You can specify the password in clear text or as an MD5 hash string\.   
- When you launch a new cluster using the AWS Management Console, AWS CLI, or Amazon Redshift API, you must supply a clear text password for the master database user\. You can change the password later by using [ALTER USER](r_ALTER_USER.md)\. 
+You can specify the password in clear text, as an MD5 hash string, or as a SHA256 hash string\.   
+ When you launch a new cluster using the AWS Management Console, AWS CLI, or Amazon Redshift API, you must supply a clear text password for the initial database user\. You can change the password later by using [ALTER USER](r_ALTER_USER.md)\. 
 For clear text, the password must meet the following constraints:  
 + It must be 8 to 64 characters in length\.
 + It must contain at least one uppercase letter, one lowercase letter, and one number\.
@@ -63,6 +63,28 @@ To specify an MD5 password, follow these steps:
 1. Log on to the database using the user name and password\. 
 
    For this example, log on as `user1` with password `ez`\. 
+Another secure alternative is to specify an SHA\-256 hash of a password string; or you can provide your own valid SHA\-256 digest and 256\-bit salt that was used to create the digest\.  
++ Digest – The output of a hashing function\.
++ Salt – Randomly generated data that is combined with the password to help reduce patterns in the hashing function output\.
+
+```
+'sha256|Mypassword'
+```
+
+```
+'sha256|digest|256-bit-salt'
+```
+In the following example, Amazon Redshift generates and manages the salt\.   
+
+```
+CREATE USER admin PASSWORD 'sha256|Mypassword1';
+```
+In the following example, a valid SHA\-256 digest and 256\-bit salt that was used to create the digest are supplied\.  
+
+```
+CREATE USER admin PASSWORD 'sha256|fe95f2bc7c4a111b6f0f7d0b60bfedd1935fb295f8dce1d62708ab8d2f564baf|c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6';
+```
+If you set a password in plain text without specifying the hashing function, then an MD5 digest is generated using the username as the salt\. 
 
 CREATEDB \| NOCREATEDB   
 The CREATEDB option allows the new user account to create databases\. The default is NOCREATEDB\.

@@ -1,22 +1,30 @@
 # SUBSTRING function<a name="r_SUBSTRING"></a>
 
-Returns the characters extracted from a string based on the specified character position for a specified number of characters\. 
+Returns the subset of a string based on the specified start position\.
 
-The character position and number of characters are based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\. You cannot specify a negative length, but you can specify a negative starting position\.
+If the input is a character string, the start position and number of characters extracted are based on characters, not bytes, so that multi\-byte characters are counted as single characters\. If the input is a binary expression, the start position and extracted substring are based on bytes\. You can't specify a negative length, but you can specify a negative starting position\.
 
 ## Syntax<a name="r_SUBSTRING-synopsis"></a>
 
 ```
-SUBSTRING(string FROM start_position [ FOR number_characters ] )
+SUBSTRING(character_string FROM start_position [ FOR number_characters ] )
 ```
 
 ```
-SUBSTRING(string, start_position, number_characters )
+SUBSTRING(character_string, start_position, number_characters )
+```
+
+```
+SUBSTRING(binary_expression, start_byte, number_bytes )
+```
+
+```
+SUBSTRING(binary_expression, start_byte )
 ```
 
 ## Arguments<a name="r_SUBSTRING-arguments"></a>
 
- *string*   
+ *character\_string*   
 The string to be searched\. Non\-character data types are treated like a string\. 
 
  *start\_position*   
@@ -25,11 +33,20 @@ The position within the string to begin the extraction, starting at 1\. The *sta
  *number\_characters*   
 The number of characters to extract \(the length of the substring\)\. The *number\_characters* is based on the number of characters, not bytes, so that multi\-byte characters are counted as single characters\. This number cannot be negative\.
 
+ *binary\_expression*   
+The binary\_expression of data type VARBYTE to be searched\. 
+
+ *start\_byte*   
+The position within the binary expression to begin the extraction, starting at 1\. This number can be negative\.
+
+ *number\_bytes*   
+The number of bytes to extract, that is, the length of the substring\. This number can't be negative\.
+
 ## Return type<a name="r_SUBSTRING-return-type"></a>
 
-VARCHAR
+VARCHAR or VARBYTE depending on the input\.
 
-## Usage notes<a name="r_SUBSTRING_usage_notes"></a>
+## Usage notes for character strings<a name="r_SUBSTRING_usage_notes"></a>
 
 The following example returns a four\-character string beginning with the sixth character\. 
 
@@ -121,7 +138,7 @@ limit 10;
 (10 rows)
 ```
 
-You cannot use SUBSTRING to predictably extract the prefix of a string that might contain multi\-byte characters because you need to specify the length of a multi\-byte string based on the number of bytes, not the number of characters\. To extract the beginning segment of a string based on the length in bytes, you can CAST the string as VARCHAR\(*byte\_length*\) to truncate the string, where *byte\_length* is the required length\. The following example extracts the first 5 bytes from the string `'Fourscore and seven'`\.
+You can't use SUBSTRING to predictably extract the prefix of a string that might contain multi\-byte characters because you need to specify the length of a multi\-byte string based on the number of bytes, not the number of characters\. To extract the beginning segment of a string based on the length in bytes, you can CAST the string as VARCHAR\(*byte\_length*\) to truncate the string, where *byte\_length* is the required length\. The following example extracts the first 5 bytes from the string `'Fourscore and seven'`\.
 
 ```
 select cast('Fourscore and seven' as varchar(5));
@@ -129,4 +146,54 @@ select cast('Fourscore and seven' as varchar(5));
 varchar
 -------
 Fours
+```
+
+The following example shows a negative start position of a binary value `abc`\. Because the start position is \-3, the substring is extracted from the beginning of the binary value\. The result is automatically shown as the hexadecimal representation of the binary substring\.
+
+```
+select substring('abc'::varbyte, -3);
+
+ substring
+-----------
+ 616263
+```
+
+The following example shows a 1 for the start position of a binary value `abc`\. Because because there is no length specified, the string is extracted from the start position to the end of the string\. The result is automatically shown as the hexadecimal representation of the binary substring\.
+
+```
+select substring('abc'::varbyte, 1);
+
+ substring
+-----------
+ 616263
+```
+
+The following example shows a 3 for the start position of a binary value `abc`\. Because because there is no length specified, the string is extracted from the start position to the end of the string\. The result is automatically shown as the hexadecimal representation of the binary substring\.
+
+```
+select substring('abc'::varbyte, 3);
+
+ substring
+-----------
+ 63
+```
+
+The following example shows a 2 for the start position of a binary value `abc`\. The string is extracted from the start position to position 10, but the end of the string is at position 3\. The result is automatically shown as the hexadecimal representation of the binary substring\.
+
+```
+select substring('abc'::varbyte, 2, 10);
+
+ substring
+-----------
+ 6263
+```
+
+The following example shows a 2 for the start position of a binary value `abc`\. The string is extracted from the start position for 1 byte\. The result is automatically shown as the hexadecimal representation of the binary substring\.
+
+```
+select substring('abc'::varbyte, 2, 1);
+
+ substring
+-----------
+ 62
 ```

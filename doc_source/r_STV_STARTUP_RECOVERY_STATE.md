@@ -10,7 +10,7 @@ STV\_STARTUP\_RECOVERY\_STATE is visible only to superusers\. For more informati
 
 ## Sample queries<a name="r_STV_STARTUP_RECOVERY_STATE-sample-queries"></a>
 
-To monitor which tables are temporarily locked, execute the following query after a cluster restart\. 
+To monitor which tables are temporarily locked, run the following query after a cluster restart\. 
 
 ```
 select * from STV_STARTUP_RECOVERY_STATE;

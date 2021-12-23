@@ -2,7 +2,21 @@
 
 Relationships between geometry objects are based on the Dimensionally Extended nine\-Intersection Model \(DE\-9IM\)\. This model defines predicates such as equals, contains, and covers\. For more information about the definition of spatial relationships, see [DE\-9IM](https://en.wikipedia.org/wiki/DE-9IM) in Wikipedia\.
 
-Amazon Redshift supports the following spatial functions\. 
+Amazon Redshift provides spatial functions that work with `GEOMETRY` and `GEOGRAPHY` data types\. The following lists the functions that support the `GEOGRAPHY` data type:
++ [ST\_Area](ST_Area-function.md)
++ [ST\_AsEWKT](ST_AsEWKT-function.md)
++ [ST\_AsGeoJSON](ST_AsGeoJSON-function.md)
++ [ST\_AsHexEWKB](ST_AsHexEWKB-function.md)
++ [ST\_AsHexWKB](ST_AsHexWKB-function.md)
++ [ST\_AsText](ST_AsText-function.md)
++ [ST\_Distance](ST_Distance-function.md)
++ [ST\_GeogFromText](ST_GeogFromText-function.md)
++ [ST\_GeogFromWKB](ST_GeogFromWKB-function.md)
++ [ST\_Length](ST_Length-function.md)
++ [ST\_NPoints](ST_NPoints-function.md)
++ [ST\_Perimeter](ST_Perimeter-function.md)
+
+The following lists the full set of spatial functions supported by Amazon Redshift\. 
 
 **Topics**
 + [AddBBox](AddBBox-function.md)
@@ -15,9 +29,12 @@ Amazon Redshift supports the following spatial functions\.
 + [ST\_AsEWKB](ST_AsEWKB-function.md)
 + [ST\_AsEWKT](ST_AsEWKT-function.md)
 + [ST\_AsGeoJSON](ST_AsGeoJSON-function.md)
++ [ST\_AsHexWKB](ST_AsHexWKB-function.md)
++ [ST\_AsHexEWKB](ST_AsHexEWKB-function.md)
 + [ST\_AsText](ST_AsText-function.md)
 + [ST\_Azimuth](ST_Azimuth-function.md)
 + [ST\_Boundary](ST_Boundary-function.md)
++ [ST\_Centroid](ST_Centroid-function.md)
 + [ST\_Collect](ST_Collect-function.md)
 + [ST\_Contains](ST_Contains-function.md)
 + [ST\_ContainsProperly](ST_ContainsProperly-function.md)
@@ -39,6 +56,8 @@ Amazon Redshift supports the following spatial functions\.
 + [ST\_Force3DM](ST_Force3DM-function.md)
 + [ST\_Force3DZ](ST_Force3DZ-function.md)
 + [ST\_Force4D](ST_Force4D-function.md)
++ [ST\_GeogFromText](ST_GeogFromText-function.md)
++ [ST\_GeogFromWKB](ST_GeogFromWKB-function.md)
 + [ST\_GeometryN](ST_GeometryN-function.md)
 + [ST\_GeometryType](ST_GeometryType-function.md)
 + [ST\_GeomFromEWKB](ST_GeomFromEWKB-function.md)
@@ -47,11 +66,13 @@ Amazon Redshift supports the following spatial functions\.
 + [ST\_GeomFromWKB](ST_GeomFromWKB-function.md)
 + [ST\_InteriorRingN](ST_InteriorRingN-function.md)
 + [ST\_Intersects](ST_Intersects-function.md)
++ [ST\_Intersection](ST_Intersection-function.md)
 + [ST\_IsPolygonCCW](ST_IsPolygonCCW-function.md)
 + [ST\_IsPolygonCW](ST_IsPolygonCW-function.md)
 + [ST\_IsClosed](ST_IsClosed-function.md)
 + [ST\_IsCollection](ST_IsCollection-function.md)
 + [ST\_IsEmpty](ST_IsEmpty-function.md)
++ [ST\_IsRing](ST_IsRing-function.md)
 + [ST\_IsSimple](ST_IsSimple-function.md)
 + [ST\_IsValid](ST_IsValid-function.md)
 + [ST\_Length](ST_Length-function.md)
@@ -88,6 +109,7 @@ Amazon Redshift supports the following spatial functions\.
 + [ST\_SRID](ST_SRID-function.md)
 + [ST\_StartPoint](ST_StartPoint-function.md)
 + [ST\_Touches](ST_Touches-function.md)
++ [ST\_Transform](ST_Transform-function.md)
 + [ST\_Within](ST_Within-function.md)
 + [ST\_X](ST_X-function.md)
 + [ST\_XMax](ST_XMax-function.md)

@@ -28,7 +28,7 @@ readratio '<integer>';
 
 The values for *authorization* are the AWS credentials needed to access the Amazon DynamoDB table\. If these credentials correspond to an IAM user, that IAM user must have permission to SCAN and DESCRIBE the Amazon DynamoDB table that is being loaded\.
 
-The values for *authorization* provide the AWS authorization your cluster needs to access the Amazon DynamoDB table\. The permission must include SCAN and DESCRIBE for the Amazon DynamoDB table that is being loaded\. For more information about required permissions, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\. The preferred method for authentication is to specify the IAM\_ROLE parameter and provide the Amazon Resource Name \(ARN\) for an IAM role with the necessary permissions\. Alternatively, you can specify the ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY parameters and provide the access key ID and secret access key for an authorized IAM user as plain text\. For more information, see [Role\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based) or [Key\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based)\. 
+The values for *authorization* provide the AWS authorization your cluster needs to access the Amazon DynamoDB table\. The permission must include SCAN and DESCRIBE for the Amazon DynamoDB table that is being loaded\. For more information about required permissions, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\. The preferred method for authentication is to specify the IAM\_ROLE parameter and provide the Amazon Resource Name \(ARN\) for an IAM role with the necessary permissions\. For more information, see [Role\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based)\. 
 
 To authenticate using the IAM\_ROLE parameter, *<aws\-account\-id>* and *<role\-name>* as shown in the following syntax\. 
 
@@ -42,22 +42,6 @@ The following example shows authentication using an IAM role\.
 copy favoritemovies 
 from 'dynamodb://ProductCatalog'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
-```
-
-To authenticate using IAM user credentials, replace *<access\-key\-id>* and *<secret\-access\-key* with an authorized user's access key ID and full secret access key for the ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY parameters as shown following\.
-
-```
-ACCESS_KEY_ID '<access-key-id>'
-SECRET_ACCESS_KEY '<secret-access-key>';
-```
-
-The following example shows authentication using IAM user credentials\.
-
-```
-copy favoritemovies 
-from 'dynamodb://ProductCatalog'
-access_key_id '<access-key-id>'
-secret_access_key '<secret-access-key';
 ```
 
 For more information about other authorization options, see [Authorization parameters](copy-parameters-authorization.md)

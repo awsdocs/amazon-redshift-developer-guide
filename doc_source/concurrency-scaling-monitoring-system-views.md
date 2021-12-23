@@ -1,6 +1,6 @@
 # Concurrency scaling system views<a name="concurrency-scaling-monitoring-system-views"></a>
 
-A set of system views with the prefix SVCS provides details from the system log tables about queries on both the main and concurrency scaling clusters\. 
+A set of system views with the prefix SVCS provides details from the system log tables about queries on both the main and concurrency scaling clusters\.
 
 The following views have similar information as the corresponding STL views or SVL views: 
 + [SVCS\_ALERT\_EVENT\_LOG](r_SVCS_ALERT_EVENT_LOG.md) 

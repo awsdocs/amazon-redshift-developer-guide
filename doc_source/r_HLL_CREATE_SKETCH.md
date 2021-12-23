@@ -11,7 +11,7 @@ HLL_CREATE_SKETCH (aggregate_expression)
 ## Argument<a name="r_HLL_CREATE_SKETCH-argument"></a>
 
  *aggregate\_expression*   
-Any valid expression that provides the value to an aggregate, such as a column name\. NULL values are ignored\. This function supports any data type as input except HLLSKETCH and GEOMETRY\.
+Any valid expression that provides the value to an aggregate, such as a column name\. NULL values are ignored\. This function supports any data type as input except HLLSKETCH, GEOMETRY, GEOGRAPHY, and VARBYTE\.
 
 ## Return type<a name="r_HLL_CREATE_SKETCH-return-type"></a>
 

@@ -177,7 +177,7 @@ When you alter a sort key, the compression encoding of columns in the new or ori
 + Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
 Consider the following:  
 + You can define a maximum of 400 columns for a sort key per table\. 
-+ You can only alter a compound sort key\. You can't alter an interleaved sort key\. 
++ You can alter an interleaved sort key to a compound sort key or no sort key\. However, you can't alter a compound sort key to an interleaved sort key\. 
 + If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 + Amazon Redshift recommends using RAW encoding \(no compression\) for columns defined as sort keys\. When you alter a column to choose it as a sort key, the column’s compression is changed to RAW compression \(no compression\)\. This can increase the amount of storage required by the table\. How much the table size increases depend on the specific table definition and table contents\. For more information about compression, see [Compression encodings](c_Compression_encodings.md) 
 When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
@@ -236,9 +236,9 @@ The compression encoding for a column\. By default, Amazon Redshift automaticall
 If you specify compression encoding for any column in the table or if you don't specify the ENCODE AUTO option for the table, Amazon Redshift automatically assigns compression encoding to columns for which you don't specify compression encoding as follows:  
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
-+ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data types are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, GEOMETRY, or GEOGRAPHY data type are assigned RAW compression\.
 + Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
-+ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
++ Columns that are defined as CHAR, VARCHAR, or VARBYTE are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
 The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  
 + AZ64

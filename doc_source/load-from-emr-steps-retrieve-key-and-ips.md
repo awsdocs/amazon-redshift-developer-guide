@@ -15,7 +15,7 @@
 
    You will use the Private IP addresses in Step 3 to configure the Amazon EC2 host to accept the connection from Amazon Redshift\. 
 
-To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift CLI, execute the describe\-clusters command\. For example:
+To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift CLI, run the describe\-clusters command\. For example:
 
 ```
 aws redshift describe-clusters --cluster-identifier <cluster-identifier> 

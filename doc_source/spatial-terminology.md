@@ -110,7 +110,7 @@ A valid multipoint is considered to be simple if any of the following conditions
 + The multipoint is empty; that is, it contains no points\. 
 + No two nonempty points of the multipoint coincide\. 
 
-Multiinestring  
+Multilinestring  
 A valid multilinestring is considered to be simple if any of the following conditions are true:   
 + The multilinestring is empty\. 
 + The multilinestring is nonempty and all of the following conditions are true: 

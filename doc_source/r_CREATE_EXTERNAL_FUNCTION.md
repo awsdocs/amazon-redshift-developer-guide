@@ -9,7 +9,7 @@ CREATE [ OR REPLACE ] EXTERNAL FUNCTION external_fn_name ( [data_type] [, ...] )
 RETURNS data_type
 { VOLATILE | STABLE | IMMUTABLE }   
 LAMBDA 'lambda_fn_name' 
-IAM_ROLE 'iam-role-arn'
+IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
 RETRY_TIMEOUT milliseconds;
 ```
 
@@ -20,7 +20,7 @@ CREATE [ OR REPLACE ] EXTERNAL FUNCTION external_fn_name ( [data_type] [, ...] )
 RETURNS data_type
 { VOLATILE | STABLE | IMMUTABLE } 
 SAGEMAKER'endpoint_name'
-IAM_ROLE 'iam-role-arn';
+IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’ };
 ```
 
 ## Parameters<a name="r_CREATE_EXTERNAL_FUNCTION-parameters"></a>
@@ -57,8 +57,9 @@ LAMBDA *'lambda\_fn\_name'*
 For steps to create an AWS Lambda function, see [Create a Lambda function with the console](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html) in the *AWS Lambda Developer Guide*\.  
 For information regarding permissions required for the Lambda function, see [AWS Lambda permissions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-permissions.html) in the *AWS Lambda Developer Guide*\.
 
-IAM\_ROLE *'iam\-role\-arn'*   
-The Amazon Resource Name \(ARN\) for an AWS Identity and Access Management \(IAM\) role that your cluster uses for authentication and authorization\. The CREATE EXTERNAL FUNCTION command is authorized to invoke Lambda functions through this IAM role\. If your cluster has an existing IAM role with permissions to invoke Lambda functions attached, you can substitute your role's ARN\. For more information, see [Configuring the authorization parameter for Lambda UDFs](udf-creating-a-lambda-sql-udf.md#udf-lambda-authorization)\.  
+IAM\_ROLE \{ default \| ‘arn:aws:iam::*<AWS account\-id>*:role/*<role\-name>*’   
+Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREATE EXTERNAL FUNCTION command runs\.  
+Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. The CREATE EXTERNAL FUNCTION command is authorized to invoke Lambda functions through this IAM role\. If your cluster has an existing IAM role with permissions to invoke Lambda functions attached, you can substitute your role's ARN\. For more information, see [Configuring the authorization parameter for Lambda UDFs](udf-creating-a-lambda-sql-udf.md#udf-lambda-authorization)\.  
 The following shows the syntax for the IAM\_ROLE parameter\.  
 
 ```

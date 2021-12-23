@@ -46,37 +46,7 @@ For more information, see [Visibility of data in system tables and views](c_visi
 PASSWORD \{ '*password*' \| '*md5hash*' \| DISABLE \}  
 Sets the user's password\.   
 By default, users can change their own passwords, unless the password is disabled\. To disable a user's password, specify DISABLE\. When a user's password is disabled, the password is deleted from the system and the user can log on only using temporary AWS Identity and Access Management \(IAM\) user credentials\. For more information, see [Using IAM authentication to generate database user credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. Only a superuser can enable or disable passwords\. You can't disable a superuser's password\. To enable a password, run ALTER USER and specify a password\.  
-You can specify the password in clear text or as an MD5 hash string\.   
-For clear text, the password must meet the following constraints:  
-+ It must be 8 to 64 characters in length\.
-+ It must contain at least one uppercase letter, one lowercase letter, and one number\.
-+ It can use any ASCII characters with ASCII codes 33–126, except ' \(single quotation mark\), " \(double quotation mark\), \\, /, or @\. 
-As a more secure alternative to passing the CREATE USER password parameter as clear text, you can specify an MD5 hash of a string that includes the password and user name\.   
-When you specify an MD5 hash string, the ALTER USER command checks for a valid MD5 hash string, but it doesn't validate the password portion of the string\. It is possible in this case to create a password, such as an empty string, that you can't use to log on to the database\.
-To specify an MD5 password, follow these steps:   
-
-1. Concatenate the password and user name\. 
-
-   For example, for password `ez` and user `user1`, the concatenated string is `ezuser1`\. 
-
-1. Convert the concatenated string into a 32\-character MD5 hash string\. You can use any MD5 utility to create the hash string\. The following example uses the Amazon Redshift [MD5 function](r_MD5.md) and the concatenation operator \( \|\| \) to return a 32\-character MD5\-hash string\. 
-
-   ```
-   select md5('ez' || 'user1');
-   md5                             
-   --------------------------------
-   153c434b4b77c89e6b94f12c5393af5b
-   ```
-
-1. Concatenate '`md5`' in front of the MD5 hash string and provide the concatenated string as the *md5hash* argument\.
-
-   ```
-   create user user1 password 'md5153c434b4b77c89e6b94f12c5393af5b';
-   ```
-
-1. Log on to the database using the user name and password\. 
-
-   For this example, log on as `user1` with password `ez`\. 
+For details about using the PASSWORD parameter, see [CREATE USER](r_CREATE_USER.md)\. 
 
 VALID UNTIL '*expiration\_date*'   
 Specifies that the password has an expiration date\. Use the value `'infinity'` to avoid having an expiration date\. The valid data type for this parameter is timestamp\. 

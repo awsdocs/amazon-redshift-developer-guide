@@ -17,7 +17,7 @@ Returns an integer\.
 
 ## Example<a name="PG_BACKEND_PID-example"></a>
 
-You can correlate PG\_BACKEND\_PID with log tables to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries executed in the current session\.
+You can correlate PG\_BACKEND\_PID with log tables to retrieve information for the current session\. For example, the following query returns the query ID and a portion of the query text for queries completed in the current session\.
 
 ```
 select query, substring(text,1,40)

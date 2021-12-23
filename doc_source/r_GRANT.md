@@ -55,7 +55,7 @@ The following is the syntax for the ASSUMEROLE privilege granted to users and gr
 
 ```
 GRANT ASSUMEROLE
-    ON { 'iam_role' [, ...] | ALL }
+    ON { 'iam_role' [, ...] | default | ALL }
     TO { username | GROUP group_name | PUBLIC } [, ...]
     FOR { ALL | COPY | UNLOAD | EXTERNAL FUNCTION | CREATE MODEL } [, ...]
 ```

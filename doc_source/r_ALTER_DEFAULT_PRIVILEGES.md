@@ -109,7 +109,7 @@ The following example reverses the ALTER DEFAULT PRIVILEGES command in the prece
 alter default privileges in schema sales revoke insert on tables from group sales_admin;
 ```
 
-By default, the PUBLIC user group has EXECUTE permission for all new user\-defined functions\. To revoke `public` EXECUTE permissions for your new functions and then grant EXECUTE permission only to the `dev_test` user group, run the following commands\. 
+By default, the PUBLIC user group has execute permission for all new user\-defined functions\. To revoke `public` execute permissions for your new functions and then grant execute permission only to the `dev_test` user group, run the following commands\. 
 
 ```
 alter default privileges revoke execute on functions from public; 

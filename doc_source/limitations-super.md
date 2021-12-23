@@ -2,7 +2,8 @@
 
 When using SUPER data type, you can find related limitations following:
 + You can't define SUPER columns as either a distribution or sort key\.
-+ The SUPER data type only supports up to 1MB of data for an individual SUPER field or object\.
++ The SUPER data type only supports up to 1MB of data for an individual SUPER object\.
++ An individual value within a SUPER object is limited to the maximum length of the corresponding Amazon Redshift type\. For example, a single string value loaded to SUPER is limited to the maximum VARCHAR length of 65535 bytes\.
 + You can't perform partial update or transform operations on SUPER columns\.
 + You can't use the SUPER data type and its alias in right joins or full outer joins\.
 + The SUPER data type doesn't support XML as inbound or outbound serialization format\. 

@@ -17,5 +17,12 @@ The following are limits on stored procedures in Amazon Redshift:
 + The maximum number of levels for nested calls is 16\.
 + The maximum number of procedure parameters is 32 for input arguments and 32 for output arguments\.
 + The maximum number of variables in a stored procedure is 1,024\.
-+ Any SQL command that requires its own transaction context isn't supported inside a stored procedure\. Examples are VACUUM, ALTER TABLE APPEND, and CREATE EXTERNAL TABLE\.
++ Any SQL command that requires its own transaction context isn't supported inside a stored procedure\. Examples include:
+  + PREPARE
+  + CREATE/DROP DATABASE
+  + CREATE EXTERNAL TABLE
+  + VACUUM
+  + SET LOCAL
+  + ALTER TABLE APPEND
+  + Transaction statements, such as BEGIN and START TRANSACTION\.
 + The `registerOutParameter` method call through the Java Database Connectivity \(JDBC\) driver isn't supported for the `refcursor` data type\.   For an example of using the `refcursor` data type, see [Returning a result set](stored-procedure-result-set.md)\.

@@ -1,12 +1,14 @@
 # Querying semistructured data<a name="query-super"></a>
 
-Amazon Redshift uses the PartiQL language to offer SQL\-compatible access to relational, semistructured, and nested data\. PartiQL operates with dynamic types\. This enables intuitive filtering, joining and aggregation on the combination of structured, semistructured and nested datasets\. The PartiQL syntax uses dotted notation and array subscript for path navigation when accessing nested data\. It also enables the FROM clause items to iterate over arrays and use for unnest operations\. Following sections describe the different query patterns that combine the use of the SUPER data type with path and array navigation, unnest, or joins\. 
+Amazon Redshift uses the PartiQL language to offer SQL\-compatible access to relational, semistructured, and nested data\. 
+
+PartiQL operates with dynamic types\. This approach enables intuitive filtering, joining, and aggregation on the combination of structured, semistructured, and nested datasets\. The PartiQL syntax uses dotted notation and array subscript for path navigation when accessing nested data\. It also enables the FROM clause items to iterate over arrays and use for unnest operations\. Following, you can find descriptions of the different query patterns that combine the use of the SUPER data type with path and array navigation, unnesting, unpivoting, and joins\. 
 
 ## Navigation<a name="navigation"></a>
 
-Amazon Redshift uses PartiQL to enable navigation into arrays and structures using the \[\.\.\.\] bracket and dot notation respectively\. Furthermore, you can mix navigation into structures using the dot notation and arrays using the bracket notation\. For example, the following example assumes that the c\_orders SUPER data column is an array with a structure and an attribute is named o\_orderkey\.
+Amazon Redshift uses PartiQL to enable navigation into arrays and structures using the \[\.\.\.\] bracket and dot notation respectively\. Furthermore, you can mix navigation into structures using the dot notation and arrays using the bracket notation\. For example, the following example assumes that the `c_orders` SUPER data column is an array with a structure and an attribute is named `o_orderkey`\.
 
-Run the following command to ingest data in the customer\_orders\_lineitem table\. Replace the IAM role with your own credentials\.
+To ingest data in the `customer_orders_lineitem` table, run the following command\. Replace the IAM role with your own credentials\.
 
 ```
 COPY customer_orders_lineitem FROM 's3://redshift-downloads/semistructured/tpch-nested/data/json/customer_orders_lineitem'
@@ -16,19 +18,19 @@ FORMAT JSON 'auto';
 SELECT c_orders[0].o_orderkey FROM customer_orders_lineitem;
 ```
 
-Amazon Redshift also uses table alias as a prefix to the notation\. The following example is the same query as the previous example\.
+Amazon Redshift also uses a table alias as a prefix to the notation\. The following example is the same query as the previous example\.
 
 ```
 SELECT cust.c_orders[0].o_orderkey FROM customer_orders_lineitem AS cust;
 ```
 
-You can use the dot and bracket notations in all types of queries, such as filtering, join, and aggregation\. You can use them in a query in which there are normally column references\. The following example uses a SELECT statement that filters results\.
+You can use the dot and bracket notations in all types of queries, such as filtering, join, and aggregation\. You can use these notations in a query in which there are normally column references\. The following example uses a SELECT statement that filters results\.
 
 ```
 SELECT count(*) FROM customer_orders_lineitem WHERE c_orders[0]. o_orderkey IS NOT NULL;
 ```
 
-The following example uses the bracket and dot navigation in both GROUP BY and ORDER BY clauses:
+The following example uses the bracket and dot navigation in both GROUP BY and ORDER BY clauses\.
 
 ```
 SELECT c_orders[0].o_orderdate,
@@ -41,21 +43,23 @@ GROUP BY c_orders[0].o_orderstatus,
 ORDER BY c_orders[0].o_orderdate;
 ```
 
-## Unnesting<a name="unnest"></a>
+## Unnesting queries<a name="unnest"></a>
 
-Amazon Redshift uses the PartiQL syntax to iterate over SUPER arrays by navigating the array using the FROM clause of a query\. Using the previous example, the following example iterates over the attribute *c\_orders* values\.
+To unnest queries, Amazon Redshift uses the PartiQL syntax to iterate over SUPER arrays\. It does this by navigating the array using the FROM clause of a query\. Using the previous example, the following example iterates over the attribute values for `c_orders`\.
 
 ```
 SELECT c.*, o FROM customer_orders_lineitem c, c.c_orders o;
 ```
 
-The unnesting syntax is an extension of the FROM clause\. In standard SQL, the FROM clause *x \(AS\) y* means that for each tuple y in table x\. Similarly, the FROM clause *x \(AS\) y*, if x is a SUPER value translates to for each \(SUPER\) value y in \(SUPER\) array value x\. The left operand can also use the dot and bracket notation for regular navigation\. In the previous example, customer\_orders\_lineitem c is the iteration over the customer\_order\_lineitem base table and c\.c\_orders o is the iteration over the c\.c\_orders array\. To iterate over o\_lineitems attribute that is an array within an array, you must add multiple clauses\.
+The unnesting syntax is an extension of the FROM clause\. In standard SQL, the FROM clause `x (AS) y` means that `y` iterates over each tuple in relation `x`\. In this case, `x` refers to a relation and `y` refers to an alias for relation `x`\. Similarly, the PartiQL syntax of unnesting using the FROM clause item `x (AS) y` means that `y` iterates over each \(SUPER\) value in \(SUPER\) array expression x\. In this case, `x` is a SUPER expression and `y` is an alias for `x`\.
+
+The left operand can also use the dot and bracket notation for regular navigation\. In the previous example, `customer_orders_lineitem c` is the iteration over the `customer_order_lineitem` base table and `c.c_orders o` is the iteration over the `c.c_orders` array\. To iterate over the `o_lineitems` attribute, which is an array within an array, you add multiple clauses\.
 
 ```
 SELECT c.*, o, l FROM customer_orders_lineitem c, c.c_orders o, o.o_lineitems l;
 ```
 
-Amazon Redshift also supports array index when iterating over the array using the AT keyword\. The clause *x AS y AT z* iterates over array x and generates the field z which is the array index\. The following example shows how array index works:
+Amazon Redshift also supports an array index when iterating over the array using the AT keyword\. The clause `x AS y AT z` iterates over array `x` and generates the field `z,` which is the array index\. The following example shows how an array index works\.
 
 ```
 SELECT c_name,
@@ -71,7 +75,7 @@ Customer#000009452 | 4043971  |        0
   (2 rows)
 ```
 
-The following example iterates over a scalar array:
+The following example iterates over a scalar array\.
 
 ```
 CREATE TABLE bar AS SELECT json_parse('{"scalar_array": [1, 2.3, 45000000]}') AS data;
@@ -86,7 +90,7 @@ SELECT index, element FROM bar AS b, b.data.scalar_array AS element AT index;
 (3 rows)
 ```
 
-The following example iterates over an array of multiple levels\. Multiple unnest clauses are used to iterate into the innermost arrays\. f\.multi\_level\_array AS array iterates over the multi\_level\_array\. The array AS element is the iteration over the arrays within the multi\_level\_array\.
+The following example iterates over an array of multiple levels\. The example uses multiple unnest clauses to iterate into the innermost arrays\. The `f.multi_level_array` AS array iterates over `multi_level_array`\. The array AS element is the iteration over the arrays within `multi_level_array`\.
 
 ```
 CREATE TABLE foo AS SELECT json_parse('[[1.1, 1.2], [2.1, 2.2], [3.1, 3.2]]') AS multi_level_array;
@@ -105,6 +109,43 @@ SELECT array, element FROM foo AS f, f.multi_level_array AS array, array AS elem
 ```
 
 For more information about the FROM clause, see [FROM clause](r_FROM_clause30.md)\.
+
+## Object unpivoting<a name="unpioviting"></a>
+
+To perform object unpivoting, Amazon Redshift uses the PartiQL syntax to iterate over SUPER objects\. It does this using the FROM clause of a query with the UNPIVOT keyword\. The following query iterates over the `c.c_orders[0]` object\.
+
+```
+SELECT attr as attribute_name, json_typeof(val) as value_type 
+FROM customer_orders_lineitem c, UNPIVOT c.c_orders[0] AS val AT attr 
+WHERE c_custkey = 9451;
+
+ attribute_name  | value_type
+-----------------+------------
+ o_orderstatus   | string
+ o_clerk         | string
+ o_lineitems     | array
+ o_orderdate     | string
+ o_shippriority  | number
+ o_totalprice    | number
+ o_orderkey      | number
+ o_comment       | string
+ o_orderpriority | string
+(9 rows)
+```
+
+As with unnesting, the unpivoting syntax is also an extension of the FROM clause\. The difference is that the unpivoting syntax uses the UNPIVOT keyword to indicate that it's iterating over an object instead of an array\. It uses the AS `value_alias` for iteration over all the values inside an object and uses the AT `attribute_alias` for iterating over all the attributes\.
+
+Amazon Redshift also supports using object unpivoting and array unnesting in a single FROM clause as follows\.
+
+```
+SELECT attr as attribute_name, val as object_value
+FROM customer_orders_lineitem c, c.c_orders AS o, UNPIVOT o AS val AT attr 
+WHERE c_custkey = 9451;
+```
+
+When you use object unpivoting, Amazon Redshift doesn't support correlated unpivoting\. Specifically, suppose that you have a case where there are multiple examples of unpivoting in different query levels and the inner unpivoting references the outer one\. Amazon Redshift doesn't support this type of multiple unpivoting\.
+
+For more information about the FROM clause, see [FROM clause](r_FROM_clause30.md)\. 
 
 ## Dynamic typing<a name="dynamic-typing-lax-processing"></a>
 

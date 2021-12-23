@@ -53,19 +53,6 @@ to 's3://mybucket/tickit/unload/venue_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and cannot be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)\. To unload data using temporary access credentials, use the following syntax:
-
-```
-unload ('select * from venue')   
-to 's3://mybucket/tickit/venue_' 
-access_key_id '<access-key-id>'
-secret_access_key '<secret-access-key>'
-session_token '<temporary-token>';
-```
-
-**Important**  
-The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD will fail and the transaction will be rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD will fail before it completes\.
-
 You can create a manifest file that lists the unload files by specifying the MANIFEST option in the UNLOAD command\. The manifest is a text file in JSON format that explicitly lists the URL of each file that was written to Amazon S3\. 
 
 The following example includes the manifest option\. 

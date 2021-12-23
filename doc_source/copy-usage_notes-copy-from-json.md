@@ -13,7 +13,7 @@ JSON objects and arrays can be nested, enabling a hierarchical data structure\. 
 }
 {
     "id": 100540,
-    "name": "Amazon Simple Storage Service Developer Guide"
+    "name": "Amazon Simple Storage Service User Guide"
 }
 ```
 
@@ -26,7 +26,7 @@ The following shows the same data as two JSON arrays\.
 ]
 [
     100540,
-    "Amazon Simple Storage Service Developer Guide"
+    "Amazon Simple Storage Service User Guide"
 ]
 ```
 
@@ -137,7 +137,7 @@ For example, suppose you have the following JSON in a file named `escape.json` i
 }
 ```
 
-Execute the following commands to create the ESCAPES table and load the JSON\.
+Run the following commands to create the ESCAPES table and load the JSON\.
 
 ```
 create table escapes (backslash varchar(25), newline varchar(35), tab varchar(35));

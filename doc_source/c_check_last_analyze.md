@@ -1,6 +1,6 @@
 # ANALYZE command history<a name="c_check_last_analyze"></a>
 
-It's useful to know when the last ANALYZE command was run on a table or database\. When an ANALYZE command is run, Amazon Redshift executes multiple queries that look like this: 
+It's useful to know when the last ANALYZE command was run on a table or database\. When an ANALYZE command is run, Amazon Redshift runs multiple queries that look like this: 
 
 ```
 padb_fetch_sample: select * from table_name

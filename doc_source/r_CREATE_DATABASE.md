@@ -224,10 +224,10 @@ where datdba > 1;
  tickit      |    100 | 100
 ```
 
-The following example creates the database Salesdb from the datashare SalesShare\.
+The following example creates the database sales\_db from the datashare salesshare\.
 
 ```
-CREATE DATABASE Sales_db FROM DATASHARE SalesShare OF NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
+CREATE DATABASE sales_db FROM DATASHARE salesshare OF NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
 ```
 
 ### Database collation examples<a name="r_CREATE_DATABASE-collation-examples"></a>

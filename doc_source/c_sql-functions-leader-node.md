@@ -1,6 +1,6 @@
 # SQL functions supported on the leader node<a name="c_sql-functions-leader-node"></a>
 
-Some Amazon Redshift queries are distributed and executed on the compute nodes, and other queries run exclusively on the leader node\.
+Some Amazon Redshift queries are distributed and run on the compute nodes, and other queries run exclusively on the leader node\.
 
 The leader node distributes SQL to the compute nodes whenever a query references user\-created tables or system tables \(tables with an STL or STV prefix and system views with an SVL or SVV prefix\)\. A query that references only catalog tables \(tables with a PG prefix, such as PG\_TABLE\_DEF, which reside on the leader node\) or that does not reference any tables, runs exclusively on the leader node\.
 

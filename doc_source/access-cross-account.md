@@ -1,4 +1,4 @@
-# Controlling access for cross\-account datashares<a name="control-access"></a>
+# Controlling access for cross\-account datashares<a name="access-cross-account"></a>
 
 Following are considerations for controlling cross\-account datashare access\.
 
@@ -24,17 +24,17 @@ Following describes each datashare status and its required action:
 
   The datashare status becomes **Action required** on the consumer cluster if all associations are removed\. The consumer cluster administrator can reassociate a datashare with data consumers when the datashare is available to the consumers\.
 + When a consumer cluster administrator declines a datashare, the datashare status on the producer cluster becomes **Action required** and **Declined** on the consumer cluster\. The producer cluster administrator can reauthorize the datashare\. There isn't any action for the consumer cluster administrator\.
-+ When the producer cluster administrator removes authorization from a datashare, the datashare's status becomes **Action required** on the producer cluster\. The producer cluster administrator can choose to reauthorize the datashare, if required\. There isn't any action required for the consumer cluster administrator\.
++ When the producer cluster administrator removes authorization from a datashare, the datashare's status becomes **Action required** on the producer cluster\. The producer cluster administrator can choose to reauthorize the datashare, if necessary\. There isn't any action required for the consumer cluster administrator\.
 
 ## Managing access to data sharing API operations with IAM policies<a name="iam-policy"></a>
 
-To control the access to the data sharing API operations, use IAM action\-based policies to control the access to the data sharing API operations\. For information about how to manage IAM policies, see [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\.
+To control the access to the data sharing API operations, use IAM action\-based policies\. For information about how to manage IAM policies, see [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\.
 
 For information on the permissions required to use the data sharing API operations, see [Permissions required to use the data sharing API operations](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html) in the *Amazon Redshift Cluster Management Guide*\.
 
-To make cross\-account data sharing more secure, you can use a conditional key `ConsumerIdentifier` for the `AuthorizeDataShare` and `DeauthorizeDataShare` APIs to explicitly control which AWS accounts can make calls to the two APIs\.
+To make cross\-account data sharing more secure, you can use a conditional key `ConsumerIdentifier` for the `AuthorizeDataShare` and `DeauthorizeDataShare` API operations\. By doing this, you can explicitly control which AWS accounts can make calls to the two API operations\.
 
-You can deny authorizing or deauthorizing data sharing against any consumer that isn't your own account by specifying the AWS account number in the IAM policy\.
+You can deny authorizing or deauthorizing data sharing for any consumer that isn't your own account\. To do so, specify the AWS account number in the IAM policy\.
 
 ```
 {
@@ -87,3 +87,5 @@ You can allow a producer with a DataShareArn **testshare2** to explicitly share 
 To share data across AWS account, both the producer and consumer clusters must be encrypted\.
 
 In Amazon Redshift, you can enable database encryption for your clusters to help protect data at rest\. When you enable encryption for a cluster, the data blocks and system metadata are encrypted for the cluster and its snapshots\. You can enable encryption when you launch your cluster, or you can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption\. For more information about Amazon Redshift database encryption, see [Amazon Redshift database encryption](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html) in the *Amazon Redshift Cluster Management Guide*\.
+
+To protect data in transit, all data is encrypted in transit through the encryption schema of the producer cluster\. The consumer cluster adopts this encryption schema when data is loaded\. The consumer cluster then operates as a normal encrypted cluster\. Communications between the producer and consumer are also encrypted using a shared key schema\. For more information about encryption in transit, [Encryption in transit](https://docs.aws.amazon.com/redshift/latest/mgmt/security-encryption-in-transit.html)\.

@@ -10,7 +10,6 @@ Amazon Redshift Advisor offers recommendations about how to optimize your Amazon
 + [Split Amazon S3 objects loaded by COPY](#split-s3-objects-recommendation)
 + [Update table statistics](#update-table-statistics-recommendation)
 + [Enable short query acceleration](#enable-sqa-recommendation)
-+ [Replace single\-column interleaved sort keys](#single-column-interleaved-sort-recommendation)
 + [Alter distribution keys on tables](#alter-diststyle-distkey-recommendation)
 + [Alter sort keys on tables](#alter-sortkey-recommendation)
 + [Alter compression encodings on columns](#alter-compression-encoding-recommendation)
@@ -220,7 +219,7 @@ END, (SUM(transfer_size)/(1024.0*1024.0))/COUNT(*) DESC;
 
 **Implementation tips**
 + The number of slices in a node depends on the node size of the cluster\. For more information about the number of slices in the various node types, see [Clusters and Nodes in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide\.* 
-+ You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Splitting your data into multiple files](t_splitting-data-files.md)\.
++ You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Loading data from compressed and uncompressed files](t_splitting-data-files.md)\.
 + Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. 
 
 ## Update table statistics<a name="update-table-statistics-recommendation"></a>
@@ -303,41 +302,6 @@ where service_class = 14;
 
 For more information, see [Monitoring SQA](wlm-short-query-acceleration.md#wlm-monitoring-sqa)\. 
 
-## Replace single\-column interleaved sort keys<a name="single-column-interleaved-sort-recommendation"></a>
-
-Some tables use an interleaved sort key on a single column\. In general, such a table is less efficient and consumes more resources than a table that uses a compound sort key on a single column\.
-
-Interleaved sorting improves performance in certain cases where multiple columns are used by different queries for filtering\. Using an interleaved sort key on a single column is effective only in a particular case\. That case is when queries often filter on CHAR or VARCHAR column values that have a long common prefix in the first 8 bytes\. For example, URL strings are often prefixed with "`https://`"\. For single\-column keys, a compound sort is better than an interleaved sort for any other filtering operations\. A compound sort speeds up joins, GROUP BY and ORDER BY operations, and window functions that use PARTITION BY and ORDER BY on the sorted column\. An interleaved sort doesn't benefit any of those operations\. For more information, see [Working with sort keys](t_Sorting_data.md)\. 
-
-Using compound sort significantly reduces maintenance overhead\. Tables with compound sort keys don't need the expensive VACUUM REINDEX operations that are necessary for interleaved sorts\. In practice, compound sort keys are more effective than interleaved sort keys for the vast majority of Amazon Redshift workloads\. 
-
-**Analysis**
-
-Advisor tracks tables that use an interleaved sort key on a single column\. 
-
-**Recommendation**
-
-If a table uses interleaved sorting on a single column, recreate the table to use a compound sort key\. When you create new tables, use a compound sort key for single\-column sorts\. To find interleaved tables that use a single\-column sort key, run the following command\. 
-
-```
-SELECT schema AS schemaname, "table" AS tablename 
-FROM svv_table_info 
-WHERE table_id IN (
-    SELECT attrelid 
-    FROM pg_attribute
-    WHERE attrelid IN (
-        SELECT attrelid
-        FROM pg_attribute
-        WHERE attsortkeyord <> 0
-        GROUP BY attrelid
-        HAVING MAX(attsortkeyord) = -1
-    )
-    AND NOT (atttypid IN (1042, 1043) AND atttypmod > 12)
-    AND attsortkeyord = -1);
-```
-
-For additional information about choosing the best sort style, see the AWS Big Data Blog post [Amazon Redshift Engineering's Advanced Table Design Playbook: Compound and Interleaved Sort Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-compound-and-interleaved-sort-keys/)\. 
-
 ## Alter distribution keys on tables<a name="alter-diststyle-distkey-recommendation"></a>
 
 Amazon Redshift distributes table rows throughout the cluster according to the table distribution style\. Tables with KEY distribution require a column as the distribution key \(DISTKEY\)\. A table row is assigned to a node slice of a cluster based on its DISTKEY column value\. 
@@ -369,11 +333,15 @@ Sorting a table on an appropriate sort key can accelerate performance of queries
 
 **Analysis**
 
-Advisor analyzes your cluster’s workload over several days to identify a beneficial sort key for your tables\. 
+Advisor analyzes your cluster's workload over several days to identify a beneficial sort key for your tables\. 
 
 **Recommendation**
 
-Advisor provides ALTER TABLE statements that alter the sort key of a table based on its analysis\.
+ Advisor provides two groups of ALTER TABLE statements that alter the sort key of a table based on its analysis: 
++ Statements that alter a table that currently doesn't have a sort key to add a COMPOUND sort key\.
++ Statements that alter a sort key from INTERLEAVED to COMPOUND or no sort key\.
+
+  Using compound sort keys significantly reduces maintenance overhead\. Tables with compound sort keys don't need the expensive VACUUM REINDEX operations that are necessary for interleaved sorts\. In practice, compound sort keys are more effective than interleaved sort keys for the vast majority of Amazon Redshift workloads\. However, if a table is small, it's more efficient not to have a sort key to avoid sort key storage overhead\.
 
 When sorting a large table with the ALTER TABLE, cluster resources are consumed and table locks are required at various times\. Implement each recommendation when a cluster's workload is moderate\. More details on optimizing table sort key configurations can be found in the [Amazon Redshift Engineering's Advanced Table Design Playbook: Compound and Interleaved Sort Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-compound-and-interleaved-sort-keys/)\. 
 

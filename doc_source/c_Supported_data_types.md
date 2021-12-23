@@ -8,6 +8,7 @@
 + [Boolean type](r_Boolean_type.md)
 + [HLLSKETCH type](r_HLLSKTECH_type.md)
 + [SUPER type](r_SUPER_type.md)
++ [VARBYTE type](r_VARBYTE_type.md)
 + [Type compatibility and conversion](#r_Type_conversion)
 
 Each value that Amazon Redshift stores or retrieves has a data type with a fixed set of associated properties\. Data types are declared when tables are created\. A data type constrains the set of values that a column or argument can contain\. 
@@ -23,15 +24,11 @@ For information about unsupported data types, such as "char" \(notice that char 
 
 The VARCHAR data type supports UTF\-8 multibyte characters up to a maximum of four bytes\. Five\-byte or longer characters are not supported\. To calculate the size of a VARCHAR column that contains multibyte characters, multiply the number of characters by the number of bytes per character\. For example, if a string has four Chinese characters, and each character is three bytes long, then you will need a VARCHAR\(12\) column to store the string\.
 
-VARCHAR does not support the following invalid UTF\-8 codepoints:
-+ 0xD800 \- 0xDFFF
+The VARCHAR data type doesn't support the following invalid UTF\-8 codepoints: 
 
-  \(Byte sequences: ED A0 80 \- ED BF BF\)
-+ 0xFDD0 \- 0xFDEF, 0xFFFE, and 0xFFFF
+`0xD800 – 0xDFFF` \(Byte sequences: `ED A0 80` – `ED BF BF`\)
 
-   \(Byte sequences: EF B7 90 \- EF B7 AF, EF BF BE, and EF BF BF\)
-
-The CHAR data type does not support multibyte characters\.
+The CHAR data type doesn't support multibyte characters\.
 
 ## Type compatibility and conversion<a name="r_Type_conversion"></a>
 
@@ -77,7 +74,8 @@ The table following lists the data types that can be converted implicitly in ass
 
 **Note**  
 Implicit conversions between TIMESTAMPTZ, TIMESTAMP, DATE, TIME, TIMETZ, or character strings use the current session time zone\. For information about setting the current time zone, see [timezone](r_timezone_config.md)\.  
-The GEOMETRY data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\. 
+The GEOMETRY and GEOGRAPHY data types can't be implicitly converted to any other data type, except each other\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\.   
+The VARBYTE data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\. 
 
 ### Using dynamic typing for the SUPER data type<a name="r_dynamic_typing_SUPER"></a>
 

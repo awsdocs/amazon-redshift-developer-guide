@@ -26,7 +26,7 @@ manifest;
 
 The table to be loaded must already exist in the database\. For information about creating a table, see [CREATE TABLE](r_CREATE_TABLE_NEW.md) in the SQL Reference\. 
 
-The values for *authorization* provide the AWS authorization your cluster needs to access the Amazon S3 objects\. For information about required permissions, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\. The preferred method for authentication is to specify the IAM\_ROLE parameter and provide the Amazon Resource Name \(ARN\) for an IAM role with the necessary permissions\. Alternatively, you can specify the ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY parameters and provide the access key ID and secret access key for an authorized IAM user as plain text\. For more information, see [Role\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based) or [Key\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based)\. 
+The values for *authorization* provide the AWS authorization your cluster needs to access the Amazon S3 objects\. For information about required permissions, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\. The preferred method for authentication is to specify the IAM\_ROLE parameter and provide the Amazon Resource Name \(ARN\) for an IAM role with the necessary permissions\.   For more information, see [Role\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based) \. 
 
 To authenticate using the IAM\_ROLE parameter, replace *<aws\-account\-id>* and *<role\-name>* as shown in the following syntax\. 
 
@@ -42,22 +42,6 @@ from 's3://mybucket/mydata'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-To authenticate using IAM user credentials, replace *<access\-key\-id>* and *<secret\-access\-key* with an authorized user's access key ID and full secret access key for the ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY parameters as shown following\.
-
-```
-ACCESS_KEY_ID '<access-key-id>'
-SECRET_ACCESS_KEY '<secret-access-key>';
-```
-
-The following example shows authentication using IAM user credentials\.
-
-```
-copy customer 
-from 's3://mybucket/mydata' 
-access_key_id '<access-key-id>'
-secret_access_key '<secret-access-key';
-```
-
 For more information about other authorization options, see [Authorization parameters](copy-parameters-authorization.md)
 
 If you want to validate your data without actually loading the table, use the NOLOAD option with the [COPY](r_COPY.md) command\.
@@ -70,7 +54,7 @@ The following example shows the first few rows of a pipe\-delimited data in a fi
 3|RFK Stadium|Washington|DC|0
 ```
 
-Before uploading the file to Amazon S3, split the file into multiple files so that the COPY command can load it using parallel processing\. The number of files should be a multiple of the number of slices in your cluster\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. For more information, see [Splitting your data into multiple files](t_splitting-data-files.md)\.
+Before uploading the file to Amazon S3, split the file into multiple files so that the COPY command can load it using parallel processing\. The number of files should be a multiple of the number of slices in your cluster\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. For more information, see [Loading data from compressed and uncompressed files](t_splitting-data-files.md)\.
 
 For example, the `venue.txt` file might be split into four files, as follows:
 
