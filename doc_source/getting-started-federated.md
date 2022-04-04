@@ -6,7 +6,9 @@ To create a federated query, you follow this general approach:
 
    To do this, make sure that your RDS PostgreSQL or Aurora PostgreSQL DB instance can accept connections from your Amazon Redshift cluster\. We recommend that your Amazon Redshift cluster and Amazon RDS or Aurora PostgreSQL instance be in the same virtual private cloud \(VPC\) and subnet group\. This way, you can add the security group for the Amazon Redshift cluster to the inbound rules of the security group for your RDS or Aurora PostgreSQL DB instance\. 
 
-   You can also set up VPC peering or other networking that allows Amazon Redshift to make connections to your RDS or Aurora PostgreSQL instance\. For more information about VPC networking, see [Working with a DB instance in a VPC ](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html) in the *Amazon RDS User Guide*\.
+   You can also set up VPC peering or other networking that allows Amazon Redshift to make connections to your RDS or Aurora PostgreSQL instance\.  For more information about VPC networking, see the following\. 
+   + [What is VPC peering?](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) in the *Amazon VPC Peering Guide*
+   + [Working with a DB instance in a VPC ](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html) in the *Amazon RDS User Guide*
 **Note**  
 If your Amazon Redshift cluster is in a different VPC than your RDS or Aurora PostgreSQL instance, then enable enhanced VPC routing\. Otherwise, you might receive timeout errors when you run a federated query\. 
 

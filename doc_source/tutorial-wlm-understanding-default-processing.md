@@ -99,13 +99,13 @@ For this step, you need two psql windows open:
    The following is an example result\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/psql_tutorial_wlm_030.png)
 
-   This query returns a self\-referential result\. The query that is currently executing is the SELECT statement from this view\. A query on this view always returns at least one result\. Compare this result with the result that occurs after starting the long\-running query in the next step\.
+   This query returns a self\-referential result\. The query that is currently running is the SELECT statement from this view\. A query on this view always returns at least one result\. Compare this result with the result that occurs after starting the long\-running query in the next step\.
 
 1. In psql window 2, run a query from the TICKIT sample database\. This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. In some cases, you might find that the query doesn't run long enough for you to query both views\. In these cases, you can increase the value of the filter on `l.listid `to make it run longer\.
 **Note**  
 To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When result caching is enabled, subsequent queries run much faster\. To prevent the query from running to quickly, disable result caching for the current session\.
 
-   To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`, as shown following\.
+   To turn off result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`, as shown following\.
 
    ```
    set enable_result_cache_for_session to off;

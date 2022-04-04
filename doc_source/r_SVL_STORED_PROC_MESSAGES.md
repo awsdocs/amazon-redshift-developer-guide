@@ -1,6 +1,6 @@
 # SVL\_STORED\_PROC\_MESSAGES<a name="r_SVL_STORED_PROC_MESSAGES"></a>
 
-You can query the system view SVL\_STORED\_PROC\_MESSAGES to get information about stored procedure messages\. Raised messages are logged even if the stored procedure call is aborted\. Each stored procedure call receives a query ID\. For more information about how to set the minimum level for logged messages, see stored\_proc\_log\_min\_messages\.
+You can query the system view SVL\_STORED\_PROC\_MESSAGES to get information about stored procedure messages\. Raised messages are logged even if the stored procedure call is canceled\. Each stored procedure call receives a query ID\. For more information about how to set the minimum level for logged messages, see stored\_proc\_log\_min\_messages\.
 
 SVL\_STORED\_PROC\_MESSAGES is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see Visibility of data in system tables and views\.
 

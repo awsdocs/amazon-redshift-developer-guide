@@ -1,6 +1,6 @@
 # Working with data distribution styles<a name="t_Distributing_data"></a>
 
-When you load data into a table, Amazon Redshift distributes the rows of the table to each of the compute nodes according to the table's distribution style\. When you run a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in choosing a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is executed\.
+When you load data into a table, Amazon Redshift distributes the rows of the table to each of the compute nodes according to the table's distribution style\. When you run a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in choosing a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is run\.
 
 **Note**  
 This section will introduce you to the principles of data distribution in an Amazon Redshift database\. We recommend that you create your tables with `DISTSTYLE AUTO`\. If you do so, then Amazon Redshift uses automatic table optimization to choose the data distribution style\. For more information, see [Working with automatic table optimization](t_Creating_tables.md)\. The rest of this section provides details about distribution styles\. 

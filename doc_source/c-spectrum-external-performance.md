@@ -9,7 +9,7 @@ The following steps are related to the Redshift Spectrum query:
 + Seq Scan PartitionInfo
 + Partition Loop 
 
-The following example shows the query plan for a query that joins an external table with a local table\. Note the S3 Seq Scan and S3 HashAggregate steps that were executed against the data on Amazon S3\.
+The following example shows the query plan for a query that joins an external table with a local table\. Note the S3 Seq Scan and S3 HashAggregate steps that were run against the data on Amazon S3\.
 
 ```
 explain

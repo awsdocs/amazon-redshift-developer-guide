@@ -2,6 +2,8 @@
 
 ST\_LineInterpolatePoint returns a point along a line at a fractional distance from the start of the line\. 
 
+To determine point equality, ST\_LineInterpolatePoint operates on the 2D projection of the input geometry\. If the input geometry is empty, a copy of it is returned in the same dimension as the input\. For 3DZ, 3DM, and 4D geometries, the `z` or `m` coordinate is the average of the `z` or `m` coordinates of the segment where the point lies\.
+
 ## Syntax<a name="ST_LineInterpolatePoint-function-syntax"></a>
 
 ```
@@ -20,9 +22,11 @@ A value of data type `DOUBLE PRECISION` that represents the position of a point 
 
 `GEOMETRY` of subtype `POINT`\. 
 
-The spatial reference system identifier \(SRID\) value of the returned geometry is the SRID value of the input geometry\. 
-
 If *geom* or *fraction* is null, then null is returned\. 
+
+If *geom* is empty, then the empty point is returned\. 
+
+The spatial reference system identifier \(SRID\) value of the returned geometry is the SRID value of the input geometry\. 
 
 If *fraction* is out of range, then an error is returned\. 
 

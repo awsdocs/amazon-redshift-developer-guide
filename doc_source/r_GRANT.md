@@ -51,13 +51,13 @@ GRANT { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES ]
      TO { username | GROUP group_name | PUBLIC } [, ...]
 ```
 
-The following is the syntax for the ASSUMEROLE privilege granted to users and groups with a specified role\. 
+The following is the syntax for the ASSUMEROLE privilege granted to users and groups with a specified role\. To begin using the ASSUMEROLE privilege, see [Usage notes for granting the ASSUMEROLE privilege ](r_GRANT-usage-notes.md#r_GRANT-usage-notes-assumerole)\.
 
 ```
 GRANT ASSUMEROLE
-    ON { 'iam_role' [, ...] | ALL }
+    ON { 'iam_role' [, ...] | default | ALL }
     TO { username | GROUP group_name | PUBLIC } [, ...]
-    FOR { ALL | COPY | UNLOAD } [, ...]
+    FOR { ALL | COPY | UNLOAD | EXTERNAL FUNCTION | CREATE MODEL } [, ...]
 ```
 
 The following is the syntax for Redshift Spectrum integration with Lake Formation\. 
@@ -98,12 +98,7 @@ GRANT USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
     TO { username | GROUP group_name | PUBLIC } [, ...]
 ```
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-The following is the syntax for machine learning model privileges on Amazon Redshift\. For information about each parameter, see [GRANT MODEL privileges](#r_GRANT-MODEL-parameters)\.
+The following is the syntax for machine learning model privileges on Amazon Redshift\.
 
 ```
 GRANT CREATE MODEL
@@ -114,7 +109,7 @@ GRANT { EXECUTE | ALL [ PRIVILEGES ] }
     TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
 ```
 
-### Parameters<a name="r_GRANT-parameters"></a>
+## Parameters<a name="r_GRANT-parameters"></a>
 
 SELECT   <a name="grant-select"></a>
 Grants privilege to select data from a table or view using a SELECT statement\. The SELECT privilege is also required to reference existing column values for UPDATE or DELETE operations\.
@@ -143,7 +138,7 @@ DROP  <a name="grant-drop"></a>
 Grants privilege to drop a table\. This privilege applies in Amazon Redshift and in an AWS Glue Data Catalog that is enabled for Lake Formation\.
 
 ASSUMEROLE  <a name="assumerole"></a>
-Grants privilege to run COPY and UNLOAD commands to users and groups with a specified role\. The user or group assumes that role when running the specified command\. 
+Grants privilege to run COPY, UNLOAD, EXTERNAL FUNCTION, and CREATE MODEL commands to users and groups with a specified role\. The user or group assumes that role when running the specified command\. To begin using the ASSUMEROLE privilege, see [Usage notes for granting the ASSUMEROLE privilege ](r_GRANT-usage-notes.md#r_GRANT-usage-notes-assumerole)\.
 
 ON \[ TABLE \] *table\_name*   <a name="grant-on-table"></a>
 Grants the specified privileges on a table or a view\. The TABLE keyword is optional\. You can list multiple tables and views in one statement\.
@@ -221,8 +216,8 @@ The USAGE ON LANGUAGE privilege is required to create stored procedures by runni
 For Python UDFs, use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.  
  
 
-FOR \{ ALL \| COPY \| UNLOAD \} \[, \.\.\.\]   <a name="grant-for"></a>
-Specifies the SQL command for which the privilege is granted\. You can specify ALL to grant the privilege on the COPY and UNLOAD statements\. This clause applies only to granting the ASSUMEROLE privilege\.
+FOR \{ ALL \| COPY \| UNLOAD \| EXTERNAL FUNCTION \| CREATE MODEL \} \[, \.\.\.\]   <a name="grant-for"></a>
+Specifies the SQL command for which the privilege is granted\. You can specify ALL to grant the privilege on the COPY, UNLOAD, EXTERNAL FUNCTION, and CREATE MODEL statements\. This clause applies only to granting the ASSUMEROLE privilege\.
 
 ALTER  
 Grants the ALTER privilege to users to add or remove objects from a datashare, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
@@ -248,17 +243,8 @@ Grants the specified usage privileges on the specified database that is created 
 ON SCHEMA* shared\_schema*   <a name="grant-datashare"></a>
 Grants the specified privileges on the specified schema that is created in the specified datashare\.
 
-#### GRANT MODEL privileges<a name="r_GRANT-MODEL-parameters"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-Use the following model\-specific parameters\.
-
 CREATE MODEL  
 Grants the CREATE MODEL privilege to specific users or user groups\.
 
 ON MODEL *model\_name*  
-Grants the EXECUTE privilege on a specific model\. Because model names can be overloaded, make sure to include the argument list for the model\.
+Grants the EXECUTE privilege on a specific model\. 

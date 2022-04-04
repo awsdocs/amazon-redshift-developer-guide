@@ -1,6 +1,6 @@
 # ST\_IsPolygonCW<a name="ST_IsPolygonCW-function"></a>
 
-ST\_IsPolygonCW returns true if the input polygon or multipolygon is clockwise\. If the input geometry is a point, linestring, multipoint, or multilinestring, then true is returned\. For geometry collections, ST\_IsPolygonCW returns true if all the geometries in the collection are clockwise\. 
+ST\_IsPolygonCW returns true if the 2D projection of the input polygon or multipolygon is clockwise\. If the input geometry is a point, linestring, multipoint, or multilinestring, then true is returned\. For geometry collections, ST\_IsPolygonCW returns true if all the geometries in the collection are clockwise\. 
 
 ## Syntax<a name="ST_IsPolygonCW-function-syntax"></a>
 

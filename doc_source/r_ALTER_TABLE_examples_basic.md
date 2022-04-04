@@ -174,3 +174,67 @@ select "table", "diststyle" from svv_table_info;
 -----------+----------------
  inventory |     ALL
 ```
+
+## Alter a table SORTKEY<a name="r_ALTER_TABLE_examples_alter-sortkey"></a>
+
+You can alter a table to have a compound sort key or no sort key\.
+
+In the following table definition, table `t1` is defined with an interleaved sortkey\.
+
+```
+create table t1 (c0 int, c1 int) interleaved sortkey(c0, c1);
+```
+
+The following command alters the table from an interleaved sort key to a compound sort key\.
+
+```
+alter table t1 alter sortkey(c0, c1);
+```
+
+The following command alters the table to remove the interleaved sort key\.
+
+```
+alter table t1 alter sortkey none;
+```
+
+In the following table definition, table `t1` is defined with column `c0` as a sortkey\.
+
+```
+create table t1 (c0 int, c1 int) sortkey(c0);
+```
+
+The following command alters the table `t1` to a compound sort key\.
+
+```
+alter table t1 alter sortkey(c0, c1);
+```
+
+## Alter a table to ENCODE AUTO<a name="r_ALTER_TABLE_examples_alter-encode-auto"></a>
+
+The following example shows how to alter a table to ENCODE AUTO\. 
+
+The table definition for this example follows\. Column `c0` is defined with the encoding type AZ64, and column `c1` is defined with the encoding type LZO\.
+
+```
+create table t1(c0 int encode AZ64, c1 varchar encode LZO);
+```
+
+For this table, the following statement alters the encoding to AUTO\.
+
+```
+alter table t1 alter encode auto;
+```
+
+The following example shows how to alter a table to remove the ENCODE AUTO setting\. 
+
+The table definition for this example follows\. The table columns are defined without encoding\. In this case, the encoding defaults to ENCODE AUTO\.
+
+```
+create table t2(c0 int, c1 varchar);
+```
+
+For this table, the following statement alters the encoding of column c0 to LZO\. The table encoding is no longer set to ENCODE AUTO\.
+
+```
+alter table t2 alter column c0 encode lzo;;
+```

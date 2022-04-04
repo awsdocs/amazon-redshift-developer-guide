@@ -22,7 +22,7 @@ unload/0002_part_00
 unload/0003_part_00
 ```
 
-To better differentiate the output files, you can include a prefix in the location\. The following example unloads the VENUE table and writes the data to `s3://mybucket/venue_pipe_`: 
+To better differentiate the output files, you can include a prefix in the location\. The following example unloads the VENUE table and writes the data to `s3://mybucket/unload/venue_pipe_`: 
 
 ```
 unload ('select * from venue')
@@ -80,6 +80,35 @@ PARQUET
 PARTITION BY (l_shipdate) INCLUDE;
 ```
 In these cases, the `l_shipdate` column is also in the data in the Parquet files\. Otherwise, the `l_shipdate` column data isn't in the Parquet files\.
+
+## Unload the VENUE table to a JSON file<a name="unload-examples-json"></a>
+
+The following example unloads the VENUE table and writes the data in JSON format to `s3://mybucket/unload/`\.
+
+```
+unload ('select * from venue')
+to 's3://mybucket/unload/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+JSON;
+```
+
+Following are sample rows from the VENUE table\.
+
+```
+venueid | venuename                  | venuecity       | venuestate | venueseats
+--------+----------------------------+-----------------+------------+-----------
+      1 | Pinewood Racetrack         | Akron           | OH         | 0
+      2 | Columbus "Crew" Stadium    | Columbus        | OH         | 0
+      4 | Community, Ballpark, Arena | Kansas City     | KS         | 0
+```
+
+After unloading to JSON, the format of the file is similar to the following\.
+
+```
+{"venueid":1,"venuename":"Pinewood Racetrack","venuecity":"Akron","venuestate":"OH","venueseats":0}
+{"venueid":2,"venuename":"Columbus \"Crew\" Stadium ","venuecity":"Columbus","venuestate":"OH","venueseats":0}
+{"venueid":4,"venuename":"Community, Ballpark, Arena","venuecity":"Kansas City","venuestate":"KS","venueseats":0}
+```
 
 ## Unload VENUE to a CSV file<a name="unload-examples-csv"></a>
 
@@ -335,7 +364,7 @@ manifest
 encrypted;
 ```
 
-The following example unloads the VENUE table to a set of encrypted files using a master symmetric key\. 
+The following example unloads the VENUE table to a set of encrypted files using a root symmetric key\. 
 
 ```
 unload ('select * from venue')
@@ -347,7 +376,7 @@ encrypted;
 
 ## Load VENUE from encrypted files<a name="unload-examples-load-encrypted"></a>
 
-To load tables from a set of files that were created by using UNLOAD with the ENCRYPT option, reverse the process by using a COPY command\. With that command, use the ENCRYPTED option and specify the same master symmetric key that was used for the UNLOAD command\. The following example loads the LOADVENUE table from the encrypted data files created in the previous example\.
+To load tables from a set of files that were created by using UNLOAD with the ENCRYPT option, reverse the process by using a COPY command\. With that command, use the ENCRYPTED option and specify the same root symmetric key that was used for the UNLOAD command\. The following example loads the LOADVENUE table from the encrypted data files created in the previous example\.
 
 ```
 create table loadvenue (like venue);
@@ -379,22 +408,6 @@ The output data files look like this:
 5	Gillette Stadium	Foxborough	MA	68756
 ...
 ```
-
-## Unload VENUE using temporary credentials<a name="unload-venue-using-temporary-credentials"></a>
-
-You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and can't be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials) in the usage notes for the COPY command\.
-
-The following example unloads the LISTING table using temporary credentials:
-
-```
-unload ('select venueid, venuename, venueseats from venue')
-to 's3://mybucket/venue_tab' credentials 
-'aws_access_key_id=<temporary-access-key-id>;aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>'
-delimiter as '\t';
-```
-
-**Important**  
-The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD fails and the transaction is rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD fails before it completes\.
 
 ## Unload VENUE to a fixed\-width data file<a name="unload-venue-fixed-width"></a>
 
@@ -598,7 +611,7 @@ copy loadvenuenulls from 's3://mybucket/nulls/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole' EMPTYASNULL;
 ```
 
-To verify that the columns contain NULL, not just whitespace or empty, select from LOADVENUENULLS and filter for null\.
+To verify that the columns contain NULL, not just whitespace or empty strings, select from LOADVENUENULLS and filter for null\.
 
 ```
 select * from loadvenuenulls where venuestate is null or venueseats is null;

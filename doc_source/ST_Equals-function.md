@@ -1,6 +1,6 @@
 # ST\_Equals<a name="ST_Equals-function"></a>
 
-ST\_Equals returns true if the input geometries are geometrically equal\. Geometries are considered geometrically equal if they have equal point sets and their interiors have a nonempty intersection\. 
+ST\_Equals returns true if the 2D projections of the input geometries are geometrically equal\. Geometries are considered geometrically equal if they have equal point sets and their interiors have a nonempty intersection\. 
 
 ## Syntax<a name="ST_Equals-function-syntax"></a>
 

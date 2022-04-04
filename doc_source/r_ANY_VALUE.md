@@ -14,17 +14,13 @@ DISTINCT \| ALL
 Specify either DISTINCT or ALL to return any value from the input expression values\. The DISTINCT argument has no effect and is ignored\.
 
  *expression *   
-The target column or expression on which the function operates\.
-
-## Returns<a name="r_ANY_VALUE-returns"></a>
-
-A value from the input expression values\. The following data types are returned:
+The target column or expression on which the function operates\. The *expression* is one of the following data types:  
 + SMALLINT
 + INTEGER
 + BIGINT
 + DECIMAL
 + REAL
-+ DOUBLE
++ DOUBLE PRECISON
 + BOOLEAN
 + CHAR
 + VARCHAR
@@ -33,6 +29,15 @@ A value from the input expression values\. The following data types are returned
 + TIMESTAMPTZ
 + TIME
 + TIMETZ
++ VARBYTE
++ SUPER
++ HLLSKETCH
++ GEOMETRY
++ GEOGRAPHY
+
+## Returns<a name="r_ANY_VALUE-returns"></a>
+
+Returns the same data type as *expression*\. 
 
 ## Usage notes<a name="r_ANY_VALUE-usage-notes"></a>
 
@@ -40,7 +45,7 @@ If a statement that specifies the ANY\_VALUE function for a column also includes
 
 ## Examples<a name="r_ANY_VALUE-examples"></a>
 
-The examples use the event table that is created in [Step 6: Load sample data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the *Amazon Redshift Getting Started*\. The following example returns an instance of any dateid where the eventname is Eagles\. 
+The examples use the event table that is created in [Step 6: Load sample data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the *Amazon Redshift Getting Started Guide*\. The following example returns an instance of any dateid where the eventname is Eagles\. 
 
 ```
 select any_value(dateid) as dateid, eventname from event where eventname ='Eagles' group by eventname;

@@ -61,9 +61,9 @@ The following is the syntax to revoke the ASSUMEROLE privilege from users and gr
 
 ```
 REVOKE ASSUMEROLE
-    ON { 'iam_role' [, ...] | ALL }
+    ON { 'iam_role' [, ...]  | default | ALL }
     FROM { user_name | GROUP group_name | PUBLIC } [, ...]
-    FOR { ALL | COPY | UNLOAD }
+    FOR { ALL | COPY | UNLOAD | EXTERNAL FUNCTION | CREATE MODEL }
 ```
 
 The following is the syntax for Redshift Spectrum integration with Lake Formation\. 
@@ -107,6 +107,20 @@ REVOKE USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
     FROM { username | GROUP group_name | PUBLIC } [, ...]
 ```
 
+The following is the syntax for machine learning model privileges on Amazon Redshift\.
+
+```
+REVOKE [ GRANT OPTION FOR ]
+    CREATE MODEL FROM { username | GROUP group_name | PUBLIC } [, ...]
+    [ CASCADE | RESTRICT ]
+
+REVOKE [ GRANT OPTION FOR ]
+    { EXECUTE | ALL [ PRIVILEGES ] }
+    ON MODEL model_name [, ...]
+    FROM { username | GROUP group_name | PUBLIC } [, ...]
+    [ CASCADE | RESTRICT ]
+```
+
 ## Parameters<a name="r_REVOKE-parameters"></a>
 
 GRANT OPTION FOR   
@@ -137,7 +151,7 @@ DROP
 Revokes privilege to drop a table\. This privilege applies in Amazon Redshift and in an AWS Glue Data Catalog that is enabled for Lake Formation\.
 
 ASSUMEROLE  <a name="assumerole"></a>
-Revokes the privilege to run COPY and UNLOAD commands from users and groups with a specified role\. 
+Revokes the privilege to run COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL commands from users and groups with a specified role\. 
 
 ON \[ TABLE \] *table\_name*   
 Revokes the specified privileges on a table or a view\. The TABLE keyword is optional\.
@@ -215,8 +229,8 @@ grant usage on language sql to group udf_devs;
 For more information, see [UDF security and privileges](udf-security-and-privileges.md)\.   
 To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then grant usage on `plpgsql` only to the specific users or groups permitted to create stored procedures\. For more information, see [Security and privileges for stored procedures ](stored-procedure-security-and-privileges.md)\. 
 
-FOR \{ ALL \| COPY \| UNLOAD \} \[, \.\.\.\]   <a name="revoke-for"></a>
-Specifes the SQL command for which the privilege is revoked\. You can specify ALL to revoke the privilege on the COPY and UNLOAD statements\. This clause applies only to revoking the ASSUMEROLE privilege\.
+FOR \{ ALL \| COPY \| UNLOAD \| EXTERNAL FUNCTION \| CREATE MODEL \} \[, \.\.\.\]  <a name="revoke-for"></a>
+Specifes the SQL command for which the privilege is revoked\. You can specify ALL to revoke the privilege on the COPY, UNLOAD, EXTERNAL FUNCTION, and CREATE MODEL statements\. This clause applies only to revoking the ASSUMEROLE privilege\.
 
 ALTER  
 Revokes the ALTER privilege for users or user groups that allows those that don't own a datashare to alter the datashare\. This privilege is required to add or remove objects from a datashare, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
@@ -252,39 +266,8 @@ Revokes the specified usage privileges on the specified database that was create
 ON SCHEMA* shared\_schema*   <a name="revoke-datashare"></a>
 Revokes the specified privileges on the specified schema that was created in the specified datashare\.
 
-## Syntax for using REVOKE with a machine learning model<a name="r_REVOKE-synopsis-model"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-The following is the syntax for machine learning model privileges on Amazon Redshift\. For information about model\-specific parameters, see [REVOKE MODEL privileges](#r_REVOKE-MODEL-parameters)\.
-
-```
-REVOKE [ GRANT OPTION FOR ]
-    CREATE MODEL FROM { username | GROUP group_name | PUBLIC } [, ...]
-    [ CASCADE | RESTRICT ]
-
-REVOKE [ GRANT OPTION FOR ]
-    { EXECUTE | ALL [ PRIVILEGES ] }
-    ON MODEL model_name [, ...]
-    FROM { username | GROUP group_name | PUBLIC } [, ...]
-    [ CASCADE | RESTRICT ]
-```
-
-### REVOKE MODEL privileges<a name="r_REVOKE-MODEL-parameters"></a>
-
-Use the following model\-specific parameters\.
-
-MODEL  
-Revokes the MODEL privilege to create machine learning models in the specified database\.
+CREATE MODEL  
+Revokes the CREATE MODEL privilege to create machine learning models in the specified database\.
 
 ON MODEL *model\_name*  
-Revokes the EXECUTE privilege on a specific model\. Because model names can be overloaded, make sure to include the argument list for the model\.
-
- CASCADE   
-Specifies to automatically drop dependent objects when Amazon Redshift drops the model, such as views and other SQL user\-defined functions\.
-
- RESTRICT   
-Specifies to not drop dependent objects when Amazon Redshift drops the model, such as views and other SQL user\-defined functions\. This action is the default\.
+Revokes the EXECUTE privilege for a specific model\. 

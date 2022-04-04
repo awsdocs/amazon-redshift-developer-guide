@@ -63,7 +63,7 @@ See [Implementing workload management](cm-c-implementing-workload-management.md)
 
  **Setting a label for a group of queries** 
 
-The QUERY\_GROUP parameter defines a label for one or more queries that are executed in the same session after a SET command\. In turn, this label is logged when queries are executed and can be used to constrain results returned from the STL\_QUERY and STV\_INFLIGHT system tables and the SVL\_QLOG view\. 
+The QUERY\_GROUP parameter defines a label for one or more queries that are run in the same session after a SET command\. In turn, this label is logged when queries are run and can be used to constrain results returned from the STL\_QUERY and STV\_INFLIGHT system tables and the SVL\_QLOG view\. 
 
 ```
 show query_group;

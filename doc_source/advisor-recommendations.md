@@ -3,7 +3,6 @@
 Amazon Redshift Advisor offers recommendations about how to optimize your Amazon Redshift cluster to increase performance and save on operating costs\. You can find explanations for each recommendation in the console, as described preceding\. You can find further details on these recommendations in the following sections\. 
 
 **Topics**
-+ [Compress table data](#cluster-compression-recommendation)
 + [Compress Amazon S3 file objects loaded by COPY](#cluster-compress-s3-recommendation)
 + [Isolate multiple active databases](#isolate-active-dbs-recommendation)
 + [Reallocate workload management \(WLM\) memory](#reallocate-wlm-recommendation)
@@ -11,59 +10,9 @@ Amazon Redshift Advisor offers recommendations about how to optimize your Amazon
 + [Split Amazon S3 objects loaded by COPY](#split-s3-objects-recommendation)
 + [Update table statistics](#update-table-statistics-recommendation)
 + [Enable short query acceleration](#enable-sqa-recommendation)
-+ [Replace single\-column interleaved sort keys](#single-column-interleaved-sort-recommendation)
 + [Alter distribution keys on tables](#alter-diststyle-distkey-recommendation)
 + [Alter sort keys on tables](#alter-sortkey-recommendation)
-
-## Compress table data<a name="cluster-compression-recommendation"></a>
-
-Amazon Redshift is optimized to reduce your storage footprint and improve query performance by using compression encodings\. When you don't use compression, data consumes additional space and requires additional disk I/O\. Applying compression to large uncompressed columns can have a big impact on your cluster\. 
-
-**Analysis**
-
-The compression analysis in Advisor tracks uncompressed storage allocated to permanent user tables\. It reviews storage metadata associated with large uncompressed columns that aren't sort key columns\. Advisor offers a recommendation to rebuild tables with uncompressed columns when the total amount of uncompressed storage exceeds 15 percent of total storage space, or at the following node\-specific thresholds\. 
-
-
-| Cluster Size | Threshold | 
-| --- | --- | 
-| DC2\.LARGE | 480 GB | 
-| DC2\.8XLARGE | 2\.56 TB | 
-| DS2\.XLARGE | 4 TB | 
-| DS2\.8XLARGE | 16 TB | 
-
-**Recommendation**
-
-Addressing uncompressed storage for a single table is a one\-time optimization that requires the table to be rebuilt\. We recommend that you rebuild any tables that contain uncompressed columns that are both large and frequently accessed\. To identify which tables contain the most uncompressed storage, run the following SQL command as a superuser\.
-
-```
-SELECT
-       ti.schema||'.'||ti."table" tablename,
-       raw_size.size uncompressed_mb,
-       ti.size total_mb
-     FROM svv_table_info ti
-     LEFT JOIN (
-       SELECT tbl table_id, COUNT(*) size
-       FROM stv_blocklist
-       WHERE (tbl,col) IN (
-         SELECT attrelid, attnum-1
-         FROM pg_attribute
-         WHERE attencodingtype IN (0,128)
-         AND attnum>0 AND attsortkeyord != 1)
-       GROUP BY tbl) raw_size USING (table_id)
-     WHERE raw_size.size IS NOT NULL
-     ORDER BY raw_size.size DESC;
-```
-
-The data returned in the `uncompressed_mb` column represents the total number of uncompressed 1\-MB blocks for all columns in the table\. 
-
-When you rebuild the tables, use the `ENCODE` parameter to explicitly set column compression\.
-
-**Implementation tips**
-+ Leave any columns that are the first column in a compound sort key uncompressed\. The Advisor analysis doesn't count the storage consumed by those columns\.
-+ Compressing large columns has a higher impact on performance and storage than compressing small columns\.
-+ If you are unsure which compression is best, use the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command to suggest a compression\.
-+ To generate the data definition language \(DDL\) statements for existing tables, you can use the AWS[Generate Table DDL](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql) utility, found on GitHub\.
-+ To simplify the compression suggestions and the process of rebuilding tables, you can use the [Amazon Redshift Column Encoding Utility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\.
++ [Alter compression encodings on columns](#alter-compression-encoding-recommendation)
 
 ## Compress Amazon S3 file objects loaded by COPY<a name="cluster-compress-s3-recommendation"></a>
 
@@ -195,7 +144,7 @@ When you load data as part of a structured process, such as in an overnight extr
 
 To improve COPY responsiveness by skipping the compression analysis phase, implement either of the following two options:
 + Use the column `ENCODE` parameter when creating any tables that you load using the COPY command\.
-+ Disable compression altogether by supplying the `COMPUPDATE OFF` parameter in the COPY command\.
++ Turn off compression altogether by supplying the `COMPUPDATE OFF` parameter in the COPY command\.
 
 The best solution is generally to use column encoding during table creation, because this approach also maintains the benefit of storing compressed data on disk\. You can use the ANALYZE COMPRESSION command to suggest compression encodings, but you must recreate the table to apply these encodings\. To automate this process, you can use the AWS[ColumnEncodingUtility](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/ColumnEncodingUtility), found on GitHub\. 
 
@@ -225,7 +174,7 @@ WHERE b.complyze_sec IS NOT NULL ORDER BY a.copy_sql, a.starttime;
 
 **Implementation tips**
 + Ensure that all tables of significant size created during your ETL processes \(for example, staging tables and temporary tables\) declare a compression encoding for all columns except the first sort key\.
-+ Estimate the expected lifetime size of the table being loaded for each of the COPY commands identified by the SQL command preceding\. If you are confident that the table will remain extremely small, disable compression altogether with the `COMPUPDATE OFF` parameter\. Otherwise, create the table with explicit compression before loading it with the COPY command\.
++ Estimate the expected lifetime size of the table being loaded for each of the COPY commands identified by the SQL command preceding\. If you are confident that the table will remain extremely small, turn off compression altogether with the `COMPUPDATE OFF` parameter\. Otherwise, create the table with explicit compression before loading it with the COPY command\.
 
 ## Split Amazon S3 objects loaded by COPY<a name="split-s3-objects-recommendation"></a>
 
@@ -270,7 +219,7 @@ END, (SUM(transfer_size)/(1024.0*1024.0))/COUNT(*) DESC;
 
 **Implementation tips**
 + The number of slices in a node depends on the node size of the cluster\. For more information about the number of slices in the various node types, see [Clusters and Nodes in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide\.* 
-+ You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Splitting your data into multiple files](t_splitting-data-files.md)\.
++ You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Loading data from compressed and uncompressed files](t_splitting-data-files.md)\.
 + Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. 
 
 ## Update table statistics<a name="update-table-statistics-recommendation"></a>
@@ -353,41 +302,6 @@ where service_class = 14;
 
 For more information, see [Monitoring SQA](wlm-short-query-acceleration.md#wlm-monitoring-sqa)\. 
 
-## Replace single\-column interleaved sort keys<a name="single-column-interleaved-sort-recommendation"></a>
-
-Some tables use an interleaved sort key on a single column\. In general, such a table is less efficient and consumes more resources than a table that uses a compound sort key on a single column\.
-
-Interleaved sorting improves performance in certain cases where multiple columns are used by different queries for filtering\. Using an interleaved sort key on a single column is effective only in a particular case\. That case is when queries often filter on CHAR or VARCHAR column values that have a long common prefix in the first 8 bytes\. For example, URL strings are often prefixed with "`https://`"\. For single\-column keys, a compound sort is better than an interleaved sort for any other filtering operations\. A compound sort speeds up joins, GROUP BY and ORDER BY operations, and window functions that use PARTITION BY and ORDER BY on the sorted column\. An interleaved sort doesn't benefit any of those operations\. For more information, see [Working with sort keys](t_Sorting_data.md)\. 
-
-Using compound sort significantly reduces maintenance overhead\. Tables with compound sort keys don't need the expensive VACUUM REINDEX operations that are necessary for interleaved sorts\. In practice, compound sort keys are more effective than interleaved sort keys for the vast majority of Amazon Redshift workloads\. 
-
-**Analysis**
-
-Advisor tracks tables that use an interleaved sort key on a single column\. 
-
-**Recommendation**
-
-If a table uses interleaved sorting on a single column, recreate the table to use a compound sort key\. When you create new tables, use a compound sort key for single\-column sorts\. To find interleaved tables that use a single\-column sort key, run the following command\. 
-
-```
-SELECT schema AS schemaname, "table" AS tablename 
-FROM svv_table_info 
-WHERE table_id IN (
-    SELECT attrelid 
-    FROM pg_attribute
-    WHERE attrelid IN (
-        SELECT attrelid
-        FROM pg_attribute
-        WHERE attsortkeyord <> 0
-        GROUP BY attrelid
-        HAVING MAX(attsortkeyord) = -1
-    )
-    AND NOT (atttypid IN (1042, 1043) AND atttypmod > 12)
-    AND attsortkeyord = -1);
-```
-
-For additional information about choosing the best sort style, see the AWS Big Data Blog post [Amazon Redshift Engineering's Advanced Table Design Playbook: Compound and Interleaved Sort Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-compound-and-interleaved-sort-keys/)\. 
-
 ## Alter distribution keys on tables<a name="alter-diststyle-distkey-recommendation"></a>
 
 Amazon Redshift distributes table rows throughout the cluster according to the table distribution style\. Tables with KEY distribution require a column as the distribution key \(DISTKEY\)\. A table row is assigned to a node slice of a cluster based on its DISTKEY column value\. 
@@ -419,11 +333,15 @@ Sorting a table on an appropriate sort key can accelerate performance of queries
 
 **Analysis**
 
-Advisor analyzes your cluster’s workload over several days to identify a beneficial sort key for your tables\. 
+Advisor analyzes your cluster's workload over several days to identify a beneficial sort key for your tables\. 
 
 **Recommendation**
 
-Advisor provides ALTER TABLE statements that alter the sort key of a table based on its analysis\.
+ Advisor provides two groups of ALTER TABLE statements that alter the sort key of a table based on its analysis: 
++ Statements that alter a table that currently doesn't have a sort key to add a COMPOUND sort key\.
++ Statements that alter a sort key from INTERLEAVED to COMPOUND or no sort key\.
+
+  Using compound sort keys significantly reduces maintenance overhead\. Tables with compound sort keys don't need the expensive VACUUM REINDEX operations that are necessary for interleaved sorts\. In practice, compound sort keys are more effective than interleaved sort keys for the vast majority of Amazon Redshift workloads\. However, if a table is small, it's more efficient not to have a sort key to avoid sort key storage overhead\.
 
 When sorting a large table with the ALTER TABLE, cluster resources are consumed and table locks are required at various times\. Implement each recommendation when a cluster's workload is moderate\. More details on optimizing table sort key configurations can be found in the [Amazon Redshift Engineering's Advanced Table Design Playbook: Compound and Interleaved Sort Keys](https://aws.amazon.com/blogs/big-data/amazon-redshift-engineerings-advanced-table-design-playbook-compound-and-interleaved-sort-keys/)\. 
 
@@ -432,3 +350,22 @@ For more information about ALTER SORTKEY, see [ALTER TABLE](r_ALTER_TABLE.md)\.
 **Note**  
 If you don't see a recommendation for a table, that doesn't necessarily mean that the current configuration is the best\. Advisor doesn't provide recommendations when there isn't enough data or the expected benefit of sorting is small\.   
 Advisor recommendations apply to a particular table and don’t necessarily apply to a table that contains a column with the same name and data type\. Tables that share column names can have different recommendations based on the data in the tables and the workload\. 
+
+## Alter compression encodings on columns<a name="alter-compression-encoding-recommendation"></a>
+
+Compression is a column\-level operation that reduces the size of data when it's stored\. Compression is used in Amazon Redshift to conserve storage space and improve query performance by reducing the amount of disk I/O\. We recommend an optimal compression encoding for each column based on its data type and on query patterns\. With optimal compression, queries can run more efficiently and the database can take up minimal storage space\.  
+
+**Analysis**
+
+Advisor performs analysis of your cluster's workload and database schema continually to identify the optimal compression encoding for each table column\.
+
+**Recommendation**
+
+Advisor provides ALTER TABLE statements that change the compression encoding of particular columns, based on its analysis\. 
+
+Changing column compression encodings with [ALTER TABLE](r_ALTER_TABLE.md) consumes cluster resources and requires table locks at various times\. It's best to implement recommendations when the cluster workload is light\. 
+
+For reference, [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md) shows several statements that change the encoding for a column\.
+
+**Note**  
+Advisor doesn't provide recommendations when there isn't enough data or the expected benefit of changing the encoding is small\.

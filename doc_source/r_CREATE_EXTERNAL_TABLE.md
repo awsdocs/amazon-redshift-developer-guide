@@ -47,7 +47,7 @@ LOCATION { 's3://bucket/folder/' }
 
  *external\_schema\.table\_name*   
 The name of the table to be created, qualified by an external schema name\. External tables must be created in an external schema\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.  
-The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 9,900 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, you can qualify the table name with the database name\. In the following example, the database name is `spectrum_db` , the external schema name is `spectrum_schema`, and the table name is `test`\.  
+The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 9,900 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, you can qualify the table name with the database name\. In the following example, the database name is `spectrum_db`, the external schema name is `spectrum_schema`, and the table name is `test`\.  
 
 ```
 create external table spectrum_db.spectrum_schema.test (c1 int)
@@ -79,7 +79,19 @@ The following [Data types](c_Supported_data_types.md) are supported:
 + VARCHAR \(CHARACTER VARYING\)
 + DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
 + TIMESTAMP
-Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
+  
+For DATE, you can use the formats as described following\. For month values represented using digits, the following formats are supported:  
++ `mm-dd-yyyy` For example, `05-01-2017`\. This is the default\.
++ `yyyy-mm-dd`, where the year is represented by more than 2 digits\. For example, `2017-05-01`\.
+For month values represented using the three letter abbreviation, the following formats are supported:  
++ `mmm-dd-yyyy` For example, `may-01-2017`\. This is the default\.
++ `dd-mmm-yyyy`, where the year is represented by more than 2 digits\. For example, `01-may-2017`\.
++ `yyyy-mmm-dd`, where the year is represented by more than 2 digits\. For example, `2017-may-01`\.
+For year values that are consistently less than 100, the year is calculated in the following manner:  
++ If year is less than 70, the year is calculated as the year plus 2000\. For example, the date 05\-01\-17 in the `mm-dd-yyyy` format is converted into `05-01-2017`\.
++ If year is less than 100 and greater than 69, the year is calculated as the year plus 1900\. For example the date 05\-01\-89 in the `mm-dd-yyyy` format is converted into `05-01-1989`\.
++ For year values represented by two digits, add leading zeroes to represent the year in 4 digits\.
+Timestamp values in text files must be in the format `yyyy-mm-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000`\.  
 The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and ranges](r_Character_types.md#r_Character_types-storage-and-ranges)\.   
 For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\. The following example returns the maximum size of values in the email column\.  
 
@@ -118,21 +130,32 @@ If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '
 ROW FORMAT SERDE '*serde\_name*' \[WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 A clause that specifies the SERDE format for the underlying data\.     
 '*serde\_name*'  
-The name of the SerDe\. The following are supported:  
+The name of the SerDe\. You can specify the following formats:  
 + org\.apache\.hadoop\.hive\.serde2\.RegexSerDe 
 + com\.amazonaws\.glue\.serde\.GrokSerDe 
 + org\.apache\.hadoop\.hive\.serde2\.OpenCSVSerde 
+
+  This parameter supports the following SerDe property for OpenCSVSerde: 
+
+  ```
+  'wholeFile' = 'true' 
+  ```
+
+  Set the `wholeFile` property to `true` to properly parse new line characters \(\\n\) within quoted strings for OpenCSV requests\. 
 + org\.openx\.data\.jsonserde\.JsonSerDe
   + The JSON SERDE also supports Ion files\. 
   + The JSON must be well\-formed\. 
   + Timestamps in Ion and JSON must use ISO8601 format\.
-  + The following SerDe property is supported for the JsonSerDe: 
+  + This parameter supports the following SerDe property for JsonSerDe: 
 
     ```
     'strip.outer.array'='true' 
     ```
 
-    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\.   
+    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\. 
++ com\.amazon\.ionhiveserde\.IonHiveSerDe
+
+  The Amazon ION format provides text and binary formats, in addition to data types\. For an external table that references data in ION format, you map each column in the external table to the corresponding element in the ION format data\. For more information, see [Amazon Ion](https://amzn.github.io/ion-docs/)\. You also need to specify the input and output formats\.  
 WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 Optionally, specify property names and values, separated by commas\.
 If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' \(start of heading\) and LINES TERMINATED BY '\\n' \(newline\)\. 
@@ -208,6 +231,10 @@ The COPY command maps to ORC data files only by position\. The *orc\.schema\.res
 A property that sets whether CREATE EXTERNAL TABLE AS should write data in parallel\. By default, CREATE EXTERNAL TABLE AS writes data in parallel to multiple files, according to the number of slices in the cluster\. The default option is on\. When 'write\.parallel' is set to off, CREATE EXTERNAL TABLE AS writes to one or more data files serially onto Amazon S3\. This table property also applies to any subsequent INSERT statement into the same external table\.  
 ‘write\.maxfilesize\.mb’=‘size’  
 A property that sets the maximum size \(in MB\) of each file written to Amazon S3 by CREATE EXTERNAL TABLE AS\. The size must be a valid integer between 5 and 6200\. The default maximum file size is 6,200 MB\. This table property also applies to any subsequent INSERT statement into the same external table\.  
+‘write\.kms\.key\.id’=‘*value*’  
+You can specify an AWS Key Management Service key to enable Server–Side Encryption \(SSE\) for Amazon S3 objects, where *value* is one of the following:   
++ `auto` to use the default AWS KMS key stored in the Amazon S3 bucket\.
++ *kms\-key* that you specify to encrypt data\.  
 *select\_statement*  
 A statement that inserts one or more rows into the external table by defining any query\. All rows that the query produces are written to Amazon S3 in either text or Parquet format based on the table definition\.
 
@@ -217,7 +244,7 @@ You can't view details for Amazon Redshift Spectrum tables using the same resour
 
 ### CREATE EXTERNAL TABLE AS<a name="r_CETAS"></a>
 
-In some cases, you might run the CREATE EXTERNAL TABLE AS command on a AWS Glue Data Catalog, AWS Lake Formation external catalog, or Apache Hive metastore\. In such cases, you use an AWS Identity and Access Management \(IAM\) role to create the external schema\. This IAM role must have both read and write permissions on Amazon S3\. 
+In some cases, you might run the CREATE EXTERNAL TABLE AS command on an AWS Glue Data Catalog, AWS Lake Formation external catalog, or Apache Hive metastore\. In such cases, you use an AWS Identity and Access Management \(IAM\) role to create the external schema\. This IAM role must have both read and write permissions on Amazon S3\. 
 
 If you use a Lake Formation catalog, the IAM role must have the permission to create table in the catalog\. In this case, it must also have the data lake location permission on the target Amazon S3 path\. This IAM role becomes the owner of the new AWS Lake Formation table\.
 
@@ -624,4 +651,15 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
 WITH SERDEPROPERTIES (
 'input.regex' = '([^ ]*) ([^ ]*) \\[(.*?)\\] ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) \"([^ ]*)\\s*([^ ]*)\\s*([^ ]*)\" (- |[^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\") ([^ ]*).*$')
 LOCATION 's3://mybucket/s3logs’;
+```
+
+The following shows an example of specifying the ROW FORMAT SERDE parameters for ION format data\.
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'com.amazon.ionhiveserde.IonHiveSerDe'
+STORED AS
+INPUTFORMAT 'com.amazon.ionhiveserde.formats.IonInputFormat'
+OUTPUTFORMAT 'com.amazon.ionhiveserde.formats.IonOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
 ```

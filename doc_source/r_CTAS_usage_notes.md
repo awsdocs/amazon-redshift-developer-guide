@@ -14,9 +14,9 @@ CREATE TABLE AS \(CTAS\) tables don't inherit constraints, identity columns, def
 
 You can't specify column compression encodings for CTAS tables\. Amazon Redshift automatically assigns compression encoding as follows:
 + Columns that are defined as sort keys are assigned RAW compression\.
-+ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data type are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, GEOMETRY, or GEOGRAPHY data type are assigned RAW compression\.
 + Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
-+ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
++ Columns that are defined as CHAR, VARCHAR, or VARBYTE are assigned LZO compression\.
 
 For more information, see [Compression encodings](c_Compression_encodings.md) and [Data types](c_Supported_data_types.md)\. 
 
@@ -29,7 +29,7 @@ If the SELECT clause is a simple select operation from a single table, without a
 For complex queries, such as queries that include joins, aggregations, an order by clause, or a limit clause, CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\. 
 
 **Note**  
-For best performance with large data sets or complex queries, we recommend testing using typical data sets\.
+For best performance with large datasets or complex queries, we recommend testing using typical datasets\.
 
 You can often predict which distribution key and sort key CTAS chooses by examining the query plan to see which columns, if any, the query optimizer chooses for sorting and distributing data\. If the top node of the query plan is a simple sequential scan from a single table \(XN Seq Scan\), then CTAS generally uses the source table's distribution style and sort key\. If the top node of the query plan is anything other a sequential scan \(such as XN Limit, XN Sort, XN HashAggregate, and so on\), CTAS makes a best effort to choose the optimal distribution style and sort key based on the query plan\.
 

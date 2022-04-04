@@ -31,6 +31,7 @@ COPY supports columnar formatted data with the following restrictions:
 + To access your Amazon S3 data through a VPC endpoint, set up access using IAM policies and IAM roles as described in [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Cluster Management Guide*\. 
 + COPY doesn't automatically apply compression encodings\. 
 + Only the following COPY parameters are supported: 
+  + [FILLRECORD](copy-parameters-data-conversion.md#copy-fillrecord)
   + [FROM](copy-parameters-data-source-s3.md#copy-parameters-from)
   + [IAM\_ROLE](copy-parameters-authorization.md#copy-iam-role)
   + [CREDENTIALS](copy-parameters-authorization.md#copy-credentials)

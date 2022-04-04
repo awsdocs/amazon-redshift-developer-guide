@@ -10,7 +10,7 @@ This view is visible to all users\. Superusers can see all rows; regular users c
 
 ## Sample queries<a name="r_STL_WLM_RULE_ACTION-sample-queries"></a>
 
-The following example finds queries that were aborted by a query monitoring rule\.
+The following example finds queries that were stopped by a query monitoring rule\.
 
 ```
 Select query, rule

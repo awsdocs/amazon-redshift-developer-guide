@@ -24,14 +24,11 @@ The following RDS PostgreSQL and Aurora PostgreSQL data types are converted to V
 + UUID
 + XML type 
 
-
-|  | 
-| --- |
-| The following is prerelease documentation for the federated query to MySQL feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
 The following table shows the mapping of an Amazon Redshift data type to a corresponding Amazon RDS MySQL or Aurora MySQL data type\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/federated-data-types.html)
+
+An error results when TIME data is out of range \(00:00:00 – 24:00:00\)\.
 
 The following RDS MySQL and Aurora MySQL data types are converted to VARCHAR\(64K\) in Amazon Redshift: 
 + BIT
@@ -42,6 +39,3 @@ The following RDS MySQL and Aurora MySQL data types are converted to VARCHAR\(64
 + ENUM
 + SET
 + SPATIAL
-+ TIME
-+ YEAR
-+ DATETIME

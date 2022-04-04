@@ -47,7 +47,7 @@ Leap seconds are not considered in elapsed\-time calculations\.
 
 ## Date and time functions in transactions<a name="date-functions-transactions"></a>
 
-When you execute the following functions within a transaction block \(BEGIN … END\), the function returns the start date or time of the current transaction, not the start of the current statement\.
+When you run the following functions within a transaction block \(BEGIN … END\), the function returns the start date or time of the current transaction, not the start of the current statement\.
 + SYSDATE
 + TIMESTAMP
 + CURRENT\_DATE
@@ -58,7 +58,7 @@ The following functions always return the start date or time of the current stat
 
 ## Deprecated leader node\-only functions<a name="date-functions-deprecated"></a>
 
-The following date functions are deprecated because they execute only on the leader node\. For more information, see [Leader node–only functions](c_SQL_functions_leader_node_only.md)\.
+The following date functions are deprecated because they run only on the leader node\. For more information, see [Leader node–only functions](c_SQL_functions_leader_node_only.md)\.
 + AGE\. Use [DATEDIFF function](r_DATEDIFF_function.md) instead\.
 + CURRENT\_TIME\. Use [GETDATE function](r_GETDATE.md) or [SYSDATE](r_SYSDATE.md) instead\. 
 + CURRENT\_TIMESTAMP\. Use [GETDATE function](r_GETDATE.md) or [SYSDATE](r_SYSDATE.md) instead\.

@@ -2,7 +2,7 @@
 
 Connect to a database to view databases and objects within databases in this cluster or to view datashares\.
 
-The user credentials used to connect to a specified database must have the necessary permissions in order to view all datashares\.
+The user credentials used to connect to a specified database must have the necessary permissions to view all datashares\.
 
 If there is no local connection, do one of the following:
 + In the cluster details page, from the **Databases** tab, in the **Databases** or **Datashare objects** section, choose **Connect to database** to view database objects in the cluster\.

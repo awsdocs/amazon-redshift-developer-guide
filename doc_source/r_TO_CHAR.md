@@ -18,7 +18,7 @@ An expression that results in a numeric data type value or a value that can impl
 TO\_CHAR does not support 128\-bit DECIMAL values\. 
 
  *format*   
-The format for the new value\. For valid formats, see [Datetime format strings](r_FORMAT_strings.md) and [ Numeric Format Strings](r_Numeric_formating.md)\. 
+The format for the new value\. For valid formats, see [Datetime format strings](r_FORMAT_strings.md) and [ Numeric format strings](r_Numeric_formating.md)\. 
 
 ## Return type<a name="r_TO_CHAR-return-type"></a>
 

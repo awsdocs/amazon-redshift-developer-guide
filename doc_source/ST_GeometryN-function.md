@@ -4,7 +4,7 @@ ST\_GeometryN returns a geometry pointed to by the input index of the input geom
 + If the input is a point, linestring, or polygon, then a geometry is returned as is if the index is equal to one \(1\), and null if the index is other than one \(1\)\.
 + If the input is a multipoint, multilinestring, multipolygon, or geometry collection, then a point, linestring, polygon, or geometry collection is returned as pointed to by an input index\. 
 
-The index is one\-based\. The spatial reference system identifier \(SRID\) of the result is the same as that of the input geometry\. 
+The index is one\-based\. The spatial reference system identifier \(SRID\) of the result is the same as that of the input geometry\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_GeometryN-function-syntax"></a>
 

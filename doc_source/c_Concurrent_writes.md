@@ -2,7 +2,7 @@
 
 **Topics**
 + [Serializable isolation](c_serial_isolation.md)
-+ [Write and read\-write operations](c_write_readwrite.md)
++ [Write and read/write operations](c_write_readwrite.md)
 + [Concurrent write examples](r_Serializable_isolation_example.md)
 
 Amazon Redshift allows tables to be read while they are being incrementally loaded or modified\.

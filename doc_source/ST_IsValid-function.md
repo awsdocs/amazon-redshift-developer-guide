@@ -1,6 +1,6 @@
 # ST\_IsValid<a name="ST_IsValid-function"></a>
 
-ST\_IsValid returns true if the input geometry is valid\. For more information about the definition of a valid geometry, see [Geometric validity](spatial-terminology.md#spatial-terminology-validity)\. 
+ST\_IsValid returns true if the 2D projection of the input geometry is valid\. For more information about the definition of a valid geometry, see [Geometric validity](spatial-terminology.md#spatial-terminology-validity)\. 
 
 ## Syntax<a name="ST_IsValid-function-syntax"></a>
 

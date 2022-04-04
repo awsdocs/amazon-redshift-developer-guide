@@ -2,6 +2,8 @@
 
 ST\_GeomFromEWKT constructs a geometry object from the extended well\-known text \(EWKT\) representation of an input geometry\. 
 
+ST\_GeomFromEWKT accepts 3DZ, 3DM, and 4D where the geometry type is prefixed with Z, M, or ZM, respectively\.
+
 ## Syntax<a name="ST_GeomFromEWKT-function-syntax"></a>
 
 ```
@@ -11,7 +13,12 @@ ST_GeomFromEWKT(ewkt_string)
 ## Arguments<a name="ST_GeomFromEWKT-function-arguments"></a>
 
  *ewkt\_string*   
-A value of data type `VARCHAR` or an expression that evaluates to a `VARCHAR` type, that is an EWKT representation of a geometry\.
+A value of data type `VARCHAR` or an expression that evaluates to a `VARCHAR` type, that is an EWKT representation of a geometry\.  
+You can use the WKT keyword `EMPTY` to designate an empty point, a multipoint with an empty point, or a geometry collection with an empty point\. The following example creates an empty point\.   
+
+```
+ST_GeomFromEWKT('SRID=4326;POINT EMPTY');
+```
 
 ## Return type<a name="ST_GeomFromEWKT-function-return"></a>
 

@@ -6,7 +6,7 @@ You can create a datashare without adding datashare objects and add objects late
 
 A datashare becomes active only when you add at least one object to the datashare\.
 
-Add at least one schema to the datashare prior to adding other datashare objects\. Add multiple schemas by choosing **Add and repeat**\.
+Add at least one schema to the datashare before adding other datashare objects\. Add multiple schemas by choosing **Add and repeat**\.
 
 You can choose to add all existing objects of chosen object types from the specified schema or add specific individual objects from the specified schema\. Choose the **Object types**\.
 

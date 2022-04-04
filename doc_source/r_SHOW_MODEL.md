@@ -1,11 +1,6 @@
 # SHOW MODEL<a name="r_SHOW_MODEL"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the machine learning feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-Shows useful information about a machine learning model, including its status, the parameters used to create it and the prediction function with its input argument types\. You can use the information from the SHOW MODEL to recreate the model\. If base tables have changed, running CREATE MODEL with the same SQL statement results in a different model\. The information returned by the SHOW MODEL is different for the model owner and a user with the EXECUTE privilege\. 
+Shows useful information about a machine learning model, including its status, the parameters used to create it and the prediction function with its input argument types\. You can use the information from the SHOW MODEL to recreate the model\. If base tables have changed, running CREATE MODEL with the same SQL statement results in a different model\. The information returned by the SHOW MODEL is different for the model owner and a user with the EXECUTE privilege\. SHOW MODEL shows different outputs when a model is trained from Amazon Redshift or when the model is a BYOM model\.
 
 ## Syntax<a name="r_SHOW_MODEL-synopsis"></a>
 
@@ -28,18 +23,23 @@ The SHOW MODEL command returns the following:
 + The schema where the model was created\.
 + The owner of the model\.
 + The model creation time\.
-+ The status of the model, such as READY, TRAINING, or UNDER REFRESH\.
++ The status of the model, such as READY, TRAINING, or FAILED\.
++ The reason message for a failed model\.
 + The validation error if model has finished training\.
-+ The estimated cost needed to derive the model\. Only the owner of the model can view this information\.
-+ The specified TARGET column\.
-+ A list of specified parameters and their values, specifically the following:
++ The estimated cost needed to derive the model for a non\-BYOM approach\. Only the owner of the model can view this information\.
++ A list of user\-specified parameters and their values, specifically the following:
+  + The specified TARGET column\.
   + The model type, AUTO or XGBoost\.
   + The problem type, such as REGRESSION, BINARY\_CLASSIFICATION, MULTICLASS\_CLASSIFICATION\. This parameter is specific to AUTO\.
+  + The name of the Amazon SageMaker training job or the Amazon SageMaker Autopilot job that created the model\. You can use this job name to find more information about the model on Amazon SageMaker\.
   + The objective, such as MSE, F1, Accuracy\. This parameter is specific to AUTO\.
   + The name of the created function\.
+  + The type of inference, local or remote\.
   + The prediction function input arguments\.
-  + The prediction function input argument types\.
-  + The IAM Role\. Only the owner of the model can see this\.
+  + The prediction function input argument types for models that aren't bring your own model \(BYOM\)\.
+  + The return type of the prediction function\. This parameter is specific to BYOM\.
+  + The name of the Amazon SageMaker endpoint for a BYOM model with remote inference\.
+  + The IAM role\. Only the owner of the model can see this\.
   + The S3 bucket used\. Only the owner of the model can see this\.
   + The AWS KMS key, if one was provided\. Only the owner of the model can see this\.
   + The maximum time that the model can run\.

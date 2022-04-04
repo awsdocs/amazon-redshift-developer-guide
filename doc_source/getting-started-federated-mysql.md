@@ -1,9 +1,4 @@
-# Getting started with using federated queries to MySQL \(preview\)<a name="getting-started-federated-mysql"></a>
-
-
-|  | 
-| --- |
-| The following is prerelease documentation for the federated query to MySQL feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+# Getting started with using federated queries to MySQL<a name="getting-started-federated-mysql"></a>
 
 To create a federated query to MySQL databases, you follow this general approach: 
 
@@ -11,7 +6,9 @@ To create a federated query to MySQL databases, you follow this general approach
 
    To do this, make sure that your RDS MySQL or Aurora MySQL DB instance can accept connections from your Amazon Redshift cluster\. We recommend that your Amazon Redshift cluster and Amazon RDS or Aurora MySQL instance be in the same virtual private cloud \(VPC\) and subnet group\. This way, you can add the security group for the Amazon Redshift cluster to the inbound rules of the security group for your RDS or Aurora MySQL DB instance\. 
 
-   You can also set up VPC peering or other networking that allows Amazon Redshift to make connections to your RDS or Aurora MySQL instance\. For more information about VPC networking, see [Working with a DB instance in a VPC ](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html) in the *Amazon RDS User Guide*\.
+   You can also set up VPC peering or other networking that allows Amazon Redshift to make connections to your RDS or Aurora MySQL instance\.  For more information about VPC networking, see the following\. 
+   + [What is VPC peering?](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) in the *Amazon VPC Peering Guide*
+   + [Working with a DB instance in a VPC ](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html) in the *Amazon RDS User Guide*
 **Note**  
 If your Amazon Redshift cluster is in a different VPC than your RDS or Aurora MySQL instance, then enable enhanced VPC routing\. Otherwise, you might receive timeout errors when you run a federated query\. 
 
@@ -24,9 +21,3 @@ If your cluster uses enhanced VPC routing, you might need to configure an interf
 1. Connect to your RDS MySQL and Aurora MySQL databases with an external schema\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\. For examples on how to use federated queries, see [Example of using a federated query with MySQL](federated_query_example.md#federated_query_example_mysql)\.
 
 1. Run your SQL queries referencing the external schema that references your RDS MySQL and Aurora MySQL databases\. 
-
-**Note**  
-When working with the preview, make sure to do the following:  
-Make sure that your Amazon Redshift clusters are on a **Preview** maintenance track that is named `SQL_PREVIEW`\.
-Use the new Amazon Redshift console\. 
-For any questions, issues, or feedback related to the preview features during the preview period, email `redshiftpreviews@amazon.com` or open a support case with AWS Support\. 

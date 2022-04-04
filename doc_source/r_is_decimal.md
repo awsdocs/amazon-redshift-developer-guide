@@ -4,6 +4,21 @@ Checks whether a value is a decimal\. The is\_decimal function returns true for 
 
 The is\_decimal function is a superset of is\_bigint\.
 
+## Syntax<a name="r_is_decimal-synopsis"></a>
+
+```
+is_decimal (super_expression)
+```
+
+## Arguments<a name="r_is_decimal-arguments"></a>
+
+*super\_expression*  
+A SUPER expression or column\.
+
+## Returns<a name="r_is_decimal-returns"></a>
+
+Boolean
+
 ## Example<a name="r_is_decimal_example"></a>
 
 The following query shows an is\_decimal function\.

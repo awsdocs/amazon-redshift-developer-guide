@@ -2,6 +2,8 @@
 
 ST\_SetPoint returns a linestring with updated coordinates with respect to the input linestring's position as specified by the index\. The new coordinates are the coordinates of the input point\. 
 
+The dimension of the returned geometry is the same as that of the *geom1* value\. If *geom1* and *geom2* have different dimensions, *geom2* is projected to the dimension of *geom1*\.
+
 ## Syntax<a name="ST_SetPoint-function-syntax"></a>
 
 ```
@@ -14,14 +16,18 @@ ST_SetPoint(geom1, index, geom2)
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `LINESTRING`\. 
 
  *index*   
-A value of data type `INTEGER` that represents the position of a one\-based index\. The value can take negative values\. A `-1` refers to the first point of the linestring from the right, `-2` refers to the second point of the linestring from the right, and so on\. 
+A value of data type `INTEGER` that represents the position of an index\. A `0` refers to the first point of the linestring from the left, `1` refers to the second point, and so on\. The index can be a negative value\. A `-1` refers to the first point of the linestring from the right, `-2` refers to the second point of the linestring from the right, and so on\. 
 
  *geom2*   
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `POINT`\. 
 
 ## Return type<a name="ST_SetPoint-function-return"></a>
 
-`BOOLEAN`
+`GEOMETRY`
+
+If *geom2* is the empty point, then *geom1* is returned\. 
+
+If *geom1*, *geom2*, or *index* is null, then null is returned\. 
 
 If *geom1* is not a linestring, then an error is returned\. 
 

@@ -50,9 +50,9 @@ IMMUTABLE
 Given the same arguments, the function always returns the same result, forever\. When a query calls an `IMMUTABLE` function with constant arguments, the optimizer pre\-evaluates the function\.
 
 AS $$ *statement* $$  
- A construct that encloses the statement to be executed\. The literal keywords `AS $$` and `$$` are required\.   
+ A construct that encloses the statement to be run\. The literal keywords `AS $$` and `$$` are required\.   
 Amazon Redshift requires you to enclose the statement in your function by using a format called dollar quoting\. Anything within the enclosure is passed exactly as is\. You don't need to escape any special characters because the contents of the string are written literally\.   
- With *dollar quoting, *you use a pair of dollar signs \($$\) to signify the start and the end of the statement to execute, as shown in the following example\.   
+ With *dollar quoting, *you use a pair of dollar signs \($$\) to signify the start and the end of the statement to run, as shown in the following example\.   
 
 ```
 $$ my statement $$
@@ -97,7 +97,7 @@ $$ language sql;
 
 ### UDF security and privileges<a name="r_CREATE_FUNCTION-usage-notes-security-and-privileges"></a>
 
-To create a UDF, you must have permission for usage on language for SQL or plpythonu \(Python\)\. By default, USAGE ON LANGUAGE SQL is granted to PUBLIC, However, you must explicitly grant USAGE ON LANGUAGE PLPYTHONU to specific users or groups\. 
+To create a UDF, you must have permission for usage on language for SQL or plpythonu \(Python\)\. By default, USAGE ON LANGUAGE SQL is granted to PUBLIC\. However, you must explicitly grant USAGE ON LANGUAGE PLPYTHONU to specific users or groups\. 
 
 To revoke usage for SQL, first revoke usage from PUBLIC\. Then grant usage on SQL only to the specific users or groups permitted to create SQL UDFs\. The following example revokes usage on SQL from PUBLIC then grants usage to the user group `udf_devs`\.
 
@@ -106,9 +106,9 @@ revoke usage on language sql from PUBLIC;
 grant usage on language sql to group udf_devs;
 ```
 
-To execute a UDF, you must have execute permission for each function\. By default, execute permission for new UDFs is granted to PUBLIC\. To restrict usage, revoke execute from PUBLIC for the function\. Then grant the privilege to specific individuals or groups\. 
+To run a UDF, you must have execute permission for each function\. By default, execute permission for new UDFs is granted to PUBLIC\. To restrict usage, revoke execute permission from PUBLIC for the function\. Then grant the privilege to specific individuals or groups\. 
 
-The following example revokes execution on function `f_py_greater` from PUBLIC then grants usage to the user group `udf_devs`\.
+The following example revokes execute permission on function `f_py_greater` from PUBLIC then grants usage to the user group `udf_devs`\.
 
 ```
 revoke execute on function f_py_greater(a float, b float) from PUBLIC;

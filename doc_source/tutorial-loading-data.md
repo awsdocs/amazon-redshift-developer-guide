@@ -17,11 +17,11 @@ In this tutorial, you do the following:
 
 You need the following prerequisites:
 + An AWS account to launch an Amazon Redshift cluster and to create a bucket in Amazon S3\.
-+ Your AWS credentials \(an access key ID and secret access key\) to load test data from Amazon S3\. If you need to create new access keys, go to [Administering access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\.
++ Your AWS credentials \(IAM role\) to load test data from Amazon S3\. If you need to a new IAM role, go to [Creating IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)\.
 + An SQL client such as the Amazon Redshift console query editor\. 
 
 This tutorial is designed so that it can be taken by itself\. In addition to this tutorial, we recommend completing the following tutorials to gain a more complete understanding of how to design and use Amazon Redshift databases: 
-+ [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) walks you through the process of creating an Amazon Redshift cluster and loading sample data\. 
++ [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/) walks you through the process of creating an Amazon Redshift cluster and loading sample data\. 
 
 ## Overview<a name="tutorial-loading-data-overview"></a>
 

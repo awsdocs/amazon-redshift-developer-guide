@@ -58,7 +58,7 @@ from sales group by salesid, pricepai...
 ERROR: within group ORDER BY clauses for aggregate functions must be the same
 ```
 
-The following statement executes successfully\. 
+The following statement runs successfully\. 
 
 ```
 select top 10 salesid, sum(pricepaid), 

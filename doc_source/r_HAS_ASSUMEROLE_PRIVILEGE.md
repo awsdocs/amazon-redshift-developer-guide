@@ -1,6 +1,6 @@
 # HAS\_ASSUMEROLE\_PRIVILEGE<a name="r_HAS_ASSUMEROLE_PRIVILEGE"></a>
 
-The function returns Boolean `true` \(`t`\) if the user has the specified IAM role with the privilege to run the specified command or `false` \(`f`\) if the user does not have the specified IAM role with the privilege to run the specified command\. For more information about privileges, see [GRANT](r_GRANT.md)\. 
+Returns Boolean `true` \(`t`\) if the specified user has the specified IAM role with the privilege to run the specified command\. The function returns `false` \(`f`\) if the user doesn't have the specified IAM role with the privilege to run the specified command\. For more information about privileges, see [GRANT](r_GRANT.md)\. 
 
 ## Syntax<a name="r_HAS_ASSUMEROLE_PRIVILEGE-synopsis"></a>
 
@@ -14,13 +14,14 @@ has_assumerole_privilege( [ user, ] iam_role_arn, cmd_type)
 The name of the user to check for IAM role privileges\. The default is to check the current user\. Superusers and users can use this function\. However, users can only view their own privileges\.
 
  *iam\_role\_arn*   
-The role that has been granted the command privileges\. 
+The IAM role that has been granted the command privileges\. 
 
  *cmd\_type*   
-The command for which access has been granted\. Valid values are the following:    
-+ ALL
+The command for which access has been granted\. Valid values are the following:   
 + COPY
 + UNLOAD
++ EXTERNAL FUNCTION
++ CREATE MODEL
 
 ## Return type<a name="r_HAS_ASSUMEROLE_PRIVILEGE-return-type"></a>
 

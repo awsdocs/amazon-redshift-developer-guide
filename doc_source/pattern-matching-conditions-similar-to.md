@@ -7,7 +7,7 @@ The SIMILAR TO operator returns true only if its pattern matches the entire stri
 SIMILAR TO performs a case\-sensitive match\. 
 
 **Note**  
-Regular expression matching using SIMILAR TO is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE executes several times faster than the query that uses a regular expression:  
+Regular expression matching using SIMILAR TO is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE runs several times faster than the query that uses a regular expression:  
 
 ```
 select count(*) from event where eventname SIMILAR TO '%(Ring|Die)%'; 

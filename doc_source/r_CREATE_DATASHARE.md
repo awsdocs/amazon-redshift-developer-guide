@@ -4,6 +4,8 @@ Creates a new datashare in the current database\. The owner of this datashare is
 
 Amazon Redshift associates each datashare with a single Amazon Redshift database\. Superusers and database owners can create datashares\. You can only add objects from the associated database to a datashare\. You can create multiple datashares on the same Amazon Redshift database\.
 
+For information about datashares, see [Getting started data sharing](getting-started-datashare.md)\.
+
 To view information about the datashares, use [SHOW DATASHARES](r_SHOW_DATASHARES.md)\.
 
 ## Syntax<a name="r_CREATE_DATASHARE-synopsis"></a>
@@ -30,8 +32,14 @@ Only superusers and the database owner can use CREATE DATASHARE and delegate ALT
 
 ## Examples<a name="r_CREATE_DATASHARE_examples"></a>
 
-The following example creates the datashare SalesShare\.
+The following example creates the datashare `salesshare`\.
 
 ```
-create datashare SalesShare;
+CREATE DATASHARE salesshare;
+```
+
+The following example creates the datashare `demoshare` that AWS Data Exchange manages \(preview\)\.
+
+```
+CREATE DATASHARE demoshare SET PUBLICACCESSIBLE TRUE, MANAGEDBY ADX;
 ```

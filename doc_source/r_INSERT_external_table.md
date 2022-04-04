@@ -27,7 +27,7 @@ A statement that inserts one or more rows into the external table by defining an
 
 The number of columns in the SELECT query must be the same as the sum of data columns and partition columns\. The location and the data type of each data column must match that of the external table\. The location of partition columns must be at the end of the SELECT query, in the same order they were defined in CREATE EXTERNAL TABLE command\. The column names don't have to match\.
 
-In some cases, you might want to run the INSERT \(external table\) command on an AWS Glue Data Catalog or a Hive metastore\. In the case of AWS Glue, the IAM role used to create the external schema must have both read and write permissions on Amazon S3 and AWS Glue\. If you use an AWS Lake Formation catalog, This IAM role becomes the owner of the new Lake Formation table\. This IAM role must at least have the following permissions: 
+In some cases, you might want to run the INSERT \(external table\) command on an AWS Glue Data Catalog or a Hive metastore\. In the case of AWS Glue, the IAM role used to create the external schema must have both read and write permissions on Amazon S3 and AWS Glue\. If you use an AWS Lake Formation catalog, this IAM role becomes the owner of the new Lake Formation table\. This IAM role must at least have the following permissions: 
 + SELECT, INSERT, UPDATE permission on the external table
 + Data location permission on the Amazon S3 path of the external table
 
@@ -54,14 +54,14 @@ INSERT INTO spectrum.lineitem
 SELECT * FROM local_lineitem;
 ```
 
-The following example inserts the results of the SELECT statement into a partitioned external table using static partitioning\. The partition columns are hard\-coded in the SELECT statement\. The partition columns must be at the end of the query\.
+The following example inserts the results of the SELECT statement into a partitioned external table using static partitioning\. The partition columns are hardcoded in the SELECT statement\. The partition columns must be at the end of the query\.
 
 ```
 INSERT INTO spectrum.customer
 SELECT name, age, gender, 'May', 28 FROM local_customer;
 ```
 
-The following example inserts the results of the SELECT statement into a partitioned external table using dynamic partitioning\. The partition columns aren't hard\-coded\. Data is automatically added to the existing partition folders, or to new folders if a new partition is added\.
+The following example inserts the results of the SELECT statement into a partitioned external table using dynamic partitioning\. The partition columns aren't hardcoded\. Data is automatically added to the existing partition folders, or to new folders if a new partition is added\.
 
 ```
 INSERT INTO spectrum.customer

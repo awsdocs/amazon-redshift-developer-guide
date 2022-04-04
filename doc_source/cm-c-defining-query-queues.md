@@ -14,7 +14,7 @@ By default, Amazon Redshift configures the following query queues:
 
   The default queue is initially configured to run five queries concurrently\. You can change the concurrency, timeout, and memory allocation properties for the default queue, but you cannot specify user groups or query groups\. The default queue must be the last queue in the WLM configuration\. Any queries that are not routed to other queues run in the default queue\. 
 
-Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.  
+Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.  
 
 You can add additional query queues to the default WLM configuration, up to a total of eight user queues\. You can configure the following for each query queue: 
 + Concurrency scaling mode 
@@ -28,9 +28,9 @@ You can add additional query queues to the default WLM configuration, up to a to
 
 ## Concurrency scaling mode<a name="concurrency-scaling-mode"></a>
 
-When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
+When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read and write queries\. Users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
 
-You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\.
+You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in a queue\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\.
 
 ## Concurrency level<a name="cm-c-defining-query-queues-concurrency-level"></a>
 
@@ -47,7 +47,7 @@ By default, manual WLM queues have a concurrency level of 5\. Your workload migh
 + If many small queries are forced to wait for long\-running queries, create a separate queue with a higher slot count and assign the smaller queries to that queue\. A queue with a higher concurrency level has less memory allocated to each query slot, but the smaller queries require less memory\.
 **Note**  
 If you enable short\-query acceleration \(SQA\), WLM automatically prioritizes short queries over longer\-running queries, so you don't need a separate queue for short queries for most workflows\. For more information, see [Working with short query acceleration](wlm-short-query-acceleration.md)\. 
-+ If you have multiple queries that each access data on a single slice, set up a separate WLM queue to execute those queries concurrently\. Amazon Redshift assigns concurrent queries to separate slices, which allows multiple queries to execute in parallel on multiple slices\. For example, if a query is a simple aggregate with a predicate on the distribution key, the data for the query is located on a single slice\. 
++ If you have multiple queries that each access data on a single slice, set up a separate WLM queue to run those queries concurrently\. Amazon Redshift assigns concurrent queries to separate slices, which allows multiple queries to run in parallel on multiple slices\. For example, if a query is a simple aggregate with a predicate on the distribution key, the data for the query is located on a single slice\. 
 
 If your workload requires more than 15 queries to run in parallel, then we recommend enabling concurrency scaling\. This is because increasing query slot count above 15 might create contention for system resources and limit the overall throughput of a single cluster\. With concurrency scaling, you can run hundreds of queries in parallel up to a configured number of concurrency scaling clusters\. The number of concurrency scaling clusters that can be used is controlled by [max\_concurrency\_scaling\_clusters](r_max_concurrency_scaling_clusters.md)\. For more information about concurrency scaling, see [Working with concurrency scaling](concurrency-scaling.md)\. 
 
@@ -77,7 +77,7 @@ If wildcards are enabled in the WLM queue configuration, you can assign user gro
 
 For example, the '\*' wildcard character matches any number of characters\. Thus, if you add `dba_*` to the list of user groups for a queue, any user\-run query that belongs to a group with a name that begins with `dba_` is assigned to that queue\. Examples are `dba_admin` or `DBA_primary`, \. The '?' wildcard character matches any single character\. Thus, if the queue includes user\-group `dba?1`, then user groups named `dba11` and `dba21` match, but `dba12` doesn't match\. 
 
-Wildcards are disabled by default\.
+Wildcards are turned off by default\.
 
 ## WLM memory percent to use<a name="wlm-memory-percent"></a>
 
@@ -91,7 +91,7 @@ For example, if you configure four queues, you can allocate memory as follows: 2
 
 WLM timeout \(`max_execution_time`\) is deprecated\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 
 
-To limit the amount of time that queries in a given WLM queue are permitted to use, you can set the WLM timeout value for each queue\. The timeout parameter specifies the amount of time, in milliseconds, that Amazon Redshift waits for a query to execute before either canceling or hopping the query\. The timeout is based on query execution time and doesn't include time spent waiting in a queue\. 
+To limit the amount of time that queries in a given WLM queue are permitted to use, you can set the WLM timeout value for each queue\. The timeout parameter specifies the amount of time, in milliseconds, that Amazon Redshift waits for a query to run before either canceling or hopping the query\. The timeout is based on query execution time and doesn't include time spent waiting in a queue\. 
 
 WLM attempts to hop [CREATE TABLE AS](r_CREATE_TABLE_AS.md) \(CTAS\) statements and read\-only queries, such as SELECT statements\. Queries that can't be hopped are canceled\. For more information, see [WLM query queue hopping](wlm-queue-hopping.md)\.
 
@@ -103,4 +103,4 @@ If [statement\_timeout](r_statement_timeout.md) is also specified, the lower of 
 
 ## Query monitoring rules<a name="wlm-query-monitoring-rules"></a>
 
-Query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that aborts queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.
+Query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that cancels queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.

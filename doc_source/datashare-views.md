@@ -1,4 +1,4 @@
-# Working with views in data sharing<a name="datashare-views"></a>
+# Working with views in Amazon Redshift data sharing<a name="datashare-views"></a>
 
 A producer cluster can share regular, late\-binding, and materialized views\. When sharing regular or late\-binding views, you don't have to share the base tables\. The following table shows how views are supported with data sharing\.
 
@@ -19,7 +19,7 @@ ORDER BY eventid LIMIT 5;
      5131   | LeAnn Rimes
 ```
 
-The following query shows the output of a late binding view that is supported with data sharing\. For information about late binding view definition, see [CREATE VIEW](r_CREATE_VIEW.md)\.
+The following query shows the output of a late\-binding view that is supported with data sharing\. For information about late\-binding view definition, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
 ```
 SELECT * FROM tickit_db.public.event_lbv 

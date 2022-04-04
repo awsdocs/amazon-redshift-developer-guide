@@ -49,7 +49,7 @@ Clause that defines the window specification\. The OVER clause is mandatory for 
 
 PARTITION BY *expr\_list*   
 \(Optional\) The PARTITION BY clause subdivides the result set into partitions, much like the GROUP BY clause\. If a partition clause is present, the function is calculated for the rows in each partition\. If no partition clause is specified, a single partition contains the entire table, and the function is computed for that complete table\.   
-The ranking functions, DENSE\_RANK, NTILE, RANK, and ROW\_NUMBER, require a global comparison of all the rows in the result set\. When a PARTITION BY clause is used, the query optimizer can execute each aggregation in parallel by spreading the workload across multiple slices according to the partitions\. If the PARTITION BY clause is not present, the aggregation step must be executed serially on a single slice, which can have a significant negative impact on performance, especially for large clusters\.  
+The ranking functions, DENSE\_RANK, NTILE, RANK, and ROW\_NUMBER, require a global comparison of all the rows in the result set\. When a PARTITION BY clause is used, the query optimizer can run each aggregation in parallel by spreading the workload across multiple slices according to the partitions\. If the PARTITION BY clause is not present, the aggregation step must be run serially on a single slice, which can have a significant negative impact on performance, especially for large clusters\.  
 Amazon Redshift doesn't support string literals in PARTITION BY clauses\.
 
 ORDER BY *order\_list*   

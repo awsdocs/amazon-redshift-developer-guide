@@ -1,0 +1,7 @@
+# Configuring concurrency scaling queues<a name="concurrency-scaling-queues"></a>
+
+You route queries to concurrency scaling clusters by enabling a workload manager \(WLM\) queue as a concurrency scaling queue\. To turn on concurrency scaling for a queue, set the **Concurrency Scaling mode** value to **auto**\. 
+
+When the number of queries routed to a concurrency scaling queue exceeds the queue's configured concurrency, eligible queries are sent to the concurrency scaling cluster\. When slots become available, queries are run on the main cluster\. The number of queues is limited only by the number of queues permitted per cluster\. As with any WLM queue, you route queries to a concurrency scaling queue based on user groups or by labeling queries with query group labels\. You can also route queries by defining [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. For example, you might route all queries that take longer than 5 seconds to a concurrency scaling queue\. 
+
+The default number of concurrency scaling clusters is one\. The number of concurrency scaling clusters that can be used is controlled by [max\_concurrency\_scaling\_clusters](r_max_concurrency_scaling_clusters.md)\. 

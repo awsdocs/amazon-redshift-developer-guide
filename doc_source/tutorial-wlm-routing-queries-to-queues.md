@@ -83,7 +83,7 @@ First, verify that the database has the WLM configuration that you expect\.
 
 ## Step 3: Create a database user and group<a name="tutorial-wlm-create-db-user-and-group"></a>
 
-In [Step 1: Create a parameter group](tutorial-wlm-modifying-wlm-configuration.md#tutorial-wlm-create-parameter-group), you configured one of your query queues with a user group named `admin`\. Before you can run any queries in this queue, you need to create the user group in the database and add a user to the group\. Then you log on with psql using the new user’s credentials and run queries\. You need to run queries as a superuser, such as the masteruser, to create database users\.
+In [Step 1: Create a parameter group](tutorial-wlm-modifying-wlm-configuration.md#tutorial-wlm-create-parameter-group), you configured one of your query queues with a user group named `admin`\. Before you can run any queries in this queue, you need to create the user group in the database and add a user to the group\. Then you log on with psql using the new user’s credentials and run queries\. You need to run queries as a superuser, such as the admin user, to create database users\.
 
 ### To create a new database user and user group<a name="how-to-wlm-create-db-user-and-group"></a>
 

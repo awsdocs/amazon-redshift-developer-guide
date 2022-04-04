@@ -5,7 +5,7 @@ SVL views are system views in Amazon Redshift that contain references to STL tab
 These views provide quicker and easier access to commonly queried data found in those tables\.
 
 **Note**  
-The SVL\_QUERY\_SUMMARY view only contains information about queries executed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements executed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view
+The SVL\_QUERY\_SUMMARY view only contains information about queries run by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements run by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view
 
 **Topics**
 + [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)

@@ -21,3 +21,25 @@ AND source_database = 'dev';
      100      |      dev        |   OUTBOUND  |        True
 (1 rows)
 ```
+
+The following example returns the output for SVV\_DATASHARES for outbound datashares\.
+
+```
+SELECT share_name, share_owner, btrim(source_database), btrim(consumer_database), share_type, is_publicaccessible, share_acl, btrim(producer_account), btrim(producer_namespace), btrim(managed_by) FROM svv_datashares WHERE share_type = 'OUTBOUND';
+                
+   share_name   | share_owner | source_database | consumer_database | share_type | is_publicaccessible | share_acl | producer_account|         producer_namespace           | managed_by 
+----------------+-------------+-----------------+-------------------+------------+---------------------+-----------+-----------------+--------------------------------------+------------
+    salesshare  |      1      |       dev       |                   |  OUTBOUND  |        True         |           |   123456789012  | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d |    
+ marketingshare |      1      |       dev       |                   |  OUTBOUND  |        True         |           |   123456789012  | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d |
+```
+
+The following example returns the output for SVV\_DATASHARES for inbound datashares\.
+
+```
+SELECT share_name, share_owner, btrim(source_database), btrim(consumer_database), share_type, is_publicaccessible, share_acl, btrim(producer_account), btrim(producer_namespace), btrim(managed_by) FROM svv_datashares WHERE share_type = 'INBOUND';
+                
+  share_name    | share_owner | source_database | consumer_database | share_type | is_publicaccessible | share_acl | producer_account |         producer_namespace           | managed_by 
+----------------+-------------+-----------------+-------------------+------------+---------------------+-----------+------------------+--------------------------------------+------------
+  salesshare    |             |                 |                   |  INBOUND   |       False         |           |  123456789012    | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d | 
+ marketingshare |             |                 |                   |  INBOUND   |       False         |           |  123456789012    | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d | ADX
+```

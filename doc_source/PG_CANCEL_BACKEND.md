@@ -23,7 +23,7 @@ If queries in multiple sessions hold locks on the same table, you can use the [P
 
 ## Examples<a name="PG_CANCEL_BACKEND-example"></a>
 
-To cancel a currently running query, first retrieve the process ID for the query that you want to cancel\. To determine the process IDs for all currently running queries, execute the following command: 
+To cancel a currently running query, first retrieve the process ID for the query that you want to cancel\. To determine the process IDs for all currently running queries, run the following command: 
 
 ```
 select pid, trim(starttime) as start, 

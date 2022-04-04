@@ -1,6 +1,6 @@
 # STL\_WINDOW<a name="r_STL_WINDOW"></a>
 
-Analyzes query steps that execute window functions\.
+Analyzes query steps that perform window functions\.
 
 This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 

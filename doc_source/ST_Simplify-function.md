@@ -2,6 +2,8 @@
 
 ST\_Simplify returns a simplified copy of the input geometry using the Ramer\-Douglas\-Peucker algorithm with the given tolerance\. The topology of the input geometry might not be preserved\. For more information about the algorithm, see [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) in Wikipedia\. 
 
+When ST\_Simplify calculates distances to simplify a geometry, ST\_Simplify operates on the 2D projection of the input geometry\. 
+
 ## Syntax<a name="ST_Simplify-function-syntax"></a>
 
 ```
@@ -21,6 +23,8 @@ A value of data type `DOUBLE PRECISION` that represents the tolerance level of t
 `GEOMETRY`\. 
 
 The spatial reference system identifier \(SRID\) value of the returned geometry is the SRID value of the input geometry\. 
+
+The dimension of the returned geometry is the same as that of the input geometry\. 
 
 If *geom* is null, then null is returned\. 
 

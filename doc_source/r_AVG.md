@@ -21,7 +21,7 @@ With the argument DISTINCT, the function eliminates all duplicate values from th
  The argument types supported by the AVG function are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, and DOUBLE PRECISION\.
 
 The return types supported by the AVG function are: 
-+ NUMERIC for any integer type argument
++ BIGINT for any integer type argument
 + DOUBLE PRECISION for a floating point argument
 
 The default precision for an AVG function result with a 64\-bit NUMERIC or DECIMAL argument is 19\. The default precision for a result with a 128\-bit NUMERIC or DECIMAL argument is 38\. The scale of the result is the same as the scale of the argument\. For example, an AVG of a DEC\(5,2\) column returns a DEC\(19,2\) data type\.

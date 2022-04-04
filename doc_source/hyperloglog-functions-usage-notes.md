@@ -14,3 +14,4 @@ The following are considerations for using HyperLogLog in Amazon Redshift:
   {"version":1,"logm":15,"sparse":{"indices":[15099259,33107846,37891580,50065963],"values":[2,3,2,1]}}
   ```
 + You can import text or CSV data into Amazon Redshift using the COPY command\. For more information, see [Loading the HLLSKETCH data type](copy-usage_notes-hll.md)\.
++ The default encoding for HLLSKETCH is RAW\. For more information, see [Compression encodings](c_Compression_encodings.md)\.

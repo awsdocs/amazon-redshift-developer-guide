@@ -1,6 +1,6 @@
 # ST\_StartPoint<a name="ST_StartPoint-function"></a>
 
-ST\_StartPoint returns the first point of an input linestring\. The spatial reference system identifier \(SRID\) value of the result is the same as that of the input geometry\. 
+ST\_StartPoint returns the first point of an input linestring\. The spatial reference system identifier \(SRID\) value of the result is the same as that of the input geometry\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_StartPoint-function-syntax"></a>
 

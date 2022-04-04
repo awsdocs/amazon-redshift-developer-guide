@@ -72,7 +72,7 @@ show search_path;
 (1 row)
 ```
 
-Add the `demo` schema to the search path and execute the query again\.
+Add the `demo` schema to the search path and run the query again\.
 
 ```
 set search_path to '$user', 'public', 'demo';

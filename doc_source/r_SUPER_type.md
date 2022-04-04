@@ -4,6 +4,8 @@ Use the SUPER data type to store semistructured data or documents as values\.
 
 Semistructured data doesn't conform to the rigid and tabular structure of the relational data model used in SQL databases\. It contains tags that reference distinct entities within the data\. They can contain complex values such as arrays, nested structures, and other complex structures that are associated with serialization formats, such as JSON\. The SUPER data type is a set of schemaless array and structure values that encompass all other scalar types of Amazon Redshift\.
 
+The SUPER data type only supports up to 1MB of data for an individual SUPER field or object\. For more information, see [Ingesting and querying semistructured data in Amazon Redshift](super-overview.md)\.
+
 The SUPER data type has the following properties:
 + An Amazon Redshift scalar value:
   + A null
@@ -18,6 +20,6 @@ Any of the two types of complex values contain their own scalars or complex valu
 
 The SUPER data type supports the persistence of semistructured data in a schemaless form\. Although hierarchical data model can change, the old versions of data can coexist in the same SUPER column\. 
 
-For information about how Amazon Redshift uses PartiQL to enable navigation into arrays and structures, see [Navigation](query-super.md#navigation)\. For information about how Amazon Redshift uses the PartiQL syntax to iterate over SUPER arrays by navigating the array using the FROM clause of a query, see [Unnesting](query-super.md#unnest)\.
+For information about how Amazon Redshift uses PartiQL to enable navigation into arrays and structures, see [Navigation](query-super.md#navigation)\. For information about how Amazon Redshift uses the PartiQL syntax to iterate over SUPER arrays by navigating the array using the FROM clause of a query, see [Unnesting queries](query-super.md#unnest)\.
 
 For information about how Amazon Redshift uses dynamic typing to process schemaless SUPER data without the need to declare the data types before you use them in your query, see [Dynamic typing](query-super.md#dynamic-typing-lax-processing)\.

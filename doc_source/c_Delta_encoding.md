@@ -1,6 +1,6 @@
 # Delta encoding<a name="c_Delta_encoding"></a>
 
-Delta encodings are very useful for datetime columns\.
+Delta encodings are very useful for date time columns\.
 
 Delta encoding compresses data by recording the difference between values that follow each other in the column\. This difference is recorded in a separate dictionary for each block of column values on disk\. \(An Amazon Redshift disk block occupies 1 MB\.\) For example, suppose that the column contains 10 integers in sequence from 1 to 10\. The first are stored as a 4\-byte integer \(plus a 1\-byte flag\)\. The next nine are each stored as a byte with the value 1, indicating that it is one greater than the previous value\.
 

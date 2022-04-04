@@ -50,37 +50,33 @@ revoke select(cust_name) on cust_profile_vw from user2;
 
 ## Examples of revoking the USAGE privilege for datashares<a name="r_REVOKE-examples-datashare"></a>
 
-The following example revokes access to the SalesShare datashare for the Marketing namespace\.
+The following example revokes access to the salesshare datashare for the Marketing namespace\.
 
 ```
-REVOKE USAGE ON DATASHARE SalesShare FROM NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
+REVOKE USAGE ON DATASHARE salesshare FROM NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
 ```
 
-The following example revokes the USAGE privilege on the `Sales_db` to Bob\.
+The following example revokes the USAGE privilege on the `sales_db` to Bob\.
 
 ```
-REVOKE USAGE ON DATABASE Sales_db FROM Bob;
+REVOKE USAGE ON DATABASE sales_db FROM Bob;
 ```
 
-The following example REVOKE USAGE privilege on the `Sales_schema` to the `Analyst_group`\.
+The following example REVOKE USAGE privilege on the `sales_schema` to the `Analyst_group`\.
 
 ```
-REVOKE USAGE ON SCHEMA Sales_schema FROM GROUP Analyst_group;
+REVOKE USAGE ON SCHEMA sales_schema FROM GROUP Analyst_group;
 ```
 
 ## Examples of revoking the ASSUMEROLE privilege<a name="r_REVOKE-examples-assumerole"></a>
 
 The following are examples of revoking the ASSUMEROLE privilege\. 
 
-### Enable the use of the ASSUMEROLE privilege<a name="r_REVOKE-usage-notes-assumerole-enable"></a>
-
 A superuser must enable the use of the ASSUMEROLE privilege for users and groups by running the following statement once on the cluster: 
 
 ```
 revoke assumerole on all from public for all;          
 ```
-
-### Revoking the ASSUMEROLE privilege from a user<a name="r_REVOKE-examples-assumerole-user"></a>
 
 The following statement revokes the ASSUMEROLE privilege from user reg\_user1 on all roles for all operations\. 
 

@@ -4,6 +4,21 @@ Checks whether a value is a floating point number\. The is\_float function retur
 
 The is\_decimal set and the is\_float set are disjoint\.
 
+## Syntax<a name="r_is_float-synopsis"></a>
+
+```
+is_float (super_expression)
+```
+
+## Arguments<a name="r_is_float-arguments"></a>
+
+*super\_expression*  
+A SUPER expression or column\.
+
+## Returns<a name="r_is_float-returns"></a>
+
+Boolean
+
 ## Example<a name="r_is_float_example"></a>
 
 The following query shows an is\_float function\.

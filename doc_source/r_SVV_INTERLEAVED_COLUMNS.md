@@ -10,7 +10,7 @@ SVV\_INTERLEAVED\_COLUMNS is visible only to superusers\. For more information, 
 
 ## Sample queries<a name="SVV_INTERLEAVED_COLUMNS-sample-queries"></a>
 
-To identify tables that might need to be reindexed, execute the following query\.
+To identify tables that might need to be reindexed, run the following query\.
 
 ```
 select tbl as tbl_id, stv_tbl_perm.name as table_name, 

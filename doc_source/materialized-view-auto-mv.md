@@ -1,0 +1,18 @@
+# Automated materialized views \(preview\)<a name="materialized-view-auto-mv"></a>
+
+
+|  | 
+| --- |
+| This is prerelease documentation for the automated materialized views feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Request to use automated materialized views by writing to redshiftautomv@amazon\.com\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+
+Materialized views are a powerful tool for improving query performance in Amazon Redshift\. They do this by storing a precomputed result set\. Similar queries don't have to re\-run the same logic each time, because they can pull records from the existing result set\. Developers and analysts create materialized views after analyzing their workloads to determine which queries would benefit and whether the maintenance cost of each materialized view is worthwhile\. As workloads grow or change, these materialized views need to be reviewed to ensure they continue to provide tangible performance benefits\. 
+
+The Automated Materialized Views \(AutoMV\) feature in Redshift provides the same performance benefits of user\-created materialized views\. Amazon Redshift continually monitors the workload using machine learning and then creates new materialized views when they are beneficial\. AutoMV balances the costs of creating and keeping materialized views up\-to\-date against expected benefits to query latency\. The system also monitors previously created AutoMVs and drops them when they are no longer beneficial\. 
+
+AutoMV behavior and capabilities are the same as user\-created materialized views\. They are refreshed automatically and incrementally, using the same criteria and restrictions\. Just like materialized views created by users, [Automatic query rewriting to use materialized views](materialized-view-auto-rewrite.md) identifies queries that can benefit from the system\-created AutoMVs and automatically rewrites those to use the AutoMVs, improving query performance\. Developers don't need to change queries to take advantage of AutoMV\.
+
+Any workload with queries that are used repeatedly can benefit from AutoMV\. Common use cases include:
++ *Dashboards* \- Dashboards are widely used to provide quick views of key business indicators \(KPIs\), events, trends, and other metrics\. They often have a common layout with charts and tables, but show different views for filtering, or for dimension\-selection operations, like drill down\. Dashboards often have a common set of queries used repeatedly with different parameters\. Dashboard queries can benefit greatly from automated materialized views\.
++  *Reports* \- Reporting queries may be scheduled at various frequencies, based on business requirements and the type of report\. Additionally, they can be automated or on\-demand\. A common characteristic of reporting queries is that they can be long running and resource intensive\. With AutoMV, these queries don't need to be recomputed each time they are run, which reduces run time for each query and resource utilization in Redshift\. 
+
+ An important characteristic of AutoMV is that its activities are performed using spare background cycles to ensure user workloads are not negatively impacted\. In the event the cluster is very busy or running out of storage space, AutoMV ceases its activity and can even delete materialized views if necessary, to ensure user workloads can continue to run\. 

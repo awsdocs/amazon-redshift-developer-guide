@@ -27,6 +27,7 @@ where column_attributes are:
   [ ENCODE encoding ] 
   [ DISTKEY ]
   [ SORTKEY ]
+  [ COLLATE CASE_SENSITIVE | COLLATE CASE_INSENSITIVE  ]
 
 and column_constraints are:
   [ { NOT NULL | NULL } ]
@@ -39,11 +40,11 @@ and table_constraints  are:
   [ FOREIGN KEY (column_name [, ... ] ) REFERENCES reftable [ ( refcolumn ) ] 
 
 
-            
 and table_attributes are:
   [ DISTSTYLE { AUTO | EVEN | KEY | ALL } ] 
   [ DISTKEY ( column_name ) ]
   [ [COMPOUND | INTERLEAVED ] SORTKEY ( column_name [,...]) |  [ SORTKEY AUTO ] ]
+  [ ENCODE AUTO ]
 ```
 
 ## Parameters<a name="r_CREATE_TABLE_NEW-parameters"></a>
@@ -66,7 +67,7 @@ If you specify a table name that begins with '\# ', the table is created as a te
 ```
 create table #newtable (id int);
 ```
-The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a quota of the number of tables per cluster by node type, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit` , the schema name is `public`, and the table name is `test`\.   
+The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a quota of the number of tables per cluster by node type, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit`, the schema name is `public`, and the table name is `test`\.   
 
 ```
 create table tickit.public.test (c1 int);
@@ -109,12 +110,14 @@ Keep in mind the following about default identity columns:
 + You can append a default identity column with the ALTER TABLE APPEND statement\. 
 
 ENCODE *encoding*   
-Compression encoding for a column\. If no compression is selected, Amazon Redshift automatically assigns compression encoding as follows:  
+The compression encoding for a column\. ENCODE AUTO is the default for tables\. Amazon Redshift automatically manages compression encoding for all columns in the table\. If you specify compression encoding for any column in the table, the table is no longer set to ENCODE AUTO\. Amazon Redshift no longer automatically manages compression encoding for all columns in the table\. You can specify the ENCODE AUTO option for the table to enable Amazon Redshift to automatically manage compression encoding for all columns in the table\.  
+  
+Amazon Redshift automatically assigns an initial compression encoding to columns for which you don't specify compression encoding as follows:  
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
-+ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data type are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, GEOMETRY, or GEOGRAPHY data type are assigned RAW compression\.
 + Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
-+ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
++ Columns that are defined as CHAR, VARCHAR, or VARBYTE are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
  The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  
 + AZ64
@@ -140,6 +143,18 @@ Keyword that specifies that the column is the sort key for the table\. When data
 You can define a maximum of 400 SORTKEY columns per table\.  
 The data type of a sort key column can be: BOOLEAN, REAL, DOUBLE PRECISION, SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ, CHAR, or VARCHAR\.
 
+COLLATE CASE\_SENSITIVE \| COLLATE CASE\_INSENSITIVE  
+A clause that specifies whether string search or comparison on the column is CASE\_SENSITIVE or CASE\_INSENSITIVE\. The default value is the same as the current case sensitivity configuration of the database\.  
+To find the database collation information, use the following command:  
+
+```
+select db_collation();
+  db_collation
+----------------
+ case_sensitive
+(1 row)
+```
+
 NOT NULL \| NULL   
 NOT NULL specifies that the column isn't allowed to contain null values\. NULL, the default, specifies that the column accepts null values\. IDENTITY columns are declared NOT NULL by default\.
 
@@ -158,7 +173,7 @@ Clause that specifies a foreign key constraint, which implies that the column mu
 
 LIKE *parent\_table* \[ \{ INCLUDING \| EXCLUDING \} DEFAULTS \]   <a name="create-table-like"></a>
 A clause that specifies an existing table from which the new table automatically copies column names, data types, and NOT NULL constraints\. The new table and the parent table are decoupled, and any changes made to the parent table aren't applied to the new table\. Default expressions for the copied column definitions are copied only if INCLUDING DEFAULTS is specified\. The default behavior is to exclude default expressions, so that all columns of the new table have null defaults\.   
-Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys,BACKUP, and NULL properties are inherited by LIKE tables, but you can't explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
+Tables created with the LIKE option don't inherit primary and foreign key constraints\. Distribution style, sort keys, BACKUP, and NULL properties are inherited by LIKE tables, but you can't explicitly set them in the CREATE TABLE \.\.\. LIKE statement\.
 
 BACKUP \{ YES \| NO \}   <a name="create-table-backup"></a>
 A clause that specifies whether the table should be included in automated and manual cluster snapshots\. For tables, such as staging tables, that don't contain critical data, specify BACKUP NO to save processing time when creating snapshots and restoring from snapshots and to reduce storage space on Amazon Simple Storage Service\. The BACKUP NO setting has no affect on automatic replication of data to other nodes within the cluster, so tables with BACKUP NO specified are restored in a node failure\. The default is BACKUP YES\.
@@ -166,7 +181,7 @@ A clause that specifies whether the table should be included in automated and ma
 DISTSTYLE \{ AUTO \| EVEN \| KEY \| ALL \}  
 Keyword that defines the data distribution style for the whole table\. Amazon Redshift distributes the rows of a table to the compute nodes according to the distribution style specified for the table\. The default is AUTO\.  
 The distribution style that you select for tables affects the overall performance of your database\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\. Possible distribution styles are as follows:  
-+ AUTO: Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns ALL distribution style to a small table, then changes the table to EVEN distribution when the table grows larger\. If Amazon Redshift determines that a distribution key will improve the performance of queries, then Amazon Redshift might change the DISTSTYLE to KEY and assign a distribution key to your table \. The change in distribution style occurs in the background with minimal impact to user queries\. 
++ AUTO: Amazon Redshift assigns an optimal distribution style based on the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns ALL distribution style to a small table, then changes the table to EVEN distribution when the table grows larger\. If Amazon Redshift determines that a distribution key will improve the performance of queries, then Amazon Redshift might change the DISTSTYLE to KEY and assign a distribution key to your table\. The change in distribution style occurs in the background with minimal impact to user queries\. 
 
   To view the distribution style applied to a table, query the PG\_CLASS system catalog table\. For more information, see [Viewing distribution styles](viewing-distribution-styles.md)\. 
 + EVEN: The data in the table is spread evenly across the nodes in a cluster in a round\-robin distribution\. Row IDs are used to determine the distribution, and roughly the same number of rows are distributed to each node\. 
@@ -182,7 +197,7 @@ You can optionally specify COMPOUND or INTERLEAVED sort style\. If you specify S
 If you don't specify any sort keys options, the default is AUTO\.  
 You can define a maximum of 400 COMPOUND SORTKEY columns or 8 INTERLEAVED SORTKEY columns per table\.     
 AUTO  
-Specifies that Amazon Redshift assigns an optimal sort key based on the table data\. For example, if AUTO sort key is specified, Amazon Redshift initially assigns no sort key to a table\. If Amazon Redshift determines that a sort key will improve the performance of queries, then Amazon Redshift might change the sort key of your table \. The actual sorting of the table is done by automatic table sort\. For more information, see [Automatic table sort](t_Reclaiming_storage_space202.md#automatic-table-sort)\.   
+Specifies that Amazon Redshift assigns an optimal sort key based on the table data\. For example, if AUTO sort key is specified, Amazon Redshift initially assigns no sort key to a table\. If Amazon Redshift determines that a sort key will improve the performance of queries, then Amazon Redshift might change the sort key of your table\. The actual sorting of the table is done by automatic table sort\. For more information, see [Automatic table sort](t_Reclaiming_storage_space202.md#automatic-table-sort)\.   
 Amazon Redshift doesn't modify tables that have existing sort or distribution keys\. With one exception, if a table has a distribution key that has never been used in a JOIN, then the key might be changed if Amazon Redshift determines there is a better key\.   
 To view the sort key of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\. To view the Amazon Redshift Advisor recommendations for tables, query the SVV\_ALTER\_TABLE\_RECOMMENDATIONS system catalog view\. For more information, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. To view the actions taken by Amazon Redshift, query the SVL\_AUTO\_WORKER\_ACTION system catalog view\. For more information, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\.   
 COMPOUND  
@@ -191,6 +206,9 @@ INTERLEAVED
 Specifies that the data is sorted using an interleaved sort key\. A maximum of eight columns can be specified for an interleaved sort key\.   
 An interleaved sort gives equal weight to each column, or subset of columns, in the sort key, so queries don't depend on the order of the columns in the sort key\. When a query uses one or more secondary sort columns, interleaved sorting significantly improves query performance\. Interleaved sorting carries a small overhead cost for data loading and vacuuming operations\.   
 Don’t use an interleaved sort key on columns with monotonically increasing attributes, such as identity columns, dates, or timestamps\.
+
+ENCODE AUTO   
+Enables Amazon Redshift to automatically adjust the encoding type for all columns in the table to optimize query performance\. ENCODE AUTO preserves the initial encode types that you specify in creating the table\. Then, if Amazon Redshift determines that a new encoding type can improve query performance, Amazon Redshift can change the encoding type of the table columns\. ENCODE AUTO is the default if you don't specify an encoding type on any column in the table\.
 
 UNIQUE \( *column\_name* \[,\.\.\.\] \)  
 Constraint that specifies that a group of one or more columns of a table can contain only unique values\. The behavior of the unique table constraint is the same as that for column constraints, with the additional capability to span multiple columns\. In the context of unique constraints, null values aren't considered equal\. Each unique table constraint must name a set of columns that is different from the set of columns named by any other unique or primary key constraint defined for the table\.   

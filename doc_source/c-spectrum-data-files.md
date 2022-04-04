@@ -41,7 +41,7 @@ Redshift Spectrum transparently decrypts data files that are encrypted using the
 + Server\-side encryption \(SSE\-S3\) using an AES\-256 encryption key managed by Amazon S3\.
 + Server\-side encryption with keys managed by AWS Key Management Service \(SSE\-KMS\)\. 
 
-Redshift Spectrum doesn't support Amazon S3 client\-side encryption\. For more information on server\-side encryption, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
+Redshift Spectrum doesn't support Amazon S3 client\-side encryption\. For more information on server\-side encryption, see [Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html) in the *Amazon Simple Storage Service User Guide*\.
 
 Amazon Redshift uses massively parallel processing \(MPP\) to achieve fast execution of complex queries operating on large amounts of data\. Redshift Spectrum extends the same principle to query external data, using multiple Redshift Spectrum instances as needed to scan files\. Place the files in a separate folder for each table\. 
 

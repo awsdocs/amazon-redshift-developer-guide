@@ -14,7 +14,7 @@ When you have several users running queries against the database, you might find
 
 ### Prerequisites<a name="tutorial-wlm-prereq"></a>
 
-You need an Amazon Redshift cluster, the sample TICKIT database, and the psql client tool\. If you do not already have these set up, go to [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html) and [Connect to Your Cluster by Using the psql Tool](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-from-psql.html)\. 
+You need an Amazon Redshift cluster, the sample TICKIT database, and the psql client tool\. If you do not already have these set up, go to [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html) and [Connect to Your Cluster by Using the psql Tool](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-from-psql.html)\. 
 
 ### Sections<a name="tutorial-wlm-steps"></a>
 + [Section 1: Understanding the default queue processing behavior](tutorial-wlm-understanding-default-processing.md)

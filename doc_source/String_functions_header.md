@@ -10,7 +10,8 @@
 + [CHARACTER\_LENGTH function](r_CHARACTER_LENGTH.md)
 + [CHARINDEX function](r_CHARINDEX.md)
 + [CHR function](r_CHR.md)
-+ [CONCAT](r_CONCAT.md)
++ [COLLATE function](r_COLLATE.md)
++ [CONCAT function](r_CONCAT.md)
 + [CRC32 function](crc32-function.md)
 + [DIFFERENCE function](DIFFERENCE.md)
 + [INITCAP function](r_INITCAP.md)
@@ -38,6 +39,7 @@
 + [SPLIT\_PART function](SPLIT_PART.md)
 + [STRPOS function](r_STRPOS.md)
 + [STRTOL function](r_STRTOL.md)
++ [SUBSTR function](r_SUBSTR.md)
 + [SUBSTRING function](r_SUBSTRING.md)
 + [TEXTLEN function](r_TEXTLEN.md)
 + [TRANSLATE function](r_TRANSLATE.md)
@@ -49,8 +51,7 @@ String functions process and manipulate character strings or expressions that ev
 The following section provides the function names, syntax, and descriptions for supported functions\. All offsets into strings are one\-based\. 
 <a name="string-functions-deprecated"></a>
 **Deprecated leader node\-only functions**  
-The following string functions are deprecated because they execute only on the leader node\. For more information, see [Leader node–only functions](c_SQL_functions_leader_node_only.md)
-+ GET\_BIT
+The following string functions are deprecated because they run only on the leader node\. For more information, see [Leader node–only functions](c_SQL_functions_leader_node_only.md)
 + GET\_BYTE
 + SET\_BIT
 + SET\_BYTE

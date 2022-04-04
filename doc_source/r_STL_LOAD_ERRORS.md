@@ -67,3 +67,15 @@ event | 309 |  0 |  5 | Error in Timestamp value or format [%Y-%m-%d %H:%M:%S] |
 
 (1 row)
 ```
+
+ In cases where the COPY command automatically splits large, uncompressed, text\-delimited file data to facilitate parallelism, the *line\_number*, *is\_partial*, and *start\_offset* columns show information pertaining to splits\. \(The line number can be unknown in cases where the line number from the original file is unavailable\.\) 
+
+```
+--scan ranges information
+SELECT line_number, POSITION, btrim(raw_line), btrim(raw_field_value),
+btrim(err_reason), is_partial, start_offset FROM stl_load_errors
+WHERE query = pg_last_copy_id();
+
+--result
+-1,51,"1008771|13463413|463414|2|28.00|38520.72|0.06|0.07|NO|1998-08-30|1998-09-25|1998-09-04|TAKE BACK RETURN|RAIL|ans cajole sly","NO","Char length exceeds DDL length",1,67108864
+```

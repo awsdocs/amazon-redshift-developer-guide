@@ -11,7 +11,7 @@ You used the STL\_LOAD\_ERRORS system table to troubleshoot load errors, and the
 
 You applied the following best practices for loading data: 
 + [Use a COPY command to load data](c_best-practices-use-copy.md)
-+ [Split your load data into multiple files](c_best-practices-use-multiple-files.md)
++ [Split your load data](c_best-practices-use-multiple-files.md)
 + [Use a single COPY command to load from multiple files](c_best-practices-single-copy-command.md)
 + [Compress your data files](c_best-practices-compress-data-files.md)
 + [Verify data files before and after a load](c_best-practices-verifying-data-files.md)

@@ -21,7 +21,7 @@ FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL }
 DATABASE 'database_name'
 [ REGION 'aws-region' ]
 [ URI 'hive_metastore_uri' [ PORT port_number ] ]
-IAM_ROLE 'iam-role-arn-string'
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'             
 [ CATALOG_ROLE 'catalog-role-arn-string' ] 
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
@@ -34,7 +34,7 @@ CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
 FROM POSTGRES
 DATABASE 'federated_database_name' [SCHEMA 'schema_name']
 URI 'hostname' [ PORT port_number ] 
-IAM_ROLE 'iam-role-arn-string'
+IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
 SECRET_ARN 'ssm-secret-arn'
 ```
 
@@ -50,7 +50,7 @@ CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
 FROM MYSQL
 DATABASE 'federated_database_name' 
 URI 'hostname' [ PORT port_number ]
-IAM_ROLE 'iam-role-arn-string'
+IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
 SECRET_ARN 'ssm-secret-arn'
 ```
 
@@ -76,7 +76,7 @@ DATA CATALOG indicates that the external database is defined in the Athena data 
 If the external database is defined in an external Data Catalog in a different AWS Region, the REGION parameter is required\. DATA CATALOG is the default\.  
 HIVE METASTORE indicates that the external database is defined in an Apache Hive metastore\. If HIVE METASTORE, is specified, URI is required\.   
 POSTGRES indicates that the external database is defined in RDS PostgreSQL or Aurora PostgreSQL\.  
-\(preview\) MYSQL indicates that the external database is defined in RDS MySQL or Aurora MySQL\.
+MYSQL indicates that the external database is defined in RDS MySQL or Aurora MySQL\.
 
 FROM REDSHIFT  
 A keyword that indicates that the database is located in Amazon Redshift\.
@@ -101,8 +101,10 @@ If the database is in a Hive metastore, specify the URI and optionally the port 
 A URI doesn't contain a protocol specification \("http://"\)\. An example valid URI: `uri '172.10.10.10'`\.   
 The supported PostgreSQL or MySQL database engine must be in the same VPC as your Amazon Redshift cluster\. Create a security group linking Amazon Redshift and RDS PostgreSQL or Aurora PostgreSQL\. 
 
-IAM\_ROLE '*iam\-role\-arn\-string*'  
-The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or the AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
+IAM\_ROLE \{ default \| 'arn:aws:iam::*<AWS account\-id>*:role/*<role\-name>*' \}  
+Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREATE EXTERNAL SCHEMA command runs\.  
+Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.   
+The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
 
 ```
 IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-name>'
@@ -236,10 +238,10 @@ IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole'
 SECRET_ARN 'arn:aws:secretsmanager:us-east-2:123456789012:secret:development/MyTestDatabase-AbCdEf'
 ```
 
-The following example creates an external schema to refer to the Sales\_db imported on the consumer cluster\.
+The following example creates an external schema to refer to the sales\_db imported on the consumer cluster\.
 
 ```
-CREATE EXTERNAL SCHEMA Sales_schema FROM REDSHIFT DATABASE 'Sales_db' SCHEMA 'public';
+CREATE EXTERNAL SCHEMA sales_schema FROM REDSHIFT DATABASE 'sales_db' SCHEMA 'public';
 ```
 
 The following example creates an external schema that references an Aurora MySQL database\. 

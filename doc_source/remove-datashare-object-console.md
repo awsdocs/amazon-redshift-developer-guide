@@ -1,6 +1,8 @@
 # Removing datashare objects from datashares<a name="remove-datashare-object-console"></a>
 
-Remove one or more objects from a datashare\.
+You can remove one or more objects from a datashare by using the following procedure\.
+
+**To remove one or more objects from a datashare**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -8,7 +10,7 @@ Remove one or more objects from a datashare\.
 
 1. Choose **Datashares**\.
 
-1. In the **Datashares created in my account** section, choose **Connect to database**\. For more information, see [Connecting to a database ](connect-database-console.md)\.
+1. In the **Datashares created in my account** section, choose **Connect to database**\. For more information, see [Connecting to a database](connect-database-console.md)\.
 
 1. Choose the datashare you want to edit, then choose **Edit**\. The datashare details page appears\.
 

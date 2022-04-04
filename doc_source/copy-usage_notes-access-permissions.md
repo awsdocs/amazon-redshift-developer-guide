@@ -53,6 +53,9 @@ In addition, a superuser can grant the ASSUMEROLE privilege to database users an
 
 With <a name="copy-usage_notes-access-key-based.phrase"></a>key\-based access control, you provide the access key ID and secret access key for an IAM user that is authorized to access the AWS resources that contain the data\. You can user either the [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id) parameters together or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\.
 
+**Note**  
+We strongly recommend using an IAM role for authentication instead of supplying a plain\-text access key ID and secret access key\. If you choose key\-based access control, never use your AWS account \(root\) credentials\. Always create an IAM user and provide that user's access key ID and secret access key\. For steps to create an IAM user, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)\.
+
 To authenticate using ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, replace *<access\-key\-id>* and *<secret\-access\-key>* with an authorized user's access key ID and full secret access key as shown following\. 
 
 ```
@@ -66,9 +69,6 @@ To authenticate using the CREDENTIALS parameter, replace *<access\-key\-id>* and
 CREDENTIALS
 'aws_access_key_id=<access-key-id>;aws_secret_access_key=<secret-access-key>';
 ```
-
-**Note**  
-We strongly recommend using an IAM role for authentication instead of supplying a plain\-text access key ID and secret access key\. If you choose key\-based access control, never use your AWS account \(root\) credentials\. Always create an IAM user and provide that user's access key ID and secret access key\. For steps to create an IAM user, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)\.
 
 The IAM user must have, at a minimum, the permissions listed in [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](#copy-usage_notes-iam-permissions)\.
 
@@ -118,7 +118,7 @@ from 's3://mybucket/data/listings_pipe.txt'
 access_key_id '<temporary-access-key-id>'
 secret_access_key '<temporary-secret-access-key>
 token '<temporary-token>'
-master_symmetric_key '<master-key>'
+master_symmetric_key '<root-key>'
 encrypted;
 ```
 
@@ -128,7 +128,7 @@ The following example loads the LISTING table using the CREDENTIALS parameter wi
 copy listing
 from 's3://mybucket/data/listings_pipe.txt'
 credentials 
-'aws_access_key_id=<temporary-access-key-id>;<aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>;master_symmetric_key=<master-key>'
+'aws_access_key_id=<temporary-access-key-id>;<aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>;master_symmetric_key=<root-key>'
 encrypted;
 ```
 

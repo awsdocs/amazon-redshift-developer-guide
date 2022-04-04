@@ -2,6 +2,8 @@
 
 ST\_PointN returns a point in a linestring as specified by an index value\. Negative index values are counted backward from the end of the linestring, so that \-1 is the last point\. 
 
+The dimension of the returned geometry is the same as that of the input geometry\.
+
 ## Syntax<a name="ST_PointN-function-syntax"></a>
 
 ```

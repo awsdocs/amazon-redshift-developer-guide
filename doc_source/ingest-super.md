@@ -2,13 +2,15 @@
 
 Use the SUPER data type to persist and query hierarchical and generic data in Amazon Redshift\. Amazon Redshift introduces the `json_parse` function to parse data in JSON format and convert it into the SUPER representation\. Amazon Redshift also supports loading SUPER columns using the COPY command\. The supported file formats are JSON, Avro, text, comma\-separated value \(CSV\) format, Parquet, and ORC\.
 
+For information about the `json_parse` function, see [JSON\_PARSE function](JSON_PARSE.md)\.
+
 The default encoding for SUPER data type is ZSTD\. 
 
 ## Parsing JSON documents to SUPER columns<a name="parse_json"></a>
 
-You can insert or update JSON data into a SUPER column using the JSON\_PARSE function\. The function parses data in JSON format and converts it into the SUPER data type, which you can use in INSERT or UPDATE statements\. 
+You can insert or update JSON data into a SUPER column using the `json_parse` function\. The function parses data in JSON format and converts it into the SUPER data type, which you can use in INSERT or UPDATE statements\. 
 
-The following example inserts JSON data into a SUPER column\. If the JSON\_PARSE function is missing in the query, Amazon Redshift treats the value as a single string instead of a JSON\-formatted string that must be parsed\.
+The following example inserts JSON data into a SUPER column\. If the `json_parse` function is missing in the query, Amazon Redshift treats the value as a single string instead of a JSON\-formatted string that must be parsed\.
 
 If you update a SUPER data column, Amazon Redshift requires the complete document to be passed to column values\. Amazon Redshift doesn't support partial update\. 
 
@@ -107,6 +109,8 @@ REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
 FORMAT JSON 'auto';
 ```
 
+When the JSON attribute names are in mixed upper and lower cases, specify the `auto ignorecase` option in the FORMAT JSON clause\. For more information about the COPY command, see [Load from JSON data using the 'auto ignorecase' option](r_COPY_command_examples.md#copy-from-json-examples-using-auto-ignorecase)\.
+
 In some cases, there is a mismatch between column names and JSON attributes or the attribute to load is nested more than a level deep\. If so, use a `jsonpaths` file to manually map JSON attributes to Amazon Redshift columns\.
 
 ```
@@ -145,9 +149,38 @@ Use the following query to access the table that shows data spread to multiple c
 SELECT r_regionkey,r_name,r_comment,r_nations[0].n_nationkey FROM region_nations ORDER BY 1,2,3 LIMIT 1;
 ```
 
+Jsonpaths files map fields in the JSON document to table columns\. You can extract additional columns, such as distribution and sort keys, while still loading the complete document as a SUPER column\. The following query loads the complete document to the nations column\. The `name` column is the sort key and the `regionkey` column is the distribution key\.
+
+```
+CREATE TABLE nations_sorted (
+    regionkey smallint,
+    name varchar,
+    nations super
+) DISTKEY(regionkey) SORTKEY(name);
+```
+
+The root jsonpath "$" maps to the root of the document as follows:
+
+```
+{"jsonpaths": [
+       "$.r_regionkey",
+       "$.r_name",
+       "$"
+    ]
+}
+```
+
+The location of the jsonpaths file is used as the argument to FORMAT JSON\.
+
+```
+COPY nations_sorted FROM 's3://redshift-downloads/semistructured/tpch-nested/data/json/region_nation'
+REGION 'us-east-1' IAM_ROLE 'arn:aws:iam::xxxxxxxxxxxx:role/Redshift-S3'
+FORMAT JSON 's3://redshift-downloads/semistructured/tpch-nested/data/jsonpaths/nations_sorted_jsonpaths.json';
+```
+
 ### Copying data from text and CSV<a name="copy_json-from-text-csv"></a>
 
-Amazon Redshift represents SUPER columns in text and CSV formats as single\-line JSON objects\. The double quotation marks used for escaping in CSV require no intervention from users\. However, for text format, when the chosen delimiter might also appear in a SUPER field, use the ESCAPE option during COPY and UNLOAD\. 
+Amazon Redshift represents SUPER columns in text and CSV formats as serialized JSON\. Valid JSON formatting is required for SUPER columns to load with the correct type information\. Unquote objects, arrays, numbers, booleans, and null values\. Wrap string values in double quotes\. SUPER columns use standard escaping rules for text and CSV formats\. For CSV, delimiters are escaped according to the CSV standard\. For text, if the chosen delimiter might also appear in a SUPER field, use the ESCAPE option during COPY and UNLOAD\.
 
 ```
 COPY region_nations FROM 's3://redshift-downloads/semistructured/tpch-nested/data/csv/region_nation'

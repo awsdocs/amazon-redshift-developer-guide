@@ -1,6 +1,6 @@
-# Numeric Format Strings<a name="r_Numeric_formating"></a>
+# Numeric format strings<a name="r_Numeric_formating"></a>
 
-This topic provides a reference for numeric format strings\. 
+Following, you can find a reference for numeric format strings\. 
 
 The following format strings apply to functions such as TO\_NUMBER and TO\_CHAR: 
 

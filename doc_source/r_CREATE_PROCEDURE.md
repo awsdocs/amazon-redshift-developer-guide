@@ -35,7 +35,7 @@ The argument data types can be any standard Amazon Redshift data type\. In addit
 You can specify a maximum of 32 input arguments and 32 output arguments\. 
 
 AS $$ *procedure\_body* $$   
-A construct that encloses the procedure to be executed\. The literal keywords AS $$ and $$ are required\.  
+A construct that encloses the procedure to be run\. The literal keywords AS $$ and $$ are required\.  
 Amazon Redshift requires you to enclose the statement in your procedure by using a format called dollar quoting\. Anything within the enclosure is passed exactly as is\. You don't need to escape any special characters because the contents of the string are written literally\.  
 With *dollar quoting, *you use a pair of dollar signs \($$\) to signify the start and the end of the statement to run, as shown in the following example\.  
 

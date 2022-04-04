@@ -1,6 +1,6 @@
 # ST\_LineFromMultiPoint<a name="ST_LineFromMultiPoint-function"></a>
 
-ST\_LineFromMultiPoint returns a linestring from an input multipoint geometry\. The order of the points is preserved\. The spatial reference system identifier \(SRID\) of the returned geometry is the same as that of the input geometry\. 
+ST\_LineFromMultiPoint returns a linestring from an input multipoint geometry\. The order of the points is preserved\. The spatial reference system identifier \(SRID\) of the returned geometry is the same as that of the input geometry\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_LineFromMultiPoint-function-syntax"></a>
 
@@ -18,6 +18,10 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 `GEOMETRY`
 
 If *geom* is null, then null is returned\. 
+
+If *geom* is empty, then an empty `LINESTRING` is returned\. 
+
+If *geom* contains empty points, then these empty points are ignored\. 
 
 If *geom* isn't a `MULTIPOINT`, then error is returned\. 
 

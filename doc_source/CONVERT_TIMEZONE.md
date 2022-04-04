@@ -30,17 +30,19 @@ Either *source\_timezone* or *target\_timezone* can be specified as a time zone 
 **Note**  
 The results of using a time zone name or a time zone abbreviation can be different due to local seasonal time, such as, Daylight Saving Time\. 
 
-To view a list of supported time zone names, execute the following command\. 
+To view a list of supported time zone names, run the following command\. 
 
 ```
 select pg_timezone_names();
 ```
 
- To view a list of supported time zone abbreviations, execute the following command\. 
+ To view a list of supported time zone abbreviations, run the following command\. 
 
 ```
 select pg_timezone_abbrevs();
 ```
+
+See a list of each at [Appendix: Time zone names and abbreviations](appendix-timezone-names.md)\.
 
 ### Using a time zone name<a name="CONVERT_TIMEZONE-using-name"></a>
 

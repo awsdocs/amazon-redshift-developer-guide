@@ -40,7 +40,8 @@ The format for *fixedwidth\_spec* is shown following:
 
 SHAPEFILE \[ SIMPLIFY \[AUTO\] \[*'tolerance'*\] \]  <a name="copy-shapefile"></a>
 Enables use of SHAPEFILE format in the input data\. By default, the first column of the shapefile is either a `GEOMETRY` or `IDENTITY` column\. All subsequent columns follow the order specified in the shapefile\.  
-You can't use SHAPEFILE with FIXEDWIDTH, REMOVEQUOTES, or ESCAPE\.     
+You can't use SHAPEFILE with FIXEDWIDTH, REMOVEQUOTES, or ESCAPE\.   
+To use `GEOGRAPHY` objects with `COPY FROM SHAPEFILE`, first ingest into a `GEOMETRY` column, and then cast the objects to `GEOGRAPHY` objects\. \.    
 SIMPLIFY \[*tolerance*\]  <a name="copy-shapefile-simplify"></a>
 \(Optional\) Simplifies all geometries during the ingestion process using the Ramer\-Douglas\-Peucker algorithm and the given tolerance\.   
 SIMPLIFY AUTO \[*tolerance*\]  <a name="copy-shapefile-simplify"></a>
@@ -54,7 +55,7 @@ Avro format is supported for COPY from these services and protocols:
 + Amazon EMR 
 + Remote hosts \(SSH\) 
 Avro isn't supported for COPY from DynamoDB\.   
-Avro is a data serialization protocol\. An Avro source file includes a schema that defines the structure of the data\. The Avro schema type must be `record`\. COPY accepts Avro files creating using the default uncompressed codec as well as the `deflate` and `snappy` compression codecs\. For more information about Avro, go to [Apache Avro](https://avro.apache.org/)\.   
+Avro is a data serialization protocol\. An Avro source file includes a schema that defines the structure of the data\. The Avro schema type must be `record`\. COPY accepts Avro files created using the default uncompressed codec as well as the `deflate` and `snappy` compression codecs\. For more information about Avro, go to [Apache Avro](https://avro.apache.org/)\.   
 Valid values for *avro\_option* are as follows:  
 + `'auto'`
 + `'auto ignorecase'`

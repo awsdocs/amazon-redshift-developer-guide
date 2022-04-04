@@ -1,6 +1,6 @@
 # COPY from remote host \(SSH\)<a name="copy-parameters-data-source-ssh"></a>
 
-You can use the COPY command to load data in parallel from one or more remote hosts, such Amazon Elastic Compute Cloud \(Amazon EC2\) instances or other computers\. COPY connects to the remote hosts using Secure Shell \(SSH\) and executes commands on the remote hosts to generate text output\. The remote host can be an EC2 Linux instance or another Unix or Linux computer configured to accept SSH connections\. Amazon Redshift can connect to multiple hosts, and can open multiple SSH connections to each host\. Amazon Redshift sends a unique command through each connection to generate text output to the host's standard output, which Amazon Redshift then reads as it does a text file\.
+You can use the COPY command to load data in parallel from one or more remote hosts, such Amazon Elastic Compute Cloud \(Amazon EC2\) instances or other computers\. COPY connects to the remote hosts using Secure Shell \(SSH\) and runs commands on the remote hosts to generate text output\. The remote host can be an EC2 Linux instance or another Unix or Linux computer configured to accept SSH connections\. Amazon Redshift can connect to multiple hosts, and can open multiple SSH connections to each host\. Amazon Redshift sends a unique command through each connection to generate text output to the host's standard output, which Amazon Redshift then reads as it does a text file\.
 
 Use the FROM clause to specify the Amazon S3 object key for the manifest file that provides the information COPY uses to open SSH connections and run the remote commands\. 
 
@@ -40,13 +40,13 @@ FROM
 The source of the data to be loaded\. 
 
 's3://*copy\_from\_ssh\_manifest\_file*'  <a name="copy-ssh-manifest"></a>
-The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY executes a command through each host connection, and then loads the output from the commands in parallel into the table\. The *s3://copy\_from\_ssh\_manifest\_file* argument specifies the Amazon S3 object key for the manifest file that provides the information COPY uses to open SSH connections and run the remote commands\.  
+The COPY command can connect to multiple hosts using SSH, and can create multiple SSH connections to each host\. COPY runs a command through each host connection, and then loads the output from the commands in parallel into the table\. The *s3://copy\_from\_ssh\_manifest\_file* argument specifies the Amazon S3 object key for the manifest file that provides the information COPY uses to open SSH connections and run the remote commands\.  
 The *s3://copy\_from\_ssh\_manifest\_file* argument must explicitly reference a single file; it can't be a key prefix\. The following shows an example:  
 
 ```
 's3://mybucket/ssh_manifest.txt'
 ```
-The manifest file is a text file in JSON format that Amazon Redshift uses to connect to the host\. The manifest file specifies the SSH host endpoints and the commands that will be executed on the hosts to return data to Amazon Redshift\. Optionally, you can include the host public key, the login user name, and a mandatory flag for each entry\. The following example shows a manifest file that creates two SSH connections:   
+The manifest file is a text file in JSON format that Amazon Redshift uses to connect to the host\. The manifest file specifies the SSH host endpoints and the commands that will be run on the hosts to return data to Amazon Redshift\. Optionally, you can include the host public key, the login user name, and a mandatory flag for each entry\. The following example shows a manifest file that creates two SSH connections:   
 
 ```
 { 
@@ -69,7 +69,7 @@ The following list describes the fields in the manifest file\.
 endpoint  <a name="copy-ssh-manifest-endpoint"></a>
 The URL address or IP address of the host—for example, `"ec2-111-222-333.compute-1.amazonaws.com"`, or `"198.51.100.0"`\.   
 command  <a name="copy-ssh-manifest-command"></a>
-The command to be executed by the host to generate text output or binary output in gzip, lzop, bzip2, or zstd format\. The command can be any command that the user *"host\_user\_name"* has permission to run\. The command can be as simple as printing a file, or it can query a database or launch a script\. The output \(text file, gzip binary file, lzop binary file, or bzip2 binary file\) must be in a form that the Amazon Redshift COPY command can ingest\. For more information, see [Preparing your input data](t_preparing-input-data.md)\.  
+The command to be run by the host to generate text output or binary output in gzip, lzop, bzip2, or zstd format\. The command can be any command that the user *"host\_user\_name"* has permission to run\. The command can be as simple as printing a file, or it can query a database or launch a script\. The output \(text file, gzip binary file, lzop binary file, or bzip2 binary file\) must be in a form that the Amazon Redshift COPY command can ingest\. For more information, see [Preparing your input data](t_preparing-input-data.md)\.  
 publickey  <a name="copy-ssh-manifest-publickey"></a>
 \(Optional\) The public key of the host\. If provided, Amazon Redshift will use the public key to identify the host\. If the public key isn't provided, Amazon Redshift will not attempt host identification\. For example, if the remote host's public key is `ssh-rsa AbcCbaxxx…Example root@amazon.com`, type the following text in the public key field: `"AbcCbaxxx…Example"`  
 mandatory  <a name="copy-ssh-manifest-mandatory"></a>

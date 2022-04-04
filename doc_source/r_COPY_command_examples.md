@@ -10,7 +10,6 @@ These examples contain line breaks for readability\. Do not include line breaks 
 + [Example: COPY from Amazon S3 using a manifest](#copy-command-examples-manifest)
 + [Load LISTING from a pipe\-delimited file \(default delimiter\)](#r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter)
 + [Load LISTING using columnar data in Parquet format](#r_COPY_command_examples-load-listing-from-parquet)
-+ [Load LISTING using temporary credentials](#sub-example-load-favorite-movies)
 + [Load EVENT with options](#r_COPY_command_examples-load-event-with-options)
 + [Load VENUE from a fixed\-width data file](#r_COPY_command_examples-load-venue-from-a-fixed-width-data-file)
 + [Load CATEGORY from a CSV file](#load-from-csv)
@@ -177,18 +176,6 @@ copy listing
 from 's3://mybucket/data/listings/parquet/' 
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format as parquet;
-```
-
-## Load LISTING using temporary credentials<a name="sub-example-load-favorite-movies"></a>
-
-The following example uses the SESSION\_TOKEN parameter to specify temporary session credentials:
-
-```
-copy listing
-from 's3://mybucket/data/listings_pipe.txt'
-access_key_id '<access-key-id>'
-secret_access_key '<secret-access-key'
-session_token '<temporary-token>';
 ```
 
 ## Load EVENT with options<a name="r_COPY_command_examples-load-event-with-options"></a>
@@ -1060,4 +1047,24 @@ FROM 's3://bucket_name/shapefiles/norway/gis_osm_natural_free_1.shp'
 FORMAT SHAPEFILE
 CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
 INFO:  Load into table 'norway_natural_order' completed, 83891 record(s) loaded successfully.
+```
+
+### Loading data into a table with a geography column<a name="copy-example-spatial-copy-shapefile-geography"></a>
+
+If you have a table that has a `GEOGRAPHY` column, you first ingest into a `GEOMETRY` column and then cast the objects to `GEOGRAPHY` objects\. For example, after you copy your shapefile into a `GEOMETRY` column, alter the table to add a column of the `GEOGRAPHY` data type\.
+
+```
+ALTER TABLE norway_natural ADD COLUMN wkb_geography GEOGRAPHY;
+```
+
+Then convert geometries to geographies\.
+
+```
+UPDATE norway_natural SET wkb_geography = wkb_geometry::geography;
+```
+
+Optionally, you can drop the `GEOMETRY` column\.
+
+```
+ALTER TABLE norway_natural DROP COLUMN wkb_geometry;
 ```

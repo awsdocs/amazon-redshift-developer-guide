@@ -19,12 +19,12 @@ WHERE query = pg_last_query_id() AND perm_table_name LIKE '%super_mv%';
 
  slice | is_rrscan 
 -------+-----------
-     0 | t
-     1 | t
-     5 | t
-     4 | t
-     2 | t
-     3 | t
+     0 | f
+     1 | f
+     5 | f
+     4 | f
+     2 | f
+     3 | f
 (6 rows)
 ```
 

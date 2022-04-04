@@ -1,24 +1,26 @@
-# CONCAT<a name="r_CONCAT"></a>
+# CONCAT function<a name="r_CONCAT"></a>
 
-The CONCAT function concatenates two character strings and returns the resulting string\. To concatenate more than two strings, use nested CONCAT functions\. The concatenation operator \(`||`\) between two strings produces the same results as the CONCAT function\. 
+The CONCAT function concatenates two expressions and returns the resulting expression\. To concatenate more than two expressions, use nested CONCAT functions\. The concatenation operator \(`||`\) between two expressions produces the same results as the CONCAT function\. 
 
 **Note**  
-For both the CONCAT function and the concatenation operator, if one or both strings is null, the result of the concatenation is null\. 
+For both the CONCAT function and the concatenation operator, if one or both expressions is null, the result of the concatenation is null\. 
 
 ## Syntax<a name="r_CONCAT-synopsis"></a>
 
 ```
-CONCAT ( string1, string2 )
+CONCAT ( expression1, expression2 )
 ```
 
 ## Arguments<a name="r_CONCAT-arguments"></a>
 
- *string1*, *string2*   
-Both arguments can be fixed\-length or variable\-length character strings or expressions\. 
+ *expression1*, *expression2*   
+Both arguments can be a fixed\-length character string, a variable\-length character string, a binary expression, or an expression that evaluates to one of these inputs\. 
 
 ## Return type<a name="r_CONCAT-return-type"></a>
 
- CONCAT returns a string\. The data type of the string is the same type as the input arguments\. 
+ CONCAT returns an expression\. The data type of the expression is the same type as the input arguments\. 
+
+If the input expressions are of different types, Amazon Redshift tries to implicitly type casts one of the expressions\. If values can't be cast, an error is returned\.
 
 ## Examples<a name="r_CONCAT-examples"></a>
 
@@ -105,4 +107,14 @@ Kansas City, MO
 East Rutherford, NJ
 Landover, MD
 (4 rows)
+```
+
+The following example concatenates two binary expressions\. Where `abc` is a binary value \(with a hexadecimal representation of `616263`\) and `def` is a binary value \(with hexadecimal representation of `646566`\)\. The result is automatically shown as the hexadecimal representation of the binary value\.
+
+```
+select concat('abc'::varbyte, 'def'::varbyte);
+
+concat
+-------------------
+616263646566
 ```
