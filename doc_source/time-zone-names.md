@@ -447,7 +447,7 @@ Europe/Isle_of_Man
 Europe/Istanbul
 Europe/Jersey
 Europe/Kaliningrad
-Europe/Kiev
+Europe/Kyiv
 Europe/Lisbon
 Europe/Ljubljana
 Europe/London
