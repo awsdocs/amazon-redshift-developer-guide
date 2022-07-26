@@ -1,6 +1,6 @@
 # array\_concat function<a name="r_array_concat"></a>
 
-The array\_conact function concatenates two arrays to create an array that contains all the elements in the first array followed by all the elements in the second array\. The two arguments must be valid arrays\.
+The array\_concat function concatenates two arrays to create an array that contains all the elements in the first array followed by all the elements in the second array\. The two arguments must be valid arrays\.
 
 ## Syntax<a name="r_array_concat-synopsis"></a>
 
