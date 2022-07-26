@@ -40,7 +40,7 @@
 
    You can only grant permissions to one data consumer in a GRANT statement\.
 
-   Cluster superusers and the owners of datashare objects or users that have SHARE privilege on the datashare can add consumers to or remove consumers from a datashare\. To do so, they use GRANT USAGE or REVOKE USAGE\.
+   Cluster superusers and the owners of datashare objects, or users that have SHARE permissions on the datashare, can add consumers to or remove consumers from a datashare\. To do so, they use GRANT USAGE or REVOKE USAGE\.
 
    You can also use the Amazon Redshift console to add or remove data consumers for datashares\. For more information, see [Adding data consumers to datashares](add-data-consumer-console.md) and [Removing data consumers from datashares](remove-data-consumer-console.md)\.
 

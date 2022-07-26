@@ -4,6 +4,13 @@ Removes a user\-defined function \(UDF\) from the database\. The function's sign
 
 This command isn't reversible\.
 
+## Required privileges<a name="r_DROP_FUNCTION-privileges"></a>
+
+Following are required privileges for DROP FUNCTION:
++ Superuser
++ Users with the DROP FUNCTION privilege
++ Function owner
+
 ## Syntax<a name="r_DROP_FUNCTION-synopsis"></a>
 
 ```

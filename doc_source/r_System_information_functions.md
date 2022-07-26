@@ -27,4 +27,6 @@ Amazon Redshift supports numerous system information functions\.
 + [PG\_LAST\_UNLOAD\_COUNT](PG_LAST_UNLOAD_COUNT.md)
 + [SLICE\_NUM Function](r_SLICE_NUM.md)
 + [USER](r_USER.md)
++ [ROLE\_IS\_MEMBER\_OF](r_ROLE_IS_MEMBER_OF.md)
++ [USER\_IS\_MEMBER\_OF](r_USER_IS_MEMBER_OF.md)
 + [VERSION](r_VERSION.md)

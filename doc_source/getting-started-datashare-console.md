@@ -15,9 +15,9 @@
 + [Editing datashares created in your account](edit-datashare-console.md)
 + [Creating databases from datashares](create-database-from-datashare-console.md)
 + [Deleting datashares created in your account](delete-datashare-console.md)
-+ [Creating data sets on AWS Data Exchange \(preview\)](create-dataset-console.md)
-+ [Editing AWS Data Exchange datashares \(preview\)](edit-adx-datashare-console.md)
-+ [Deleting AWS Data Exchange datashares created in your account \(preview\)](delete-adx-datashare-console.md)
++ [Creating data sets on AWS Data Exchange](create-dataset-console.md)
++ [Editing AWS Data Exchange datashares](edit-adx-datashare-console.md)
++ [Deleting AWS Data Exchange datashares created in your account](delete-adx-datashare-console.md)
 
 Use the Amazon Redshift console to manage datashares created in your account or shared from other accounts\. For datashare concepts, see [Data sharing concepts for Amazon Redshift](concepts.md)\.
 + If you are a producer cluster administrator, you can create datashares, add data consumers, add datashare objects, create databases from datashares, edit datashares, or delete datashares from the **CLUSTERS** tab\. 

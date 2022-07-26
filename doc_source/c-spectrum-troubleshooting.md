@@ -13,6 +13,8 @@ Following, you can find a quick reference that identifies and addresses some com
 + [Incompatible data formats](#spectrum-troubleshooting-incompatible-data-format)
 + [Syntax error when using Hive DDL in Amazon Redshift](#spectrum-troubleshooting-syntax-error-using-hive-ddl)
 + [Permission to create temporary tables](#spectrum-troubleshooting-permission-to-create-temp-tables)
++ [Invalid range](#spectrum-troubleshooting-invalid-range)
++ [Invalid Parquet version number](#spectrum-troubleshooting-invalid-parquet-version)
 
 ## Retries exceeded<a name="spectrum-troubleshooting-retries-exceeded"></a>
 
@@ -125,3 +127,25 @@ grant temp on database spectrumdb  to group spectrumusers;
 ```
 
 For more information, see [GRANT](r_GRANT.md)\.
+
+## Invalid range<a name="spectrum-troubleshooting-invalid-range"></a>
+
+Redshift Spectrum expects that files in Amazon S3 that belong to an external table are not overwritten during a query\. If this happens, it can result in the following error\.
+
+```
+Error: HTTP response error code: 416 Message: InvalidRange The requested range is not satisfiable
+```
+
+To avoid the error, make sure Amazon S3 files are not overwritten while they are queried with Redshift Spectrum\.
+
+## Invalid Parquet version number<a name="spectrum-troubleshooting-invalid-parquet-version"></a>
+
+Redshift Spectrum checks the metadata of each Apache Parquet file it accesses\. If the check fails, it can result in an error similar to the following:
+
+```
+File 'https://s3.region.amazonaws.com/s3bucket/location/file has an invalid version number
+```
+
+There are two common reasons that can cause the check to fail:
++ The Parquet file has been overwritten during the query \(see [Invalid range ](#spectrum-troubleshooting-invalid-range)\)\.
++ The Parquet file is corrupt\.

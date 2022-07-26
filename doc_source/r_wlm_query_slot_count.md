@@ -15,7 +15,7 @@ If the value of wlm\_query\_slot\_count is larger than the number of available s
 
  For operations where performance is heavily affected by the amount of memory allocated, such as vacuuming, increasing the value of wlm\_query\_slot\_count can improve performance\. In particular, for slow vacuum commands, inspect the corresponding record in the SVV\_VACUUM\_SUMMARY view\. If you see high values \(close to or higher than 100\) for sort\_partitions and merge\_increments in the SVV\_VACUUM\_SUMMARY view, consider increasing the value for wlm\_query\_slot\_count the next time you run Vacuum against that table\.
 
-Increasing the value of wlm\_query\_slot\_count limits the number of concurrent queries that can be run\. For example, suppose the service class has a concurrency level of 5 and wlm\_query\_slot\_count is set to 3\. While a query is running within the session with wlm\_query\_slot\_count set to 3, a maximum of 2 more concurrent queries can be executed within the same service class\. Subsequent queries wait in the queue until currently executing queries complete and slots are freed\.
+Increasing the value of wlm\_query\_slot\_count limits the number of concurrent queries that can be run\. For example, suppose that the service class has a concurrency level of 5 and wlm\_query\_slot\_count is set to 3\. While a query is running within the session with wlm\_query\_slot\_count set to 3, a maximum of 2 more concurrent queries can be run within the same service class\. Subsequent queries wait in the queue until currently executing queries complete and slots are freed\.
 
 ## Examples<a name="r_wlm_query_slot_count-examples"></a>
 

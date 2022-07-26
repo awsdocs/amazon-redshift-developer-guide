@@ -6,7 +6,7 @@ As a consumer cluster administrator, you can decline one or more datashares that
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **DATASHARES**\. The datashare list page appears\.
+1. On the navigation menu, choose **Datashares**\. The datashare list page appears\.
 
 1. Choose **From other accounts**\.
 

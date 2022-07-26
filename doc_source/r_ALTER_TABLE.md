@@ -1,6 +1,7 @@
 # ALTER TABLE<a name="r_ALTER_TABLE"></a>
 
 **Topics**
++ [Required privileges](#r_ALTER_TABLE-privileges)
 + [Syntax](#r_ALTER_TABLE-synopsis)
 + [Parameters](#r_ALTER_TABLE-parameters)
 + [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md)
@@ -11,8 +12,14 @@ Changes the definition of a database table or Amazon Redshift Spectrum external 
 
 You can't run ALTER TABLE on an external table within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
-**Note**  
-ALTER TABLE locks the table for read and write operations until the transaction enclosing the ALTER TABLE operation completes\. 
+ALTER TABLE locks the table for read and write operations until the transaction enclosing the ALTER TABLE operation completes, unless it's specifically stated in the documentation that you can query data or perform other operations on the table while it is altered\.
+
+## Required privileges<a name="r_ALTER_TABLE-privileges"></a>
+
+Following are required privileges for ALTER TABLE:
++ Superuser
++ Users with the ALTER TABLE privilege
++ Table or schema owner
 
 ## Syntax<a name="r_ALTER_TABLE-synopsis"></a>
 
@@ -75,6 +82,18 @@ ALTER TABLE tablename ALTER SORTKEY (column_list), ALTER DISTSTYLE ALL;
 ALTER TABLE tablename ALTER DISTSTYLE ALL, ALTER SORTKEY (column_list);
 ```
 
+Amazon Redshift supports the row\-level security control of the ALTER TABLE clause:
+
+```
+ALTER TABLE tablename ROW LEVEL SECURITY { ON | OFF };
+```
+
+To enable auto\-refreshing of a materialized view, use the following ALTER TABLE command\.
+
+```
+ALTER TABLE mv_name ALTER AUTOREFRESH = [TRUE | FALSE]
+```
+
 ## Parameters<a name="r_ALTER_TABLE-parameters"></a>
 
  *table\_name*   
@@ -115,13 +134,16 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 + You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ALTER COLUMN *column\_name* ENCODE *new\_encode\_type*   
-A clause that changes the compression encoding of a column\. If you specify compression encoding for a column, the table is no longer set to ENCODE AUTO\. Amazon Redshift no longer automatically manages compression encoding for all columns in the table\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.   
+A clause that changes the compression encoding of a column\. If you specify compression encoding for a column, the table is no longer set to ENCODE AUTO\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.   
+When you change compression encoding for a column, the table remains available to query\.  
 Consider the following limitations:  
 + You can't alter a column to the same encoding as currently defined for the column\. 
 + You can't alter the encoding for a column in a table with an interleaved sortkey\. 
 
 ALTER COLUMN *column\_name* ENCODE *encode\_type*, ALTER COLUMN *column\_name* ENCODE *encode\_type*, \.\.\.\.\.;   
-A clause that changes the compression encoding of multiple columns in a single command\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\. Consider the following limitations:  
+A clause that changes the compression encoding of multiple columns in a single command\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.  
+When you change compression encoding for a column, the table remains available to query\.  
+ Consider the following limitations:  
 + You can't alter a column to the same or different encoding type multiple times in a single command\.
 + You can't alter a column to the same encoding as currently defined for the column\. 
 + You can't alter the encoding for a column in a table with an interleaved sortkey\. 
@@ -268,6 +290,7 @@ The following restrictions apply when dropping a column from an external table:
 + You can't drop a column from an external table if the column is used as a partition\.
 + You can't drop a column from an external table that is defined using the AVRO file format\. 
 + RESTRICT and CASCADE are ignored for external tables\.
++ You can't drop the columns of the policy table referenced inside the policy definition unless you drop or detach the policy\. This also applies when the CASCADE option is specified\. You can drop other columns in the policy table\.
 For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
 RESTRICT   
@@ -314,3 +337,7 @@ The IF NOT EXISTS clause indicates that if the specified partition already exist
 
 DROP PARTITION \(*partition\_column*=*partition\_value* \[, \.\.\.\] \)   
 A clause that drops the specified partition\. Dropping a partition alters only the external table metadata\. The data on Amazon S3 isn't affected\.
+
+ROW LEVEL SECURITY \{ ON \| OFF \}   
+A clause that turns on or off row\-level security for a security policy\.  
+When row\-level security is turned on for a table, you can only read the rows that the row\-level policy permits for access\. When there isn't any policy granting you any access to the table, then you can't see any rows from the table\.

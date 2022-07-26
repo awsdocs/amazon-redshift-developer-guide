@@ -29,6 +29,12 @@ create view vdate as select * from date;
 alter table vdate owner to vuser;
 ```
 
+The following command turns RLS off for the table: 
+
+```
+ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY OFF;
+```
+
 ## Rename a column<a name="r_ALTER_TABLE_examples_basic-rename-a-column"></a>
 
 The following command renames the VENUESEATS column in the VENUE table to VENUESIZE: 

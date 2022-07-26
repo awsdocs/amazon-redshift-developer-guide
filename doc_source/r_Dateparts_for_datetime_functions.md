@@ -4,7 +4,6 @@ The following table identifies the date part and time part names and abbreviatio
 + DATEADD 
 + DATEDIFF 
 + DATE\_PART 
-+ DATE\_TRUNC 
 + EXTRACT 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Dateparts_for_datetime_functions.html)

@@ -10,6 +10,7 @@
 + [PG\_PROC\_INFO](r_PG_PROC_INFO.md)
 + [PG\_STATISTIC\_INDICATOR](r_PG_STATISTIC_INDICATOR.md)
 + [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md)
++ [PG\_USER\_INFO](pg_user_info.md)
 + [Querying the catalog tables](c_join_PG.md)
 
 The system catalogs store schema metadata, such as information about tables and columns\. System catalog tables have a PG prefix\.

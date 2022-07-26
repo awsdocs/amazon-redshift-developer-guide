@@ -2,6 +2,14 @@
 
 Updates table statistics for use by the query planner\. 
 
+## Required privileges<a name="r_ANALYZE-privileges"></a>
+
+Following are required privileges for ANALYZE:
++ Superuser
++ Users with the ANALYZE privilege
++ Owner of the relation
++ Database owner whom the table is shared to
+
 ## Syntax<a name="r_ANALYZE-synopsis"></a>
 
 ```

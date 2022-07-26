@@ -15,6 +15,7 @@ Concurrency scaling is available in these AWS Regions:
 + Europe \(Ireland\) Region \(eu\-west\-1\)
 + Europe \(London\) Region \(eu\-west\-2\)
 + Europe \(Paris\) Region \(eu\-west\-3\)
++ Europe \(Stockholm\) Region \(eu\-north\-1\) 
 + South America \(São Paulo\) Region \(sa\-east\-1\)
 
 Concurrency scaling for writes is available only in these AWS Regions: 

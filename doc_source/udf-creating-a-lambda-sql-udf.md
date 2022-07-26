@@ -118,7 +118,7 @@ The following table shows the list of input fields that the designated Lambda fu
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/udf-creating-a-lambda-sql-udf.html)
 
-The order of the JSON array determines the order of batch processing\. The Lambda function must precess the arguments iteratively and produce the exact number of records\. The following is an example of a payload\. 
+The order of the JSON array determines the order of batch processing\. The Lambda function must process the arguments iteratively and produce the exact number of records\. The following is an example of a payload\. 
 
 ```
 {

@@ -23,7 +23,7 @@ The COLLATE function returns VARCHAR or CHAR depending on the first input expres
 
 ## Example<a name="r_COLLATE-example"></a>
 
-The following example defines col1 in table T1 as case\_sensitive\. When you run the first query, Amazon Redshift only returns one row ‘john’\. After collate function runs on col1, the collation becomes case\_insensitive\. The second query returns both ‘john’ and ‘JOHN’\.
+The following example defines col1 in table T as case\_sensitive\. When you run the first query, Amazon Redshift only returns one row ‘john’\. After collate function runs on col1, the collation becomes case\_insensitive\. The second query returns both ‘john’ and ‘JOHN’\.
 
 ```
 CREATE TABLE T (

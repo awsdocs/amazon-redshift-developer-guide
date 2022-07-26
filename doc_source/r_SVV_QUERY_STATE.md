@@ -1,6 +1,6 @@
 # SVV\_QUERY\_STATE<a name="r_SVV_QUERY_STATE"></a>
 
- Use SVV\_QUERY\_STATE to view information about the execution of currently running queries\.
+ Use SVV\_QUERY\_STATE to view information about the runtime of currently running queries\.
 
 The SVV\_QUERY\_STATE view contains a data subset of the STV\_EXEC\_STATE table\.
 

@@ -2,6 +2,14 @@
 
 Changes the definition of a datashare\. You can add objects or remove objects using ALTER DATASHARE\. The owner of the datashare with the required permissions on the datashare objects to be added or removed can alter the datashare\.
 
+## Required privileges<a name="r_ALTER_DATASHARE-privileges"></a>
+
+Following are required privileges for ALTER DATASHARE:
++ Superuser\.
++ User with the ALTER DATASHARE privilege\.
++ Users who have the ALTER or ALL privilege on the datashare\.
++ To add specific objects to a datashare, users must have the privilege on the objects\. For this case, users should be the owners of objects or have SELECT, USAGE, or ALL privileges on the objects\.  
+
 ## Syntax<a name="r_ALTER_DATASHARE-synopsis"></a>
 
 The following syntax illustrates how to add or remove objects to the datashare\.
@@ -61,8 +69,8 @@ A clause that specifies whether to add any future tables, views, or SQL user\-de
 + You can share schemas, tables, regular views, late\-binding views, materialized views, and SQL user\-defined functions \(UDFs\)\. Add a schema to a datashare first before adding objects in the schema\. 
 
   When you add a schema, Amazon Redshift doesn't add all the objects under it\. You must add them explicitly\. 
-+ In general, we recommend that you don't alter an AWS Data Exchange datashare \(preview\) using the ALTER DATASHARE statement\. If you do, the AWS accounts that have access to the datashare lose access\. Performing this type of alteration can breach data product terms in AWS Data Exchange\. For an exception to this recommendation, see following\.
-+ We recommend that you create AWS Data Exchange datashares \(preview\) with the publicly accessible setting turned on\.
++ We recommend that you create AWS Data Exchange datashares with the publicly accessible setting turned on\.
++ In general, we recommend that you don't alter an AWS Data Exchange datashare to turn off public accessibility using the ALTER DATASHARE statement\. If you do, the AWS accounts that have access to the datashare lose access if their clusters are publicly accessible\. Performing this type of alteration can breach data product terms in AWS Data Exchange\. For an exception to this recommendation, see following\.
 
   The following example shows an error when an AWS Data Exchange datashare is created with the setting turned off\.
 

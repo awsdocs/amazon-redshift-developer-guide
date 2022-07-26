@@ -8,6 +8,12 @@ Amazon Redshift supports Python version 2\.7\. For more information, see [www\.p
 
 For more information, see [Importing custom Python library modules](udf-python-language-support.md#udf-importing-custom-python-library-modules)\. 
 
+## Required privileges<a name="r_CREATE_LIBRARY-privileges"></a>
+
+Following are required privileges for CREATE LIBRARY:
++ Superuser
++ Users with the CREATE LIBRARY privilege or with the privilege of the specified language
+
 ## Syntax<a name="r_CREATE_LIBRARY-synopsis"></a>
 
 ```

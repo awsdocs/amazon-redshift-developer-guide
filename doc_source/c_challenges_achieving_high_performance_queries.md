@@ -26,7 +26,7 @@ When columns are sorted appropriately, the query processor is able to rapidly fi
 
 ## Data compression<a name="data-compression"></a>
 
-Data compression reduces storage requirements, thereby reducing disk I/O, which improves query performance\. When you execute a query, the compressed data is read into memory, then uncompressed during query execution\. Loading less data into memory enables Amazon Redshift to allocate more memory to analyzing the data\. Because columnar storage stores similar data sequentially, Amazon Redshift is able to apply adaptive compression encodings specifically tied to columnar data types\. The best way to enable data compression on table columns is by allowing Amazon Redshift to apply optimal compression encodings when you load the table with data\. To learn more about using automatic data compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
+Data compression reduces storage requirements, thereby reducing disk I/O, which improves query performance\. When you run a query, the compressed data is read into memory, then uncompressed during query execution\. Loading less data into memory enables Amazon Redshift to allocate more memory to analyzing the data\. Because columnar storage stores similar data sequentially, Amazon Redshift is able to apply adaptive compression encodings specifically tied to columnar data types\. The best way to enable data compression on table columns is by allowing Amazon Redshift to apply optimal compression encodings when you load the table with data\. To learn more about using automatic data compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
 ## Query optimizer<a name="query-optimizer"></a>
 

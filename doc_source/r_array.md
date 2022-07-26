@@ -1,17 +1,17 @@
 # array function<a name="r_array"></a>
 
-Creates an array of a specified type\.
+Creates an array of the SUPER data type\.
 
 ## Syntax<a name="r_array-synopsis"></a>
 
 ```
-ARRAY( INT (type) )
+ARRAY( [ expr1 ] [ , expr2 [ , ... ] ] )
 ```
 
 ## Argument<a name="r_array-argument"></a>
 
- *type*   
-The input expression must be a INT1, INT2, INT4, INT8, DATE, TIME, TIMESTAMP, VARCHAR, NVARCHAR, FLOAT, DOUBLE, or TIMETZ data type\.
+ *expr1, expr2*   
+Expressions of any Amazon Redshift data type except date and time types, since Amazon Redshift doesn't cast the date and time types to the SUPER data type\. The arguments don't need to be of the same data type\.
 
 ## Return type<a name="r_array-return-type"></a>
 

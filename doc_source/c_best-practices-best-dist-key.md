@@ -1,6 +1,6 @@
 # Choose the best distribution style<a name="c_best-practices-best-dist-key"></a>
 
-When you execute a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in selecting a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is run\. 
+When you run a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in selecting a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is run\. 
 
 **Note**  
 When you use automatic table optimization, you don't need to choose the distribution style of your table\. For more information, see [Working with automatic table optimization](t_Creating_tables.md)\.

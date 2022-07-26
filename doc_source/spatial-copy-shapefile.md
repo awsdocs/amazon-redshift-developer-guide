@@ -15,6 +15,8 @@ In some cases, the tolerance is low enough that the record can't shrink below th
 
 The COPY command also supports loading GZIP shapefiles\. To do this, specify the COPY GZIP parameter\. With this option, all shapefile components must be independently compressed and share the same compression suffix\. 
 
+If a projection description file \(\.prj\) exists with the shapefile, Redshift uses it to determine the spatial reference system id \(SRID\)\. If the SRID is valid, the resulting geometry has this SRID assigned\. If the SRID value associated with the input geometry does not exist, the resulting geometry has the SRID value zero\. You can disable automatic detection of the spatial reference system id at the session level by using `SET read_srid_on_shapefile_ingestion` to `OFF`\. 
+
 Query the `SVL_SPATIAL_SIMPLIFY` system view to view which records have been simplified, along with the calculated tolerance\. When you specify `SIMPLIFY tolerance`, this view contains a record for each COPY operation\. Otherwise, it contains a record for each simplified geometry\. For more information, see [SVL\_SPATIAL\_SIMPLIFY](r_SVL_SPATIAL_SIMPLIFY.md)\. 
 
 For examples of loading a shapefile, see [Loading a shapefile into Amazon Redshift](r_COPY_command_examples.md#copy-example-spatial-copy-shapefile)\.

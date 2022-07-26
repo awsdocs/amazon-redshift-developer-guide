@@ -4,7 +4,7 @@
 
 1. On the AWS Data Exchange console, discover and subscribe to data products that contains AWS Data Exchange datashares\.
 
-   Once your subscription starts, you can access licensed Amazon Redshift data that is imported as assets to datasets that contains AWS Data Exchange datashares\.
+   Once your subscription starts, you can access licensed Amazon Redshift data that is imported as assets to datasets that contain AWS Data Exchange datashares\.
 
    For more information on how to get started with using data products that contain AWS Data Exchange datashares, see [Subscribing to data products on AWS Data Exchange](https://https://docs.aws.amazon.com/data-exchange/latest/userguide/subscribe-to-data-sets.html)\.
 
@@ -51,7 +51,7 @@
    CREATE DATABASE sales_db FROM DATASHARE salesshare OF ACCOUNT '123456789012' NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';
    ```
 
-   You can see databases that you created from the datashare by querying the [SVV\_REDSHIFT\_DATABASES](r_SVV_REDSHIFT_DATABASES.md) view\. You can't connect to these databases created from datashares, and they are read\-only\. However, you can connect to a local database on your consumer cluster and perform a cross\-database query to query the data from the databases created from datashares\. You can't create a datashare on top of database objects created from an existing datashare\. However, you can copy the data into a separate table on the consumer cluster, perform any processing needed, and then share the new objects that were created\.
+   You can see databases that you created from the datashare by querying the [SVV\_REDSHIFT\_DATABASES](r_SVV_REDSHIFT_DATABASES.md) view\. You can't connect to these databases created from datashares, and they are read\-only\. However, you can connect to a local database on your consumer cluster and perform a cross\-database query on the data from the databases created from datashares\. You can't create a datashare on top of database objects created from an existing datashare\. However, you can copy the data into a separate table on the consumer cluster, perform any processing needed, and then share the new objects that were created\.
 
    You can also use the Amazon Redshift console to create databases from datashares\. For more information, see [Creating databases from datashares](create-database-from-datashare-console.md)\.
 

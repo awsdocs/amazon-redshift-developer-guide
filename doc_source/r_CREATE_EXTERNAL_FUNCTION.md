@@ -2,6 +2,12 @@
 
 Creates a scalar user\-defined function \(UDF\) based on AWS Lambda for Amazon Redshift\. For more information about Lambda user\-defined functions, see [Creating a scalar Lambda UDF](udf-creating-a-lambda-sql-udf.md)\.
 
+## Required privileges<a name="r_CREATE_EXTERNAL_FUNCTION-privileges"></a>
+
+Following are required privileges for CREATE EXTERNAL FUNCTION:
++ Superuser
++ Users with the CREATE \[ OR REPLACE \] EXTERNAL FUNCTION privilege
+
 ## Syntax<a name="r_CREATE_EXTERNAL_FUNCTION-synopsis"></a>
 
 ```

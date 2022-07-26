@@ -12,7 +12,7 @@ You can query other database objects using fully qualified object names expresse
 
 1. Enable access to the query editor with the appropriate permissions\. For more information, see [Querying a database using the query editor](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) in the *Amazon Redshift Cluster Management Guide*\.
 
-1. On the navigation menu, choose **EDITOR**, then connect to a database in your cluster\.
+1. On the navigation menu, choose **Query editor**, then connect to a database in your cluster\.
 
    When you connect to the query editor for the first time, Amazon Redshift shows the resources for the connected database by default\.
 

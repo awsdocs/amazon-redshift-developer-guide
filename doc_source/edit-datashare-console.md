@@ -4,7 +4,7 @@ Edit datashares created in your account using the console\. Connect to a databas
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose your cluster\. The cluster details page appears\.
+1. On the navigation menu, choose **Clusters**, then choose your cluster\. The cluster details page appears\.
 
 1. Choose **Datashares**\.
 

@@ -6,7 +6,7 @@
 
 ## Description<a name="description"></a>
 
-Specifies whether UPDATE queries with multiple matches per row throws an error\.
+Specifies whether UPDATE queries with multiple matches per row return an error\.
 
 ## Example<a name="example"></a>
 

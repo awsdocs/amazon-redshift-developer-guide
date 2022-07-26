@@ -2,6 +2,8 @@
 
 By using Amazon Redshift ML, you can train machine learning models using SQL statements and invoke them in SQL queries for prediction\.
 
+For information about the prerequisites for setting up your Redshift cluster, permissions, and ownership for using Amazon Redshift ML, read the following sections\. These sections also describe how simple training and predictions work in Amazon Redshift ML\.
+
 ## How machine learning can solve a problem<a name="solve_problem"></a>
 
 A machine learning model generates predictions by finding patterns in your training data and then applying these patterns to new data\. In machine learning, you train these models by learning the patterns that best explain your data\. Then you use the models to make predictions \(also called inferences\) on new data\. Machine learning is typically an iterative process where you can continue to improve the accuracy of the predictions by changing parameters and improving your training data\. If data changes, retraining new models with the new dataset happens\. 
@@ -22,7 +24,7 @@ Amazon Redshift supports the K\-Means clustering algorithm to solve an unsupervi
 
 When using the K\-Means algorithm, you specify an input `k` that specifies the number of clusters to find in the data\. The output of this algorithm is a set of k centroids\. Each data point belongs to one of the k clusters that is closest to it\. Each cluster is described by its centroid\. The centroid can be thought of as the multi\-dimensional average of the cluster\. The K\-Means algorithm compares the distances to see how different the clusters are from each other\. A larger distance generally indicates a greater difference between the clusters\.
 
-Preprocessing the data is important for K\-Means, as it ensures that the features of the model stay on the same scale and produce reliable results\. Amazon Redshift supports some K\-Means preprocessors for the CREATE MODEL statement, such as StandardScaler, MinMax, and NumericPassthrough\. If you don't want to apply any preprocessing for K\-means, choose NumericPassthrough explicitly as a transformer\. For more information about K\-Means parameters, see [CREATE MODEL with K\-MEANS parameters](r_CREATE_MODEL.md#r_k-means-create-model-parameters)\.
+Preprocessing the data is important for K\-Means, as it ensures that the features of the model stay on the same scale and produce reliable results\. Amazon Redshift supports some K\-Means preprocessors for the CREATE MODEL statement, such as StandardScaler, MinMax, and NumericPassthrough\. If you don't want to apply any preprocessing for K\-means, choose NumericPassthrough explicitly as a transformer\. For more information about K\-Means parameters, see [CREATE MODEL with K\-MEANS parameters](r_create_model_use_cases.md#r_k-means-create-model-parameters)\.
 
 ## Terms and concepts for Amazon Redshift ML<a name="terminology"></a>
 

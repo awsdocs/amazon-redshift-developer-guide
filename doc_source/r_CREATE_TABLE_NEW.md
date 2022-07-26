@@ -1,12 +1,19 @@
 # CREATE TABLE<a name="r_CREATE_TABLE_NEW"></a>
 
 **Topics**
++ [Required privileges](#r_CREATE_TABLE-privileges)
 + [Syntax](#r_CREATE_TABLE_NEW-synopsis)
 + [Parameters](#r_CREATE_TABLE_NEW-parameters)
 + [Usage notes](r_CREATE_TABLE_usage.md)
 + [Examples](r_CREATE_TABLE_examples.md)
 
 Creates a new table in the current database\. The owner of this table is the issuer of the CREATE TABLE command\.
+
+## Required privileges<a name="r_CREATE_TABLE-privileges"></a>
+
+Following are required privileges for CREATE TABLE:
++ Superuser
++ Users with the CREATE TABLE privilege
 
 ## Syntax<a name="r_CREATE_TABLE_NEW-synopsis"></a>
 

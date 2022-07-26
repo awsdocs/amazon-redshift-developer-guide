@@ -437,6 +437,8 @@ Loop statements can take the following forms in the PL/pgSQL language that Amazo
   END;
   $$ LANGUAGE plpgsql;
   ```
+
+  The example assumes a function called `cs_log`, which is fictitious\.
 + FOR loop with dynamic SQL
 
   ```

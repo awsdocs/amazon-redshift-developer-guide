@@ -2,7 +2,7 @@
 
 You can find a reference for datetime format strings following\. 
 
-The following format strings apply to functions such as TO\_CHAR\. These strings can contain datetime separators \(such as '`-`', '`/`', or '`:`'\) and the following "dateparts" and "timeparts"\. 
+The following format strings apply to functions such as TO\_CHAR\. These strings can contain datetime separators \(such as '`-`', '`/`', or '`:`'\) and the following "dateparts" and "timeparts"\. For some examples using TO\_CHAR, see [Examples](r_TO_CHAR.md#r_TO_CHAR-examples)\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_FORMAT_strings.html)
 

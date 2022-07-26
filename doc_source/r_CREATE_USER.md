@@ -2,6 +2,12 @@
 
 Creates a new database user account\. You must be a database superuser to run this command\.
 
+## Required privileges<a name="r_CREATE_USER-privileges"></a>
+
+Following are required privileges for CREATE USER:
++ Superuser
++ Users with the CREATE USER privilege
+
 ## Syntax<a name="r_CREATE_USER-synopsis"></a>
 
 ```
@@ -18,6 +24,7 @@ CREATEDB | NOCREATEDB
 | VALID UNTIL 'abstime'
 | CONNECTION LIMIT { limit | UNLIMITED }
 | SESSION TIMEOUT limit
+| EXTERNALID external_id
 ```
 
 ## Parameters<a name="r_CREATE_USER-parameters"></a>
@@ -115,6 +122,9 @@ The maximum time in seconds that a session remains inactive or idle\. The range 
 When you set the session timeout, it's applied to new sessions only\.  
 To view information about active user sessions, including the start time, user name, and session timeout, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\. To view information about user\-session history, query the [STL\_SESSIONS](r_STL_SESSIONS.md) view\. To retrieve information about database users, including session\-timeout values, query the [SVL\_USER\_INFO](r_SVL_USER_INFO.md) view\.
 
+EXTERNALID *external\_id*  
+The identifier for the user, which is associated with an identity provider\. The user must have their password disabled\. For more information, see [Native identity provider \(IdP\) federation for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-native-idp.html)\.
+
 ### Usage notes<a name="create_user-usage-notes"></a>
 
 By default, all users have CREATE and USAGE privileges on the PUBLIC schema\. To disallow users from creating objects in the PUBLIC schema of a database, use the REVOKE command to remove that privilege\.
@@ -124,6 +134,8 @@ When using IAM authentication to create database user credentials, you might wan
 ```
 create user iam_superuser password 'md5A1234567890123456780123456789012' createuser;
 ```
+
+The case of a *username* enclosed in double quotation marks is always preserved regardless of the setting of the `enable_case_sensitive_identifier` configuration option\. For more information, see [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)\.
 
 ## Examples<a name="r_CREATE_USER-examples"></a>
 
@@ -171,4 +183,10 @@ The following example creates a user named `dbuser` with an idle\-session timeou
 
 ```
 CREATE USER dbuser password 'abcD1234' SESSION TIMEOUT 120;
+```
+
+The following example creates a user named `bob`\. The namespace is `myco_aad`\.
+
+```
+CREATE USER myco_aad:bob EXTERNALID "ABC123" PASSWORD DISABLE;
 ```

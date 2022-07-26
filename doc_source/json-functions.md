@@ -7,7 +7,9 @@
 + [JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT function](JSON_EXTRACT_ARRAY_ELEMENT_TEXT.md)
 + [JSON\_EXTRACT\_PATH\_TEXT function](JSON_EXTRACT_PATH_TEXT.md)
 + [JSON\_PARSE function](JSON_PARSE.md)
++ [CAN\_JSON\_PARSE function](CAN_JSON_PARSE.md)
 + [JSON\_SERIALIZE function](JSON_SERIALIZE.md)
++ [JSON\_SERIALIZE\_TO\_VARBYTE function](JSON_SERIALIZE_TO_VARBYTE.md)
 
 When you need to store a relatively small set of key\-value pairs, you might save space by storing the data in JSON format\. Because JSON strings can be stored in a single column, using JSON might be more efficient than storing your data in tabular format\. For example, suppose you have a sparse table, where you need to have many columns to fully represent all possible attributes, but most of the column values are NULL for any given row or any given column\. By using JSON for storage, you might be able to store the data for a row in key:value pairs in a single JSON string and eliminate the sparsely\-populated table columns\. 
 

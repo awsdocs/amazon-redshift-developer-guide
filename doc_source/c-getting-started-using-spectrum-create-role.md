@@ -8,7 +8,7 @@ In certain cases, you can migrate your Athena Data Catalog to an AWS Glue Data C
 When you create a role for Amazon Redshift, choose one of the following approaches:
 + If you are using Redshift Spectrum with either an Athena Data Catalog or AWS Glue Data Catalog, follow the steps outlined in [To create an IAM role for Amazon Redshift](#spectrum-get-started-create-role)\. 
 + If you are using Redshift Spectrum with an AWS Glue Data Catalog that is enabled for AWS Lake Formation, follow the steps outlined in these procedures:
-  +  [To create an IAM role for Amazon Redshift using an AWS Glue Data Catalog enabled for AWS Lake Formation ](#spectrum-get-started-create-role-lake-formation) 
+  +  [To create an IAM role for Amazon Redshift using an AWS Glue Data Catalog enabled for AWS Lake Formation](#spectrum-get-started-create-role-lake-formation) 
   +  [To grant SELECT permissions on the table to query in the Lake Formation database](#spectrum-get-started-grant-lake-formation-table) <a name="spectrum-get-started-create-role"></a>
 
 **To create an IAM role for Amazon Redshift**

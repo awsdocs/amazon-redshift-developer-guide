@@ -96,10 +96,10 @@ To complete refresh of the most important materialized views with minimal impact
 
 Amazon Redshift prioritizes your workloads over autorefresh and might stop autorefresh to preserve the performance of user workload\. This approach might delay refresh of some materialized views\. In some cases, you might need more deterministic refresh behavior for your materialized views\. If so, consider using manual refresh as described in [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md) or scheduled refresh using the Amazon Redshift scheduler API operations or the console\.
 
-You can set autorefresh for materialized views using CREATE MATERIALIZED VIEW\. You can also use the AUTO REFRESH clause to refresh materialized views automatically\. For more information about creating materialized views, see [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)\. You can enable autorefresh for a current materialized view by using [ALTER MATERIALIZED VIEW](r_ALTER_MATERIALIZED_VIEW.md)\.
+You can set autorefresh for materialized views using CREATE MATERIALIZED VIEW\. You can also use the AUTO REFRESH clause to refresh materialized views automatically\. For more information about creating materialized views, see [CREATE MATERIALIZED VIEW](materialized-view-create-sql-command.md)\. You can turn on autorefresh for a current materialized view by using [ALTER MATERIALIZED VIEW](r_ALTER_MATERIALIZED_VIEW.md)\.
 
 Consider the following when you refresh materialized views:
 + You can still refresh a materialized view explicitly using REFRESH MATERIALIZED VIEW command even if you haven't enabled autorefresh for the materialized view\.
 + Amazon Redshift doesn't autorefresh materialized views defined on external tables\.
 + For refresh status, you can check SVL\_MV\_REFRESH\_STATUS, which records queries that were user\-initiated or autorefreshed\. 
-+ To run REFRESH on recompute\-only materialized views, make sure that you have the CREATE privilege on schemas\. For more information, see [GRANT](r_GRANT.md)\.
++ To run REFRESH on recompute\-only materialized views, make sure that you have the CREATE permission on schemas\. For more information, see [GRANT](r_GRANT.md)\.

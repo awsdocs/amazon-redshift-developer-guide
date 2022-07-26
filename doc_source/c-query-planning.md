@@ -16,7 +16,7 @@ The query planning and execution workflow follow these steps:
 
    You can use the [EXPLAIN](r_EXPLAIN.md) command to view the query plan\. The query plan is a fundamental tool for analyzing and tuning complex queries\. For more information, see [Query plan](c-the-query-plan.md)\.
 
-1. The execution engine translates the query plan into *steps*, *segments* and *streams*:  
+1. The execution engine translates the query plan into *steps*, *segments*, and *streams*:  
 **Step**  
 Each step is an individual operation needed during query execution\. Steps can be combined to allow compute nodes to perform a query, join, or other database operation\.  
 **Segment**  
@@ -28,7 +28,7 @@ A collection of segments to be parceled out over the available compute node slic
 **Note**  
 When benchmarking your queries, you should always compare the times for the second execution of a query, because the first execution time includes the overhead of compiling the code\. For more information, see [Factors affecting query performance](c-query-performance.md)\.
 
-1. The compute node slices run the query segments in parallel\. As part of this process, Amazon Redshift takes advantage of optimized network communication, memory, and disk management to pass intermediate results from one query plan step to the next, which also helps to speed query execution\.
+1. The compute node slices run the query segments in parallel\. As part of this process, Amazon Redshift takes advantage of optimized network communication, memory, and disk management to pass intermediate results from one query plan step to the next\. This also helps to speed query execution\.
 
 Steps 5 and 6 happen once for each stream\. The engine creates the executable segments for one stream and sends them to the compute nodes\. When the segments of that stream are complete, the engine generates the segments for the next stream\. In this way, the engine can analyze what happened in the prior stream \(for example, whether operations were disk\-based\) to influence the generation of segments in the next stream\.
 

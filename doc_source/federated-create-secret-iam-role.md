@@ -74,7 +74,7 @@ We recommend using the default encryption key \(`DefaultEncryptionKey`\)\. If yo
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**\. The clusters for your account in the current AWS Region are listed\. 
+1. On the navigation menu, choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. 
 
 1. Choose the cluster name in the list to view more details about a cluster\.
 

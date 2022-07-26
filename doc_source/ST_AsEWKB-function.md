@@ -1,6 +1,6 @@
 # ST\_AsEWKB<a name="ST_AsEWKB-function"></a>
 
-ST\_AsEWKB returns the extended well\-known binary \(EWKB\) representation of an input geometry using ASCII hexadecimal characters \(0–9, A–F\)\. For 3DZ, 3DM, and 4D geometries, ST\_AsEWKB uses the PostGIS extended WKB value for the geometry type\.
+ST\_AsEWKB returns the extended well\-known binary \(EWKB\) representation of an input geometry\. For 3DZ, 3DM, and 4D geometries, ST\_AsEWKB uses the Open Geospatial Consortium \(OGC\) standard value for the geometry type\.
 
 ## Syntax<a name="ST_AsEWKB-function-syntax"></a>
 
@@ -15,11 +15,9 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 
 ## Return type<a name="ST_AsEWKB-function-return"></a>
 
-`VARCHAR`
+`VARBYTE`
 
-If *geom* is null, then null is returned\. 
-
-If the result is larger than a 64\-KB `VARCHAR`, then an error is returned\. 
+If *geom* is null, then null is returned\.
 
 ## Examples<a name="ST_AsEWKB-function-examples"></a>
 

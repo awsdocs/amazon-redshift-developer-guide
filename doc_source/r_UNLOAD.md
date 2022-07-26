@@ -4,7 +4,7 @@ Unloads the result of a query to one or more text, JSON, or Apache Parquet files
 
 By default, the format of the unloaded file is pipe\-delimited \( `|` \) text\.
 
-You can manage the size of files on Amazon S3, and by extension the number of files, by setting the MAXFILESIZE parameter\.
+You can manage the size of files on Amazon S3, and by extension the number of files, by setting the MAXFILESIZE parameter\. Ensure that the S3 IP ranges are added to your allow list\. To learn more about the required S3 IP ranges, see [ Network isolation](https://docs.aws.amazon.com/redshift/latest/mgmt/security-network-isolation.html#network-isolation)\.
 
 You can unload the result of an Amazon Redshift query to your Amazon S3 data lake in Apache Parquet, an efficient open columnar storage format for analytics\. Parquet format is up to 2x faster to unload and consumes up to 6x less storage in Amazon S3, compared with text formats\. This enables you to save data transformation and enrichment you have done in Amazon S3 into your Amazon S3 data lake in an open format\. You can then analyze your data with Redshift Spectrum and other AWS services such as Amazon Athena, Amazon EMR, and SageMaker\. 
 

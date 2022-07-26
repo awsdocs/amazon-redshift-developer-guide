@@ -1,6 +1,6 @@
 # Troubleshooting queries<a name="queries-troubleshooting"></a>
 
-This section provides a quick reference for identifying and addressing some of the most common and most serious issues you are likely to encounter with Amazon Redshift queries\.
+This section provides a quick reference for identifying and addressing some of the most common and most serious issues that you are likely to encounter with Amazon Redshift queries\.
 
 **Topics**
 + [Connection fails](#queries-troubleshooting-connection-fails)
@@ -83,12 +83,12 @@ By default, the Amazon S3 bucket or Amazon DynamoDB table specified in the COPY 
 The bucket you are attempting to access must be addressed using the specified endpoint.
 ```
 
-If at all possible, make sure your cluster and your data source are the same Region\. You can specify a different Region by using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
+If at all possible, make sure your cluster and your data source are in the same Region\. You can specify a different Region by using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
 
 **Note**  
 If your cluster and your data source are in different AWS Regions, you incur data transfer costs\. You also have higher latency\.
 
-**COPY Command Fails**  
+**COPY command fails**  
 Query STL\_LOAD\_ERRORS to discover the errors that occurred during specific loads\. For more information, see [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md)\.
 
 ## Load takes too long<a name="queries-troubleshooting-load-takes-too-long"></a>

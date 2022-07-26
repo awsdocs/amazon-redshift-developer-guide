@@ -4,6 +4,17 @@
 
 Creates a new scalar user\-defined function \(UDF\) using either a SQL SELECT clause or a Python program\.
 
+## Required privileges<a name="r_CREATE_FUNCTION-privileges"></a>
+
+Following are required privileges for CREATE FUNCTION:
++ For CREATE FUNCTION:
+  + Superuser can use both trusted and untrusted languages to create functions\.
+  + Users with the CREATE \[ OR REPLACE \] FUNCTION privilege can create functions with trusted languages\.
++ For REPLACE FUNCTION:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] FUNCTION privilege
+  + Function owner
+
 ## Syntax<a name="r_CREATE_FUNCTION-synopsis"></a>
 
 ```

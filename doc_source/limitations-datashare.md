@@ -6,3 +6,5 @@ The following are limitations when working with datashares in Amazon Redshift:
 + If the producer database has specific collation, use the same collation settings for the consumer database\.
 + Amazon Redshift doesn't support sharing tables with interleaved sort keys and views that refer to tables with interleaved sort keys\.
 + Amazon Redshift doesn't support adding external schemas or tables to datashares\. These external schemas or tables can be from Amazon S3 data lakes or federated queries\.
++ Amazon Redshift doesn't support nested SQL user\-defined functions on producer clusters\.
++ Amazon Redshift doesn't support querying shared views that depend on objects in different databases or clusters\.

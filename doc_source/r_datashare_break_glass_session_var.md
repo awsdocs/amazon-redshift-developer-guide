@@ -1,9 +1,4 @@
-# datashare\_break\_glass\_session\_var \(preview\)<a name="r_datashare_break_glass_session_var"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the AWS Data Exchange for Amazon Redshift feature, which is in preview release\. The documentation and the feature are both subject to change\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to adx\-redshift\-preview@amazon\.com\.   | 
+# datashare\_break\_glass\_session\_var<a name="r_datashare_break_glass_session_var"></a>
 
 ## Values \(default in bold\)<a name="t_datashare_break_glass_session_var-values"></a>
 

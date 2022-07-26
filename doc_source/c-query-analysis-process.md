@@ -2,13 +2,13 @@
 
 If a query is taking longer than expected, use the following steps to identify and correct issues that might be negatively affecting the query’s performance\. If you aren’t sure what queries in your system might benefit from performance tuning, start by running the diagnostic query in [Identifying queries that are top candidates for tuning](diagnostic-queries-for-query-tuning.md#identify-queries-that-are-top-candidates-for-tuning)\.
 
-1. Make sure your tables are designed according to best practices\. For more information, see [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md)\.
+1. Make sure that your tables are designed according to best practices\. For more information, see [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md)\.
 
-1. See if you can delete or archive any unneeded data in your tables\. For example, suppose your queries always target the last 6 months’ worth of data but you have the last 18 months’ worth in your tables\. In this case, you can delete or archive the older data to reduce the number of records that need to be scanned and distributed\.
+1. See if you can delete or archive any unneeded data in your tables\. For example, suppose your queries always target the last 6 months’ worth of data but you have the last 18 months’ worth in your tables\. In this case, you can delete or archive the older data to reduce the number of records that must be scanned and distributed\.
 
 1. Run the [VACUUM](r_VACUUM_command.md) command on the tables in the query to reclaim space and re\-sort rows\. Running VACUUM helps if the unsorted region is large and the query uses the sort key in a join or in the predicate\.
 
-1. Run the [ANALYZE](r_ANALYZE.md) command on the tables in the query to make sure statistics are up to date\. Running ANALYZE helps if any of the tables in the query have recently changed a lot in size\. If running a full ANALYZE command will take too long, run ANALYZE on a single column to reduce processing time\. This approach still updates the table size statistics; table size is a significant factor in query planning\.
+1. Run the [ANALYZE](r_ANALYZE.md) command on the tables in the query to make sure that statistics are up to date\. Running ANALYZE helps if any of the tables in the query have recently changed a lot in size\. If running a full ANALYZE command will take too long, run ANALYZE on a single column to reduce processing time\. This approach still updates the table size statistics; table size is a significant factor in query planning\.
 
 1. Make sure that your query has been run once for each type of client \(based on what type of connection protocol the client uses\) so that the query is compiled and cached\. This approach speeds up subsequent runs of the query\. For more information, see [Factors affecting query performance](c-query-performance.md)\.
 

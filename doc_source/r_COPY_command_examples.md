@@ -10,6 +10,7 @@ These examples contain line breaks for readability\. Do not include line breaks 
 + [Example: COPY from Amazon S3 using a manifest](#copy-command-examples-manifest)
 + [Load LISTING from a pipe\-delimited file \(default delimiter\)](#r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter)
 + [Load LISTING using columnar data in Parquet format](#r_COPY_command_examples-load-listing-from-parquet)
++ [Load LISTING using columnar data in ORC format](#r_COPY_command_examples-load-listing-from-orc)
 + [Load EVENT with options](#r_COPY_command_examples-load-event-with-options)
 + [Load VENUE from a fixed\-width data file](#r_COPY_command_examples-load-venue-from-a-fixed-width-data-file)
 + [Load CATEGORY from a CSV file](#load-from-csv)
@@ -129,6 +130,7 @@ The following example uses a manifest named `cust.manifest`\.
 copy customer
 from 's3://mybucket/cust.manifest' 
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+format as orc
 manifest;
 ```
 
@@ -138,9 +140,9 @@ You can use a manifest to load files from different buckets or files that don't 
 {
   "entries": [
     {"url":"s3://mybucket/2013-10-04-custdata.txt","mandatory":true},
-    {"url":"s3://mybucket/2013-10-05-custdata.txt”,"mandatory":true},
-    {"url":"s3://mybucket/2013-10-06-custdata.txt”,"mandatory":true},
-    {"url":"s3://mybucket/2013-10-07-custdata.txt”,"mandatory":true}
+    {"url":"s3://mybucket/2013-10-05-custdata.txt","mandatory":true},
+    {"url":"s3://mybucket/2013-10-06-custdata.txt","mandatory":true},
+    {"url":"s3://mybucket/2013-10-07-custdata.txt","mandatory":true}
   ]
 }
 ```
@@ -176,6 +178,17 @@ copy listing
 from 's3://mybucket/data/listings/parquet/' 
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format as parquet;
+```
+
+## Load LISTING using columnar data in ORC format<a name="r_COPY_command_examples-load-listing-from-orc"></a>
+
+The following example loads data from a folder on Amazon S3 named `orc`\. 
+
+```
+copy listing 
+from 's3://mybucket/data/listings/orc/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+format as orc;
 ```
 
 ## Load EVENT with options<a name="r_COPY_command_examples-load-event-with-options"></a>

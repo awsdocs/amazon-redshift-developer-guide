@@ -13,6 +13,7 @@ Amazon Redshift Advisor offers recommendations about how to optimize your Amazon
 + [Alter distribution keys on tables](#alter-diststyle-distkey-recommendation)
 + [Alter sort keys on tables](#alter-sortkey-recommendation)
 + [Alter compression encodings on columns](#alter-compression-encoding-recommendation)
++ [Data type recommendations](#data-type-recommendation)
 
 ## Compress Amazon S3 file objects loaded by COPY<a name="cluster-compress-s3-recommendation"></a>
 
@@ -277,7 +278,7 @@ For more information, see [Analyzing tables](t_Analyzing_tables.md)\.
 
 ## Enable short query acceleration<a name="enable-sqa-recommendation"></a>
 
-Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA executes short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. SQA only prioritizes queries that are short\-running and are in a user\-defined queue\. With SQA, short\-running queries begin running more quickly and users see results sooner\. 
+Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA runs short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. SQA only prioritizes queries that are short\-running and are in a user\-defined queue\. With SQA, short\-running queries begin running more quickly and users see results sooner\. 
 
 If you enable SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Working with short query acceleration](wlm-short-query-acceleration.md)\. 
 
@@ -369,3 +370,19 @@ For reference, [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md) shows sev
 
 **Note**  
 Advisor doesn't provide recommendations when there isn't enough data or the expected benefit of changing the encoding is small\.
+
+## Data type recommendations<a name="data-type-recommendation"></a>
+
+Amazon Redshift has a library of SQL data types for various use cases\. These include integer types like `INT` and types to store characters, like `VARCHAR`\. Redshift stores types in an optimized way to provide fast access and good query performance\. Also, Redshift provides functions for specific types, which you can use to format or perform calculations on query results\. 
+
+**Analysis**
+
+Advisor performs analysis of your cluster's workload and database schema continually to identify columns that can benefit significantly from a data type change\.
+
+**Recommendation**
+
+ Advisor provides an `ALTER TABLE` statement that adds a new column with the suggested data type\. An accompanying `UPDATE` statement copies data from the existing column to the new column\. After you create the new column and load the data, change your queries and ingestion scripts to access the new column\. Then leverage features and functions specialized to the new data type, found in [SQL functions reference](c_SQL_functions.md)\. 
+
+ Copying existing data to the new column can take time\. We recommend that you implement each advisor recommendation when the cluster’s workload is light\. Reference the list of available data types at [Data types](c_Supported_data_types.md)\. 
+
+ Note that Advisor doesn't provide recommendations when there isn't enough data or the expected benefit of changing the data type is small\. 

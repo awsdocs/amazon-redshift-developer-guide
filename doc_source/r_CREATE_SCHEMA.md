@@ -2,6 +2,12 @@
 
 Defines a new schema for the current database\.
 
+## Required privileges<a name="r_CREATE_SCHEMA-privileges"></a>
+
+Following are required privileges for CREATE SCHEMA:
++ Superuser
++ Users with the CREATE SCHEMA privilege
+
 ## Syntax<a name="r_CREATE_SCHEMA-synopsis"></a>
 
 ```

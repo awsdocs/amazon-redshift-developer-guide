@@ -1,6 +1,6 @@
 # DROP TABLE<a name="r_DROP_TABLE"></a>
 
-Removes a table from a database\. Only the owner of the table, the schema owner, a superuser, or a user or group assigned the DROP privilege can drop a table\.
+Removes a table from a database\. 
 
 If you are trying to empty a table of rows, without removing the table, use the DELETE or TRUNCATE command\. 
 
@@ -9,6 +9,13 @@ DROP TABLE removes constraints that exist on the target table\. Multiple tables 
 DROP TABLE with an external table can't be run inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\.
 
 To find an example where the DROP privilege is granted to a group, see GRANT [Examples](r_GRANT-examples.md)\.
+
+## Required privileges<a name="r_DROP_TABLE-privileges"></a>
+
+Following are required privileges for DROP TABLE:
++ Superuser
++ Users with the DROP TABLE privilege
++ Table or schema owner
 
 ## Syntax<a name="r_DROP_TABLE-synopsis"></a>
 

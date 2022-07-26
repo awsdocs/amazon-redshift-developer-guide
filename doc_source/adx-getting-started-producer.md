@@ -32,7 +32,7 @@
    ALTER DATASHARE salesshare ADD TABLE public.sales_data_summary_view;
    ```
 
-   Use ALTER DATASHARE to share schemas, and tables, views, and functions in a given schema\. Superusers, datashare owners, or users who have ALTER or ALL privilege on the datashare can alter the datashare to add objects to or remove objects from it\. Users should have the permissions to add or remove objects from the datashare\. Users should also be the owners of the objects or have SELECT, USAGE or ALL permissions on the objects\.
+   Use ALTER DATASHARE to share schemas, and tables, views, and functions in a given schema\. Superusers, datashare owners, or users who have ALTER or ALL permissions on the datashare can alter the datashare to add objects to or remove objects from it\. Users should have the permissions to add or remove objects from the datashare\. Users should also be the owners of the objects or have SELECT, USAGE, or ALL permissions on the objects\.
 
    Use the INCLUDENEW clause to add any new tables, views, or SQL user\-defined functions \(UDFs\) created in a specified schema to the datashare\. Only superusers can change this property for each datashare\-schema pair\.
 
@@ -41,7 +41,7 @@
    ALTER DATASHARE salesshare SET INCLUDENEW = TRUE FOR SCHEMA PUBLIC;
    ```
 
-   You can also use the Amazon Redshift console to add or remove objects from datashares\. For more information, see [Adding datashare objects to datashares](add-datashare-object-console.md), [Removing datashare objects from datashares](remove-datashare-object-console.md), and [Editing AWS Data Exchange datashares \(preview\) ](edit-adx-datashare-console.md)\.
+   You can also use the Amazon Redshift console to add or remove objects from datashares\. For more information, see [Adding datashare objects to datashares](add-datashare-object-console.md), [Removing datashare objects from datashares](remove-datashare-object-console.md), and [Editing AWS Data Exchange datashares](edit-adx-datashare-console.md)\.
 
 1. To authorize access to the datashares for AWS Data Exchange, do one of the following:
    + Explicitly authorize access to the datashare for AWS Data Exchange by using the `ADX` keyword in the `aws redshift authorize-data-share` API\. This allows AWS Data Exchange to recognize the datashare in the service account and manage associating consumers to the datashare\.
@@ -124,7 +124,7 @@
 
    You can also use [SVV\_DATASHARES](r_SVV_DATASHARES.md), [SVV\_DATASHARE\_CONSUMERS](r_SVV_DATASHARE_CONSUMERS.md), and [SVV\_DATASHARE\_OBJECTS](r_SVV_DATASHARE_OBJECTS.md) to view the datashares, the objects within the datashare, and the datashare consumers\.
 
-1. Drop datashares\. We recommend that you don't delete an AWS Data Exchange datashare shared to other AWS accounts using the DROP DATASHARE statement, those accounts will lose access to the datashare\. This action is irreversible\. This might breach data product offer terms in AWS Data Exchange\. If you want to delete an AWS Data Exchange datashare, see [DROP DATASHARE usage notes](r_DROP_DATASHARE.md#r_DROP_DATASHARE_usage)\.
+1. Drop datashares\. We recommend that you don't delete an AWS Data Exchange datashare shared to other AWS accounts using the DROP DATASHARE statement\. Those accounts will lose access to the datashare\. This action is irreversible\. This might breach data product offer terms in AWS Data Exchange\. If you want to delete an AWS Data Exchange datashare, see [DROP DATASHARE usage notes](r_DROP_DATASHARE.md#r_DROP_DATASHARE_usage)\.
 
    The following example drops a datashare named salesshare\.
 
@@ -135,7 +135,7 @@
 
    To allow dropping an AWS Data Exchange datashare, set the datashare\_break\_glass\_session\_var variable and run the DROP DATASHARE statement again\. If you want to delete an AWS Data Exchange datashare, see [DROP DATASHARE usage notes](r_DROP_DATASHARE.md#r_DROP_DATASHARE_usage)\.
 
-   You can also use the Amazon Redshift console to delete datashares\. For more information, see [Deleting AWS Data Exchange datashares created in your account \(preview\)](delete-adx-datashare-console.md)\.
+   You can also use the Amazon Redshift console to delete datashares\. For more information, see [Deleting AWS Data Exchange datashares created in your account](delete-adx-datashare-console.md)\.
 
 1. Use ALTER DATASHARE to remove objects from datashares at any point from the datashare\. Use REVOKE USAGE ON to revoke permissions on the datashare to certain consumers\. It revokes USAGE privileges on objects within a datashare and instantly stops access to all consumer clusters\. Listing datashares and the metadata queries, such as listing databases and tables, doesn't return the shared objects after access is revoked\.
 
@@ -143,9 +143,9 @@
    ALTER DATASHARE salesshare REMOVE TABLE public.tickit_sales_redshift;
    ```
 
-   You can also use the Amazon Redshift console to edit datashares\. For more information, see [Editing AWS Data Exchange datashares \(preview\) ](edit-adx-datashare-console.md)\.
+   You can also use the Amazon Redshift console to edit datashares\. For more information, see [Editing AWS Data Exchange datashares](edit-adx-datashare-console.md)\.
 
-1. Grant or revoke GRANT USAGE from AWS Data Exchange datashares\. You can't grant or revoke GRANT USAGE for AWS Data Exchange datashare\. The following example shows an error when the GRANT USAGE privilege is granted to an AWS account for a datashare that AWS Data Exchange manages\.
+1. Grant or revoke GRANT USAGE from AWS Data Exchange datashares\. You can't grant or revoke GRANT USAGE for AWS Data Exchange datashare\. The following example shows an error when the GRANT USAGE permission is granted to an AWS account for a datashare that AWS Data Exchange manages\.
 
    ```
    CREATE DATASHARE salesshare MANAGEDBY ADX;
@@ -161,6 +161,6 @@
 **If you are a producer cluster administrator, follow these steps to create and publish a datashare product on the AWS Data Exchange console:**
 + When the AWS Data Exchange datashare has been created, the producer creates a new dataset, imports assets, creates a revision, and creates and publishes a new product\.
 
-  Use the Amazon Redshift console to create datasets\. For more information, see [Creating data sets on AWS Data Exchange \(preview\)](create-dataset-console.md)\.
+  Use the Amazon Redshift console to create datasets\. For more information, see [Creating data sets on AWS Data Exchange](create-dataset-console.md)\.
 
   For more information, see [Providing data products on AWS Data Exchange](https://https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html)\.

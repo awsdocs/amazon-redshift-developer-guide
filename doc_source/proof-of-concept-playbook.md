@@ -39,7 +39,7 @@ You can choose the node type and number of nodes using the Amazon Redshift conso
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **Create cluster** to open the configuration page\. 
+1. On the navigation menu, choose **Create cluster** to open the configuration page\. 
 
 1. For **Cluster identifier**, enter a name for your cluster\. 
 

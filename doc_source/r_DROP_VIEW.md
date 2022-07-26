@@ -2,6 +2,13 @@
 
 Removes a view from the database\. Multiple views can be dropped with a single DROP VIEW command\. This command isn't reversible\.
 
+## Required privileges<a name="r_DROP_VIEW-privileges"></a>
+
+Following are required privileges for DROP VIEW:
++ Superuser
++ Users with the DROP VIEW privilege
++ View owner
+
 ## Syntax<a name="r_DROP_VIEW-synopsis"></a>
 
 ```

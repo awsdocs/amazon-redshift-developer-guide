@@ -18,6 +18,14 @@ The Amazon Redshift VACUUM command syntax and behavior are substantially differe
 
 For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\.
 
+## Required privileges<a name="r_VACUUM_command-privileges"></a>
+
+Following are required privileges for VACUUM:
++ Superuser
++ Users with the VACUUM privilege
++ Table owner
++ Database owner whom the table is shared to
+
 ## Syntax<a name="r_VACUUM_command-synopsis"></a>
 
 ```

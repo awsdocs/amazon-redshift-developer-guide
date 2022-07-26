@@ -1,6 +1,6 @@
 # Creating materialized views in Amazon Redshift<a name="materialized-view-overview"></a>
 
-In a data warehouse environment, applications often need to perform complex queries on large tables\. An example is SELECT statements that perform multi\-table joins and aggregations on tables that contain billions of rows\. Processing these queries can be expensive, in terms of system resources and the time it takes to compute the results\.
+In a data warehouse environment, applications often must perform complex queries on large tables\. An example is SELECT statements that perform multi\-table joins and aggregations on tables that contain billions of rows\. Processing these queries can be expensive, in terms of system resources and the time it takes to compute the results\.
 
 Materialized views in Amazon Redshift provide a way to address these issues\. A *materialized view* contains a precomputed result set, based on an SQL query over one or more base tables\. You can issue SELECT statements to query a materialized view, in the same way that you can query other tables or views in the database\. Amazon Redshift returns the precomputed results from the materialized view, without having to access the base tables at all\. From the user standpoint, the query results are returned much faster compared to when retrieving the same data from the base tables\.
 
@@ -40,4 +40,5 @@ For information about system tables and views to monitor materialized views, see
 + [Querying a materialized view](materialized-view-query.md)
 + [Automatic query rewriting to use materialized views](materialized-view-auto-rewrite.md)
 + [Refreshing a materialized view](materialized-view-refresh.md)
-+ [Automated materialized views \(preview\)](materialized-view-auto-mv.md)
++ [Automated materialized views](materialized-view-auto-mv.md)
++ [Streaming ingestion \(preview\)](materialized-view-streaming-ingestion.md)

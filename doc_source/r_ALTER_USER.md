@@ -1,6 +1,13 @@
 # ALTER USER<a name="r_ALTER_USER"></a>
 
-Changes a database user account\. If you are the current user, you can change your own password\. For all other options, you must be a database superuser to run this command\.
+Changes a database user account\.
+
+## Required privileges<a name="r_ALTER_USER-privileges"></a>
+
+Following are required privileges for ALTER USER:
++ Superuser
++ Users with the ALTER USER privilege
++ Current user who wants to change their own password
 
 ## Syntax<a name="r_ALTER_USER-synopsis"></a>
 
@@ -18,7 +25,8 @@ CREATEDB | NOCREATEDB
 | CONNECTION LIMIT { limit | UNLIMITED }
 | SESSION TIMEOUT limit | RESET SESSION TIMEOUT
 | SET parameter { TO | = } { value | DEFAULT } 
-| RESET parameter
+| RESET parameter           
+| EXTERNALID external_id
 ```
 
 ## Parameters<a name="r_ALTER_USER-parameters"></a>
@@ -86,12 +94,15 @@ New value of the parameter\.
 DEFAULT   
 Sets the configuration parameter to the default value for all sessions run by the specified user\. 
 
+EXTERNALID *external\_id*   
+The identifier for the user, which is associated with an identity provider\. The user must have their password disabled\. For more information, see [Native identity provider \(IdP\) federation for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-native-idp.html)\.
+
 ## Usage notes<a name="r_ALTER_USER_usage_notes"></a>
 
 When using AWS Identity and Access Management \(IAM\) authentication to create database user credentials, you might want to create a superuser that is able to log on only using temporary credentials\. You can't disable a superuser's password, but you can create an unknown password using a randomly generated MD5 hash string\.
 
 ```
-alter user iam_superuser password 'mdA51234567890123456780123456789012';
+alter user iam_superuser password 'md51234567890123456780123456789012';
 ```
 
 When you set the [search\_path](r_search_path.md) parameter with the ALTER USER command, the modification takes effect on the specified user's next login\. If you want to change the search\_path value for the current user and session, use a SET command\. 
@@ -127,4 +138,10 @@ Resets the user's idle\-session timeout\. When you reset it, the cluster setting
 
 ```
 ALTER USER dbuser RESET SESSION TIMEOUT;
+```
+
+The following example updates the external ID for a user named `bob`\. The namespace is `myco_aad`\. If the namespace isn't associated with a registered identity provider, it results in an error\.
+
+```
+ALTER USER myco_aad:bob EXTERNALID "ABC123" PASSWORD DISABLE;
 ```

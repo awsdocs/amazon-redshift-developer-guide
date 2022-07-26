@@ -22,7 +22,7 @@ The leader node distributes SQL statements to the compute nodes only when a quer
 
  **Compute nodes** 
 
-The leader node compiles code for individual elements of the execution plan and assigns the code to individual compute nodes\. The compute nodes execute the compiled code and send intermediate results back to the leader node for final aggregation\. 
+The leader node compiles code for individual elements of the execution plan and assigns the code to individual compute nodes\. The compute nodes runs the compiled code and send intermediate results back to the leader node for final aggregation\. 
 
 Each compute node has its own dedicated CPU, memory, and attached disk storage, which are determined by the node type\. As your workload grows, you can increase the compute capacity and storage capacity of a cluster by increasing the number of nodes, upgrading the node type, or both\.
 
@@ -34,7 +34,7 @@ A compute node is partitioned into slices\. Each slice is allocated a portion of
 
 The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
-When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and execute queries efficiently\. For information about choosing a distribution key, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
+When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and run queries efficiently\. For information about choosing a distribution key, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
 
  **Internal network** 
 

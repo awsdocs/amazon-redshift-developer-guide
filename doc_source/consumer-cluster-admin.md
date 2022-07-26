@@ -64,7 +64,7 @@
    CREATE DATABASE sales_db FROM DATASHARE salesshare OF ACCOUNT '123456789012' NAMESPACE 'dd8772e1-d792-4fa4-996b-1870577efc0d';
    ```
 
-   You can see databases that you created from the datashare by querying [SVV\_REDSHIFT\_DATABASES](r_SVV_REDSHIFT_DATABASES.md) view\. You can't connect to these databases created from datashares, and they are read\-only\. However, you can connect to a local database on your consumer cluster and perform a cross\-database query to query the data from the databases created from datashares\. You can't create a datashare on top of database objects created from an existing datashare\. However, you can copy the data into a separate table on the consumer cluster, perform any processing needed, and then share the new objects created\.
+   You can see databases that you created from the datashare by querying [SVV\_REDSHIFT\_DATABASES](r_SVV_REDSHIFT_DATABASES.md) view\. You can't connect to these databases created from datashares, and they are read\-only\. However, you can connect to a local database on your consumer cluster and perform a cross\-database query on the data from the databases created from datashares\. You can't create a datashare on top of database objects created from an existing datashare\. However, you can copy the data into a separate table on the consumer cluster, perform any processing needed, and then share the new objects created\.
 
 1. \(Optional\) Create external schemas to refer and assign granular permissions to specific schemas in the consumer database imported on the consumer cluster\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.
 

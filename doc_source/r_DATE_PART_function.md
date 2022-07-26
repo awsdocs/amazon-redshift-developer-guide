@@ -5,13 +5,13 @@ DATE\_PART extracts date part values from an expression\. DATE\_PART is a synony
 ## Syntax<a name="r_DATE_PART_function-synopsis"></a>
 
 ```
-DATE_PART ( datepart, {date|timestamp} )
+DATE_PART(datepart, {date|timestamp})
 ```
 
 ## Arguments<a name="r_DATE_PART_function-arguments"></a>
 
  *datepart*   
-The specific part of the date value \(year, month, or day, for example\) that the function operates on\. For more information, see [Date parts for date or timestamp functions](r_Dateparts_for_datetime_functions.md)\. 
+An identifier literal or string of the specific part of the date value \(year, month, or day, for example\) that the function operates on\. For more information, see [Date parts for date or timestamp functions](r_Dateparts_for_datetime_functions.md)\. 
 
 \{*date*\|*timestamp*\}  
 A date or timestamp column or an expression that implicitly converts to a date or timestamp\. The expression must be a date or timestamp expression that contains the specified date part\. 
@@ -21,6 +21,56 @@ A date or timestamp column or an expression that implicitly converts to a date o
 DOUBLE
 
 ## Examples<a name="r_DATE_PART_function-examples"></a>
+
+The default column name for the DATE\_PART function is `pgdate_part`\. For more information about the data used in some of these examples, see [Sample database](c_sampledb.md)\.
+
+The following example finds the minute from a timestamp literal\. 
+
+```
+SELECT DATE_PART(minute, timestamp '20230104 04:05:06.789');
+pgdate_part
+6
+```
+
+The following example finds the week number from a timestamp literal\. The week number calculation follows the ISO 8601 standard\. For more information, see [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in Wikipedia\.
+
+```
+SELECT DATE_PART(week, timestamp '20220502 04:05:06.789');
+pgdate_part
+18
+```
+
+The following example finds the day of the month from a timestamp literal\.
+
+```
+SELECT DATE_PART(day, timestamp '20220502 04:05:06.789');
+pgdate_part
+2
+```
+
+The following example finds the day of the week from a timestamp literal\. The week number calculation follows the ISO 8601 standard\. For more information, see [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in Wikipedia\.
+
+```
+SELECT DATE_PART(dayofweek, timestamp '20220502 04:05:06.789');
+pgdate_part
+1
+```
+
+The following example finds the century from a timestamp literal\. The century calculation follows the ISO 8601 standard\. For more information, see [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in Wikipedia\.
+
+```
+SELECT DATE_PART(century, timestamp '20220502 04:05:06.789');
+pgdate_part
+21
+```
+
+The following example finds the month from a date literal\. 
+
+```
+SELECT DATE_PART(month, date '20220502');
+pgdate_part
+5
+```
 
 The following example applies the DATE\_PART function to a column in a table\. 
 
@@ -53,16 +103,3 @@ order by 2,1;
 ...
 (1147 rows)
 ```
-
-The following example applies the DATE\_PART function to a literal date value\.
-
-```
-select date_part(minute, '2009-01-01 02:08:01');
-
-pgdate_part
--------------
-8
-(1 row)
-```
-
-The default column name for the DATE\_PART function is PGDATE\_PART\. 

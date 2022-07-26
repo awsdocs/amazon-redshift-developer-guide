@@ -98,7 +98,7 @@ The query plan uses the following operators for queries that involve set operati
 The following operators also appear frequently in EXPLAIN output for routine queries\.
 + **Unique**
 
-  Eliminates duplicates for SELECT DISTINCT queries and UNION queries\.
+  Removes duplicates for SELECT DISTINCT queries and UNION queries\.
 + **Limit**
 
   Processes the LIMIT clause\.

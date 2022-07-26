@@ -94,7 +94,7 @@ You also must provide an IAM\_ROLE role for accessing Amazon S3 and Amazon SageM
 
 The CREATE MODEL command operates in an asynchronous mode and returns upon the export of training data to Amazon S3\. The remaining steps of model training and compilation are potentially time\-consuming and continue in the background\. During this operation, you can check the status of training using the [STV\_ML\_MODEL\_INFO](r_STV_ML_MODEL_INFO.md)\. After training completes, you can inspect the model information with the [SHOW MODEL](r_SHOW_MODEL.md)\.
 
-For a summary of the syntax and features of the simple use of CREATE MODEL, see [Simple CREATE MODEL](r_CREATE_MODEL.md#r_simple_create_model)\.
+For a summary of the syntax and features of the simple use of CREATE MODEL, see [Simple CREATE MODEL](r_create_model_use_cases.md#r_simple_create_model)\.
 
 After the training data is exported, the CREATE MODEL command completes\. Training continues in the background\. To check the status of training, use the [STV\_ML\_MODEL\_INFO](r_STV_ML_MODEL_INFO.md)\.
 

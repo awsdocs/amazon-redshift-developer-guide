@@ -10,7 +10,8 @@ You can't run CREATE DATABASE within a transaction block \(BEGIN \.\.\. END\)\. 
 CREATE DATABASE database_name [ WITH ]
 [ OWNER [=] db_owner ]
 [ CONNECTION LIMIT { limit | UNLIMITED } ]
-[ COLLATE CASE_SENSITIVE | COLLATE CASE_INSENSITIVE ]
+[ COLLATE { CASE_SENSITIVE | CASE_INSENSITIVE } ]
+[ ISOLATION LEVEL { SERIALIZABLE | SNAPSHOT } ]
 ```
 
 ## Parameters<a name="r_CREATE_DATABASE-parameters"></a>
@@ -34,8 +35,25 @@ CONNECTION LIMIT \{ *limit* \| UNLIMITED \}
 The maximum number of database connections users are permitted to have open concurrently\. The limit isn't enforced for superusers\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each user might also apply\. For more information, see [CREATE USER](r_CREATE_USER.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
-COLLATE CASE\_SENSITIVE \| COLLATE CASE\_INSENSITIVE  
+COLLATE \{ CASE\_SENSITIVE \| CASE\_INSENSITIVE \}  
 A clause that specifies whether string search or comparison is CASE\_SENSITIVE or CASE\_INSENSITIVE\. The default is CASE\_SENSITIVE\.
+
+ISOLATION LEVEL \{ SERIALIZABLE \| SNAPSHOT \}  
+A clause that specifies the isolation level used when queries run against a database\.  
++ SERIALIZABLE isolation – provides full serializability for concurrent transactions\. This is the default for a database created in a provisioned cluster\. For more information, see [Serializable isolation](c_serial_isolation.md)\.
++ SNAPSHOT isolation – provides an isolation level with protection against update and delete conflicts\. This is the default for a database created in a serverless endpoint\. 
+You can view which concurrency model your database is running as follows:   
++ Query the PG\_DATABASE\_INFO view\. 
+
+  ```
+  SELECT datname, datconfig FROM pg_database_info;
+  ```
+
+  The isolation level per database appears next to the key `concurrency_model`\. A value of `1` denotes SNAPSHOT\. A value of `2` denotes SERIALIZABLE\.  
+In Amazon Redshift databases, both SERIALIZABLE and SNAPSHOT isolation are types of serializable isolation levels\. That is, dirty reads, non\-repeatable reads, and phantom reads are prevented according to the SQL standard\. Both isolation levels guarantee that a transaction operates on a snapshot of data as it exists when the transaction begins, and that no other transaction can change that snapshot\. However, SNAPSHOT isolation doesn't provide full serializability, because it doesn't prevent write skew inserts and updates on different table rows\.  
+The following scenario illustrates write skew updates using the SNAPSHOT isolation level\. A table named `Numbers` contains a column named `digits` that contains `0` and `1` values\. Each user's UPDATE statement doesn't overlap the other user\. However, the `0` and `1` values are swapped\. The SQL they run follows this timeline with these results:      
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_DATABASE.html)
+If the same scenario is run using serializable isolation, then Amazon Redshift terminates user 2 due to a serializable violation and returns error `1023`\. For more information, see [How to fix serializable isolation errors](c_serial_isolation.md#c_serial_isolation-serializable-isolation-troubleshooting)\. In this case, only user 1 can commit successfully\. Not all workloads require serializable isolation as a requirement, in which case snapshot isolation suffices as the target isolation level for your database\.
 
 ## Syntax for using CREATE DATABASE with a datashare<a name="r_CREATE_DATABASE-datashare-synopsis"></a>
 
@@ -224,6 +242,12 @@ where datdba > 1;
  tickit      |    100 | 100
 ```
 
+The following example creates a database named **sampledb** with SNAPSHOT isolation level\.
+
+```
+CREATE DATABASE sampledb ISOLATION LEVEL SNAPSHOT;
+```
+
 The following example creates the database sales\_db from the datashare salesshare\.
 
 ```
@@ -240,7 +264,7 @@ create database sampledb collate case_insensitive;
 ```
 
 ```
-connect to sampledb;
+\connect sampledb;
 ```
 
 ```

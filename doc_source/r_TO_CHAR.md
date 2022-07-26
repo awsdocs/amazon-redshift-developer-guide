@@ -26,6 +26,46 @@ VARCHAR
 
 ## Examples<a name="r_TO_CHAR-examples"></a>
 
+The following example converts a timestamp to a value with the date and time in a format with the name of the month padded to nine characters, the name of the day of the week, and the day number of the month\.
+
+```
+select to_char(timestamp '2009-12-31 23:15:59', 'MONTH-DY-DD-YYYY HH12:MIPM');
+
+to_char
+-------------------------
+DECEMBER -THU-31-2009 11:15PM
+```
+
+The following example converts a timestamp to a value with day number of the year\.
+
+```
+select to_char(timestamp '2009-12-31 23:15:59', 'DDD');
+
+to_char
+-------------------------
+365
+```
+
+The following example converts a timestamp to an ISO day number of the week\.
+
+```
+select to_char(timestamp '2022-05-16 23:15:59', 'ID');
+
+to_char
+-------------------------
+1
+```
+
+The following example extracts the month name from a date\.
+
+```
+select to_char(date '2009-12-31', 'MONTH');
+
+to_char
+-------------------------
+DECEMBER
+```
+
 The following example converts each STARTTIME value in the EVENT table to a string that consists of hours, minutes, and seconds\.
 
 ```

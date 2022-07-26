@@ -83,3 +83,52 @@ The following statement revokes the ASSUMEROLE privilege from user reg\_user1 on
 ```
 revoke assumerole on all from reg_user1 for all;
 ```
+
+## Examples of revoking the ROLE privilege<a name="r_REVOKE-examples-role"></a>
+
+The following example revokes the sample\_role1 from to sample\_role2\.
+
+```
+CREATE ROLE sample_role2;
+GRANT ROLE sample_role1 TO ROLE sample_role2;
+REVOKE ROLE sample_role1 FROM ROLE sample_role2;
+```
+
+The following example revokes system privileges from user1\.
+
+```
+GRANT ROLE sys:DBA TO user1;
+REVOKE ROLE sys:DBA FROM user1;
+```
+
+The following example revokes sample\_role1 and sample\_role2 from user1\.
+
+```
+CREATE ROLE sample_role1;
+CREATE ROLE sample_role2;
+GRANT ROLE sample_role1, ROLE sample_role2 TO user1;
+REVOKE ROLE sample_role1, ROLE sample_role2 FROM user1;
+```
+
+The following example revokes sample\_role2 with the ADMIN OPTION from user1\.
+
+```
+GRANT ROLE sample_role2 TO user1 WITH ADMIN OPTION;
+REVOKE ADMIN OPTION FOR ROLE sample_role2 FROM user1;
+REVOKE ROLE sample_role2 FROM user1;
+```
+
+The following example revokes sample\_role1 and sample\_role2 from sample\_role5\.
+
+```
+CREATE ROLE sample_role5;
+GRANT ROLE sample_role1, ROLE sample_role2 TO ROLE sample_role5;
+REVOKE ROLE sample_role1, ROLE sample_role2 FROM ROLE sample_role5;
+```
+
+The following example revokes the CREATE SCHEMA and DROP SCHEMA system privileges to sample\_role1\.
+
+```
+GRANT CREATE SCHEMA, DROP SCHEMA TO ROLE sample_role1;
+REVOKE CREATE SCHEMA, DROP SCHEMA FROM ROLE sample_role1;
+```

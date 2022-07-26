@@ -5,7 +5,7 @@ DATEDIFF returns the difference between the date parts of two date or time expre
 ## Syntax<a name="r_DATEDIFF_function-synopsis"></a>
 
 ```
-DATEDIFF ( datepart, {date|time|timetz|timestamp}, {date|time|time|timestamp} )
+DATEDIFF ( datepart, {date|time|timetz|timestamp}, {date|time|timetz|timestamp} )
 ```
 
 ## Arguments<a name="r_DATEDIFF_function-arguments"></a>

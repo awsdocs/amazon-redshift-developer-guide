@@ -25,3 +25,4 @@ The following limitations apply to nested data:
 + `(NOT) IN` is not supported\.
 + The maximum nesting depth for all nested types is 100\. This restriction applies to all file formats \(Parquet, ORC, Ion, and JSON\)\.
 + Aggregation subqueries that access nested data can only refer to `arrays` and `maps` in their `FROM` clause, not to an external table\. 
++ Querying the pseudocolumns of nested data in a Redshift Spectrum table is not supported\. For more information, see [Pseudocolumns](c-spectrum-external-tables.md#c-spectrum-external-tables-pseudocolumns)\. 

@@ -12,7 +12,7 @@ The following are limitations and considerations when using federated queries wi
 + Federated queries don't work with concurrency scaling\. 
 + Federated queries currently don't support access through a PostgreSQL foreign data wrapper\. 
 + Federated queries to RDS MySQL or Aurora MySQL support transaction isolation at the READ COMMITTED level\. 
-+ If not specified, Amazon Redshift connects to RDS MySQL or Aurora MySQL on port 3306\. Confirm that the MySQL port number before an external schema for MySQL\. 
++ If not specified, Amazon Redshift connects to RDS MySQL or Aurora MySQL on port 3306\. Confirm the MySQL port number before creating an external schema for MySQL\. 
 + When fetching TIMESTAMP and DATE data types from MySQL, zero values are treated as NULL\. 
 
 The following are considerations for transactions when working with federated queries to PostgreSQL databases:

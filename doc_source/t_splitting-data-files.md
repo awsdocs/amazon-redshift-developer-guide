@@ -2,7 +2,7 @@
 
 When you load compressed data, we recommend that you split the data for each table into multiple files\. When you load uncompressed, delimited data, the COPY command uses massively parallel processing \(MPP\) and scan ranges to load data from large files in an Amazon S3 bucket\.
 
-## Loading data from multiple, compressed files<a name="t_splitting-data-files-compressed"></a>
+## Loading data from multiple compressed files<a name="t_splitting-data-files-compressed"></a>
 
 In cases where you have compressed data, we recommend that you split the data for each table into multiple files\. The COPY command can load data from multiple files in parallel\. You can load multiple files by specifying a common prefix, or *prefix key*, for the set, or by explicitly listing the files in a manifest file\.
 
@@ -25,9 +25,9 @@ For more information about manifest files, see [Using a manifest to specify data
 
 ## Loading data from uncompressed, delimited files<a name="t_splitting-data-files-uncompressed"></a>
 
-When you load uncompressed, delimited data, the COPY command uses the massively parallel processing \(MPP\) architecture in Amazon Redshift\. Amazon Redshift automatically uses slices working in parallel to load ranges of data from a large file in an Amazon S3 bucket\. The file must be delimited for parallel loading to occur\. For example, pipe delimited\. You can take advantage of parallel processing by setting distribution keys on your tables\. For more information about distribution keys, see [Working with data distribution styles](t_Distributing_data.md)\.
+When you load uncompressed, delimited data, the COPY command uses the massively parallel processing \(MPP\) architecture in Amazon Redshift\. Amazon Redshift automatically uses slices working in parallel to load ranges of data from a large file in an Amazon S3 bucket\. The file must be delimited for parallel loading to occur\. For example, pipe delimited\. Automatic, parallel data loading with the COPY command is also available for CSV files\. You can also take advantage of parallel processing by setting distribution keys on your tables\. For more information about distribution keys, see [Working with data distribution styles](t_Distributing_data.md)\.
 
-Automatic, parallel data loading with the COPY command isn't available for CSV files\. Additionally, it isn't supported when the COPY query includes any of the following keywords: CSV, ESCAPE, REMOVEQUOTES, and FIXEDWIDTH\.
+Automatic, parallel data loading isn't supported when the COPY query includes any of the following keywords: ESCAPE, REMOVEQUOTES, and FIXEDWIDTH\.
 
 Data from the file or files is loaded into the target table, one line per row\. The fields in the data file are matched to table columns in order, left to right\. Fields in the data files can be fixed\-width or character delimited; the default delimiter is a pipe \(\|\)\. By default, all the table columns are loaded, but you can optionally define a comma\-separated list of columns\. If a table column isn't included in the column list specified in the COPY command, it's loaded with a default value\. For more information, see [Loading default column values](c_loading_default_values.md)\.
 
@@ -39,6 +39,6 @@ Follow this general process to load data from Amazon S3, when your data is uncom
 
 1. Verify that the data was loaded correctly\.
 
-For information about data loaded into Amazon Redshift, check the [STL\_LOAD\_COMMITS](r_STL_LOAD_COMMITS.md) and [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md) system tables\. 
+For examples of COPY commands, see [COPY examples](r_COPY_command_examples.md)\. For information about data loaded into Amazon Redshift, check the [STL\_LOAD\_COMMITS](r_STL_LOAD_COMMITS.md) and [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md) system tables\. 
 
 For more information about nodes and the slices contained in each, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.

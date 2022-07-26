@@ -19,7 +19,7 @@ To drop an external database, drop the external schema\. For more information, s
 ## DROP DATABASE usage notes<a name="r_DROP_DATABASE_usage"></a>
 
 When using the DROP DATABASE statement, consider the following:
-+ In general, we recommend that you don't drop a database that contains an AWS Data Exchange datashare \(preview\) using the DROP DATABASE statement\. If you do, the AWS accounts that have access to the datashare lose access\. Performing this type of alteration can breach data product terms in AWS Data Exchange\.
++ In general, we recommend that you don't drop a database that contains an AWS Data Exchange datashare using the DROP DATABASE statement\. If you do, the AWS accounts that have access to the datashare lose access\. Performing this type of alteration can breach data product terms in AWS Data Exchange\.
 
   The following example shows an error when a database that contains an AWS Data Exchange datashare is dropped\.
 

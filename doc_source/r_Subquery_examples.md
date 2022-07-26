@@ -1,6 +1,6 @@
 # Subquery examples<a name="r_Subquery_examples"></a>
 
-The following examples show different ways in which subqueries fit into SELECT queries\. See [Join examples](r_Join_examples.md) for another example of the use of subqueries\. 
+The following examples show different ways in which subqueries fit into SELECT queries\. See [JOIN examples](r_Join_examples.md) for another example of the use of subqueries\. 
 
 ## SELECT list subquery<a name="r_Subquery_examples-select-list-subquery"></a>
 

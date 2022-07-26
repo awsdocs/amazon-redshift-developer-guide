@@ -4,6 +4,13 @@ Drops a datashare\. This command isn't reversible\.
 
 Only a superuser or the datashare owner can drop a datashare\.
 
+## Required privileges<a name="r_DROP_DATASHARE-privileges"></a>
+
+Following are required privileges for DROP DATASHARE:
++ Superuser
++ Users with the DROP DATASHARE privilege
++ Datashare owner
+
 ## Syntax<a name="r_DROP_DATASHARE-synopsis"></a>
 
 ```
@@ -18,7 +25,7 @@ The name of the datashare to be dropped\.
 ## DROP DATASHARE usage notes<a name="r_DROP_DATASHARE_usage"></a>
 
 When using the DROP DATASHARE statement, consider the following:
-+ In general, we recommend that you don't drop an AWS Data Exchange datashare \(preview\) using the DROP DATASHARE statement\. If you do, the AWS accounts that have access to the datashare lose access\. Performing this type of alteration can breach data product terms in AWS Data Exchange\.
++ In general, we recommend that you don't drop an AWS Data Exchange datashare using the DROP DATASHARE statement\. If you do, the AWS accounts that have access to the datashare lose access\. Performing this type of alteration can breach data product terms in AWS Data Exchange\.
 
   The following example shows an error when an AWS Data Exchange datashare is dropped\.
 

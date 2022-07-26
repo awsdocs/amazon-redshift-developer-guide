@@ -4,7 +4,7 @@ Amazon Redshift uses queries based on structured query language \(SQL\) to inter
 
 Once your system is set up, you typically work with DML the most, especially the [SELECT](r_SELECT_synopsis.md) command for retrieving and viewing data\. To write effective data retrieval queries in Amazon Redshift, become familiar with SELECT and apply the tips outlined in [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md) to maximize query efficiency\.
 
-To understand how Amazon Redshift processes queries, use the [Query processing](c-query-processing.md) and [Analyzing and improving queries](c-query-tuning.md) sections\. Then you can apply this information in combination with diagnostic tools to identify and eliminate issues in query performance\.
+To understand how Amazon Redshift processes queries, use the [Query processing](c-query-processing.md) and [Analyzing and improving queries](c-query-tuning.md) sections\. Then you can apply this information in combination with diagnostic tools to identify and remove issues in query performance\.
 
 To identify and address some of the most common and most serious issues you are likely to encounter with Amazon Redshift queries, use the [Troubleshooting queries](queries-troubleshooting.md) section\.
 

@@ -1,6 +1,6 @@
 # Analyzing and improving queries<a name="c-query-tuning"></a>
 
-Retrieving information from an Amazon Redshift data warehouse involves executing complex queries on extremely large amounts of data, which can take a long time to process\. To ensure queries process as quickly as possible, there are a number of tools you can use to identify potential performance issues\.
+Retrieving information from an Amazon Redshift data warehouse involves running complex queries on extremely large amounts of data, which can take a long time to process\. To make sure that queries process as quickly as possible, there are a number of tools you can use to identify potential performance issues\.
 
 **Topics**
 + [Query analysis workflow](c-query-analysis-process.md)

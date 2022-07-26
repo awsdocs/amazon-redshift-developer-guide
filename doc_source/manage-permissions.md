@@ -1,6 +1,6 @@
 # Managing permissions for datashares in Amazon Redshift<a name="manage-permissions"></a>
 
-As a producer cluster administrator, you retain control for the datasets you are sharing\. You can add new objects to or remove them from the datashare\. You can also grant or revoke access to datashares as a whole for the consumer clusters, AWS accounts, or AWS Regions \(preview\)\. When permissions are revoked, consumer clusters immediately lose access to the shared objects and stop seeing them in the list of INBOUND datashares in SVV\_DATASHARES\.
+As a producer cluster administrator, you retain control for the datasets you are sharing\. You can add new objects to or remove them from the datashare\. You can also grant or revoke access to datashares as a whole for the consumer clusters, AWS accounts, or AWS Regions\. When permissions are revoked, consumer clusters immediately lose access to the shared objects and stop seeing them in the list of INBOUND datashares in SVV\_DATASHARES\.
 
 The following example creates a datashare `salesshare` and adds a table `public.tickit_sales_redshift` to `salesshare`\. It also grants usage permissions on `salesshare` to a cluster namespace\.
 

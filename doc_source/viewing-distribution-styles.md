@@ -2,7 +2,7 @@
 
 To view the distribution style of a table, query the PG\_CLASS\_INFO view or the SVV\_TABLE\_INFO view\.
 
-The RELEFFECTIVEDISTSTYLE column in PG\_CLASS\_INFO indicates the current distribution style for the table\. If the table uses automatic distribution, RELEFFECTIVEDISTSTYLE is 10 or 11, which indicates whether the effective distribution style is AUTO \(ALL\) or AUTO \(EVEN\)\. If the table uses automatic distribution, the distribution style might initially show AUTO \(ALL\), then change to AUTO \(EVEN\) when the table grows\. 
+The RELEFFECTIVEDISTSTYLE column in PG\_CLASS\_INFO indicates the current distribution style for the table\. If the table uses automatic distribution, RELEFFECTIVEDISTSTYLE is 10, 11, or 12 which indicates whether the effective distribution style is AUTO \(ALL\), AUTO \(EVEN\), or AUTO \(KEY\)\. If the table uses automatic distribution, the distribution style might initially show AUTO \(ALL\), then change to AUTO \(EVEN\) or AUTO \(KEY\) when the table grows\. 
 
 The following table gives the distribution style for each value in RELEFFECTIVEDISTSTYLE column: 
 
@@ -14,8 +14,9 @@ The following table gives the distribution style for each value in RELEFFECTIVED
 | 8 | ALL | 
 | 10 | AUTO \(ALL\) | 
 | 11 | AUTO \(EVEN\) | 
+| 12 | AUTO \(KEY\) | 
 
-The DISTSTYLE column in SVV\_TABLE\_INFO indicates the current distribution style for the table\. If the table uses automatic distribution, DISTSTYLE is AUTO \(ALL\) or AUTO \(EVEN\)\.
+The DISTSTYLE column in SVV\_TABLE\_INFO indicates the current distribution style for the table\. If the table uses automatic distribution, DISTSTYLE is AUTO \(ALL\), AUTO \(EVEN\), or AUTO \(KEY\)\.
 
 The following example creates four tables using the three distribution styles and automatic distribution, then queries SVV\_TABLE\_INFO to view the distribution styles\. 
 

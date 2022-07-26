@@ -1,6 +1,6 @@
 # SVV\_DATASHARES<a name="r_SVV_DATASHARES"></a>
 
-Use SVV\_DATASHARES to view a list of datashares created on the cluster and datashares shared with the cluster\. 
+Use SVV\_DATASHARES to view a list of datashares created on the cluster, and datashares shared with the cluster\. 
 
 ## Table columns<a name="r_SVV_DATASHARES-table-columns"></a>
 

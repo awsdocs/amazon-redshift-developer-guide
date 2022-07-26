@@ -1,11 +1,6 @@
-# Working with AWS Data Exchange for Amazon Redshift \(preview\)<a name="adx-datashare"></a>
+# Working with AWS Data Exchange for Amazon Redshift<a name="adx-datashare"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the AWS Data Exchange for Amazon Redshift feature, which is in preview release\. The documentation and the feature are both subject to change\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to adx\-redshift\-preview@amazon\.com\.   | 
-
-*AWS Data Exchange for Amazon Redshift* makes it easy to license access to your Amazon Redshift data through AWS Data Exchange\. When a customer subscribes to a product with AWS Data Exchange datashares, AWS Data Exchange automatically adds the customer as a data consumer on all AWS Data Exchange datashares included with the product\. Invoices are automatically generated, and payments are centrally collected and automatically disbursed through AWS Marketplace Entitlement Service\.
+*AWS Data Exchange for Amazon Redshift* makes it convenient to license access to your Amazon Redshift data through AWS Data Exchange\. When a customer subscribes to a product with AWS Data Exchange datashares, AWS Data Exchange automatically adds the customer as a data consumer on all AWS Data Exchange datashares included with the product\. Invoices are automatically generated, and payments are centrally collected and automatically disbursed through AWS Marketplace Entitlement Service\.
 
 Providers can license data in Amazon Redshift at a granular level, such as schemas, tables, views, and user\-defined functions\. You can use the same AWS Data Exchange datashare across multiple AWS Data Exchange products\. Any objects added to the AWS Data Exchange datashare is available to consumers\. Producers can view all AWS Data Exchange datashares managed by AWS Data Exchange on their behalf using Amazon Redshift API operations, SQL commands, and the Amazon Redshift console\. Customers who subscribe to a product AWS Data Exchange datashares have read\-only access to the objects in the datashares\. 
 
@@ -17,7 +12,7 @@ Customers who want to consume third\-party producer data can browse the AWS Data
 
  If you are a data producer \(also known as a provider on AWS Data Exchange\), you can create AWS Data Exchange datashares that connect to your Amazon Redshift databases\. To add AWS Data Exchange datashares to products on AWS Data Exchange, you must be a registered AWS Data Exchange provider\.
 
-For more information on how to get started with AWS Data Exchange datashares, see [Sharing licensed Amazon Redshift data on AWS Data Exchange \(preview\)](adx-getting-started.md)\.
+For more information on how to get started with AWS Data Exchange datashares, see [Sharing licensed Amazon Redshift data on AWS Data Exchange](adx-getting-started.md)\.
 
 ### Using AWS Data Exchange datashares as a consumer with an active AWS Data Exchange subscription<a name="subscriber-how-it-works"></a>
 
@@ -25,7 +20,7 @@ If you are a consumer with an active AWS Data Exchange subscription \(also known
 
 After you subscribe to a product that contains AWS Data Exchange datashares, create a database from the datashare within your cluster\. You can then query the data in Amazon Redshift directly without extracting, transforming, and loading the data\. 
 
-For more information on how to get started with AWS Data Exchange datashares, see [Sharing licensed Amazon Redshift data on AWS Data Exchange \(preview\)](adx-getting-started.md)\.
+For more information on how to get started with AWS Data Exchange datashares, see [Sharing licensed Amazon Redshift data on AWS Data Exchange](adx-getting-started.md)\.
 
 ## Considerations when using AWS Data Exchange for Amazon Redshift<a name="adx-usage-notes"></a>
 
@@ -39,4 +34,4 @@ When using AWS Data Exchange for Amazon Redshift, consider the following:
 + Producers can't view the SQL queries that consumers run\. They can only view metadata, such as the number of queries or the objects consumers query, through Amazon Redshift tables that only the producer can access\. For more information, see [Tracking usage and auditing in data sharing in Amazon Redshift](auditing.md)\.
 + We recommend that you make your datashares publicly accessible\. If you don't, subscribers on AWS Data Exchange with publicly accessible consumer clusters won't be able to use your datashare\.
 + We recommend that you don't delete an AWS Data Exchange datashare shared to other AWS accounts using the DROP DATASHARE statement\. If you do, the AWS accounts that have access to the datashare will lose access\. This action is irreversible\. Performing this type of alteration can breach data product terms in AWS Data Exchange\. If you want to delete an AWS Data Exchange datashare, see [DROP DATASHARE usage notes](r_DROP_DATASHARE.md#r_DROP_DATASHARE_usage)\.
-+ For cross\-Region \(preview\) data sharing, you can create AWS Data Exchange datashares to share licensed data\.
++ For cross\-Region data sharing, you can create AWS Data Exchange datashares to share licensed data\.

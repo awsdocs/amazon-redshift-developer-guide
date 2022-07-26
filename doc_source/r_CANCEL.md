@@ -4,6 +4,14 @@ Cancels a database query that is currently running\.
 
 The CANCEL command requires the process ID of the running query and displays a confirmation message to verify that the query was cancelled\.
 
+## Required privileges<a name="r_CANCEL-privileges"></a>
+
+Following are required privileges for CANCEL:
++ Superuser canceling their own query
++ Superuser canceling a user's query
++ Users with the CANCEL privilege canceling a user's query
++ User canceling their own query
+
 ## Syntax<a name="r_CANCEL-synopsis"></a>
 
 ```

@@ -37,7 +37,7 @@ Only up\-to\-date \(fresh\) materialized views are considered for automatic rewr
 
 You can use automatic query rewriting of materialized views that are created on cluster version 1\.0\.20949 or later\.
 
-You can disable automatic query rewriting at the session level by using SET mv\_enable\_aqmv\_for\_session to FALSE\.
+You can stop automatic query rewriting at the session level by using SET mv\_enable\_aqmv\_for\_session to FALSE\.
 
 ## Limitations<a name="mv_auto-rewrite_limitations"></a>
 
@@ -46,9 +46,9 @@ Following are limitations for using automatic query rewriting of materialized vi
   + Subqueries
   + Left, right, or full outer joins
   + Set operations 
-  + DISTINCT aggregates
-  + Window functions
-  + Any aggregates except SUM or COUNT
+  + Any aggregate functions, except SUM, COUNT, MIN, and MAX\. \(These are the only aggregate functions that work with automatic query rewriting\.\)
+  + Any aggregate functions with DISTINCT
+  + Any window functions
   + SELECT DISTINCT or HAVING clauses
   + External tables
   + Other materialized views

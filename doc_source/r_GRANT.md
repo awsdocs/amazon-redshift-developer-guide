@@ -19,28 +19,27 @@ You can't run GRANT \(on an external resource\) within a transaction block \(BEG
 ```
 GRANT { { SELECT | INSERT | UPDATE | DELETE | DROP | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
     ON { [ TABLE ] table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...] }
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 GRANT { { CREATE | TEMPORARY | TEMP } [,...] | ALL [ PRIVILEGES ] }
     ON DATABASE db_name [, ...]
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 GRANT { { CREATE | USAGE } [,...] | ALL [ PRIVILEGES ] }
     ON SCHEMA schema_name [, ...]
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 GRANT { EXECUTE | ALL [ PRIVILEGES ] }
     ON { FUNCTION function_name ( [ [ argname ] argtype [, ...] ] ) [, ...] | ALL FUNCTIONS IN SCHEMA schema_name [, ...] }
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 GRANT { EXECUTE | ALL [ PRIVILEGES ] }
     ON { PROCEDURE procedure_name ( [ [ argname ] argtype [, ...] ] ) [, ...] | ALL PROCEDURES IN SCHEMA schema_name [, ...] }
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 GRANT USAGE 
     ON LANGUAGE language_name [, ...]
-
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
 The following is the syntax for column\-level privileges on Amazon Redshift tables and views\. 
@@ -48,7 +47,8 @@ The following is the syntax for column\-level privileges on Amazon Redshift tabl
 ```
 GRANT { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES ] ( column_name [,...] ) }
      ON { [ TABLE ] table_name [, ...] }
-     TO { username | GROUP group_name | PUBLIC } [, ...]
+
+     TO { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
 The following is the syntax for the ASSUMEROLE privilege granted to users and groups with a specified role\. To begin using the ASSUMEROLE privilege, see [Usage notes for granting the ASSUMEROLE privilege ](r_GRANT-usage-notes.md#r_GRANT-usage-notes-assumerole)\.
@@ -80,7 +80,7 @@ The following is the syntax for using GRANT for datashare privileges on Amazon R
 
 ```
 GRANT { ALTER | SHARE } ON DATASHARE datashare_name     
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
 The following is the syntax for using GRANT for datashare usage privileges on Amazon Redshift\. You grant access to a datashare to a consumer using the USAGE privilege\. You can't grant this privilege to users or user groups\. This privilege also doesn't support the WITH GRANT OPTION for the GRANT statement\. Only users or user groups with the SHARE privilege previously granted to them FOR the datashare can run this type of GRANT statement\.
@@ -95,18 +95,73 @@ The following is the syntax for GRANT data\-sharing usage permissions on a speci
 
 ```
 GRANT USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
-    TO { username | GROUP group_name | PUBLIC } [, ...]
+    TO { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
 The following is the syntax for machine learning model privileges on Amazon Redshift\.
 
 ```
 GRANT CREATE MODEL
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 GRANT { EXECUTE | ALL [ PRIVILEGES ] }
     ON MODEL model_name [, ...]
-    TO { username [ WITH GRANT OPTION ] | GROUP group_name | PUBLIC } [, ...]
+
+    TO { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
+```
+
+The following is the syntax for granting role privileges on Amazon Redshift\.
+
+```
+GRANT { ROLE role_name } [, ...] TO { { user_name [ WITH ADMIN OPTION ] } | ROLE role_name }[, ...]
+```
+
+The following is the syntax for granting system privileges to roles on Amazon Redshift\.
+
+```
+GRANT
+  {
+    { CREATE USER | DROP USER | ALTER USER | 
+    CREATE SCHEMA | DROP SCHEMA |
+    ALTER DEFAULT PRIVILEGES |
+    CREATE TABLE | DROP TABLE | ALTER TABLE |
+    CREATE OR REPLACE FUNCTION | CREATE OR REPLACE EXTERNAL FUNCTION | 
+    DROP FUNCTION |
+    CREATE OR REPLACE PROCEDURE | DROP PROCEDURE |
+    CREATE OR REPLACE VIEW | DROP VIEW |
+    CREATE MODEL | DROP MODEL |
+    CREATE DATASHARE | ALTER DATASHARE | DROP DATASHARE |
+    CREATE LIBRARY | DROP LIBRARY |
+    CREATE ROLE | DROP ROLE
+    TRUNCATE TABLE 
+    VACUUM | ANALYZE | CANCEL }[, ...]
+  }
+  | { ALL [ PRIVILEGES ] }
+TO { ROLE role_name } [, ...]
+```
+
+The following is the syntax for granting permissions to explain the row\-level security policy filters of a query in the EXPLAIN plan\. You can revoke the privilege using the REVOKE statement\.
+
+```
+GRANT EXPLAIN RLS TO { username | ROLE rolename }
+```
+
+The following is the syntax for granting permissions to bypass row\-level security policies for a query\. 
+
+```
+GRANT IGNORE RLS TO { username | ROLE rolename }
+```
+
+The following is the syntax for granting permissions to the specified row\-level security policy\.
+
+```
+GRANT SELECT ON [ TABLE ] table_name [, ...]
+TO RLS POLICY policy_name [, ...]
+```
+
+```
+GRANT EXECUTE ON FUNCTION function_name ( [ [ argname ] argtype [, ...] ] ) [, ...] 
+TO RLS POLICY policy_name [, ...]
 ```
 
 ## Parameters<a name="r_GRANT-parameters"></a>
@@ -170,6 +225,9 @@ Indicates the IAM role receiving the privileges\.
 WITH GRANT OPTION   <a name="grant-with-grant"></a>
 Indicates that the user receiving the privileges can in turn grant the same privileges to others\. WITH GRANT OPTION can't be granted to a group or to PUBLIC\.
 
+ROLE *role\_name*   <a name="grant-role"></a>
+Grants the privileges to a role\.
+
 GROUP *group\_name*   <a name="grant-group"></a>
 Grants the privileges to a user group\.
 
@@ -197,11 +255,9 @@ ON SCHEMA *schema\_name*   <a name="grant-schema"></a>
 Grants the specified privileges on a schema\.  
 GRANT CREATE ON SCHEMA and the CREATE privilege in GRANT ALL ON SCHEMA aren't supported for Amazon Redshift Spectrum external schemas\. To grant usage of external tables in an external schema, grant USAGE ON SCHEMA to the users that need access\. Only the owner of an external schema or a superuser is permitted to create external tables in the external schema\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. 
 
-EXECUTE ON FUNCTION *function\_name*   <a name="grant-function"></a>
-Grants the EXECUTE privilege on a specific function\. Because function names can be overloaded, you must include the argument list for the function\. For more information, see [Naming UDFs](udf-naming-udfs.md)\.
-
 EXECUTE ON ALL FUNCTIONS IN SCHEMA *schema\_name*  <a name="grant-all-functions"></a>
-Grants the specified privileges on all functions in the referenced schema\.
+Grants the specified privileges on all functions in the referenced schema\.  
+Amazon Redshift doesn't support GRANT or REVOKE statements for pg\_proc builtin entries defined in pg\_catalog namespace\. 
 
 EXECUTE ON PROCEDURE *procedure\_name*   <a name="grant-procedure"></a>
 Grants the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.
@@ -226,7 +282,7 @@ SHARE
 Grants privileges to users and user groups to add data consumers to a datashare\. This privilege is required to enable the particular consumer \(account or namespace\) to access the datashare from their clusters\. The consumer can be the same or a different AWS account, with the same or a different cluster namespace as specified by a globally unique identifier \(GUID\)\.
 
 ON DATASHARE *datashare\_name*   <a name="grant-datashare"></a>
-Grants the specified privileges on the referenced datashare\.
+Grants the specified privileges on the referenced datashare\. For information about consumer access control granularity, see [Sharing data at different levels in Amazon Redshift](granularity.md)\.
 
 USAGE  
 When USAGE is granted to a consumer account or namespace within the same account, the specific consumer account or namespace within the account can access the datashare and the objects of the datashare in read\-only fashion\.  
@@ -248,3 +304,11 @@ Grants the CREATE MODEL privilege to specific users or user groups\.
 
 ON MODEL *model\_name*  
 Grants the EXECUTE privilege on a specific model\. 
+
+\{ role \} \[, \.\.\.\]  
+The role to be granted to another role, a user, or PUBLIC\.  
+PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\.
+
+TO \{ \{ *user\_name* \[ WITH ADMIN OPTION \] \} \| role \}\[, \.\.\.\]  
+Grants the specified role to a specified user with the WITH ADMIN OPTION, another role, or PUBLIC\.  
+The WITH ADMIN OPTION clause provides the administration options for all the granted roles to all the grantees\. 

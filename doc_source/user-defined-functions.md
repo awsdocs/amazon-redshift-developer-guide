@@ -13,3 +13,4 @@ By default, all users can run UDFs\. For more information about privileges, see 
 + [Creating a scalar SQL UDF](udf-creating-a-scalar-sql-udf.md)
 + [Creating a scalar Python UDF](udf-creating-a-scalar-udf.md)
 + [Creating a scalar Lambda UDF](udf-creating-a-lambda-sql-udf.md)
++ [Example uses of user\-defined functions \(UDFs\)](udf-example-uses.md)

@@ -1,4 +1,4 @@
-# Creating external tables for Amazon Redshift Spectrum<a name="c-spectrum-external-tables"></a>
+# Creating external tables for Redshift Spectrum<a name="c-spectrum-external-tables"></a>
 
 
 
@@ -67,18 +67,17 @@ To view external tables, query the [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES
 
 ## Pseudocolumns<a name="c-spectrum-external-tables-pseudocolumns"></a>
 
-By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. Select these columns to view the path to the data files on Amazon S3 and the size of the data files for each row returned by a query\. The `$path` and `$size` column names must be delimited with double quotation marks\. A `SELECT *` clause doesn't return the pseudocolumns\. You must explicitly include the $path and $size column names in your query, as the following example shows\.
+By default, Amazon Redshift creates external tables with the pseudocolumns `$path`, `$size`, and `$spectrum_oid`\. Select the `$path` column to view the path to the data files on Amazon S3, and select the `$size` column to view the size of the data files for each row returned by a query\. The `$spectrum_oid` column provides the ability to perform correlated queries with Redshift Spectrum\. For an example, see [Example: Performing correlated subqueries in Redshift Spectrum](c_performing-correlated-subqueries-spectrum.md)\. You must delimit the `$path`, `$size`, and `$spectrum_oid` column names with double quotation marks\. A SELECT \* clause doesn't return the pseudocolumns\. You must explicitly include the `$path`, `$size`, and `$spectrum_oid` column names in your query, as the following example shows\.
 
 ```
-select "$path", "$size"
-from spectrum.sales_part
-where saledate = '2008-12-01';
+select "$path", "$size", "$spectrum_oid"
+from spectrum.sales_part where saledate = '2008-12-01';
 ```
 
-You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to false\. 
+You can disable the creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [spectrum\_enable\_pseudo\_columns](r_spectrum_enable_pseudo_columns.md)\. You can also disable only the `$spectrum_oid` pseudocolumn by setting the `enable_spectrum_oid` to `false`\. For more information, see [enable\_spectrum\_oid](r_spectrum_enable_spectrum_oid.md)\. However, disabling the `$spectrum_oid` pseudocolumn also disables support for correlated queries with Redshift Spectrum\.
 
 **Important**  
-Selecting `$size` or `$path` incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
+Selecting `$size`, `$path`, or `$spectrum_oid` incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
 
 ### Pseudocolumns example<a name="c-spectrum-external-tables-pseudocolumns-example"></a>
 
@@ -88,8 +87,8 @@ The following example returns the total size of related data files for an extern
 select distinct "$path", "$size"
 from spectrum.sales_part;
 
- $path                                 | $size
----------------------------------------+-------
+ $path                                                                    | $size
+--------------------------------------------------------------------------+-------
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/ |  1616
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/ |  1644
@@ -403,7 +402,7 @@ You can map the same external table to both file structures shown in the previou
 
 ## Creating external tables for data managed in Apache Hudi<a name="c-spectrum-column-mapping-hudi"></a>
 
-To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\. You can read Copy On Write \(CoW\) tables in Apache Hudi versions 0\.5\.2, 0\.6\.0, and 0\.7\.0\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/concepts.html#copy-on-write-table) in the open source Apache Hudi documentation\. 
+To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\.  You can read Copy On Write \(CoW\) tables in Apache Hudi versions 0\.5\.2, 0\.6\.0, 0\.7\.0, 0\.8\.0, 0\.9\.0, and 0\.10\.0 that are created and modified with insert, delete, and upsert write operations\. For example, bootstrap tables are not supported\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/next/table_types#copy-on-write-table)  in the open source Apache Hudi documentation\. 
 
 When you create an external table that references data in Hudi CoW format, you map each column in the external table to a column in the Hudi data\. Mapping is done by column\. 
 

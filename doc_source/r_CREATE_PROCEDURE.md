@@ -2,6 +2,17 @@
 
 Creates a new stored procedure or replaces an existing procedure for the current database\.
 
+## Required privileges<a name="r_CREATE_PROCEDURE-privileges"></a>
+
+Following are required privileges for CREATE PROCEDURE:
++ For CREATE PROCEDURE:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] PROCEDURE privilege
++ For REPLACE PROCEDURE:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] PROCEDURE privilege
+  + Procedure owner
+
 ## Syntax<a name="r_CREATE_PROCEDURE-synopsis"></a>
 
 ```

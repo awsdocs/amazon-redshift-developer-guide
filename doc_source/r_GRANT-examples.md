@@ -179,3 +179,55 @@ The following example grants the ASSUMEROLE privilege to the user `reg_user1` fo
 grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-ML' 
 to reg_user1 for create model;
 ```
+
+## Examples of granting the ROLE privileges<a name="r_GRANT-examples-role"></a>
+
+The following example grants sample\_role1 to user1\.
+
+```
+CREATE ROLE sample_role1;
+GRANT ROLE sample_role1 TO user1;
+```
+
+The following example grants sample\_role1 to user1 with the WITH ADMIN OPTION, sets the current session for user1, and user1 grants sample\_role1 to user2\.
+
+```
+GRANT ROLE sample_role1 TO user1 WITH ADMIN OPTION;
+SET SESSION AUTHORIZATION user1;
+GRANT ROLE sample_role1 TO user2;
+```
+
+The following example grants sample\_role1 to sample\_role2\.
+
+```
+GRANT ROLE sample_role1 TO ROLE sample_role2;
+```
+
+The following example grants sample\_role2 to sample\_role3 and sample\_role4\. Then it attempts to grants sample\_role3 to sample\_role1\.
+
+```
+GRANT ROLE sample_role2 TO ROLE sample_role3;
+GRANT ROLE sample_role3 TO ROLE sample_role2;
+ERROR: cannot grant this role, a circular dependency was detected between these roles
+```
+
+The following example grants the CREATE USER system privileges to sample\_role1\.
+
+```
+GRANT CREATE USER TO ROLE sample_role1;
+```
+
+The following example grants the system\-defined role `sys:dba` to user1\.
+
+```
+GRANT ROLE sys:dba TO user1;
+```
+
+The following example attempts to grant sample\_role3 in a circular dependency to sample\_role2\.
+
+```
+CREATE ROLE sample_role3;
+GRANT ROLE sample_role2 TO ROLE sample_role3;
+GRANT ROLE sample_role3 TO ROLE sample_role2; -- fail
+ERROR:  cannot grant this role, a circular dependency was detected between these roles
+```

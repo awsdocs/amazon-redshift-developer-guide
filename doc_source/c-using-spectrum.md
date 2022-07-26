@@ -9,8 +9,10 @@ Using Amazon Redshift Spectrum, you can efficiently query and retrieve structure
 + [Using Redshift Spectrum with AWS Lake Formation](spectrum-lake-formation.md)
 + [Creating data files for queries in Amazon Redshift Spectrum](c-spectrum-data-files.md)
 + [Creating external schemas for Amazon Redshift Spectrum](c-spectrum-external-schemas.md)
-+ [Creating external tables for Amazon Redshift Spectrum](c-spectrum-external-tables.md)
++ [Creating external tables for Redshift Spectrum](c-spectrum-external-tables.md)
 + [Improving Amazon Redshift Spectrum query performance](c-spectrum-external-performance.md)
++ [Setting data handling options](t_setting-data-handling-options.md)
++ [Example: Performing correlated subqueries in Redshift Spectrum](c_performing-correlated-subqueries-spectrum.md)
 + [Monitoring metrics in Amazon Redshift Spectrum](c-spectrum-metrics.md)
 + [Troubleshooting queries in Amazon Redshift Spectrum](c-spectrum-troubleshooting.md)
 + [Tutorial: Querying nested data with Amazon Redshift Spectrum](tutorial-query-nested-data.md)
@@ -32,32 +34,7 @@ You can't view details for Redshift Spectrum tables using the same resources tha
 
 ### Amazon Redshift Spectrum Regions<a name="c-spectrum-regions"></a>
 
-Redshift Spectrum is available only in the following AWS Regions: 
-+ US East \(N\. Virginia\) Region \(us\-east\-1\)
-+ US East \(Ohio\) Region \(us\-east\-2\)
-+ US West \(N\. California\) Region \(us\-west\-1\)
-+ US West \(Oregon\) Region \(us\-west\-2\) 
-+ Africa \(Cape Town\) Region \(af\-south\-1\)
-+ Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\)
-+ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
-+ Asia Pacific \(Osaka\) Region \(ap\-northeast\-3\)
-+ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
-+ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
-+ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
-+ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
-+ Canada \(Central\) Region \(ca\-central\-1\)
-+ China \(Beijing\) Region \(cn\-north\-1\)
-+ China \(Ningxia\) Region \(cn\-northwest\-1\)
-+ Europe \(Frankfurt\) Region \(eu\-central\-1\)
-+ Europe \(Ireland\) Region \(eu\-west\-1\)
-+ Europe \(London\) Region \(eu\-west\-2\)
-+ Europe \(Milan\) Region \(eu\-south\-1\)
-+ Europe \(Paris\) Region \(eu\-west\-3\)
-+ Europe \(Stockholm\) Region \(eu\-north\-1\)
-+ Middle East \(Bahrain\) Region \(me\-south\-1\)
-+ South America \(São Paulo\) Region \(sa\-east\-1\)
-+ AWS GovCloud \(US\-East\) \(us\-gov\-east\-1\)
-+ AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
+Redshift Spectrum is available in AWS Regions where Amazon Redshift is available, unless otherwise specified in Region specific documentation\. For AWS Region availability in commercial Regions, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html#redshift_region) in the *Amazon Web Services General Reference*\. 
 
 ### Amazon Redshift Spectrum considerations<a name="c-spectrum-considerations"></a>
 

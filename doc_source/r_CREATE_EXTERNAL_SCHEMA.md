@@ -17,31 +17,26 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
-FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL }
-DATABASE 'database_name'
+FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL | KINESIS }
+[ DATABASE 'database_name' ]
 [ REGION 'aws-region' ]
 [ URI 'hive_metastore_uri' [ PORT port_number ] ]
 IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
-SECRET_ARN 'ssm-secret-arn'             
+[ SECRET_ARN 'ssm-secret-arn' ]          
 [ CATALOG_ROLE 'catalog-role-arn-string' ] 
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
 ```
 
-The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query to RDS POSTGRES or Aurora PostgreSQL\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query to RDS POSTGRES or Aurora PostgreSQL\. You can also create an external schema that references streaming sources, such as Kinesis Data Streams\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
 FROM POSTGRES
 DATABASE 'federated_database_name' [SCHEMA 'schema_name']
 URI 'hostname' [ PORT port_number ] 
-IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'
 ```
-
-
-|  | 
-| --- |
-| The following is prerelease documentation for the federated query to MySQL feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query to RDS MySQL or Aurora MySQL\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
 
@@ -50,8 +45,16 @@ CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
 FROM MYSQL
 DATABASE 'federated_database_name' 
 URI 'hostname' [ PORT port_number ]
-IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'
+```
+
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data in a Kinesis stream\. For more information, see [Streaming ingestion \(preview\)](materialized-view-streaming-ingestion.md)\.
+
+```
+CREATE EXTERNAL SCHEMA [IF NOT EXISTS] schema_name
+FROM KINESIS
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 ```
 
 The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a cross\-database query\.
@@ -76,7 +79,8 @@ DATA CATALOG indicates that the external database is defined in the Athena data 
 If the external database is defined in an external Data Catalog in a different AWS Region, the REGION parameter is required\. DATA CATALOG is the default\.  
 HIVE METASTORE indicates that the external database is defined in an Apache Hive metastore\. If HIVE METASTORE, is specified, URI is required\.   
 POSTGRES indicates that the external database is defined in RDS PostgreSQL or Aurora PostgreSQL\.  
-MYSQL indicates that the external database is defined in RDS MySQL or Aurora MySQL\.
+MYSQL indicates that the external database is defined in RDS MySQL or Aurora MySQL\.  
+KINESIS indicates that the data source is a stream from Kinesis Data Streams\.
 
 FROM REDSHIFT  
 A keyword that indicates that the database is located in Amazon Redshift\.

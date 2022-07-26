@@ -119,27 +119,16 @@ iam_role 'arn:aws:iam::123456789012:role/mySpectrumRole';
 If your Hive metastore is in Amazon EMR, you must give your Amazon Redshift cluster access to your Amazon EMR cluster\. To do so, you create an Amazon EC2 security group\. You then allow all inbound traffic to the EC2 security group from your Amazon Redshift cluster's security group and your Amazon EMR cluster's security group\. Then you add the EC2 security to both your Amazon Redshift cluster and your Amazon EMR cluster\.
 
 **View your Amazon Redshift cluster's security group name**
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
-
-**New console**
 
 To display the security group, do the following:
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster from the list to open its details\.
+1. On the navigation menu, choose **Clusters**, then choose the cluster from the list to open its details\.
 
 1. Choose **Properties** and view the **Network and security settings** section\. 
 
 1. Find your security group in **VPC security group** and take note of it\. 
-
-**Original console**
-
-1. In the Amazon Redshift console, choose your cluster\.
-
-1. Find your cluster security groups in the **Cluster Properties** group\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-redshift-security-groups.png)
 
 ****
 

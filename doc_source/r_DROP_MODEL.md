@@ -6,6 +6,14 @@ DROP MODEL also deletes all the associated prediction function that is derived f
 
 This command isn't reversible\. The DROP MODEL command commits immediately\.
 
+## Required privileges<a name="r_DROP_MODEL-privileges"></a>
+
+Following are required privileges for DROP MODEL:
++ Superuser
++ Users with the DROP MODEL privilege
++ Model owner
++ Schema owner
+
 ## Syntax<a name="r_DROP_MODEL-synopsis"></a>
 
 ```

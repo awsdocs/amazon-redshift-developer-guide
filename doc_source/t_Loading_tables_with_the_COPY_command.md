@@ -29,7 +29,7 @@ To protect the information in your files, you can encrypt the data files before 
 
 Amazon Redshift has features built in to COPY to load uncompressed, delimited data quickly\. But you can compress your files using gzip, lzop, or bzip2 to save time uploading the files\.
 
-If the following keywords are in the COPY query, automatic splitting of uncompressed data is not supported: CSV, ESCAPE, REMOVEQUOTES, and FIXEDWIDTH\.
+If the following keywords are in the COPY query, automatic splitting of uncompressed data is not supported: ESCAPE, REMOVEQUOTES, and FIXEDWIDTH\. But the CSV keyword is supported\.
 
 To help keep your data secure in transit within the AWS cloud, Amazon Redshift uses hardware accelerated SSL to communicate with Amazon S3 or Amazon DynamoDB for COPY, UNLOAD, backup, and restore operations\.
 

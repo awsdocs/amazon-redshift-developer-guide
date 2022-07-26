@@ -66,7 +66,7 @@ If data distribution is suboptimal, you might see the following:
 
 If none of the preceding is true, you can also see if any of the tables in your query have data skew by running the query in [Identifying tables with data skew or unsorted rows](diagnostic-queries-for-query-tuning.md#identify-tables-with-data-skew-or-unsorted-rows)\.
 
-To fix this issue, take another look at the distribution styles for the tables in the query and see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\.
+To fix this issue, review the distribution styles for the tables in the query and see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\.
 
 ## Insufficient memory allocated to the query<a name="insufficient-memory-allocated-to-the-query"></a>
 

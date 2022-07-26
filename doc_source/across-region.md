@@ -1,20 +1,8 @@
-# Sharing data across AWS Regions \(preview\)<a name="across-region"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the Amazon Redshift data sharing feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
-
-When working with the preview, consider the following:
-+ Your clusters must be on a cluster version that supports cross\-Region data sharing to use this feature\. 
-+ This feature is currently available for test purposes only\. Don't use the feature for production use cases\.
-+  The data sharing preview period is expected to run until January 31, 2022\. Unless the preview period is extended, plan to delete your cluster by January 31, 2022\.
-+ You can use a cluster in any AWS Regions with Amazon Redshift RA3 instance types to preview the data sharing feature\. For more information, see [RA3 node type availability in AWS Regions](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#ra3-regions) in the *Amazon Redshift Cluster Management Guide*\.
-+ For any questions, issues, or feedback related to the preview features during the preview period, email `redshift-datasharing@amazon.com` or open a support case with AWS Support\. 
+# Sharing data across AWS Regions<a name="across-region"></a>
 
 You can share data for read purposes across Amazon Redshift clusters in AWS Regions\. With cross\-Region data sharing, you can share data across AWS Regions without the need to copy data manually\. You don't have to unload your data into Amazon S3 and copy the data into a new Amazon Redshift cluster or perform cross\-Region snapshot copy\.
 
-With cross\-Region data sharing, you can share data across clusters in the same AWS account, or in different AWS accounts even when the clusters are in different Regions\. When sharing data with Amazon Redshift clusters that are in the same AWS account but different AWS Regions, follow the same workflow as sharing data within an AWS account account\. For more information, see [Sharing data within an AWS account](within-account.md)\.
+With cross\-Region data sharing, you can share data across clusters in the same AWS account, or in different AWS accounts even when the clusters are in different Regions\. When sharing data with Amazon Redshift clusters that are in the same AWS account but different AWS Regions, follow the same workflow as sharing data within an AWS account\. For more information, see [Sharing data within an AWS account](within-account.md)\.
 
 If clusters sharing data are in different AWS accounts and AWS Regions, you can follow the same workflow as sharing data across AWS accounts and include Region\-level associations on the consumer cluster\. Cross\-Region data sharing supports datashare association with the entire AWS account, the entire AWS Region, or specific cluster namespaces within an AWS Region\. For more information about sharing data across AWS accounts, see [Sharing data across AWS accounts](across-account.md)\.
 
@@ -29,11 +17,41 @@ When the administrator chooses the entire AWS account, all existing and future c
 
 **If you are a producer cluster administrator or database owner**, create a datashare, add database objects and data consumers to the datashare, and grant permissions to data consumers\. For more information, see [Producer cluster administrator actions](producer-cluster-admin.md)\.
 
-**If you are a producer account administrator**, authorize datashares using  the Amazon Redshift console and choose the data consumers\. 
+**If you are a producer account administrator**, authorize datashares using the AWS Command Line Interface \(AWS CLI\) or the Amazon Redshift console and choose the data consumers\. 
 
 **If you are a consumer account administrator** – follow these steps:
 
 To associate one or more datashares that are shared from other accounts to your entire AWS account or specific AWS Regions or cluster namespaces within an AWS Region, use the Amazon Redshift console\. 
+
+With cross\-Region datasharing, you can add clusters in a specific AWS Region using the AWS Command Line Interface \(AWS CLI\) or Amazon Redshift console\.
+
+To specify one or more AWS Regions, you can use the `associate-data-share-consumer` CLI command with the optional `consumer-region` option\.
+
+With the CLI, the following example associates the `Salesshare` with the entire AWS account with the `associate-entire-account` option\. You can only associate one Region at a time\.
+
+```
+aws redshift associate-data-share-consumer
+--region {PRODUCER_REGION}
+--data-share-arn arn:aws:redshift:{PRODUCER_REGION}:{PRODUCER_ACCOUNT}:datashare:{PRODUCER_CLUSTER_NAMESPACE}/Salesshare
+--associate-entire-account
+```
+
+The following example associates the `Salesshare` with the US East \(Ohio\) Region \(`us-east-2`\)\.
+
+```
+aws redshift associate-data-share-consumer
+--region {PRODUCER_REGION}
+--data-share-arn arn:aws:redshift:{PRODUCER_REGION}:0123456789012:datashare:{PRODUCER_CLUSTER_NAMESPACE}/Salesshare
+--consumer-region 'us-east-2'
+```
+
+The following example associates the `Salesshare` with a specific consumer cluster namespace in another AWS account in the Asia Pacific \(Sydney\) Region \(`ap-southeast-2`\)\.
+
+```
+aws redshift associate-data-share-consumer
+--data-share-arn arn:aws:redshift:{PRODUCER_REGION}:{PRODUCER_ACCOUNT}:datashare:{PRODUCER_CLUSTER_NAMESPACE}/Salesshare
+--consumer-arn 'arn:aws:redshift:ap-southeast-2:{CONSUMER_ACCOUNT}:namespace:{ConsumerImmutableClusterId}'
+```
 
 You can use the Amazon Redshift console to associate datashares with your entire AWS account or specific AWS Regions or cluster namespaces within an AWS Region\. To do this, sign in to the [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\. Then associate one or more datashares that are shared from other accounts with your entire AWS account, the entire AWS Region, or a specific cluster namespace within an AWS Region\. For more information, see [Associating datashares](associate-datashare-console.md)\.
 

@@ -19,7 +19,15 @@ INTEGER
 
 ## Examples<a name="r_DATE_PART_YEAR-examples"></a>
 
-The following example extracts the year from the CALDATE column\.
+The following example finds the year from a date literal\. 
+
+```
+SELECT DATE_PART_YEAR(date '20220502 04:05:06.789');
+date_part_year
+2022
+```
+
+The following example extracts the year from the CALDATE column\. For more information about the data used in this example, see [Sample database](c_sampledb.md)\.
 
 ```
 select caldate, date_part_year(caldate)

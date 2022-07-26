@@ -110,7 +110,7 @@ SELECT array, element FROM foo AS f, f.multi_level_array AS array, array AS elem
 
 For more information about the FROM clause, see [FROM clause](r_FROM_clause30.md)\.
 
-## Object unpivoting<a name="unpioviting"></a>
+## Object unpivoting<a name="unpivoting"></a>
 
 To perform object unpivoting, Amazon Redshift uses the PartiQL syntax to iterate over SUPER objects\. It does this using the FROM clause of a query with the UNPIVOT keyword\. The following query iterates over the `c.c_orders[0]` object\.
 
@@ -145,7 +145,7 @@ WHERE c_custkey = 9451;
 
 When you use object unpivoting, Amazon Redshift doesn't support correlated unpivoting\. Specifically, suppose that you have a case where there are multiple examples of unpivoting in different query levels and the inner unpivoting references the outer one\. Amazon Redshift doesn't support this type of multiple unpivoting\.
 
-For more information about the FROM clause, see [FROM clause](r_FROM_clause30.md)\. 
+For more information about the FROM clause, see [FROM clause](r_FROM_clause30.md)\. For examples that show how to query structured data, with PIVOT and UNPIVOT, see [PIVOT and UNPIVOT examples](r_FROM_clause-pivot-unpivot-examples.md)\.
 
 ## Dynamic typing<a name="dynamic-typing-lax-processing"></a>
 

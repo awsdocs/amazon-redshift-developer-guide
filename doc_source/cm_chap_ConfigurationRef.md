@@ -1,30 +1,41 @@
 # Configuration reference<a name="cm_chap_ConfigurationRef"></a>
 
+## Modifying the server configuration<a name="t_Modifying_the_default_settings"></a>
+
+You can change the server configuration in the following ways: 
++ By using a [SET](r_SET.md) command to override a setting for the duration of the current session only\.
+
+  For example: 
+
+  ```
+  set extra_float_digits to 2;
+  ```
++ By modifying the parameter group settings for the cluster\. The parameter group settings include additional parameters that you can configure\. For more information, see [Amazon Redshift Parameter Groups](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html) in the *Amazon Redshift Cluster Management Guide*\.
++ By using the [ALTER USER](r_ALTER_USER.md) command to set a configuration parameter to a new value for all sessions run by the specified user\.
+
+  ```
+  ALTER USER username SET parameter { TO | = } { value | DEFAULT }
+  ```
+
+Use the SHOW command to view the current parameter settings\. Use SHOW ALL to view all the settings that you can configure by using the [SET](r_SET.md) command\.
+
+```
+show all;
+```
+
+```
+name                      | setting      
+--------------------------+--------------
+analyze_threshold_percent | 10           
+datestyle                 | ISO, MDY     
+extra_float_digits        | 2            
+query_group               | default      
+search_path               | $user, public
+statement_timeout         | 0            
+timezone                  | UTC            
+wlm_query_slot_count      | 1
+```
+
+## <a name="w131aac66b5"></a>
+
 **Topics**
-+ [Modifying the server configuration](t_Modifying_the_default_settings.md)
-+ [activate\_aqua](r_activate_aqua.md)
-+ [analyze\_threshold\_percent](r_analyze_threshold_percent.md)
-+ [cast\_super\_null\_on\_error](r_cast_super_null_on_error.md)
-+ [datashare\_break\_glass\_session\_var \(preview\)](r_datashare_break_glass_session_var.md)
-+ [datestyle](r_datestyle.md)
-+ [default\_geometry\_encoding](r_default_geometry_encoding.md)
-+ [describe\_field\_name\_in\_uppercase](r_describe_field_name_in_uppercase.md)
-+ [downcase\_delimited\_identifier](r_downcase_delimited_identifier.md)
-+ [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)
-+ [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md)
-+ [enable\_vacuum\_boost](r_enable_vacuum_boost.md)
-+ [error\_on\_nondeterministic\_update](r_error_on_nondeterministic_update.md)
-+ [extra\_float\_digits](r_extra_float_digits.md)
-+ [json\_serialization\_enable](r_json_serialization_enable.md)
-+ [json\_serialization\_parse\_nested\_strings](r_json_serialization_parse_nested_strings.md)
-+ [max\_concurrency\_scaling\_clusters](r_max_concurrency_scaling_clusters.md)
-+ [max\_cursor\_result\_set\_size](max_cursor_result_set_size.md)
-+ [mv\_enable\_aqmv\_for\_session](r_mv_enable_aqmv_for_session.md)
-+ [navigate\_super\_null\_on\_error](r_navigate_super_null_on_error.md)
-+ [parse\_super\_null\_on\_error](r_parse_super_null_on_error.md)
-+ [query\_group](r_query_group.md)
-+ [search\_path](r_search_path.md)
-+ [statement\_timeout](r_statement_timeout.md)
-+ [stored\_proc\_log\_min\_messages](r_stored_proc_log_min_messages.md)
-+ [timezone](r_timezone_config.md)
-+ [wlm\_query\_slot\_count](r_wlm_query_slot_count.md)

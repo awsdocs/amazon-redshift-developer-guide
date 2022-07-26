@@ -54,13 +54,13 @@ The manifest file is a text file in JSON format that Amazon Redshift uses to con
 	    {"endpoint":"<ssh_endpoint_or_IP>", 
            "command": "<remote_command>",
            "mandatory":true, 
-           "publickey": “<public_key>”, 
-           "username": “<host_user_name>”}, 
+           "publickey": "<public_key>", 
+           "username": "<host_user_name>"}, 
 	    {"endpoint":"<ssh_endpoint_or_IP>", 
            "command": "<remote_command>",
            "mandatory":true, 
-           "publickey": “<public_key>”, 
-           "username": “<host_user_name>”} 
+           "publickey": "<public_key>", 
+           "username": "<host_user_name>"} 
      ] 
 }
 ```
