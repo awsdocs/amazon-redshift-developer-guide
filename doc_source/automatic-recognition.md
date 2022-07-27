@@ -17,7 +17,7 @@ Automatic recognition doesn't support epochsecs and epochmillisecs\.
 To test whether a date or timestamp value will be automatically converted, use a CAST function to attempt to convert the string to a date or timestamp value\. For example, the following commands test the timestamp value `'J2345678 04:05:06.789'`:
 
 ```
-create table formattest (test char(16));
+create table formattest (test char(21));
 insert into formattest values('J2345678 04:05:06.789');
 select test, cast(test as timestamp) as timestamp, cast(test as date) as date from formattest;
 
