@@ -78,7 +78,7 @@ The following table has examples of time zone formats\.
 
 | Format | Example | 
 | --- | --- | 
-|  day mon hh:mi:ss yyyy tz  |  17 Dec 07:37:16 1997 PST   | 
+|  dd mon hh:mi:ss yyyy tz  |  17 Dec 07:37:16 1997 PST   | 
 |  mm/dd/yyyy hh:mi:ss\.ss tz  |  12/17/1997 07:37:16\.00 PST  | 
 |  mm/dd/yyyy hh:mi:ss\.ss tz  |  12/17/1997 07:37:16\.00 US/Pacific  | 
 |  yyyy\-mm\-dd hh:mi:ss\+/\-tz  |  1997\-12\-17 07:37:16\-08   | 
