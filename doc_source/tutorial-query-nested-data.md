@@ -33,6 +33,7 @@ For tutorial prerequisites, steps, and nested data use cases, see the following 
 + [Step 2: Query your nested data in Amazon S3 with SQL extensions](tutorial-query-nested-data-sqlextensions.md)
 + [Nested data use cases ](nested-data-use-cases.md)
 + [Nested data limitations](nested-data-restrictions.md)
++ [Serializing complex nested JSON](serializing-complex-JSON.md)
 
 ### Prerequisites<a name="tutorial-nested-data-prereq"></a>
 

@@ -2,7 +2,7 @@
 
 The default automatic commit behavior causes each SQL command that runs separately to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable isolation](c_serial_isolation.md)\.
 
-However, when you call a stored procedure from within a user specified transaction block \(defined by BEGIN\.\.\.COMMIT\), all statements in the stored procedure run in the context of the user specified transaction\. The procedure doesn't commit implicitly on exit\. The caller controls the procedure commit or rollback\.
+However, suppose that you call a stored procedure from within a user specified transaction block \(defined by BEGIN\.\.\.COMMIT\)\. In this case, all statements in the stored procedure run in the context of the user\-specified transaction\. The procedure doesn't commit implicitly on exit\. The caller controls the procedure commit or rollback\.
 
 If any error is encountered while running a stored procedure, all changes made in the current transaction are rolled back\.
 
@@ -183,7 +183,7 @@ CONTEXT: SQL statement "TRUNCATE test_table_b"
 PL/pgSQL function "sp_truncate_atomic" line 2 at SQL statement
 ```
 
-The following example shows that a user who is not a superuser or the owner of a table can issue a TRUNCATE statement on the table using a `Security Definer` stored procedure\. The example shows the following actions: 
+The following example shows that a user who is not a superuser or the owner of a table can issue a TRUNCATE statement on the table\. The user does this using a `Security Definer` stored procedure\. The example shows the following actions: 
 + The user1 creates table `test_tbl`\. 
 + The user1 creates stored procedure `sp_truncate_test_tbl`\. 
 + The user1 grants `EXECUTE` privilege on the stored procedure to user2\. 

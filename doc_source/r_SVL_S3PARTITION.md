@@ -4,13 +4,13 @@ Use the SVL\_S3PARTITION view to get details about Amazon Redshift Spectrum part
 
 SVL\_S3PARTITION is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_S3PARTITION-table-columns"></a>
+## Table columns<a name="r_SVL_S3PARTITION-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_S3PARTITION.html)
 
-## Sample Query<a name="r_SVL_S3PARTITION-sample-query"></a>
+## Sample query<a name="r_SVL_S3PARTITION-sample-query"></a>
 
-The following example gets the partition details for the last query executed\.
+The following example gets the partition details for the last query completed\.
 
 ```
 SELECT query, segment,

@@ -37,12 +37,34 @@ Optional\. An expression that sets the range of records for each group in the OV
 
 ORDER BY *order\_list*   
 The expression on which to calculate cumulative distribution\. The expression must have either a numeric data type or be implicitly convertible to one\. If ORDER BY is omitted, the return value is 1 for all rows\.   
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY doesn't produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
 
 ## Return type<a name="r_WF_CUME_DIST-returns"></a>
 
 FLOAT8
 
-## Example<a name="r_WF_CUME_DIST-examples"></a>
+## Examples<a name="r_WF_CUME_DIST-examples"></a>
 
-See [CUME\_DIST window function examples](r_Examples_of_CUME_DIST_WF.md)\. 
+The following example calculates the cumulative distribution of the quantity for each seller:
+
+```
+select sellerid, qty, cume_dist() 
+over (partition by sellerid order by qty) 
+from winsales;
+
+sellerid   qty	   cume_dist
+--------------------------------------------------
+1         10.00	   0.33
+1         10.64	   0.67
+1         30.37	   1
+3         10.04	   0.25
+3         15.15	   0.5
+3         20.75	   0.75
+3         30.55	   1
+2         20.09	   0.5
+2         20.12	   1
+4         10.12	   0.5
+4         40.23	   1
+```
+
+For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\.

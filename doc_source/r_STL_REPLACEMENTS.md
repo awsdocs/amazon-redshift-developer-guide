@@ -2,7 +2,7 @@
 
 Displays a log that records when invalid UTF\-8 characters were replaced by the [COPY](r_COPY.md) command with the ACCEPTINVCHARS option\. A log entry is added to STL\_REPLACEMENTS for each of the first 100 rows on each node slice that required at least one replacement\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_REPLACEMENTS-table-columns2"></a>
 

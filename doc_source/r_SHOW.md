@@ -8,6 +8,12 @@ Displays the current value of a server configuration parameter\. This value may 
 SHOW { parameter_name | ALL }
 ```
 
+The following statement displays the current value of a session context variable\. If the variable doesn't exist, Amazon Redshift throws an error\.
+
+```
+SHOW variable_name
+```
+
 ## Parameters<a name="r_SHOW-parameters"></a>
 
  *parameter\_name*   
@@ -15,6 +21,9 @@ Displays the current value of the specified parameter\.
 
 ALL   
 Displays the current values of all of the parameters\.
+
+*variable\_name*   
+Displays the current value of the specified variable\.
 
 ## Examples<a name="r_SHOW-examples"></a>
 
@@ -40,4 +49,10 @@ extra_float_digits | 0
 query_group        | unset
 search_path        | $user,public
 statement_timeout  | 0
+```
+
+The following example displays the current value of the specified variable\.
+
+```
+SHOW app_context.user_id;
 ```

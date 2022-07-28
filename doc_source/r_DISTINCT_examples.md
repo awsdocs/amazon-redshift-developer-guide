@@ -1,5 +1,7 @@
 # SELECT DISTINCT examples<a name="r_DISTINCT_examples"></a>
 
+
+
 Return a list of different category groups from the CATEGORY table:
 
 ```

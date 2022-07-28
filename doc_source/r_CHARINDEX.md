@@ -1,4 +1,4 @@
-# CHARINDEX Function<a name="r_CHARINDEX"></a>
+# CHARINDEX function<a name="r_CHARINDEX"></a>
 
 Returns the location of the specified substring within a string\. Synonym of the STRPOS function\.
 

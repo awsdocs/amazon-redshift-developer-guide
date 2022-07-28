@@ -4,11 +4,11 @@
 
 This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. 
 
-## Table Columns<a name="SVL_UDF_LOG-table-columns"></a>
+## Table columns<a name="SVL_UDF_LOG-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_UDF_LOG.html)
 
-## Sample Queries<a name="SVL_UDF_LOG-sample-queries"></a>
+## Sample queries<a name="SVL_UDF_LOG-sample-queries"></a>
 
 The following example shows how UDFs handle system\-defined errors\. The first block shows the definition for a UDF function that returns the inverse of an argument\. When you run the function and provide a 0 argument, as the second block shows, the function returns an error\. The third statement reads the error message that is logged in SVL\_UDF\_LOG
 

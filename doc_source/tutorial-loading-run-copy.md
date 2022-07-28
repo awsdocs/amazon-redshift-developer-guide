@@ -14,7 +14,7 @@ The basic [COPY](r_COPY.md) command syntax is as follows\.
 COPY table_name [ column_list ] FROM data_source CREDENTIALS access_credentials [options] 
 ```
 
-To execute a COPY command, you provide the following values\. 
+To run a COPY command, you provide the following values\. 
 <a name="tutorial-loading-syntax-table-name"></a>
 **Table name**  
 The target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\. 
@@ -33,7 +33,7 @@ You can use the COPY command to load data from an Amazon S3 bucket, an Amazon EM
   In some cases, you might need to load files with different prefixes, for example from multiple buckets or folders\. In others, you might need to exclude files that share a prefix\. In these cases, you can use a manifest file\. A *manifest file* explicitly lists each load file and its unique object key\. You use a manifest file to load the PART table later in this tutorial\. 
 <a name="tutorial-loading-syntax-credentials"></a>
 **Credentials**  
-To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\. These credentials are an access key ID and a secret access key\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted or if you are using temporary access credentials\. For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. If you do not have an access key ID and secret access key, you need to get them\. For more information, go to [Administering access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)\. 
+To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\.   These credentials include an IAM role Amazon Resource Name \(ARN\)\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted\.  For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. 
 
 <a name="tutorial-loading-syntax-options.title"></a>Options
 
@@ -102,7 +102,7 @@ The COPY commands in this tutorial are presented in the following format\.
 
 ```
 copy table from 's3://<your-bucket-name>/load/key_prefix' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 options;
 ```
 
@@ -112,13 +112,13 @@ For each COPY command, do the following:
 
    This step assumes the bucket and the cluster are in the same region\. Alternatively, you can specify the region using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\. 
 
-1. Replace *<Your\-Access\-Key\-ID>* and *<Your\-Secret\-Access\-Key>* with your own AWS IAM account credentials\. The segment of the credentials string that is enclosed in single quotation marks must not contain any spaces or line breaks\. 
+1. Replace *<aws\-account\-id>* and *<role\-name>* with your own AWS account and IAM role\. The segment of the credentials string that is enclosed in single quotation marks must not contain any spaces or line breaks\. 
 
 ### Load the PART table using NULL AS<a name="tutorial-loading-load-part"></a>
 
 In this step, you use the CSV and NULL AS options to load the PART table\. 
 
-The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split your load data into multiple files](c_best-practices-use-multiple-files.md)\. 
+The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split your load data](c_best-practices-use-multiple-files.md)\. 
 <a name="tutorial-loading-key-prefix"></a>
 **Key prefix**  
 You can load from multiple files by specifying a key prefix for the file set, or by explicitly listing the files in a manifest file\. In this step, you use a key prefix\. In a later step, you use a manifest file\. The key prefix `'s3://mybucket/load/part-csv.tbl'` loads the following set of the files in the `load` folder\. 
@@ -135,7 +135,7 @@ part-csv.tbl-007
 ```
 <a name="tutorial-loading-csv-format"></a>
 **CSV format**  
-CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quote character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quote character by using the QUOTE AS option\. When you use the quote character within the field, escape the character with an additional quote character\.
+CSV, which stands for comma separated values, is a common format used for importing and exporting spreadsheet data\. CSV is more flexible than comma\-delimited format because it enables you to include quoted strings within fields\. The default quotation mark character for COPY from CSV format is a double quotation mark \( " \), but you can specify another quotation mark character by using the QUOTE AS option\. When you use the quotation mark character within the field, escape the character with an additional quotation mark character\.
 
 The following excerpt from a CSV\-formatted data file for the PART table shows strings enclosed in double quotation marks \(`"LARGE ANODIZED BRASS"`\)\. It also shows a string enclosed in two double quotation marks within a quoted string \(`"MEDIUM ""BURNISHED"" TIN"`\)\.
 
@@ -147,15 +147,15 @@ The following excerpt from a CSV\-formatted data file for the PART table shows s
 
 The data for the PART table contains characters that cause COPY to fail\. In this exercise, you troubleshoot the errors and correct them\. 
 
-To load data that is in CSV format, add `csv` to your COPY command\. Execute the following command to load the PART table\. 
+To load data that is in CSV format, add `csv` to your COPY command\. Run the following command to load the PART table\. 
 
 ```
 copy part from 's3://<your-bucket-name>/load/part-csv.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>'
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 csv;
 ```
 
-You should get an error message similar to the following\.
+You might get an error message similar to the following\.
 
 ```
 An error occurred when executing the SQL command:
@@ -203,16 +203,16 @@ By default, COPY treats a NUL terminator character as an EOR character and termi
 **Note**  
 The table column that receives the NULL value must be configured as *nullable\.* That is, it must not include the NOT NULL constraint in the CREATE TABLE specification\.
 
-To load PART using the NULL AS option, execute the following COPY command\.
+To load PART using the NULL AS option, run the following COPY command\.
 
 ```
 copy part from 's3://<your-bucket-name>/load/part-csv.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 csv
 null as '\000';
 ```
 
-To verify that COPY loaded NULL values, execute the following command to select only the rows that contain NULL\.
+To verify that COPY loaded NULL values, run the following command to select only the rows that contain NULL\.
 
 ```
 select p_partkey, p_name, p_mfgr, p_category from part where p_mfgr is null;
@@ -245,25 +245,25 @@ The following excerpt from the data for the SUPPLIER table uses pipe\-delimited 
 ```
 <a name="tutorial-loading-region"></a>
 **REGION**  
-Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency, minimize eventual consistency issues, and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md) 
+Whenever possible, you should locate your load data in the same AWS region as your Amazon Redshift cluster\. If your data and your cluster are in the same region, you reduce latency and avoid cross\-region data transfer costs\. For more information, see [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md) 
 
 If you must load data from a different AWS region, use the REGION option to specify the AWS region in which the load data is located\. If you specify a region, all of the load data, including manifest files, must be in the named region\. For more information, see [REGION](copy-parameters-data-source-s3.md#copy-region)\. 
 
-If your cluster is in the US East \(N\. Virginia\) region, execute the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US West \(Oregon\) region\. For this example, do not change the bucket name\. 
+If your cluster is in the US East \(N\. Virginia\) Region, run the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US West \(Oregon\) Region\. For this example, do not change the bucket name\. 
 
 ```
 copy supplier from 's3://awssampledbuswest2/ssbgz/supplier.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 delimiter '|' 
 gzip
 region 'us-west-2';
 ```
 
-If your cluster is *not* in the US East \(N\. Virginia\) region, execute the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US East \(N\. Virginia\) region\. For this example, do not change the bucket name\.
+If your cluster is *not* in the US East \(N\. Virginia\) region, run the following command to load the SUPPLIER table from pipe\-delimited data in an Amazon S3 bucket located in the US East \(N\. Virginia\) region\. For this example, do not change the bucket name\.
 
 ```
 copy supplier from 's3://awssampledb/ssbgz/supplier.tbl' 
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 delimiter '|' 
 gzip
 region 'us-east-1';
@@ -293,12 +293,12 @@ fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15,
 c_region :12, c_phone:15,c_mktsegment:10'
 ```
 
-To load the CUSTOMER table from fixed\-width data, execute the following command\.
+To load the CUSTOMER table from fixed\-width data, run the following command\.
 
 ```
 copy customer
 from 's3://<your-bucket-name>/load/customer-fw.tbl'
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15, c_region :12, c_phone:15,c_mktsegment:10';
 ```
 
@@ -308,7 +308,7 @@ You should get an error message, similar to the following\.
 An error occurred when executing the SQL command:
 copy customer
 from 's3://mybucket/load/customer-fw.tbl'
-credentials'aws_access_key_id=...
+credentials'...
 
 ERROR: Load into table 'customer' failed.  Check 'stl_load_errors' system table for details. [SQL State=XX000] 
 
@@ -320,12 +320,12 @@ Execution time: 2.95s
 **MAXERROR**  
 By default, the first time COPY encounters an error, the command fails and returns an error message\. To save time during testing, you can use the MAXERROR option to instruct COPY to skip a specified number of errors before it fails\. Because we expect errors the first time we test loading the CUSTOMER table data, add `maxerror 10` to the COPY command\. 
 
-To test using the FIXEDWIDTH and MAXERROR options, execute the following command\.
+To test using the FIXEDWIDTH and MAXERROR options, run the following command\.
 
 ```
 copy customer
 from 's3://<your-bucket-name>/load/customer-fw.tbl'
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15, c_region :12, c_phone:15,c_mktsegment:10'
 maxerror 10;
 ```
@@ -381,7 +381,7 @@ By examining the results, you can see that there are two messages in the `error_
 
   The VARCHAR data type supports multibyte UTF\-8 characters up to three bytes\. If the load data contains unsupported or invalid characters, you can use the ACCEPTINVCHARS option to replace each invalid character with a specified alternative character\.
 
-Another problem with the load is more difficult to detect—the load produced unexpected results\. To investigate this problem, execute the following command to query the CUSTOMER table\.
+Another problem with the load is more difficult to detect—the load produced unexpected results\. To investigate this problem, run the following command to query the CUSTOMER table\.
 
 ```
 select c_custkey, c_name, c_address        
@@ -457,11 +457,11 @@ The following shows the `customer-fw-manifest` text\.
 
 1. Upload the file to the load folder on your bucket\.
 
-1. Execute the following COPY command\.
+1. Run the following COPY command\.
 
    ```
    copy customer from 's3://<your-bucket-name>/load/customer-fw-manifest'
-   credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+   credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
    fixedwidth 'c_custkey:10, c_name:25, c_address:25, c_city:10, c_nation:15, c_region :12, c_phone:15,c_mktsegment:10'
    maxerror 10 
    acceptinvchars as '^'
@@ -472,7 +472,7 @@ The following shows the `customer-fw-manifest` text\.
 
 In this step, you use the DELIMITER and DATEFORMAT options to load the DWDATE table\.
 
-When loading DATE and TIMESTAMP columns, COPY expects the default format, which is YYYY\-MM\-DD for dates and YYYY\-MM\-DD HH:MI:SS for time stamps\. If the load data does not use a default format, you can use DATEFORMAT and TIMEFORMAT to specify the format\. 
+When loading DATE and TIMESTAMP columns, COPY expects the default format, which is YYYY\-MM\-DD for dates and YYYY\-MM\-DD HH:MI:SS for timestamps\. If the load data does not use a default format, you can use DATEFORMAT and TIMEFORMAT to specify the format\. 
 
 The following excerpt shows date formats in the DWDATE table\. Notice that the date formats in column two are inconsistent\.
 
@@ -485,11 +485,11 @@ The following excerpt shows date formats in the DWDATE table\. Notice that the d
 **DATEFORMAT**  
 You can specify only one date format\. If the load data contains inconsistent formats, possibly in different columns, or if the format is not known at load time, you use DATEFORMAT with the `'auto'` argument\. When `'auto'` is specified, COPY recognizes any valid date or time format and convert it to the default format\. The `'auto'` option recognizes several formats that are not supported when using a DATEFORMAT and TIMEFORMAT string\. For more information, see [Using automatic recognition with DATEFORMAT and TIMEFORMAT](automatic-recognition.md)\. 
 
-To load the DWDATE table, execute the following COPY command\.
+To load the DWDATE table, run the following COPY command\.
 
 ```
 copy dwdate from 's3://<your-bucket-name>/load/dwdate-tab.tbl'
-credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
 delimiter '\t' 
 dateformat 'auto';
 ```
@@ -522,11 +522,11 @@ The following screenshot shows the data files for LINEORDER\.
 
 **To evaluate the performance of COPY with multiple files**
 
-1. Execute the following command to COPY from a single file\. Do not change the bucket name\.
+1. Run the following command to COPY from a single file\. Do not change the bucket name\.
 
    ```
    copy lineorder from 's3://awssampledb/load/lo/lineorder-single.tbl' 
-   credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+   credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
    gzip
    compupdate off
    region 'us-east-1';
@@ -544,11 +544,11 @@ The following screenshot shows the data files for LINEORDER\.
    Execution time: 51.56s
    ```
 
-1. Execute the following command to COPY from multiple files\. Do not change the bucket name\.
+1. Run the following command to COPY from multiple files\. Do not change the bucket name\.
 
    ```
    copy lineorder from 's3://awssampledb/load/lo/lineorder-multi.tbl' 
-   credentials 'aws_access_key_id=<Your-Access-Key-ID>;aws_secret_access_key=<Your-Secret-Access-Key>' 
+   credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>' 
    gzip
    compupdate off
    region 'us-east-1';

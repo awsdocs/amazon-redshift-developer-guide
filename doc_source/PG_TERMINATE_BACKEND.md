@@ -21,7 +21,7 @@ None
 
  If you are close to reaching the limit for concurrent connections, use PG\_TERMINATE\_BACKEND to terminate idle sessions and free up the connections\. For more information, see [Limits in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)\. 
 
-If queries in multiple sessions hold locks on the same table, you can use PG\_TERMINATE\_BACKEND to terminate one of the sessions, which forces any currently running transactions in the terminated session to release all locks and roll back the transaction\. Query the PG\_\_LOCKS catalog table to view currently held locks\. 
+If queries in multiple sessions hold locks on the same table, you can use PG\_TERMINATE\_BACKEND to terminate one of the sessions, which forces any currently running transactions in the terminated session to release all locks and roll back the transaction\. Query the PG\_LOCKS catalog table to view currently held locks\. 
 
 If a query is not in a transaction block \(BEGIN … END\), you can cancel the query by using the [CANCEL](r_CANCEL.md) command or the [PG\_CANCEL\_BACKEND](PG_CANCEL_BACKEND.md) function\. 
 

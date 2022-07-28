@@ -29,6 +29,7 @@ One or more string literals that indicate how the function matches the pattern\.
 + e – Extract a substring using a subexpression\. 
 
   If *pattern* includes a subexpression, REGEXP\_SUBSTR matches a substring using the first subexpression in *pattern*\. REGEXP\_SUBSTR considers only the first subexpression; additional subexpressions are ignored\. If the pattern doesn't have a subexpression, REGEXP\_SUBSTR ignores the 'e' parameter\. 
++ p – Interpret the pattern with Perl Compatible Regular Expression \(PCRE\) dialect\.
 
 ## Return type<a name="REGEXP_SUBSTR-return-type"></a>
 
@@ -39,14 +40,44 @@ VARCHAR
 The following example returns the portion of an email address between the @ character and the domain extension\.
 
 ```
-select email, regexp_substr(email,'@[^.]*')
-from users limit 5;
+SELECT email, regexp_substr(email,'@[^.]*')
+FROM users
+ORDER BY userid LIMIT 4;
 
-   email                                    | regexp_substr
---------------------------------------------+----------------
-Suspendisse.tristique@nonnisiAenean.edu     | @nonnisiAenean
-sed@lacusUtnec.ca                           | @lacusUtnec
-elementum@semperpretiumneque.ca             | @semperpretiumneque
-Integer.mollis.Integer@tristiquealiquet.org | @tristiquealiquet
-Donec.fringilla@sodalesat.org               | @sodalesat
+                     email                     |      regexp_substr
+-----------------------------------------------+--------------------------
+ Etiam.laoreet.libero@sodalesMaurisblandit.edu | @sodalesMaurisblandit
+ Suspendisse.tristique@nonnisiAenean.edu       | @nonnisiAenean
+ amet.faucibus.ut@condimentumegetvolutpat.ca   | @condimentumegetvolutpat
+ sed@lacusUtnec.ca                             | @lacusUtnec
+```
+
+The following example returns the portion of the input corresponding to the first occurrence of the string `FOX`, using case\-insensitive matching\.
+
+```
+SELECT regexp_substr('the fox', 'FOX', 1, 1, 'i');
+
+ regexp_substr
+---------------
+ fox
+```
+
+The following example uses a pattern written in the PCRE dialect to locate words containing at least one number and one lowercase letter\. It uses the `?=` operator, which has a specific look\-ahead connotation in PCRE\. This example returns the portion of the input corresponding to the second such word\.
+
+```
+SELECT regexp_substr('passwd7 plain A1234 a1234', '(?=[^ ]*[a-z])(?=[^ ]*[0-9])[^ ]+', 1, 2, 'p');
+
+ regexp_substr
+---------------
+ a1234
+```
+
+The following example uses a pattern written in the PCRE dialect to locate words containing at least one number and one lowercase letter\. It uses the `?=` operator, which has a specific look\-ahead connotation in PCRE\. This example returns the portion of the input corresponding to the second such word, but differs from the previous example in that it uses case\-insensitive matching\.
+
+```
+SELECT regexp_substr('passwd7 plain A1234 a1234', '(?=[^ ]*[a-z])(?=[^ ]*[0-9])[^ ]+', 1, 2, 'ip');
+
+ regexp_substr
+---------------
+ A1234
 ```

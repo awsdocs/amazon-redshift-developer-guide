@@ -52,7 +52,7 @@ You can optionally specify the following parameters with COPY from Amazon EMR:
 
 ## Unsupported parameters<a name="copy-parameters-data-source-emr-unsupported-parms"></a>
 
-You cannot use the following parameters with COPY from Amazon EMR: 
+You can't use the following parameters with COPY from Amazon EMR: 
 + ENCRYPTED
 + MANIFEST
 + REGION

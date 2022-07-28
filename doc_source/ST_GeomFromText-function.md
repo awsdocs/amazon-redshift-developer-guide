@@ -2,6 +2,8 @@
 
 ST\_GeomFromText constructs a geometry object from a well\-known text \(WKT\) representation of an input geometry\. 
 
+ST\_GeomFromText accepts 3DZ, 3DM, and 4D where the geometry type is prefixed with Z, M, or ZM, respectively\.
+
 ## Syntax<a name="ST_GeomFromText-function-syntax"></a>
 
 ```
@@ -15,7 +17,12 @@ ST_GeomFromText(wkt_string, srid)
 ## Arguments<a name="ST_GeomFromText-function-arguments"></a>
 
  *wkt\_string*   
-A value of data type `VARCHAR` that is a WKT representation of a geometry\.
+A value of data type `VARCHAR` that is a WKT representation of a geometry\.  
+You can use the WKT keyword `EMPTY` to designate an empty point, a multipoint with an empty point, or a geometry collection with an empty point\. The following example creates a multipoint with one empty and one nonempty point\.   
+
+```
+ST_GeomFromEWKT('MULTIPOINT(1 0,EMPTY)');
+```
 
  *srid*   
 A value of data type `INTEGER` that is a spatial reference identifier \(SRID\)\. If an SRID value is provided, the returned geometry has this SRID value\. Otherwise, the SRID value of the returned geometry is set to zero \(0\)\.

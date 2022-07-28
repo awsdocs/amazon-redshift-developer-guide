@@ -64,7 +64,7 @@ The following example creates a table named CATDEMO, and then loads the table wi
 create table catdemo(catid smallint, catgroup varchar(10), catname varchar(10), catdesc varchar(50));
 ```
 
-In the following example, the data source for the COPY command is a data file named `category_pipe.txt` in the `tickit` folder of an Amazon S3 bucket named `awssampledbuswest2`\. The COPY command is authorized to access the Amazon S3 bucket through an AWS Identity and Access Management \(IAM\) role\. If your cluster has an existing IAM role with permission to access Amazon S3 attached, you can substitute your role's Amazon Resource Name \(ARN\) in the following COPY command and execute it\.
+In the following example, the data source for the COPY command is a data file named `category_pipe.txt` in the `tickit` folder of an Amazon S3 bucket named `awssampledbuswest2`\. The COPY command is authorized to access the Amazon S3 bucket through an AWS Identity and Access Management \(IAM\) role\. If your cluster has an existing IAM role with permission to access Amazon S3 attached, you can substitute your role's Amazon Resource Name \(ARN\) in the following COPY command and run it\.
 
 ```
 copy catdemo
@@ -73,7 +73,7 @@ iam_role 'arn:aws:iam::<aws-account-id>:role/<role-name>'
 region 'us-west-2';
 ```
 
-For steps to create an IAM role, see [Step 2: Create an IAM Role](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-an-iam-role.html) in the Amazon Redshift Getting Started\. For complete instructions on how to use COPY commands to load sample data, including instructions for loading data from other AWS regions, see [Step 6: Load Sample Data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started\.\.
+For steps to create an IAM role, see [Step 2: Create an IAM Role](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-an-iam-role.html) in the Amazon Redshift Getting Started Guide\. For complete instructions on how to use COPY commands to load sample data, including instructions for loading data from other AWS regions, see [Step 6: Load Sample Data from Amazon S3](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html) in the Amazon Redshift Getting Started Guide\.\.
 
 *table\-name*  <a name="r_COPY-syntax-overview-table-name"></a>
 The name of the target table for the COPY command\. The table must already exist in the database\. The table can be temporary or persistent\. The COPY command appends the new input data to any existing rows in the table\.
@@ -115,6 +115,7 @@ By default, the COPY command expects the source data to be in character\-delimit
 + [CSV](copy-parameters-data-format.md#copy-csv)
 + [DELIMITER](copy-parameters-data-format.md#copy-delimiter) 
 + [FIXEDWIDTH](copy-parameters-data-format.md#copy-fixedwidth) 
++ [SHAPEFILE](copy-parameters-data-format.md#copy-shapefile) 
 + [AVRO](copy-parameters-data-format.md#copy-avro) 
 + [JSON](copy-parameters-data-format.md#copy-json) 
 + [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) 

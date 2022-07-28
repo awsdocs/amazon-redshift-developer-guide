@@ -6,7 +6,7 @@ Records details for the following changes to a database user:
 + Alter user \(rename\)
 + Alter user \(alter properties\)
 
-This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_USERLOG-table-columns"></a>
 
@@ -14,7 +14,7 @@ This table is visible only to superusers\. For more information, see [Visibility
 
 ## Sample queries<a name="r_STL_USERLOG-sample-queries"></a>
 
-The following example performs four user actions, then queries the STL\_USERLOG table\. 
+The following example performs four user actions, then queries the STL\_USERLOG view\. 
 
 ```
 create user userlog1 password 'Userlog1';

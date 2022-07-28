@@ -14,21 +14,21 @@ In this step, you create an Amazon S3 bucket and upload the data files to the bu
 
    1. In the **Bucket Name** box of the **Create a Bucket** dialog box, type a bucket name\. 
 
-      The bucket name you choose must be unique among all existing bucket names in Amazon S3\. One way to help ensure uniqueness is to prefix your bucket names with the name of your organization\. Bucket names must comply with certain rules\. For more information, go to [Bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service Developer Guide\.* 
+      The bucket name you choose must be unique among all existing bucket names in Amazon S3\. One way to help ensure uniqueness is to prefix your bucket names with the name of your organization\. Bucket names must comply with certain rules\. For more information, go to [Bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service User Guide\.* 
 
-   1. Select a region\. 
+   1. Select a Region\. 
 
-      Create the bucket in the same region as your cluster\. If your cluster is in the Oregon region, click **Oregon**\.
+      Create the bucket in the same Region as your cluster\. If your cluster is in the US West \(Oregon\) Region, choose **US West \(Oregon\) Region \(us\-west\-2\)**\.
 
-   1. Click **Create**\. 
+   1. Choose **Create**\. 
 
       When Amazon S3 successfully creates your bucket, the console displays your empty bucket in the **Buckets** panel\. 
 
 1. Create a folder\.
 
-   1. Click the name of the new bucket\.
+   1. Choose the name of the new bucket\.
 
-   1. Click the **Actions** button, and click **Create Folder** in the drop\-down list\.
+   1. Choose the **Actions** button, and click **Create Folder** in the drop\-down list\.
 
    1. Name the new folder **load**\.
 **Note**  
@@ -36,15 +36,13 @@ The bucket that you created is not in a sandbox\. In this exercise, you add obje
 
 1. Upload the data files to the new Amazon S3 bucket\.
 
-   1. Click the name of the data folder\.
+   1. Choose the name of the data folder\.
 
-   1. In the Upload \- Select Files wizard, click **Add Files**\.
+   1. In the Upload \- Select Files wizard, choose **Add Files**\.
 
-      A file selection dialog box opens\.
+      Follow the Amazon S3 console instructions to upload all of the files you downloaded and extracted,
 
-   1. Select all of the files you downloaded and extracted, and then click **Open**\.
-
-   1. Click **Start Upload**\.
+   1. Choose **Start Upload**\.
 <a name="tutorial-loading-user-credentials"></a>
 **User Credentials**  
 The Amazon Redshift COPY command must have access to read the file objects in the Amazon S3 bucket\. If you use the same user credentials to create the Amazon S3 bucket and to run the Amazon Redshift COPY command, the COPY command has all necessary permissions\. If you want to use different user credentials, you can grant access by using the Amazon S3 access controls\. The Amazon Redshift COPY command requires at least ListBucket and GetObject permissions to access the file objects in the Amazon S3 bucket\. For more information about controlling access to Amazon S3 resources, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\.

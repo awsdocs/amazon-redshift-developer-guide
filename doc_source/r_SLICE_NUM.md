@@ -34,7 +34,7 @@ select distinct eventid, slice_num() from event order by eventid limit 10;
 (10 rows)
 ```
 
-The following example returns a code \(10000\) to show that a query without a FROM statement executes on the leader node: 
+The following example returns a code \(10000\) to show that a query without a FROM statement runs on the leader node: 
 
 ```
 select slice_num();

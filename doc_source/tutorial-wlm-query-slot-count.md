@@ -17,7 +17,7 @@ For the purposes of this tutorial, we run the same long\-running SELECT query\. 
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. Now, query WLM\_QUERY\_STATE\_VW use the masteruser account to see how the query is running\.
+1. Now, query WLM\_QUERY\_STATE\_VW use the admin user account to see how the query is running\.
 
    ```
    select * from wlm_query_state_vw;

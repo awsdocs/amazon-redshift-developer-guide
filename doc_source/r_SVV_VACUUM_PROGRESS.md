@@ -8,11 +8,11 @@ For information about SVV\_VACUUM\_SUMMARY, see [SVV\_VACUUM\_SUMMARY](r_SVV_VAC
 
 For information about SVL\_VACUUM\_PERCENTAGE, see [SVL\_VACUUM\_PERCENTAGE](r_SVL_VACUUM_PERCENTAGE.md)\.
 
-## Table Columns<a name="sub-r_SVV_VACUUM_PROGRESS-table-columns"></a>
+## Table columns<a name="sub-r_SVV_VACUUM_PROGRESS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_VACUUM_PROGRESS.html)
 
-## Sample Queries<a name="r_SVV_VACUUM_PROGRESS-sample-queries"></a>
+## Sample queries<a name="r_SVV_VACUUM_PROGRESS-sample-queries"></a>
 
 The following queries, run a few minutes apart, show that a large table named SALESNEW is being vacuumed\. 
 

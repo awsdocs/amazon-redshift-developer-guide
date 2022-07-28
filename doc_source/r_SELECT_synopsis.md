@@ -10,7 +10,6 @@
 + [HAVING clause](r_HAVING_clause.md)
 + [UNION, INTERSECT, and EXCEPT](r_UNION.md)
 + [ORDER BY clause](r_ORDER_BY_clause.md)
-+ [Join examples](r_Join_examples.md)
 + [Subquery examples](r_Subquery_examples.md)
 + [Correlated subqueries](r_correlated_subqueries.md)
 
@@ -31,8 +30,7 @@ SELECT
 [ GROUP BY expression [, ...] ]
 [ HAVING condition ]
 [ { UNION | ALL | INTERSECT | EXCEPT | MINUS } query ]
-[ ORDER BY expression
-[ ASC | DESC ]
+[ ORDER BY expression [ ASC | DESC ] ]
 [ LIMIT { number | ALL } ]
 [ OFFSET start ]
 ```

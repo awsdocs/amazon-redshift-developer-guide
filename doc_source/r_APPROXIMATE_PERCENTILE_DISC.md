@@ -1,6 +1,6 @@
 # APPROXIMATE PERCENTILE\_DISC function<a name="r_APPROXIMATE_PERCENTILE_DISC"></a>
 
-APPROXIMATE PERCENTILE\_DISC is an inverse distribution function that assumes a discrete distribution model\. It takes a percentile value and a sort specification and returns an element from the given set\. Approximation enables the function to execute much faster, with a low relative error of around 0\.5 percent\.
+APPROXIMATE PERCENTILE\_DISC is an inverse distribution function that assumes a discrete distribution model\. It takes a percentile value and a sort specification and returns an element from the given set\. Approximation enables the function to run much faster, with a low relative error of around 0\.5 percent\.
 
 For a given *percentile* value, APPROXIMATE PERCENTILE\_DISC uses a quantile summary algorithm to approximate the discrete percentile of the expression in the ORDER BY clause\. APPROXIMATE PERCENTILE\_DISC returns the value with the smallest cumulative distribution value \(with respect to the same sort specification\) that is greater than or equal to *percentile*\. 
 
@@ -25,7 +25,7 @@ Clause that specifies numeric or date/time values to sort and compute the percen
 
 The same data type as the ORDER BY expression in the WITHIN GROUP clause\.
 
-## Usage notes<a name="w13aac49c11c13c15c15"></a>
+## Usage notes<a name="r_APPROXIMATE_PERCENTILE_DISC-usage-notes"></a>
 
 If the APPROXIMATE PERCENTILE\_DISC statement includes a GROUP BY clause, the result set is limited\. The limit varies based on node type and the number of nodes\. If the limit is exceeded, the function fails and returns the following error\.
 
@@ -37,7 +37,7 @@ If you need to evaluate more groups than the limit permits, consider using [PERC
 
 ## Examples<a name="r_APPROXIMATE_PERCENTILE_DISC-examples"></a>
 
-The following example returns the number of sales, total sales, and fiftieth percentile value for the top 10 dates\.\. 
+The following example returns the number of sales, total sales, and fiftieth percentile value for the top 10 dates\. 
 
 ```
 select top 10 date.caldate,

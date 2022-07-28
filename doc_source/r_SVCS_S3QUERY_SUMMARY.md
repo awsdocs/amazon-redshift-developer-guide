@@ -9,11 +9,11 @@ SVCS\_S3QUERY\_SUMMARY is visible to all users\. Superusers can see all rows; re
 
 For information about SVL\_S3QUERY, see [SVL\_S3QUERY](r_SVL_S3QUERY.md)\.
 
-## Table Columns<a name="r_SVCS_S3QUERY_SUMMARY-table-columns"></a>
+## Table columns<a name="r_SVCS_S3QUERY_SUMMARY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVCS_S3QUERY_SUMMARY.html)
 
-## Sample Query<a name="r_SVCS_S3QUERY_SUMMARY-sample-query"></a>
+## Sample query<a name="r_SVCS_S3QUERY_SUMMARY-sample-query"></a>
 
 The following example gets the scan step details for the last query run\.
 

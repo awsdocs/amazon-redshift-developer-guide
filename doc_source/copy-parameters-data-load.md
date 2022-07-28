@@ -3,6 +3,7 @@
 Manage the default behavior of the load operation for troubleshooting or to reduce load times by specifying the following parameters\. 
 + [COMPROWS](#copy-comprows) 
 + [COMPUPDATE](#copy-compupdate) 
++ [IGNOREALLERRORS](#copy-ignoreallerrors) 
 + [MAXERROR](#copy-maxerror) 
 + [NOLOAD](#copy-noload) 
 + [STATUPDATE](#copy-statupdate) <a name="copy-data-load-parameters"></a>Parameters
@@ -23,6 +24,10 @@ When COMPUPDATE is omitted, the COPY command chooses the compression encoding fo
 When COMPUPDATE is ON \(or TRUE\), or COMPUPDATE is specified without an option, the COPY command applies automatic compression if the table is empty; even if the table columns already have encodings other than RAW\. Currently specified column encodings can be replaced\. Encoding for each column is based on an analysis of sample data\. For more information, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.  
 When COMPUPDATE is OFF \(or FALSE\), automatic compression is disabled\. Column encodings aren't changed\.  
 For information about the system table to analyze compression, see [STL\_ANALYZE\_COMPRESSION](r_STL_ANALYZE_COMPRESSION.md)\. 
+
+IGNOREALLERRORS   <a name="copy-ignoreallerrors"></a>
+You can specify this option to ignore all errors that occur during the load operation\.   
+You can't specify the IGNOREALLERRORS option if you specify the MAXERROR option\. You can't specify the IGNOREALLERRORS option for columnar formats including ORC, Parquet, RCFile, and SequenceFile\.
 
 MAXERROR \[AS\] *error\_count*   <a name="copy-maxerror"></a>
 If the load returns the *error\_count* number of errors or greater, the load fails\. If the load returns fewer errors, it continues and returns an INFO message that states the number of rows that could not be loaded\. Use this parameter to allow loads to continue when certain rows fail to load into the table because of formatting errors or other inconsistencies in the data\.   

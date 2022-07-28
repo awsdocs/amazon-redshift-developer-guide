@@ -11,7 +11,7 @@ REVERSE ( expression )
 ## Argument<a name="r_REVERSE-argument"></a>
 
  *expression*   
-An expression with a character, date, time stamp, or numeric data type that represents the target of the character reversal\. All expressions are implicitly converted to variable\-length character strings\. Trailing blanks in fixed\-width character strings are ignored\. 
+An expression with a character, date, timestamp, or numeric data type that represents the target of the character reversal\. All expressions are implicitly converted to variable\-length character strings\. Trailing blanks in fixed\-width character strings are ignored\. 
 
 ## Return type<a name="r_REVERSE-return-type"></a>
 

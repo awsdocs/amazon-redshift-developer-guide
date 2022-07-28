@@ -1,21 +1,21 @@
 # \|\| \(Concatenation\) operator<a name="r_concat_op"></a>
 
-Concatenates two strings on either side of the \|\| symbol and returns the concatenated string\. 
+Concatenates two expressions on either side of the \|\| symbol and returns the concatenated expression\. 
 
-Similar to [CONCAT](r_CONCAT.md)\. 
+Similar to [CONCAT function](r_CONCAT.md)\. 
 
 **Note**  
-For both the CONCAT function and the concatenation operator, if one or both strings is null, the result of the concatenation is null\. 
+For both the CONCAT function and the concatenation operator, if one or both expressions is null, the result of the concatenation is null\. 
 
 ## Syntax<a name="r_concat_op-synopsis"></a>
 
 ```
-string1 || string2
+expression1 || expression2
 ```
 
 ## Arguments<a name="r_concat_op-arguments"></a>
 
- *string1*, *string2*   
+ *expression1*, *expression2*   
 Both arguments can be fixed\-length or variable\-length character strings or expressions\. 
 
 ## Return type<a name="r_concat_op-return-type"></a>

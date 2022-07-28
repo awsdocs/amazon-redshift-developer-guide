@@ -47,7 +47,7 @@ within group (order by sellerid) as dates
 from winsales;
 ```
 
-The following statements will execute successfully\.
+The following statements will run successfully\.
 
 ```
 select listagg(sellerid) 

@@ -24,6 +24,8 @@ The following table indicates which WLM properties are dynamic or static when us
 | Priority | Dynamic | Not applicable | 
 | Adding or removing queues | Dynamic  | Static | 
 
+If you modify a query monitoring rule \(QMR\), the change happens automatically without the need to modify the cluster\.
+
 **Note**  
 When using manual WLM, if the timeout value is changed, the new value is applied to any query that begins running after the value is changed\. If the concurrency or percent of memory to use are changed, Amazon Redshift changes to the new configuration dynamically\. Thus, currently running queries aren't affected by the change\. For more information, see [WLM Dynamic Memory Allocation\.](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-memory-allocation.html)  
 When using automatic WLM, timeout is ignored\.

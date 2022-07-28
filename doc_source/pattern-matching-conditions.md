@@ -16,7 +16,7 @@ A pattern\-matching operator searches a string for a pattern specified in the co
 
   POSIX regular expressions provide a more powerful means for pattern matching than the LIKE and SIMILAR TO operators\. POSIX regular expression patterns can match any portion of the string and performs a case\-sensitive match\.
 
-Regular expression matching, using SIMILAR TO or POSIX operators, is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE executes several times faster than the query that uses a regular expression:
+Regular expression matching, using SIMILAR TO or POSIX operators, is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE runs several times faster than the query that uses a regular expression:
 
 ```
 select count(*) from event where eventname SIMILAR TO '%(Ring|Die)%'; 

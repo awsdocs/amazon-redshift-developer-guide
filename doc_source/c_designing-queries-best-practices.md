@@ -4,7 +4,7 @@ To maximize query performance, follow these recommendations when creating querie
 + Design tables according to best practices to provide a solid foundation for query performance\. For more information, see [Amazon Redshift best practices for designing tables](c_designing-tables-best-practices.md)\.
 + Avoid using `select *`\. Include only the columns you specifically need\.
 + Use a [CASE expression](r_CASE_function.md) to perform complex aggregations instead of selecting from the same table multiple times\.
-+ Don't use cross\-joins unless absolutely necessary\. These joins without a join condition result in the Cartesian product of two tables\. Cross\-joins are typically executed as nested\-loop joins, which are the slowest of the possible join types\. 
++ Don't use cross\-joins unless absolutely necessary\. These joins without a join condition result in the Cartesian product of two tables\. Cross\-joins are typically run as nested\-loop joins, which are the slowest of the possible join types\. 
 + Use subqueries in cases where one table in the query is used only for predicate conditions and the subquery returns a small number of rows \(less than about 200\)\. The following example uses a subquery to avoid joining the LISTING table\.
 
   ```

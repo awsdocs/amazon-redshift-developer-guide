@@ -19,7 +19,7 @@ DISTINCT \| ALL
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before doing the count\. With the argument ALL, the function retains all duplicate values from the expression for counting\. ALL is the default\.
 
 APPROXIMATE  
-When used with APPROXIMATE, a COUNT \( DISTINCT *expression* \) function uses a HyperLogLog algorithm to approximate the number of distinct non\-NULL values in a column or expression\. Queries that use the APPROXIMATE keyword execute much faster, with a low relative error of around 2%\. Approximation is warranted for queries that return a large number of distinct values, in the millions or more per query, or per group, if there is a group by clause\. For smaller sets of distinct values, in the thousands, approximation might be slower than a precise count\. APPROXIMATE can only be used with COUNT \( DISTINCT \)\.
+When used with APPROXIMATE, a COUNT \( DISTINCT *expression* \) function uses a HyperLogLog algorithm to approximate the number of distinct non\-NULL values in a column or expression\. Queries that use the APPROXIMATE keyword run much faster, with a low relative error of around 2%\. Approximation is warranted for queries that return a large number of distinct values, in the millions or more per query, or per group, if there is a group by clause\. For smaller sets of distinct values, in the thousands, approximation might be slower than a precise count\. APPROXIMATE can only be used with COUNT \( DISTINCT \)\.
 
 ## Data types<a name="c_Supported_data_types_count"></a>
 

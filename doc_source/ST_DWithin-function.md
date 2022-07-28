@@ -1,6 +1,6 @@
 # ST\_DWithin<a name="ST_DWithin-function"></a>
 
-ST\_DWithin returns true if the Euclidean distance between two input geometry values is not larger than a threshold value\. 
+ST\_DWithin returns true if the Euclidean distance between the 2D projections of the two input geometry values is not larger than a threshold value\. 
 
 ## Syntax<a name="ST_DWithin-function-syntax"></a>
 

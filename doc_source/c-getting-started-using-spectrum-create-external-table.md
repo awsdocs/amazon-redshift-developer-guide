@@ -7,10 +7,10 @@ Create external tables in an external schema\. The external schema references a 
 1. To create an external schema, replace the IAM role ARN in the following command with the role ARN you created in [step 1](c-getting-started-using-spectrum-create-role.md)\. Then run the command in your SQL client\.
 
    ```
-   create external schema spectrum 
+   create external schema myspectrum_schema 
    from data catalog 
-   database 'spectrumdb' 
-   iam_role 'arn:aws:iam::123456789012:role/mySpectrumRole'
+   database 'myspectrum_db' 
+   iam_role 'arn:aws:iam::123456789012:role/myspectrum_role'
    create external database if not exists;
    ```
 
@@ -24,7 +24,7 @@ To use this example in a different AWS Region, you can copy the sales data with 
    ```
 
    ```
-   create external table spectrum.sales(
+   create external table myspectrum_schema.sales(
    salesid integer,
    listid integer,
    sellerid integer,

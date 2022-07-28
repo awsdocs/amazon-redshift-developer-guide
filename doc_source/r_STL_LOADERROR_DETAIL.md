@@ -6,9 +6,9 @@ Displays a log of data parse errors that occurred while using a COPY command to 
 
 Query STL\_LOADERROR\_DETAIL for additional details, such as the exact data row and column where a parse error occurred, after you query [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md) to find out general information about the error\.
 
-The STL\_LOADERROR\_DETAIL table contains all data columns including and prior to the column where the parse error occurred\. Use the VALUE field to see the data value that was actually parsed in this column, including the columns that parsed correctly up to the error\.
+The STL\_LOADERROR\_DETAIL view contains all data columns including and prior to the column where the parse error occurred\. Use the VALUE field to see the data value that was actually parsed in this column, including the columns that parsed correctly up to the error\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_LOADERROR_DETAIL-table-columns"></a>
 

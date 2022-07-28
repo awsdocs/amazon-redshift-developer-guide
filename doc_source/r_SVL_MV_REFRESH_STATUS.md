@@ -6,16 +6,16 @@ For more information about materialized views, see [Creating materialized views 
 
 SVL\_MV\_REFRESH\_STATUS is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_MV_REFRESH_STATUS-table-columns"></a>
+## Table columns<a name="r_SVL_MV_REFRESH_STATUS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_MV_REFRESH_STATUS.html)
 
-## Sample Query<a name="r_SVL_MV_REFRESH-sample-query"></a>
+## Sample query<a name="r_SVL_MV_REFRESH-sample-query"></a>
 
 To view the refresh status of materialized views, run the following query\. 
 
 ```
-select * from svl_mv_refresh;
+select * from svl_mv_refresh_status;
 ```
 
 This query returns the following sample output: 

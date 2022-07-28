@@ -7,9 +7,13 @@ Redshift Spectrum queries incur additional charges\. The cost of running the sam
 
 ## Prerequisites<a name="c-getting-started-using-spectrum-prerequisites"></a>
 
-To use Redshift Spectrum, you need an Amazon Redshift cluster and a SQL client that's connected to your cluster so that you can execute SQL commands\. The cluster and the data files in Amazon S3 must be in the same AWS Region\. For this example, the sample data is in the US West \(Oregon\) Region \(us\-west\-2\), so you need a cluster that is also in us\-west\-2\. If you don't have an Amazon Redshift cluster, you can create a new cluster in us\-west\-2 and install a SQL client by following the steps in [Getting Started with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\. 
+To use Redshift Spectrum, you need an Amazon Redshift cluster and a SQL client that's connected to your cluster so that you can run SQL commands\. The cluster and the data files in Amazon S3 must be in the same AWS Region\. For this example, the sample data is in the US West \(Oregon\) Region \(us\-west\-2\), so you need a cluster that is also in us\-west\-2\. If you don't have an Amazon Redshift cluster, you can create a new cluster in us\-west\-2 and install a SQL client by following the steps in [Getting Started with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\. 
 
-## Steps to get started<a name="c-getting-started-using-spectrum-steps"></a>
+## Getting started with Redshift Spectrum using AWS CloudFormation<a name="c-getting-started-using-spectrum-cfn"></a>
+
+As an alternative to the following steps, you can access the Redshift Spectrum DataLake AWS CloudFormation template to create a stack with an Amazon S3 bucket that you can query\. For more information, see [Launch your AWS CloudFormation stack and then query your data in Amazon S3](c-getting-started-using-spectrum-query-s3-data-cfn.md)\.
+
+## Getting started with Redshift Spectrum step by step<a name="c-getting-started-using-spectrum-steps"></a>
 
 To get started using Amazon Redshift Spectrum, follow these steps:
 + [Step 1\. Create an IAM role for Amazon Redshift](c-getting-started-using-spectrum-create-role.md) 

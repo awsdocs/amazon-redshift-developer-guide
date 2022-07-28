@@ -1,6 +1,6 @@
 # ST\_Disjoint<a name="ST_Disjoint-function"></a>
 
-ST\_Disjoint returns true if the two input geometries have no points in common\. 
+ST\_Disjoint returns true if the 2D projections of the two input geometries have no points in common\. 
 
 ## Syntax<a name="ST_Disjoint-function-syntax"></a>
 

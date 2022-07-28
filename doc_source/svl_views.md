@@ -1,15 +1,20 @@
 # SVL views<a name="svl_views"></a>
 
-SVL views are system views that contain references to STL tables and logs for more detailed information\.
+SVL views are system views in Amazon Redshift that contain references to STL tables and logs for more detailed information\.
 
 These views provide quicker and easier access to commonly queried data found in those tables\.
 
 **Note**  
-The SVL\_QUERY\_SUMMARY view only contains information about queries executed by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements executed by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view
+The SVL\_QUERY\_SUMMARY view only contains information about queries run by Amazon Redshift, not other utility and DDL commands\. For a complete listing and information on all statements run by Amazon Redshift, including DDL and utility commands, you can query the SVL\_STATEMENTTEXT view
 
 **Topics**
++ [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)
 + [SVL\_COMPILE](r_SVL_COMPILE.md)
++ [SVL\_DATASHARE\_CHANGE\_LOG](r_SVL_DATASHARE_CHANGE_LOG.md)
++ [SVL\_DATASHARE\_USAGE\_CONSUMER](r_SVL_DATASHARE_USAGE_CONSUMER.md)
++ [SVL\_DATASHARE\_USAGE\_PRODUCER](r_SVL_DATASHARE_USAGE_PRODUCER.md)
 + [SVL\_FEDERATED\_QUERY](r_SVL_FEDERATED_QUERY.md)
++ [SVL\_MULTI\_STATEMENT\_VIOLATIONS](r_SVL_MULTI_STATEMENT_VIOLATIONS.md)
 + [SVL\_MV\_REFRESH\_STATUS](r_SVL_MV_REFRESH_STATUS.md)
 + [SVL\_QERROR](r_SVL_QERROR.md)
 + [SVL\_QLOG](r_SVL_QLOG.md)
@@ -25,6 +30,8 @@ The SVL\_QUERY\_SUMMARY view only contains information about queries executed by
 + [SVL\_S3QUERY](r_SVL_S3QUERY.md)
 + [SVL\_S3QUERY\_SUMMARY](r_SVL_S3QUERY_SUMMARY.md)
 + [SVL\_S3RETRIES](r_SVL_S3RETRIES.md)
++ [SVL\_SPATIAL\_SIMPLIFY](r_SVL_SPATIAL_SIMPLIFY.md)
++ [SVL\_SPECTRUM\_SCAN\_ERROR](r_SVL_SPECTRUM_SCAN_ERROR.md)
 + [SVL\_STATEMENTTEXT](r_SVL_STATEMENTTEXT.md)
 + [SVL\_STORED\_PROC\_CALL](r_SVL_STORED_PROC_CALL.md)
 + [SVL\_STORED\_PROC\_MESSAGES](r_SVL_STORED_PROC_MESSAGES.md)

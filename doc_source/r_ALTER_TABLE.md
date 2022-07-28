@@ -1,6 +1,7 @@
 # ALTER TABLE<a name="r_ALTER_TABLE"></a>
 
 **Topics**
++ [Required privileges](#r_ALTER_TABLE-privileges)
 + [Syntax](#r_ALTER_TABLE-synopsis)
 + [Parameters](#r_ALTER_TABLE-parameters)
 + [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md)
@@ -11,24 +12,38 @@ Changes the definition of a database table or Amazon Redshift Spectrum external 
 
 You can't run ALTER TABLE on an external table within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
-**Note**  
-ALTER TABLE locks the table for read and write operations until the transaction enclosing the ALTER TABLE operation completes\. 
+ALTER TABLE locks the table for read and write operations until the transaction enclosing the ALTER TABLE operation completes, unless it's specifically stated in the documentation that you can query data or perform other operations on the table while it is altered\.
+
+## Required privileges<a name="r_ALTER_TABLE-privileges"></a>
+
+Following are required privileges for ALTER TABLE:
++ Superuser
++ Users with the ALTER TABLE privilege
++ Table or schema owner
 
 ## Syntax<a name="r_ALTER_TABLE-synopsis"></a>
 
 ```
-ALTER TABLE table_name
+ALTER TABLE table_name 
 {
 ADD table_constraint 
 | DROP CONSTRAINT constraint_name [ RESTRICT | CASCADE ] 
 | OWNER TO new_owner 
 | RENAME TO new_name 
 | RENAME COLUMN column_name TO new_name            
-| ALTER COLUMN column_name TYPE new_data_type              
+| ALTER COLUMN column_name TYPE new_data_type
+| ALTER COLUMN column_name ENCODE new_encode_type     
+| ALTER COLUMN column_name ENCODE encode_type, 
+| ALTER COLUMN column_name ENCODE encode_type, .....;      
 | ALTER DISTKEY column_name 
-| ALTER DISTSTYLE ALL             
-| ALTER DISTSTYLE KEY DISTKEY column_name   
-| ALTER [COMPOUND] SORTKEY ( column_name [,...] )             
+| ALTER DISTSTYLE ALL       
+| ALTER DISTSTYLE EVEN
+| ALTER DISTSTYLE KEY DISTKEY column_name 
+| ALTER DISTSTYLE AUTO             
+| ALTER [COMPOUND] SORTKEY ( column_name [,...] ) 
+| ALTER SORTKEY AUTO 
+| ALTER SORTKEY NONE
+| ALTER ENCODE AUTO
 | ADD [ COLUMN ] column_name column_type
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
@@ -65,6 +80,18 @@ ALTER TABLE tablename ALTER SORTKEY (column_list), ALTER DISTKEY column_Id;
 ALTER TABLE tablename ALTER DISTKEY column_Id, ALTER SORTKEY (column_list);
 ALTER TABLE tablename ALTER SORTKEY (column_list), ALTER DISTSTYLE ALL;
 ALTER TABLE tablename ALTER DISTSTYLE ALL, ALTER SORTKEY (column_list);
+```
+
+Amazon Redshift supports the row\-level security control of the ALTER TABLE clause:
+
+```
+ALTER TABLE tablename ROW LEVEL SECURITY { ON | OFF };
+```
+
+To enable auto\-refreshing of a materialized view, use the following ALTER TABLE command\.
+
+```
+ALTER TABLE mv_name ALTER AUTOREFRESH = [TRUE | FALSE]
 ```
 
 ## Parameters<a name="r_ALTER_TABLE-parameters"></a>
@@ -106,13 +133,38 @@ A clause that changes the size of a column defined as a VARCHAR data type\. Cons
 + You can't alter columns with UNIQUE, PRIMARY KEY, or FOREIGN KEY\. 
 + You can't alter columns within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
+ALTER COLUMN *column\_name* ENCODE *new\_encode\_type*   
+A clause that changes the compression encoding of a column\. If you specify compression encoding for a column, the table is no longer set to ENCODE AUTO\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.   
+When you change compression encoding for a column, the table remains available to query\.  
+Consider the following limitations:  
++ You can't alter a column to the same encoding as currently defined for the column\. 
++ You can't alter the encoding for a column in a table with an interleaved sortkey\. 
+
+ALTER COLUMN *column\_name* ENCODE *encode\_type*, ALTER COLUMN *column\_name* ENCODE *encode\_type*, \.\.\.\.\.;   
+A clause that changes the compression encoding of multiple columns in a single command\. For information on compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.  
+When you change compression encoding for a column, the table remains available to query\.  
+ Consider the following limitations:  
++ You can't alter a column to the same or different encoding type multiple times in a single command\.
++ You can't alter a column to the same encoding as currently defined for the column\. 
++ You can't alter the encoding for a column in a table with an interleaved sortkey\. 
+
 ALTER DISTSTYLE ALL  
 A clause that changes the existing distribution style of a table to `ALL`\. Consider the following:  
 + An ALTER DISTSTYLE, ALTER SORTKEY, and VACUUM can't run concurrently on the same table\. 
   + If VACUUM is currently running, then running ALTER DISTSTYLE ALL returns an error\. 
   + If ALTER DISTSTYLE ALL is running, then a background vacuum doesn't start on a table\. 
 + The ALTER DISTSTYLE ALL command is not supported for tables with interleaved sort keys and temporary tables\.
++ If the distribution style was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 For more information about DISTSTYLE ALL, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
+
+ALTER DISTSTYLE EVEN  
+A clause that changes the existing distribution style of a table to `EVEN`\. Consider the following:  
++ An ALTER DISTSYTLE, ALTER SORTKEY, and VACUUM can't run concurrently on the same table\. 
+  + If VACUUM is currently running, then running ALTER DISTSTYLE EVEN returns an error\. 
+  + If ALTER DISTSTYLE EVEN is running, then a background vacuum doesn't start on a table\. 
++ The ALTER DISTSTYLE EVEN command is not supported for tables with interleaved sort keys and temporary tables\.
++ If the distribution style was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
+For more information about DISTSTYLE EVEN, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
 ALTER DISTKEY *column\_name* or ALTER DISTSTYLE KEY DISTKEY *column\_name*  
 A clause that changes the column used as the distribution key of a table\. Consider the following:  
@@ -122,13 +174,56 @@ A clause that changes the column used as the distribution key of a table\. Consi
   + If ALTER DISTKEY is running, then foreground vacuum returns an error\.
 + You can only run one ALTER DISTKEY command on a table at a time\. 
 + The ALTER DISTKEY command is not supported for tables with interleaved sort keys\. 
++ If the distribution style was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
 When specifying DISTSTYLE KEY, the data is distributed by the values in the DISTKEY column\. For more information about DISTSTYLE, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
 
+ALTER DISTSTYLE AUTO  
+A clause that changes the existing distribution style of a table to AUTO\.   
+When you alter a distribution style to AUTO, the distribution style of the table is set to the following:   
++ A small table with DISTSTYLE ALL is converted to AUTO\(ALL\)\. 
++ A small table with DISTSTYLE EVEN is converted to AUTO\(ALL\)\. 
++ A small table with DISTSTYLE KEY is converted to AUTO\(ALL\)\. 
++ A large table with DISTSTYLE ALL is converted to AUTO\(EVEN\)\. 
++ A large table with DISTSTYLE EVEN is converted to AUTO\(EVEN\)\. 
++ A large table with DISTSTYLE KEY is converted to AUTO\(KEY\) and the DISTKEY is preserved\. 
+If Amazon Redshift determines that a new distribution style or key will improve the performance of queries, then Amazon Redshift might change the distribution style or key of your table in the future\.   
+For more information about DISTSTYLE AUTO, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.   
+To view the distribution style of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\. To view the Amazon Redshift Advisor recommendations for tables, query the SVV\_ALTER\_TABLE\_RECOMMENDATIONS system catalog view\. For more information, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. To view the actions taken by Amazon Redshift, query the SVL\_AUTO\_WORKER\_ACTION system catalog view\. For more information, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. 
+
 ALTER \[COMPOUND\] SORTKEY \( *column\_name* \[,\.\.\.\] \)  
-A clause that changes or adds the sort key used for a table\. Consider the following:  
+A clause that changes or adds the sort key used for a table\.   
+When you alter a sort key, the compression encoding of columns in the new or original sort key can change\. If no encoding is explicitly defined for the table, then Amazon Redshift automatically assigns compression encodings as follows:  
++ Columns that are defined as sort keys are assigned RAW compression\.
++ Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
+Consider the following:  
 + You can define a maximum of 400 columns for a sort key per table\. 
-+ You can only alter a compound sort key\. You can't alter an interleaved sort key\. 
++ You can alter an interleaved sort key to a compound sort key or no sort key\. However, you can't alter a compound sort key to an interleaved sort key\. 
++ If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
++ Amazon Redshift recommends using RAW encoding \(no compression\) for columns defined as sort keys\. When you alter a column to choose it as a sort key, the column’s compression is changed to RAW compression \(no compression\)\. This can increase the amount of storage required by the table\. How much the table size increases depend on the specific table definition and table contents\. For more information about compression, see [Compression encodings](c_Compression_encodings.md) 
 When data is loaded into a table, the data is loaded in the order of the sort key\. When you alter the sort key, Amazon Redshift reorders the data\. For more information about SORTKEY, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.
+
+ALTER SORTKEY AUTO  
+A clause that changes or adds the sort key of the target table to AUTO\.   
+When you alter a sort key to AUTO, Amazon Redshift preserves the existing sort key of the table\.    
+If Amazon Redshift determines that a new sort key will improve the performance of queries, then Amazon Redshift might change the sort key of your table in the future\.   
+For more information about SORTKEY AUTO, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.   
+To view the sort key of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\. To view the Amazon Redshift Advisor recommendations for tables, query the SVV\_ALTER\_TABLE\_RECOMMENDATIONS system catalog view\. For more information, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. To view the actions taken by Amazon Redshift, query the SVL\_AUTO\_WORKER\_ACTION system catalog view\. For more information, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. 
+
+ALTER SORTKEY NONE  
+A clause that removes the sort key of the target table\.   
+If the sort key was previously defined as AUTO, then the table is no longer a candidate for automatic table optimization\. 
+
+ALTER ENCODE AUTO  
+A clause that changes the encoding type of the target table columns to AUTO\. When you alter encoding to AUTO, Amazon Redshift preserves the existing encoding type of the columns in the table\. Then, if Amazon Redshift determines that a new encoding type can improve query performance, Amazon Redshift can change the encoding type of the table columns\.   
+If you alter one or more columns to specify an encoding, Amazon Redshift no longer automatically adjusts encoding for all columns in the table\. The columns retain the current encode settings\.  
+The following actions don't affect the ENCODE AUTO setting for the table:   
++ Renaming the table\.
++ Altering the DISTSTYLE or SORTKEY setting for the table\.
++ Adding or dropping a column with an ENCODE setting\.
++ Using the COMPUPDATE option of the COPY command\. For more information, see [ Data load operations](copy-parameters-data-load.md)\.
+To view the encoding of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\.
 
 RENAME COLUMN *column\_name* TO *new\_name*   
 A clause that renames a column to the value specified in *new\_name*\. The maximum column name length is 127 bytes; longer names are truncated to 127 bytes\. For more information about valid names, see [Names and identifiers](r_names.md)\.
@@ -150,19 +245,7 @@ For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
  *column\_type*   
 The data type of the column being added\. For CHAR and VARCHAR columns, you can use the MAX keyword instead of declaring a maximum length\. MAX sets the maximum length to 4,096 bytes for CHAR or 65,535 bytes for VARCHAR\. The maximum size of a GEOMETRY object is 1,048,447 bytes\.   
-Amazon Redshift supports the following [Data types](c_Supported_data_types.md):   
-+ SMALLINT \(INT2\)
-+ INTEGER \(INT, INT4\)
-+ BIGINT \(INT8\)
-+ DECIMAL \(NUMERIC\)
-+ REAL \(FLOAT4\)
-+ DOUBLE PRECISION \(FLOAT8\)
-+ BOOLEAN \(BOOL\)
-+ CHAR \(CHARACTER\)
-+ VARCHAR \(CHARACTER VARYING\)
-+ DATE
-+ TIMESTAMP
-+ GEOMETRY
+For information about the data types that Amazon Redshift supports, see [Data types](c_Supported_data_types.md)\.
 
 DEFAULT *default\_expr*   <a name="alter-table-default"></a>
 A clause that assigns a default data value for the column\. The data type of *default\_expr* must match the data type of the column\. The DEFAULT value must be a variable\-free expression\. Subqueries, cross\-references to other columns in the current table, and user\-defined functions aren't allowed\.  
@@ -171,12 +254,13 @@ If a COPY operation encounters a null field on a column that has a DEFAULT value
 DEFAULT isn't supported for external tables\.
 
 ENCODE *encoding*   
-The compression encoding for a column\. If no compression is selected, Amazon Redshift automatically assigns compression encoding as follows:  
+The compression encoding for a column\. By default, Amazon Redshift automatically manages compression encoding for all columns in a table if you don't specify compression encoding for any column in the table or if you specify the ENCODE AUTO option for the table\.  
+If you specify compression encoding for any column in the table or if you don't specify the ENCODE AUTO option for the table, Amazon Redshift automatically assigns compression encoding to columns for which you don't specify compression encoding as follows:  
 + All columns in temporary tables are assigned RAW compression by default\.
 + Columns that are defined as sort keys are assigned RAW compression\.
-+ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, or GEOMETRY data types are assigned RAW compression\.
-+ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
-+ Columns that are defined as CHAR or VARCHAR are assigned LZO compression\.
++ Columns that are defined as BOOLEAN, REAL, DOUBLE PRECISION, GEOMETRY, or GEOGRAPHY data type are assigned RAW compression\.
++ Columns that are defined as SMALLINT, INTEGER, BIGINT, DECIMAL, DATE, TIME, TIMETZ, TIMESTAMP, or TIMESTAMPTZ are assigned AZ64 compression\.
++ Columns that are defined as CHAR, VARCHAR, or VARBYTE are assigned LZO compression\.
 If you don't want a column to be compressed, explicitly specify RAW encoding\.
 The following [compression encodings](c_Compression_encodings.md#compression-encoding-list) are supported:  
 + AZ64
@@ -206,6 +290,7 @@ The following restrictions apply when dropping a column from an external table:
 + You can't drop a column from an external table if the column is used as a partition\.
 + You can't drop a column from an external table that is defined using the AVRO file format\. 
 + RESTRICT and CASCADE are ignored for external tables\.
++ You can't drop the columns of the policy table referenced inside the policy definition unless you drop or detach the policy\. This also applies when the CASCADE option is specified\. You can drop other columns in the policy table\.
 For more information, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
 RESTRICT   
@@ -252,3 +337,7 @@ The IF NOT EXISTS clause indicates that if the specified partition already exist
 
 DROP PARTITION \(*partition\_column*=*partition\_value* \[, \.\.\.\] \)   
 A clause that drops the specified partition\. Dropping a partition alters only the external table metadata\. The data on Amazon S3 isn't affected\.
+
+ROW LEVEL SECURITY \{ ON \| OFF \}   
+A clause that turns on or off row\-level security for a security policy\.  
+When row\-level security is turned on for a table, you can only read the rows that the row\-level policy permits for access\. When there isn't any policy granting you any access to the table, then you can't see any rows from the table\.

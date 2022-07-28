@@ -11,17 +11,27 @@ FLOOR (number)
 ## Argument<a name="r_FLOOR-argument"></a>
 
  *number*   
-DOUBLE PRECISION number to be rounded down\. 
+The number or expression that evaluates to a number\. It can be the SMALLINT, INTEGER, BIGINT, DECIMAL, FLOAT4, FLOAT8, or SUPER type\. 
 
 ## Return type<a name="r_FLOOR-return-type"></a>
 
-FLOOR returns an integer\. 
+FLOOR returns the same data type as its argument\. 
+
+When the input is of the SUPER type, the output retains the same dynamic type as the input while the static type remains the SUPER type\. When the dynamic type of SUPER isn't a number, Amazon Redshift returns a null\.
 
 ## Example<a name="r_FLOOR-example"></a>
 
-Calculate the floor of the commission paid for a given sales transaction: 
+The example shows the value of the commission paid for a given sales transaction before and after using the FLOOR function\. 
 
 ```
+select commission from sales
+where salesid=10000;
+
+floor
+-------
+28.05
+(1 row)
+
 select floor(commission) from sales
 where salesid=10000;
 

@@ -8,11 +8,11 @@ For information about SVV\_VACUUM\_PROGRESS, see [SVV\_VACUUM\_PROGRESS](r_SVV_V
 
 For information about SVL\_VACUUM\_PERCENTAGE, see [SVL\_VACUUM\_PERCENTAGE](r_SVL_VACUUM_PERCENTAGE.md)\.
 
-## Table Columns<a name="r_SVV_VACUUM_SUMMARY-table-columns"></a>
+## Table columns<a name="r_SVV_VACUUM_SUMMARY-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_VACUUM_SUMMARY.html)
 
-## Sample Query<a name="r_SVV_VACUUM_SUMMARY-sample-query"></a>
+## Sample query<a name="r_SVV_VACUUM_SUMMARY-sample-query"></a>
 
 The following query returns statistics for vacuum operations on three different tables\. The SALES table was vacuumed twice\. 
 

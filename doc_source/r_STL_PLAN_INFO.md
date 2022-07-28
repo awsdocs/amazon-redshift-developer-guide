@@ -1,8 +1,8 @@
 # STL\_PLAN\_INFO<a name="r_STL_PLAN_INFO"></a>
 
-Use the STL\_PLAN\_INFO table to look at the EXPLAIN output for a query in terms of a set of rows\. This is an alternative way to look at query plans\. 
+Use the STL\_PLAN\_INFO view to look at the EXPLAIN output for a query in terms of a set of rows\. This is an alternative way to look at query plans\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_PLAN_INFO-table-columns"></a>
 
@@ -10,7 +10,7 @@ This table is visible to all users\. Superusers can see all rows; regular users 
 
 ## Sample queries<a name="r_STL_PLAN_INFO-sample-queries"></a>
 
-The following examples compare the query plans for a simple SELECT query returned by using the EXPLAIN command and by querying the STL\_PLAN\_INFO table\. 
+The following examples compare the query plans for a simple SELECT query returned by using the EXPLAIN command and by querying the STL\_PLAN\_INFO view\. 
 
 ```
 explain select * from category;

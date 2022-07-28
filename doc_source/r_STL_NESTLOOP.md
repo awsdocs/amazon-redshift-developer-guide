@@ -2,7 +2,7 @@
 
 Analyzes nested\-loop join execution steps for queries\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_NESTLOOP-table-columns"></a>
 
@@ -19,7 +19,7 @@ where event.dateid = date.dateid
 group by event.eventname, category.catname, date.caldate;
 ```
 
-The following query shows the results from the previous query in the STL\_NESTLOOP table\. 
+The following query shows the results from the previous query in the STL\_NESTLOOP view\. 
 
 ```
 select query, slice, segment as seg, step, 

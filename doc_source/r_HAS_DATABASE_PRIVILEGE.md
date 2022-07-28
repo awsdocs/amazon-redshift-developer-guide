@@ -14,13 +14,13 @@ has_database_privilege( [ user, ] database, privilege)
 ## Arguments<a name="r_HAS_DATABASE_PRIVILEGE-arguments"></a>
 
  *user*   
-Name of the user to check for database privileges\. Default is to check the current user\. 
+The name of the user to check for database privileges\. The default is to check the current user\. 
 
  *database*   
-Database associated with the privilege\. 
+The database associated with the privilege\. 
 
  *privilege*   
-Privilege to check\. Valid values are:   
+The privilege to check\. Valid values are the following:   
 + CREATE
 + TEMPORARY
 + TEMP
@@ -31,7 +31,7 @@ Returns a CHAR or VARCHAR string\.
 
 ## Example<a name="r_HAS_DATABASE_PRIVILEGE-example"></a>
 
-The following query confirms that the GUEST user has the TEMP privilege on the TICKIT database: 
+The following query confirms that the GUEST user has the TEMP privilege on the TICKIT database\.
 
 ```
 select has_database_privilege('guest', 'tickit', 'temp');

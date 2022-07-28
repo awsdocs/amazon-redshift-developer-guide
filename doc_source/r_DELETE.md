@@ -8,12 +8,16 @@ The maximum size for a single SQL statement is 16 MB\.
 ## Syntax<a name="r_DELETE-synopsis"></a>
 
 ```
+[ WITH [RECURSIVE] common_table_expression [, common_table_expression , ...] ]
 DELETE [ FROM ] table_name
-[ {USING } table_name, ... ]
-[ WHERE condition ]
+    [ {USING } table_name, ... ]
+    [ WHERE condition ]
 ```
 
 ## Parameters<a name="r_DELETE-parameters"></a>
+
+WITH clause  
+Optional clause that specifies one or more *common\-table\-expressions*\. See [WITH clause](r_WITH_clause.md)\. 
 
 FROM  
 The FROM keyword is optional, except when the USING clause is specified\. The statements `delete from event;` and `delete event;` are equivalent operations that remove all of the rows from the EVENT table\.  

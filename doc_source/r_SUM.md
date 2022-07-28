@@ -25,7 +25,7 @@ The return types supported by the SUM function are
 + NUMERIC for NUMERIC arguments
 + DOUBLE PRECISION for floating point arguments
 
-The default precision for a SUM function result with a 64\-bit NUMERIC or DECIMAL argument is 19\. The default precision for a result with a 128\-bit NUMERIC or DECIMAL argument is 38\. The scale of the result is the same as the scale of the argument\. For example, a SUM of a DEC\(5,2\) column returns a DEC\(19,2\) data type\.
+The default precision for a SUM function result with a NUMERIC or DECIMAL argument is 38\. The scale of the result is the same as the scale of the argument\. For example, a SUM of a DEC\(5,2\) column returns a DEC\(38,2\) data type\.
 
 ## Examples<a name="r_SUM-examples"></a>
 

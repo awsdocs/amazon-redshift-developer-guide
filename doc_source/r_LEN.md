@@ -13,11 +13,13 @@ LEN(expression)
 ## Argument<a name="r_LEN-argument"></a>
 
  *expression*   
-The input parameter is a CHAR or VARCHAR text string\. 
+The input parameter is a CHAR, VARCHAR, or VARBYTE or an alias of one of the valid input types\.
 
 ## Return type<a name="r_LEN-return-type"></a>
 
-The LEN function returns an integer indicating the number of characters in the input string\. The LEN function returns the actual number of characters in multi\-byte strings, not the number of bytes\. For example, a VARCHAR\(12\) column is required to store three four\-byte Chinese characters\. The LEN function will return 3 for that same string\. To get the length of a string in bytes, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\.
+The LEN function returns an integer indicating the number of characters in the input string\. 
+
+If the input string is a character string, the LEN function returns the actual number of characters in multi\-byte strings, not the number of bytes\. For example, a VARCHAR\(12\) column is required to store three four\-byte Chinese characters\. The LEN function will return 3 for that same string\. To get the length of a string in bytes, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\.
 
 ## Usage notes<a name="r_LEN_usage_notes"></a>
 
@@ -34,7 +36,6 @@ len('français');
 octet_length  | len
 --------------+-----
            9  |   8
-(1 row)
 ```
 
 The following example returns the number of characters in the strings `cat` with no trailing spaces and `cat ` with three trailing spaces: 
@@ -44,7 +45,6 @@ select len('cat'), len('cat   ');
  len | len
 -----+-----
    3 |   6
-(1 row)
 ```
 
 The following example returns the ten longest VENUENAME entries in the VENUE table: 
@@ -67,5 +67,14 @@ Circle in the Square Theatre            |  28
 Hubert H. Humphrey Metrodome            |  28
 Oriole Park at Camden Yards             |  27
 Dick's Sporting Goods Park              |  26
-(10 rows)
+```
+
+The following example returns the number of bytes of the binary value `aaa`\.
+
+```
+select len('aaa'::varbyte);
+
+ len
+-----
+   3
 ```

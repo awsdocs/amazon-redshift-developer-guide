@@ -2,6 +2,8 @@
 
 ST\_MakeLine creates a linestring from the input geometries\. 
 
+The dimension of the returned geometry is the same as that of the input geometries\. Both input geometries must of the same dimension\.
+
 ## Syntax<a name="ST_MakeLine-function-syntax"></a>
 
 ```
@@ -20,13 +22,19 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 
 `GEOMETRY` of subtype `LINESTRING`\. 
 
-The spatial reference system identifier \(SRID\) value of the returned geometry is the SRID value of the input geometries\. 
-
 If *geom1* or *geom2* is null, then null is returned\. 
+
+If *geom1* and *geom2* is the empty point or contains empty points, then these empty points are ignored\. 
+
+If *geom1* and *geom2* are empty, then the empty `LINESTRING` is returned\. 
+
+The spatial reference system identifier \(SRID\) value of the returned geometry is the SRID value of the input geometries\. 
 
 If *geom1* and *geom2* have different SRID values, then an error is returned\. 
 
 If *geom1* or *geom2* is not a `POINT`, `LINESTRING`, or `MULTIPOINT`, then an error is returned\. 
+
+If *geom1* and *geom2* have different dimensions, then an error is returned\. 
 
 ## Examples<a name="ST_MakeLine-function-examples"></a>
 

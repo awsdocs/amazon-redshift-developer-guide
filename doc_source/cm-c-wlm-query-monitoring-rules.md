@@ -1,6 +1,6 @@
 # WLM query monitoring rules<a name="cm-c-wlm-query-monitoring-rules"></a>
 
-In Amazon Redshift workload management \(WLM\), query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that aborts queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. 
+In Amazon Redshift workload management \(WLM\), query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that cancels queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. 
 
 You define query monitoring rules as part of your workload management \(WLM\) configuration\. You can define up to 25 rules for each queue, with a limit of 25 rules for all queues\. Each rule includes up to three conditions, or predicates, and one action\. A *predicate* consists of a metric, a comparison condition \(=, <, or > \), and a value\. If all of the predicates for any rule are met, that rule's action is triggered\. Possible rule actions are log, hop, and abort, as discussed following\. 
 
@@ -25,7 +25,7 @@ To define a query monitoring rule, you specify the following elements:
 + An action – If more than one rule is triggered, WLM chooses the rule with the most severe action\. Possible actions, in ascending order of severity, are:
   + Log – Record information about the query in the STL\_WLM\_RULE\_ACTION system table\. Use the Log action when you want to only write a log record\. WLM creates at most one log per query, per rule\. Following a log action, other rules remain in force and WLM continues to monitor the query\. 
   + Hop \(only available with manual WLM\) – Log the action and hop the query to the next matching queue\. If there isn't another matching queue, the query is canceled\. QMR hops only [CREATE TABLE AS](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_AS.html) \(CTAS\) statements and read\-only queries, such as SELECT statements\. For more information, see [WLM query queue hopping](wlm-queue-hopping.md)\. 
-  + Abort – Log the action and terminate the query\. QMR doesn't abort COPY statements and maintenance operations, such as ANALYZE and VACUUM\. 
+  + Abort – Log the action and cancel the query\. QMR doesn't stop COPY statements and maintenance operations, such as ANALYZE and VACUUM\. 
   + Change priority \(only available with automatic WLM\) – Change the priority of a query\. 
 
 To limit the runtime of queries, we recommend creating a query monitoring rule instead of using WLM timeout\. For example, you can set `max_execution_time` to 50,000 milliseconds as shown in the following JSON snippet\.

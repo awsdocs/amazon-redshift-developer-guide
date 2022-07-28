@@ -14,7 +14,7 @@ SET time zone [ time_zone | DEFAULT ]
 
 ## Description<a name="r_timezone_config-description"></a>
 
-Sets the time zone for the current session\. The time zone can be the offset from Coordinated Universal Time \(UTC\) or a time zone name\. 
+Sets the time zone for the current session\. The time zone can be the offset from Universal Coordinated Time \(UTC\) or a time zone name\. 
 
 **Note**  
 You can't set the `timezone` configuration parameter by using a cluster parameter group\. The time zone can be set only for the current session by using a SET command\. To set the time zone for all sessions run by a specific database user, use the [ALTER USER](r_ALTER_USER.md) command\. ALTER USER … SET TIMEZONE changes the time zone for subsequent sessions, not for the current session\.
@@ -25,7 +25,7 @@ When you set the time zone using the `SET timezone` \(one word\) command with ei
 SET timezone { TO | = } time_zone
 ```
 
-When you set the time zone using the SET time zone command *without* `TO` or `=`, you can specify *time\_zone* using an INTERVAL as well as a time zone name, a POSIX\-style format offset, or an ISO\-8601 format offset, as shown following\.
+When you set the time zone using the SET time zone command *without* `TO` or `=`, you can specify *time\_zone* using an INTERVAL and also a time zone name, a POSIX\-style format offset, or an ISO\-8601 format offset, as shown following\.
 
 ```
 SET time zone time_zone

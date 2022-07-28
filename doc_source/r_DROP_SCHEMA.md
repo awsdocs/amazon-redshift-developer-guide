@@ -2,6 +2,13 @@
 
 Deletes a schema\. For an external schema, you can also drop the external database associated with the schema\. This command isn't reversible\.
 
+## Required privileges<a name="r_DROP_SCHEMA-privileges"></a>
+
+Following are required privileges for DROP SCHEMA:
++ Superuser
++ Schema owner
++ Users with the DROP SCHEMA privilege
+
 ## Syntax<a name="r_DROP_SCHEMA-synopsis"></a>
 
 ```

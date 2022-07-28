@@ -13,7 +13,7 @@ NEXT_DAY ( { date | timestamp }, day )
 ## Arguments<a name="r_NEXT_DAY-arguments"></a>
 
  *date* \| *timestamp*  
-A date or timestamp column or an expression that implicitly converts to a date or time stamp\.
+A date or timestamp column or an expression that implicitly converts to a date or timestamp\.
 
  *day*   
 A string containing the name of any day\. Capitalization does not matter\.  
@@ -36,7 +36,7 @@ next_day
 2014-08-26
 ```
 
-The following example gets target marketing dates for the third quarter: 
+The following example gets target marketing dates for the third quarter\.
 
 ```
 select username, (firstname ||' '|| lastname) as name,

@@ -1,11 +1,19 @@
-# Date and timestamp literals<a name="r_Date_and_time_literals"></a>
+# Date, time, and timestamp literals<a name="r_Date_and_time_literals"></a>
+
+Following are rules for working with date, time, and timestamp literals supported by Amazon Redshift\. 
 
 ## Dates<a name="r_Date_and_time_literals-dates"></a>
 
-The following input dates are all valid examples of literal date values that you can load into Amazon Redshift tables\. The default MDY DateStyle mode is assumed to be in effect, which means that the month value precedes the day value in strings such as `1999-01-08` and `01/02/00`\. 
+The following input dates are all valid examples of literal date values that you can load into Amazon Redshift tables\. The default `MDY DateStyle` mode is assumed to be in effect\. This mode means that the month value precedes the day value in strings such as `1999-01-08` and `01/02/00`\. 
 
 **Note**  
-A date or time stamp literal must be enclosed in quotes when you load it into a table\.
+A date or timestamp literal must be enclosed in quotation marks when you load it into a table\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Date_and_time_literals.html)
+
+## Times<a name="r_Date_and_time_literals-times"></a>
+
+The following input times are all valid examples of literal time values that you can load into Amazon Redshift tables\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Date_and_time_literals.html)
 
@@ -17,11 +25,11 @@ The following input timestamps are all valid examples of literal time values tha
 
 ## Special datetime values<a name="r_Date_and_time_literals-special-datetime-values"></a>
 
-The following special values can be used as datetime literals and as arguments to date functions\. They require single quotes and are converted to regular timestamp values during query processing\. 
+The following special values can be used as datetime literals and as arguments to date functions\. They require single quotation marks and are converted to regular timestamp values during query processing\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Date_and_time_literals.html)
 
-The following examples show how `now` and `today` work in conjunction with the DATEADD function: 
+The following examples show how `now` and `today` work with the DATEADD function\.
 
 ```
 select dateadd(day,1,'today');

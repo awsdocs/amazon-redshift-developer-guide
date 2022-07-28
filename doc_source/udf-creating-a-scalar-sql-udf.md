@@ -1,6 +1,6 @@
 # Creating a scalar SQL UDF<a name="udf-creating-a-scalar-sql-udf"></a>
 
-A scalar SQL UDF incorporates a SQL SELECT clause that executes when the function is called and returns a single value\. The [CREATE FUNCTION](r_CREATE_FUNCTION.md) command defines the following parameters:
+A scalar SQL UDF incorporates a SQL SELECT clause that runs when the function is called and returns a single value\. The [CREATE FUNCTION](r_CREATE_FUNCTION.md) command defines the following parameters:
 + \(Optional\) Input arguments\. Each argument must have a data type\. 
 + One return data type\.
 + One SQL SELECT clause\. In the SELECT clause, refer to the input arguments using $1, $2, and so on, according to the order of the arguments in the function definition\. 

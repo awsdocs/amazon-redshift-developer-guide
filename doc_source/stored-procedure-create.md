@@ -15,7 +15,8 @@ Some clients might throw the following error when creating an Amazon Redshift st
 ERROR: 42601: [Amazon](500310) unterminated dollar-quoted string at or near "$$
 ```
 This error occurs due to the inability of the client to correctly parse the CREATE PROCEDURE statement with semicolons delimiting statements and with dollar sign \($\) quoting\. This results in only a part of the statement sent to the Amazon Redshift server\. You can often work around this error by using the `Run as batch` or `Execute selected` option of the client\.   
-For example, when using an Aginity client, use the `Run entire script as batch` option\. When using SQL Workbench/J, we recommend version 124\. When using SQL Workbench/J version 125, consider specifying an alternate delimiter as a workaround\. Because the CREATE PROCEDURE contains SQL statements delimited with a semicolon \(;\), defining an alternate delimiter such as a forward slash \(/\) and placing it at the end of the CREATE PROCEDURE statement sends the entire statement to the Amazon Redshift server for processing\. As shown in the following example\.  
+For example, when using an Aginity client, use the `Run entire script as batch` option\. When you use SQL Workbench/J, we recommend version 124\. When you use SQL Workbench/J version 125, consider specifying an alternate delimiter as a workaround\.   
+CREATE PROCEDURE contains SQL statements delimited with a semicolon \(;\)\. Defining an alternate delimiter such as a slash \(/\) and placing it at the end of the CREATE PROCEDURE statement sends the statement to the Amazon Redshift server for processing\. Following is an example\.  
 
 ```
 CREATE OR REPLACE PROCEDURE test()
@@ -28,7 +29,7 @@ LANGUAGE plpgsql
 ;
 /
 ```
-For more information, see [Alternate delimiter](http://www.sql-workbench.net/manual/profiles.html#profile-alternate-delimiter) in the SQL Workbench/J documentation\. Or use a client with better support for parsing CREATE PROCEDURE statements, such as the [Query editor in the Amazon Redshift console](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) or TablePlus\. 
+For more information, see [Alternate delimiter](http://www.sql-workbench.net/manual/profiles.html#profile-alternate-delimiter) in the SQL Workbench/J documentation\. Or use a client with better support for parsing CREATE PROCEDURE statements, such as the [query editor in the Amazon Redshift console](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) or TablePlus\. 
 
 **Topics**
 + [Naming stored procedures](stored-procedure-naming.md)
@@ -53,6 +54,8 @@ call test_sp1(5, 'abc');
 INFO: f1 = 5, f2 = abc
 CALL
 ```
+
+
 
 The following example shows a procedure with output arguments\. Arguments are input \(IN\), input and output \(INOUT\), and output \(OUT\)\.
 

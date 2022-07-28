@@ -21,6 +21,11 @@ If DISTKEY is set, either at the column level or at the table level, DISTSTYLE m
 SORTKEY  
 If set at the column level, SORTKEY must be a single column\. If SORTKEY is set at the table level, one or more columns can make up a compound or interleaved composite sort key\. 
 
+COLLATE CASE\_SENSITIVE \| COLLATE CASE\_INSENSITIVE  
+Amazon Redshift doesn't support altering case\-sensitivity configuration for a column\. When you append a new column to the table, Amazon Redshift uses the default value for case\-sensitivity\. Amazon Redshift doesn't support collate key word when appending a new column\.  
+For information on how to create databases using database collation, see [CREATE DATABASE](r_CREATE_DATABASE.md)\.  
+For information on the COLLATE function, see [COLLATE function](r_COLLATE.md)\.
+
 UNIQUE  
 At the column level, one or more keys can be set to UNIQUE; the UNIQUE constraint applies to each column individually\. If UNIQUE is set at the table level, one or more columns can make up a composite UNIQUE constraint\. 
 

@@ -4,13 +4,13 @@ Use the SVV\_INTERLEAVED\_COLUMNS view to help determine whether a table that us
 
 SVV\_INTERLEAVED\_COLUMNS is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="SVV_INTERLEAVED_COLUMNS-table-columns"></a>
+## Table columns<a name="SVV_INTERLEAVED_COLUMNS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_INTERLEAVED_COLUMNS.html)
 
-## Sample Queries<a name="SVV_INTERLEAVED_COLUMNS-sample-queries"></a>
+## Sample queries<a name="SVV_INTERLEAVED_COLUMNS-sample-queries"></a>
 
-To identify tables that might need to be reindexed, execute the following query\.
+To identify tables that might need to be reindexed, run the following query\.
 
 ```
 select tbl as tbl_id, stv_tbl_perm.name as table_name, 

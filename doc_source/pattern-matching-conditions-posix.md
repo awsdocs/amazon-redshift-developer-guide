@@ -3,7 +3,7 @@
 POSIX regular expressions provide a more powerful means for pattern matching than the [LIKE](r_patternmatching_condition_like.md) and [SIMILAR TO](pattern-matching-conditions-similar-to.md) operators\. POSIX regular expression patterns can match any portion of a string, unlike the SIMILAR TO operator, which returns true only if its pattern matches the entire string\.
 
 **Note**  
-Regular expression matching using POSIX operators is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE executes several times faster than the query that uses a regular expression:  
+Regular expression matching using POSIX operators is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE runs several times faster than the query that uses a regular expression:  
 
 ```
 select count(*) from event where eventname ~ '.*(Ring|Die).*'; 
@@ -56,37 +56,36 @@ The following table shows examples of pattern matching using POSIX operators:
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/pattern-matching-conditions-posix.html)
 
-The following example finds all cities whose names contain `E` or `H`: 
+The following example finds cities whose names contain `E` or `H`: 
 
 ```
-select distinct city from users
-where city ~ '.*E.*|.*H.*' order by city;
-         city
------------------------
+SELECT DISTINCT city FROM users
+WHERE city ~ '.*E.*|.*H.*' ORDER BY city LIMIT 5;
+
+      city
+-----------------
  Agoura Hills
  Auburn Hills
  Benton Harbor
  Beverly Hills
  Chicago Heights
- Chino Hills
- Citrus Heights
- East Hartford
 ```
 
 The following example uses the escape string \('`\\`'\) to search for strings that include a period\. 
 
 ```
-select venuename from venue
-where venuename ~ '.*\\..*';
+SELECT venuename FROM venue
+WHERE venuename ~ '.*\\..*'
+ORDER BY venueid;
 
-       venuename
------------------------------
-Bernard B. Jacobs Theatre
-E.J. Nutter Center
-Hubert H. Humphrey Metrodome
-Jobing.com Arena
-St. James Theatre
-St. Pete Times Forum
-Superpages.com Center
-U.S. Cellular Field
+          venuename
+------------------------------
+ St. Pete Times Forum
+ Jobing.com Arena
+ Hubert H. Humphrey Metrodome
+ U.S. Cellular Field
+ Superpages.com Center
+ E.J. Nutter Center
+ Bernard B. Jacobs Theatre
+ St. James Theatre
 ```

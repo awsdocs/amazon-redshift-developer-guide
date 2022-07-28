@@ -26,7 +26,7 @@ When columns are sorted appropriately, the query processor is able to rapidly fi
 
 ## Data compression<a name="data-compression"></a>
 
-Data compression reduces storage requirements, thereby reducing disk I/O, which improves query performance\. When you execute a query, the compressed data is read into memory, then uncompressed during query execution\. Loading less data into memory enables Amazon Redshift to allocate more memory to analyzing the data\. Because columnar storage stores similar data sequentially, Amazon Redshift is able to apply adaptive compression encodings specifically tied to columnar data types\. The best way to enable data compression on table columns is by allowing Amazon Redshift to apply optimal compression encodings when you load the table with data\. To learn more about using automatic data compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
+Data compression reduces storage requirements, thereby reducing disk I/O, which improves query performance\. When you run a query, the compressed data is read into memory, then uncompressed during query execution\. Loading less data into memory enables Amazon Redshift to allocate more memory to analyzing the data\. Because columnar storage stores similar data sequentially, Amazon Redshift is able to apply adaptive compression encodings specifically tied to columnar data types\. The best way to enable data compression on table columns is by allowing Amazon Redshift to apply optimal compression encodings when you load the table with data\. To learn more about using automatic data compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
 ## Query optimizer<a name="query-optimizer"></a>
 
@@ -34,9 +34,9 @@ The Amazon Redshift query execution engine incorporates a query optimizer that i
 
 ## Result caching<a name="result-caching"></a>
 
-To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When a user submits a query, Amazon Redshift checks the results cache for a valid, cached copy of the query results\. If a match is found in the result cache, Amazon Redshift uses the cached results and doesn't execute the query\. Result caching is transparent to the user\.
+To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When a user submits a query, Amazon Redshift checks the results cache for a valid, cached copy of the query results\. If a match is found in the result cache, Amazon Redshift uses the cached results and doesn't run the query\. Result caching is transparent to the user\.
 
-Result caching is enabled by default\. To disable result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`\.
+Result caching is turned on by default\. To turn off result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`\.
 
 Amazon Redshift uses cached results for a new query when all of the following are true:
 + The user submitting the query has access privilege to the objects used in the query\.
@@ -70,8 +70,6 @@ userid | query  | elapsed  | source_query
    100 | 628900 | 87015637 |             
    100 | 628891 | 58808694 |
 ```
-
-For details about the queries used to create the results shown in the previous example, see [Step 2: Test system performance to establish a baseline](tutorial-tuning-tables-test-performance.md) in the [Tuning Table Design](tutorial-tuning-tables.md) tutorial\.
 
 ## Compiled code<a name="compiled-code"></a>
 

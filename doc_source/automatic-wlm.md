@@ -1,6 +1,6 @@
 # Implementing automatic WLM<a name="automatic-wlm"></a>
 
-With automatic workload management \(WLM\), Amazon Redshift manages query concurrency and memory allocation\. Up to eight queues are created with the service class identifiers 100–107\. Each queue has a priority\. For more information, see [Query priority](query-priority.md)\. 
+With automatic workload management \(WLM\), Amazon Redshift manages query concurrency and memory allocation\. You can create up to eight queues with the service class identifiers 100–107\. Each queue has a priority\. For more information, see [Query priority](query-priority.md)\. 
 
 In contrast, manual WLM requires you to specify values for query concurrency and memory allocation\. The default for manual WLM is concurrency of five queries, and memory is divided equally between all five\. Automatic WLM determines the amount of resources that queries need, and adjusts the concurrency based on the workload\. When queries requiring large amounts of resources are in the system \(for example, hash joins between large tables\), the concurrency is lower\. When lighter queries \(such as inserts, deletes, scans, or simple aggregations\) are submitted, concurrency is higher\. 
 
@@ -27,17 +27,17 @@ You can define the relative importance of queries in a workload by setting a pri
 
 ## Concurrency scaling mode<a name="wlm-auto-concurrency-scaling-mode"></a>
 
-When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read queries\. Write operations continue as normal on your main cluster\. Users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
+When concurrency scaling is enabled, Amazon Redshift automatically adds additional cluster capacity when you need it to process an increase in concurrent read and write queries\. Your users see the most current data, whether the queries run on the main cluster or on a concurrency scaling cluster\. 
 
-You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in line\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\.
+You manage which queries are sent to the concurrency scaling cluster by configuring WLM queues\. When you enable concurrency scaling for a queue, eligible queries are sent to the concurrency scaling cluster instead of waiting in a queue\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\.
 
 ## User groups<a name="wlm-auto-defining-query-queues-user-groups"></a>
 
-You can assign a set of user groups to a queue by specifying each user group name or by using wildcards\. When a member of a listed user group runs a query, that query runs in the corresponding queue\. There is no set limit on the number of user groups that can be assigned to a queue\. For more information, see [Wildcards](#wlm-auto-wildcards)\.
+You can assign a set of user groups to a queue by specifying each user group name or by using wildcards\. When a member of a listed user group runs a query, that query runs in the corresponding queue\. There is no set limit on the number of user groups that can be assigned to a queue\. For more information, see [Assigning queries to queues based on user groups](cm-c-executing-queries.md#cm-c-executing-queries-assigning-queries-to-queues-based-on-user-groups)\. 
 
 ## Query groups<a name="wlm-auto-defining-query-queues-query-groups"></a>
 
-You can assign a set of query groups to a queue by specifying each query group name or by using wildcards\. A *query group* is simply a label\. At runtime, you can assign the query group label to a series of queries\. Any queries that are assigned to a listed query group run in the corresponding queue\. There is no set limit to the number of query groups that can be assigned to a queue\. For more information, see [Wildcards](#wlm-auto-wildcards)\.
+You can assign a set of query groups to a queue by specifying each query group name or by using wildcards\. A *query group* is simply a label\. At runtime, you can assign the query group label to a series of queries\. Any queries that are assigned to a listed query group run in the corresponding queue\. There is no set limit to the number of query groups that can be assigned to a queue\. For more information, see [Assigning a query to a query group](cm-c-executing-queries.md#cm-c-executing-queries-assigning-a-query-to-a-query-group)\. 
 
 ## Wildcards<a name="wlm-auto-wildcards"></a>
 
@@ -49,7 +49,7 @@ By default, wildcards aren't enabled\.
 
 ## Query monitoring rules<a name="wlm-auto-query-monitoring-rules"></a>
 
-Query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that aborts queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.
+Query monitoring rules define metrics\-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries\. For example, for a queue dedicated to short running queries, you might create a rule that cancels queries that run for more than 60 seconds\. To track poorly designed queries, you might have another rule that logs queries that contain nested loops\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.
 
 ## Checking for automatic WLM<a name="wlm-monitoring-automatic-wlm"></a>
 

@@ -7,7 +7,7 @@ REGEXP\_REPLACE is similar to the [TRANSLATE function](r_TRANSLATE.md) and the [
 ## Syntax<a name="REGEXP_REPLACE-synopsis"></a>
 
 ```
-REGEXP_REPLACE ( source_string, pattern [, replace_string [ , position ] ] )
+REGEXP_REPLACE ( source_string, pattern [, replace_string [ , position [, parameters ] ] ] )
 ```
 
 ## Arguments<a name="REGEXP_REPLACE-arguments"></a>
@@ -24,6 +24,12 @@ A string expression, such as a column name, that will replace each occurrence of
  *position*   
 A positive integer that indicates the position within *source\_string* to begin searching\. The position is based on the number of characters, not bytes, so that multibyte characters are counted as single characters\. The default is 1\. If *position* is less than 1, the search begins at the first character of *source\_string*\. If *position* is greater than the number of characters in *source\_string*, the result is *source\_string*\.
 
+ *parameters*   
+One or more string literals that indicate how the function matches the pattern\. The possible values are the following:  
++ c – Perform case\-sensitive matching\. The default is to use case\-sensitive matching\.
++ i – Perform case\-insensitive matching\.
++ p – Interpret the pattern with Perl Compatible Regular Expression \(PCRE\) dialect\.
+
 ## Return type<a name="REGEXP_REPLACE-return-type"></a>
 
 VARCHAR
@@ -35,37 +41,59 @@ If either *pattern* or *replace\_string* is NULL, the return is NULL\.
 The following example deletes the `@` and domain name from email addresses\.
 
 ```
-select email, regexp_replace( email, '@.*\\.(org|gov|com)$') 
-from users limit 5; 
+SELECT email, regexp_replace(email, '@.*\\.(org|gov|com|edu|ca)$')
+FROM users
+ORDER BY userid LIMIT 4;
 
-              email                | regexp_replace 
------------------------------------+----------------  
-  DonecFri@semperpretiumneque.com  | DonecFri
-  mk1wait@UniOfTech.org            | mk1wait
-  sed@redshiftemails.com           | sed
-  bunyung@integermath.gov          | bunyung
-  tomsupporter@galaticmess.org     | tomsupporter
+              email                            | regexp_replace 
+-----------------------------------------------+----------------  
+ Etiam.laoreet.libero@sodalesMaurisblandit.edu | Etiam.laoreet.libero
+ Suspendisse.tristique@nonnisiAenean.edu       | Suspendisse.tristique
+ amet.faucibus.ut@condimentumegetvolutpat.ca   | amet.faucibus.ut
+ sed@lacusUtnec.ca                             | sed
 ```
 
-The following example selects URLs from the fictional WEBSITES table and replaces the domain names with this value: `internal.company.com/`
+The following example replaces the domain names of email addresses with this value: `internal.company.com`\.
 
 ```
-select url, regexp_replace(url, '^.*\\.[[:alpha:]]{3}/', 
-'internal.company.com/') from websites limit 4;
+SELECT email, regexp_replace(email, '@.*\\.[[:alpha:]]{2,3}',
+'@internal.company.com') FROM users
+ORDER BY userid LIMIT 4;
 
-  url                                                                                          
------------------------------------------------------
-|  regexp_replace                       
-+-----------------------------------------------------
-example.com/cuisine/locations/home.html    
-| internal.company.com/cuisine/locations/home.html  
+                     email                     |               regexp_replace
+-----------------------------------------------+--------------------------------------------
+ Etiam.laoreet.libero@sodalesMaurisblandit.edu | Etiam.laoreet.libero@internal.company.com
+ Suspendisse.tristique@nonnisiAenean.edu       | Suspendisse.tristique@internal.company.com
+ amet.faucibus.ut@condimentumegetvolutpat.ca   | amet.faucibus.ut@internal.company.com
+ sed@lacusUtnec.ca                             | sed@internal.company.com
+```
 
-anycompany.employersthere.com/employed/A/index.html   
-| internal.company.com/employed/A/index.html  
+The following example replaces all occurrences of the string `FOX` within the value `quick brown fox`, using case\-insensitive matching\.
 
-example.gov/credentials/keys/public      
-| internal.company.com/credentials/keys/public  
+```
+SELECT regexp_replace('the fox', 'FOX', 'quick brown fox', 1, 'i');
 
-yourcompany.com/2014/Q1/summary.pdf          
-| internal.company.com/2014/Q1/summary.pdf
+   regexp_replace
+---------------------
+ the quick brown fox
+```
+
+The following example uses a pattern written in the PCRE dialect to locate words containing at least one number and one lowercase letter\. It uses the `?=` operator, which has a specific look\-ahead connotation in PCRE\. This example replaces each occurrence of such a word with the value `[hidden]`\.
+
+```
+SELECT regexp_replace('passwd7 plain A1234 a1234', '(?=[^ ]*[a-z])(?=[^ ]*[0-9])[^ ]+', '[hidden]', 1, 'p');
+
+        regexp_replace
+-------------------------------
+ [hidden] plain A1234 [hidden]
+```
+
+The following example uses a pattern written in the PCRE dialect to locate words containing at least one number and one lowercase letter\. It uses the `?=` operator, which has a specific look\-ahead connotation in PCRE\. This example replaces each occurrence of such a word with the value `[hidden]`, but differs from the previous example in that it uses case\-insensitive matching\.
+
+```
+SELECT regexp_replace('passwd7 plain A1234 a1234', '(?=[^ ]*[a-z])(?=[^ ]*[0-9])[^ ]+', '[hidden]', 1, 'ip');
+
+          regexp_replace
+----------------------------------
+ [hidden] plain [hidden] [hidden]
 ```

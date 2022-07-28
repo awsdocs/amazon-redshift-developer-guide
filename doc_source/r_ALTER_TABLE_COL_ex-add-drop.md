@@ -56,9 +56,9 @@ Drop the column to reinstate the original DDL:
 alter table users drop column feedback_score;
 ```
 
-## DROPPING a column with a dependent object<a name="r_ALTER_TABLE_COL_ex-dropping-a-column-with-a-dependent-object"></a>
+## Dropping a column with a dependent object<a name="r_ALTER_TABLE_COL_ex-dropping-a-column-with-a-dependent-object"></a>
 
-This example drops a column that has a dependent object\. As a result, the dependent object is also dropped\. 
+The following example drops a column that has a dependent object\. As a result, the dependent object is also dropped\. 
 
 To start, add the FEEDBACK\_SCORE column to the USERS table again: 
 

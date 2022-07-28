@@ -4,6 +4,17 @@ Creates a view in a database\. The view isn't physically materialized; the query
 
 To create a standard view, you need access to the underlying tables\. To query a standard view, you need select privileges for the view itself, but you don't need select privileges for the underlying tables\. To query a late binding view, you need select privileges for the late binding view itself\. You should also make sure the owner of the late binding view has select privileges to the referenced objects \(tables, views, or user\-defined functions\)\. For more information about Late Binding Views, see [Usage notes](#r_CREATE_VIEW_usage_notes)\.
 
+## Required privileges<a name="r_CREATE_VIEW-privileges"></a>
+
+Following are required privileges for CREATE VIEW:
++ For CREATE VIEW:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] VIEW privilege
++ For REPLACE VIEW:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] VIEW privilege
+  + View owner
+
 ## Syntax<a name="r_CREATE_VIEW-synopsis"></a>
 
 ```
@@ -14,7 +25,8 @@ CREATE [ OR REPLACE ] VIEW name [ ( column_name [, ...] ) ] AS query
 ## Parameters<a name="r_CREATE_VIEW-parameters"></a>
 
 OR REPLACE   
-If a view of the same name already exists, the view is replaced\. You can only replace a view with a new query that generates the identical set of columns, using the same column names and data types\. CREATE OR REPLACE VIEW locks the view for reads and writes until the operation completes\.
+If a view of the same name already exists, the view is replaced\. You can only replace a view with a new query that generates the identical set of columns, using the same column names and data types\. CREATE OR REPLACE VIEW locks the view for reads and writes until the operation completes\.  
+When a view is replaced, its other properties such as ownership and granted privileges are preserved\. 
 
  *name*   
 The name of the view\. If a schema name is given \(such as `myschema.myview`\) the view is created using the specified schema\. Otherwise, the view is created in the current schema\. The view name must be different from the name of any other view or table in the same schema\.   
@@ -35,7 +47,7 @@ When you include the WITH NO SCHEMA BINDING clause, tables and views referenced 
 create view myevent as select eventname from event
 with no schema binding;
 ```
-The following statement executes successfully\.  
+The following statement runs successfully\.  
 
 ```
 create view myevent as select eventname from public.event
@@ -47,11 +59,13 @@ You can't update, insert into, or delete from a view\.
 
 ## Usage notes<a name="r_CREATE_VIEW_usage_notes"></a>
 
+
+
 ### Late\-binding views<a name="r_CREATE_VIEW_late-binding-views"></a>
 
 A late\-binding view doesn't check the underlying database objects, such as tables and other views, until the view is queried\. As a result, you can alter or drop the underlying objects without dropping and recreating the view\. If you drop underlying objects, queries to the late\-binding view will fail\. If the query to the late\-binding view references columns in the underlying object that aren't present, the query will fail\. 
 
- If you drop and then re\-create a late\-binding view's underlying table or view, the new object is created with default access permissions\. You might need to grant permissions to the underling objects for users who will query the view\. 
+ If you drop and then re\-create a late\-binding view's underlying table or view, the new object is created with default access permissions\. You might need to grant permissions to the underlying objects for users who will query the view\. 
 
 To create a late\-binding view, include the WITH NO SCHEMA BINDING clause\. The following example creates a view with no schema binding\. 
 

@@ -97,7 +97,7 @@ catid | catgroup | catname | catdesc
 (3 rows)
 ```
 
-The first set of VALUES in this example produce the same results as specifying DEFAULT VALUES for a single\-row INSERT statement\.
+The first set of VALUES in this example produces the same results as specifying DEFAULT VALUES for a single\-row INSERT statement\.
 
 The following examples show INSERT behavior when a table has an IDENTITY column\. First, create a new version of the CATEGORY table, then insert rows into it from CATEGORY: 
 

@@ -11,8 +11,7 @@ The ORDER BY clause sorts the result set of a query\.
 ## Syntax<a name="r_ORDER_BY_clause-synopsis"></a>
 
 ```
-[ ORDER BY expression
-[ ASC | DESC ]
+[ ORDER BY expression [ ASC | DESC ] ]
 [ NULLS FIRST | NULLS LAST ]  
 [ LIMIT { count | ALL } ]
 [ OFFSET start ]
@@ -47,6 +46,7 @@ Option that specifies to skip the number of rows before *start* before beginning
 
  Note the following expected behavior with ORDER BY clauses: 
 + NULL values are considered "higher" than all other values\. With the default ascending sort order, NULL values sort at the end\. To change this behavior, use the NULLS FIRST option\.
-+ When a query doesn't contain an ORDER BY clause, the system returns result sets with no predictable ordering of the rows\. The same query executed twice might return the result set in a different order\. 
++ When a query doesn't contain an ORDER BY clause, the system returns result sets with no predictable ordering of the rows\. The same query run twice might return the result set in a different order\. 
 + The LIMIT and OFFSET options can be used without an ORDER BY clause; however, to return a consistent set of rows, use these options in conjunction with ORDER BY\. 
 + In any parallel system like Amazon Redshift, when ORDER BY doesn't produce a unique ordering, the order of the rows is nondeterministic\. That is, if the ORDER BY expression produces duplicate values, the return order of those rows might vary from other systems or from one run of Amazon Redshift to the next\. 
++ Amazon Redshift doesn't support string literals in ORDER BY clauses\.

@@ -6,11 +6,11 @@ Use aggregate queries with SVV\_DISKUSAGE, as the following examples show, to de
 
 SVV\_DISKUSAGE is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVV_DISKUSAGE-table-rows"></a>
+## Table columns<a name="r_SVV_DISKUSAGE-table-rows"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DISKUSAGE.html)
 
-## Sample Queries<a name="r_SVV_DISKUSAGE-sample-queries"></a>
+## Sample queries<a name="r_SVV_DISKUSAGE-sample-queries"></a>
 
 SVV\_DISKUSAGE contains one row per allocated disk block, so a query that selects all the rows potentially returns a very large number of rows\. We recommend using only aggregate queries with SVV\_DISKUSAGE\.
 

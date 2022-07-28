@@ -35,7 +35,7 @@ In this illustration, the query optimizer runs the query plan as follows:
 
 1. In `Stream 0`, the query runs `Segment 0` with a sequential scan operation to scan the `events` table\. The query continues to `Segment 1` with a hash operation to create the hash table for the inner table in the join\.
 
-1. In `Stream 1`, the query runs `Segment 2` with a sequential scan operation to scan the `sales` table\. It continues with `Segment 2` with a hash join to join tables where the join columns are not both distribution keys and sort keys\. It again continues with `Segment 2` with a hash aggregate to aggregate results\. Then the query runs `Segment 3` with a hash aggregate operation to perform unsorted grouped aggregate functions and a sort operation to evaluate the ORDER BY clause and other sort operations\.
+1. In `Stream 1`, the query runs `Segment 2` with a sequential scan operation to scan the `sales` table\. It continues with `Segment 2` with a hash join to join tables where the join columns are not both distribution keys and sort keys\. It again continues with `Segment 2` with a hash aggregate to aggregate results\. Then the query runs `Segment 3` with a hash aggregate operation to perform unsorted grouped aggregate functions, and a sort operation to evaluate the ORDER BY clause and other sort operations\.
 
 1. In `Stream 2`, the query runs a network operation in `Segment 4` and `Segment 5` to send intermediate results to the leader node for further processing\.
 

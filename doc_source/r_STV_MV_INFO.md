@@ -21,8 +21,8 @@ select * from stv_mv_info;
 This query returns the following sample output\. 
 
 ```
- db_name |       schema   |   name  | updated_upto_xid | is_stale | owner_user_name | state
----------+----------------+---------+------------------+------+---------------------+-------
- dev     | test_setup     | mv      |             1031 | f        | johndoea        |     1
- dev     | test_setup     | old_mv  |              988 | t        | paul            |     1
+ db_name |       schema       |   name  | updated_upto_xid | is_stale | owner_user_name | state | autorefresh | autorewrite
+---------+--------------------+---------+------------------+----------+-----------------+-------+-------------+------------
+ dev     | test_ivm_setup     | mv      |             1031 | f        | catch-22        |     1 |           1 |           0
+ dev     | test_ivm_setup     | old_mv  |              988 | t        | lotr            |     1 |           0 |           1
 ```

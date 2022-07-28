@@ -19,7 +19,7 @@ having sum(pricepaid)>9999
 order by catname, buyercost desc;
 ```
 
-In the TICKIT database, SALES is a fact table and LISTING is its largest dimension\. In order to collocate the tables, SALES is distributed on the LISTID, which is the foreign key for LISTING, and LISTING is distributed on its primary key, LISTID\. The following example shows the CREATE TABLE commands for SALES and LISTID\.
+In the TICKIT database, SALES is a fact table and LISTING is its largest dimension\. In order to collocate the tables, SALES is distributed on the LISTID, which is the foreign key for LISTING, and LISTING is distributed on its primary key, LISTID\. The following example shows the CREATE TABLE commands for SALES and LISTING\.
 
 ```
 create table sales(

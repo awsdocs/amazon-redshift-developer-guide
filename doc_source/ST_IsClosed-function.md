@@ -1,6 +1,6 @@
 # ST\_IsClosed<a name="ST_IsClosed-function"></a>
 
-ST\_IsClosed returns true if the input geometry is closed\. The following rules define a closed geometry: 
+ST\_IsClosed returns true if the 2D projection of the input geometry is closed\. The following rules define a closed geometry: 
 + The input geometry is a point or a multipoint\. 
 + The input geometry is a linestring, and the start and end points of the linestring coincide\. 
 + The input geometry is a nonempty multilinestring and all its linestrings are closed\. 
@@ -22,6 +22,8 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 ## Return type<a name="ST_IsClosed-function-return"></a>
 
 `BOOLEAN`
+
+If *geom* is an empty point, then false is returned\. 
 
 If *geom* is null, then null is returned\. 
 

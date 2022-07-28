@@ -4,6 +4,13 @@ Removes a user\-defined function \(UDF\) from the database\. The function's sign
 
 This command isn't reversible\.
 
+## Required privileges<a name="r_DROP_FUNCTION-privileges"></a>
+
+Following are required privileges for DROP FUNCTION:
++ Superuser
++ Users with the DROP FUNCTION privilege
++ Function owner
+
 ## Syntax<a name="r_DROP_FUNCTION-synopsis"></a>
 
 ```
@@ -28,7 +35,7 @@ Keyword specifying to automatically drop objects that depend on the function, su
 To create a view that isn't dependent on a function, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
  RESTRICT   
-Keyword specifying that if any objects depend on depend on the function, do not drop the function and return a message\. This action is the default\.
+Keyword specifying that if any objects depend on the function, do not drop the function and return a message\. This action is the default\.
 
 ## Examples<a name="r_DROP_FUNCTION-examples"></a>
 

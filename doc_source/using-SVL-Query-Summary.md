@@ -33,7 +33,7 @@ To analyze query summary information by stream, do the following:
 A high `maxtime` value doesn't necessarily indicate a problem with the segment\. Despite a high value, the segment might not have taken a long time to process\. All segments in a stream start getting timed in unison\. However, some downstream segments might not be able to run until they get data from upstream ones\. This effect might make them seem to have taken a long time because their `maxtime` value includes both their waiting time and their processing time\. 
    + **BCAST or DIST**: In these cases, the high `maxtime` value might be the result of redistributing a large number of rows\. For recommended solutions, see [Suboptimal data distribution](query-performance-improvement-opportunities.md#suboptimal-data-distribution)\.
    + **HJOIN \(hash join\)**: If the step in question has a very high value in the `rows` field compared to the `rows` value in the final RETURN step in the query, see [Hash join](query-performance-improvement-opportunities.md#hash-join) for recommended solutions\.
-   + **SCAN/SORT**: Look for a SCAN, SORT, SCAN, MERGE sequence of steps just prior to a join step\. This pattern indicates that unsorted data is being scanned, sorted, and then merged with the sorted area of the table\.
+   + **SCAN/SORT**: Look for a SCAN, SORT, SCAN, MERGE sequence of steps just before a join step\. This pattern indicates that unsorted data is being scanned, sorted, and then merged with the sorted area of the table\.
 
      See if the rows value for the SCAN step has a very high value compared to the rows value in the final RETURN step in the query\. This pattern indicates that the execution engine is scanning rows that are later discarded, which is inefficient\. For recommended solutions, see [Insufficiently restrictive predicate](query-performance-improvement-opportunities.md#insufficiently-restrictive-predicate)\. 
 
@@ -41,7 +41,7 @@ A high `maxtime` value doesn't necessarily indicate a problem with the segment\.
 
      If the `rows` value for the SORT step is not zero, see [Unsorted or missorted rows](query-performance-improvement-opportunities.md#unsorted-or-mis-sorted-rows) for recommended solutions\.
 
-1. Review the `rows` and `bytes` values for the 5–10 steps that precede the final RETURN step to get an idea of the amount of data that is being returned to the client\. This process can be a bit of an art\.
+1. Review the `rows` and `bytes` values for the 5–10 steps that precede the final RETURN step to get an idea of the amount of data that is returned to the client\. This process can be a bit of an art\.
 
    For example, in the following query summary, you can see that the third PROJECT step provides a `rows` value but not a `bytes` value\. By looking through the preceding steps for one with the same `rows` value, you find the SCAN step that provides both rows and bytes information:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/rows_and_bytes.png)

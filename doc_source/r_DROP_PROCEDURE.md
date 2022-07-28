@@ -2,6 +2,13 @@
 
 Drops a procedure\. To drop a procedure, both the procedure name and input argument data types \(signature\), are required\. Optionally, you can include the full argument data types, including OUT arguments\. 
 
+## Required privileges<a name="r_DROP_PROCEDURE-privileges"></a>
+
+Following are required privileges for DROP PROCEDURE:
++ Superuser
++ Users with the DROP PROCEDURE privilege
++ Procedure owner
+
 ## Syntax<a name="r_DROP_PROCEDURE-synopsis"></a>
 
 ```

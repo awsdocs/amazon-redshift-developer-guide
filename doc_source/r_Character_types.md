@@ -43,7 +43,7 @@ Use a VARCHAR or CHARACTER VARYING column to store variable\-length strings with
 varchar(120)
 ```
 
-If you use the VARCHAR data type without a length specifier, the default length is 256\.
+If you use the VARCHAR data type without a length specifier in a CREATE TABLE statement, the default length is 256\. If used in an expression, the size of the output is determined using the input expression \(up to 65535\)\.
 
 ## NCHAR and NVARCHAR types<a name="r_Character_types-nchar-and-nvarchar-types"></a>
 

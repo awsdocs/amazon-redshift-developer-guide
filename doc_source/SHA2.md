@@ -14,7 +14,7 @@ SHA2(string, bits)
 A variable\-length string\.
 
  *integer*   
-The number of its in the hash functions\. Valid values are 0 \(same as 256\), 224, 256, 384, and 512\.
+The number of bits in the hash functions\. Valid values are 0 \(same as 256\), 224, 256, 384, and 512\.
 
 ## Return type<a name="SHA2-returm-type"></a>
 

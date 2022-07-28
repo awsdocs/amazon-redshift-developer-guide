@@ -4,10 +4,10 @@ After your external tables are created, you can query them using the same SELECT
 
 **To query your data in Amazon S3**
 
-1. Get the number of rows in the SPECTRUM\.SALES table\. 
+1. Get the number of rows in the MYSPECTRUM\_SCHEMA\.SALES table\. 
 
    ```
-   select count(*) from spectrum.sales;
+   select count(*) from myspectrum_schema.sales;
    ```
 
    ```
@@ -32,17 +32,17 @@ After your external tables are created, you can query them using the same SELECT
 
    ```
    copy event from 's3://awssampledbuswest2/tickit/allevents_pipe.txt' 
-   iam_role 'arn:aws:iam::123456789012:role/mySpectrumRole'
+   iam_role 'arn:aws:iam::123456789012:role/myspectrum_role'
    delimiter '|' timeformat 'YYYY-MM-DD HH:MI:SS' region 'us-west-2';
    ```
 
-   The following example joins the external table SPECTRUM\.SALES with the local table EVENT to find the total sales for the top 10 events\.
+   The following example joins the external table MYSPECTRUM\_SCHEMA\.SALES with the local table EVENT to find the total sales for the top 10 events\.
 
    ```
-   select top 10 spectrum.sales.eventid, sum(spectrum.sales.pricepaid) from spectrum.sales, event
-   where spectrum.sales.eventid = event.eventid
-   and spectrum.sales.pricepaid > 30
-   group by spectrum.sales.eventid
+   select top 10 myspectrum_schema.sales.eventid, sum(myspectrum_schema.sales.pricepaid) from myspectrum_schema.sales, event
+   where myspectrum_schema.sales.eventid = event.eventid
+   and myspectrum_schema.sales.pricepaid > 30
+   group by myspectrum_schema.sales.eventid
    order by 2 desc;
    ```
 
@@ -61,15 +61,15 @@ After your external tables are created, you can query them using the same SELECT
       5638 | 46280.00
    ```
 
-1. View the query plan for the previous query\. Note the `S3 Seq Scan`, `S3 HashAggregate`, and `S3 Query Scan` steps that were executed against the data on Amazon S3\.
+1. View the query plan for the previous query\. Notice the `S3 Seq Scan`, `S3 HashAggregate`, and `S3 Query Scan` steps that were run against the data on Amazon S3\.
 
    ```
    explain
-   select top 10 spectrum.sales.eventid, sum(spectrum.sales.pricepaid) 
-   from spectrum.sales, event
-   where spectrum.sales.eventid = event.eventid
-   and spectrum.sales.pricepaid > 30
-   group by spectrum.sales.eventid
+   select top 10 myspectrum_schema.sales.eventid, sum(myspectrum_schema.sales.pricepaid) 
+   from myspectrum_schema.sales, event
+   where myspectrum_schema.sales.eventid = event.eventid
+   and myspectrum_schema.sales.pricepaid > 30
+   group by myspectrum_schema.sales.eventid
    order by 2 desc;
    ```
 
@@ -88,7 +88,7 @@ After your external tables are created, you can query them using the same SELECT
                                    Hash Cond: ("outer".derived_col1 = "inner".eventid)                                                                                                       
                                    ->  XN S3 Query Scan sales  (cost=3010.00..5010.50 rows=200000 width=31)                                                                                  
                                          ->  S3 HashAggregate  (cost=3010.00..3010.50 rows=200000 width=16)                                                                                  
-                                               ->  S3 Seq Scan spectrum.sales location:"s3://awssampledbuswest2/tickit/spectrum/sales" format:TEXT  (cost=0.00..2150.00 rows=172000 width=16)
+                                               ->  S3 Seq Scan myspectrum_schema.sales location:"s3://awssampledbuswest2/tickit/spectrum/sales" format:TEXT  (cost=0.00..2150.00 rows=172000 width=16)
                                                      Filter: (pricepaid > 30.00)                                                                                                             
                                    ->  XN Hash  (cost=87.98..87.98 rows=8798 width=4)                                                                                                        
                                          ->  XN Seq Scan on event  (cost=0.00..87.98 rows=8798 width=4)

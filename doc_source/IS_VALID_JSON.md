@@ -1,6 +1,6 @@
 # IS\_VALID\_JSON function<a name="IS_VALID_JSON"></a>
 
-IS\_VALID\_JSON validates a JSON string\. The function returns Boolean `true` \(`t`\) if the string is properly formed JSON or `false` \(`f`\) if the string is malformed\. To validate a JSON array, use [IS\_VALID\_JSON\_ARRAY function](IS_VALID_JSON_ARRAY.md)
+The IS\_VALID\_JSON function validates a JSON string\. The function returns Boolean `true` \(`t`\) if the string is properly formed JSON or `false` \(`f`\) if the string is malformed\. To validate a JSON array, use [IS\_VALID\_JSON\_ARRAY function](IS_VALID_JSON_ARRAY.md)
 
 For more information, see [JSON functions](json-functions.md)\. 
 

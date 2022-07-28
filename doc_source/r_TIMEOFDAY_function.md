@@ -1,6 +1,6 @@
 # TIMEOFDAY function<a name="r_TIMEOFDAY_function"></a>
 
-TIMEOFDAY is a special alias used to return the weekday, date, and time as a string value\.
+TIMEOFDAY is a special alias used to return the weekday, date, and time as a string value\. It returns the time of day string for the current statement, even when it is within a transaction block\. 
 
 ## Syntax<a name="r_TIMEOFDAY_function-syntax"></a>
 
@@ -14,7 +14,7 @@ VARCHAR
 
 ## Examples<a name="r_TIMEOFDAY_function-examples"></a>
 
-Return the current date and time by using the TIMEOFDAY function: 
+The following example returns the current date and time by using the TIMEOFDAY function\. 
 
 ```
 select timeofday();

@@ -1,8 +1,8 @@
 # ABORT<a name="r_ABORT"></a>
 
-Aborts the currently running transaction and discards all updates made by that transaction\. ABORT has no effect on already completed transactions\.
+Stops the currently running transaction and discards all updates made by that transaction\. ABORT has no effect on already completed transactions\.
 
-This command performs the same function as the ROLLBACK command\. See [ROLLBACK](r_ROLLBACK.md) for more detailed documentation\.
+This command performs the same function as the ROLLBACK command\. For information, see [ROLLBACK](r_ROLLBACK.md)\.
 
 ## Syntax<a name="r_ABORT-synopsis"></a>
 

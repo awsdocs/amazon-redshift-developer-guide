@@ -1,16 +1,16 @@
 # SVL\_QUERY\_REPORT<a name="r_SVL_QUERY_REPORT"></a>
 
-Amazon Redshift creates the SVL\_QUERY\_REPORT view from a UNION of a number of Amazon Redshift STL system tables to provide information about executed query steps\.
+Amazon Redshift creates the SVL\_QUERY\_REPORT view from a UNION of a number of Amazon Redshift STL system tables to provide information about completed query steps\.
 
-This view breaks down the information about executed queries by slice and by step, which can help with troubleshooting node and slice issues in the Amazon Redshift cluster\.
+This view breaks down the information about completed queries by slice and by step, which can help with troubleshooting node and slice issues in the Amazon Redshift cluster\.
 
 SVL\_QUERY\_REPORT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="r_SVL_QUERY_REPORT-table-rows2"></a>
+## Table columns<a name="r_SVL_QUERY_REPORT-table-rows2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_REPORT.html)
 
-## Sample Queries<a name="r_SVL_QUERY_REPORT-sample-queries2"></a>
+## Sample queries<a name="r_SVL_QUERY_REPORT-sample-queries2"></a>
 
 The following query demonstrates the data skew of the returned rows for the query with query ID 279\. Use this query to determine if database data is evenly distributed over the slices in the data warehouse cluster: 
 

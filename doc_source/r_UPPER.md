@@ -11,11 +11,11 @@ UPPER(string)
 ## Arguments<a name="r_UPPER-arguments"></a>
 
  *string*   
-The input parameter is a CHAR or VARCHAR string\. 
+The input parameter is a VARCHAR string \(or any other data type, such as CHAR, that can be implicitly converted to VARCHAR\)\. 
 
 ## Return type<a name="r_UPPER-return-type"></a>
 
-The UPPER function returns a character string that is the same data type as the input string \(CHAR or VARCHAR\)\. 
+The UPPER function returns a character string that is the same data type as the input string\. 
 
 ## Examples<a name="r_UPPER-examples"></a>
 

@@ -4,6 +4,6 @@ The SVL\_QUERY\_METRICS\_SUMMARY view shows the maximum values of metrics for co
 
 This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Rows<a name="r_SVL_QUERY_METRICS_SUMMARY-table-rows2"></a>
+## Table columns<a name="r_SVL_QUERY_METRICS_SUMMARY-table-rows2"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_METRICS_SUMMARY.html)

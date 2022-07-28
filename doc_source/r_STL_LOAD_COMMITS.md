@@ -2,9 +2,9 @@
 
 Returns information to track or troubleshoot a data load\.
 
-This table records the progress of each data file as it is loaded into a database table\. 
+This view records the progress of each data file as it is loaded into a database table\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. 
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\. 
 
 ## Table columns<a name="r_STL_LOAD_COMMITS-table-columns"></a>
 
@@ -52,7 +52,7 @@ where filename like '%tickit%' order by query;
 (12 rows)
 ```
 
-The fact that a record is written to the log file for this system table does not mean that the load committed successfully as part of its containing transaction\. To verify load commits, query the STL\_UTILITYTEXT table and look for the COMMIT record that corresponds with a COPY transaction\. For example, this query joins STL\_LOAD\_COMMITS and STL\_QUERY based on a subquery against STL\_UTILITYTEXT: 
+The fact that a record is written to the log file for this system view does not mean that the load committed successfully as part of its containing transaction\. To verify load commits, query the STL\_UTILITYTEXT view and look for the COMMIT record that corresponds with a COPY transaction\. For example, this query joins STL\_LOAD\_COMMITS and STL\_QUERY based on a subquery against STL\_UTILITYTEXT: 
 
 ```
 select l.query,rtrim(l.filename),q.xid
@@ -89,4 +89,36 @@ and exists
   7531 | venue_pipe.txt            | 23390
   7583 | listings_pipe.txt         | 23445
 (25 rows)
+```
+
+The following examples highlight is\_partial and start\_offset column values\.
+
+```
+-- Single large file copy without scan range
+SELECT count(*) FROM stl_load_commits WHERE query = pg_last_copy_id();
+1
+
+-- Single large uncompressed, delimited file copy with scan range
+SELECT count(*) FROM stl_load_commits WHERE query = pg_last_copy_id();
+16
+
+-- Scan range offset logging in the file at 64MB boundary. 
+SELECT start_offset FROM stl_load_commits
+WHERE query = pg_last_copy_id() ORDER BY start_offset;
+0
+67108864
+134217728
+201326592
+268435456
+335544320
+402653184
+469762048
+536870912
+603979776
+671088640
+738197504
+805306368
+872415232
+939524096
+1006632960
 ```

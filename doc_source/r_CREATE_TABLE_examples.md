@@ -44,6 +44,23 @@ public     | sales     | commission | numeric(8,2)                | delta32k | f
 public     | sales     | saletime   | timestamp without time zone | lzo      | false   |       0 | false
 ```
 
+The following example creates table t1 with a case\-insensitive column col1\.
+
+```
+create table T1 (
+  col1 Varchar(20) collate case_insensitive
+ );
+
+insert into T1 values ('bob'), ('john'), ('Tom'), ('JOHN'), ('Bob');
+
+select * from T1 where col1 = 'John';
+ col1
+------
+ john
+ JOHN
+(2 rows)
+```
+
 ## Create a table using an interleaved sort key<a name="CREATE_TABLE_NEW-create-a-table-using-interleaved-sortkey"></a>
 
 The following example creates the CUSTOMER table with an interleaved sort key\.
@@ -297,4 +314,30 @@ column |  type   | encoding | distkey | sortkey
 --------+---------+---------+---------+--------
 col1   | integer | lzo      | f       | 0       
 col2   | integer | lzo      | f       | 0
+```
+
+## Create a table with the ENCODE AUTO option<a name="r_CREATE_TABLE_NEW-create-a-table-with-encode-option"></a>
+
+The following example creates the table `t1` with automatic compression encoding\. ENCODE AUTO is the default for tables when you don't specify an encoding type for any column\.
+
+```
+create table t1(c0 int, c1 varchar);
+```
+
+The following example creates the table `t2` with automatic compression encoding by specifying ENCODE AUTO\.
+
+```
+create table t2(c0 int, c1 varchar) encode auto;
+```
+
+The following example creates the table `t3` with automatic compression encoding by specifying ENCODE AUTO\. Column `c0` is defined with an initial encoding type of DELTA\. Amazon Redshift can change the encoding if another encoding provides better query performance\.
+
+```
+create table t3(c0 int encode delta, c1 varchar) encode auto;
+```
+
+The following example creates the table `t4` with automatic compression encoding by specifying ENCODE AUTO\. Column `c0` is defined with an initial encoding of DELTA, and column `c1` is defined with an initial encoding of LZO\. Amazon Redshift can change these encodings if other encodings provide better query performance\.
+
+```
+create table t4(c0 int encode delta, c1 varchar encode lzo) encode auto;
 ```

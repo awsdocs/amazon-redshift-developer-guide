@@ -1,12 +1,21 @@
 # DROP TABLE<a name="r_DROP_TABLE"></a>
 
-Removes a table from a database\. Only the owner of the table, the schema owner, or a superuser can drop a table\. 
+Removes a table from a database\. 
 
 If you are trying to empty a table of rows, without removing the table, use the DELETE or TRUNCATE command\. 
 
 DROP TABLE removes constraints that exist on the target table\. Multiple tables can be removed with a single DROP TABLE command\. 
 
-DROP TABLE with an external table can't be run inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
+DROP TABLE with an external table can't be run inside a transaction \(BEGIN … END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\.
+
+To find an example where the DROP privilege is granted to a group, see GRANT [Examples](r_GRANT-examples.md)\.
+
+## Required privileges<a name="r_DROP_TABLE-privileges"></a>
+
+Following are required privileges for DROP TABLE:
++ Superuser
++ Users with the DROP TABLE privilege
++ Table or schema owner
 
 ## Syntax<a name="r_DROP_TABLE-synopsis"></a>
 
@@ -23,9 +32,9 @@ This clause is useful when scripting, so the script doesn’t fail if DROP TABLE
  *name*   
 Name of the table to drop\. 
 
-CASCADE   
-Clause that indicates to automatically drop objects that depend on the table, such as views\.   
-To create a view that isn't dependent on a table referenced by the view, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
+CASCADE  
+Clause that indicates to automatically drop objects that depend on the view, such as other views\.  
+To create a view that isn't dependent on other database objects, such as views and tables, include the WITH NO SCHEMA BINDING clause in the view definition\. For more information, see [CREATE VIEW](r_CREATE_VIEW.md)\.
 
 RESTRICT   
 Clause that indicates not to drop the table if any objects depend on it\. This action is the default\.

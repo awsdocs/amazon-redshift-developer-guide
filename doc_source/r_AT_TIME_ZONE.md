@@ -12,12 +12,12 @@ AT TIME ZONE 'timezone'
 
 *timezone*  
 The time zone for the return value\. The time zone can be specified as a time zone name \(such as **'Africa/Kampala'** or **'Singapore'**\) or as a time zone abbreviation \(such as **'UTC'** or **'PDT'**\)\.   
-To view a list of supported time zone names, execute the following command\.   
+To view a list of supported time zone names, run the following command\.   
 
 ```
 select pg_timezone_names();
 ```
- To view a list of supported time zone abbreviations, execute the following command\.   
+ To view a list of supported time zone abbreviations, run the following command\.   
 
 ```
 select pg_timezone_abbrevs();
@@ -30,7 +30,7 @@ TIMESTAMPTZ when used with a TIMESTAMP expression\. TIMESTAMP when used with a T
 
 ## Examples<a name="r_AT_TIME_ZONE-examples"></a>
 
-The following example converts a time stamp value without time zone and interprets it as MST time \(UTC–7\), which is then converted to PST \(UTC–8\) for display\.
+The following example converts a timestamp value without time zone and interprets it as MST time \(UTC–7\), which is then converted to PST \(UTC–8\) for display\.
 
 ```
 SELECT TIMESTAMP '2001-02-16 20:38:40' AT TIME ZONE 'MST';
@@ -40,7 +40,7 @@ SELECT TIMESTAMP '2001-02-16 20:38:40' AT TIME ZONE 'MST';
 '2001-02-16 19:38:40-08'
 ```
 
-The following example takes an input time stamp with a time zone value where the specified time zone is UTC\-5 \(EST\) and converts it to MST \(UTC\-7\)\. 
+The following example takes an input timestamp with a time zone value where the specified time zone is UTC\-5 \(EST\) and converts it to MST \(UTC\-7\)\. 
 
 ```
 SELECT TIMESTAMP WITH TIME ZONE '2001-02-16 20:38:40-05' AT TIME ZONE 'MST';

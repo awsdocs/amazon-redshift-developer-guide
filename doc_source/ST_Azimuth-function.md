@@ -1,6 +1,6 @@
 # ST\_Azimuth<a name="ST_Azimuth-function"></a>
 
-ST\_Azimuth returns the north\-based Cartesian azimuth of two input points\. 
+ST\_Azimuth returns the north\-based Cartesian azimuth using the 2D projections of the two input points\. 
 
 ## Syntax<a name="ST_Azimuth-function-syntax"></a>
 
@@ -20,13 +20,15 @@ A `POINT` value of data type `GEOMETRY`\. The SRID of *point2* must match the SR
 
 A number that is an angle in radians of `DOUBLE PRECISION` data type\. Values range from 0 \(inclusive\) to 2 pi \(exclusive\)\. 
 
+If *point1* or *point2* is the empty point, then an error is returned\. 
+
 If either *point1* or *point2* is null, then null is returned\. 
 
 If *point1* and *point2* are equal, then null is returned\. 
 
 If *point1* or *point2* is not a point, then an error is returned\. 
 
-If *point1* and *point2* don't have the same SRID value, then an error is returned\. 
+If *point1* and *point2* don't have the value for the spatial reference system identifier \(SRID\), then an error is returned\. 
 
 ## Examples<a name="ST_Azimuth-function-examples"></a>
 

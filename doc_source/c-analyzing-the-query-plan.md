@@ -16,7 +16,7 @@ Run the [EXPLAIN](r_EXPLAIN.md) command to get a query plan\. To analyze the dat
 1. See if there are any high\-cost sort operations\. If there are, see [Unsorted or missorted rows](query-performance-improvement-opportunities.md#unsorted-or-mis-sorted-rows) for recommended solutions\.
 
 1. Look for the following broadcast operators where there are high\-cost operations:
-   + **DS\_BCAST\_INNER**: Indicates the table is broadcast to all the compute nodes, which is fine for a small table but not ideal for a larger table\.
+   + **DS\_BCAST\_INNER**: Indicates that the table is broadcast to all the compute nodes\. This is fine for a small table, but not ideal for a larger table\.
    + **DS\_DIST\_ALL\_INNER**: Indicates that all of the workload is on a single slice\.
    + **DS\_DIST\_BOTH**: Indicates heavy redistribution\.
 

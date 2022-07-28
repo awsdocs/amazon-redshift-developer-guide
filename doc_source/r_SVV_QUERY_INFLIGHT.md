@@ -4,11 +4,11 @@ Use the SVV\_QUERY\_INFLIGHT view to determine what queries are currently runnin
 
 SVV\_QUERY\_INFLIGHT is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table Columns<a name="sub-r_SVV_QUERY_INFLIGHT-table-columns"></a>
+## Table columns<a name="sub-r_SVV_QUERY_INFLIGHT-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_QUERY_INFLIGHT.html)
 
-## Sample Queries<a name="r_SVV_QUERY_INFLIGHT-sample-queries"></a>
+## Sample queries<a name="r_SVV_QUERY_INFLIGHT-sample-queries"></a>
 
 The sample output below shows two queries currently running, the SVV\_QUERY\_INFLIGHT query itself and query 428, which is split into three rows in the table\. \(The starttime and statement columns are truncated in this sample output\.\) 
 

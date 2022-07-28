@@ -1,6 +1,6 @@
 # TRUNCATE<a name="r_TRUNCATE"></a>
 
-Deletes all of the rows from a table without doing a table scan: this operation is a faster alternative to an unqualified DELETE operation\. To execute a TRUNCATE command, you must be the owner of the table or a superuser\.
+Deletes all of the rows from a table without doing a table scan: this operation is a faster alternative to an unqualified DELETE operation\. To run a TRUNCATE command, you must be the owner of the table or a superuser\.
 
 TRUNCATE is much more efficient than DELETE and doesn't require a VACUUM and ANALYZE\. However, be aware that TRUNCATE commits the transaction in which it is run\.
 

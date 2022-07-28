@@ -25,7 +25,7 @@ The return type is determined by the data type of *median\_expression*\. The fol
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_MEDIAN.html)
 
-## Usage notes<a name="w13aac49c11c13c27c17"></a>
+## Usage notes<a name="r_MEDIAN-data-type-usage-notes"></a>
 
 If the *median\_expression* argument is a DECIMAL data type defined with the maximum precision of 38 digits, it is possible that MEDIAN will return either an inaccurate result or an error\. If the return value of the MEDIAN function exceeds 38 digits, the result is truncated to fit, which causes a loss of precision\. If, during interpolation, an intermediate result exceeds the maximum precision, a numeric overflow occurs and the function returns an error\. To avoid these conditions, we recommend either using a data type with lower precision or casting the *median\_expression* argument to a lower precision\. 
 
@@ -48,7 +48,7 @@ from sales group by salesid, pricepai...
 ERROR: within group ORDER BY clauses for aggregate functions must be the same
 ```
 
-The following statement executes successfully\. 
+The following statement runs successfully\. 
 
 ```
 select top 10 salesid, sum(pricepaid), 

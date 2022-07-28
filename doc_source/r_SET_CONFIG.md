@@ -10,10 +10,19 @@ Sets a configuration parameter to a new setting\.
 set_config('parameter', 'new_value' , is_local)
 ```
 
+The following statement sets a session context variable to a new setting\.
+
+```
+set_config('variable_name', 'new_value' , is_local)
+```
+
 ## Arguments<a name="r_SET_CONFIG-parameters"></a>
 
  *parameter*   
 Parameter to set\.
+
+ *variable\_name*    
+The name of the variable to set\.
 
  *new\_value*   
 New value of the parameter\.
@@ -36,4 +45,10 @@ set_config
 ------------
 test
 (1 row)
+```
+
+The following example sets session context variables\. 
+
+```
+SELECT set_config(‘app.username’, ‘cuddy’, FALSE);
 ```

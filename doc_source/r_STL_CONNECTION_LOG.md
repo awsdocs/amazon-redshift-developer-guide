@@ -2,7 +2,7 @@
 
 Logs authentication attempts and connections and disconnections\.
 
-This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_CONNECTION_LOG-table-columns2"></a>
 
@@ -10,7 +10,7 @@ This table is visible only to superusers\. For more information, see [Visibility
 
 ## Sample queries<a name="r_STL_CONNECTION_LOG-sample-queries2"></a>
 
-To view the details for open connections, execute the following query\.
+To view the details for open connections, run the following query\.
 
 ```
 select recordtime, username, dbname, remotehost, remoteport
@@ -43,4 +43,27 @@ authenticated          | 2012-10-25 14:42:10.87613 | 10.49.42.138 | john
 initiating session     | 2012-10-25 14:42:10.87638 | 10.49.42.138 | john                                              
 disconnecting session  | 2012-10-25 14:42:19.95992 | 10.49.42.138 | john                                              
 (4 rows)
+```
+
+The following example shows the version of the ODBC driver, the operating system on the client machine, and the plugin used to connect to the Amazon Redshift cluster\. In this example, the plugin used is for standard ODBC driver authentication using a login name and password\.
+
+```
+select driver_version, os_version, plugin_name from stl_connection_log;
+                
+driver_version                          |  os_version                       | plugin_name
+----------------------------------------+-----------------------------------+--------------------
+Amazon Redshift ODBC Driver 1.4.15.0001 | Darwin 18.7.0 x86_64              | none
+Amazon Redshift ODBC Driver 1.4.15.0001 | Linux 4.15.0-101-generic x86_64   | none
+```
+
+The following example shows the version of the operating system on the client machine, the driver version, and the protocol version\.
+
+```
+select os_version, driver_version, protocol_version from stl_connection_log;
+                
+os_version                      |  driver_version              | protocol_version
+--------------------------------+------------------------------+--------------------
+Linux 4.15.0-101-generic x86_64 | Redshift JDBC Driver 2.0.0.0 | 2
+Linux 4.15.0-101-generic x86_64 | Redshift JDBC Driver 2.0.0.0 | 2 
+Linux 4.15.0-101-generic x86_64 | Redshift JDBC Driver 2.0.0.0 | 2
 ```

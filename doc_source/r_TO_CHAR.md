@@ -1,6 +1,6 @@
 # TO\_CHAR<a name="r_TO_CHAR"></a>
 
-TO\_CHAR converts a time stamp or numeric expression to a character\-string data format\. 
+TO\_CHAR converts a timestamp or numeric expression to a character\-string data format\. 
 
 ## Syntax<a name="r_TO_CHAR-synopsis"></a>
 
@@ -11,20 +11,60 @@ TO_CHAR (timestamp_expression | numeric_expression , 'format')
 ## Arguments<a name="r_TO_CHAR-arguments"></a>
 
  *timestamp\_expression*   
-An expression that results in a TIMESTAMP or TIMESTAMPTZ type value or a value that can implicitly be coerced to a time stamp\. 
+An expression that results in a TIMESTAMP or TIMESTAMPTZ type value or a value that can implicitly be coerced to a timestamp\. 
 
  *numeric\_expression*   
 An expression that results in a numeric data type value or a value that can implicitly be coerced to a numeric type\. For more information, see [Numeric types](r_Numeric_types201.md)\. TO\_CHAR inserts a space to the left of the numeral string\.  
 TO\_CHAR does not support 128\-bit DECIMAL values\. 
 
  *format*   
-The format for the new value\. For valid formats, see [Datetime format strings](r_FORMAT_strings.md) and [ Numeric Format Strings](r_Numeric_formating.md)\. 
+The format for the new value\. For valid formats, see [Datetime format strings](r_FORMAT_strings.md) and [ Numeric format strings](r_Numeric_formating.md)\. 
 
 ## Return type<a name="r_TO_CHAR-return-type"></a>
 
 VARCHAR
 
 ## Examples<a name="r_TO_CHAR-examples"></a>
+
+The following example converts a timestamp to a value with the date and time in a format with the name of the month padded to nine characters, the name of the day of the week, and the day number of the month\.
+
+```
+select to_char(timestamp '2009-12-31 23:15:59', 'MONTH-DY-DD-YYYY HH12:MIPM');
+
+to_char
+-------------------------
+DECEMBER -THU-31-2009 11:15PM
+```
+
+The following example converts a timestamp to a value with day number of the year\.
+
+```
+select to_char(timestamp '2009-12-31 23:15:59', 'DDD');
+
+to_char
+-------------------------
+365
+```
+
+The following example converts a timestamp to an ISO day number of the week\.
+
+```
+select to_char(timestamp '2022-05-16 23:15:59', 'ID');
+
+to_char
+-------------------------
+1
+```
+
+The following example extracts the month name from a date\.
+
+```
+select to_char(date '2009-12-31', 'MONTH');
+
+to_char
+-------------------------
+DECEMBER
+```
 
 The following example converts each STARTTIME value in the EVENT table to a string that consists of hours, minutes, and seconds\.
 
@@ -43,7 +83,7 @@ to_char
 (5 rows)
 ```
 
-The following example converts an entire time stamp value into a different format\.
+The following example converts an entire timestamp value into a different format\.
 
 ```
 select starttime, to_char(starttime, 'MON-DD-YYYY HH12:MIPM')
@@ -55,7 +95,7 @@ from event where eventid=1;
 (1 row)
 ```
 
-The following example converts a time stamp literal to a character string\.
+The following example converts a timestamp literal to a character string\.
 
 ```
 select to_char(timestamp '2009-12-31 23:15:59','HH24:MI:SS');

@@ -11,6 +11,8 @@ You can configure Amazon Redshift WLM to run with either automatic WLM or manual
 
   At runtime, you can route queries to these queues according to user groups or query groups\. You can also configure a query monitoring rule \(QMR\) to limit long\-running queries\. 
 
+   
+
   Working with concurrency scaling and automatic WLM, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\.
 **Note**  
 We recommend that you create a parameter group and choose automatic WLM to manage your query resources\. For details about how to migrate from manual WLM to automatic WLM, see [Migrating from manual WLM to automatic WLM](cm-c-modifying-wlm-configuration.md#wlm-manual-to-automatic)\. 

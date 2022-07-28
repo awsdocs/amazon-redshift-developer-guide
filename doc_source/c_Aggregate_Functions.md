@@ -1,6 +1,7 @@
 # Aggregate functions<a name="c_Aggregate_Functions"></a>
 
 **Topics**
++ [ANY\_VALUE function](r_ANY_VALUE.md)
 + [APPROXIMATE PERCENTILE\_DISC function](r_APPROXIMATE_PERCENTILE_DISC.md)
 + [AVG function](r_AVG.md)
 + [COUNT function](r_COUNT.md)
@@ -22,6 +23,6 @@ SELECT count (*) expression FROM table_reference
 WHERE condition [GROUP BY expression ] [ HAVING condition]
 ```
 
-The GROUP BY clause aggregates and groups results by the unique values in a specified column or columns\. The HAVING clause restricts the results returned to rows where a particular aggregate condition is true, such as count \(\*\) > 1\. The HAVING clause is used in the same way as WHERE to restrict rows based on the value of a column\. See the [COUNT](r_COUNT.md) function description for an example of these additional clauses\.
+The GROUP BY clause aggregates and groups results by the unique values in a specified column or columns\. The HAVING clause restricts the results returned to rows where a particular aggregate condition is true, such as count \(\*\) > 1\. The HAVING clause is used in the same way as WHERE to restrict rows based on the value of a column\. For an example of these additional clauses, see the [COUNT](r_COUNT.md)\.
 
 Aggregate functions don't accept nested aggregate functions or window functions as arguments\.

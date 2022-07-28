@@ -1,8 +1,8 @@
 # Unique ordering of data for window functions<a name="r_Examples_order_by_WF"></a>
 
-If an ORDER BY clause for a window function does not produce a unique and total ordering of the data, the order of the rows is nondeterministic\. If the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows may vary in multiple runs and window functions may return unexpected or inconsistent results\. 
+If an ORDER BY clause for a window function doesn't produce a unique and total ordering of the data, the order of the rows is nondeterministic\. If the ORDER BY expression produces duplicate values \(a partial ordering\), the return order of those rows can vary in multiple runs\. In this case, window functions can also return unexpected or inconsistent results\. 
 
-For example, the following query returns different results over multiple runs because `order by dateid` does not produce a unique ordering of the data for the SUM window function\. 
+For example, the following query returns different results over multiple runs\. These different results occur because `order by dateid` doesn't produce a unique ordering of the data for the SUM window function\. 
 
 ```
 select dateid, pricepaid,
@@ -30,7 +30,7 @@ dateid | pricepaid |   sumpaid
 ...
 ```
 
- In this case, adding a second ORDER BY column to the window function may solve the problem: 
+ In this case, adding a second ORDER BY column to the window function can solve the problem\. 
 
 ```
 select dateid, pricepaid,

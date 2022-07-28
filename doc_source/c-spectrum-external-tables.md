@@ -1,4 +1,6 @@
-# Creating external tables for Amazon Redshift Spectrum<a name="c-spectrum-external-tables"></a>
+# Creating external tables for Redshift Spectrum<a name="c-spectrum-external-tables"></a>
+
+
 
 You create an external table in an external schema\. To create external tables, you must be the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
 
@@ -65,18 +67,17 @@ To view external tables, query the [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES
 
 ## Pseudocolumns<a name="c-spectrum-external-tables-pseudocolumns"></a>
 
-By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. Select these columns to view the path to the data files on Amazon S3 and the size of the data files for each row returned by a query\. The `$path` and `$size` column names must be delimited with double quotation marks\. A `SELECT *` clause doesn't return the pseudocolumns\. You must explicitly include the $path and $size column names in your query, as the following example shows\.
+By default, Amazon Redshift creates external tables with the pseudocolumns `$path`, `$size`, and `$spectrum_oid`\. Select the `$path` column to view the path to the data files on Amazon S3, and select the `$size` column to view the size of the data files for each row returned by a query\. The `$spectrum_oid` column provides the ability to perform correlated queries with Redshift Spectrum\. For an example, see [Example: Performing correlated subqueries in Redshift Spectrum](c_performing-correlated-subqueries-spectrum.md)\. You must delimit the `$path`, `$size`, and `$spectrum_oid` column names with double quotation marks\. A SELECT \* clause doesn't return the pseudocolumns\. You must explicitly include the `$path`, `$size`, and `$spectrum_oid` column names in your query, as the following example shows\.
 
 ```
-select "$path", "$size"
-from spectrum.sales_part
-where saledate = '2008-12-01';
+select "$path", "$size", "$spectrum_oid"
+from spectrum.sales_part where saledate = '2008-12-01';
 ```
 
-You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to false\. 
+You can disable the creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [spectrum\_enable\_pseudo\_columns](r_spectrum_enable_pseudo_columns.md)\. You can also disable only the `$spectrum_oid` pseudocolumn by setting the `enable_spectrum_oid` to `false`\. For more information, see [enable\_spectrum\_oid](r_spectrum_enable_spectrum_oid.md)\. However, disabling the `$spectrum_oid` pseudocolumn also disables support for correlated queries with Redshift Spectrum\.
 
 **Important**  
-Selecting `$size` or `$path` incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
+Selecting `$size`, `$path`, or `$spectrum_oid` incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
 
 ### Pseudocolumns example<a name="c-spectrum-external-tables-pseudocolumns-example"></a>
 
@@ -86,8 +87,8 @@ The following example returns the total size of related data files for an extern
 select distinct "$path", "$size"
 from spectrum.sales_part;
 
- $path                                 | $size
----------------------------------------+-------
+ $path                                                                    | $size
+--------------------------------------------------------------------------+-------
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/ |  1616
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
 s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/ |  1644
@@ -105,7 +106,7 @@ The following procedure describes how to partition your data\.
 
 1. Store your data in folders in Amazon S3 according to your partition key\. 
 
-   Create one folder for each partition value and name the folder with the partition key and value\. For example, if you partition by date, you might have folders named `saledate=2017-04-30`, `saledate=2017-04-30`, and so on\. Redshift Spectrum scans the files in the partition folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\. 
+   Create one folder for each partition value and name the folder with the partition key and value\. For example, if you partition by date, you might have folders named `saledate=2017-04-01`, `saledate=2017-04-02`, and so on\. Redshift Spectrum scans the files in the partition folder and any subfolders\. Redshift Spectrum ignores hidden files and files that begin with a period, underscore, or hash mark \( \. , \_, or \#\) or end with a tilde \(\~\)\. 
 
 1. Create an external table and specify the partition key in the PARTITIONED BY clause\. 
 
@@ -398,3 +399,117 @@ Using position mapping, Redshift Spectrum attempts the following mapping\.
 When you query a table with the preceding position mapping, the SELECT command fails on type validation because the structures are different\. 
 
 You can map the same external table to both file structures shown in the previous examples by using column name mapping\. The table columns `int_col`, `float_col`, and `nested_col` map by column name to columns with the same names in the ORC file\. The column named `nested_col` in the external table is a `struct` column with subcolumns named `map_col` and `int_col`\. The subcolumns also map correctly to the corresponding columns in the ORC file by column name\. 
+
+## Creating external tables for data managed in Apache Hudi<a name="c-spectrum-column-mapping-hudi"></a>
+
+To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\.  You can read Copy On Write \(CoW\) tables in Apache Hudi versions 0\.5\.2, 0\.6\.0, 0\.7\.0, 0\.8\.0, 0\.9\.0, and 0\.10\.0 that are created and modified with insert, delete, and upsert write operations\. For example, bootstrap tables are not supported\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/next/table_types#copy-on-write-table)  in the open source Apache Hudi documentation\. 
+
+When you create an external table that references data in Hudi CoW format, you map each column in the external table to a column in the Hudi data\. Mapping is done by column\. 
+
+The data definition language \(DDL\) statements for partitioned and unpartitioned Hudi tables are similar to those for other Apache Parquet file formats\. For Hudi tables, you define `INPUTFORMAT` as `org.apache.hudi.hadoop.HoodieParquetInputFormat`\. The `LOCATION` parameter must point to the Hudi table base folder that contains the `.hoodie` folder, which is required to establish the Hudi commit timeline\. In some cases, a SELECT operation on a Hudi table might fail with the message No valid Hudi commit timeline found\. If so, check if the `.hoodie` folder is in the correct location and contains a valid Hudi commit timeline\. 
+
+**Note**  
+Apache Hudi format is only supported when you use an AWS Glue Data Catalog\. It's not supported when you use an Apache Hive metastore as the external catalog\. 
+
+The DDL to define an unpartitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hudi.hadoop.HoodieParquetInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
+```
+
+The DDL to define a partitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+PARTITIONED BY(pcolumn1 pcolumn1-type[,...])
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hudi.hadoop.HoodieParquetInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION 's3://s3-bucket/prefix'
+```
+
+To add partitions to a partitioned Hudi table, run an ALTER TABLE ADD PARTITION command where the `LOCATION` parameter points to the Amazon S3 subfolder with the files that belong to the partition\.
+
+The DDL to add partitions has the following format\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION 's3://s3-bucket/prefix/partition-path'
+```
+
+## Creating external tables for data managed in Delta Lake<a name="c-spectrum-column-mapping-delta"></a>
+
+To query data in Delta Lake tables, you can use Amazon Redshift Spectrum external tables\. 
+
+To access a Delta Lake table from Redshift Spectrum, generate a manifest before the query\. A Delta Lake *manifest* contains a listing of files that make up a consistent snapshot of the Delta Lake table\. In a partitioned table, there is one manifest per partition\. A Delta Lake table is a collection of Apache Parquet files stored in Amazon S3\.  For more information, see [Delta Lake](https://delta.io) in the open source Delta Lake documentation\. 
+
+When you create an external table that references data in Delta Lake tables, you map each column in the external table to a column in the Delta Lake table\. Mapping is done by column name\. 
+
+The DDL for partitioned and unpartitioned Delta Lake tables is similar to that for other Apache Parquet file formats\. For Delta Lake tables, you define `INPUTFORMAT` as `org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat` and `OUTPUTFORMAT` as `org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat`\. The `LOCATION` parameter must point to the manifest folder in the table base folder\. If a SELECT operation on a Delta Lake table fails, for possible reasons see [Limitations and troubleshooting for Delta Lake tables](#c-spectrum-column-mapping-delta-limitations)\. 
+
+The DDL to define an unpartitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://s3-bucket/prefix/_symlink_format_manifest'
+```
+
+The DDL to define a partitioned table has the following format\. 
+
+```
+CREATE EXTERNAL TABLE tbl_name (columns)
+PARTITIONED BY(pcolumn1 pcolumn1-type[,...])
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://s3-bucket>/prefix/_symlink_format_manifest'
+```
+
+To add partitions to a partitioned Delta Lake table, run an ALTER TABLE ADD PARTITION command where the `LOCATION` parameter points to the Amazon S3 subfolder that contains the manifest for the partition\.
+
+The DDL to add partitions has the following format\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION
+'s3://s3-bucket/prefix/_symlink_format_manifest/partition-path'
+```
+
+Or run DDL that points directly to the Delta Lake manifest file\.
+
+```
+ALTER TABLE tbl_name
+ADD IF NOT EXISTS PARTITION(pcolumn1=pvalue1[,...])
+LOCATION
+'s3://s3-bucket/prefix/_symlink_format_manifest/partition-path/manifest'
+```
+
+### Limitations and troubleshooting for Delta Lake tables<a name="c-spectrum-column-mapping-delta-limitations"></a>
+
+Consider the following when querying Delta Lake tables from Redshift Spectrum:
++ If a manifest points to a snapshot or partition that no longer exists, queries fail until a new valid manifest has been generated\. For example, this might result from a VACUUM operation on the underlying table,
++ Delta Lake manifests only provide partition\-level consistency\. 
+
+The following table explains some potential reasons for certain errors when you query a Delta Lake table\. 
+
+
+| Error message | Possible reason | 
+| --- | --- | 
+| Delta Lake manifest in bucket *s3\-bucket\-1* cannot contain entries in bucket *s3\-bucket\-2*\. | The manifest entries point to files in a different Amazon S3 bucket than the specified one\.  | 
+| Delta Lake files are expected to be in the same folder\. | The manifest entries point to files that have a different Amazon S3 prefix than the specified one\. | 
+| File *filename* listed in Delta Lake manifest *manifest\-path* was not found\. | A file listed in the manifest wasn't found in Amazon S3\.  | 
+| Error fetching Delta Lake manifest\. | The manifest wasn't found in Amazon S3\.  | 
+| Invalid S3 Path\. | An entry in the manifest file isn't a valid Amazon S3 path, or the manifest file has been corrupted\.  | 

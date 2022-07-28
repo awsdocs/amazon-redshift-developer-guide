@@ -15,7 +15,7 @@ STV\_SLICES is visible to all users\. Superusers can see all rows; regular users
 To view which cluster nodes are managing which slices, type the following query:
 
 ```
-select * from stv_slices;
+select node, slice from stv_slices;
 ```
 
 This query returns the following sample output:

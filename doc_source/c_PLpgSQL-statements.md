@@ -1,6 +1,6 @@
 # Supported PL/pgSQL statements<a name="c_PLpgSQL-statements"></a>
 
- PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data modification language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
+ PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data manipulation language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
 
 **Topics**
 + [Assignment](#r_PLpgSQL-assignment)
@@ -108,7 +108,7 @@ EXECUTE 'UPDATE tbl SET '
   || quote_literal(keyvalue);
 ```
 
-The preceding example shows the functions `quote_ident(text)` and `quote_literal(text)`\. This example passes variables that contain column and table identifiers to the `quote_ident` function\. It also passes variables that contain literal strings in the constructed command to the `quote_literal` function\. Both functions take the appropriate steps to return the input text enclosed in double or single quotes respectively, with any embedded special characters properly escaped\.
+The preceding example shows the functions `quote_ident(text)` and `quote_literal(text)`\. This example passes variables that contain column and table identifiers to the `quote_ident` function\. It also passes variables that contain literal strings in the constructed command to the `quote_literal` function\. Both functions take the appropriate steps to return the input text enclosed in double or single quotation marks respectively, with any embedded special characters properly escaped\.
 
 Dollar quoting is only useful for quoting fixed text\. Don't write the preceding example in the following format\.
 
@@ -437,6 +437,8 @@ Loop statements can take the following forms in the PL/pgSQL language that Amazo
   END;
   $$ LANGUAGE plpgsql;
   ```
+
+  The example assumes a function called `cs_log`, which is fictitious\.
 + FOR loop with dynamic SQL
 
   ```
@@ -513,7 +515,7 @@ Before you can use a cursor to retrieve rows, it must be opened\. PL/pgSQL has t
   The following shows an example\.
 
   ```
-  OPEN curs1 FOR EXECUTE ’SELECT * FROM ’ || quote_ident($1);
+  OPEN curs1 FOR EXECUTE 'SELECT * FROM ' || quote_ident($1);
   ```
 + Open a bound cursor: This form of OPEN is used to open a cursor variable whose query was bound to it when it was declared\. The cursor can't be open already\. A list of actual argument value expressions must appear if and only if the cursor was declared to take arguments\. These values are substituted in the query\. 
 
@@ -560,14 +562,14 @@ Use the RAISE statement to report messages and raise errors\.
 RAISE level 'format' [, variable [, ...]];
 ```
 
-Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally aborts the current transaction\. The other levels generate only messages of different priority levels\. 
+Possible levels are NOTICE, INFO, LOG, WARNING, and EXCEPTION\. EXCEPTION raises an error, which normally cancels the current transaction\. The other levels generate only messages of different priority levels\. 
 
 Inside the format string, % is replaced by the next optional argument's string representation\. Write %% to emit a literal %\. Currently, optional arguments must be simple variables, not expressions, and the format must be a simple string literal\.
 
 In the following example, the value of `v_job_id` replaces the % in the string\.
 
 ```
-RAISE NOTICE ’Calling cs_create_job(%)’, v_job_id;
+RAISE NOTICE 'Calling cs_create_job(%)', v_job_id;
 ```
 
 ## Transaction control<a name="r_PLpgSQL-transaction-control"></a>
