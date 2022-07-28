@@ -29,7 +29,6 @@
 + [SIGN function](r_SIGN.md)
 + [SQRT function](r_SQRT.md)
 + [TAN function](r_TAN.md)
-+ [TO\_HEX function](r_TO_HEX.md)
 + [TRUNC function](r_TRUNC.md)
 
 This section describes the mathematical operators and functions supported in Amazon Redshift\. 

@@ -1,6 +1,6 @@
 # JSON\_EXTRACT\_PATH\_TEXT function<a name="JSON_EXTRACT_PATH_TEXT"></a>
 
-JSON\_EXTRACT\_PATH\_TEXT returns the value for the *key:value* pair referenced by a series of path elements in a JSON string\. The JSON path can be nested up to five levels deep\. Path elements are case\-sensitive\. If a path element does not exist in the JSON string, JSON\_EXTRACT\_PATH\_TEXT returns an empty string\. If the `null_if_invalid` argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
+The JSON\_EXTRACT\_PATH\_TEXT function returns the value for the *key:value* pair referenced by a series of path elements in a JSON string\. The JSON path can be nested up to five levels deep\. Path elements are case\-sensitive\. If a path element does not exist in the JSON string, JSON\_EXTRACT\_PATH\_TEXT returns an empty string\. If the `null_if_invalid` argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
 
 For more information, see [JSON functions](json-functions.md)\. 
 

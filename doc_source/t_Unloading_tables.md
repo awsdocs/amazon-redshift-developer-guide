@@ -2,7 +2,7 @@
 
 Amazon Redshift splits the results of a select statement across a set of files, one or more files per node slice, to simplify parallel reloading of the data\. Alternatively, you can specify that [UNLOAD](r_UNLOAD.md) should write the results serially to one or more files by adding the PARALLEL OFF option\. You can limit the size of the files in Amazon S3 by specifying the MAXFILESIZE parameter\. UNLOAD automatically encrypts data files using Amazon S3 server\-side encryption \(SSE\-S3\)\. 
 
-You can use any select statement in the UNLOAD command that Amazon Redshift supports, except for a select that uses a LIMIT clause in the outer select\. For example, you can use a select statement that includes specific columns or that uses a where clause to join multiple tables\. If your query contains quotes \(enclosing literal values, for example\), you need to escape them in the query text \(\\'\)\. For more information, see the [SELECT](r_SELECT_synopsis.md) command reference\. For more information about using a LIMIT clause, see the [Usage notes](r_UNLOAD.md#unload-usage-notes) for the UNLOAD command\.
+You can use any select statement in the UNLOAD command that Amazon Redshift supports, except for a select that uses a LIMIT clause in the outer select\. For example, you can use a select statement that includes specific columns or that uses a where clause to join multiple tables\. If your query contains quotation marks \(enclosing literal values, for example\), you need to escape them in the query text \(\\'\)\. For more information, see the [SELECT](r_SELECT_synopsis.md) command reference\. For more information about using a LIMIT clause, see the [Usage notes](r_UNLOAD.md#unload-usage-notes) for the UNLOAD command\.
 
 For example, the following UNLOAD command sends the contents of the VENUE table to the Amazon S3 bucket `s3://mybucket/tickit/unload/`\.
 
@@ -53,19 +53,6 @@ to 's3://mybucket/tickit/unload/venue_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-You can limit the access users have to your data by using temporary security credentials\. Temporary security credentials provide enhanced security because they have short life spans and cannot be reused after they expire\. A user who has these temporary security credentials can access your resources only until the credentials expire\. For more information, see [Temporary security credentials](copy-usage_notes-access-permissions.md#r_copy-temporary-security-credentials)\. To unload data using temporary access credentials, use the following syntax:
-
-```
-unload ('select * from venue')   
-to 's3://mybucket/tickit/venue_' 
-access_key_id '<access-key-id>'
-secret_access_key '<secret-access-key>'
-session_token '<temporary-token>';
-```
-
-**Important**  
-The temporary security credentials must be valid for the entire duration of the UNLOAD statement\. If the temporary security credentials expire during the load process, the UNLOAD will fail and the transaction will be rolled back\. For example, if temporary security credentials expire after 15 minutes and the UNLOAD requires one hour, the UNLOAD will fail before it completes\.
-
 You can create a manifest file that lists the unload files by specifying the MANIFEST option in the UNLOAD command\. The manifest is a text file in JSON format that explicitly lists the URL of each file that was written to Amazon S3\. 
 
 The following example includes the manifest option\. 
@@ -102,7 +89,7 @@ mybucket/tickit/venue_0003_part_00
 mybucket/tickit/venue_manifest
 ```
 
-You can programmatically get a list of the files that were written to Amazon S3 by calling an Amazon S3 list operation after the UNLOAD completes; however, depending on how quickly you issue the call, the list might be incomplete because an Amazon S3 list operation is eventually consistent\. To get a complete, authoritative list immediately, query STL\_UNLOAD\_LOG\.
+You can programmatically get a list of the files that were written to Amazon S3 by calling an Amazon S3 list operation after the UNLOAD completes\. You can also query STL\_UNLOAD\_LOG\.
 
 The following query returns the pathname for files that were created by an UNLOAD\. The [PG\_LAST\_QUERY\_ID](PG_LAST_QUERY_ID.md) function returns the most recent query\. 
 
@@ -133,7 +120,7 @@ venue_0001_part_02
 ...
 ```
 
-The following UNLOAD command includes a quoted string in the select statement, so the quotes are escaped \(`=\'OH\' '`\)\.
+The following UNLOAD command includes a quoted string in the select statement, so the quotation marks are escaped \(`=\'OH\' '`\)\.
 
 ```
 unload ('select venuename, venuecity from venue where venuestate=\'OH\' ')

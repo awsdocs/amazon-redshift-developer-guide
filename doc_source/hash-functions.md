@@ -2,6 +2,7 @@
 
 **Topics**
 + [CHECKSUM function](r_CHECKSUM.md)
++ [farmFingerprint64 function](r_FARMFINGERPRINT64.md)
 + [FUNC\_SHA1 function](FUNC_SHA1.md)
 + [FNV\_HASH function](r_FNV_HASH.md)
 + [MD5 function](r_MD5.md)

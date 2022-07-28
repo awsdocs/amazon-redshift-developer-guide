@@ -15,7 +15,7 @@ For information about SVL\_S3LIST, see [SVL\_S3LIST](r_SVL_S3LIST.md)\.
 
 ## Sample query<a name="r_SVCS_S3LIST-sample-query"></a>
 
-The following example queries SVCS\_S3LIST for the last query executed\.
+The following example queries SVCS\_S3LIST for the last query performed\.
 
 ```
 select * 

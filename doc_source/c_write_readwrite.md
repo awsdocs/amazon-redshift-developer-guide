@@ -1,4 +1,4 @@
-# Write and read\-write operations<a name="c_write_readwrite"></a>
+# Write and read/write operations<a name="c_write_readwrite"></a>
 
 You can manage the specific behavior of concurrent write operations by deciding when and how to run different types of commands\. The following commands are relevant to this discussion: 
 + COPY commands, which perform loads \(initial or incremental\)
@@ -6,7 +6,7 @@ You can manage the specific behavior of concurrent write operations by deciding 
 + UPDATE commands, which modify existing rows
 + DELETE commands, which remove rows 
 
-COPY and INSERT operations are pure write operations, but DELETE and UPDATE operations are read\-write operations\. \(In order for rows to be deleted or updated, they have to be read first\.\) The results of concurrent write operations depend on the specific commands that are being run concurrently\. COPY and INSERT operations against the same table are held in a wait state until the lock is released, then they proceed as normal\.
+COPY and INSERT operations are pure write operations, but DELETE and UPDATE operations are read/write operations\. \(For rows to be deleted or updated, they have to be read first\.\) The results of concurrent write operations depend on the specific commands that are being run concurrently\. COPY and INSERT operations against the same table are held in a wait state until the lock is released, then they proceed as normal\.
 
 UPDATE and DELETE operations behave differently because they rely on an initial table read before they do any writes\. Given that concurrent transactions are invisible to each other, both UPDATEs and DELETEs have to read a snapshot of the data from the last commit\. When the first UPDATE or DELETE releases its lock, the second UPDATE or DELETE needs to determine whether the data that it is going to work with is potentially stale\. It will not be stale, because the second transaction does not obtain its snapshot of data until after the first transaction has released its lock\.
 

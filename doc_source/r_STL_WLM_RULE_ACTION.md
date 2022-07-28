@@ -2,7 +2,7 @@
 
 Records details about actions resulting from WLM query monitoring rules associated with user\-defined queues\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_WLM_RULE_ACTION-table-columns"></a>
 
@@ -10,7 +10,7 @@ This table is visible to all users\. Superusers can see all rows; regular users 
 
 ## Sample queries<a name="r_STL_WLM_RULE_ACTION-sample-queries"></a>
 
-The following example finds queries that were aborted by a query monitoring rule\.
+The following example finds queries that were stopped by a query monitoring rule\.
 
 ```
 Select query, rule

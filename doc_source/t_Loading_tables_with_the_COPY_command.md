@@ -23,11 +23,13 @@ To load data from another AWS resource, your cluster must have permission to acc
 
 To grant or revoke privilege to load data into a table using a COPY command, grant or revoke the INSERT privilege\.
 
-Your data needs to be in the proper format for loading into your Amazon Redshift table\. This section presents guidelines for preparing and verifying your data before the load and for validating a COPY statement before you execute it\.
+Your data needs to be in the proper format for loading into your Amazon Redshift table\. This section presents guidelines for preparing and verifying your data before the load and for validating a COPY statement before you run it\.
 
 To protect the information in your files, you can encrypt the data files before you upload them to your Amazon S3 bucket; COPY will decrypt the data as it performs the load\. You can also limit access to your load data by providing temporary security credentials to users\. Temporary security credentials provide enhanced security because they have short life spans and cannot be reused after they expire\.
 
-You can compress the files using gzip, lzop, or bzip2 to save time uploading the files\. COPY can then speed up the load process by uncompressing the files as they are read\. 
+Amazon Redshift has features built in to COPY to load uncompressed, delimited data quickly\. But you can compress your files using gzip, lzop, or bzip2 to save time uploading the files\.
+
+If the following keywords are in the COPY query, automatic splitting of uncompressed data is not supported: ESCAPE, REMOVEQUOTES, and FIXEDWIDTH\. But the CSV keyword is supported\.
 
 To help keep your data secure in transit within the AWS cloud, Amazon Redshift uses hardware accelerated SSL to communicate with Amazon S3 or Amazon DynamoDB for COPY, UNLOAD, backup, and restore operations\.
 

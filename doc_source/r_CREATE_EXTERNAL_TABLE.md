@@ -6,7 +6,7 @@ To create external tables, you must be the owner of the external schema or a sup
 
 In addition to external tables created using the CREATE EXTERNAL TABLE command, Amazon Redshift can reference external tables defined in an AWS Glue or AWS Lake Formation catalog or an Apache Hive metastore\. Use the [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md) command to register an external database defined in the external catalog and make the external tables available for use in Amazon Redshift\. If the external table exists in an AWS Glue or AWS Lake Formation catalog or Hive metastore, you don't need to create the table using CREATE EXTERNAL TABLE\. To view external tables, query the [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) system view\. 
 
-By running the CREATE EXTERNAL TABLE AS command, you can create an external table based on the column definition from a query and write the results of that query into Amazon S3\. The results are in Apache Parquet or delimited text format\. If the external table has a partition key or keys, Amazon Redshift partitions new files according to those partition keys and registers new partitions into the external catalog automatically\. For more information about CREATE EXTERNAL TABLE AS, see [Usage notes](#r_CREATE_EXTERNAL_TABLE_usage)\. 
+By running the CREATE EXTERNAL TABLE AS command, you can create an external table based on the column definition from a query and write the results of that query into Amazon S3\. The results are in Apache Parquet or delimited text format\. If the external table has a partition key or keys, Amazon Redshift partitions new files according to those partition keys and registers new partitions into the external catalog automatically\. For more information about CREATE EXTERNAL TABLE AS, see [Usage notes](r_CREATE_EXTERNAL_TABLE_usage.md)\. 
 
 You can query an external table using the same SELECT syntax you use with other Amazon Redshift tables\. You can also use the INSERT syntax to write new files into the location of external table on Amazon S3\. For more information, see [INSERT \(external table\)](r_INSERT_external_table.md)\.
 
@@ -47,7 +47,7 @@ LOCATION { 's3://bucket/folder/' }
 
  *external\_schema\.table\_name*   
 The name of the table to be created, qualified by an external schema name\. External tables must be created in an external schema\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.  
-The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 9,900 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, you can qualify the table name with the database name\. In the following example, the database name is `spectrum_db` , the external schema name is `spectrum_schema`, and the table name is `test`\.  
+The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a limit of 9,900 tables per cluster, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, you can qualify the table name with the database name\. In the following example, the database name is `spectrum_db`, the external schema name is `spectrum_schema`, and the table name is `test`\.  
 
 ```
 create external table spectrum_db.spectrum_schema.test (c1 int)
@@ -61,7 +61,7 @@ For more information about valid names, see [Names and identifiers](r_names.md)\
 \( *column\_name* *data\_type* \)  
 The name and data type of each column being created\.  
 The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. You can't specify column names `"$path"` or `"$size"`\. For more information about valid names, see [Names and identifiers](r_names.md)\.  
-By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [Pseudocolumns ](#r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns)\.  
+By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [Pseudocolumns ](r_CREATE_EXTERNAL_TABLE_usage.md#r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns)\.  
 If pseudocolumns are enabled, the maximum number of columns you can define in a single table is 1,598\. If pseudocolumns aren't enabled, the maximum number of columns you can define in a single table is 1,600\.   
 If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_usage.md)\.  
 For a CREATE EXTERNAL TABLE AS command, a column list is not required, because columns are derived from the query\.
@@ -79,7 +79,19 @@ The following [Data types](c_Supported_data_types.md) are supported:
 + VARCHAR \(CHARACTER VARYING\)
 + DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
 + TIMESTAMP
-Timestamp values in text files must be in the format `yyyy-MM-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000` \.  
+  
+For DATE, you can use the formats as described following\. For month values represented using digits, the following formats are supported:  
++ `mm-dd-yyyy` For example, `05-01-2017`\. This is the default\.
++ `yyyy-mm-dd`, where the year is represented by more than 2 digits\. For example, `2017-05-01`\.
+For month values represented using the three letter abbreviation, the following formats are supported:  
++ `mmm-dd-yyyy` For example, `may-01-2017`\. This is the default\.
++ `dd-mmm-yyyy`, where the year is represented by more than 2 digits\. For example, `01-may-2017`\.
++ `yyyy-mmm-dd`, where the year is represented by more than 2 digits\. For example, `2017-may-01`\.
+For year values that are consistently less than 100, the year is calculated in the following manner:  
++ If year is less than 70, the year is calculated as the year plus 2000\. For example, the date 05\-01\-17 in the `mm-dd-yyyy` format is converted into `05-01-2017`\.
++ If year is less than 100 and greater than 69, the year is calculated as the year plus 1900\. For example the date 05\-01\-89 in the `mm-dd-yyyy` format is converted into `05-01-1989`\.
++ For year values represented by two digits, add leading zeroes to represent the year in 4 digits\.
+Timestamp values in text files must be in the format `yyyy-mm-dd HH:mm:ss.SSSSSS`, as the following timestamp value shows: `2017-05-01 11:30:59.000000`\.  
 The length of a VARCHAR column is defined in bytes, not characters\. For example, a VARCHAR\(12\) column can contain 12 single\-byte characters or 6 two\-byte characters\. When you query an external table, results are truncated to fit the defined column size without returning an error\. For more information, see [Storage and ranges](r_Character_types.md#r_Character_types-storage-and-ranges)\.   
 For best performance, we recommend specifying the smallest column size that fits your data\. To find the maximum size in bytes for values in a column, use the [OCTET\_LENGTH](r_OCTET_LENGTH.md) function\. The following example returns the maximum size of values in the email column\.  
 
@@ -118,21 +130,32 @@ If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '
 ROW FORMAT SERDE '*serde\_name*' \[WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 A clause that specifies the SERDE format for the underlying data\.     
 '*serde\_name*'  
-The name of the SerDe\. The following are supported:  
+The name of the SerDe\. You can specify the following formats:  
 + org\.apache\.hadoop\.hive\.serde2\.RegexSerDe 
 + com\.amazonaws\.glue\.serde\.GrokSerDe 
 + org\.apache\.hadoop\.hive\.serde2\.OpenCSVSerde 
+
+  This parameter supports the following SerDe property for OpenCSVSerde: 
+
+  ```
+  'wholeFile' = 'true' 
+  ```
+
+  Set the `wholeFile` property to `true` to properly parse new line characters \(\\n\) within quoted strings for OpenCSV requests\. 
 + org\.openx\.data\.jsonserde\.JsonSerDe
   + The JSON SERDE also supports Ion files\. 
   + The JSON must be well\-formed\. 
   + Timestamps in Ion and JSON must use ISO8601 format\.
-  + The following SerDe property is supported for the JsonSerDe: 
+  + This parameter supports the following SerDe property for JsonSerDe: 
 
     ```
     'strip.outer.array'='true' 
     ```
 
-    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\.   
+    Processes Ion/JSON files containing one very large array enclosed in outer brackets \( \[ … \] \) as if it contains multiple JSON records within the array\. 
++ com\.amazon\.ionhiveserde\.IonHiveSerDe
+
+  The Amazon ION format provides text and binary formats, in addition to data types\. For an external table that references data in ION format, you map each column in the external table to the corresponding element in the ION format data\. For more information, see [Amazon Ion](https://amzn.github.io/ion-docs/)\. You also need to specify the input and output formats\.  
 WITH SERDEPROPERTIES \( '*property\_name*' = '*property\_value*' \[, \.\.\.\] \) \]  
 Optionally, specify property names and values, separated by commas\.
 If ROW FORMAT is omitted, the default format is DELIMITED FIELDS TERMINATED BY '\\A' \(start of heading\) and LINES TERMINATED BY '\\n' \(newline\)\. 
@@ -191,6 +214,50 @@ Table properties are case\-sensitive\.
 + gzip
 + none
 + snappy  
+'data\_cleansing\_enabled'='true / false’  
+This property sets whether data handling is on for the table\. When 'data\_cleansing\_enabled' is set to true, data handling is on for the table\. When 'data\_cleansing\_enabled' is set to false, data handling is off for the table\. Following is a list of the table–level data handling properites controlled by this property:  
++ invalid\_char\_handling
++ replacement\_char
++ surplus\_char\_handling
++ numeric\_overflow\_handling
+For examples, see [Data handling examples](r_CREATE_EXTERNAL_TABLE_examples.md#r_CREATE_EXTERNAL_TABLE_examples-data-handling)\.  
+'invalid\_char\_handling'='*value*'   
+Specifies the action to perform when query results contain invalid UTF\-8 character values\. You can specify the following actions:    
+DISABLED  
+Doesn't perform invalid character handling\.  
+FAIL  
+Cancels queries that return data containing invalid UTF\-8 values\.  
+SET\_TO\_NULL   
+Replaces invalid UTF\-8 values with null\.  
+DROP\_ROW  
+Replaces each value in the row with null\.  
+REPLACE  
+Replaces the invalid character with the replacement character you specify using `replacement_char`\.  
+'replacement\_char'='*character*’  
+Specifies the replacement character to use when you set `invalid_char_handling` to `REPLACE`\.  
+'numeric\_overflow\_handling'='value’  
+Specifies the action to perform when ORC data contains an integer \(for example, BIGINT or int64\) that is larger than the column definition \(for example, SMALLINT or int16\)\. You can specify the following actions:    
+DISABLED  
+Invalid character handling is turned off\.  
+FAIL  
+Cancel the query when the data includes invalid characters\.  
+SET\_TO\_NULL  
+Set invalid characters to null\.  
+DROP\_ROW  
+Set each value in the row to null\.  
+'surplus\_char\_handling'='*value*'  
+Specifies how to handle data being loaded that exceeds the length of the data type defined for columns containing VARCHAR, CHAR, or string data\. By default, Redshift Spectrum sets the value to null for data that exceeds the width of the column\.  
+You can specify the following actions to perform when the query returns data that exceeds the column width:    
+SET\_TO\_NULL  
+Replaces data that exceeds the column width with null\.  
+DISABLED  
+Doesn't perform surplus character handling\.  
+FAIL  
+Cancels queries that return data exceeding the column width\.  
+DROP\_ROW  
+Replaces each value in the row with null\.  
+TRUNCATE  
+Removes the characters that exceed the maximum number of characters defined for the column\.  
 'numRows'='*row\_count*'   
 A property that sets the numRows value for the table definition\. To explicitly update an external table's statistics, set the numRows property to indicate the size of the table\. Amazon Redshift doesn't analyze external tables to generate the table statistics that the query optimizer uses to generate a query plan\. If table statistics aren't set for an external table, Amazon Redshift generates a query execution plan based on an assumption that external tables are the larger tables and local tables are the smaller tables\.  
 'skip\.header\.line\.count'='*line\_count*'  
@@ -208,420 +275,9 @@ The COPY command maps to ORC data files only by position\. The *orc\.schema\.res
 A property that sets whether CREATE EXTERNAL TABLE AS should write data in parallel\. By default, CREATE EXTERNAL TABLE AS writes data in parallel to multiple files, according to the number of slices in the cluster\. The default option is on\. When 'write\.parallel' is set to off, CREATE EXTERNAL TABLE AS writes to one or more data files serially onto Amazon S3\. This table property also applies to any subsequent INSERT statement into the same external table\.  
 ‘write\.maxfilesize\.mb’=‘size’  
 A property that sets the maximum size \(in MB\) of each file written to Amazon S3 by CREATE EXTERNAL TABLE AS\. The size must be a valid integer between 5 and 6200\. The default maximum file size is 6,200 MB\. This table property also applies to any subsequent INSERT statement into the same external table\.  
+‘write\.kms\.key\.id’=‘*value*’  
+You can specify an AWS Key Management Service key to enable Server–Side Encryption \(SSE\) for Amazon S3 objects, where *value* is one of the following:   
++ `auto` to use the default AWS KMS key stored in the Amazon S3 bucket\.
++ *kms\-key* that you specify to encrypt data\.  
 *select\_statement*  
 A statement that inserts one or more rows into the external table by defining any query\. All rows that the query produces are written to Amazon S3 in either text or Parquet format based on the table definition\.
-
-## Usage notes<a name="r_CREATE_EXTERNAL_TABLE_usage"></a>
-
-You can't view details for Amazon Redshift Spectrum tables using the same resources you use for standard Amazon Redshift tables, such as [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md), [STV\_TBL\_PERM](r_STV_TBL_PERM.md), PG\_CLASS, or information\_schema\. If your business intelligence or analytics tool doesn't recognize Redshift Spectrum external tables, configure your application to query [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) and [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md)\.
-
-### CREATE EXTERNAL TABLE AS<a name="r_CETAS"></a>
-
-In some cases, you might run the CREATE EXTERNAL TABLE AS command on a AWS Glue Data Catalog, AWS Lake Formation external catalog, or Apache Hive metastore\. In such cases, you use an AWS Identity and Access Management \(IAM\) role to create the external schema\. This IAM role must have both read and write permissions on Amazon S3\. 
-
-If you use a Lake Formation catalog, the IAM role must have the permission to create table in the catalog\. In this case, it must also have the data lake location permission on the target Amazon S3 path\. This IAM role becomes the owner of the new AWS Lake Formation table\.
-
-To ensure that file names are unique, Amazon Redshift uses the following format for the name of each file uploaded to Amazon S3 by default\.
-
-`<date>_<time>_<microseconds>_<query_id>_<slice-number>_part_<part-number>.<format>`\.
-
- An example is `20200303_004509_810669_1007_0001_part_00.parquet`\.
-
-Consider the following when running the CREATE EXTERNAL TABLE AS command:
-+ The Amazon S3 location must be empty\.
-+ Amazon Redshift only supports PARQUET and TEXTFILE formats when using the STORED AS clause\.
-+ You don't need to define a column definition list\. Column names and column data types of the new external table are derived directly from the SELECT query\.
-+ You don't need to define the data type of the partition column in the PARTITIONED BY clause\. If you specify a partition key, the name of this column must exist in the SELECT query result\. When having multiple partition columns, their order in the SELECT query doesn't matter\. Amazon Redshift uses their order defined in the PARTITIONED BY clause to create the external table\.
-+ Amazon Redshift automatically partitions output files into partition folders based on the partition key values\. By default, Amazon Redshift removes partition columns from the output files\.
-+ The LINES TERMINATED BY 'delimiter' clause isn't supported\.
-+ The ROW FORMAT SERDE 'serde\_name' clause isn't supported\.
-+ The use of manifest files isn't supported\. Thus, you can't define the LOCATION clause to a manifest file on Amazon S3\.
-+ Amazon Redshift automatically updates the 'numRows' table property at the end of the command\.
-+ The 'compression\_type' table property only accepts 'none' or 'snappy' for the PARQUET file format\.
-+ Amazon Redshift doesn't allow the LIMIT clause in the outer SELECT query\. Instead, you can use a nested LIMIT clause\.
-+ You can use STL\_UNLOAD\_LOG to track the files that are written to Amazon S3 by each CREATE EXTERNAL TABLE AS operation\.
-
-### Permissions to create and query external tables<a name="r_CREATE_EXTERNAL_TABLE_usage-permissions"></a>
-
-To create external tables, make sure that you're the owner of the external schema or a superuser\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md)\. The following example changes the owner of the `spectrum_schema` schema to `newowner`\.
-
-```
-alter schema spectrum_schema owner to newowner;
-```
-
-To run a Redshift Spectrum query, you need the following permissions:
-+ Usage permission on the schema 
-+ Permission to create temporary tables in the current database 
-
-The following example grants usage permission on the schema `spectrum_schema` to the `spectrumusers` user group\.
-
-```
-grant usage on schema spectrum_schema to group spectrumusers;
-```
-
-The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
-
-```
-grant temp on database spectrumdb to group spectrumusers;
-```
-
-### Pseudocolumns<a name="r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns"></a>
-
-By default, Amazon Redshift creates external tables with the pseudocolumns *$path* and *$size*\. Select these columns to view the path to the data files on Amazon S3 and the size of the data files for each row returned by a query\. The *$path* and *$size* column names must be delimited with double quotation marks\. A *SELECT \** clause doesn't return the pseudocolumns \. You must explicitly include the *$path* and *$size* column names in your query, as the following example shows\.
-
-```
-select "$path", "$size"
-from spectrum.sales_part
-where saledate = '2008-12-01';
-```
-
-You can disable creation of pseudocolumns for a session by setting the *spectrum\_enable\_pseudo\_columns* configuration parameter to *false*\. 
-
-**Important**  
-Selecting *$size* or *$path* incurs charges because Redshift Spectrum scans the data files on Amazon S3 to determine the size of the result set\. For more information, see [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
-
-## Examples<a name="r_CREATE_EXTERNAL_TABLE_examples"></a>
-
-The following example creates a table named SALES in the Amazon Redshift external schema named `spectrum`\. The data is in tab\-delimited text files\. The TABLE PROPERTIES clause sets the numRows property to 170,000 rows\.
-
-```
-create external table spectrum.sales(
-salesid integer,
-listid integer,
-sellerid integer,
-buyerid integer,
-eventid integer,
-saledate date,
-qtysold smallint,
-pricepaid decimal(8,2),
-commission decimal(8,2),
-saletime timestamp)
-row format delimited
-fields terminated by '\t'
-stored as textfile
-location 's3://awssampledbuswest2/tickit/spectrum/sales/'
-table properties ('numRows'='170000');
-```
-
-The following example creates a table that uses the JsonSerDe to reference data in JSON format\.
-
-```
-create external table spectrum.cloudtrail_json (
-event_version int,
-event_id bigint,
-event_time timestamp,
-event_type varchar(10),
-awsregion varchar(20),
-event_name varchar(max),
-event_source varchar(max),
-requesttime timestamp,
-useragent varchar(max),
-recipientaccountid bigint) 
-row format serde 'org.openx.data.jsonserde.JsonSerDe'
-with serdeproperties (
-'dots.in.keys' = 'true',
-'mapping.requesttime' = 'requesttimestamp'
-) location 's3://mybucket/json/cloudtrail';
-```
-
-The following CREATE EXTERNAL TABLE AS example creates a nonpartitioned external table\. Then it writes the result of the SELECT query as Apache Parquet to the target Amazon S3 location\.
-
-```
-CREATE EXTERNAL TABLE spectrum.lineitem
-STORED AS parquet
-LOCATION 'S3://mybucket/cetas/lineitem/'
-AS SELECT * FROM local_lineitem;
-```
-
-The following example creates a partitioned external table and includes the partition columns in the SELECT query\. 
-
-```
-CREATE EXTERNAL TABLE spectrum.partitioned_lineitem
-PARTITIONED BY (l_shipdate, l_shipmode)
-STORED AS parquet
-LOCATION 'S3://mybucket/cetas/partitioned_lineitem/'
-AS SELECT l_orderkey, l_shipmode, l_shipdate, l_partkey FROM local_table;
-```
-
-For a list of existing databases in the external data catalog, query the [SVV\_EXTERNAL\_DATABASES](r_SVV_EXTERNAL_DATABASES.md) system view\. 
-
-```
-select eskind,databasename,esoptions from svv_external_databases order by databasename;
-```
-
-```
-eskind | databasename | esoptions                                                                        
--------+--------------+----------------------------------------------------------------------------------
-     1 | default      | {"REGION":"us-west-2","IAM_ROLE":"arn:aws:iam::123456789012:role/mySpectrumRole"}
-     1 | sampledb     | {"REGION":"us-west-2","IAM_ROLE":"arn:aws:iam::123456789012:role/mySpectrumRole"}
-     1 | spectrumdb   | {"REGION":"us-west-2","IAM_ROLE":"arn:aws:iam::123456789012:role/mySpectrumRole"}
-```
-
-To view details of external tables, query the [SVV\_EXTERNAL\_TABLES](r_SVV_EXTERNAL_TABLES.md) and [SVV\_EXTERNAL\_COLUMNS](r_SVV_EXTERNAL_COLUMNS.md) system views\.
-
-The following example queries the SVV\_EXTERNAL\_TABLES view\.
-
-```
-select schemaname, tablename, location from svv_external_tables;
-```
-
-```
-schemaname | tablename            | location                                               
------------+----------------------+--------------------------------------------------------
-spectrum   | sales                | s3://awssampledbuswest2/tickit/spectrum/sales          
-spectrum   | sales_part           | s3://awssampledbuswest2/tickit/spectrum/sales_partition
-```
-
-The following example queries the SVV\_EXTERNAL\_COLUMNS view\. 
-
-```
-select * from svv_external_columns where schemaname like 'spectrum%' and tablename ='sales';
-```
-
-```
-schemaname | tablename | columnname | external_type | columnnum | part_key
------------+-----------+------------+---------------+-----------+---------
-spectrum   | sales     | salesid    | int           |         1 |        0
-spectrum   | sales     | listid     | int           |         2 |        0
-spectrum   | sales     | sellerid   | int           |         3 |        0
-spectrum   | sales     | buyerid    | int           |         4 |        0
-spectrum   | sales     | eventid    | int           |         5 |        0
-spectrum   | sales     | saledate   | date          |         6 |        0
-spectrum   | sales     | qtysold    | smallint      |         7 |        0
-spectrum   | sales     | pricepaid  | decimal(8,2)  |         8 |        0
-spectrum   | sales     | commission | decimal(8,2)  |         9 |        0
-spectrum   | sales     | saletime   | timestamp     |        10 |        0
-```
-
-To view table partitions, use the following query\.
-
-```
-select schemaname, tablename, values, location 
-from svv_external_partitions
-where tablename = 'sales_part';
-```
-
-```
-schemaname | tablename  | values         | location                                                                
------------+------------+----------------+-------------------------------------------------------------------------
-spectrum   | sales_part | ["2008-01-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
-spectrum   | sales_part | ["2008-02-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
-spectrum   | sales_part | ["2008-03-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03
-spectrum   | sales_part | ["2008-04-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04
-spectrum   | sales_part | ["2008-05-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05
-spectrum   | sales_part | ["2008-06-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06
-spectrum   | sales_part | ["2008-07-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07
-spectrum   | sales_part | ["2008-08-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08
-spectrum   | sales_part | ["2008-09-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09
-spectrum   | sales_part | ["2008-10-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10
-spectrum   | sales_part | ["2008-11-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11
-spectrum   | sales_part | ["2008-12-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12
-```
-
-The following example returns the total size of related data files for an external table\.
-
-```
-select distinct "$path", "$size"
-   from spectrum.sales_part;
-
- $path                                 | $size
----------------------------------------+-------
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/ |  1616
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
-```
-
-## Partitioning examples<a name="r_CREATE_EXTERNAL_TABLE_examples-partitioning"></a>
-
-To create an external table partitioned by date, run the following command\.
-
-```
-create external table spectrum.sales_part(
-salesid integer,
-listid integer,
-sellerid integer,
-buyerid integer,
-eventid integer,
-dateid smallint,
-qtysold smallint,
-pricepaid decimal(8,2),
-commission decimal(8,2),
-saletime timestamp)
-partitioned by (saledate date)
-row format delimited
-fields terminated by '|'
-stored as textfile
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/'
-table properties ('numRows'='170000');
-```
-
-To add the partitions, run the following ALTER TABLE commands\.
-
-```
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-01-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-02-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-03-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-04-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-05-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-06-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-07-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-08-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-09-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-10-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-11-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11/';
-alter table spectrum.sales_part
-add if not exists partition (saledate='2008-12-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12/';
-```
-
-To select data from the partitioned table, run the following query\.
-
-```
-select top 10 spectrum.sales_part.eventid, sum(spectrum.sales_part.pricepaid) 
-from spectrum.sales_part, event
-where spectrum.sales_part.eventid = event.eventid
-  and spectrum.sales_part.pricepaid > 30
-  and saledate = '2008-12-01'
-group by spectrum.sales_part.eventid
-order by 2 desc;
-```
-
-```
-eventid | sum     
---------+---------
-    914 | 36173.00
-   5478 | 27303.00
-   5061 | 26383.00
-   4406 | 26252.00
-   5324 | 24015.00
-   1829 | 23911.00
-   3601 | 23616.00
-   3665 | 23214.00
-   6069 | 22869.00
-   5638 | 22551.00
-```
-
-To view external table partitions, query the [SVV\_EXTERNAL\_PARTITIONS](r_SVV_EXTERNAL_PARTITIONS.md) system view\.
-
-```
-select schemaname, tablename, values, location from svv_external_partitions
-where tablename = 'sales_part';
-```
-
-```
-schemaname | tablename  | values         | location                                         
------------+------------+----------------+--------------------------------------------------
-spectrum   | sales_part | ["2008-01-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
-spectrum   | sales_part | ["2008-02-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
-spectrum   | sales_part | ["2008-03-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03
-spectrum   | sales_part | ["2008-04-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04
-spectrum   | sales_part | ["2008-05-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05
-spectrum   | sales_part | ["2008-06-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06
-spectrum   | sales_part | ["2008-07-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07
-spectrum   | sales_part | ["2008-08-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08
-spectrum   | sales_part | ["2008-09-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09
-spectrum   | sales_part | ["2008-10-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10
-spectrum   | sales_part | ["2008-11-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11
-spectrum   | sales_part | ["2008-12-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12
-```
-
-## Row format examples<a name="r_CREATE_EXTERNAL_TABLE_examples-row-format"></a>
-
-The following shows an example of specifying the ROW FORMAT SERDE parameters for data files stored in AVRO format\.
-
-```
-create external table spectrum.sales(salesid int, listid int, sellerid int, buyerid int, eventid int, dateid int, qtysold int, pricepaid decimal(8,2), comment VARCHAR(255))
-ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-WITH SERDEPROPERTIES ('avro.schema.literal'='{\"namespace\": \"dory.sample\",\"name\": \"dory_avro\",\"type\": \"record\", \"fields\": [{\"name\":\"salesid\", \"type\":\"int\"}, 
-{\"name\":\"listid\", \"type\":\"int\"}, 
-{\"name\":\"sellerid\", \"type\":\"int\"}, 
-{\"name\":\"buyerid\", \"type\":\"int\"}, 
-{\"name\":\"eventid\",\"type\":\"int\"}, 
-{\"name\":\"dateid\",\"type\":\"int\"}, 
-{\"name\":\"qtysold\",\"type\":\"int\"}, 
-{\"name\":\"pricepaid\", \"type\": {\"type\": \"bytes\", \"logicalType\": \"decimal\", \"precision\": 8, \"scale\": 2}}, {\"name\":\"comment\",\"type\":\"string\"}]}')
-STORED AS AVRO
-location 's3://mybucket/avro/sales' ;
-```
-
-The following shows an example of specifying the ROW FORMAT SERDE parameters using RegEx\.
-
-```
-create external table spectrum.types(
-cbigint bigint,
-cbigint_null bigint,
-cint int,
-cint_null int)
-row format serde 'org.apache.hadoop.hive.serde2.RegexSerDe'
-with serdeproperties ('input.regex'='([^\\x01]+)\\x01([^\\x01]+)\\x01([^\\x01]+)\\x01([^\\x01]+)')
-stored as textfile
-location 's3://mybucket/regex/types';
-```
-
-The following shows an example of specifying the ROW FORMAT SERDE parameters using Grok\.
-
-```
-create external table spectrum.grok_log(
-timestamp varchar(255),
-pid varchar(255),
-loglevel varchar(255),
-progname varchar(255),
-message varchar(255))
-row format serde 'com.amazonaws.glue.serde.GrokSerDe'
-with serdeproperties ('input.format'='[DFEWI], \\[%{TIMESTAMP_ISO8601:timestamp} #%{POSINT:pid:int}\\] *(?<loglevel>:DEBUG|FATAL|ERROR|WARN|INFO) -- +%{DATA:progname}: %{GREEDYDATA:message}')
-stored as textfile
-location 's3://mybucket/grok/logs';
-```
-
-The following shows an example of defining an Amazon S3 server access log in an S3 bucket\. You can use Redshift Spectrum to query Amazon S3 access logs\.
-
-```
-CREATE EXTERNAL TABLE spectrum.mybucket_s3_logs(
-bucketowner varchar(255),
-bucket varchar(255),
-requestdatetime varchar(2000),
-remoteip varchar(255),
-requester varchar(255),
-requested varchar(255),
-operation varchar(255),
-key varchar(255),
-requesturi_operation varchar(255),
-requesturi_key varchar(255),
-requesturi_httpprotoversion varchar(255),
-httpstatus varchar(255),
-errorcode varchar(255),
-bytessent bigint,
-objectsize bigint,
-totaltime varchar(255),
-turnaroundtime varchar(255),
-referrer varchar(255),
-useragent varchar(255),
-versionid varchar(255)
-)
-ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
-WITH SERDEPROPERTIES (
-'input.regex' = '([^ ]*) ([^ ]*) \\[(.*?)\\] ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) \"([^ ]*)\\s*([^ ]*)\\s*([^ ]*)\" (- |[^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\") ([^ ]*).*$')
-LOCATION 's3://mybucket/s3logs’;
-```

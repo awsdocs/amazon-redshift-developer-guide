@@ -2,7 +2,7 @@
 
 Records details for [ANALYZE](r_ANALYZE.md) operations\.
 
-This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_ANALYZE-table-columns2"></a>
 

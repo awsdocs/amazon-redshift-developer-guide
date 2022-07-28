@@ -9,4 +9,4 @@ Amazon Redshift has many system tables and views that contain information about 
 Some system tables can only be used by AWS staff for diagnostic purposes\. The following sections discuss the system tables that can be queried for useful information by system administrators or other database users\. 
 
 **Note**  
-System tables are not included in automated or manual cluster backups \(snapshots\)\. STL log tables only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
+System tables are not included in automated or manual cluster backups \(snapshots\)\. STL log views only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.

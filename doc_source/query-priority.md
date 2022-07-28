@@ -12,7 +12,7 @@ Not all queries are of equal importance, and often performance of one workload o
 
 1. `LOWEST`
 
-Administrators use these priorities to show the relative importance of their workloads when there are queries with different priorities contending for the same resources\. Amazon Redshift uses the priority when letting queries into the system, and to determine the amount of resources allocated to a query\. By default, queries run with their priority set to `NORMAL`\.
+Administrators use these priorities to show the relative importance of their workloads when there are queries with different priorities contending for the same resources\. Amazon Redshift uses the priority when letting queries into the system, and to determine the amount of resources allocated to a query\. By default, queries run with their priority set to `NORMAL`\. 
 
 An additional priority, `CRITICAL`, which is a higher priority than `HIGHEST`, is available to superusers\. To set this priority, you can use the functions [CHANGE\_QUERY\_PRIORITY](r_CHANGE_QUERY_PRIORITY.md), [CHANGE\_SESSION\_PRIORITY](r_CHANGE_SESSION_PRIORITY.md)\. and [CHANGE\_USER\_PRIORITY](r_CHANGE_USER_PRIORITY.md)\. To grant a database user permission to use these functions, you can create a stored procedure and grant permission to a user\. For an example, see [CHANGE\_SESSION\_PRIORITY](r_CHANGE_SESSION_PRIORITY.md)\. 
 
@@ -27,7 +27,7 @@ In the preceding example, the administrator can enable [concurrency scaling](con
 
 ## Configuring queue priority<a name="concurrency-scaling-queues"></a>
 
-If you have enabled automatic WLM, each queue has a priority value\. Queries are routed to queues based on user groups and query groups\. The default queue priority is `NORMAL`\. Set the priority higher or lower based on the workload associated with the queue's user groups and query groups\. 
+If you have enabled automatic WLM, each queue has a priority value\. Queries are routed to queues based on user groups and query groups\. Start with a queue priority set to `NORMAL`\. Set the priority higher or lower based on the workload associated with the queue's user groups and query groups\. 
 
 You can change the priority of a queue on the Amazon Redshift console\. On the Amazon Redshift console, the **Workload Management** page displays the queues and enables editing of queue properties such as **Priority**\. To set the priority using the CLI or API operations, use the `wlm_json_configuration` parameter\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.
 
@@ -64,7 +64,7 @@ The following `wlm_json_configuration` example defines three user groups \(`inge
 
 Query monitoring rules \(QMR\) enable you to change the priority of a query based on its behavior while it is running\. You do this by specifying the priority attribute in a QMR predicate in addition to an action\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 
 
-For example, you can define a rule to abort any query classified as `high` priority that runs for more than 10 minutes\.
+For example, you can define a rule to cancel any query classified as `high` priority that runs for more than 10 minutes\.
 
 ```
 "rules" :[
@@ -148,3 +148,8 @@ from stl_wlm_query order by 3 desc limit 10;
  2723237 |     102 | 2019-06-24 18:14:50.661918 | Highest
  2723236 |     102 | 2019-06-24 18:14:50.643636 | Highest
 ```
+
+To optimize the throughput of your workload, Amazon Redshift might modify the priority of user submitted queries\. Amazon Redshift uses advanced machine learning algorithms to determine when this optimization benefits your workload and automatically applies it when all the following conditions are met\. 
++ Automatic WLM is enabled\.
++ Only one WLM queue is defined\.
++ You have not defined query monitoring rules \(QMRs\) which set query priority\. Such rules include the QMR metric `query_priority` or the QMR action `change_query_priority`\. For more information, see [WLM query monitoring rules](cm-c-wlm-query-monitoring-rules.md)\. 

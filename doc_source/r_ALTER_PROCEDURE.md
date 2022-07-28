@@ -19,7 +19,7 @@ ALTER PROCEDURE sp_name [ ( [ [ argname ] [ argmode ] argtype [, ...] ] ) ]
  *sp\_name*   
 The name of the procedure to be altered\. Either specify just the name of the procedure in the current search path, or use the format `schema_name.sp_procedure_name` to use a specific schema\.
 
-*\[argname\] \[ argmode\] argtype*   
+*\[argname\] \[argmode\] argtype*   
 A list of argument names, argument modes, and data types\. Only the input data types are required, which are used to identify the stored procedure\. Alternatively, you can provide the full signature used to create the procedure including the input and output parameters with their modes\.
 
  *new\_name*   

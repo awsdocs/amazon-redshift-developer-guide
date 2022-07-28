@@ -1,6 +1,6 @@
 # STL\_MV\_STATE<a name="r_STL_MV_STATE"></a>
 
-The STL\_MV\_STATE table contains a row for every state transition of a materialized view\. 
+The STL\_MV\_STATE view contains a row for every state transition of a materialized view\. 
 
 For more information about materialized views, see [Creating materialized views in Amazon Redshift](materialized-view-overview.md)\.
 

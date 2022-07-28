@@ -1,28 +1,32 @@
 # TRUNC function<a name="r_TRUNC"></a>
 
-The TRUNC function truncates a number and right\-fills it with zeros from the position specified\. This function also truncates a time stamp and returns a date\. 
+The TRUNC function truncates numbers to the previous integer or decimal\. 
+
+The TRUNC function can optionally include a second argument as an integer to indicate the number of decimal places for rounding, in either direction\. When you don't provide the second argument, the function rounds to the nearest whole number\. When the second argument *>n*is specified, the function rounds to the nearest number with *>n* decimal places of precision\. This function also truncates a timestamp and returns a date\.
 
 ## Syntax<a name="r_TRUNC-synopsis"></a>
 
 ```
-TRUNC(number [ , integer ] |
+TRUNC (number [ , integer ] |
 timestamp )
 ```
 
 ## Arguments<a name="r_TRUNC-arguments"></a>
 
  *number*   
-Numeric data type to be truncated\. SMALLINT, INTEGER, BIGINT, DECIMAL, REAL, and DOUBLE PRECISION data types are supported\. 
+A number or expression that evaluates to a number\. It can be the DECIMAL, FLOAT8 or SUPER type\. Amazon Redshift can convert other data types per the implicit conversion rules\. 
 
  *integer* \(optional\)   
-An integer that indicates the number of decimal places of precision, in either direction\. If no integer is provided, the number is truncated as a whole number; if an integer is specified, the number is truncated to the specified decimal place\. 
+An integer that indicates the number of decimal places of precision, in either direction\. If no integer is provided, the number is truncated as a whole number; if an integer is specified, the number is truncated to the specified decimal place\. This isn't supported for the SUPER data type\.
 
  *timestamp*   
-The function can also return the date from a time stamp\. \(To return a time stamp value with `00:00:00` as the time, cast the function result to a time stamp\.\) 
+The function can also return the date from a timestamp\. \(To return a timestamp value with `00:00:00` as the time, cast the function result to a timestamp\.\) 
 
 ## Return type<a name="r_TRUNC-return-type"></a>
 
-TRUNC returns the same numeric data type as the first input argument\. For time stamps, TRUNC returns a date\. 
+TRUNC returns the same data type as the first input argument\. For timestamps, TRUNC returns a date\. 
+
+When the input is of the SUPER type, the output retains the same dynamic type as the input while the static type remains the SUPER type\. When the dynamic type of SUPER isn't a number, Amazon Redshift returns a null\.
 
 ## Examples<a name="r_TRUNC-examples"></a>
 
@@ -64,7 +68,7 @@ commission | trunc
 (1 row)
 ```
 
-Return the date portion from the result of the SYSDATE function \(which returns a time stamp\): 
+Return the date portion from the result of the SYSDATE function \(which returns a timestamp\): 
 
 ```
 select sysdate;

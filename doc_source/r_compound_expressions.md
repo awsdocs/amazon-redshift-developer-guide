@@ -27,11 +27,11 @@ A simple expression that evaluates to a value\.
 + \|\|: concatenation
 
  *\(compound\_expression\)*   
-Compound expressions may be nested using parentheses\.
+Compound expressions can be nested using parentheses\.
 
 ## Examples<a name="r_compound_expressions-examples"></a>
 
-Examples of compound expressions include:
+Examples of compound expressions include the following\.
 
 ```
 ('SMITH' || 'JONES')

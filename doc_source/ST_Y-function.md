@@ -19,6 +19,8 @@ A `POINT` value of data type `GEOMETRY`\.
 
 If *point* is null, then null is returned\. 
 
+If *point* is the empty point, then null is returned\. 
+
 If *point* is not a `POINT`, then an error is returned\. 
 
 ## Examples<a name="ST_Y-function-examples"></a>

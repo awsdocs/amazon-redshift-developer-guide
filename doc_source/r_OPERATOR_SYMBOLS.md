@@ -15,8 +15,8 @@ select commission, (commission + 2.00) as comm
 from sales where salesid=10000;
 
 commission | comm
-------------+-------
-28.05 | 30.05
+-----------+-------
+28.05      | 30.05
 (1 row)
 ```
 
@@ -27,8 +27,8 @@ select pricepaid, (pricepaid * .20) as twentypct
 from sales where salesid=10000;
 
 pricepaid | twentypct
------------+-----------
-187.00 |    37.400
+----------+-----------
+187.00    |    37.400
 (1 row)
 ```
 

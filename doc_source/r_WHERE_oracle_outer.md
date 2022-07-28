@@ -57,7 +57,7 @@ Where possible, use the standard FROM clause OUTER JOIN syntax instead of the \(
   event.eventid(+)*10=category.catid
   ```
 + You can't use the \(\+\) operator in a query block that also contains FROM clause join syntax\. 
-+ If two tables are joined over multiple join conditions, you must use the \(\+\) operator in all or none of these conditions\. A join with mixed syntax styles executes as an inner join, without warning\. 
++ If two tables are joined over multiple join conditions, you must use the \(\+\) operator in all or none of these conditions\. A join with mixed syntax styles runs as an inner join, without warning\. 
 + The \(\+\) operator doesn't produce an outer join if you join a table in the outer query with a table that results from an inner query\. 
 + To use the \(\+\) operator to outer\-join a table to itself, you must define table aliases in the FROM clause and reference them in the join condition: 
 

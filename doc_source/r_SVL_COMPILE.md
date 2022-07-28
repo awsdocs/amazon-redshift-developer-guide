@@ -12,7 +12,7 @@ For information about SVCS\_COMPILE, see [SVCS\_COMPILE](r_SVCS_COMPILE.md)\.
 
 ## Sample queries<a name="r_SVL_COMPILE-sample-queries"></a>
 
-In this example, queries 35878 and 35879 executed the same SQL statement\. The compile column for query 35878 shows `1` for four query segments, which indicates that the segments were compiled\. Query 35879 shows `0` in the compile column for every segment, indicating that the segments did not need to be compiled again\.
+In this example, queries 35878 and 35879 ran the same SQL statement\. The compile column for query 35878 shows `1` for four query segments, which indicates that the segments were compiled\. Query 35879 shows `0` in the compile column for every segment, indicating that the segments did not need to be compiled again\.
 
 ```
 select userid, xid,  pid, query, segment, locus,  

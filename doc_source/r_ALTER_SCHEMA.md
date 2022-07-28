@@ -4,6 +4,10 @@ Changes the definition of an existing schema\. Use this command to rename a sche
 
 For example, rename an existing schema to preserve a backup copy of that schema when you plan to create a new version of that schema\. For more information about schemas, see [CREATE SCHEMA](r_CREATE_SCHEMA.md)\. 
 
+To view the configured schema quotas, see [SVV\_SCHEMA\_QUOTA\_STATE](r_SVV_SCHEMA_QUOTA_STATE.md)\.
+
+To view the records where schema quotas were exceeded, see [STL\_SCHEMA\_QUOTA\_VIOLATIONS](r_STL_SCHEMA_QUOTA_VIOLATIONS.md)\.
+
 ## Syntax<a name="r_ALTER_SCHEMA-synopsis"></a>
 
 ```
@@ -33,7 +37,8 @@ A clause that changes the owner of the schema\.
 The new owner of the schema\. 
 
 QUOTA   
-The maximum amount of disk space that the specified schema can use\. This space is the collective size of all tables under the specified schema\. Amazon Redshift converts the selected value to megabytes\. Gigabytes is the default unit of measurement when you don't specify a value\. 
+The maximum amount of disk space that the specified schema can use\. This space is the collective size of all tables under the specified schema\. Amazon Redshift converts the selected value to megabytes\. Gigabytes is the default unit of measurement when you don't specify a value\.   
+For more information about configuring schema quotas, see [CREATE SCHEMA](r_CREATE_SCHEMA.md)\.
 
 ## Examples<a name="r_ALTER_SCHEMA-examples"></a>
 

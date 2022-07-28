@@ -29,6 +29,12 @@ create view vdate as select * from date;
 alter table vdate owner to vuser;
 ```
 
+The following command turns RLS off for the table: 
+
+```
+ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY OFF;
+```
+
 ## Rename a column<a name="r_ALTER_TABLE_examples_basic-rename-a-column"></a>
 
 The following command renames the VENUESEATS column in the VENUE table to VENUESIZE: 
@@ -64,6 +70,38 @@ The following example increases the size of the EVENTNAME column to VARCHAR\(300
 
 ```
 alter table event alter column eventname type varchar(300);
+```
+
+## Alter the compression encoding for a column<a name="r_ALTER_TABLE_examples_alter-column-encoding"></a>
+
+You can alter the compression encoding of a column\. Below, you can find a set of examples demonstrating this approach\. The table definition for these examples is as follows\.
+
+```
+create table t1(c0 int encode lzo, c1 bigint encode zstd, c2 varchar(16) encode lzo, c3 varchar(32) encode zstd);
+```
+
+The following statement alters the compression encoding for column c0 from LZO encoding to AZ64 encoding\. 
+
+```
+alter table t1 alter column c0 encode az64;
+```
+
+The following statement alters the compression encoding for column c1 from Zstandard encoding to AZ64 encoding\. 
+
+```
+alter table t1 alter column c1 encode az64;
+```
+
+The following statement alters the compression encoding for column c2 from LZO encoding to Byte\-dictionary encoding\. 
+
+```
+alter table t1 alter column c2 encode bytedict;
+```
+
+The following statement alters the compression encoding for column c3 from Zstandard encoding to Runlength encoding\. 
+
+```
+alter table t1 alter column c3 encode runlength;
 ```
 
 ## Alter a DISTSTYLE KEY DISTKEY column<a name="r_ALTER_TABLE_examples_alter-distkey"></a>
@@ -141,4 +179,68 @@ select "table", "diststyle" from svv_table_info;
    table   |   diststyle
 -----------+----------------
  inventory |     ALL
+```
+
+## Alter a table SORTKEY<a name="r_ALTER_TABLE_examples_alter-sortkey"></a>
+
+You can alter a table to have a compound sort key or no sort key\.
+
+In the following table definition, table `t1` is defined with an interleaved sortkey\.
+
+```
+create table t1 (c0 int, c1 int) interleaved sortkey(c0, c1);
+```
+
+The following command alters the table from an interleaved sort key to a compound sort key\.
+
+```
+alter table t1 alter sortkey(c0, c1);
+```
+
+The following command alters the table to remove the interleaved sort key\.
+
+```
+alter table t1 alter sortkey none;
+```
+
+In the following table definition, table `t1` is defined with column `c0` as a sortkey\.
+
+```
+create table t1 (c0 int, c1 int) sortkey(c0);
+```
+
+The following command alters the table `t1` to a compound sort key\.
+
+```
+alter table t1 alter sortkey(c0, c1);
+```
+
+## Alter a table to ENCODE AUTO<a name="r_ALTER_TABLE_examples_alter-encode-auto"></a>
+
+The following example shows how to alter a table to ENCODE AUTO\. 
+
+The table definition for this example follows\. Column `c0` is defined with the encoding type AZ64, and column `c1` is defined with the encoding type LZO\.
+
+```
+create table t1(c0 int encode AZ64, c1 varchar encode LZO);
+```
+
+For this table, the following statement alters the encoding to AUTO\.
+
+```
+alter table t1 alter encode auto;
+```
+
+The following example shows how to alter a table to remove the ENCODE AUTO setting\. 
+
+The table definition for this example follows\. The table columns are defined without encoding\. In this case, the encoding defaults to ENCODE AUTO\.
+
+```
+create table t2(c0 int, c1 varchar);
+```
+
+For this table, the following statement alters the encoding of column c0 to LZO\. The table encoding is no longer set to ENCODE AUTO\.
+
+```
+alter table t2 alter column c0 encode lzo;;
 ```

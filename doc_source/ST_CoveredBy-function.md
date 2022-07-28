@@ -1,6 +1,6 @@
 # ST\_CoveredBy<a name="ST_CoveredBy-function"></a>
 
-ST\_CoveredBy returns true if the first input geometry is covered by the second input geometry\. Geometry `A` is covered by geometry `B` if both are nonempty and every point in `A` is a point in `B`\. 
+ST\_CoveredBy returns true if the 2D projection of the first input geometry is covered by the 2D projection of the second input geometry\. Geometry `A` is covered by geometry `B` if both are nonempty and every point in `A` is a point in `B`\. 
 
 ST\_CoveredBy\(`A`, `B`\) is equivalent to ST\_Covers\(`B`, `A`\)\. 
 

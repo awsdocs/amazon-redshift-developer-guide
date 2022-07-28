@@ -17,11 +17,13 @@ A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` 
 
 `INTEGER` representing the number of geometries in *geom*\. 
 
-If *geom* is `GEOMETRYCOLLECTION` or a `MULTI` subtype, then the number of geometries is returned\. 
-
-If *geom* is a single geometry, then `1` is returned\. 
-
 If *geom* is null, then null is returned\. 
+
+If *geom* is a single empty geometry, then `0` is returned\. 
+
+If *geom* is a single nonempty geometry, then `1` is returned\. 
+
+If *geom* is a `GEOMETRYCOLLECTION` or a `MULTI` subtype, then the number of geometries is returned\. 
 
 ## Examples<a name="ST_NumGeometries-function-examples"></a>
 

@@ -13,7 +13,7 @@ The users that create the Amazon EMR cluster and run the Amazon Redshift COPY co
    redshift:DescribeClusters
    ```
 
-1. Add the following permission for the IAM role or IAM user that will execute the COPY command\.
+1. Add the following permission for the IAM role or IAM user that will run the COPY command\.
 
    ```
    elasticmapreduce:ListInstances

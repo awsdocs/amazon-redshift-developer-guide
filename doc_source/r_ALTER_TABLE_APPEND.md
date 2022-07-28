@@ -40,7 +40,7 @@ A keyword that specifies that if the target table includes columns that are not 
 
 ALTER TABLE APPEND moves only identical columns from the source table to the target table\. Column order doesn't matter\. 
 
- If either the source table or the target tables contains extra columns, use either FILLTARGET or IGNOREEXTRA according to the following rules: 
+ If either the source table or the target table contains extra columns, use either FILLTARGET or IGNOREEXTRA according to the following rules: 
 + If the source table contains columns that don't exist in the target table, include IGNOREEXTRA\. The command ignores the extra columns in the source table\.
 + If the target table contains columns that don't exist in the source table, include FILLTARGET\. The command fills the extra columns in the target table with either the default column value or IDENTITY value, if one was defined, or NULL\.
 + If both the source table and the target table contain extra columns, the command fails\. You can't use both FILLTARGET and IGNOREEXTRA\. 
@@ -119,7 +119,7 @@ select count(*) from sales;
 (1 row)
 ```
 
-Now execute the following ALTER TABLE APPEND command\.
+Now run the following ALTER TABLE APPEND command\.
 
 ```
 alter table sales append from sales_monthly;         

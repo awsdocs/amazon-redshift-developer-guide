@@ -19,6 +19,7 @@ DISTINCT
 
   
 
+
 *aggregate\_expression*   
  Any valid expression \(such as a column name\) that provides the values to aggregate\. NULL values and empty strings are ignored\. 
 

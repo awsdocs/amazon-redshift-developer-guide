@@ -1,3 +1,3 @@
 # Collation sequences<a name="c_collation_sequences"></a>
 
-Amazon Redshift does not support locale\-specific or user\-defined collation sequences\. In general, the results of any predicate in any context could be affected by the lack of locale\-specific rules for sorting and comparing data values\. For example, ORDER BY expressions and functions such as MIN, MAX, and RANK return results based on binary UTF8 ordering of the data that does not take locale\-specific characters into account\.
+Amazon Redshift doesn’t support locale\-specific or user\-defined collation sequences\. In general, the results of any predicate in any context could be affected by the lack of locale\-specific rules for sorting and comparing data values\. For example, ORDER BY expressions and functions such as MIN, MAX, and RANK return results based on binary UTF8 ordering of the data that does not take locale\-specific characters into account\.

@@ -2,7 +2,7 @@
 
 Provides metrics related to commit performance, including the timing of the various stages of commit and the number of blocks committed\. Query STL\_COMMIT\_STATS to determine what portion of a transaction was spent on commit and how much queuing is occurring\.
 
-This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_COMMIT_STATS-table-columns"></a>
 

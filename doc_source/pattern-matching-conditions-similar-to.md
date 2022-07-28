@@ -7,7 +7,7 @@ The SIMILAR TO operator returns true only if its pattern matches the entire stri
 SIMILAR TO performs a case\-sensitive match\. 
 
 **Note**  
-Regular expression matching using SIMILAR TO is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE executes several times faster than the query that uses a regular expression:  
+Regular expression matching using SIMILAR TO is computationally expensive\. We recommend using LIKE whenever possible, especially when processing a very large number of rows\. For example, the following queries are functionally identical, but the query that uses LIKE runs several times faster than the query that uses a regular expression:  
 
 ```
 select count(*) from event where eventname SIMILAR TO '%(Ring|Die)%'; 
@@ -48,51 +48,49 @@ The following table shows examples of pattern matching using SIMILAR TO:
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/pattern-matching-conditions-similar-to.html)
 
-The following example finds all cities whose names contain "E" or "H": 
+The following example finds cities whose names contain "E" or "H": 
 
 ```
-select distinct city from users
-where city similar to '%E%|%H%' order by city;
-         city
------------------------
+SELECT DISTINCT city FROM users
+WHERE city SIMILAR TO '%E%|%H%' ORDER BY city LIMIT 5;
+
+      city
+-----------------
  Agoura Hills
  Auburn Hills
  Benton Harbor
  Beverly Hills
  Chicago Heights
- Chino Hills
- Citrus Heights
- East Hartford
 ```
 
 The following example uses the default escape string \('`\\`'\) to search for strings that include "`_`":
 
 ```
-select tablename, "column" from pg_table_def 
-where "column" similar to '%start\\_%'
-limit 5;
-     tablename     |    column
--------------------+---------------
- stl_s3client      | start_time
- stl_tr_conflict   | xact_start_ts
- stl_undone        | undo_start_ts
- stl_unload_log    | start_time
- stl_vacuum_detail | start_row
-(5 rows)
+SELECT tablename, "column" FROM pg_table_def
+WHERE "column" SIMILAR TO '%start\\_%'
+ORDER BY tablename, "column" LIMIT 5;
+
+        tablename         |       column
+--------------------------+---------------------
+ stcs_abort_idle          | idle_start_time
+ stcs_abort_idle          | txn_start_time
+ stcs_analyze_compression | start_time
+ stcs_auto_worker_levels  | start_level
+ stcs_auto_worker_levels  | start_wlm_occupancy
 ```
 
 The following example specifies '`^`' as the escape string, then uses the escape string to search for strings that include "`_`": 
 
 ```
-select tablename, "column" from pg_table_def 
-where "column" similar to '%start^_%' escape '^' 
-limit 5;
-     tablename     |    column
--------------------+---------------
- stl_s3client      | start_time
- stl_tr_conflict   | xact_start_ts
- stl_undone        | undo_start_ts
- stl_unload_log    | start_time
- stl_vacuum_detail | start_row
-(5 rows)
+SELECT tablename, "column" FROM pg_table_def
+WHERE "column" SIMILAR TO '%start^_%' ESCAPE '^'
+ORDER BY tablename, "column" LIMIT 5;
+
+        tablename         |       column
+--------------------------+---------------------
+ stcs_abort_idle          | idle_start_time
+ stcs_abort_idle          | txn_start_time
+ stcs_analyze_compression | start_time
+ stcs_auto_worker_levels  | start_level
+ stcs_auto_worker_levels  | start_wlm_occupancy
 ```

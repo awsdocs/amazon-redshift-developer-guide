@@ -1,6 +1,6 @@
 # JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT function<a name="JSON_EXTRACT_ARRAY_ELEMENT_TEXT"></a>
 
-JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT returns a JSON array element in the outermost array of a JSON string, using a zero\-based index\. The first element in an array is at position 0\. If the index is negative or out of bound, JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT returns empty string\. If the *null\_if\_invalid* argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
+The JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT function returns a JSON array element in the outermost array of a JSON string, using a zero\-based index\. The first element in an array is at position 0\. If the index is negative or out of bound, JSON\_EXTRACT\_ARRAY\_ELEMENT\_TEXT returns empty string\. If the *null\_if\_invalid* argument is set to `true` and the JSON string is invalid, the function returns NULL instead of returning an error\.
 
 For more information, see [JSON functions](json-functions.md)\. 
 

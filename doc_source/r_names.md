@@ -7,15 +7,19 @@ Names identify database objects, including tables and columns, as well as users 
 Standard SQL identifiers adhere to a set of rules and must: 
 + Begin with an ASCII single\-byte alphabetic character or underscore character, or a UTF\-8 multibyte character two to four bytes long\.
 + Subsequent characters can be ASCII single\-byte alphanumeric characters, underscores, or dollar signs, or UTF\-8 multibyte characters two to four bytes long\.
-+ Be between 1 and 127 bytes in length, not including quotes for delimited identifiers\. 
++ Be between 1 and 127 bytes in length, not including quotation marks for delimited identifiers\. 
 + Contain no quotation marks and no spaces\. 
 + Not be a reserved SQL key word\.
 
 ## Delimited identifiers<a name="r_names-delimited-identifiers"></a>
 
-Delimited identifiers \(also known as quoted identifiers\) begin and end with double quotation marks \("\)\. If you use a delimited identifier, you must use the double quotation marks for every reference to that object\. The identifier can contain any standard UTF\-8 printable characters other than the double quote itself\. Therefore, you can create column or table names that include otherwise illegal characters, such as spaces or the percent symbol\.
+Delimited identifiers \(also known as quoted identifiers\) begin and end with double quotation marks \("\)\. If you use a delimited identifier, you must use the double quotation marks for every reference to that object\. The identifier can contain any standard UTF\-8 printable characters other than the double quotation mark itself\. Therefore, you can create column or table names that include otherwise illegal characters, such as spaces or the percent symbol\.
 
-ASCII letters in delimited identifiers are case\-insensitive and are folded to lowercase\. To use a double quote in a string, you must precede it with another double quote character\. 
+ASCII letters in delimited identifiers are case\-insensitive and are folded to lowercase\. To use a double quotation mark in a string, you must precede it with another double quotation mark character\. 
+
+## Case\-sensitive identifiers<a name="r_names-case-sensitive-identifiers"></a>
+
+Case\-sensitive identifiers \(also known as mixed\-case identifiers\) can contain both uppercase and lowercase letters\. To use case\-sensitive identifiers, you can set the configuration `enable_case_sensitive_identifier` to `true`\. You can set this configuration for the cluster or for a session\. For more information, see [Default parameter values](https://docs.aws.amazon.com/redshift/latest/mgmt/default-param-group-values.html) in the *Amazon Redshift Cluster Management Guide* and [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)\. 
 
 ## Examples<a name="r_names-examples"></a>
 

@@ -32,9 +32,56 @@ The EXPLAIN command will fail if you use it for other SQL commands, such as data
 
 ## Query planning and execution steps<a name="r_EXPLAIN-query-planning-and-execution-steps"></a>
 
-The execution plan for a specific Amazon Redshift query statement breaks down execution and calculation of a query into a discrete sequence of steps and table operations that eventually produce a final result set for the query\. The following table provides a summary of steps that Amazon Redshift can use in developing an execution plan for any query a user submits for execution\.
+The execution plan for a specific Amazon Redshift query statement breaks down execution and calculation of a query into a discrete sequence of steps and table operations that eventually produce a final result set for the query\. For information about query planning, see [Query processing](c-query-processing.md)\.
+
+The following table provides a summary of steps that Amazon Redshift can use in developing an execution plan for any query a user submits for execution\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_EXPLAIN.html)
+
+## Using EXPLAIN for RLS<a name="r_EXPLAIN-RLS"></a>
+
+If a query contains a table that is subject to row\-level security \(RLS\) policies, EXPLAIN displays a special RLS SecureScan node\. Amazon Redshift also logs the same node type to the STL\_EXPLAIN system table\. EXPLAIN doesn't reveal the RLS predicate that applies to dim\_tbl\. The RLS SecureScan node type serves as an indicator that the execution plan contains additional operations that are invisible to the current user\.
+
+The following example illustrates a RSL SecureScan node\.
+
+```
+EXPLAIN
+SELECT D.cint
+FROM fact_tbl F INNER JOIN dim_tbl D ON F.k_dim = D.k
+WHERE F.k_dim / 10 > 0;
+                               QUERY PLAN                               
+------------------------------------------------------------------------
+ XN Hash Join DS_DIST_ALL_NONE  (cost=0.08..0.25 rows=1 width=4)
+   Hash Cond: ("outer".k_dim = "inner"."k")
+   ->  *XN* *RLS SecureScan f  (cost=0.00..0.14 rows=2 width=4)*
+         Filter: ((k_dim / 10) > 0)
+   ->  XN Hash  (cost=0.07..0.07 rows=2 width=8)
+         ->  XN Seq Scan on dim_tbl d  (cost=0.00..0.07 rows=2 width=8)
+               Filter: (("k" / 10) > 0)
+```
+
+To enable full investigation of query plans that are subject to RLS, Amazon Redshift offers the EXPLAIN RLS system permissions\. Users that have been granted this permission can inspect complete query plans that also include RLS predicates\. 
+
+The following example illustrates an additional Seq Scan below the RLS SecureScan node also includes the RLS policy predicate \(k\_dim > 1\)\.
+
+```
+EXPLAIN SELECT D.cint
+FROM fact_tbl F INNER JOIN dim_tbl D ON F.k_dim = D.k
+WHERE F.k_dim / 10 > 0;
+                                   QUERY PLAN                                    
+---------------------------------------------------------------------------------
+ XN Hash Join DS_DIST_ALL_NONE  (cost=0.08..0.25 rows=1 width=4)
+   Hash Cond: ("outer".k_dim = "inner"."k")
+   *->  XN RLS SecureScan f  (cost=0.00..0.14 rows=2 width=4)
+         Filter: ((k_dim / 10) > 0)*
+         ->  *XN* *Seq Scan on fact_tbl rls_table  (cost=0.00..0.06 rows=5 width=8)
+               Filter: (k_dim > 1)*
+   ->  XN Hash  (cost=0.07..0.07 rows=2 width=8)
+         ->  XN Seq Scan on dim_tbl d  (cost=0.00..0.07 rows=2 width=8)
+               Filter: (("k" / 10) > 0)
+```
+
+While the EXPLAIN RLS permission is granted to a user, Amazon Redshift logs the full query plan including RLS predicates in the STL\_EXPLAIN system table\. Queries that are run while this permission is not granted will be logged without RLS internals\. Granting or removing the EXPLAIN RLS permission won't change what Amazon Redshift has logged to STL\_EXPLAIN for previous queries\.
 
 ## Examples<a name="r_EXPLAIN-examples"></a>
 

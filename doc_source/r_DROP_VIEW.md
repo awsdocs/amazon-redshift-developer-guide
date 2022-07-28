@@ -2,6 +2,13 @@
 
 Removes a view from the database\. Multiple views can be dropped with a single DROP VIEW command\. This command isn't reversible\.
 
+## Required privileges<a name="r_DROP_VIEW-privileges"></a>
+
+Following are required privileges for DROP VIEW:
++ Superuser
++ Users with the DROP VIEW privilege
++ View owner
+
 ## Syntax<a name="r_DROP_VIEW-synopsis"></a>
 
 ```
@@ -66,7 +73,7 @@ ERROR: can't drop view eventview because other objects depend on it
 HINT: Use DROP ... CASCADE to drop the dependent objects too.
 ```
 
-To remedy this, execute the following command \(as suggested in the error message\): 
+To remedy this, run the following command \(as suggested in the error message\): 
 
 ```
 drop view eventview cascade;
@@ -74,7 +81,7 @@ drop view eventview cascade;
 
 Both *eventview* and *myeventview* have now been dropped successfully\.
 
-The following example either drops the *eventview* view if it exists, or does nothing and returns a message if it doesn't
+The following example either drops the *eventview* view if it exists, or does nothing and returns a message if it doesn't:
 
 ```
 drop view if exists eventview;

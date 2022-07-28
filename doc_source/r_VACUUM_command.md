@@ -9,7 +9,7 @@ Amazon Redshift automatically sorts data and runs VACUUM DELETE in the backgroun
 
 By default, VACUUM skips the sort phase for any table where more than 95 percent of the table's rows are already sorted\. Skipping the sort phase can significantly improve VACUUM performance\. To change the default sort or delete threshold for a single table, include the table name and the TO *threshold* PERCENT parameter when you run VACUUM\. 
 
-Users can access tables while they are being vacuumed\. You can perform queries and write operations while a table is being vacuumed, but when data manipulation language \(DML\) commands and a vacuum run concurrently, both might take longer\. If you execute UPDATE and DELETE statements during a vacuum, system performance might be reduced\. VACUUM DELETE temporarily blocks update and delete operations\. 
+Users can access tables while they are being vacuumed\. You can perform queries and write operations while a table is being vacuumed, but when data manipulation language \(DML\) commands and a vacuum run concurrently, both might take longer\. If you run UPDATE and DELETE statements during a vacuum, system performance might be reduced\. VACUUM DELETE temporarily blocks update and delete operations\. 
 
 Amazon Redshift automatically performs a DELETE ONLY vacuum in the background\. Automatic vacuum operation pauses when users run data definition language \(DDL\) operations, such as ALTER TABLE\.
 
@@ -18,10 +18,18 @@ The Amazon Redshift VACUUM command syntax and behavior are substantially differe
 
 For more information, see [Vacuuming tables](t_Reclaiming_storage_space202.md)\.
 
+## Required privileges<a name="r_VACUUM_command-privileges"></a>
+
+Following are required privileges for VACUUM:
++ Superuser
++ Users with the VACUUM privilege
++ Table owner
++ Database owner whom the table is shared to
+
 ## Syntax<a name="r_VACUUM_command-synopsis"></a>
 
 ```
-VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX ] 
+VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX | RECLUSTER ] 
 [ [ table_name ] [ TO threshold PERCENT ] [ BOOST ] ]
 ```
 
@@ -55,6 +63,15 @@ VACUUM REINDEX isn't supported with TO *threshold* PERCENT\. 
 The name of a table to vacuum\. If you don't specify a table name, the vacuum operation applies to all tables in the current database\. You can specify any permanent or temporary user\-created table\. The command isn't meaningful for other objects, such as views and system tables\.  
  If you include the TO *threshold* PERCENT parameter, a table name is required\.
 
+RECLUSTER *tablename*  <a name="vacuum-recluster"></a>
+Sorts the portions of the table that are unsorted\. Portions of the table that are already sorted by automatic table sort are left intact\. This command doesn't merge the newly sorted data with the sorted region\. It also doesn't reclaim all space that is marked for deletion\. When this command completes, the table might not appear fully sorted, as indicated by the `unsorted` field in SVV\_TABLE\_INFO\.   
+ We recommend that you use VACUUM RECLUSTER for large tables with frequent ingestion and queries that access only the most recent data\.   
+ VACUUM RECLUSTER isn't supported with TO threshold PERCENT\. If RECLUSTER is used, a table name is required\.  
+VACUUM RECLUSTER isn't supported on tables with interleaved sort keys and tables with ALL distribution style\.
+
+ *table\_name*   
+The name of a table to vacuum\. You can specify any permanent or temporary user\-created table\. The command isn't meaningful for other objects, such as views and system tables\.
+
  TO *threshold* PERCENT   
 A clause that specifies the threshold above which VACUUM skips the sort phase and the target threshold for reclaiming space in the delete phase\. The *sort threshold* is the percentage of total rows that are already in sort order for the specified table prior to vacuuming\.  The *delete threshold* is the minimum percentage of total rows not marked for deletion after vacuuming\.   
 Because VACUUM re\-sorts the rows only when the percent of sorted rows in a table is less than the sort threshold, Amazon Redshift can often reduce VACUUM times significantly\. Similarly, when VACUUM isn't constrained to reclaim space from 100 percent of rows marked for deletion, it is often able to skip rewriting blocks that contain only a few deleted rows\.  
@@ -78,7 +95,7 @@ Before running a vacuum operation, note the following behavior:
 + You can run only one VACUUM command on a cluster at any given time\. If you attempt to run multiple vacuum operations concurrently, Amazon Redshift returns an error\.
 + Some amount of table growth might occur when tables are vacuumed\. This behavior is expected when there are no deleted rows to reclaim or the new sort order of the table results in a lower ratio of data compression\.
 + During vacuum operations, some degree of query performance degradation is expected\. Normal performance resumes as soon as the vacuum operation is complete\.
-+ Concurrent write operations proceed during vacuum operations, but we don’t recommended performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started can't be vacuumed by that operation\. In this case, a second vacuum operation is necessary\.
++ Concurrent write operations proceed during vacuum operations, but we don’t recommend performing write operations while vacuuming\. It's more efficient to complete write operations before running the vacuum\. Also, any data that is written after a vacuum operation has been started can't be vacuumed by that operation\. In this case, a second vacuum operation is necessary\.
 + A vacuum operation might not be able to start if a load or insert operation is already in progress\. Vacuum operations temporarily require exclusive access to tables in order to start\. This exclusive access is required briefly, so vacuum operations don't block concurrent loads and inserts for any significant period of time\.
 + Vacuum operations are skipped when there is no work to do for a particular table; however, there is some overhead associated with discovering that the operation can be skipped\. If you know that a table is pristine or doesn't meet the vacuum threshold, don't run a vacuum operation against it\.
 + A DELETE ONLY vacuum operation on a small table might not reduce the number of blocks used to store the data, especially when the table has a large number of columns or the cluster uses a large number of slices per node\. These vacuum operations add one block per column per slice to account for concurrent inserts into the table, and there is potential for this overhead to outweigh the reduction in block count from the reclaimed disk space\. For example, if a 10\-column table on an 8\-node cluster occupies 1000 blocks before a vacuum, the vacuum doesn't reduce the actual block count unless more than 80 blocks of disk space are reclaimed because of deleted rows\. \(Each data block uses 1 MB\.\)

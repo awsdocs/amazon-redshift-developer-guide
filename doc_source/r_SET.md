@@ -4,21 +4,33 @@ Sets the value of a server configuration parameter\. Use the SET command to over
 
 Use the [RESET](r_RESET.md) command to return a parameter to its default value\. 
 
-You can change the server configuration parameters in several ways\. For more information, see [Modifying the server configuration](t_Modifying_the_default_settings.md)\. 
+You can change the server configuration parameters in several ways\. For more information, see [Modifying the server configuration](cm_chap_ConfigurationRef.md#t_Modifying_the_default_settings)\. 
 
 ## Syntax<a name="r_SET-synopsis"></a>
 
 ```
-SET { [ SESSION | LOCAL ]
+SET { [ SESSION | LOCAL ] 
 { SEED | parameter_name } { TO | = }
 { value | 'value' | DEFAULT } |
 SEED TO value }
+```
+
+The following statement sets the value of a session context variable\.
+
+```
+SET { [ SESSION | LOCAL ] 
+variable_name { TO | = }
+{ value | 'value'  }
 ```
 
 ## Parameters<a name="r_SET-parameters"></a>
 
 SESSION   
 Specifies that the setting is valid for the current session\. Default value\.
+
+*variable\_name*   
+Specifies the name of the context variable set for the session\.  
+The naming convention is a two\-part name separated by a dot, for example *identifier\.identifier*\. Only one dot separator is allowed\. Use an *identifier* that follows the standard identifier rules for Amazon Redshift For more information, see [Names and identifiers](r_names.md)\. Delimited identifiers aren't allowed\.
 
 LOCAL   
 Specifies that the setting is valid for the current transaction\. 
@@ -28,7 +40,7 @@ Sets an internal seed to be used by the RANDOM function for random number genera
 SET SEED takes a numeric *value* between 0 and 1, and multiplies this number by \(231\-1\) for use with the [RANDOM function](r_RANDOM.md) function\. If you use SET SEED before making multiple RANDOM calls, RANDOM generates numbers in a predictable sequence\.
 
  *parameter\_name*   
-Name of the parameter to set\. See [Modifying the server configuration](t_Modifying_the_default_settings.md) for information about parameters\.
+Name of the parameter to set\. See [Modifying the server configuration](cm_chap_ConfigurationRef.md#t_Modifying_the_default_settings) for information about parameters\.
 
  *value*   
 New parameter value\. Use single quotation marks to set the value to a specific string\. If using SET SEED, this parameter contains the SEED value\. 
@@ -63,7 +75,7 @@ See [Implementing workload management](cm-c-implementing-workload-management.md)
 
  **Setting a label for a group of queries** 
 
-The QUERY\_GROUP parameter defines a label for one or more queries that are executed in the same session after a SET command\. In turn, this label is logged when queries are executed and can be used to constrain results returned from the STL\_QUERY and STV\_INFLIGHT system tables and the SVL\_QLOG view\. 
+The QUERY\_GROUP parameter defines a label for one or more queries that are run in the same session after a SET command\. In turn, this label is logged when queries are run and can be used to constrain results returned from the STL\_QUERY and STV\_INFLIGHT system tables and the SVL\_QLOG view\. 
 
 ```
 show query_group;
@@ -172,4 +184,11 @@ int4
 ------
 12
 (1 row)
+```
+
+The following example sets a customized context variable\. 
+
+```
+SET app_context.user_id TO 123;
+SET app_context.user_id TO 'sample_variable_value';
 ```

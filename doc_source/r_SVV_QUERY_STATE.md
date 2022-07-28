@@ -1,6 +1,6 @@
 # SVV\_QUERY\_STATE<a name="r_SVV_QUERY_STATE"></a>
 
- Use SVV\_QUERY\_STATE to view information about the execution of currently running queries\.
+ Use SVV\_QUERY\_STATE to view information about the runtime of currently running queries\.
 
 The SVV\_QUERY\_STATE view contains a data subset of the STV\_EXEC\_STATE table\.
 
@@ -14,7 +14,7 @@ SVV\_QUERY\_STATE is visible to all users\. Superusers can see all rows; regular
 
  **Determining the processing time of a query by step** 
 
-The following query shows how long each step of the query with query ID 279 took to execute and how many data rows Amazon Redshift processed: 
+The following query shows how long each step of the query with query ID 279 took to run and how many data rows Amazon Redshift processed: 
 
 ```
 select query, seg, step, maxtime, avgtime, rows, label

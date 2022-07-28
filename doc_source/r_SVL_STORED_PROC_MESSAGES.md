@@ -1,6 +1,6 @@
 # SVL\_STORED\_PROC\_MESSAGES<a name="r_SVL_STORED_PROC_MESSAGES"></a>
 
-You can query the system view SVL\_STORED\_PROC\_MESSAGES to get information about stored procedure messages\. Raised messages are logged even if the stored procedure call is aborted\. Each stored procedure call receives a query ID\. For more information about how to set the minimum level for logged messages, see stored\_proc\_log\_min\_messages\.
+You can query the system view SVL\_STORED\_PROC\_MESSAGES to get information about stored procedure messages\. Raised messages are logged even if the stored procedure call is canceled\. Each stored procedure call receives a query ID\. For more information about how to set the minimum level for logged messages, see stored\_proc\_log\_min\_messages\.
 
 SVL\_STORED\_PROC\_MESSAGES is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see Visibility of data in system tables and views\.
 
@@ -49,7 +49,7 @@ SELECT query, recordtime, loglevel, loglevel_text, trim(message) as message, abo
    193 | 2020-03-17 23:57:18.277987 |       60 | EXCEPTION     | EXCEPTION level: Exception Handling |       1
 ```
 
-The following SQL statments show how to use SVL\_STORED\_PROC\_MESSAGES to review raised messages with the SET option when creating a stored procedure\. Because test\_proc\(\) has a minimum log level of NOTICE, only NOTICE, WARNING, and EXCEPTION level messages are logged in SVL\_STORED\_PROC\_MESSAGES\.
+The following SQL statements show how to use SVL\_STORED\_PROC\_MESSAGES to review raised messages with the SET option when creating a stored procedure\. Because test\_proc\(\) has a minimum log level of NOTICE, only NOTICE, WARNING, and EXCEPTION level messages are logged in SVL\_STORED\_PROC\_MESSAGES\.
 
 ```
 -- Create a stored procedure with minimum log level of NOTICE 

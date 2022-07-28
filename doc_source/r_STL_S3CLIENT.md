@@ -4,7 +4,7 @@ Records transfer time and other performance metrics\.
 
 Use the STL\_S3CLIENT table to find the time spent transferring data from Amazon S3 as part of a COPY command\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_S3CLIENT-table-columns2"></a>
 

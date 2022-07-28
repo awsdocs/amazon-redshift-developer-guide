@@ -8,6 +8,13 @@ This command isn't reversible\. The DROP LIBRARY command commits immediately\. I
 
 For more information, see [CREATE LIBRARY](r_CREATE_LIBRARY.md)\. 
 
+## Required privileges<a name="r_DROP_LIBRARY-privileges"></a>
+
+Following are required privileges for DROPLIBRARY:
++ Superuser
++ Users with the DROP LIBRARY privilege
++ Library owner
+
 ## Syntax<a name="r_DROP_LIBRARY-synopsis"></a>
 
 ```

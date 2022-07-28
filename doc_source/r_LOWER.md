@@ -11,11 +11,11 @@ LOWER(string)
 ## Argument<a name="r_LOWER-argument"></a>
 
  *string*   
-The input parameter is a CHAR or VARCHAR string\. 
+The input parameter is a VARCHAR string \(or any other data type, such as CHAR, that can be implicitly converted to VARCHAR\)\. 
 
 ## Return type<a name="r_LOWER-return-type"></a>
 
-The LOWER function returns a character string that is the same data type as the input string \(CHAR or VARCHAR\)\.
+The LOWER function returns a character string that is the same data type as the input string\.
 
 ## Examples<a name="r_LOWER-examples"></a>
 

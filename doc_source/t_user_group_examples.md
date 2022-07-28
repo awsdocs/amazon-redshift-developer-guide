@@ -1,6 +1,6 @@
 # Example for controlling user and group access<a name="t_user_group_examples"></a>
 
-This example creates user groups and user accounts and then grants them various privileges for an Amazon Redshift database that connects to a web application client\. This example assumes three groups of users: regular users of a web application, power users of a web application, and web developers\.
+This example creates user groups and user accounts and then grants them various permissions for an Amazon Redshift database that connects to a web application client\. This example assumes three groups of users: regular users of a web application, power users of a web application, and web developers\.
 
 1. Create the groups where the user accounts will be assigned\. The following set of commands creates three different user groups: 
 
@@ -12,7 +12,7 @@ This example creates user groups and user accounts and then grants them various 
    create group webdevusers;
    ```
 
-1.  Create several database user accounts with different privileges and add them to the groups\.  
+1.  Create several database user accounts with different permissions and add them to the groups\.  
 
    1.  Create two users and add them to the WEBAPPUSERS group:  
 
@@ -46,25 +46,25 @@ This example creates user groups and user accounts and then grants them various 
       create schema webapp;
       ```
 
-   1.  Grant USAGE privileges to the WEBAPPUSERS group:  
+   1.  Grant USAGE permissions to the WEBAPPUSERS group:  
 
       ```
       grant usage on schema webapp to group webappusers;
       ```
 
-   1.  Grant USAGE privileges to the WEBPOWERUSERS group:  
+   1.  Grant USAGE permissions to the WEBPOWERUSERS group:  
 
       ```
       grant usage on schema webapp to group webpowerusers;
       ```
 
-   1.  Grant ALL privileges to the WEBDEVUSERS group:  
+   1.  Grant ALL permissions to the WEBDEVUSERS group:  
 
       ```
       grant all on schema webapp to group webdevusers;
       ```
 
-   The basic users and groups are now set up\. You can now make changes to alter the users and groups\. 
+   The basic users and groups are now set up\. You can now alter the users and groups\. 
 
 1.  For example, the following command alters the search\_path parameter for the WEBAPPUSER1\.  
 

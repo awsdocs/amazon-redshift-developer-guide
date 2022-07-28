@@ -15,10 +15,10 @@ MONTHS_BETWEEN ( date1, date2 )
 ## Arguments<a name="r_MONTHS_BETWEEN_function-arguments"></a>
 
  *date1*   
-An expression, such as a column name, that evaluates to a valid date or time stamp value\.
+An expression, such as a column name, that evaluates to a valid date or timestamp value\.
 
  *date2*   
-An expression, such as a column name, that evaluates to a valid date or time stamp value\.
+An expression, such as a column name, that evaluates to a valid date or timestamp value\.
 
 ## Return type<a name="r_MONTHS_BETWEEN_function-return-type"></a>
 
@@ -30,7 +30,7 @@ If *date1* and *date2* both contain the same date within a month \(for example, 
 
 ## Examples<a name="r_MONTHS_BETWEEN_function-examples"></a>
 
-The following example returns the months between 1/18/1969 and 3/18/1969: 
+The following example returns the months between 1/18/1969 and 3/18/1969\. 
 
 ```
 select months_between('1969-01-18', '1969-03-18')
@@ -41,7 +41,7 @@ months
 -2
 ```
 
- The following example returns the months between the first and last showings of an event: 
+ The following example returns the months between the first and last showings of an event\. 
 
 ```
 select eventname, 

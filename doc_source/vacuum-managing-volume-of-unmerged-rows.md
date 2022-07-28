@@ -12,7 +12,7 @@ A vacuum restores the table's sort order in two stages:
 
 1. Sort the unsorted region into a newly\-sorted region\. 
 
-   The first stage is relatively cheap, because only the unsorted region is rewritten\. If the range of sort key values of the newly\-sorted region is higher than the existing range, only the new rows need to be rewritten, and the vacuum is complete\. For example, if the sorted region contains ID values 1 to 500 and subsequent copy operations add key values greater than 500, then only the unsorted region only needs to be rewritten\. 
+   The first stage is relatively cheap, because only the unsorted region is rewritten\. If the range of sort key values of the newly\-sorted region is higher than the existing range, only the new rows need to be rewritten, and the vacuum is complete\. For example, if the sorted region contains ID values 1 to 500 and subsequent copy operations add key values greater than 500, then only the unsorted region needs to be rewritten\. 
 
 1. Merge the newly\-sorted region with the previously\-sorted region\. 
 

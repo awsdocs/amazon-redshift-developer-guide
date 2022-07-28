@@ -6,7 +6,7 @@ STL\_LOAD\_ERRORS contains a history of all Amazon Redshift load errors\. See [L
 
 Query [STL\_LOADERROR\_DETAIL](r_STL_LOADERROR_DETAIL.md) for additional details, such as the exact data row and column where a parse error occurred, after you query STL\_LOAD\_ERRORS to find out general information about the error\. 
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_LOAD_ERRORS-table-columns2"></a>
 
@@ -66,4 +66,16 @@ The query returns the last load error that occurred for the EVENT table\. If no 
 event | 309 |  0 |  5 | Error in Timestamp value or format [%Y-%m-%d %H:%M:%S] | 2014-04-22 15:12:44
 
 (1 row)
+```
+
+ In cases where the COPY command automatically splits large, uncompressed, text\-delimited file data to facilitate parallelism, the *line\_number*, *is\_partial*, and *start\_offset* columns show information pertaining to splits\. \(The line number can be unknown in cases where the line number from the original file is unavailable\.\) 
+
+```
+--scan ranges information
+SELECT line_number, POSITION, btrim(raw_line), btrim(raw_field_value),
+btrim(err_reason), is_partial, start_offset FROM stl_load_errors
+WHERE query = pg_last_copy_id();
+
+--result
+-1,51,"1008771|13463413|463414|2|28.00|38520.72|0.06|0.07|NO|1998-08-30|1998-09-25|1998-09-04|TAKE BACK RETURN|RAIL|ans cajole sly","NO","Char length exceeds DDL length",1,67108864
 ```

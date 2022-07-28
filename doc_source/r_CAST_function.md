@@ -2,7 +2,7 @@
 
 You can do runtime conversions between compatible data types by using the CAST and CONVERT functions\. 
 
-Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using the CAST or CONVERT function\. See [Type compatibility and conversion](r_Type_conversion.md)\. 
+Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using the CAST or CONVERT function\. See [Type compatibility and conversion](c_Supported_data_types.md#r_Type_conversion)\. 
 
 ## CAST<a name="r_CAST_function-cast"></a>
 
@@ -93,7 +93,7 @@ pricepaid
 (1 row)
 ```
 
-In this example, the values in a time stamp column are cast as dates: 
+In this example, the values in a timestamp column are cast as dates: 
 
 ```
 select cast(saletime as date), salesid
@@ -114,7 +114,7 @@ from sales order by salesid limit 10;
 (10 rows)
 ```
 
-In this example, the values in a date column are cast as time stamps: 
+In this example, the values in a date column are cast as timestamps: 
 
 ```
 select cast(caldate as timestamp), dateid

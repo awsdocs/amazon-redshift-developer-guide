@@ -2,7 +2,7 @@
 
 ST\_RemovePoint returns a linestring geometry that has the point of the input geometry at an index position removed\. 
 
-The index is zero\-based\. The spatial reference system identifier \(SRID\) of the result is the same as the input geometry\. 
+The index is zero\-based\. The spatial reference system identifier \(SRID\) of the result is the same as the input geometry\. The dimension of the returned geometry is the same as that of the input geometry\.
 
 ## Syntax<a name="ST_RemovePoint-function-syntax"></a>
 

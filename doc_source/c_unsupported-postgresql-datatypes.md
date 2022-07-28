@@ -11,7 +11,6 @@ These PostgreSQL data types are not supported in Amazon Redshift\.
 + Composite Types
 + Date/Time Types
   +  INTERVAL
-  + TIME
 + Enumerated Types
 + Geometric Types
 + HSTORE

@@ -2,9 +2,9 @@
 
 Displays row and block statistics for tables that have been vacuumed\.
 
-The table shows information specific to when each vacuum operation started and finished, and demonstrates the benefits of running the operation\. For information about the requirements for running this command, see the [VACUUM](r_VACUUM_command.md) command description\.
+The view shows information specific to when each vacuum operation started and finished, and demonstrates the benefits of running the operation\. For information about the requirements for running this command, see the [VACUUM](r_VACUUM_command.md) command description\.
 
-This table is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_VACUUM-table-columns"></a>
 

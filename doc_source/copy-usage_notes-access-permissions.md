@@ -4,13 +4,13 @@
 
 To get authorization to access the resource, your cluster must be authenticated\. You can choose either of the following authentication methods: 
 + [Role\-based access control](#copy-usage_notes-access-role-based) – For role\-based access control, you specify an AWS Identity and Access Management \(IAM\) role that your cluster uses for authentication and authorization\. To safeguard your AWS credentials and sensitive data, we strongly recommend using role\-based authentication\.
-+ [Key\-based access control](#copy-usage_notes-access-key-based) – For key\-based access control, you provide the AWS access credentials \(access key ID and secret access key\) for an IAM user as plain text\. 
++ [Key\-based access control](#copy-usage_notes-access-key-based) – For key\-based access control, you provide the AWS access credentials \(access key ID and secret access key\) for an IAM user as plain text\.
 
 ## Role\-based access control<a name="copy-usage_notes-access-role-based"></a>
 
 With <a name="copy-usage_notes-access-role-based.phrase"></a>role\-based access control, your cluster temporarily assumes an IAM role on your behalf\. Then, based on the authorizations granted to the role, your cluster can access the required AWS resources\.
 
-An IAM *role* is similar to an IAM user, in that it is an AWS identity with permissions policies that determine what the identity can and cannot do in AWS\. However, instead of being uniquely associated with one user, a role can be assumed by any entity that needs it\. Also, a role doesn’t have any credentials \(a password or access keys\) associated with it\. Instead, if a role is associated with a cluster, access keys are created dynamically and provided to the cluster\.
+An IAM *role* is similar to an IAM user, in that it is an AWS identity with permissions policies that determine what the identity can and can't do in AWS\. However, instead of being uniquely associated with one user, a role can be assumed by any entity that needs it\. Also, a role doesn’t have any credentials \(a password or access keys\) associated with it\. Instead, if a role is associated with a cluster, access keys are created dynamically and provided to the cluster\.
 
 We recommend using role\-based access control because it provides more secure, fine\-grained control of access to AWS resources and sensitive user data, in addition to safeguarding your AWS credentials\.
 
@@ -47,9 +47,14 @@ credentials
 'aws_iam_role=arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
+In addition, a superuser can grant the ASSUMEROLE privilege to database users and groups to provide access to a role for COPY operations\. For information, see [GRANT](r_GRANT.md)\.
+
 ## Key\-based access control<a name="copy-usage_notes-access-key-based"></a>
 
 With <a name="copy-usage_notes-access-key-based.phrase"></a>key\-based access control, you provide the access key ID and secret access key for an IAM user that is authorized to access the AWS resources that contain the data\. You can user either the [ACCESS_KEY_ID and SECRET_ACCESS_KEY](copy-parameters-authorization.md#copy-access-key-id) parameters together or the [CREDENTIALS](copy-parameters-authorization.md#copy-credentials) parameter\.
+
+**Note**  
+We strongly recommend using an IAM role for authentication instead of supplying a plain\-text access key ID and secret access key\. If you choose key\-based access control, never use your AWS account \(root\) credentials\. Always create an IAM user and provide that user's access key ID and secret access key\. For steps to create an IAM user, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)\.
 
 To authenticate using ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, replace *<access\-key\-id>* and *<secret\-access\-key>* with an authorized user's access key ID and full secret access key as shown following\. 
 
@@ -65,9 +70,6 @@ CREDENTIALS
 'aws_access_key_id=<access-key-id>;aws_secret_access_key=<secret-access-key>';
 ```
 
-**Note**  
-We strongly recommend using an IAM role for authentication instead of supplying a plain\-text access key ID and secret access key\. If you choose key\-based access control, never use your AWS account \(root\) credentials\. Always create an IAM user and provide that user's access key ID and secret access key\. For steps to create an IAM user, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)\.
-
 The IAM user must have, at a minimum, the permissions listed in [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](#copy-usage_notes-iam-permissions)\.
 
 ### Temporary security credentials<a name="r_copy-temporary-security-credentials"></a>
@@ -77,7 +79,7 @@ The IAM user must have, at a minimum, the permissions listed in [IAM permissions
 **Note**  
 We strongly recommend using [role-based access control](#copy-usage_notes-access-role-based.phrase) instead of creating temporary credentials and providing access key ID and secret access key as plain text\. Role\-based access controlautomatically uses temporary credentials\. 
 
-Temporary security credentials provide enhanced security because they have short lifespans and cannot be reused after they expire\. The access key ID and secret access key generated with the token cannot be used without the token, and a user who has these temporary security credentials can access your resources only until the credentials expire\.
+Temporary security credentials provide enhanced security because they have short lifespans and can't be reused after they expire\. The access key ID and secret access key generated with the token can't be used without the token, and a user who has these temporary security credentials can access your resources only until the credentials expire\.
 
 To grant users temporary access to your resources, you call AWS Security Token Service \(AWS STS\) API operations\. The AWS STS API operations return temporary security credentials consisting of a security token, an access key ID, and a secret access key\. You issue the temporary security credentials to the users who need temporary access to your resources\. These users can be existing IAM users, or they can be non\-AWS users\. For more information about creating temporary security credentials, see [Using Temporary Security Credentials](https://docs.aws.amazon.com/STS/latest/UsingSTS/Welcome.html) in the IAM User Guide\.
 
@@ -116,7 +118,7 @@ from 's3://mybucket/data/listings_pipe.txt'
 access_key_id '<temporary-access-key-id>'
 secret_access_key '<temporary-secret-access-key>
 token '<temporary-token>'
-master_symmetric_key '<master-key>'
+master_symmetric_key '<root-key>'
 encrypted;
 ```
 
@@ -126,7 +128,7 @@ The following example loads the LISTING table using the CREDENTIALS parameter wi
 copy listing
 from 's3://mybucket/data/listings_pipe.txt'
 credentials 
-'aws_access_key_id=<temporary-access-key-id>;<aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>;master_symmetric_key=<master-key>'
+'aws_access_key_id=<temporary-access-key-id>;<aws_secret_access_key=<temporary-secret-access-key>;token=<temporary-token>;master_symmetric_key=<root-key>'
 encrypted;
 ```
 

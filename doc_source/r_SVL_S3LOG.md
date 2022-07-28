@@ -10,7 +10,7 @@ SVL\_S3LOG is visible to all users\. Superusers can see all rows; regular users 
 
 ## Sample query<a name="r_SVL_S3LOG-sample-query"></a>
 
-The following example queries SVL\_S3LOG for the last query executed\.
+The following example queries SVL\_S3LOG for the last query that ran\.
 
 ```
 select * 

@@ -1,6 +1,6 @@
 # COPY from JSON format<a name="copy-usage_notes-copy-from-json"></a>
 
-The JSON data structure is made up of a set of *objects* or *arrays*\. A JSON *object* begins and ends with braces, and contains an unordered collection of name/value pairs\. Each name and value are separated by a colon, and the pairs are separated by commas\. The name is a string in double quotation marks\. The quote characters must be simple quotation marks \(0x22\), not slanted or "smart" quotes\. 
+The JSON data structure is made up of a set of objects or arrays\. A JSON *object* begins and ends with braces, and contains an unordered collection of name\-value pairs\. Each name and value are separated by a colon, and the pairs are separated by commas\. The name is a string in double quotation marks\. The quotation mark characters must be simple quotation marks \(0x22\), not slanted or "smart" quotation marks\. 
 
 A JSON *array* begins and ends with brackets, and contains an ordered collection of values separated by commas\. A value can be a string in double quotation marks, a number, a Boolean true or false, null, a JSON object, or an array\. 
 
@@ -13,7 +13,7 @@ JSON objects and arrays can be nested, enabling a hierarchical data structure\. 
 }
 {
     "id": 100540,
-    "name": "Amazon Simple Storage Service Developer Guide"
+    "name": "Amazon Simple Storage Service User Guide"
 }
 ```
 
@@ -26,11 +26,20 @@ The following shows the same data as two JSON arrays\.
 ]
 [
     100540,
-    "Amazon Simple Storage Service Developer Guide"
+    "Amazon Simple Storage Service User Guide"
 ]
 ```
 
-You can let COPY automatically load fields from the JSON file by specifying the 'auto' option, or you can specify a JSONPaths file that COPY uses to parse the JSON source data\. A *JSONPaths file* is a text file that contains a single JSON object with the name `"jsonpaths"` paired with an array of JSONPath expressions\. If the name is any string other than `"jsonpaths"`, COPY uses the `'auto'` argument instead of using the JSONPaths file\.
+## COPY options for JSON<a name="copy-usage-json-options"></a>
+
+You can specify the following options when using COPY with JSON format data: 
++ `'auto' `– COPY automatically loads fields from the JSON file\. 
++ `'auto ignorecase'` – COPY automatically loads fields from the JSON file while ignoring the case of field names\.
++ `s3://jsonpaths_file` – COPY uses a JSONPaths file to parse the JSON source data\. A *JSONPaths file* is a text file that contains a single JSON object with the name `"jsonpaths"` paired with an array of JSONPath expressions\. If the name is any string other than `"jsonpaths"`, COPY uses the `'auto'` argument instead of using the JSONPaths file\. 
+
+For examples that show how to load data using `'auto'`, `'auto ignorecase'`, or a JSONPaths file, and using either JSON objects or arrays, see [Copy from JSON examples](r_COPY_command_examples.md#r_COPY_command_examples-copy-from-json)\. 
+
+## JSONPath option<a name="copy-usage-json-options"></a>
 
 In the Amazon Redshift COPY syntax, a JSONPath expression specifies the explicit path to a single name element in a JSON hierarchical data structure, using either bracket notation or dot notation\. Amazon Redshift doesn't support any JSONPath elements, such as wildcard characters or filter expressions, that might resolve to an ambiguous path or multiple name elements\. As a result, Amazon Redshift can't parse complex, multi\-level data structures\.
 
@@ -46,7 +55,7 @@ The following is an example of a JSONPaths file with JSONPath expressions using 
 }
 ```
 
- In the previous example, `$['location'][0]` references the first element in an array\. JSON uses zero\-based array indexing\. Array indices must be positive integers \(greater than or equal to zero\)\.
+ In the previous example, `$['location'][0]` references the first element in an array\. JSON uses zero\-based array indexing\. Array indexes must be positive integers \(greater than or equal to zero\)\.
 
 The following example shows the previous JSONPaths file using dot notation\. 
 
@@ -60,14 +69,14 @@ The following example shows the previous JSONPaths file using dot notation\.
 }
 ```
 
-You cannot mix bracket notation and dot notation in the `jsonpaths` array\. Brackets can be used in both bracket notation and dot notation to reference an array element\. 
+You can't mix bracket notation and dot notation in the `jsonpaths` array\. Brackets can be used in both bracket notation and dot notation to reference an array element\. 
 
-When using dot notation, the JSONPath expressions must not contain the following characters: 
+When using dot notation, the JSONPath expressions can't contain the following characters: 
 + Single straight quotation mark \( ' \) 
 + Period, or dot \( \. \) 
 + Brackets \( \[ \] \) unless used to reference an array element 
 
-If the value in the name/value pair referenced by a JSONPath expression is an object or an array, the entire object or array is loaded as a string, including the braces or brackets\. For example, suppose your JSON data contains the following object\. 
+If the value in the name\-value pair referenced by a JSONPath expression is an object or an array, the entire object or array is loaded as a string, including the braces or brackets\. For example, suppose that your JSON data contains the following object\. 
 
 ```
 {
@@ -86,7 +95,7 @@ If the value in the name/value pair referenced by a JSONPath expression is an ob
     "friends": [
         {
             "id": 0,
-            "name": "Carmella Gonzales"
+            "name": "Martha Rivera"
         },
         {
             "id": 1,
@@ -112,6 +121,8 @@ Each JSONPath expression in the `jsonpaths` array corresponds to one column in t
 
 For examples that show how to load data using either the `'auto'` argument or a JSONPaths file, and using either JSON objects or arrays, see [Copy from JSON examples](r_COPY_command_examples.md#r_COPY_command_examples-copy-from-json)\. 
 
+For information on how to copy multiple JSON files, see [Using a manifest to specify data files](loading-data-files-using-manifest.md)\.
+
 ## Escape characters in JSON<a name="copy-usage-json-escape-characters"></a>
 
 COPY loads `\n` as a newline character and loads `\t` as a tab character\. To load a backslash, escape it with a backslash \( `\\` \)\.
@@ -126,7 +137,7 @@ For example, suppose you have the following JSON in a file named `escape.json` i
 }
 ```
 
-Execute the following commands to create the ESCAPES table and load the JSON\.
+Run the following commands to create the ESCAPES table and load the JSON\.
 
 ```
 create table escapes (backslash varchar(25), newline varchar(35), tab varchar(35));

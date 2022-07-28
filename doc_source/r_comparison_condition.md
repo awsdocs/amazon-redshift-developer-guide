@@ -14,7 +14,7 @@ The ALL predicate is not supported\.
 The ALL keyword is synonymous with NOT IN \(see [IN condition](r_in_condition.md) condition\) and returns true if the expression is not included in the results of the subquery\. Amazon Redshift supports only the <> or \!= \(not equals\) condition for ALL\. Other comparison conditions are not supported\.
 
 IS TRUE/FALSE/UNKNOWN  
-Non\-zero values equate to TRUE, 0 equates to FALSE, and null equates to UNKNOWN\. See the [Boolean type](r_Boolean_type.md) data type\.
+Non\-zero values equate to TRUE, 0 equates to FALSE, and null equates to UNKNOWN\. See the [Boolean typeHLLSKETCH type](r_Boolean_type.md) data type\.
 
 ## Examples<a name="r_comparison_condition-examples"></a>
 
@@ -86,4 +86,71 @@ Bruce     | Beck     |
 Mallory   | Farrell  |
 Scarlett  | Mayer    |
 (10 rows
+```
+
+## Examples with a TIME column<a name="r_comparison_condition-examples-time"></a>
+
+The following example table TIME\_TEST has a column TIME\_VAL \(type TIME\) with three values inserted\. 
+
+```
+select time_val from time_test;
+            
+time_val
+---------------------
+20:00:00
+00:00:00.5550
+00:58:00
+```
+
+The following example extracts the hours from each timetz\_val\.
+
+```
+select time_val from time_test where time_val < '3:00';
+   time_val
+---------------
+ 00:00:00.5550
+ 00:58:00
+```
+
+The following example compares two time literals\. 
+
+```
+select time '18:25:33.123456' = time '18:25:33.123456';
+ ?column?
+----------
+ t
+```
+
+## Examples with a TIMETZ column<a name="r_comparison_condition-examples-timetz"></a>
+
+The following example table TIMETZ\_TEST has a column TIMETZ\_VAL \(type TIMETZ\) with three values inserted\.
+
+```
+select timetz_val from timetz_test;
+            
+timetz_val
+------------------
+04:00:00+00
+00:00:00.5550+00
+05:58:00+00
+```
+
+The following example selects only the TIMETZ values less than `3:00:00 UTC`\. The comparison is made after converting the value to UTC\.
+
+```
+select timetz_val from timetz_test where timetz_val < '3:00:00 UTC';
+                  
+   timetz_val
+---------------
+ 00:00:00.5550+00
+```
+
+The following example compares two TIMETZ literals\. The time zone is ignored for the comparison\. 
+
+```
+select time '18:25:33.123456 PST' < time '19:25:33.123456 EST';
+                  
+ ?column?
+----------
+ t
 ```

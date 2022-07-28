@@ -2,7 +2,7 @@
 
 Contains a record of each attempted execution of a query in a service class handled by WLM\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_WLM_QUERY-table-columns"></a>
 

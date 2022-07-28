@@ -2,6 +2,8 @@
 
 ST\_Dimension returns the inherent dimension of an input geometry\. The *inherent dimension* is the dimension value of the subtype that is defined in the geometry\. 
 
+For 3DM, 3DZ, and 4D geometry inputs, ST\_Dimension returns the same result as for 2D geometry inputs\.
+
 ## Syntax<a name="ST_Dimension-function-syntax"></a>
 
 ```

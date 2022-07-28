@@ -1,6 +1,6 @@
 # Query plan<a name="c-the-query-plan"></a>
 
-You can use the query plan to get information on the individual operations required to execute a query\. Before you work with a query plan, we recommend that you first understand how Amazon Redshift handles processing queries and creating query plans\. For more information, see [Query planning and execution workflow](c-query-planning.md)\.
+You can use the query plan to get information on the individual operations required to run a query\. Before you work with a query plan, we recommend that you first understand how Amazon Redshift handles processing queries and creating query plans\. For more information, see [Query planning and execution workflow](c-query-planning.md)\.
 
 To create a query plan, run the [EXPLAIN](r_EXPLAIN.md) command followed by the actual query text\. The query plan gives you the following information:
 + What operations the execution engine performs, reading the results from bottom to top\.
@@ -98,7 +98,7 @@ The query plan uses the following operators for queries that involve set operati
 The following operators also appear frequently in EXPLAIN output for routine queries\.
 + **Unique**
 
-  Eliminates duplicates for SELECT DISTINCT queries and UNION queries\.
+  Removes duplicates for SELECT DISTINCT queries and UNION queries\.
 + **Limit**
 
   Processes the LIMIT clause\.
@@ -178,7 +178,7 @@ XN Hash Join DS_BCAST_INNER  (cost=109.98..3871130276.17 rows=172456 width=132)
 
 #### Example: Join, aggregate, and sort<a name="join-aggregate-and-sort-example"></a>
 
-The following query executes a hash join of the SALES and EVENT tables, followed by aggregation and sort operations to account for the grouped SUM function and the ORDER BY clause\. The initial sort operator runs in parallel on the compute nodes\. Then the Network operator sends the results to the leader node, where the Merge operator produces the final sorted results\.
+The following query runs a hash join of the SALES and EVENT tables, followed by aggregation and sort operations to account for the grouped SUM function and the ORDER BY clause\. The initial sort operator runs in parallel on the compute nodes\. Then the Network operator sends the results to the leader node, where the Merge operator produces the final sorted results\.
 
 ```
 explain select eventname, sum(pricepaid) from sales, event 

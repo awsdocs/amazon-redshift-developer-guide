@@ -1,6 +1,6 @@
 # APPROXIMATE PERCENTILE\_DISC function<a name="r_APPROXIMATE_PERCENTILE_DISC"></a>
 
-APPROXIMATE PERCENTILE\_DISC is an inverse distribution function that assumes a discrete distribution model\. It takes a percentile value and a sort specification and returns an element from the given set\. Approximation enables the function to execute much faster, with a low relative error of around 0\.5 percent\.
+APPROXIMATE PERCENTILE\_DISC is an inverse distribution function that assumes a discrete distribution model\. It takes a percentile value and a sort specification and returns an element from the given set\. Approximation enables the function to run much faster, with a low relative error of around 0\.5 percent\.
 
 For a given *percentile* value, APPROXIMATE PERCENTILE\_DISC uses a quantile summary algorithm to approximate the discrete percentile of the expression in the ORDER BY clause\. APPROXIMATE PERCENTILE\_DISC returns the value with the smallest cumulative distribution value \(with respect to the same sort specification\) that is greater than or equal to *percentile*\. 
 
@@ -37,7 +37,7 @@ If you need to evaluate more groups than the limit permits, consider using [PERC
 
 ## Examples<a name="r_APPROXIMATE_PERCENTILE_DISC-examples"></a>
 
-The following example returns the number of sales, total sales, and fiftieth percentile value for the top 10 dates\.\. 
+The following example returns the number of sales, total sales, and fiftieth percentile value for the top 10 dates\. 
 
 ```
 select top 10 date.caldate,

@@ -2,6 +2,8 @@
 
 ST\_Polygon returns a polygon geometry whose outer ring is the input linestring with the value that was input for the spatial reference system identifier \(SRID\)\. 
 
+The dimension of the returned geometry is the same as that of the input geometry\.
+
 ## Syntax<a name="ST_Polygon-function-syntax"></a>
 
 ```

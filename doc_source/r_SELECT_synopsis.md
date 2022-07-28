@@ -10,7 +10,6 @@
 + [HAVING clause](r_HAVING_clause.md)
 + [UNION, INTERSECT, and EXCEPT](r_UNION.md)
 + [ORDER BY clause](r_ORDER_BY_clause.md)
-+ [Join examples](r_Join_examples.md)
 + [Subquery examples](r_Subquery_examples.md)
 + [Correlated subqueries](r_correlated_subqueries.md)
 

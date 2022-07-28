@@ -2,6 +2,17 @@
 
 Creates a new stored procedure or replaces an existing procedure for the current database\.
 
+## Required privileges<a name="r_CREATE_PROCEDURE-privileges"></a>
+
+Following are required privileges for CREATE PROCEDURE:
++ For CREATE PROCEDURE:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] PROCEDURE privilege
++ For REPLACE PROCEDURE:
+  + Superuser
+  + Users with the CREATE \[ OR REPLACE \] PROCEDURE privilege
+  + Procedure owner
+
 ## Syntax<a name="r_CREATE_PROCEDURE-synopsis"></a>
 
 ```
@@ -35,7 +46,7 @@ The argument data types can be any standard Amazon Redshift data type\. In addit
 You can specify a maximum of 32 input arguments and 32 output arguments\. 
 
 AS $$ *procedure\_body* $$   
-A construct that encloses the procedure to be executed\. The literal keywords AS $$ and $$ are required\.  
+A construct that encloses the procedure to be run\. The literal keywords AS $$ and $$ are required\.  
 Amazon Redshift requires you to enclose the statement in your procedure by using a format called dollar quoting\. Anything within the enclosure is passed exactly as is\. You don't need to escape any special characters because the contents of the string are written literally\.  
 With *dollar quoting, *you use a pair of dollar signs \($$\) to signify the start and the end of the statement to run, as shown in the following example\.  
 

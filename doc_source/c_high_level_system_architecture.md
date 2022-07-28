@@ -8,10 +8,6 @@ This section introduces the elements of the Amazon Redshift data warehouse archi
 
 Amazon Redshift integrates with various data loading and ETL \(extract, transform, and load\) tools and business intelligence \(BI\) reporting, data mining, and analytics tools\. Amazon Redshift is based on industry\-standard PostgreSQL, so most existing SQL client applications will work with only minimal changes\. For information about important differences between Amazon Redshift SQL and PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
 
- **Connections** 
-
-Amazon Redshift communicates with client applications by using industry\-standard JDBC and ODBC drivers for PostgreSQL\. For more information, see [Amazon Redshift and PostgreSQL JDBC and ODBC](c_redshift-postgres-jdbc.md)\.
-
  **Clusters** 
 
 The core infrastructure component of an Amazon Redshift data warehouse is a *cluster*\.
@@ -26,7 +22,7 @@ The leader node distributes SQL statements to the compute nodes only when a quer
 
  **Compute nodes** 
 
-The leader node compiles code for individual elements of the execution plan and assigns the code to individual compute nodes\. The compute nodes execute the compiled code and send intermediate results back to the leader node for final aggregation\. 
+The leader node compiles code for individual elements of the execution plan and assigns the code to individual compute nodes\. The compute nodes runs the compiled code and send intermediate results back to the leader node for final aggregation\. 
 
 Each compute node has its own dedicated CPU, memory, and attached disk storage, which are determined by the node type\. As your workload grows, you can increase the compute capacity and storage capacity of a cluster by increasing the number of nodes, upgrading the node type, or both\.
 
@@ -38,7 +34,7 @@ A compute node is partitioned into slices\. Each slice is allocated a portion of
 
 The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
 
-When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and execute queries efficiently\. For information about choosing a distribution key, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
+When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and run queries efficiently\. For information about choosing a distribution key, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
 
  **Internal network** 
 
@@ -50,4 +46,4 @@ A cluster contains one or more databases\. User data is stored on the compute no
 
 Amazon Redshift is a relational database management system \(RDBMS\), so it is compatible with other RDBMS applications\. Although it provides the same functionality as a typical RDBMS, including online transaction processing \(OLTP\) functions such as inserting and deleting data, Amazon Redshift is optimized for high\-performance analysis and reporting of very large datasets\.
 
-Amazon Redshift is based on PostgreSQL 8\.0\.2\. Amazon Redshift and PostgreSQL have a number of very important differences that you need to take into account as you design and develop your data warehouse applications\. For information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
+Amazon Redshift is based on PostgreSQL\. Amazon Redshift and PostgreSQL have a number of very important differences that you need to take into account as you design and develop your data warehouse applications\. For information about how Amazon Redshift SQL differs from PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.

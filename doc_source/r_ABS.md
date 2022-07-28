@@ -11,7 +11,7 @@ ABS (number)
 ## Arguments<a name="r_ABS-arguments"></a>
 
  *number*   
-Number or expression that evaluates to a number\. 
+Number or expression that evaluates to a number\. It can be the SMALLINT, INTEGER, BIGINT, DECIMAL, FLOAT4, FLOAT8, or SUPER type\.
 
 ## Return type<a name="r_ABS-return-type"></a>
 

@@ -5,12 +5,12 @@ The following steps show how to create a secret and an IAM role to use with fede
 ## Prerequisites<a name="federated-create-secret-prerequisites"></a>
 
 Make sure that you have the following prerequisites to create a secret and an IAM role to use with federated queries:
-+ An RDS PostgreSQL or Aurora PostgreSQL DB instance with user name and password authentication\.
++ An RDS PostgreSQL, Aurora PostgreSQL DB instance, RDS MySQL, or Aurora MySQL DB instance with user name and password authentication\.
 + An Amazon Redshift cluster with a cluster maintenance version that supports federated queries\.
 
 **To create a secret \(user name and password\) with AWS Secrets Manager**
 
-1. Sign in to the Secrets Manager console with the account that owns your RDS PostgreSQL or Aurora PostgreSQL instance\.
+1. Sign in to the Secrets Manager console with the account that owns your RDS or Aurora instance\.
 
 1. Choose **Store a new secret**\. 
 
@@ -74,7 +74,7 @@ We recommend using the default encryption key \(`DefaultEncryptionKey`\)\. If yo
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**\. The clusters for your account in the current AWS Region are listed\. 
+1. On the navigation menu, choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. 
 
 1. Choose the cluster name in the list to view more details about a cluster\.
 

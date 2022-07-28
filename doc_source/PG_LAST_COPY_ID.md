@@ -1,6 +1,6 @@
 # PG\_LAST\_COPY\_ID<a name="PG_LAST_COPY_ID"></a>
 
-Returns the query ID of the most recently executed COPY command in the current session\. If no COPY commands have been executed in the current session, PG\_LAST\_COPY\_ID returns \-1\. 
+Returns the query ID of the most recently completed COPY command in the current session\. If no COPY commands have been run in the current session, PG\_LAST\_COPY\_ID returns \-1\. 
 
  The value for PG\_LAST\_COPY\_ID is updated when the COPY command begins the load process\. If the COPY fails because of invalid load data, the COPY ID is updated, so you can use PG\_LAST\_COPY\_ID when you query STL\_LOAD\_ERRORS table\. If the COPY transaction is rolled back, the COPY ID is not updated\. 
 

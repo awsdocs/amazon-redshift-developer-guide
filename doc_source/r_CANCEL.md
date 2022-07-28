@@ -4,6 +4,14 @@ Cancels a database query that is currently running\.
 
 The CANCEL command requires the process ID of the running query and displays a confirmation message to verify that the query was cancelled\.
 
+## Required privileges<a name="r_CANCEL-privileges"></a>
+
+Following are required privileges for CANCEL:
++ Superuser canceling their own query
++ Superuser canceling a user's query
++ Users with the CANCEL privilege canceling a user's query
++ User canceling their own query
+
 ## Syntax<a name="r_CANCEL-synopsis"></a>
 
 ```
@@ -22,9 +30,9 @@ An optional confirmation message that displays when the query cancellation compl
 
 You can't cancel a query by specifying a *query ID*; you must specify the query's *process ID* \(PID\)\. You can only cancel queries currently being run by your user\. Superusers can cancel all queries\.
 
-If queries in multiple sessions hold locks on the same table, you can use the [PG\_TERMINATE\_BACKEND](PG_TERMINATE_BACKEND.md) function to terminate one of the sessions, which forces any currently running transactions in the terminated session to release all locks and roll back the transaction\. Query the [STV\_LOCKS](r_STV_LOCKS.md) system table to view currently held locks\. 
+If queries in multiple sessions hold locks on the same table, you can use the [PG\_TERMINATE\_BACKEND](PG_TERMINATE_BACKEND.md) function to terminate one of the sessions\. Doing this forces any currently running transactions in the terminated session to release all locks and roll back the transaction\. To view currently held locks, query the [STV\_LOCKS](r_STV_LOCKS.md) system table\. 
 
-Following certain internal events, Amazon Redshift might restart an active session and assign a new PID\. If the PID has changed, you might receive the following error message:
+Following certain internal events, Amazon Redshift might restart an active session and assign a new PID\. If the PID has changed, you might receive the following error message\.
 
 ```
 Session <PID> does not exist. The session PID might have changed. Check the stl_restarted_sessions system table for details.

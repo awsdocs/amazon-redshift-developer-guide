@@ -27,7 +27,7 @@ To fix this issue, run [ANALYZE](r_ANALYZE.md)\.
 
 If a nested loop is present, you might see a nested loop alert event in STL\_ALERT\_EVENT\_LOG\. You can also identify this type of event by running the query at [Identifying queries with nested loops](diagnostic-queries-for-query-tuning.md#identify-queries-with-nested-loops)\. For more information, see [Reviewing query alerts](c-reviewing-query-alerts.md)\.
 
-To fix this, review your query for cross\-joins and remove them if possible\. Cross\-joins are joins without a join condition that result in the Cartesian product of two tables\. They are typically executed as nested loop joins, which are the slowest of the possible join types\.
+To fix this, review your query for cross\-joins and remove them if possible\. Cross\-joins are joins without a join condition that result in the Cartesian product of two tables\. They are typically run as nested loop joins, which are the slowest of the possible join types\.
 
 ## Hash join<a name="hash-join"></a>
 
@@ -55,7 +55,7 @@ You can also check to see if any of the tables in your query have large unsorted
 
 To fix this issue, you can take a couple of approaches:
 + Run [VACUUM](r_VACUUM_command.md) on the query tables to re\-sort the rows\.
-+ Review the sort keys on the query tables to see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Choosing sort keys](t_Sorting_data.md)\.
++ Review the sort keys on the query tables to see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Working with sort keys](t_Sorting_data.md)\.
 
 ## Suboptimal data distribution<a name="suboptimal-data-distribution"></a>
 
@@ -66,7 +66,7 @@ If data distribution is suboptimal, you might see the following:
 
 If none of the preceding is true, you can also see if any of the tables in your query have data skew by running the query in [Identifying tables with data skew or unsorted rows](diagnostic-queries-for-query-tuning.md#identify-tables-with-data-skew-or-unsorted-rows)\.
 
-To fix this issue, take another look at the distribution styles for the tables in the query and see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Choosing a data distribution style](t_Distributing_data.md)\.
+To fix this issue, review the distribution styles for the tables in the query and see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\.
 
 ## Insufficient memory allocated to the query<a name="insufficient-memory-allocated-to-the-query"></a>
 

@@ -1,6 +1,6 @@
 # PG\_LAST\_UNLOAD\_ID<a name="PG_LAST_UNLOAD_ID"></a>
 
-Returns the query ID of the most recently executed UNLOAD command in the current session\. If no UNLOAD commands have been executed in the current session, PG\_LAST\_UNLOAD\_ID returns \-1\. 
+Returns the query ID of the most recently completed UNLOAD command in the current session\. If no UNLOAD commands have been run in the current session, PG\_LAST\_UNLOAD\_ID returns \-1\. 
 
  The value for PG\_LAST\_UNLOAD\_ID is updated when the UNLOAD command begins the load process\. If the UNLOAD fails because of invalid load data, the UNLOAD ID is updated, so you can use the UNLOAD ID for further investigation\. If the UNLOAD transaction is rolled back, the UNLOAD ID is not updated\. 
 

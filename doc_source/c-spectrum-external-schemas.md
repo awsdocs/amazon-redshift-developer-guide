@@ -118,47 +118,44 @@ iam_role 'arn:aws:iam::123456789012:role/mySpectrumRole';
 
 If your Hive metastore is in Amazon EMR, you must give your Amazon Redshift cluster access to your Amazon EMR cluster\. To do so, you create an Amazon EC2 security group\. You then allow all inbound traffic to the EC2 security group from your Amazon Redshift cluster's security group and your Amazon EMR cluster's security group\. Then you add the EC2 security to both your Amazon Redshift cluster and your Amazon EMR cluster\.
 
-**To enable your Amazon Redshift cluster to access your Amazon EMR cluster**
+**View your Amazon Redshift cluster's security group name**
 
-1. In Amazon Redshift, make a note of your cluster's security group name\. 
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
+To display the security group, do the following:
 
-   **New console**
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-   To display the security group, do the following:
+1. On the navigation menu, choose **Clusters**, then choose the cluster from the list to open its details\.
 
-   1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+1. Choose **Properties** and view the **Network and security settings** section\. 
 
-   1. On the navigation menu, choose **CLUSTERS**, then choose the cluster from the list to open its details\. Choose **Properties** and view the **Network and security** section\. 
+1. Find your security group in **VPC security group** and take note of it\. 
 
-   1. Find your security group in **VPC security group**\. 
+****
 
-   **Original console**
+**View the Amazon EMR master node security group name**
 
-   In the Amazon Redshift console, choose your cluster\. Find your cluster security groups in the **Cluster Properties** group\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-redshift-security-groups.png)
+1. Open your Amazon EMR cluster\. For more information, see [Use security configurations to set up cluster security](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-security-configurations.html) in the *Amazon EMR Management Guide*\.
 
-1. In Amazon EMR, make a note of the EMR master node security group name\.  
+1. Under **Security and access**, make a note of the Amazon EMR master node security group name\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-emr-security-groups.png)
 
-1. Create or modify an Amazon EC2 security group to allow connection between Amazon Redshift and Amazon EMR:
+**To create or modify an Amazon EC2 security group to allow connection between Amazon Redshift and Amazon EMR**
 
-   1. In the Amazon EC2 dashboard, choose **Security Groups**\. 
+1. In the Amazon EC2 dashboard, choose **Security groups**\. For more information, see [Security group rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html) in the *Amazon EC2 User Guide for Linux Instances* 
 
-   1. Choose **Create Security Group**\. 
+1. Choose **Create security group**\. 
 
-   1. If using VPC, choose the VPC that both your Amazon Redshift and Amazon EMR clusters are in\. 
+1. If you are using VPC, choose the VPC that your Amazon Redshift and Amazon EMR clusters are in\. 
 
-   1. Add an inbound rule\. 
+1. Add an inbound rule\. 
 
-   1. For **Type**, choose **TCP**\. 
+   1. For **Type**, choose **Custom TCP**\. 
 
    1. For **Source**, choose **Custom**\. 
 
    1. Enter the name of your Amazon Redshift security group\. 
 
-   1. Add another inbound rule\. 
+1. Add another inbound rule\. 
 
    1. For **Type**, choose **TCP**\. 
 
@@ -168,29 +165,33 @@ The default port for an EMR HMS is 9083\. If your HMS uses a different port, spe
 
    1. For **Source**, choose **Custom**\. 
 
-   1. Enter the name of your Amazon EMR security group\. 
+1. Enter a security group name and description\. 
 
-   1. Choose **Create**\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-ec2-create-security-group.png)
+1. Choose **Create security group**\. 
 
-1. Add the Amazon EC2 security group you created in the previous step to your Amazon Redshift cluster and to your Amazon EMR cluster:
+**To add the Amazon EC2 security group you created in the previous procedure to your Amazon Redshift cluster**
 
-   1. In Amazon Redshift, choose your cluster\. 
+1. In Amazon Redshift, choose your cluster\. 
 
-   1. Choose **Cluster**, **Modify**\. 
+1. Choose **Properties**\. 
 
-   1. In **VPC Security Groups**, add the new security group by pressing CRTL and choosing the new security group name\. 
+1. View the **Network and security settings** and choose **Edit**\. 
 
-   1. In Amazon EMR, choose your cluster\. 
+1. In **VPC security group**, choose the new security group name\. 
 
-   1. Under **Hardware**, choose the link for the Master node\. 
+1. Choose **Save changes**\. 
 
-   1. Choose the link in the **EC2 Instance ID** column\.   
+**To add the Amazon EC2 security group to your Amazon EMR cluster**
+
+1. In Amazon EMR, choose your cluster\. For more information, see [Use security configurations to set up cluster security](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-security-configurations.html) in the *Amazon EMR Management Guide*\.
+
+1. Under **Hardware**, choose the link for the Master node\. 
+
+1. Choose the link in the **EC2 instance ID** column\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-emr-add-security-group.png)
 
-   1. For **Actions**, choose **Networking**, **Change Security Groups**\. 
+1. For **Actions**, choose **Security**, **Change security groups**\. 
 
-   1. Choose the new security group\. 
+1. In **Associated sercurity groups**, choose the new security group, and choose **Add security group**\. 
 
-   1. Choose **Assign Security Groups**\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-emr-assign-security-group.png)
+1. Choose **Save**\. 

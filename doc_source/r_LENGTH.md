@@ -2,4 +2,4 @@
 
 Synonym of the LEN function\. 
 
-See [LEN function](r_LEN.md) 
+See [LEN function](r_LEN.md)\. 

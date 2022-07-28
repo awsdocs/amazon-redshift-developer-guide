@@ -10,12 +10,14 @@ You can choose one of the following methods to create a copy of the original tab
 If the original DDL is not available, you might be able to recreate the DDL by running a script called `v_generate_tbl_ddl`\. You can download the script from [amazon\-redshift\-utils](https://github.com/awslabs/amazon-redshift-utils/blob/master/src/AdminViews/v_generate_tbl_ddl.sql), which is part of the [Amazon Web Services \- Labs](https://github.com/awslabs) git hub repository\.
 + Use CREATE TABLE LIKE\. 
 
-  If the original DDL is not available, you can use CREATE TABLE LIKE to recreate the original table\. The new table inherits the encoding, distkey, sortkey, and notnull attributes of the parent table\. The new table doesn't inherit the primary key and foreign key attributes of the parent table, but you can add them using [ALTER TABLE](r_ALTER_TABLE.md)\.
+  If the original DDL is not available, you can use CREATE TABLE LIKE to recreate the original table\. The new table inherits the encoding, distribution key, sort key, and not\-null attributes of the parent table\. The new table doesn't inherit the primary key and foreign key attributes of the parent table, but you can add them using [ALTER TABLE](r_ALTER_TABLE.md)\.
 + Create a temporary table and truncate the original table\. 
 
   If you need to retain the primary key and foreign key attributes of the parent table, or if the parent table has dependencies, you can use CREATE TABLE \.\.\. AS \(CTAS\) to create a temporary table, then truncate the original table and populate it from the temporary table\. 
 
   Using a temporary table improves performance significantly compared to using a permanent table, but there is a risk of losing data\. A temporary table is automatically dropped at the end of the session in which it is created\. TRUNCATE commits immediately, even if it is inside a transaction block\. If the TRUNCATE succeeds but the session terminates before the subsequent INSERT completes, the data is lost\. If data loss is unacceptable, use a permanent table\. 
+
+After you create a copy of a table, you may need to grant access to the new table\. You can use [GRANT](r_GRANT.md) to define access privileges\.
 
 **To perform a deep copy using the original table DDL**
 

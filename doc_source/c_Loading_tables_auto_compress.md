@@ -39,7 +39,7 @@ After you run the COPY command, the table is fully loaded, compressed, and ready
 
 If you only want to perform a compression analysis, run ANALYZE COMPRESSION, which is more efficient than running a full COPY\. Then you can evaluate the results to decide whether to use automatic compression or recreate the table manually\.
 
-Automatic compression is supported only for the COPY command\. Alternatively, you can manually apply compression encoding when you create the table\. For information about manual compression encoding, see [Choosing a column compression type](t_Compressing_data_on_disk.md)\.
+Automatic compression is supported only for the COPY command\. Alternatively, you can manually apply compression encoding when you create the table\. For information about manual compression encoding, see [Working with column compression](t_Compressing_data_on_disk.md)\.
 
 ## Automatic compression example<a name="r_COPY_COMPRESS_examples"></a>
 

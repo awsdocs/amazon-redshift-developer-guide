@@ -1,6 +1,6 @@
 # ST\_Intersects<a name="ST_Intersects-function"></a>
 
-ST\_Intersects returns true if the two input geometries have at least one point in common\. 
+ST\_Intersects returns true if the 2D projections of the two input geometries have at least one point in common\. 
 
 ## Syntax<a name="ST_Intersects-function-syntax"></a>
 

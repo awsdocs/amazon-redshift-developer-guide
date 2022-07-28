@@ -14,7 +14,7 @@ ERROR: Invalid credentials. Must be of the format: credentials
 [;token=<temporary-session-token>]'
 ```
 
-Verify that the credentials string does not contain any spaces or line breaks, and is enclosed in single quotes\. 
+Verify that the credentials string does not contain any spaces or line breaks, and is enclosed in single quotation marks\. 
 
 ## Invalid access key ID<a name="invalid-access-key-id-error"></a>
 
@@ -47,7 +47,7 @@ ERROR: S3ServiceException:The bucket you are attempting to access must be addres
 
 You can create an Amazon S3 bucket in a specific Region either by selecting the Region when you create the bucket by using the Amazon S3 Management Console, or by specifying an endpoint when you create the bucket using the Amazon S3 API or CLI\. For more information, see [Uploading files to Amazon S3](t_uploading-data-to-S3.md)\.
 
-For more information about Amazon S3 regions, see [Accessing a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro) in the *Amazon Simple Storage Service Developer Guide*\.
+For more information about Amazon S3 regions, see [Accessing a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro) in the *Amazon Simple Storage Service User Guide*\.
 
 Alternatively, you can specify the Region using the [REGION](copy-parameters-data-source-s3.md#copy-region) option with the COPY command\.
 

@@ -1,10 +1,10 @@
-# STL tables for logging<a name="c_intro_STL_tables"></a>
+# STL views for logging<a name="c_intro_STL_tables"></a>
 
-STL system tables are generated from Amazon Redshift log files to provide a history of the system\.
+STL system views are generated from Amazon Redshift log files to provide a history of the system\.
 
-These files reside on every node in the data warehouse cluster\. The STL tables take the information from the logs and format them into usable tables for system administrators\.
+These files reside on every node in the data warehouse cluster\. The STL views take the information from the logs and format them into usable views for system administrators\.
 
-To manage disk space, the STL log tables only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
+To manage disk space, the STL log views only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
 
 **Topics**
 + [STL\_AGGR](r_STL_AGGR.md)

@@ -1,6 +1,6 @@
 # CREATE EXTERNAL SCHEMA<a name="r_CREATE_EXTERNAL_SCHEMA"></a>
 
-Creates a new external schema in the current database\. You can use this external schema to connect to Amazon RDS for PostgreSQL or Amazon Aurora with PostgreSQL compatibility databases\. You can also create an external schema that references a database in an external data catalog such as AWS Glue, Athena, or a database in an Apache Hive metastore, such as Amazon EMR\.
+Creates a new external schema in the current database\. You can use this external schema to connect to Amazon RDS for PostgreSQL or Amazon Aurora PostgreSQL\-Compatible Edition databases\. You can also create an external schema that references a database in an external data catalog such as AWS Glue, Athena, or a database in an Apache Hive metastore, such as Amazon EMR\.
 
 The owner of this schema is the issuer of the CREATE EXTERNAL SCHEMA command\. To transfer ownership of an external schema, use [ALTER SCHEMA](r_ALTER_SCHEMA.md) to change the owner\. To grant access to the schema to other users or user groups, use the [GRANT](r_GRANT.md) command\. 
 
@@ -17,31 +17,58 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
-FROM { [ DATA CATALOG ] |  HIVE METASTORE |  POSTGRES }
-DATABASE 'database_name'
+FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL | KINESIS }
+[ DATABASE 'database_name' ]
 [ REGION 'aws-region' ]
 [ URI 'hive_metastore_uri' [ PORT port_number ] ]
-IAM_ROLE 'iam-role-arn-string'
-SECRET_ARN 'ssm-secret-arn'             
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+[ SECRET_ARN 'ssm-secret-arn' ]          
 [ CATALOG_ROLE 'catalog-role-arn-string' ] 
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
 ```
 
-The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query to RDS POSTGRES or Aurora PostgreSQL\. You can also create an external schema that references streaming sources, such as Kinesis Data Streams\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
-FROM  POSTGRES
-DATABASE 'database_name' [SCHEMA 'schema_name']
+FROM POSTGRES
+DATABASE 'federated_database_name' [SCHEMA 'schema_name']
 URI 'hostname' [ PORT port_number ] 
-IAM_ROLE 'iam-role-arn-string'
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'
+```
+
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query to RDS MySQL or Aurora MySQL\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
+
+```
+CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
+FROM MYSQL
+DATABASE 'federated_database_name' 
+URI 'hostname' [ PORT port_number ]
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+SECRET_ARN 'ssm-secret-arn'
+```
+
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data in a Kinesis stream\. For more information, see [Streaming ingestion \(preview\)](materialized-view-streaming-ingestion.md)\.
+
+```
+CREATE EXTERNAL SCHEMA [IF NOT EXISTS] schema_name
+FROM KINESIS
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+```
+
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a cross\-database query\.
+
+```
+CREATE EXTERNAL SCHEMA local_schema_name
+FROM  REDSHIFT
+DATABASE 'redshift_database_name' SCHEMA 'redshift_schema_name'
 ```
 
 ## Parameters<a name="r_CREATE_EXTERNAL_SCHEMA-parameters"></a>
 
 IF NOT EXISTS  
-A clause that indicates that if the specified schema already exists, the command should make no changes and return a message that the schema exists, rather than terminating with an error\. This clause is useful when scripting, so the script doesn’t fail if CREATE EXTERNAL SCHEMA tries to create a schema that already exists\. 
+A clause that indicates that if the specified schema already exists, the command should make no changes and return a message that the schema exists, rather than terminating with an error\. This clause is useful when scripting, so the script doesn't fail if CREATE EXTERNAL SCHEMA tries to create a schema that already exists\. 
 
 local\_schema\_name  
 The name of the new external schema\. For more information about valid names, see [Names and identifiers](r_names.md)\.
@@ -51,23 +78,37 @@ A keyword that indicates where the external database is located\.
 DATA CATALOG indicates that the external database is defined in the Athena data catalog or the AWS Glue Data Catalog\.   
 If the external database is defined in an external Data Catalog in a different AWS Region, the REGION parameter is required\. DATA CATALOG is the default\.  
 HIVE METASTORE indicates that the external database is defined in an Apache Hive metastore\. If HIVE METASTORE, is specified, URI is required\.   
-POSTGRES indicates that the external database is defined in RDS PostgreSQL or Aurora PostgreSQL\.
+POSTGRES indicates that the external database is defined in RDS PostgreSQL or Aurora PostgreSQL\.  
+MYSQL indicates that the external database is defined in RDS MySQL or Aurora MySQL\.  
+KINESIS indicates that the data source is a stream from Kinesis Data Streams\.
 
-DATABASE '*database\_name*' \[SCHEMA '*schema\_name*'\]  
-A keyword that indicates the name of the external database in RDS PostgreSQL or Aurora PostgreSQL\.   
-The *schema\_name* indicates the schema in RDS PostgreSQL or Aurora PostgreSQL\. The default *schema\_name* is `public`\.
+FROM REDSHIFT  
+A keyword that indicates that the database is located in Amazon Redshift\.
+
+DATABASE '*redshift\_database\_name*' SCHEMA '*redshift\_schema\_name*'  
+The name of the Amazon Redshift database\.   
+The *redshift\_schema\_name* indicates the schema in Amazon Redshift\. The default *redshift\_schema\_name* is `public`\.
+
+DATABASE '*federated\_database\_name*'  
+A keyword that indicates the name of the external database in a supported PostgreSQL or MySQL database engine\. 
+
+\[SCHEMA '*schema\_name*'\]  
+The *schema\_name* indicates the schema in a supported PostgreSQL database engine\. The default *schema\_name* is `public`\.  
+You can't specify a SCHEMA when you set up a federated query to a supported MySQL database engine\. 
 
 REGION '*aws\-region*'  
 If the external database is defined in an Athena data catalog or the AWS Glue Data Catalog, the AWS Region in which the database is located\. This parameter is required if the database is defined in an external Data Catalog\. 
 
 URI '*hive\_metastore\_uri*' \[ PORT port\_number \]  
-The hostname URI and port\_number of an RDS PostgreSQL or Aurora PostgreSQL\. The *hostname* is the head node of the replica set\. The endpoint must be reachable \(routable\) from the Amazon Redshift cluster\. The default port\_number is 5432\.   
+The hostname URI and port\_number of a supported PostgreSQL or MySQL database engine\. The *hostname* is the head node of the replica set\. The endpoint must be reachable \(routable\) from the Amazon Redshift cluster\. The default port\_number is 5432\.   
 If the database is in a Hive metastore, specify the URI and optionally the port number for the metastore\. The default port number is 9083\.   
 A URI doesn't contain a protocol specification \("http://"\)\. An example valid URI: `uri '172.10.10.10'`\.   
-The RDS PostgreSQL or Aurora PostgreSQL must be in the same VPC as your Amazon Redshift cluster\. Create a security group linking Amazon Redshift and RDS PostgreSQL or Aurora PostgreSQL\. 
+The supported PostgreSQL or MySQL database engine must be in the same VPC as your Amazon Redshift cluster\. Create a security group linking Amazon Redshift and RDS PostgreSQL or Aurora PostgreSQL\. 
 
-IAM\_ROLE '*iam\-role\-arn\-string*'  
-The Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or the AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
+IAM\_ROLE \{ default \| 'arn:aws:iam::*<AWS account\-id>*:role/*<role\-name>*' \}  
+Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREATE EXTERNAL SCHEMA command runs\.  
+Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.   
+The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
 
 ```
 IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-name>'
@@ -111,7 +152,7 @@ IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-1-name>,arn:aws:iam::<aws-acc
 ```
 
 SECRET\_ARN '*ssm\-secret\-arn*'  
-The Amazon Resource Name \(ARN\) of an RDS PostgreSQL or Aurora PostgreSQL secret created using AWS Secrets Manager\. For information about how to create and retrieve an ARN for a secret, see [Creating a Basic Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) and [Retrieving the Secret Value Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_retrieve-secret.html) in the *AWS Secrets Manager User Guide*\. 
+The Amazon Resource Name \(ARN\) of a supported PostgreSQL or MySQL database engine secret created using AWS Secrets Manager\. For information about how to create and retrieve an ARN for a secret, see [Creating a Basic Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) and [Retrieving the Secret Value Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_retrieve-secret.html) in the *AWS Secrets Manager User Guide*\. 
 
 CATALOG\_ROLE '*catalog\-role\-arn\-string*'  
 The ARN for an IAM role that your cluster uses for authentication and authorization for the data catalog\. If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the Data Catalog in AWS Glue or Athena\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
@@ -197,6 +238,23 @@ CREATE EXTERNAL SCHEMA [IF NOT EXISTS] myRedshiftSchema
 FROM POSTGRES
 DATABASE 'my_aurora_db' SCHEMA 'my_aurora_schema'
 URI 'endpoint to aurora hostname' PORT 5432            
+IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole' 
+SECRET_ARN 'arn:aws:secretsmanager:us-east-2:123456789012:secret:development/MyTestDatabase-AbCdEf'
+```
+
+The following example creates an external schema to refer to the sales\_db imported on the consumer cluster\.
+
+```
+CREATE EXTERNAL SCHEMA sales_schema FROM REDSHIFT DATABASE 'sales_db' SCHEMA 'public';
+```
+
+The following example creates an external schema that references an Aurora MySQL database\. 
+
+```
+CREATE EXTERNAL SCHEMA [IF NOT EXISTS] myRedshiftSchema
+FROM MYSQL
+DATABASE 'my_aurora_db' 
+URI 'endpoint to aurora hostname'        
 IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole' 
 SECRET_ARN 'arn:aws:secretsmanager:us-east-2:123456789012:secret:development/MyTestDatabase-AbCdEf'
 ```

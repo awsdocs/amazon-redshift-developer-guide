@@ -1,6 +1,6 @@
 # ROLLBACK<a name="r_ROLLBACK"></a>
 
-Aborts the current transaction and discards all updates made by that transaction\.
+Stops the current transaction and discards all updates made by that transaction\.
 
 This command performs the same function as the [ABORT](r_ABORT.md) command\.
 

@@ -10,7 +10,7 @@ SVL\_S3LIST is visible to all users\. Superusers can see all rows; regular users
 
 ## Sample query<a name="r_SVL_S3LIST-sample-query"></a>
 
-The following example queries SVL\_S3LIST for the last query executed\.
+The following example queries SVL\_S3LIST for the last query to run\.
 
 ```
 select * 

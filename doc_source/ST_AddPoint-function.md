@@ -4,6 +4,8 @@ ST\_AddPoint returns a linestring geometry that is the same as the input geometr
 
 The index is zero\-based\. The spatial reference system identifier \(SRID\) of the result is the same as that of the input geometry\. 
 
+The dimension of the returned geometry is the same as that of the *geom1* value\. If *geom1* and *geom2* have different dimensions, *geom2* is projected to the dimension of *geom1*\.
+
 ## Syntax<a name="ST_AddPoint-function-syntax"></a>
 
 ```
@@ -20,7 +22,7 @@ ST_AddPoint(geom1, geom2, index)
 A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `LINESTRING`\. 
 
  *geom2*   
-A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `POINT`\. 
+A value of data type `GEOMETRY` or an expression that evaluates to a `GEOMETRY` type\. The subtype must be `POINT`\. The point can be the empty point\.
 
  *index*   
 A value of data type `INTEGER` that represents the position of a zero\-based index\. 
@@ -30,6 +32,8 @@ A value of data type `INTEGER` that represents the position of a zero\-based ind
 `GEOMETRY` 
 
 If *geom1*, *geom2*, or *index* is null, then null is returned\. 
+
+If *geom2* is the empty point, then a copy of *geom1* is returned\. 
 
 If *geom1* is not a `LINESTRING`, then an error is returned\. 
 

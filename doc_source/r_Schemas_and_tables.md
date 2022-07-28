@@ -2,12 +2,12 @@
 
 A database contains one or more named schemas\. Each schema in a database contains tables and other kinds of named objects\. By default, a database has a single schema, which is named PUBLIC\. You can use schemas to group database objects under a common name\. Schemas are similar to file system directories, except that schemas cannot be nested\.
 
-Identical database object names can be used in different schemas in the same database without conflict\. For example, both MY\_SCHEMA and YOUR\_SCHEMA can contain a table named MYTABLE\. Users with the necessary privileges can access objects across multiple schemas in a database\.
+Identical database object names can be used in different schemas in the same database without conflict\. For example, both MY\_SCHEMA and YOUR\_SCHEMA can contain a table named MYTABLE\. Users with the necessary permissions can access objects across multiple schemas in a database\.
 
 By default, an object is created within the first schema in the search path of the database\. For information, see [Search path](#c_Search_path) later in this section\.
 
-Schemas can help with organization and concurrency issues in a multi\-user environment in the following ways:
-+ To allow many developers to work in the same database without interfering with each other\.
+Schemas can help with organization and concurrency issues in a multiuser environment in the following ways:
++ To let many developers work in the same database without interfering with each other\.
 + To organize database objects into logical groups to make them more manageable\.
 + To give applications the ability to put their objects into separate schemas so that their names will not collide with the names of objects used by other applications\.
 
@@ -44,9 +44,9 @@ To change the default schema for the current session, use the [SET](r_SET.md) co
 
 For more information, see the [search\_path](r_search_path.md) description in the Configuration Reference\.
 
-## Schema\-based privileges<a name="r_Schemas_and_tables-schema-based-privileges"></a>
+## Schema\-based permissions<a name="r_Schemas_and_tables-schema-based-privileges"></a>
 
- Schema\-based privileges are determined by the owner of the schema: 
-+ By default, all users have CREATE and USAGE privileges on the PUBLIC schema of a database\. To disallow users from creating objects in the PUBLIC schema of a database, use the [REVOKE](r_REVOKE.md) command to remove that privilege\.
-+ Unless they are granted the USAGE privilege by the object owner, users cannot access any objects in schemas they do not own\. 
-+ If users have been granted the CREATE privilege to a schema that was created by another user, those users can create objects in that schema\.
+ Schema\-based permissions are determined by the owner of the schema: 
++ By default, all users have CREATE and USAGE permissions on the PUBLIC schema of a database\. To disallow users from creating objects in the PUBLIC schema of a database, use the [REVOKE](r_REVOKE.md) command to remove that permission\.
++ Unless they are granted the USAGE permission by the object owner, users cannot access any objects in schemas they do not own\. 
++ If users have been granted the CREATE permission to a schema that was created by another user, those users can create objects in that schema\.

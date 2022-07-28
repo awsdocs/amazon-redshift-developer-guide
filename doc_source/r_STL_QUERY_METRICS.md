@@ -1,6 +1,6 @@
 # STL\_QUERY\_METRICS<a name="r_STL_QUERY_METRICS"></a>
 
-Contains metrics information, such as the number of rows processed, CPU usage, input/output, and disk use, for queries that have completed running in user\-defined query queues \(service classes\)\. To view metrics for active queries that are currently running, see the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) system table\. 
+Contains metrics information, such as the number of rows processed, CPU usage, input/output, and disk use, for queries that have completed running in user\-defined query queues \(service classes\)\. To view metrics for active queries that are currently running, see the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) system view\. 
 
 Query metrics are sampled at one second intervals\. As a result, different runs of the same query might return slightly different times\. Also, query segments that run in less than one second might not be recorded\. 
 
@@ -11,9 +11,9 @@ To determine the level at which the row reports metrics, examine the `segment` a
 + If `segment` is not `-1` and `step_type` is `-1`, then the row reports metrics at the segment level\. 
 + If both `segment` and `step_type` are not `-1`, then the row reports metrics at the step level\. 
 
-The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view and the [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view aggregate the data in this table and present the information in a more accessible form\.
+The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view and the [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view aggregate the data in this view and present the information in a more accessible form\.
 
-This table is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
+This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_QUERY_METRICS-table-rows2"></a>
 

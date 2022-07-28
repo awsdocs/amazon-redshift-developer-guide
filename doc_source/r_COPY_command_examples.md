@@ -10,7 +10,7 @@ These examples contain line breaks for readability\. Do not include line breaks 
 + [Example: COPY from Amazon S3 using a manifest](#copy-command-examples-manifest)
 + [Load LISTING from a pipe\-delimited file \(default delimiter\)](#r_COPY_command_examples-load-listing-from-a-pipe-delimited-file-default-delimiter)
 + [Load LISTING using columnar data in Parquet format](#r_COPY_command_examples-load-listing-from-parquet)
-+ [Load LISTING using temporary credentials](#sub-example-load-favorite-movies)
++ [Load LISTING using columnar data in ORC format](#r_COPY_command_examples-load-listing-from-orc)
 + [Load EVENT with options](#r_COPY_command_examples-load-event-with-options)
 + [Load VENUE from a fixed\-width data file](#r_COPY_command_examples-load-venue-from-a-fixed-width-data-file)
 + [Load CATEGORY from a CSV file](#load-from-csv)
@@ -22,6 +22,7 @@ These examples contain line breaks for readability\. Do not include line breaks 
 + [Copy from JSON examples](#r_COPY_command_examples-copy-from-json)
 + [Copy from Avro examples](#r_COPY_command_examples-copy-from-avro)
 + [Preparing files for COPY with the ESCAPE option](#r_COPY_preparing_data)
++ [Loading a shapefile into Amazon Redshift](#copy-example-spatial-copy-shapefile)
 
 ## Load FAVORITEMOVIES from an DynamoDB table<a name="r_COPY_command_examples-load-favoritemovies-from-an-amazon-dynamodb-table"></a>
 
@@ -75,7 +76,7 @@ from 's3://mybucket/custdata'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
-If only two of the files exist because of an error, COPY loads only those two files and finish successfully, resulting in an incomplete data load\. If the bucket also contains an unwanted file that happens to use the same prefix, such as a file named `custdata.backup` for example, COPY loads that file as well, resulting in unwanted data being loaded\.
+If only two of the files exist because of an error, COPY loads only those two files and finishes successfully, resulting in an incomplete data load\. If the bucket also contains an unwanted file that happens to use the same prefix, such as a file named `custdata.backup` for example, COPY loads that file as well, resulting in unwanted data being loaded\.
 
 To ensure that all of the required files are loaded and to prevent unwanted files from being loaded, you can use a manifest file\. The manifest is a JSON\-formatted text file that lists the files to be processed by the COPY command\. For example, the following manifest loads the three files in the previous example\.
 
@@ -129,6 +130,7 @@ The following example uses a manifest named `cust.manifest`\.
 copy customer
 from 's3://mybucket/cust.manifest' 
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+format as orc
 manifest;
 ```
 
@@ -138,9 +140,9 @@ You can use a manifest to load files from different buckets or files that don't 
 {
   "entries": [
     {"url":"s3://mybucket/2013-10-04-custdata.txt","mandatory":true},
-    {"url":"s3://mybucket/2013-10-05-custdata.txt”,"mandatory":true},
-    {"url":"s3://mybucket/2013-10-06-custdata.txt”,"mandatory":true},
-    {"url":"s3://mybucket/2013-10-07-custdata.txt”,"mandatory":true}
+    {"url":"s3://mybucket/2013-10-05-custdata.txt","mandatory":true},
+    {"url":"s3://mybucket/2013-10-06-custdata.txt","mandatory":true},
+    {"url":"s3://mybucket/2013-10-07-custdata.txt","mandatory":true}
   ]
 }
 ```
@@ -178,16 +180,15 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format as parquet;
 ```
 
-## Load LISTING using temporary credentials<a name="sub-example-load-favorite-movies"></a>
+## Load LISTING using columnar data in ORC format<a name="r_COPY_command_examples-load-listing-from-orc"></a>
 
-The following example uses the SESSION\_TOKEN parameter to specify temporary session credentials:
+The following example loads data from a folder on Amazon S3 named `orc`\. 
 
 ```
-copy listing
-from 's3://mybucket/data/listings_pipe.txt'
-access_key_id '<access-key-id>'
-secret_access_key '<secret-access-key'
-session_token '<temporary-token>';
+copy listing 
+from 's3://mybucket/data/listings/orc/' 
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+format as orc;
 ```
 
 ## Load EVENT with options<a name="r_COPY_command_examples-load-event-with-options"></a>
@@ -244,7 +245,7 @@ The following example shows the contents of a text file with the field values se
 15,Concerts,Classical,All symphony, concerto, and choir concerts
 ```
 
-If you load the file using the DELIMITER parameter to specify comma\-delimited input, the COPY command fails because some input fields contain commas\. You can avoid that problem by using the CSV parameter and enclosing the fields that contain commas in quote characters\. If the quote character appears within a quoted string, you need to escape it by doubling the quote character\. The default quote character is a double quotation mark, so you need to escape each double quotation mark with an additional double quotation mark\. Your new input file looks something like this\. 
+If you load the file using the DELIMITER parameter to specify comma\-delimited input, the COPY command fails because some input fields contain commas\. You can avoid that problem by using the CSV parameter and enclosing the fields that contain commas in quotation mark characters\. If the quotation mark character appears within a quoted string, you need to escape it by doubling the quotation mark character\. The default quotation mark character is a double quotation mark, so you need to escape each double quotation mark with an additional double quotation mark\. Your new input file looks something like this\. 
 
 ```
 12,Shows,Musicals,Musical theatre
@@ -262,7 +263,7 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 csv;
 ```
 
-Alternatively, to avoid the need to escape the double quotation marks in your input, you can specify a different quote character by using the QUOTE AS parameter\. For example, the following version of `category_csv.txt` uses '`%`' as the quote character:
+Alternatively, to avoid the need to escape the double quotation marks in your input, you can specify a different quotation mark character by using the QUOTE AS parameter\. For example, the following version of `category_csv.txt` uses '`%`' as the quotation mark character\.
 
 ```
 12,Shows,Musicals,Musical theatre
@@ -481,12 +482,13 @@ In the following examples, you load the CATEGORY table with the following data\.
 
 **Topics**
 + [Load from JSON data using the 'auto' option](#copy-from-json-examples-using-auto)
++ [Load from JSON data using the 'auto ignorecase' option](#copy-from-json-examples-using-auto-ignorecase)
 + [Load from JSON data using a JSONPaths file](#copy-from-json-examples-using-jsonpaths)
 + [Load from JSON arrays using a JSONPaths file](#copy-from-json-examples-using-jsonpaths-arrays)
 
 ### Load from JSON data using the 'auto' option<a name="copy-from-json-examples-using-auto"></a>
 
-To load from JSON data using the `'auto'` argument, the JSON data must consist of a set of objects\. The key names must match the column names, but in this case, order doesn't matter\. The following shows the contents of a file named `category_object_auto.json`\.
+To load from JSON data using the `'auto'` option, the JSON data must consist of a set of objects\. The key names must match the column names, but the order doesn't matter\. The following shows the contents of a file named `category_object_auto.json`\.
 
 ```
 {
@@ -521,7 +523,7 @@ To load from JSON data using the `'auto'` argument, the JSON data must consist o
 }
 ```
 
-To load from the JSON data file in the previous example, execute the following COPY command\.
+To load from the JSON data file in the previous example, run the following COPY command\.
 
 ```
 copy category
@@ -530,9 +532,55 @@ iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 json 'auto';
 ```
 
+### Load from JSON data using the 'auto ignorecase' option<a name="copy-from-json-examples-using-auto-ignorecase"></a>
+
+To load from JSON data using the `'auto ignorecase'` option, the JSON data must consist of a set of objects\. The case of the key names doesn't have to match the column names and the order doesn't matter\. The following shows the contents of a file named `category_object_auto-ignorecase.json`\.
+
+```
+{
+    "CatDesc": "Major League Baseball",
+    "CatID": 1,
+    "CatGroup": "Sports",
+    "CatName": "MLB"
+}
+{
+    "CatGroup": "Sports",
+    "CatID": 2,
+    "CatName": "NHL",
+    "CatDesc": "National Hockey League"
+}{
+    "CatID": 3,
+    "CatName": "NFL",
+    "CatGroup": "Sports",
+    "CatDesc": "National Football League"
+}
+{
+    "bogus": "Bogus Sports LLC",
+    "CatID": 4,
+    "CatGroup": "Sports",
+    "CatName": "NBA",
+    "CatDesc": "National Basketball Association"
+}
+{
+    "CatID": 5,
+    "CatGroup": "Shows",
+    "CatName": "Musicals",
+    "CatDesc": "All symphony, concerto, and choir concerts"
+}
+```
+
+To load from the JSON data file in the previous example, run the following COPY command\.
+
+```
+copy category
+from 's3://mybucket/category_object_auto ignorecase.json'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole' 
+json 'auto ignorecase';
+```
+
 ### Load from JSON data using a JSONPaths file<a name="copy-from-json-examples-using-jsonpaths"></a>
 
-If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. Again, the order doesn't matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose that you have the following data file, named `category_object_paths.json`\.
+If the JSON data objects don't correspond directly to column names, you can use a JSONPaths file to map the JSON elements to columns\. The order doesn't matter in the JSON source data, but the order of the JSONPaths file expressions must match the column order\. Suppose that you have the following data file, named `category_object_paths.json`\.
 
 ```
 {
@@ -580,7 +628,7 @@ The following JSONPaths file, named `category_jsonpath.json`, maps the source da
 }
 ```
 
-To load from the JSON data file in the previous example, execute the following COPY command\.
+To load from the JSON data file in the previous example, run the following COPY command\.
 
 ```
 copy category
@@ -614,7 +662,7 @@ The following JSONPaths file, named `category_array_jsonpath.json`, maps the sou
 }
 ```
 
-To load from the JSON data file in the previous example, execute the following COPY command\.
+To load from the JSON data file in the previous example, run the following COPY command\.
 
 ```
 copy category
@@ -631,11 +679,12 @@ In the following examples, you load the CATEGORY table with the following data\.
 
 **Topics**
 + [Load from Avro data using the 'auto' option](#copy-from-avro-examples-using-auto)
++ [Load from Avro data using the 'auto ignorecase' option](#copy-from-avro-examples-using-auto-ignorecase)
 + [Load from Avro data using a JSONPaths file](#copy-from-avro-examples-using-avropaths)
 
 ### Load from Avro data using the 'auto' option<a name="copy-from-avro-examples-using-auto"></a>
 
-To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. However, when using the `'auto'` argument, order doesn't matter\. The following shows the schema for a file named `category_auto.avro`\.
+To load from Avro data using the `'auto'` argument, field names in the Avro schema must match the column names\. When using the `'auto'` argument, order doesn't matter\. The following shows the schema for a file named `category_auto.avro`\.
 
 ```
 {
@@ -678,13 +727,67 @@ The data in an Avro file is in binary format, so it isn't human\-readable\. The 
 }
 ```
 
-To load from the Avro data file in the previous example, execute the following COPY command\.
+To load from the Avro data file in the previous example, run the following COPY command\.
 
 ```
 copy category
 from 's3://mybucket/category_auto.avro'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 format as avro 'auto';
+```
+
+### Load from Avro data using the 'auto ignorecase' option<a name="copy-from-avro-examples-using-auto-ignorecase"></a>
+
+To load from Avro data using the `'auto ignorecase'` argument, the case of the field names in the Avro schema does not have to match the case of column names\. When using the `'auto ignorecase'` argument, order doesn't matter\. The following shows the schema for a file named `category_auto-ignorecase.avro`\.
+
+```
+{
+    "name": "category",
+    "type": "record",
+    "fields": [
+        {"name": "CatID", "type": "int"},
+        {"name": "CatDesc", "type": "string"},
+        {"name": "CatName", "type": "string"},
+        {"name": "CatGroup", "type": "string"},
+}
+```
+
+The data in an Avro file is in binary format, so it isn't human\-readable\. The following shows a JSON representation of the data in the `category_auto-ignorecase.avro` file\. 
+
+```
+{
+   "CatID": 1,
+   "CatDesc": "Major League Baseball",
+   "CatName": "MLB",
+   "CatGroup": "Sports"
+}
+{
+   "CatID": 2,
+   "CatDesc": "National Hockey League",
+   "CatName": "NHL",
+   "CatGroup": "Sports"
+}
+{
+   "CatID": 3,
+   "CatDesc": "National Basketball Association",
+   "CatName": "NBA",
+   "CatGroup": "Sports"
+}
+{
+   "CatID": 4,
+   "CatDesc": "All symphony, concerto, and choir concerts",
+   "CatName": "Classical",
+   "CatGroup": "Concerts"
+}
+```
+
+To load from the Avro data file in the previous example, run the following COPY command\.
+
+```
+copy category
+from 's3://mybucket/category_auto-ignorecase.avro'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+format as avro 'auto ignorecase';
 ```
 
 ### Load from Avro data using a JSONPaths file<a name="copy-from-avro-examples-using-avropaths"></a>
@@ -720,7 +823,7 @@ The following JSONPaths file, named `category_path.avropath`, maps the source da
 }
 ```
 
-To load from the Avro data file in the previous example, execute the following COPY command\.
+To load from the Avro data file in the previous example, run the following COPY command\.
 
 ```
 copy category
@@ -735,7 +838,7 @@ The following example describes how you might prepare data to "escape" newline c
 
 For example, consider a file or a column in an external table that you want to copy into an Amazon Redshift table\. If the file or column contains XML\-formatted content or similar data, you need to make sure that all of the newline characters \(\\n\) that are part of the content are escaped with the backslash character \(\\\)\. 
 
-A good thing about a file or table containing embedded newlines characters is that it provides a relatively easy pattern to match\. Each embedded newline character most likely always follows a `>` character with potentially some white space characters \(`' '` or tab\) in between, as you can see in the following example of a text file named `nlTest1.txt`\. 
+A file or table containing embedded newlines characters provides a relatively easy pattern to match\. Each embedded newline character most likely always follows a `>` character with potentially some white space characters \(`' '` or tab\) in between, as you can see in the following example of a text file named `nlTest1.txt`\. 
 
 ```
 $ cat nlTest1.txt
@@ -795,3 +898,186 @@ SELECT c1, REPLACE(c2, \n',\\n' ) as c2 from my_table_with_xml
 ```
 
 In addition, many database export and extract, transform, load \(ETL\) tools that routinely process large amounts of data provide options to specify escape and delimiter characters\. 
+
+## Loading a shapefile into Amazon Redshift<a name="copy-example-spatial-copy-shapefile"></a>
+
+The following examples demonstrate how to load an Esri shapefile using COPY\. For more information about loading shapefiles, see [Loading a shapefile into Amazon Redshift](spatial-copy-shapefile.md)\. 
+
+### Loading a shapefile<a name="copy-example-spatial-copy-shapefile-loading-copy"></a>
+
+The following steps show how to ingest OpenStreetMap data from Amazon S3 using the COPY command\. This example assumes that the Norway shapefile archive from [the download site of Geofabrik](https://download.geofabrik.de/europe.html) has been uploaded to a private Amazon S3 bucket in your AWS Region\. The `.shp`, `.shx`, and `.dbf` files must share the same Amazon S3 prefix and file name\.
+
+#### Ingesting data without simplification<a name="spatial-copy-shapefile-loading-copy-fits"></a>
+
+The following commands create tables and ingest data that can fit in the maximum geometry size without any simplification\. Open the `gis_osm_natural_free_1.shp` in your preferred GIS software and inspect the columns in this layer\.  By default, either IDENTITY or GEOMETRY columns are first\. When a GEOMETRY column is first, you can create the table as shown following\.
+
+```
+CREATE TABLE norway_natural (
+   wkb_geometry GEOMETRY,
+   osm_id BIGINT,
+   code INT,
+   fclass VARCHAR,
+   name VARCHAR);
+```
+
+Or, when an IDENTITY column is first, you can create the table as shown following\.
+
+```
+CREATE TABLE norway_natural_with_id (
+   fid INT IDENTITY(1,1),
+   wkb_geometry GEOMETRY,
+   osm_id BIGINT,
+   code INT,
+   fclass VARCHAR,
+   name VARCHAR);
+```
+
+Now you can ingest the data using COPY\.
+
+```
+COPY norway_natural FROM 's3://bucket_name/shapefiles/norway/gis_osm_natural_free_1.shp'
+FORMAT SHAPEFILE
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+INFO: Load into table 'norway_natural' completed, 83891 record(s) loaded successfully
+```
+
+Or you can ingest the data as shown following\. 
+
+```
+COPY norway_natural_with_id FROM 's3://bucket_name/shapefiles/norway/gis_osm_natural_free_1.shp'
+FORMAT SHAPEFILE
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+INFO: Load into table 'norway_natural_with_id' completed, 83891 record(s) loaded successfully.
+```
+
+#### Ingesting data with simplification<a name="spatial-copy-shapefile-loading-copy-no-fit"></a>
+
+The following commands create a table and try to ingest data that can't fit in the maximum geometry size without any simplification\. Inspect the `gis_osm_water_a_free_1.shp` shapefile and create the appropriate table as shown following\.
+
+```
+CREATE TABLE norway_water (
+   wkb_geometry GEOMETRY,
+   osm_id BIGINT,
+   code INT,
+   fclass VARCHAR,
+   name VARCHAR);
+```
+
+When the COPY command runs, it results in an error\.
+
+```
+COPY norway_water FROM 's3://bucket_name/shapefiles/norway/gis_osm_water_a_free_1.shp'
+FORMAT SHAPEFILE
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+ERROR:  Load into table 'norway_water' failed.  Check 'stl_load_errors' system table for details.
+```
+
+Querying `STL_LOAD_ERRORS` shows that the geometry is too large\. 
+
+```
+SELECT line_number, btrim(colname), btrim(err_reason) FROM stl_load_errors WHERE query = pg_last_copy_id();
+ line_number |    btrim     |                                 btrim
+-------------+--------------+-----------------------------------------------------------------------
+     1184705 | wkb_geometry | Geometry size: 1513736 is larger than maximum supported size: 1048447
+```
+
+To overcome this, the `SIMPLIFY AUTO` parameter is added to the COPY command to simplify geometries\.
+
+```
+COPY norway_water FROM 's3://bucket_name/shapefiles/norway/gis_osm_water_a_free_1.shp'
+FORMAT SHAPEFILE
+SIMPLIFY AUTO
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+
+INFO:  Load into table 'norway_water' completed, 1989196 record(s) loaded successfully.
+```
+
+To view the rows and geometries that were simplified, query `SVL_SPATIAL_SIMPLIFY`\.
+
+```
+SELECT * FROM svl_spatial_simplify WHERE query = pg_last_copy_id();
+ query | line_number | maximum_tolerance | initial_size | simplified | final_size |   final_tolerance
+-------+-------------+-------------------+--------------+------------+------------+----------------------
+    20 |     1184704 |                -1 |      1513736 | t          |    1008808 |   1.276386653895e-05
+    20 |     1664115 |                -1 |      1233456 | t          |    1023584 | 6.11707814796635e-06
+```
+
+Using SIMPLIFY AUTO *max\_tolerance* with the tolerance lower than the automatically calculated ones probably results in an ingestion error\. In this case, use MAXERROR to ignore errors\.
+
+```
+COPY norway_water FROM 's3://bucket_name/shapefiles/norway/gis_osm_water_a_free_1.shp'
+FORMAT SHAPEFILE
+SIMPLIFY AUTO 1.1E-05
+MAXERROR 2
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+
+INFO:  Load into table 'norway_water' completed, 1989195 record(s) loaded successfully.
+INFO:  Load into table 'norway_water' completed, 1 record(s) could not be loaded.  Check 'stl_load_errors' system table for details.
+```
+
+Query `SVL_SPATIAL_SIMPLIFY` again to identify the record that COPY didn't manage to load\.
+
+```
+SELECT * FROM svl_spatial_simplify WHERE query = pg_last_copy_id();
+ query | line_number | maximum_tolerance | initial_size | simplified | final_size | final_tolerance
+-------+-------------+-------------------+--------------+------------+------------+-----------------
+    29 |     1184704 |           1.1e-05 |      1513736 | f          |          0 |               0
+    29 |     1664115 |           1.1e-05 |      1233456 | t          |     794432 |         1.1e-05
+```
+
+In this example, the first record didn’t manage to fit, so the `simplified` column is showing false\. The second record was loaded within the given tolerance\. However, the final size is larger than using the automatically calculated tolerance without specifying the maximum tolerance\. 
+
+### Loading from a compressed shapefile<a name="copy-example-spatial-copy-shapefile-compressed"></a>
+
+Amazon Redshift COPY supports ingesting data from a compressed shapefile\. All shapefile components must have the same Amazon S3 prefix and the same compression suffix\. As an example, suppose that you want to load the data from the previous example\. In this case, the files `gis_osm_water_a_free_1.shp.gz`, `gis_osm_water_a_free_1.dbf.gz`, and `gis_osm_water_a_free_1.shx.gz` must share the same Amazon S3 directory\. The COPY command requires the GZIP option, and the FROM clause must specify the correct compressed file, as shown following\.
+
+```
+COPY norway_natural FROM 's3://bucket_name/shapefiles/norway/compressed/gis_osm_natural_free_1.shp.gz'
+FORMAT SHAPEFILE
+GZIP
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+INFO:  Load into table 'norway_natural' completed, 83891 record(s) loaded successfully.
+```
+
+### Loading data into a table with a different column order<a name="copy-example-spatial-copy-shapefile-column-order"></a>
+
+If you have a table that doesn't have `GEOMETRY` as the first column, you can use column mapping to map columns to the target table\. For example, create a table with `osm_id` specified as a first column\.
+
+```
+CREATE TABLE norway_natural_order (
+   osm_id BIGINT,
+   wkb_geometry GEOMETRY,
+   code INT,
+   fclass VARCHAR,
+   name VARCHAR);
+```
+
+Then ingest a shapefile using column mapping\.
+
+```
+COPY norway_natural_order(wkb_geometry, osm_id, code, fclass, name) 
+FROM 's3://bucket_name/shapefiles/norway/gis_osm_natural_free_1.shp'
+FORMAT SHAPEFILE
+CREDENTIALS 'aws_iam_role=arn:aws:iam::123456789012:role/MyRoleName';
+INFO:  Load into table 'norway_natural_order' completed, 83891 record(s) loaded successfully.
+```
+
+### Loading data into a table with a geography column<a name="copy-example-spatial-copy-shapefile-geography"></a>
+
+If you have a table that has a `GEOGRAPHY` column, you first ingest into a `GEOMETRY` column and then cast the objects to `GEOGRAPHY` objects\. For example, after you copy your shapefile into a `GEOMETRY` column, alter the table to add a column of the `GEOGRAPHY` data type\.
+
+```
+ALTER TABLE norway_natural ADD COLUMN wkb_geography GEOGRAPHY;
+```
+
+Then convert geometries to geographies\.
+
+```
+UPDATE norway_natural SET wkb_geography = wkb_geometry::geography;
+```
+
+Optionally, you can drop the `GEOMETRY` column\.
+
+```
+ALTER TABLE norway_natural DROP COLUMN wkb_geometry;
+```

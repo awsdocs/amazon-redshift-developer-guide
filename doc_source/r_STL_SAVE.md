@@ -6,13 +6,13 @@ A query consists of multiple segments, and each segment consists of one or more 
 
 STL\_SAVE is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
-## Table columns<a name="w13aac51c11c91b9"></a>
+## Table columns<a name="w131aac64c13c11c95b9"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_SAVE.html)
 
 ## Sample queries<a name="r_STL_SAVE-sample-queries"></a>
 
-The following query shows which save steps in the most recent query were executed on each slice\. 
+The following query shows which save steps in the most recent query were performed on each slice\. 
 
 ```
 select query, slice, segment, step, tasknum, rows,  tbl  

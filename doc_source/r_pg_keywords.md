@@ -1,6 +1,6 @@
 # Reserved words<a name="r_pg_keywords"></a>
 
-The following is a list of Amazon Redshift reserved words\. You can use the reserved words with delimited identifiers \(double quotes\)\.
+The following is a list of Amazon Redshift reserved words\. You can use the reserved words with delimited identifiers \(double quotation marks\)\.
 
 For more information, see [Names and identifiers](r_names.md)\. 
 
@@ -93,7 +93,7 @@ LUNS
 LZO
 LZOP
 MINUS
-MOSTLY13
+MOSTLY16
 MOSTLY32
 MOSTLY8
 NATURAL
@@ -118,6 +118,7 @@ PARALLEL
 PARTITION
 PERCENT
 PERMISSIONS
+PIVOT
 PLACING
 PRIMARY
 RAW
@@ -150,6 +151,8 @@ TRUE
 TRUNCATECOLUMNS
 UNION
 UNIQUE
+UNNEST
+UNPIVOT
 USER
 USING
 VERBOSE
