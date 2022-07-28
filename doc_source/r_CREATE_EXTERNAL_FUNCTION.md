@@ -296,12 +296,15 @@ def lambda_handler(event, context):
             
         # Check integer overflow.
         if (mul >= 9223372036854775807 or mul <= -9223372036854775808):
-            success = Falsebreakelse:
+            success = False
+            break
+        else:
             resp[i] = mul
     ret = dict()
     ret['success'] = success
     if not success:
-        ret['error_msg'] = "Integer multiplication overflow"else:
+        ret['error_msg'] = "Integer multiplication overflow"
+    else:
         ret['results'] = resp
     ret_json = json.dumps(ret)
     
