@@ -101,5 +101,6 @@ You can set autorefresh for materialized views using CREATE MATERIALIZED VIEW\. 
 Consider the following when you refresh materialized views:
 + You can still refresh a materialized view explicitly using REFRESH MATERIALIZED VIEW command even if you haven't enabled autorefresh for the materialized view\.
 + Amazon Redshift doesn't autorefresh materialized views defined on external tables\.
++ Auto-refresh is not supported for materialized views defined on other materialized views.
 + For refresh status, you can check SVL\_MV\_REFRESH\_STATUS, which records queries that were user\-initiated or autorefreshed\. 
 + To run REFRESH on recompute\-only materialized views, make sure that you have the CREATE permission on schemas\. For more information, see [GRANT](r_GRANT.md)\.
