@@ -53,7 +53,6 @@ When using materialized views in Amazon Redshift, follow these usage notes for d
 You can't define a materialized view that references or includes any of the following:
 + Standard views, or system tables and views\.
 + Temporary tables\.
-+ User\-defined functions\.
 + The ORDER BY, LIMIT, or OFFSET clause\.
 + Late binding references to base tables\. In other words, any base tables or related columns referenced in the defining SQL query of the materialized view must exist and must be valid\. 
 + Leader node\-only functions: CURRENT\_SCHEMA, CURRENT\_SCHEMAS, HAS\_DATABASE\_PRIVILEGE, HAS\_SCHEMA\_PRIVILEGE, HAS\_TABLE\_PRIVILEGE\.
