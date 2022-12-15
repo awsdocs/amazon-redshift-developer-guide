@@ -38,7 +38,7 @@ Sample output\.
      101 |   760705 |         852337 | 1073832321 | running | tpcds_1t      | 2022-02-15 19:03:19.67849 | 2022-02-15 19:03:19.739811 | f                |        61321 |          0 |              0
 ```
 
-The following query returns the query start time, end time, queue time, elapsed time and other metadata for a specific query\.
+The following query returns the query start time, end time, queue time, elapsed time, and other metadata for a specific query\.
 
 ```
 SELECT user_id,

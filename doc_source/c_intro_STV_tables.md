@@ -6,6 +6,7 @@ STV tables are virtual system tables that contain snapshots of the current syste
 + [STV\_ACTIVE\_CURSORS](r_STV_ACTIVE_CURSORS.md)
 + [STV\_BLOCKLIST](r_STV_BLOCKLIST.md)
 + [STV\_CURSOR\_CONFIGURATION](r_STV_CURSOR_CONFIGURATION.md)
++ [STV\_DB\_ISOLATION\_LEVEL](r_STV_DB_ISOLATION_LEVEL.md)
 + [STV\_EXEC\_STATE](r_STV_EXEC_STATE.md)
 + [STV\_INFLIGHT](r_STV_INFLIGHT.md)
 + [STV\_LOAD\_STATE](r_STV_LOAD_STATE.md)

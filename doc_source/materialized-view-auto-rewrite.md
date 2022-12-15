@@ -46,7 +46,7 @@ Following are limitations for using automatic query rewriting of materialized vi
   + Subqueries
   + Left, right, or full outer joins
   + Set operations 
-  + Any aggregate functions, except SUM, COUNT, MIN, and MAX\. \(These are the only aggregate functions that work with automatic query rewriting\.\)
+  + Any aggregate functions, except SUM, COUNT, MIN, MAX, and AVG\. \(These are the only aggregate functions that work with automatic query rewriting\.\)
   + Any aggregate functions with DISTINCT
   + Any window functions
   + SELECT DISTINCT or HAVING clauses
@@ -57,6 +57,6 @@ Following are limitations for using automatic query rewriting of materialized vi
   + SELECT INTO statements
   + Queries on catalogs or system tables
   + Queries with outer joins or a SELECT DISTINCT clause
-+ If a query isn't automatically rewritten, check whether you have the SELECT privilege on the specified materialized view and the [mv\_enable\_aqmv\_for\_session](r_mv_enable_aqmv_for_session.md) option is set to TRUE\. 
++ If a query isn't automatically rewritten, check whether you have the SELECT permission on the specified materialized view and the [mv\_enable\_aqmv\_for\_session](r_mv_enable_aqmv_for_session.md) option is set to TRUE\. 
 
   You can also check if your materialized views are eligible for automatic rewriting of queries by inspecting STV\_MV\_INFO\. For more information, see [STV\_MV\_INFO](r_STV_MV_INFO.md)\.

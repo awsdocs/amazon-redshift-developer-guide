@@ -22,20 +22,20 @@ These suggestions give you a starting point for troubleshooting\. You can also r
 Your query connection can fail for the following reasons; we suggest the following troubleshooting approaches\.
 
 **Client cannot connect to server**  
-If you are using SSL or server certificates, first remove this complexity while you troubleshoot the connection issue\. Then add SSL or server certificates back when you have found a solution\. For more information, go to [Configure Security Options for Connections](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-ssl-support.html) in the *Amazon Redshift Cluster Management Guide\.*
+If you are using SSL or server certificates, first remove this complexity while you troubleshoot the connection issue\. Then add SSL or server certificates back when you have found a solution\. For more information, go to [Configure Security Options for Connections](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-ssl-support.html) in the *Amazon Redshift Management Guide\.*
 
 **Connection is refused**  
-Generally, when you receive an error message indicating that there is a failure to establish a connection, it means that there is an issue with the permission to access the cluster\. For more information, go to [The connection is refused or fails](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-refusal-failure-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Generally, when you receive an error message indicating that there is a failure to establish a connection, it means that there is an issue with the permission to access the cluster\. For more information, go to [The connection is refused or fails](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-refusal-failure-issues.html) in the *Amazon Redshift Management Guide\.* 
 
 ## Query hangs<a name="queries-troubleshooting-query-hangs"></a>
 
 Your query can hang, or stop responding, for the following reasons; we suggest the following troubleshooting approaches\.
 
 **Connection to the database is dropped**  
-Reduce the size of maximum transmission unit \(MTU\)\. The MTU size determines the maximum size, in bytes, of a packet that can be transferred in one Ethernet frame over your network connection\. For more information, go to [The connection to the database is dropped](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Reduce the size of maximum transmission unit \(MTU\)\. The MTU size determines the maximum size, in bytes, of a packet that can be transferred in one Ethernet frame over your network connection\. For more information, go to [The connection to the database is dropped](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Management Guide\.* 
 
 **Connection to the database times out**  
-Your client connection to the database appears to hang or time out when running long queries, such as a COPY command\. In this case, you might observe that the Amazon Redshift console displays that the query has completed, but the client tool itself still appears to be running the query\. The results of the query might be missing or incomplete depending on when the connection stopped\. This effect happens when idle connections are terminated by an intermediate network component\. For more information, go to [Firewall Timeout Issue](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html) in the *Amazon Redshift Cluster Management Guide\.* 
+Your client connection to the database appears to hang or time out when running long queries, such as a COPY command\. In this case, you might observe that the Amazon Redshift console displays that the query has completed, but the client tool itself still appears to be running the query\. The results of the query might be missing or incomplete depending on when the connection stopped\. This effect happens when idle connections are terminated by an intermediate network component\. For more information, go to [Firewall Timeout Issue](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html) in the *Amazon Redshift Management Guide\.* 
 
 **Client\-side out\-of\-memory error occurs with ODBC**  
 If your client application uses an ODBC connection and your query creates a result set that is too large to fit in memory, you can stream the result set to your client application by using a cursor\. For more information, see [DECLARE](declare.md) and [Performance considerations when using cursors](declare.md#declare-performance)\.
@@ -120,4 +120,4 @@ For the best performance, set the fetch size to the highest value that does not 
 **Note**  
 If you need to extract large datasets, we recommend using an [UNLOAD](r_UNLOAD.md) statement to transfer the data to Amazon S3\. When you use UNLOAD, the compute nodes work in parallel to speed up the transfer of data\.
 
-For more information about setting the JDBC fetch size parameter, go to [Getting results based on a cursor](https://jdbc.postgresql.org/documentation/head/query.html#query-with-cursor) in the PostgreSQL documentation\.
+For more information about setting the JDBC fetch size parameter, go to [Getting results based on a cursor](https://jdbc.postgresql.org/documentation/query/#getting-results-based-on-a-cursor) in the PostgreSQL documentation\.

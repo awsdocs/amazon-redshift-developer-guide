@@ -64,6 +64,8 @@ The following lists the full set of spatial functions supported by Amazon Redshi
 + [ST\_GeometryType](ST_GeometryType-function.md)
 + [ST\_GeomFromEWKB](ST_GeomFromEWKB-function.md)
 + [ST\_GeomFromEWKT](ST_GeomFromEWKT-function.md)
++ [ST\_GeomFromGeoJSON](ST_GeomFromGeoJSON-function.md)
++ [ST\_GeomFromGeoHash](ST_GeomFromGeoHash-function.md)
 + [ST\_GeomFromText](ST_GeomFromText-function.md)
 + [ST\_GeomFromWKB](ST_GeomFromWKB-function.md)
 + [ST\_InteriorRingN](ST_InteriorRingN-function.md)

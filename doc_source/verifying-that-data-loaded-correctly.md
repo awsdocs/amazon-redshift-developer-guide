@@ -9,7 +9,7 @@ select query, trim(filename) as filename, curtime, status
 from stl_load_commits
 where filename like '%tickit%' order by query;
 
- query |           filename        |          curtime           | status
+ query |         filename          |          curtime           | status
 -------+---------------------------+----------------------------+--------
  22475 | tickit/allusers_pipe.txt  | 2013-02-08 20:58:23.274186 |      1
  22478 | tickit/venue_pipe.txt     | 2013-02-08 20:58:25.070604 |      1

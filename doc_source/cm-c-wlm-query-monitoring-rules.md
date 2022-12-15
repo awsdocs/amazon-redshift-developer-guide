@@ -17,11 +17,11 @@ You create query monitoring rules as part of your WLM configuration, which you d
 You can create rules using the AWS Management Console or programmatically using JSON\. 
 
 **Note**  
-If you choose to create rules programmatically, we strongly recommend using the console to generate the JSON that you include in the parameter group definition\. For more information, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Configuring Parameter Values Using the AWS CLI](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#configure-parameters-using-the-cli) in the *Amazon Redshift Cluster Management Guide*\. 
+If you choose to create rules programmatically, we strongly recommend using the console to generate the JSON that you include in the parameter group definition\. For more information, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Configuring Parameter Values Using the AWS CLI](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#configure-parameters-using-the-cli) in the *Amazon Redshift Management Guide*\. 
 
 To define a query monitoring rule, you specify the following elements:
 + A rule name – Rule names must be unique within the WLM configuration\. Rule names can be up to 32 alphanumeric characters or underscores, and can't contain spaces or quotation marks\. You can have up to 25 rules per queue, and the total limit for all queues is 25 rules\.
-+ One or more predicates – You can have up to three predicates per rule\. If all the predicates for any rule are met, the associated action is triggered\. A predicate is defined by a metric name, an operator \( =, <, or > \), and a value\. An example is `query_cpu_time > 100000`\. For a list of metrics and examples of values for different metrics, see [Query monitoring metrics](#cm-c-wlm-query-monitoring-metrics) following in this section\. 
++ One or more predicates – You can have up to three predicates per rule\. If all the predicates for any rule are met, the associated action is triggered\. A predicate is defined by a metric name, an operator \( =, <, or > \), and a value\. An example is `query_cpu_time > 100000`\. For a list of metrics and examples of values for different metrics, see [Query monitoring metrics for Amazon Redshift](#cm-c-wlm-query-monitoring-metrics) following in this section\. 
 + An action – If more than one rule is triggered, WLM chooses the rule with the most severe action\. Possible actions, in ascending order of severity, are:
   + Log – Record information about the query in the STL\_WLM\_RULE\_ACTION system table\. Use the Log action when you want to only write a log record\. WLM creates at most one log per query, per rule\. Following a log action, other rules remain in force and WLM continues to monitor the query\. 
   + Hop \(only available with manual WLM\) – Log the action and hop the query to the next matching queue\. If there isn't another matching queue, the query is canceled\. QMR hops only [CREATE TABLE AS](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_AS.html) \(CTAS\) statements and read\-only queries, such as SELECT statements\. For more information, see [WLM query queue hopping](wlm-queue-hopping.md)\. 
@@ -53,16 +53,16 @@ But we recommend instead that you define an equivalent query monitoring rule tha
 ]
 ```
 
-For steps to create or modify a query monitoring rule, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Properties in the wlm\_json\_configuration Parameter](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html#wlm-json-config-properties) in the *Amazon Redshift Cluster Management Guide*\.
+For steps to create or modify a query monitoring rule, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Properties in the wlm\_json\_configuration Parameter](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html#wlm-json-config-properties) in the *Amazon Redshift Management Guide*\.
 
 You can find more information about query monitoring rules in the following topics: 
-+  [Query monitoring metrics](#cm-c-wlm-query-monitoring-metrics) 
++  [Query monitoring metrics for Amazon Redshift](#cm-c-wlm-query-monitoring-metrics) 
 +  [Query monitoring rules templates](#cm-c-wlm-query-monitoring-templates) 
 +  [Creating a Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-parameter-groups-console.html#parameter-group-modify-qmr-console) 
 +  [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) 
 +  [System tables and views for query monitoring rules](#cm-c-wlm-qmr-tables-and-views) 
 
-## Query monitoring metrics<a name="cm-c-wlm-query-monitoring-metrics"></a>
+## Query monitoring metrics for Amazon Redshift<a name="cm-c-wlm-query-monitoring-metrics"></a>
 
 The following table describes the metrics used in query monitoring rules\. \(These metrics are distinct from the metrics stored in the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) and [STL\_QUERY\_METRICS](r_STL_QUERY_METRICS.md) system tables\.\) 
 
@@ -75,7 +75,22 @@ The [WLM timeout](cm-c-defining-query-queues.md#wlm-timeout) parameter is distin
 
 **Note**  
 The hop action is not supported with the `query_queue_time` predicate\. That is, rules defined to hop when a `query_queue_time` predicate is met are ignored\. 
-Short segment execution times can result in sampling errors with some metrics, such as `io_skew` and `query_cpu_percent`\. To avoid or reduce sampling errors, include segment execution time in your rules\. A good starting point is `segment_execution_time > 10`\.
+Short segment execution times can result in sampling errors with some metrics, such as `io_skew` and `query_cpu_usage_percent`\. To avoid or reduce sampling errors, include segment execution time in your rules\. A good starting point is `segment_execution_time > 10`\.
+
+The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view shows the metrics for completed queries\. The [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view shows the maximum values of metrics for completed queries\. Use the values in these views as an aid to determine threshold values for defining query monitoring rules\.
+
+## Query monitoring metrics for Amazon Redshift Serverless<a name="cm-c-wlm-query-monitoring-metrics-serverless"></a>
+
+The following table describes the metrics used in query monitoring rules for Amazon Redshift Serverless\. \(These metrics are distinct from the metrics stored in the [STV\_QUERY\_METRICS](r_STV_QUERY_METRICS.md) and [STL\_QUERY\_METRICS](r_STL_QUERY_METRICS.md) system tables\.\) 
+
+**Note**  
+The [WLM timeout](cm-c-defining-query-queues.md#wlm-timeout) parameter is distinct from query monitoring rules\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)
+
+**Note**  
+The hop action is not supported with the `max_query_queue_time` predicate\. That is, rules defined to hop when a `max_query_queue_time` predicate is met are ignored\. 
+Short segment execution times can result in sampling errors with some metrics, such as `max_io_skew` and `max_query_cpu_usage_percent`\.
 
 The [SVL\_QUERY\_METRICS](r_SVL_QUERY_METRICS.md) view shows the metrics for completed queries\. The [SVL\_QUERY\_METRICS\_SUMMARY](r_SVL_QUERY_METRICS_SUMMARY.md) view shows the maximum values of metrics for completed queries\. Use the values in these views as an aid to determine threshold values for defining query monitoring rules\.
 

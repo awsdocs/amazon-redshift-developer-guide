@@ -14,10 +14,10 @@ To do this, you query two tables using spatial SQL functions\. The tutorial uses
 
 For this tutorial, you need the following resources:
 + An existing Amazon Redshift cluster and database that you can access and update\. In the existing cluster, you create tables, load sample data, and run SQL queries to demonstrate spatial functions\. Your cluster should have at least two nodes\. To learn how to create a cluster, follow the steps in [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/)\. 
-+ To use the Amazon Redshift query editor, make sure that your cluster is in an AWS Region that supports the query editor\. For more information, see [Querying a database using the query editor](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) in the *Amazon Redshift Cluster Management Guide*\. 
++ To use the Amazon Redshift query editor, make sure that your cluster is in an AWS Region that supports the query editor\. For more information, see [Querying a database using the query editor](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) in the *Amazon Redshift Management Guide*\. 
 + AWS credentials for your Amazon Redshift cluster that allow it to load test data from Amazon S3\. For information about how to create new access keys, see [Administering Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html) in the *IAM User Guide*\.
-+ The AWS Identity and Access Management \(IAM\) role named `mySpatialDemoRole`, which has the managed policy `AmazonS3ReadOnlyAccess` attached to read Amazon S3 data\. To create a role with permission to load data from an Amazon S3 bucket, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html) in the *Amazon Redshift Cluster Management Guide*\. 
-+ After you create the IAM role `mySpatialDemoRole`, that role needs an association with your Amazon Redshift cluster\. For more information on how to create that association, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html) in the *Amazon Redshift Cluster Management Guide*\. 
++ The AWS Identity and Access Management \(IAM\) role named `mySpatialDemoRole`, which has the managed policy `AmazonS3ReadOnlyAccess` attached to read Amazon S3 data\. To create a role with permission to load data from an Amazon S3 bucket, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html) in the *Amazon Redshift Management Guide*\. 
++ After you create the IAM role `mySpatialDemoRole`, that role needs an association with your Amazon Redshift cluster\. For more information on how to create that association, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html) in the *Amazon Redshift Management Guide*\. 
 
 ## Step 1: Create tables and load test data<a name="spatial-tutorial-test-data"></a>
 
@@ -33,7 +33,7 @@ Use the following procedure to create tables and load test data\.
 
 **To create tables and load test data**
 
-1. Open the Amazon Redshift query editor\. For more information on working with the query editor, see [Querying a database using the query editor](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) in the *Amazon Redshift Cluster Management Guide*\. 
+1. Open the Amazon Redshift query editor\. For more information on working with the query editor, see [Querying a database using the query editor](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) in the *Amazon Redshift Management Guide*\. 
 
 1. Drop any tables used by this tutorial if they already exist in your database\. For more information, see [Step 3: Clean up your resources](#spatial-tutorial-clean-up)\. 
 

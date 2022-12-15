@@ -19,7 +19,7 @@ Using Amazon Redshift Spectrum, you can efficiently query and retrieve structure
 
 ## Amazon Redshift Spectrum overview<a name="c-spectrum-overview"></a>
 
-Amazon Redshift Spectrum resides on dedicated Amazon Redshift servers that are independent of your cluster\. Redshift Spectrum pushes many compute\-intensive tasks, such as predicate filtering and aggregation, down to the Redshift Spectrum layer\. Thus, Redshift Spectrum queries use much less of your cluster's processing capacity than other queries\. Redshift Spectrum also scales intelligently\. Based on the demands of your queries, Redshift Spectrum can potentially use thousands of instances to take advantage of massively parallel processing\.
+Amazon Redshift Spectrum resides on dedicated Amazon Redshift servers that are independent of your cluster\. Amazon Redshift pushes many compute\-intensive tasks, such as predicate filtering and aggregation, down to the Redshift Spectrum layer\. Thus, Redshift Spectrum queries use much less of your cluster's processing capacity than other queries\. Redshift Spectrum also scales intelligently\. Based on the demands of your queries, Redshift Spectrum can potentially use thousands of instances to take advantage of massively parallel processing\.
 
 You create Redshift Spectrum tables by defining the structure for your files and registering them as tables in an external data catalog\. The external data catalog can be AWS Glue, the data catalog that comes with Amazon Athena, or your own Apache Hive metastore\. You can create and manage external tables either from Amazon Redshift using data definition language \(DDL\) commands or using any other tool that connects to the external data catalog\. Changes to the external data catalog are immediately available to any of your Amazon Redshift clusters\. 
 
@@ -34,14 +34,14 @@ You can't view details for Redshift Spectrum tables using the same resources tha
 
 ### Amazon Redshift Spectrum Regions<a name="c-spectrum-regions"></a>
 
-Redshift Spectrum is available in AWS Regions where Amazon Redshift is available, unless otherwise specified in Region specific documentation\. For AWS Region availability in commercial Regions, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html#redshift_region) in the *Amazon Web Services General Reference*\. 
+Redshift Spectrum is available in AWS Regions where Amazon Redshift is available, unless otherwise specified in Region specific documentation\. For AWS Region availability in commercial Regions, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html#redshift_region) for the **Redshift API** in the *Amazon Web Services General Reference*\. 
 
 ### Amazon Redshift Spectrum considerations<a name="c-spectrum-considerations"></a>
 
 Note the following considerations when you use Amazon Redshift Spectrum:
 + The Amazon Redshift cluster and the Amazon S3 bucket must be in the same AWS Region\. 
-+ If your cluster uses Enhanced VPC Routing, you might need to perform additional configuration steps\. For more information, see [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html)\. 
-+ Redshift Spectrum supports Amazon S3 access point aliases\. For more information, see [Using a bucket–style alias for your access point](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-alias.html) in the *Amazon Simple Storage Service User Guide*\. However, Redshift Spectrum doesn't support VPC with Amazon S3 access point aliases\. For more information, see [Using Redshift Spectrum with enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Cluster Management Guide*\.
++ Redshift Spectrum doesn't support enhanced VPC routing with provisioned clusters\. To access your Amazon S3 data, you might need to perform additional configuration steps\. For more information, see [Redshift Spectrum and enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Management Guide*\.
++ Redshift Spectrum supports Amazon S3 access point aliases\. For more information, see [Using a bucket–style alias for your access point](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-alias.html) in the *Amazon Simple Storage Service User Guide*\. However, Redshift Spectrum doesn't support VPC with Amazon S3 access point aliases\. For more information, see [Redshift Spectrum and enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Management Guide*\.
 + You can't perform update or delete operations on external tables\. To create a new external table in the specified schema, you can use CREATE EXTERNAL TABLE\. For more information about CREATE EXTERNAL TABLE, see [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\. To insert the results of a SELECT query into existing external tables on external catalogs, you can use INSERT \(external table\)\. For more information about INSERT \(external table\), see [INSERT \(external table\)](r_INSERT_external_table.md)\.
 + Unless you are using an AWS Glue Data Catalog that is enabled for AWS Lake Formation, you can't control user permissions on an external table\. Instead, you can grant and revoke permissions on the external schema\. For more information about working with AWS Lake Formation, see [Using Redshift Spectrum with AWS Lake Formation](spectrum-lake-formation.md)\.
 + To run Redshift Spectrum queries, the database user must have permission to create temporary tables in the database\. The following example grants temporary permission on the database `spectrumdb` to the `spectrumusers` user group\. 
@@ -51,5 +51,5 @@ Note the following considerations when you use Amazon Redshift Spectrum:
   ```
 
   For more information, see [GRANT](r_GRANT.md)\.
-+ When using the Athena Data Catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide*\. 
++ When using the Athena Data Catalog or AWS Glue Data Catalog as a metadata store, see [Quotas and Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Management Guide*\. 
 + Redshift Spectrum doesn't support Amazon EMR with Kerberos\.

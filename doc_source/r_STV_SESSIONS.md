@@ -40,4 +40,4 @@ The following result shows four active sessions running on Amazon Redshift:
 (3 rows)
 ```
 
-The user name prefixed with IAMA indicates that the user signed on using federated single sign\-on \(SSO\)\. For more information, see [Using IAM authentication to generate database user credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\.
+The user name prefixed with IAMA indicates that the user signed on using federated single sign\-on\. For more information, see [Using IAM authentication to generate database user credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\.

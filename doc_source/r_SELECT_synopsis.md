@@ -10,6 +10,7 @@
 + [HAVING clause](r_HAVING_clause.md)
 + [UNION, INTERSECT, and EXCEPT](r_UNION.md)
 + [ORDER BY clause](r_ORDER_BY_clause.md)
++ [CONNECT BY clause](r_CONNECT_BY_clause.md)
 + [Subquery examples](r_Subquery_examples.md)
 + [Correlated subqueries](r_correlated_subqueries.md)
 
@@ -27,6 +28,7 @@ SELECT
 * | expression [ AS output_name ] [, ...] ]
 [ FROM table_reference [, ...] ]
 [ WHERE condition ]
+[ [ START WITH expression ] CONNECT BY expression ]
 [ GROUP BY expression [, ...] ]
 [ HAVING condition ]
 [ { UNION | ALL | INTERSECT | EXCEPT | MINUS } query ]

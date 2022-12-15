@@ -1,6 +1,6 @@
 # SYS\_EXTERNAL\_QUERY\_DETAIL<a name="SYS_EXTERNAL_QUERY_DETAIL"></a>
 
-Use SYS\_EXTERNAL\_QUERY\_DETAIL to view details for queries at a segment level\. Each row represent a segment from a particular WLM query with details like the number of rows processed, number of bytes processed, and partition info of external tables in Amazon S3\. Each row in this view will also have a corresponding entry in the SYS\_QUERY\_DETAIL view, except this view has more detail information related to external query processing\. 
+Use SYS\_EXTERNAL\_QUERY\_DETAIL to view details for queries at a segment level\. Each row represents a segment from a particular WLM query with details like the number of rows processed, number of bytes processed, and partition info of external tables in Amazon S3\. Each row in this view will also have a corresponding entry in the SYS\_QUERY\_DETAIL view, except this view has more detail information related to external query processing\. 
 
 SYS\_EXTERNAL\_QUERY\_DETAIL is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\.
 

@@ -29,7 +29,7 @@ VARCHAR string representing the JSON value referenced by the path elements\.
 
 ## Example<a name="JSON_EXTRACT_PATH_TEXT-examples"></a>
 
-The following example returns the value for the path `'f4', 'f6'`: 
+The following example returns the value for the path `'f4', 'f6'`\.
 
 ```
 select json_extract_path_text('{"f2":{"f3":1},"f4":{"f5":99,"f6":"star"}}','f4', 'f6');
@@ -55,4 +55,71 @@ select json_extract_path_text('{"f2":{"f3":1},"f4":{"f5":99,"f6":"star"}','f4', 
  
 json_extract_path_text
 -------------------------------
+NULL
+```
+
+The following example returns the value for the path `'farm', 'barn', 'color'`, where the value retrieved is at the third level\. This sample is formatted with a JSON lint tool, to make it easier to read\.
+
+```
+select json_extract_path_text('{
+    "farm": {
+        "barn": {
+            "color": "red",
+            "feed stocked": true
+        }
+    }
+}', 'farm', 'barn', 'color');
+
+json_extract_path_text
+---------------------- 
+red
+```
+
+The following example returns NULL because the `'color'` element is missing\. This sample is formatted with a JSON lint tool\.
+
+```
+select json_extract_path_text('{
+    "farm": {
+        "barn": {}
+    }
+}', 'farm', 'barn', 'color');
+
+json_extract_path_text
+---------------------- 
+NULL
+```
+
+If the JSON is valid, trying to extract an element that's missing returns NULL\.
+
+The following example returns the value for the path `'house', 'appliances', 'washing machine', 'brand'`\.
+
+```
+select json_extract_path_text('{
+  "house": {
+    "address": {
+      "street": "123 Any St.",
+      "city": "Any Town",
+      "state": "FL",
+      "zip": "32830"
+    },
+    "bathroom": {
+      "color": "green",
+      "shower": true
+    },
+    "appliances": {
+      "washing machine": {
+        "brand": "Any Brand",
+        "color": "beige"
+      },
+      "dryer": {
+        "brand": "Any Brand",
+        "color": "white"
+      }
+    }
+  }
+}', 'house', 'appliances', 'washing machine', 'brand');   
+
+json_extract_path_text
+---------------------- 
+Any Brand
 ```

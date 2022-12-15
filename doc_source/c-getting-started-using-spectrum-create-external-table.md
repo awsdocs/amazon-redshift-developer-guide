@@ -16,11 +16,16 @@ Create external tables in an external schema\. The external schema references a 
 
 1. To create an external table, run the following CREATE EXTERNAL TABLE command\.
 **Note**  
-The Amazon S3 bucket with the sample data for this example is located in the us\-west\-2 region\. Your cluster and the Redshift Spectrum files must be in the same AWS Region, so, for this example, your cluster must also be located in us\-west\-2\.  
-To use this example in a different AWS Region, you can copy the sales data with an Amazon S3 copy command\. Then update the location of the bucket in the example `CREATE EXTERNAL TABLE` command\.  
+Your cluster and the Amazon S3 bucket must be in the same AWS Region\. For this example CREATE EXTERNAL TABLE command, the Amazon S3 bucket with the sample data is located in the US East \(N\. Virginia\) AWS Region\. To see the source data, download the [`sales_ts.000` file](https://s3.amazonaws.com/redshift-downloads/tickit/spectrum/sales/sales_ts.000)\.   
+You can modify this example to run in a different AWS Region\. Create an Amazon S3 bucket in your desired AWS Region\. Copy the sales data with an Amazon S3 copy command\. Then update the location option in the example `CREATE EXTERNAL TABLE` command to your bucket\.  
 
    ```
-   aws s3 cp s3://awssampledbuswest2/tickit/spectrum/sales/ s3://bucket-name/tickit/spectrum/sales/ --recursive 
+   aws s3 cp s3://redshift-downloads/tickit/spectrum/sales/ s3://bucket-name/tickit/spectrum/sales/ --copy-props none --recursive
+   ```
+The output of the Amazon S3 copy command confirms that the file was copied to the *bucket\-name* in your desired AWS Region\.  
+
+   ```
+   copy: s3://redshift-downloads/tickit/spectrum/sales/sales_ts.000 to s3://bucket-name/tickit/spectrum/sales/sales_ts.000
    ```
 
    ```
@@ -38,6 +43,6 @@ To use this example in a different AWS Region, you can copy the sales data with 
    row format delimited
    fields terminated by '\t'
    stored as textfile
-   location 's3://awssampledbuswest2/tickit/spectrum/sales/'
+   location 's3://redshift-downloads/tickit/spectrum/sales/'
    table properties ('numRows'='172000');
    ```

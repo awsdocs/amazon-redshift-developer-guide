@@ -23,7 +23,7 @@ Some data distribution concepts for Amazon Redshift follow\.
 
  An Amazon Redshift cluster is a set of nodes\. Each node in the cluster has its own operating system, dedicated memory, and dedicated disk storage\. One node is the *leader node*, which manages the distribution of data and query processing tasks to the compute nodes\. The *compute nodes* provide resources to do those tasks\.  
 
- The disk storage for a compute node is divided into a number of *slices*\. The number of slices per node depends on the node size of the cluster\. For example, each DS2\.XL compute node has two slices, and each DS2\.8XL compute node has 16 slices\. The nodes all participate in running parallel queries, working on data that is distributed as evenly as possible across the slices\. For more information about the number of slices that each node size has, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+ The disk storage for a compute node is divided into a number of *slices*\. The number of slices per node depends on the node size of the cluster\. For example, each DS2\.XL compute node has two slices, and each DS2\.8XL compute node has 16 slices\. The nodes all participate in running parallel queries, working on data that is distributed as evenly as possible across the slices\. For more information about the number of slices that each node size has, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Management Guide*\.
 
  **Data redistribution** 
 

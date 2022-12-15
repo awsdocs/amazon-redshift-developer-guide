@@ -57,6 +57,11 @@ CALL
 
 
 
+**Note**  
+ When you write stored procedures, we recommend a best practice for securing sensitive values:   
+ Don't hard code any sensitive information in stored procedure logic\. For example, don't assign a user password in a CREATE USER statement in the body of a stored procedure\. This poses a security risk, because hard\-coded values can be recorded as schema metadata in catalog tables\. Instead, pass sensitive values, such as passwords, as arguments to the stored procedure, by means of parameters\.   
+For more information about stored procedures, see [CREATE PROCEDURE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_PROCEDURE.html) and [Creating stored procedures in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html)\. For more information about catalog tables, see [System catalog tables](https://docs.aws.amazon.com/redshift/latest/dg/c_intro_catalog_views.html)\.
+
 The following example shows a procedure with output arguments\. Arguments are input \(IN\), input and output \(INOUT\), and output \(OUT\)\.
 
 ```

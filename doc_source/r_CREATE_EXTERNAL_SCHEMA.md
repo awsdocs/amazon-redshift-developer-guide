@@ -17,14 +17,16 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
-FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL | KINESIS }
+FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL | KINESIS | REDSHIFT }
 [ DATABASE 'database_name' ]
+[ SCHEMA 'schema_name' ]
 [ REGION 'aws-region' ]
 [ URI 'hive_metastore_uri' [ PORT port_number ] ]
-IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+IAM_ROLE { default | 'SESSION' | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 [ SECRET_ARN 'ssm-secret-arn' ]          
-[ CATALOG_ROLE 'catalog-role-arn-string' ] 
+[ CATALOG_ROLE { 'SESSION' | 'catalog-role-arn-string' } ] 
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
+[ CATALOG_ID 'Amazon Web Services account ID containing Glue or Lake Formation database' ]
 ```
 
 The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a federated query to RDS POSTGRES or Aurora PostgreSQL\. You can also create an external schema that references streaming sources, such as Kinesis Data Streams\. For more information, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
@@ -49,7 +51,7 @@ IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'
 ```
 
-The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data in a Kinesis stream\. For more information, see [Streaming ingestion \(preview\)](materialized-view-streaming-ingestion.md)\.
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data in a Kinesis stream\. For more information, see [Streaming ingestion](materialized-view-streaming-ingestion.md)\.
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] schema_name
@@ -105,8 +107,9 @@ If the database is in a Hive metastore, specify the URI and optionally the port 
 A URI doesn't contain a protocol specification \("http://"\)\. An example valid URI: `uri '172.10.10.10'`\.   
 The supported PostgreSQL or MySQL database engine must be in the same VPC as your Amazon Redshift cluster\. Create a security group linking Amazon Redshift and RDS PostgreSQL or Aurora PostgreSQL\. 
 
-IAM\_ROLE \{ default \| 'arn:aws:iam::*<AWS account\-id>*:role/*<role\-name>*' \}  
+IAM\_ROLE \{ default \| 'SESSION' \| 'arn:aws:iam::*<AWS account\-id>*:role/*<role\-name>*' \}  
 Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREATE EXTERNAL SCHEMA command runs\.  
+Use `'SESSION'` if you connect to your Amazon Redshift cluster using a federated identity and access the tables from the external schema created using this command\. For more information, see [Using a federated identity to manage Amazon Redshift access to local resources and Amazon Redshift Spectrum external tables](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html), which explains how to configure federated identity\. Note that this configuration, using `'SESSION'` in place of the ARN, can be used only if the schema is created using `DATA CATALOG`\.   
 Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. As a minimum, the IAM role must have permission to perform a LIST operation on the Amazon S3 bucket to be accessed and a GET operation on the Amazon S3 objects the bucket contains\. If the external database is defined in an Amazon Athena data catalog or AWS Glue Data Catalog, the IAM role must have permission to access Athena unless CATALOG\_ROLE is specified\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.   
 The following shows the syntax for the IAM\_ROLE parameter string for a single ARN\.  
 
@@ -154,8 +157,11 @@ IAM_ROLE 'arn:aws:iam::<aws-account-id>:role/<role-1-name>,arn:aws:iam::<aws-acc
 SECRET\_ARN '*ssm\-secret\-arn*'  
 The Amazon Resource Name \(ARN\) of a supported PostgreSQL or MySQL database engine secret created using AWS Secrets Manager\. For information about how to create and retrieve an ARN for a secret, see [Creating a Basic Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) and [Retrieving the Secret Value Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_retrieve-secret.html) in the *AWS Secrets Manager User Guide*\. 
 
-CATALOG\_ROLE '*catalog\-role\-arn\-string*'  
-The ARN for an IAM role that your cluster uses for authentication and authorization for the data catalog\. If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the Data Catalog in AWS Glue or Athena\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\. The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
+CATALOG\_ROLE \{ 'SESSION' \| *catalog\-role\-arn\-string*\}  
+Use `'SESSION'` to connect to your Amazon Redshift cluster using a federated identity for authentication and authorization to the data catalog\. For more information about completing the steps for federated identity, see [Using a federated identity to manage Amazon Redshift access to local resources and Amazon Redshift Spectrum external tables](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html)\. Note that the `'SESSION'` role can be used only if the schema is created in DATA CATALOG\.  
+Use the Amazon Resource Name ARN for an IAM role that your cluster uses for authentication and authorization for the data catalog\.   
+If CATALOG\_ROLE isn't specified, Amazon Redshift uses the specified IAM\_ROLE\. The catalog role must have permission to access the Data Catalog in AWS Glue or Athena\. For more information, see [IAM policies for Amazon Redshift Spectrum](c-spectrum-iam-policies.md)\.   
+The following shows the syntax for the CATALOG\_ROLE parameter string for a single ARN\.  
 
 ```
 CATALOG_ROLE 'arn:aws:iam::<aws-account-id>:role/<catalog-role>'
@@ -168,10 +174,18 @@ The following shows the syntax for chaining three roles\.
 CATALOG_ROLE 'arn:aws:iam::<aws-account-id>:role/<catalog-role-1-name>,arn:aws:iam::<aws-account-id>:role/<catalog-role-2-name>,arn:aws:iam::<aws-account-id>:role/<catalog-role-3-name>'
 ```
 
+
 CREATE EXTERNAL DATABASE IF NOT EXISTS  
 A clause that creates an external database with the name specified by the DATABASE argument, if the specified external database doesn't exist\. If the specified external database exists, the command makes no changes\. In this case, the command returns a message that the external database exists, rather than terminating with an error\.  
 You can't use CREATE EXTERNAL DATABASE IF NOT EXISTS with HIVE METASTORE\.  
 To use CREATE EXTERNAL DATABASE IF NOT EXISTS with a Data Catalog enabled for AWS Lake Formation, you need `CREATE_DATABASE` permission on the Data Catalog\. 
+
+CATALOG\_ID '*Amazon Web Services account ID containing Glue or Lake Formation database*'  
+The account id where the data catalog database is stored\.  
+`CATALOG_ID` can be specified only if you plan to connect to your Amazon Redshift cluster or to Amazon Redshift Serverless using a federated identity for authentication and authorization to the data catalog by setting either of the following:   
++ `CATALOG_ROLE` to `'SESSION'`
++ `IAM_ROLE` to `'SESSION'` and `'CATALOG_ROLE'` set to its default 
+For more information about completing the steps for federated identity, see [Using a federated identity to manage Amazon Redshift access to local resources and Amazon Redshift Spectrum external tables](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html)\. 
 
 ## Usage notes<a name="r_CREATE_EXTERNAL_SCHEMA_usage"></a>
 

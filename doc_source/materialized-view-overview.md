@@ -41,4 +41,4 @@ For information about system tables and views to monitor materialized views, see
 + [Automatic query rewriting to use materialized views](materialized-view-auto-rewrite.md)
 + [Refreshing a materialized view](materialized-view-refresh.md)
 + [Automated materialized views](materialized-view-auto-mv.md)
-+ [Streaming ingestion \(preview\)](materialized-view-streaming-ingestion.md)
++ [Streaming ingestion](materialized-view-streaming-ingestion.md)

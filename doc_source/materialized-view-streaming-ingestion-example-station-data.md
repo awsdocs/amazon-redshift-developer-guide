@@ -1,9 +1,4 @@
-# Electric vehicle station\-data tutorial \(preview\)<a name="materialized-view-streaming-ingestion-example-station-data"></a>
-
-
-|  | 
-| --- |
-| The following is documentation for the public preview of Amazon Redshift streaming ingestion, which consumes data from Kinesis Data Streams\. Preview features are built and tested in Redshift, but test coverage of all use cases may not be complete\. This documentation and the feature are both subject to change until it is released for general availability\. We recommend that you use this feature only with test clusters, and not in production\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+# Electric vehicle station\-data streaming ingestion tutorial, using Kinesis<a name="materialized-view-streaming-ingestion-example-station-data"></a>
 
 This procedure demonstrates how to ingest data from a Kinesis stream named *ev\_station\_data*, which contains consumption data from different EV charging stations, in JSON format\. The schema is well defined\. The example shows how to store the data as raw JSON and also how to convert the JSON data to Amazon Redshift data types as it's ingested\.
 
@@ -70,7 +65,7 @@ These steps show you how to configure the materialized view to ingest data\.
    IAM_ROLE 'arn:aws:iam::0123456789:role/redshift-streaming-role';
    ```
 
-   For information about how to configure the IAM role, see [Getting started with streaming ingestion](materialized-view-streaming-ingestion.md#materialized-view-streaming-ingestion-getting-started)\.
+   For information about how to configure the IAM role, see [Getting started with streaming ingestion from Amazon Kinesis Data Streams](materialized-view-streaming-ingestion-getting-started.md)\.
 
 1. Create a materialized view to consume the stream data\. The following examples show both methods of defining materialized views to ingest the JSON source data\.
 
@@ -78,37 +73,33 @@ These steps show you how to configure the materialized view to ingest data\.
 
    ```
    CREATE MATERIALIZED VIEW ev_station_data AS
-       SELECT approximatearrivaltimestamp,
-       partitionkey,
-       shardid,
-       sequencenumber,
-       json_parse(from_varbyte(data, 'utf-8')) as payload    
-       FROM evdata."ev_station_data";
+       SELECT approximate_arrival_timestamp,
+       partition_key,
+       shard_id,
+       sequence_number,
+       json_parse(kinesis_data) as payload
+       FROM evdata."ev_station_data" WHERE can_json_parse(kinesis_data);
    ```
 
     In contrast, in the following materialized view definition, the materialized view has a defined schema in Redshift\. The materialized view is distributed on the UUID value from the stream and is sorted by the `approximatearrivaltimestamp` value\.
 
    ```
-   CREATE MATERIALIZED VIEW ev_station_data_extract DISTKEY(5) sortkey(1) AS
-       SELECT approximatearrivaltimestamp,
-       partitionkey,
-       shardid,
-       sequencenumber,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'_id')::character(36) as ID,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'clusterID')::varchar(30) as clusterID,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'connectionTime')::varchar(20) as connectionTime,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'kWhDelivered')::DECIMAL(10,2) as kWhDelivered,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'stationID')::DECIMAL(10,2) as stationID,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'spaceID')::varchar(100) as spaceID,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'timezone')::varchar(30) as timezone,
-       json_extract_path_text(from_varbyte(data, 'utf-8'),'userID')::varchar(30) as userID
-       FROM evdata."ev_station_data";
-   ```
-
-1. Refresh the materialized view\.
-
-   ```
-   REFRESH MATERIALIZED VIEW ev_station_data_extract;
+   CREATE MATERIALIZED VIEW ev_station_data_extract DISTKEY(6) sortkey(1) AUTO REFRESH YES AS
+       SELECT refresh_time,
+       approximate_arrival_timestamp,
+       partition_key,
+       shard_id,
+       sequence_number,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'_id',true)::character(36) as ID,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'clusterID',true)::varchar(30) as clusterID,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'connectionTime',true)::varchar(20) as connectionTime,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'kWhDelivered',true)::DECIMAL(10,2) as kWhDelivered,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'stationID',true)::DECIMAL(10,2) as stationID,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'spaceID',true)::varchar(100) as spaceID,
+       json_extract_path_text(from_varbyte(kinesis_data, 'utf-8'),'timezone',true)::varchar(30)as timezone,
+       json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'userID',true)::varchar(30) as userID
+       FROM evdata."ev_stream_data"
+       WHERE LENGTH(kinesis_data) < 65355;
    ```
 
 **Query the stream**

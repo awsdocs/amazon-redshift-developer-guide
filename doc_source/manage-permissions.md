@@ -16,14 +16,18 @@ For CREATE DATASHARE, superusers and database owners can create datashares\. For
 
 As a producer administrator, when you drop a datashare, it stops being listed on consumer clusters\. The databases and schema references created on the consumer cluster from the dropped datashare continue to exist with no objects in them\. The consumer cluster administrator must delete these databases manually\.
 
-On the consumer side, a consumer cluster administrator can determine which users and groups should get access to the shared data\. An administrator can control access at the database or schema level\.
+On the consumer side, a consumer cluster administrator can determine which users and groups should get access to the shared data\. An administrator can control access at the database or schema level\. To control access at the schema level, the administrator must create an external schema from the Amazon Redshift database created from the datashare\.
 
 The following example grants permissions to access a shared table at the database level and schema level\.
 
 ```
 GRANT USAGE ON DATABASE sales_db TO Bob;
 
+CREATE EXTERNAL SCHEMA sales_schema FROM REDSHIFT DATABASE sales_db;
+
 GRANT USAGE ON SCHEMA sales_schema TO GROUP Analyst_group;
 ```
 
 To further restrict access, you can create views on top of shared objects, exposing only the necessary data\. You can then use these views to give access to the users and groups\.
+
+Once the users are granted access to the database or schema, they will have access to all shared objects in that database or schema\.

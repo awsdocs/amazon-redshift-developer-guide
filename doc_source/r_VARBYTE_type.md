@@ -111,5 +111,4 @@ The following are limitations when using the VARBYTE data type with Amazon Redsh
   select to_varbyte('6162', 'hex')::varchar;
   ```
 + You can't use VARBYTE data types with Python or Lambda user\-defined functions \(UDFs\)\. 
-+ You can't use a VARBYTE column as a sort key or a distribution key for an Amazon Redshift table\. 
 + You can't create a HLLSKETCH column from a VARBYTE column or use APPROXIMATE COUNT DISTINCT on a VARBYTE column\. 

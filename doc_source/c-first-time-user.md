@@ -5,7 +5,7 @@ If you are a first\-time user of Amazon Redshift, we recommend that you begin by
 + Getting Started – [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/) includes an example that walks you through the process of creating an Amazon Redshift data warehouse cluster, creating database tables, uploading data, and testing queries\. 
 
 After you complete the Getting Started guide, we recommend that you explore one of the following guides:
-+ [Amazon Redshift Cluster Management Guide](https://docs.aws.amazon.com/redshift/latest/mgmt/) – The Cluster Management guide shows you how to create and manage Amazon Redshift clusters\. 
++ [Amazon Redshift Management Guide](https://docs.aws.amazon.com/redshift/latest/mgmt/) – The Cluster Management guide shows you how to create and manage Amazon Redshift clusters\. 
 
   If you are an application developer, you can use the Amazon Redshift Query API to manage clusters programmatically\. Additionally, the AWS SDK libraries that wrap the underlying Amazon Redshift API can help simplify your programming tasks\. If you prefer a more interactive way of managing clusters, you can use the Amazon Redshift console and the AWS Command Line Interface \(AWS CLI\)\. For information about the API and CLI, go to the following manuals: 
   + [API reference](https://docs.aws.amazon.com/redshift/latest/APIReference/)

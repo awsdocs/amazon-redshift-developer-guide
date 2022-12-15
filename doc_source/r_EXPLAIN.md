@@ -42,7 +42,7 @@ The following table provides a summary of steps that Amazon Redshift can use in 
 
 If a query contains a table that is subject to row\-level security \(RLS\) policies, EXPLAIN displays a special RLS SecureScan node\. Amazon Redshift also logs the same node type to the STL\_EXPLAIN system table\. EXPLAIN doesn't reveal the RLS predicate that applies to dim\_tbl\. The RLS SecureScan node type serves as an indicator that the execution plan contains additional operations that are invisible to the current user\.
 
-The following example illustrates a RSL SecureScan node\.
+The following example illustrates an RLS SecureScan node\.
 
 ```
 EXPLAIN
@@ -82,6 +82,21 @@ WHERE F.k_dim / 10 > 0;
 ```
 
 While the EXPLAIN RLS permission is granted to a user, Amazon Redshift logs the full query plan including RLS predicates in the STL\_EXPLAIN system table\. Queries that are run while this permission is not granted will be logged without RLS internals\. Granting or removing the EXPLAIN RLS permission won't change what Amazon Redshift has logged to STL\_EXPLAIN for previous queries\.
+
+### AWS Lake Formation\-RLS protected Redshift relations<a name="r_EXPLAIN_RLS-LF"></a>
+
+The following example illustrates an LF SecureScan node, which you can use to view Lake Formation\-RLS relations\.
+
+```
+EXPLAIN
+SELECT * 
+FROM lf_db.public.t_share
+WHERE a > 1;
+QUERY PLAN
+---------------------------------------------------------------
+XN LF SecureScan t_share  (cost=0.00..0.02 rows=2 width=11)
+(2 rows)
+```
 
 ## Examples<a name="r_EXPLAIN-examples"></a>
 

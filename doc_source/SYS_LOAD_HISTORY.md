@@ -10,7 +10,7 @@ SYS\_LOAD\_HISTORY is visible to all users\. Superusers can see all rows; regula
 
 ## Sample queries<a name="SYS_LOAD_HISTORY-sample-queries"></a>
 
-The following query shows the loaded rows, bytes, tables and datasource of specific copy commands\.
+The following query shows the loaded rows, bytes, tables, and datasource of specific copy commands\.
 
 ```
 SELECT query_id,
@@ -36,7 +36,7 @@ Sample output\.
    490791 | customer_address | s3://load-test/data-sources/tpcds/2.8.0/textfile/1T/customer_address/ |     6000000 |     722924305
 ```
 
-The following query shows the loaded rows, bytes, tables and datasource of copy commands\.
+The following query shows the loaded rows, bytes, tables, and datasource of copy commands\.
 
 ```
 SELECT query_id,

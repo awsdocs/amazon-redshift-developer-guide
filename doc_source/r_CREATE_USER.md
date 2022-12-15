@@ -118,7 +118,7 @@ The maximum number of database connections the user is permitted to have open co
 If both user and database connection limits apply, an unused connection slot must be available that is within both limits when a user attempts to connect\.
 
 SESSION TIMEOUT *limit*  
-The maximum time in seconds that a session remains inactive or idle\. The range is 60 seconds \(one minute\) to 1,728,000 seconds \(20 days\)\. If no session timeout is set for the user, the cluster setting applies\. For more information, see [ Quotas and limits in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide*\.  
+The maximum time in seconds that a session remains inactive or idle\. The range is 60 seconds \(one minute\) to 1,728,000 seconds \(20 days\)\. If no session timeout is set for the user, the cluster setting applies\. For more information, see [ Quotas and limits in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Management Guide*\.  
 When you set the session timeout, it's applied to new sessions only\.  
 To view information about active user sessions, including the start time, user name, and session timeout, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\. To view information about user\-session history, query the [STL\_SESSIONS](r_STL_SESSIONS.md) view\. To retrieve information about database users, including session\-timeout values, query the [SVL\_USER\_INFO](r_SVL_USER_INFO.md) view\.
 

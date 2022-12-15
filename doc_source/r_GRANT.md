@@ -88,7 +88,13 @@ The following is the syntax for using GRANT for datashare usage privileges on Am
 ```
 GRANT USAGE 
     ON DATASHARE datashare_name 
-    TO NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [, ...]
+    TO NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [ VIA DATA CATALOG ] [, ...]
+```
+
+The following is an example of how to grant usage of a datashare to a Lake Formation account\.
+
+```
+GRANT USAGE ON salesshare TO ACCOUNT '123456789012' VIA DATA CATALOG;
 ```
 
 The following is the syntax for GRANT data\-sharing usage permissions on a specific database or schema created from a datashare\. This USAGE permission doesn't grant usage permission to databases that aren't created from the specified datashare\. You can only GRANT or REVOKE ALTER or SHARE permissions on a datashare to users and user groups\.
@@ -143,13 +149,13 @@ TO { ROLE role_name } [, ...]
 The following is the syntax for granting permissions to explain the row\-level security policy filters of a query in the EXPLAIN plan\. You can revoke the privilege using the REVOKE statement\.
 
 ```
-GRANT EXPLAIN RLS TO { username | ROLE rolename }
+GRANT EXPLAIN RLS TO ROLE rolename 
 ```
 
 The following is the syntax for granting permissions to bypass row\-level security policies for a query\. 
 
 ```
-GRANT IGNORE RLS TO { username | ROLE rolename }
+GRANT IGNORE RLS TO ROLE rolename 
 ```
 
 The following is the syntax for granting permissions to the specified row\-level security policy\.
@@ -249,7 +255,8 @@ ON DATABASE *db\_name*   <a name="grant-database"></a>
 Grants the specified privileges on a database\.
 
 USAGE   <a name="grant-usage"></a>
-Grants USAGE privilege on a specific schema, which makes objects in that schema accessible to users\. Specific actions on these objects must be granted separately \(for example, SELECT or UPDATE privileges on tables\)\. By default, all users have CREATE and USAGE privileges on the PUBLIC schema\. 
+Grants USAGE privilege on a specific schema, which makes objects in that schema accessible to users\. Specific actions on these objects must be granted separately \(for example, SELECT or UPDATE privileges on tables\) for local Amazon Redshift schemas\. By default, all users have CREATE and USAGE privileges on the PUBLIC schema\.   
+ When you grant USAGE to external schemas using ON SCHEMA syntax, you don't need to grant actions separately on the objects in the external schema\. The corresponding catalog permissions control granular permissions on the external schema objects\. 
 
 ON SCHEMA *schema\_name*   <a name="grant-schema"></a>
 Grants the specified privileges on a schema\.  
@@ -290,8 +297,8 @@ When USAGE is granted to a consumer account or namespace within the same account
 TO NAMESPACE 'clusternamespace GUID'  
 Indicates a namespace in the same account where consumers can receive the specified privileges to the datashare\. Namespaces use a 128\-bit alphanumeric GUID\.
 
-TO ACCOUNT 'accountnumber'  
-Indicates the number of another account whose consumers can receive the specified privileges to the datashare\.
+TO ACCOUNT 'accountnumber' \[ VIA DATA CATALOG \]  
+Indicates the number of another account whose consumers can receive the specified privileges to the datashare\. Specifying ‘VIA DATA CATALOG’ indicates that you are granting usage of the datashare to a Lake Formation account\. Omitting this parameter means you're granting usage to an account that owns the cluster\.
 
 ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="grant-datashare"></a>
 Grants the specified usage privileges on the specified database that is created in the specified datashare\.
@@ -312,3 +319,9 @@ PUBLIC represents a group that always includes all users\. An individual user's 
 TO \{ \{ *user\_name* \[ WITH ADMIN OPTION \] \} \| role \}\[, \.\.\.\]  
 Grants the specified role to a specified user with the WITH ADMIN OPTION, another role, or PUBLIC\.  
 The WITH ADMIN OPTION clause provides the administration options for all the granted roles to all the grantees\. 
+
+EXPLAIN RLS TO ROLE *rolename*  
+Grants the privilege to explain the row\-level security policy filters of a query in the EXPLAIN plan to a role\.
+
+IGNORE RLS TO ROLE *rolename*   
+Grants the privilege to bypass row\-level security policies for a query to a role\.

@@ -13,6 +13,8 @@ Edit datashares created in your account using the console\. Connect to a databas
 1. Choose the datashare you want to edit, then choose **Edit**\. The datashare details page appears\.
 
 1. Make any changes in the **Datashare objects** or **Data consumers** section\.
+**Note**  
+If you chose to publish your datashare to the AWS Glue Data Catalog, you can't edit the configuration to publish the datashare to other Amazon Redshift accounts\.
 
 1. Choose **Save changes**\.
 

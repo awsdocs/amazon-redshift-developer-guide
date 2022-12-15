@@ -1,6 +1,6 @@
 # STL\_USAGE\_CONTROL<a name="r_STL_USAGE_CONTROL"></a>
 
-The STL\_USAGE\_CONTROL view contains information that is logged when a usage limit is reached\. For more information about usage limits, see [Managing Usage Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-usage-limits.html) in the *Amazon Redshift Cluster Management Guide*\. 
+The STL\_USAGE\_CONTROL view contains information that is logged when a usage limit is reached\. For more information about usage limits, see [Managing Usage Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-usage-limits.html) in the *Amazon Redshift Management Guide*\. 
 
 STL\_USAGE\_CONTROL is visible only to superusers\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 

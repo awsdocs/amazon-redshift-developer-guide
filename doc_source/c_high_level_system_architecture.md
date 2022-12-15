@@ -2,11 +2,11 @@
 
 This section introduces the elements of the Amazon Redshift data warehouse architecture as shown in the following figure\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/02-NodeRelationships.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/architecture.png)
 
  **Client applications** 
 
-Amazon Redshift integrates with various data loading and ETL \(extract, transform, and load\) tools and business intelligence \(BI\) reporting, data mining, and analytics tools\. Amazon Redshift is based on industry\-standard PostgreSQL, so most existing SQL client applications will work with only minimal changes\. For information about important differences between Amazon Redshift SQL and PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
+Amazon Redshift integrates with various data loading and ETL \(extract, transform, and load\) tools and business intelligence \(BI\) reporting, data mining, and analytics tools\. Amazon Redshift is based on open standard PostgreSQL, so most existing SQL client applications will work with only minimal changes\. For information about important differences between Amazon Redshift SQL and PostgreSQL, see [Amazon Redshift and PostgreSQL](c_redshift-and-postgres-sql.md)\.
 
  **Clusters** 
 
@@ -22,17 +22,21 @@ The leader node distributes SQL statements to the compute nodes only when a quer
 
  **Compute nodes** 
 
-The leader node compiles code for individual elements of the execution plan and assigns the code to individual compute nodes\. The compute nodes runs the compiled code and send intermediate results back to the leader node for final aggregation\. 
+The leader node compiles code for individual elements of the execution plan and assigns the code to individual compute nodes\. The compute nodes run the compiled code and send intermediate results back to the leader node for final aggregation\. 
 
-Each compute node has its own dedicated CPU, memory, and attached disk storage, which are determined by the node type\. As your workload grows, you can increase the compute capacity and storage capacity of a cluster by increasing the number of nodes, upgrading the node type, or both\.
+Each compute node has its own dedicated CPU and memory, which are determined by the node type\. As your workload grows, you can increase the compute capacity of a cluster by increasing the number of nodes, upgrading the node type, or both\.
 
-Amazon Redshift provides several node types for your compute and storage needs\. For details of each node type, see [Amazon Redshift clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html) in the *Amazon Redshift Cluster Management Guide*\. 
+Amazon Redshift provides several node types for your compute needs\. For details of each node type, see [Amazon Redshift clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html) in the *Amazon Redshift Management Guide*\. 
+
+ **Redshift Managed Storage** 
+
+Data warehouse data is stored in a separate storage tier Redshift Managed Storage \(RMS\)\. RMS provides the ability to scale your storage to petabytes using Amazon S3 storage\. RMS allows to you scale and pay for compute and storage independently, so that you can size your cluster based only on your compute needs\. It automatically uses high\-performance SSD\-based local storage as tier\-1 cache\. It also takes advantage of optimizations, such as data block temperature, data block age, and workload patterns to deliver high performance while scaling storage automatically to Amazon S3 when needed without requiring any action\.
 
  **Node slices** 
 
 A compute node is partitioned into slices\. Each slice is allocated a portion of the node's memory and disk space, where it processes a portion of the workload assigned to the node\. The leader node manages distributing data to the slices and apportions the workload for any queries or other database operations to the slices\. The slices then work in parallel to complete the operation\.
 
-The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+The number of slices per node is determined by the node size of the cluster\. For more information about the number of slices for each node size, go to [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Management Guide*\.
 
 When you create a table, you can optionally specify one column as the distribution key\. When the table is loaded with data, the rows are distributed to the node slices according to the distribution key that is defined for a table\. Choosing a good distribution key enables Amazon Redshift to use parallel processing to load data and run queries efficiently\. For information about choosing a distribution key, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
 
@@ -42,7 +46,7 @@ Amazon Redshift takes advantage of high\-bandwidth connections, close proximity,
 
  **Databases** 
 
-A cluster contains one or more databases\. User data is stored on the compute nodes\. Your SQL client communicates with the leader node, which in turn coordinates query execution with the compute nodes\.
+A cluster contains one or more databases\. User data is stored on the compute nodes\. Your SQL client communicates with the leader node, which in turn coordinates query run with the compute nodes\.
 
 Amazon Redshift is a relational database management system \(RDBMS\), so it is compatible with other RDBMS applications\. Although it provides the same functionality as a typical RDBMS, including online transaction processing \(OLTP\) functions such as inserting and deleting data, Amazon Redshift is optimized for high\-performance analysis and reporting of very large datasets\.
 

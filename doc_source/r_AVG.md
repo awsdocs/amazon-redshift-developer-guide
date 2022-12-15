@@ -11,18 +11,27 @@ AVG ( [ DISTINCT | ALL ] expression )
 ## Arguments<a name="r_AVG-arguments"></a>
 
  *expression *   
-The target column or expression that the function operates on\.
+The target column or expression that the function operates on\. The *expression* is one of the following data types:  
++ SMALLINT
++ INTEGER
++ BIGINT
++ NUMERIC
++ DECIMAL
++ REAL
++ DOUBLE PRECISON
++ SUPER
 
 DISTINCT \| ALL   
 With the argument DISTINCT, the function eliminates all duplicate values from the specified expression before calculating the average\. With the argument ALL, the function retains all duplicate values from the expression for calculating the average\. ALL is the default\.
 
 ## Data types<a name="r_AVG-data-types"></a>
 
- The argument types supported by the AVG function are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, and DOUBLE PRECISION\.
+ The argument types supported by the AVG function are SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, DOUBLE PRECISION, and SUPER\.
 
 The return types supported by the AVG function are: 
 + BIGINT for any integer type argument
 + DOUBLE PRECISION for a floating point argument
++ Returns the same data type as expression for any other argument type\.
 
 The default precision for an AVG function result with a NUMERIC or DECIMAL argument is 38\. The scale of the result is the same as the scale of the argument\. For example, an AVG of a DEC\(5,2\) column returns a DEC\(38,2\) data type\.
 

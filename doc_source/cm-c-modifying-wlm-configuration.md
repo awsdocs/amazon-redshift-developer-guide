@@ -4,13 +4,13 @@ The easiest way to modify the WLM configuration is by using the Amazon Redshift 
 
 When you switch your cluster between automatic and manual WLM, your cluster is put into `pending reboot` state\. The change doesn't take effect until the next cluster reboot\.
 
-For detailed information about modifying WLM configurations, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide\.*
+For detailed information about modifying WLM configurations, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Management Guide\.*
 
 ## Migrating from manual WLM to automatic WLM<a name="wlm-manual-to-automatic"></a>
 
 To maximize system throughput and use resources most effectively, we recommend that you set up automatic WLM for your queues\. Consider taking the following approach to set up a smooth transition from manual WLM to automatic WLM\.
 
-To migrate from manual WLM to automatic WLM and use query priorities, we recommend that you create a new parameter group and then attach that parameter group to your cluster\. For more information, see [Amazon Redshift Parameter Groups](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html) in the *Amazon Redshift Cluster Management Guide\.*\. 
+To migrate from manual WLM to automatic WLM and use query priorities, we recommend that you create a new parameter group and then attach that parameter group to your cluster\. For more information, see [Amazon Redshift Parameter Groups](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html) in the *Amazon Redshift Management Guide\.*\. 
 
 **Important**  
 To change the parameter group or to switch from manual to automatic WLM requires a cluster reboot\. For more information, see [WLM dynamic and static configuration properties](cm-c-wlm-dynamic-properties.md)\.

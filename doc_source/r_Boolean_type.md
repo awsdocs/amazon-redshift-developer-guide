@@ -6,9 +6,6 @@ Use the BOOLEAN data type to store true and false values in a single\-byte colum
 
 You can use an IS comparison to check a Boolean value only as a predicate in the WHERE clause\. You can't use the IS comparison with a Boolean value in the SELECT list\.
 
-**Note**  
-We recommend always checking Boolean values explicitly, as shown in the examples following\. Implicit comparisons, such as `WHERE flag` or `WHERE NOT flag` might return unexpected results\. 
-
 ## Examples<a name="r_Boolean_type-examples"></a>
 
 You could use a BOOLEAN column to store an "Active/Inactive" state for each customer in a CUSTOMER table\.

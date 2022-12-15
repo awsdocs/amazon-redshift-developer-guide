@@ -84,7 +84,7 @@ Wheaton
 (6 rows)
 ```
 
-The following example uses the default escape string \(\\\\\) to search for strings that include "\_": 
+The following example uses the default escape string \(\\\\\) to search for strings that include "start": 
 
 ```
 select tablename, "column" from pg_table_def 
@@ -101,7 +101,7 @@ limit 5;
 (5 rows)
 ```
 
-The following example specifies '^' as the escape character, then uses the escape character to search for strings that include "\_": 
+The following example specifies '^' as the escape character, then uses the escape character to search for strings that include "start": 
 
 ```
 select tablename, "column" from pg_table_def 

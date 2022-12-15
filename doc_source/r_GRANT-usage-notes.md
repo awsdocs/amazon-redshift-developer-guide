@@ -16,10 +16,10 @@ HR can't grant privileges for any operation other than SELECT, or on any other t
 As another example, the following command enables the user HR both to perform ALTER commands on the employees table and to grant and revoke the same privilege for other users\.
 
 ```
-grant ALTER on datashare employees to HR with grant option;
+grant ALTER on table employees to HR with grant option;
 ```
 
-HR can't grant privileges for any operation other than ALTER, or on any other datashare than employees\. 
+HR can't grant privileges for any operation other than ALTER, or on any other table than employees\. 
 
 Having privileges granted on a view doesn't imply having privileges on the underlying tables\. Similarly, having privileges granted on a schema doesn't imply having privileges on the tables in the schema\. Instead, grant access to the underlying tables explicitly\.
 

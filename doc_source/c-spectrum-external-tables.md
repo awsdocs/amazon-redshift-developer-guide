@@ -59,7 +59,7 @@ saletime timestamp)
 row format delimited
 fields terminated by '\t'
 stored as textfile
-location 's3://awssampledbuswest2/tickit/spectrum/sales/'
+location 's3://redshift-downloads/tickit/spectrum/sales/'
 table properties ('numRows'='172000');
 ```
 
@@ -89,9 +89,9 @@ from spectrum.sales_part;
 
  $path                                                                    | $size
 --------------------------------------------------------------------------+-------
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/ |  1616
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
-s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/ |  1644
+s3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-01/ |  1616
+s3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-02/ |  1444
+s3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-03/ |  1644
 ```
 
 ## Partitioning Redshift Spectrum external tables<a name="c-spectrum-external-tables-partitioning"></a>
@@ -114,14 +114,14 @@ The following procedure describes how to partition your data\.
 
 1. Add the partitions\. 
 
-   Using [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION, add each partition, specifying the partition column and key value, and the location of the partition folder in Amazon S3\. You can add multiple partitions in a single ALTER TABLE … ADD statement\. The following example adds partitions for `'2008-01'` and `'2008-02'`\.
+   Using [ALTER TABLE](r_ALTER_TABLE.md) … ADD PARTITION, add each partition, specifying the partition column and key value, and the location of the partition folder in Amazon S3\. You can add multiple partitions in a single ALTER TABLE … ADD statement\. The following example adds partitions for `'2008-01'` and `'2008-03'`\.
 
    ```
    alter table spectrum.sales_part add
    partition(saledate='2008-01-01') 
-   location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/'
-   partition(saledate='2008-02-01') 
-   location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
+   location 's3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-01/'
+   partition(saledate='2008-03-01') 
+   location 's3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-03/';
    ```
 **Note**  
 If you use the AWS Glue catalog, you can add up to 100 partitions using a single ALTER TABLE statement\.
@@ -130,16 +130,19 @@ If you use the AWS Glue catalog, you can add up to 100 partitions using a single
 
 In this example, you create an external table that is partitioned by a single partition key and an external table that is partitioned by two partition keys\.
 
-The sample data for this example is located in an Amazon S3 bucket that gives read access to all authenticated AWS users\. Your cluster and your external data files must be in the same AWS Region\. The sample data bucket is in the US West \(Oregon\) Region \(us\-west\-2\)\. To access the data using Redshift Spectrum, your cluster must also be in us\-west\-2\. To list the folders in Amazon S3, run the following command\.
+The sample data for this example is located in an Amazon S3 bucket that gives read access to all authenticated AWS users\. Your cluster and your external data files must be in the same AWS Region\. The sample data bucket is in the US East \(N\. Virginia\) Region \(us\-east\-1\)\. To access the data using Redshift Spectrum, your cluster must also be in us\-east\-1\. To list the folders in Amazon S3, run the following command\.
 
 ```
-aws s3 ls s3://awssampledbuswest2/tickit/spectrum/sales_partition/
+aws s3 ls s3://redshift-downloads/tickit/spectrum/sales_partition/
 ```
 
 ```
 PRE saledate=2008-01/
-PRE saledate=2008-02/
 PRE saledate=2008-03/
+PRE saledate=2008-04/
+PRE saledate=2008-05/
+PRE saledate=2008-06/
+PRE saledate=2008-12/
 ```
 
 If you don't already have an external schema, run the following command\. Substitute the Amazon Resource Name \(ARN\) for your AWS Identity and Access Management \(IAM\) role\.
@@ -174,7 +177,7 @@ partitioned by (saledate char(10))
 row format delimited
 fields terminated by '|'
 stored as textfile
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/'
+location 's3://redshift-downloads/tickit/spectrum/sales_partition/'
 table properties ('numRows'='172000');
 ```
 
@@ -183,13 +186,13 @@ To add the partitions, run the following ALTER TABLE command\.
 ```
 alter table spectrum.sales_part add
 partition(saledate='2008-01') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/'
-
-partition(saledate='2008-02') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/'
+location 's3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-01/'
 
 partition(saledate='2008-03') 
-location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
+location 's3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-03/'
+
+partition(saledate='2008-04') 
+location 's3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-04/';
 ```
 
 To select data from the partitioned table, run the following query\.
@@ -224,9 +227,9 @@ where tablename = 'sales_part';
 ```
 schemaname | tablename  | values      | location                                                                
 -----------+------------+-------------+-------------------------------------------------------------------------
-spectrum   | sales_part | ["2008-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
-spectrum   | sales_part | ["2008-02"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
-spectrum   | sales_part | ["2008-03"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03
+spectrum   | sales_part | ["2008-01"] | s3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-01
+spectrum   | sales_part | ["2008-03"] | s3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-03
+spectrum   | sales_part | ["2008-04"] | s3://redshift-downloads/tickit/spectrum/sales_partition/saledate=2008-04
 ```
 
 #### Example 2: Partitioning with a multiple partition key<a name="c-spectrum-external-tables-multi-partition-example"></a>
@@ -249,7 +252,7 @@ partitioned by (salesmonth char(10), event integer)
 row format delimited
 fields terminated by '|'
 stored as textfile
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/'
 table properties ('numRows'='172000');
 ```
 
@@ -258,31 +261,31 @@ To add the partitions, run the following ALTER TABLE command\.
 ```
 alter table spectrum.sales_event add
 partition(salesmonth='2008-01', event='101') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=101/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-01/event=101/'
 
 partition(salesmonth='2008-01', event='102') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=102/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-01/event=102/'
 
 partition(salesmonth='2008-01', event='103') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-01/event=103/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-01/event=103/'
 
 partition(salesmonth='2008-02', event='101') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-02/event=101/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-02/event=101/'
 
 partition(salesmonth='2008-02', event='102') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-02/event=102/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-02/event=102/'
 
 partition(salesmonth='2008-02', event='103') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-02/event=103/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-02/event=103/'
 
 partition(salesmonth='2008-03', event='101') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=101/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-03/event=101/'
 
 partition(salesmonth='2008-03', event='102') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=102/'
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-03/event=102/'
 
 partition(salesmonth='2008-03', event='103') 
-location 's3://awssampledbuswest2/tickit/spectrum/salesevent/salesmonth=2008-03/event=103/';
+location 's3://redshift-downloads/tickit/spectrum/salesevent/salesmonth=2008-03/event=103/';
 ```
 
 Run the following query to select data from the partitioned table\.
@@ -402,7 +405,7 @@ You can map the same external table to both file structures shown in the previou
 
 ## Creating external tables for data managed in Apache Hudi<a name="c-spectrum-column-mapping-hudi"></a>
 
-To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\.  You can read Copy On Write \(CoW\) tables in Apache Hudi versions 0\.5\.2, 0\.6\.0, 0\.7\.0, 0\.8\.0, 0\.9\.0, and 0\.10\.0 that are created and modified with insert, delete, and upsert write operations\. For example, bootstrap tables are not supported\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/next/table_types#copy-on-write-table)  in the open source Apache Hudi documentation\. 
+To query data in Apache Hudi Copy On Write \(CoW\) format, you can use Amazon Redshift Spectrum external tables\. A Hudi Copy On Write table is a collection of Apache Parquet files stored in Amazon S3\.  You can read Copy On Write \(CoW\) tables in Apache Hudi versions 0\.5\.2, 0\.6\.0, 0\.7\.0, 0\.8\.0, 0\.9\.0, 0\.10\.0, 0\.10\.1, 0\.11\.0, and 0\.11\.1 that are created and modified with insert, delete, and upsert write operations\. For example, bootstrap tables are not supported\. For more information, see [Copy On Write Table](https://hudi.apache.org/docs/next/table_types#copy-on-write-table)  in the open source Apache Hudi documentation\. 
 
 When you create an external table that references data in Hudi CoW format, you map each column in the external table to a column in the Hudi data\. Mapping is done by column\. 
 

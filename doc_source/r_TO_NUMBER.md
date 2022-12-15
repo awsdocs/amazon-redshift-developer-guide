@@ -32,5 +32,14 @@ select to_number('12,454.8-', '99G999D9S');
 to_number
 -----------
 -12454.8
-(1 row)
+```
+
+The following example converts the string `$ 12,454.88` to a number: 
+
+```
+select to_number('$ 12,454.88', 'L 99G999D99');
+
+to_number
+-----------
+12454.88
 ```

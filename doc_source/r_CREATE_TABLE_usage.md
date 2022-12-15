@@ -3,7 +3,7 @@
 ## Limits and quotas<a name="r_CREATE_TABLE_usage-limits"></a>
 
 Consider the following limits when you create a table\.
-+ There is a limit for the maximum number of tables in a cluster by node type\. For more information, see [Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Cluster Management Guide*\. 
++ There is a limit for the maximum number of tables in a cluster by node type\. For more information, see [Limits](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html) in the *Amazon Redshift Management Guide*\. 
 + The maximum number of characters for a table name is 127\. 
 + The maximum number of columns you can define in a single table is 1,600\. 
 + The maximum number of SORTKEY columns you can define in a single table is 400\. 

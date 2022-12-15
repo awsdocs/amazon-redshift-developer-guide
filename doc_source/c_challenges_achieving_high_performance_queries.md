@@ -1,6 +1,6 @@
 # Performance<a name="c_challenges_achieving_high_performance_queries"></a>
 
-Amazon Redshift achieves extremely fast query execution by employing these performance features\.
+Amazon Redshift achieves extremely fast query run by employing these performance features\.
 
 **Topics**
 + [Massively parallel processing](#massively-parallel-processing)
@@ -12,7 +12,7 @@ Amazon Redshift achieves extremely fast query execution by employing these perfo
 
 ## Massively parallel processing<a name="massively-parallel-processing"></a>
 
-Massively parallel processing \(MPP\) enables fast execution of the most complex queries operating on large amounts of data\. Multiple compute nodes handle all query processing leading up to final result aggregation, with each core of each node executing the same compiled query segments on portions of the entire data\.
+Massively parallel processing \(MPP\) enables fast run of the most complex queries operating on large amounts of data\. Multiple compute nodes handle all query processing leading up to final result aggregation, with each core of each node running the same compiled query segments on portions of the entire data\.
 
 Amazon Redshift distributes the rows of a table to the compute nodes so that the data can be processed in parallel\. By selecting an appropriate distribution key for each table, you can optimize the distribution of data to balance the workload and minimize movement of data from node to node\. For more information, see [Choose the best distribution style](c_best-practices-best-dist-key.md)\.
 
@@ -26,20 +26,20 @@ When columns are sorted appropriately, the query processor is able to rapidly fi
 
 ## Data compression<a name="data-compression"></a>
 
-Data compression reduces storage requirements, thereby reducing disk I/O, which improves query performance\. When you run a query, the compressed data is read into memory, then uncompressed during query execution\. Loading less data into memory enables Amazon Redshift to allocate more memory to analyzing the data\. Because columnar storage stores similar data sequentially, Amazon Redshift is able to apply adaptive compression encodings specifically tied to columnar data types\. The best way to enable data compression on table columns is by allowing Amazon Redshift to apply optimal compression encodings when you load the table with data\. To learn more about using automatic data compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
+Data compression reduces storage requirements, thereby reducing disk I/O, which improves query performance\. When you run a query, the compressed data is read into memory, then uncompressed during query run\. Loading less data into memory enables Amazon Redshift to allocate more memory to analyzing the data\. Because columnar storage stores similar data sequentially, Amazon Redshift is able to apply adaptive compression encodings specifically tied to columnar data types\. The best way to enable data compression on table columns is by allowing Amazon Redshift to apply optimal compression encodings when you load the table with data\. To learn more about using automatic data compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
 ## Query optimizer<a name="query-optimizer"></a>
 
-The Amazon Redshift query execution engine incorporates a query optimizer that is MPP\-aware and also takes advantage of the columnar\-oriented data storage\. The Amazon Redshift query optimizer implements significant enhancements and extensions for processing complex analytic queries that often include multi\-table joins, subqueries, and aggregation\. To learn more about optimizing queries, see [Tuning query performance](c-optimizing-query-performance.md)\.
+The Amazon Redshift query run engine incorporates a query optimizer that is MPP\-aware and also takes advantage of the columnar\-oriented data storage\. The Amazon Redshift query optimizer implements significant enhancements and extensions for processing complex analytic queries that often include multi\-table joins, subqueries, and aggregation\. To learn more about optimizing queries, see [Tuning query performance](c-optimizing-query-performance.md)\.
 
 ## Result caching<a name="result-caching"></a>
 
-To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When a user submits a query, Amazon Redshift checks the results cache for a valid, cached copy of the query results\. If a match is found in the result cache, Amazon Redshift uses the cached results and doesn't run the query\. Result caching is transparent to the user\.
+To reduce query runtime and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When a user submits a query, Amazon Redshift checks the results cache for a valid, cached copy of the query results\. If a match is found in the result cache, Amazon Redshift uses the cached results and doesn't run the query\. Result caching is transparent to the user\.
 
 Result caching is turned on by default\. To turn off result caching for the current session, set the [enable\_result\_cache\_for\_session](r_enable_result_cache_for_session.md) parameter to `off`\.
 
 Amazon Redshift uses cached results for a new query when all of the following are true:
-+ The user submitting the query has access privilege to the objects used in the query\.
++ The user submitting the query has access permission to the objects used in the query\.
 + The table or views in the query haven't been modified\.
 + The query doesn't use a function that must be evaluated each time it's run, such as GETDATE\.
 + The query doesn't reference Amazon Redshift Spectrum external tables\.
@@ -73,6 +73,6 @@ userid | query  | elapsed  | source_query
 
 ## Compiled code<a name="compiled-code"></a>
 
-The leader node distributes fully optimized compiled code across all of the nodes of a cluster\. Compiling the query eliminates the overhead associated with an interpreter and therefore increases the execution speed, especially for complex queries\. The compiled code is cached and shared across sessions on the same cluster, so subsequent executions of the same query will be faster, often even with different parameters\. 
+The leader node distributes fully optimized compiled code across all of the nodes of a cluster\. Compiling the query decreases the overhead associated with an interpreter and therefore increases the runtime speed, especially for complex queries\. The compiled code is cached and shared across sessions on the same cluster\. As a result, future runs of the same query will be faster, often even with different parameters\. 
 
-The execution engine compiles different code for the JDBC connection protocol and for ODBC and psql \(libq\) connection protocols, so two clients using different protocols will each incur the first\-time cost of compiling the code\. Other clients that use the same protocol, however, will benefit from sharing the cached code\.
+The query run engine compiles different code for the JDBC connection protocol and for ODBC and psql \(libq\) connection protocols, so two clients using different protocols will each incur the first\-time cost of compiling the code\. Other clients that use the same protocol, however, will benefit from sharing the cached code\.

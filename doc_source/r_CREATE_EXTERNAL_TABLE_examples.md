@@ -381,7 +381,7 @@ CREATE EXTERNAL TABLE schema_spectrum_uddh.soccer_league
   league_off  decimal(6,2),
   league_def  decimal(6,2),
   league_spi  decimal(6,2),
-  league_nspi smallint
+  league_nspi integer
 )
 ROW FORMAT DELIMITED 
     FIELDS TERMINATED BY ',' 
@@ -404,7 +404,7 @@ count
 645
 ```
 
-The following query displays the top 10 clubs\.
+The following query displays the top 10 clubs\. Because club `Barcelona` has an invalid character in the string, a NULL is displayed for the name\.
 
 ```
 select league_rank,club_name,league_name,league_nspi
@@ -414,19 +414,19 @@ where league_rank between 1 and 10;
 
 ```
 league_rank	club_name	league_name			league_nspi
-1		Manchester City	Barclays Premier Lea		32767
-2		Bayern Munich	German Bundesliga		32767
-3		Liverpool	Barclays Premier Lea		32767
-4		Chelsea		Barclays Premier Lea		32767
-5		Ajax		Dutch Eredivisie		32767
+1		Manchester City	Barclays Premier Lea		34595
+2		Bayern Munich	German Bundesliga		34151
+3		Liverpool	Barclays Premier Lea		33223
+4		Chelsea		Barclays Premier Lea		32808
+5		Ajax		Dutch Eredivisie		32790
 6		Atletico 	Madrid	Spanish Primera Divi	31517
 7		Real Madrid	Spanish Primera Divi		31469
-8		NULL	Spanish Primera Divi			31321
+8		NULL	        Spanish Primera Divi            31321
 9		RB Leipzig	German Bundesliga		31014
 10		Paris Saint-Ger	French Ligue 1			30929
 ```
 
-The following example alters the `soccer_league` table to specify the `invalid_char_handling`, `replacement_char`, and `data_cleansing_enabled` external table parameters to insert a question mark \(?\) as a substitute for unexpected characters\.
+The following example alters the `soccer_league` table to specify the `invalid_char_handling`, `replacement_char`, and `data_cleansing_enabled` external table properties to insert a question mark \(?\) as a substitute for unexpected characters\.
 
 ```
 alter  table schema_spectrum_uddh.soccer_league
@@ -441,15 +441,15 @@ from schema_spectrum_uddh.soccer_league
 where league_rank between 1 and 10;
 ```
 
-The following query displays the top 10 clubs, with the question mark \(?\) replacement character in the eighth row\.
+Because the table properties were altered, the results show the top 10 clubs, with the question mark \(?\) replacement character in the eighth row for club `Barcelona`\.
 
 ```
 league_rank	club_name	league_name		league_nspi
-1		Manchester City	Barclays Premier Lea	32767
-2		Bayern Munich	German Bundesliga	32767
-3		Liverpool	Barclays Premier Lea	32767
-4		Chelsea		Barclays Premier Lea	32767
-5		Ajax		Dutch Eredivisie	32767
+1		Manchester City	Barclays Premier Lea	34595
+2		Bayern Munich	German Bundesliga	34151
+3		Liverpool	Barclays Premier Lea	33223
+4		Chelsea		Barclays Premier Lea	32808
+5		Ajax		Dutch Eredivisie	32790
 6		Atletico Madrid	Spanish Primera Divi	31517
 7		Real Madrid	Spanish Primera Divi	31469
 8		Barcel?na	Spanish Primera Divi	31321
@@ -457,7 +457,7 @@ league_rank	club_name	league_name		league_nspi
 10		Paris Saint-Ger	French Ligue 1		30929
 ```
 
-The following example alters the `soccer_league` table to specify the `invalid_char_handling` external table parameters to drop rows with unexpected characters\.
+The following example alters the `soccer_league` table to specify the `invalid_char_handling` external table properties to drop rows with unexpected characters\.
 
 ```
 alter table schema_spectrum_uddh.soccer_league 
@@ -472,17 +472,17 @@ from schema_spectrum_uddh.soccer_league
 where league_rank between 1 and 10;
 ```
 
-The following query displays the top 10 clubs, not including the eighth row\.
+The results display the top clubs, not including the eighth row for club `Barcelona`\.
 
 ```
-league_rank	club_name	league_name	league_nspi
-1	 Manchester City	Barclays Premier Lea	32767
-2	 Bayern Munich	German Bundesliga	32767
-3	 Liverpool	Barclays Premier Lea	32767
-4	 Chelsea   	Barclays Premier Lea	32767
-5	 Ajax   	Dutch Eredivisie	32767
-6	 Atletico Madrid	Spanish Primera Divi	31517
-7	 Real Madrid	Spanish Primera Divi	31469
-9	 RB Leipzig	German Bundesliga	31014
-10	   Paris Saint-Ger	French Ligue 1	30929
+league_rank   club_name         league_name            league_nspi
+1             Manchester City   Barclays Premier Lea   34595
+2             Bayern Munich     German Bundesliga      34151
+3             Liverpool         Barclays Premier Lea   33223
+4             Chelsea           Barclays Premier Lea   32808
+5             Ajax              Dutch Eredivisie       32790
+6             Atletico Madrid   Spanish Primera Divi   31517
+7             Real Madrid       Spanish Primera Divi   31469
+9             RB Leipzig        German Bundesliga      31014
+10            Paris Saint-Ger   French Ligue 1         30929
 ```

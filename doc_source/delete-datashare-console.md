@@ -12,6 +12,8 @@ Delete datashares created in your account using the console\. Connect to a datab
 
 1. Choose one or more datashares you want to delete, then choose **Delete**\. The Delete datashares page appears\.
 
+   Deleting a datashare shared with Lake Formation doesn't automatically remove the associated permissions in Lake Formation\. To remove them, go to the Lake Formation console\.
+
 1. Type **Delete** to confirm deleting the specified datashares\.
 
 1. Choose **Delete**\.

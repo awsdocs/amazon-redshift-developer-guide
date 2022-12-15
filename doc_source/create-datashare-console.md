@@ -24,7 +24,9 @@ As a producer cluster administrator, you can create datashares from the **Databa
 
 1. In the **Datashare objects** section, to add objects to a datashare, follow [Adding datashare objects to datashares](add-datashare-object-console.md)\.
 
-1. In the **Data consumers** section, to add data consumers to a datashare, follow [Adding data consumers to datashares](add-data-consumer-console.md)\.
+1. In the **Data consumers** section, you can choose to publish to a Redshift account, or publish to the AWS Glue Data Catalog, which starts the process of sharing data via Lake Formation\. Publishing your datashare to Redshift accounts means sharing your data with another Redshift account that acts as the consumer cluster\.
+**Note**  
+Once the datashare is created, you cannot edit the configuration to publish to the other option\.
 
 1. Choose **Create datashare**\.
 

@@ -5,11 +5,11 @@
 + [Default database user permissions](r_Privileges.md)
 + [superuser](r_superusers.md)
 + [Users](r_Users.md)
-+ [Role\-based access control \(RBAC\)](t_Roles.md)
 + [Groups](r_Groups.md)
 + [Schemas](r_Schemas_and_tables.md)
-+ [Example for controlling user and group access](t_user_group_examples.md)
++ [Role\-based access control \(RBAC\)](t_Roles.md)
 + [Row\-level security](t_rls.md)
++ [Dynamic data masking \(preview\)](t_ddm.md)
 
 You manage database security by controlling which users have access to which database objects\.
 
@@ -21,4 +21,4 @@ Access to database objects depends on the permissions that you grant to user acc
 
 For examples of security implementation, see [Example for controlling user and group access](t_user_group_examples.md)\.
 
-For more information about protecting your data, see [Security in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) in the *Amazon Redshift Cluster Management Guide*\. 
+For more information about protecting your data, see [Security in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) in the *Amazon Redshift Management Guide*\. 

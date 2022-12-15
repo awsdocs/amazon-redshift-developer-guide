@@ -10,6 +10,6 @@ Now you have an IAM role that authorizes Amazon Redshift to access the external 
 
 1. For **Actions**, choose **Manage IAM roles**\. The **IAM roles** page appears\. 
 
-1. Either Choose **Enter ARN** and then enter an ARN or an IAM role, or choose an IAM role from the list\. Then choose **Add IAM role** to add it to the list of **Attached IAM roles**\. 
+1. Either choose **Enter ARN** and then enter an ARN or an IAM role, or choose an IAM role from the list\. Then choose **Add IAM role** to add it to the list of **Attached IAM roles**\. 
 
 1. Choose **Done** to associate the IAM role with the cluster\. The cluster is modified to complete the change\. 

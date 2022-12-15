@@ -64,3 +64,5 @@ SELECT * from employee_error_log;
 ------------------------------------------------
  Error message: column "invalid" does not exist
 ```
+
+For more information about RAISE, including formatting help and a list of additional levels, see [Supported PL/pgSQL statements](https://docs.aws.amazon.com/redshift/latest/dg/c_PLpgSQL-statements.html)\.

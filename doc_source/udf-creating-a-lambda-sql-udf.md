@@ -92,13 +92,13 @@ The IAM role requires permission to invoke Lambda functions\. While creating the
 
   After creating your custom policy with the required permissions, you can attach your policy to the IAM role on the **Attach permissions policy** page while creating an IAM role\.
 
-For steps to create an IAM role, see [Authorizing Amazon Redshift to access other AWS services on your behalf](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) in the *Amazon Redshift Cluster Management Guide*\.
+For steps to create an IAM role, see [Authorizing Amazon Redshift to access other AWS services on your behalf](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) in the *Amazon Redshift Management Guide*\.
 
 If you don't want to create a new IAM role, you can add the permissions mentioned previously to your existing IAM role\.
 
 ### Associating an IAM role with the cluster<a name="udf-lambda-associate-iam"></a>
 
-Attach the IAM role to your cluster\. You can add a role to a cluster or view the roles associated with a cluster by using the Amazon Redshift Management Console, CLI, or API\. For more information, see [Associating an IAM Role With a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html) in the *Amazon Redshift Cluster Management Guide*\.
+Attach the IAM role to your cluster\. You can add a role to a cluster or view the roles associated with a cluster by using the Amazon Redshift Management Console, CLI, or API\. For more information, see [Associating an IAM Role With a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html) in the *Amazon Redshift Management Guide*\.
 
 ### Including the IAM role in the command<a name="udf-lambda-include-iam"></a>
 

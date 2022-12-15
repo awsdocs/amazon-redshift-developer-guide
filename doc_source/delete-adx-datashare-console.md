@@ -8,7 +8,7 @@ Delete AWS Data Exchange datashares created in your account using the console\. 
 
 1. From the navigator menu, choose **Editor**, then **Query editor v2**\.
 
-1. If this is the first time you use the Query editor v2, configure your AWS account\. By default, an AWS owned key is used to encrypt resources\. For more information about configuring your AWS account, see [Configuring your AWS account](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor-v2-getting-started.html) in the *Amazon Redshift Cluster Management Guide*\.
+1. If this is the first time you use the Query editor v2, configure your AWS account\. By default, an AWS owned key is used to encrypt resources\. For more information about configuring your AWS account, see [Configuring your AWS account](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor-v2-getting-started.html) in the *Amazon Redshift Management Guide*\.
 
 1. To connect to the cluster that your AWS Data Exchange datashare is in, choose **Database** and the cluster name in the tree\-view panel\. If prompted, enter the connection parameters\.
 

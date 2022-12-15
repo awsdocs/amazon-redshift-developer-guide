@@ -7,3 +7,4 @@ You can share data for read purposes across different Amazon Redshift clusters w
 + [Sharing data across AWS accounts](across-account.md)
 + [Sharing data across AWS Regions](across-region.md)
 + [Sharing licensed Amazon Redshift data on AWS Data Exchange](adx-getting-started.md)
++ [Working with AWS Lake Formation\-managed datashares](lake-formation-getting-started.md)

@@ -125,7 +125,7 @@ GROUP BY  apex.service_class, apex.num_query_tasks, maxes.d, maxes.dt_h
 ORDER BY apex.service_class, maxes.d, maxes.dt_h;
 ```
 
-The `max_service_class_slots` column represents the maximum number of WLM query slots in the query queue for that hour\. If underutilized queues exist, implement the slot reduction optimization by [modifying a parameter group](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-parameter-groups-console.html#parameter-group-modify), as described in the *Amazon Redshift Cluster Management Guide\.*
+The `max_service_class_slots` column represents the maximum number of WLM query slots in the query queue for that hour\. If underutilized queues exist, implement the slot reduction optimization by [modifying a parameter group](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-parameter-groups-console.html#parameter-group-modify), as described in the *Amazon Redshift Management Guide\.*
 
 **Implementation tips**
 + If your workload is highly variable in volume, make sure that the analysis captured a peak utilization period\. If it didn't, run the preceding SQL repeatedly to monitor peak concurrency requirements\. 
@@ -219,7 +219,7 @@ END, (SUM(transfer_size)/(1024.0*1024.0))/COUNT(*) DESC;
 ```
 
 **Implementation tips**
-+ The number of slices in a node depends on the node size of the cluster\. For more information about the number of slices in the various node types, see [Clusters and Nodes in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide\.* 
++ The number of slices in a node depends on the node size of the cluster\. For more information about the number of slices in the various node types, see [Clusters and Nodes in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Management Guide\.* 
 + You can load multiple files by specifying a common prefix, or prefix key, for the set, or by explicitly listing the files in a manifest file\. For more information about loading files, see [Loading data from compressed and uncompressed files](t_splitting-data-files.md)\.
 + Amazon Redshift doesn't take file size into account when dividing the workload\. Split your load data files so that the files are about equal size, between 1 MB and 1 GB after compression\. 
 

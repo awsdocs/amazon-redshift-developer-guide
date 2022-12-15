@@ -215,11 +215,12 @@ Table properties are case\-sensitive\.
 + none
 + snappy  
 'data\_cleansing\_enabled'='true / false’  
-This property sets whether data handling is on for the table\. When 'data\_cleansing\_enabled' is set to true, data handling is on for the table\. When 'data\_cleansing\_enabled' is set to false, data handling is off for the table\. Following is a list of the table–level data handling properites controlled by this property:  
+This property sets whether data handling is on for the table\. When 'data\_cleansing\_enabled' is set to true, data handling is on for the table\. When 'data\_cleansing\_enabled' is set to false, data handling is off for the table\. Following is a list of the table–level data handling properties controlled by this property:  
++ column\_count\_mismatch\_handling
 + invalid\_char\_handling
++ numeric\_overflow\_handling
 + replacement\_char
 + surplus\_char\_handling
-+ numeric\_overflow\_handling
 For examples, see [Data handling examples](r_CREATE_EXTERNAL_TABLE_examples.md#r_CREATE_EXTERNAL_TABLE_examples-data-handling)\.  
 'invalid\_char\_handling'='*value*'   
 Specifies the action to perform when query results contain invalid UTF\-8 character values\. You can specify the following actions:    
@@ -258,6 +259,16 @@ DROP\_ROW
 Replaces each value in the row with null\.  
 TRUNCATE  
 Removes the characters that exceed the maximum number of characters defined for the column\.  
+'column\_count\_mismatch\_handling'='value’  
+Identifies if the file contains less or more values for a row than the number of columns specified in the external table definition\. This property is only available for an uncompressed text file format\. You can specify the following actions:    
+DISABLED  
+Column count mismatch handling is turned off\.  
+FAIL  
+Fail the query if the column count mismatch is detected\.  
+SET\_TO\_NULL  
+Fill missing values with NULL and ignore the additional values in each row\.  
+DROP\_ROW  
+Drop all rows that contain column count mismatch error from the scan\.  
 'numRows'='*row\_count*'   
 A property that sets the numRows value for the table definition\. To explicitly update an external table's statistics, set the numRows property to indicate the size of the table\. Amazon Redshift doesn't analyze external tables to generate the table statistics that the query optimizer uses to generate a query plan\. If table statistics aren't set for an external table, Amazon Redshift generates a query execution plan based on an assumption that external tables are the larger tables and local tables are the smaller tables\.  
 'skip\.header\.line\.count'='*line\_count*'  

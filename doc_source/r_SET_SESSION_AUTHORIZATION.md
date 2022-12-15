@@ -2,21 +2,18 @@
 
 Sets the user name for the current session\.
 
-You can use the SET SESSION AUTHORIZATION command, for example, to test database access by temporarily running a session or transaction as an unprivileged user\.
+You can use the SET SESSION AUTHORIZATION command, for example, to test database access by temporarily running a session or transaction as an unprivileged user\. You must be a database superuser to run this command\.
 
 ## Syntax<a name="r_SET_SESSION_AUTHORIZATION-synopsis"></a>
 
 ```
-SET [ SESSION | LOCAL ] SESSION AUTHORIZATION { user_name | DEFAULT }
+SET [ LOCAL ] SESSION AUTHORIZATION { user_name | DEFAULT }
 ```
 
 ## Parameters<a name="r_SET_SESSION_AUTHORIZATION-parameters"></a>
 
-SESSION  
-Specifies that the setting is valid for the current session\. Default value\.
-
 LOCAL  
-Specifies that the setting is valid for the current transaction\.
+Specifies that the setting is valid for the current transaction\. Omitting this parameter specifies that the setting is valid for the current session\.
 
  *user\_name*   
 Name of the user to set\. The user name may be written as an identifier or a string literal\.

@@ -2,7 +2,7 @@
 
 Use SVV\_EXTERNAL\_SCHEMAS to view information about external schemas\. For more information, see [CREATE EXTERNAL SCHEMA](r_CREATE_EXTERNAL_SCHEMA.md)\.
 
-SVV\_EXTERNAL\_SCHEMAS is visible to all users\. Superusers can see all rows; regular users can see only metadata to which they have access\. 
+SVV\_EXTERNAL\_SCHEMAS is visible to all users\. 
 
 ## Table columns<a name="r_SVV_EXTERNAL_SCHEMAS-table-columns2"></a>
 

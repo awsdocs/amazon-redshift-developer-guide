@@ -32,9 +32,5 @@ When working with the DETACH RLS POLICY statement, observe the following:
 The following example detaches a policy on a table from a role\.
 
 ```
-DETACH POLICY policy_access_self ON employees FROM ROLE Employee;
-```
-
-```
 DETACH RLS POLICY policy_concerts ON tickit_category_redshift FROM ROLE analyst, ROLE dbadmin;
 ```

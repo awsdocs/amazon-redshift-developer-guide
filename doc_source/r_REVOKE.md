@@ -102,7 +102,13 @@ The following is the syntax for using REVOKE for datashare usage privileges for 
 ```
 REVOKE USAGE 
     ON DATASHARE datashare_name 
-    FROM NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [, ...]
+    FROM NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [ VIA DATA CATALOG ] [, ...]
+```
+
+The following is an example of how to revoke usage of a datashare from a Lake Formation account\.
+
+```
+REVOKE USAGE ON salesshare FROM ACCOUNT '123456789012' VIA DATA CATALOG;
 ```
 
 The following is the REVOKE syntax for data\-sharing usage permissions on a specific database or schema created from a datashare\. This USAGE permission doesn't revoke usage permission to databases that are not created from the specified datashare\. You can only REVOKE, ALTER, or SHARE permissions on a datashare to users and user groups\.
@@ -164,13 +170,13 @@ FROM { ROLE role_name } [, ...]
 The following is the syntax for revoking permissions to explain the row\-level security policy filters of a query in the EXPLAIN plan\. You can revoke the privilege using the REVOKE statement\.
 
 ```
-REVOKE EXPLAIN RLS FROM { username | ROLE rolename }
+REVOKE EXPLAIN RLS FROM ROLE rolename 
 ```
 
 The following is the syntax for granting permissions to bypass row\-level security policies for a query\. 
 
 ```
-REVOKE IGNORE RLS FROM { username | ROLE rolename }
+REVOKE IGNORE RLS FROM ROLE rolename 
 ```
 
 The following is the syntax for revoking permissions from the specified row\-level security policy\.
@@ -317,8 +323,8 @@ Revoking the USAGE privilege revokes the access to a datashare from consumers\.
 FROM NAMESPACE 'clusternamespace GUID'   
 Indicates the namespace in the same account that has consumers losing the privileges to the datashare\. Namespaces use a 128\-bit alphanumeric globally unique identifier \(GUID\)\.
 
-FROM ACCOUNT 'accountnumber'   
-Indicates the account number of another account that has the consumers losing the privileges to the datashare\.
+FROM ACCOUNT 'accountnumber' \[ VIA DATA CATALOG \]  
+Indicates the account number of another account that has the consumers losing the privileges to the datashare\. Specifying ‘VIA DATA CATALOG’ indicates that you are revoking usage of the datashare from a Lake Formation account\. Omitting the account number means that you're revoking from the account that owns the cluster\.
 
 ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="revoke-datashare"></a>
 Revokes the specified usage privileges on the specified database that was created in the specified datashare\.  
@@ -334,9 +340,6 @@ Revokes the EXECUTE privilege for a specific model\.
 
 \[ ADMIN OPTION FOR \] \{ role \} \[, \.\.\.\]  
 The role that you revoke from a specified user that has the WITH ADMIN OPTION\.
-
-FROM \{ *user\_name* \} \[, \.\.\.\]  
-The user or role that you revoke the specified role from\.
 
 FROM \{ role \} \[, \.\.\.\]  
 The role that you revoke the specified role from\.

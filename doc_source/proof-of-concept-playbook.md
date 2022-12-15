@@ -45,7 +45,7 @@ You can choose the node type and number of nodes using the Amazon Redshift conso
 
 1. Choose one of the following methods to size your cluster:
 **Note**  
-The following step describes an Amazon Redshift console that is running in an AWS Region that supports RA3 node types\. For a list of AWS Regions that support RA3 node types, see [Overview of RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-ra3-node-types) in the *Amazon Redshift Cluster Management Guide*\. 
+The following step describes an Amazon Redshift console that is running in an AWS Region that supports RA3 node types\. For a list of AWS Regions that support RA3 node types, see [Overview of RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-ra3-node-types) in the *Amazon Redshift Management Guide*\. 
    + If your AWS Region supports RA3 node types, choose either **Production** or **Free trial** to answer the question **What are you planning to use this cluster for?** 
 
      If your organization is eligible, you might be able to create a cluster under the Amazon Redshift free trial program\. To do this, choose **Free trial** to create a configuration with the dc2\.large node type\. For more information about choosing a free trial, see [Amazon Redshift free trial](http://aws.amazon.com/redshift/free-trial/)\. 
@@ -55,7 +55,7 @@ The following step describes an Amazon Redshift console that is running in an AW
 
 1. After you enter all required cluster properties, choose **Create cluster** to launch your data warehouse\. 
 
-   For more details about creating clusters with the Amazon Redshift console, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Cluster Management Guide*\. 
+   For more details about creating clusters with the Amazon Redshift console, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Management Guide*\. 
 
 ### Convert the schema and set up the datasets for the proof of concept<a name="proof-of-concept-convert-schema"></a>
 
@@ -72,11 +72,11 @@ Amazon Redshift is a relational database management system \(RDBMS\)\. As such, 
 Make sure that a complete evaluation meets all your data warehouse needs\. Consider including the following items in your success criteria: 
 + **Data load time** – using the `COPY` command is a common way to test how long it takes to load data\. For more information, see [Amazon Redshift best practices for loading data](c_loading-data-best-practices.md)\. 
 + **Throughput of the cluster** – measuring queries per hour is a common way to determine throughput\. To do so, set up a test to run typical queries for your workload\. 
-+ **Data security** – you can easily encrypt data at rest and in transit with Amazon Redshift\. You also have a number of options for managing keys\. Amazon Redshift also supports single sign\-on \(SSO\) integration\. Amazon Redshift pricing includes built\-in security, data compression, backup storage, and data transfer\.
++ **Data security** – you can easily encrypt data at rest and in transit with Amazon Redshift\. You also have a number of options for managing keys\. Amazon Redshift also supports single sign\-on integration\. Amazon Redshift pricing includes built\-in security, data compression, backup storage, and data transfer\.
 + **Third\-party tools integration** – you can use either a JDBC or ODBC connection to integrate with business intelligence and other external tools\. 
 + **Interoperability with other AWS services** – Amazon Redshift integrates with other AWS services, such as Amazon EMR, Amazon QuickSight, AWS Glue, Amazon S3, and Amazon Kinesis\. You can use this integration when setting up and managing your data warehouse\.
 + **Backups and snapshots** – backups and snapshots are created automatically\. You can also create a point\-in\-time snapshot at any time or on a schedule\. Try using a snapshot and creating a second cluster as part of your evaluation\. Evaluate if your development and testing organizations can use the cluster\. 
-+ **Resizing** – your evaluation should include increasing the number or types of Amazon Redshift nodes\. Evaluate that the workload throughput before and after a resize meets any variability of the volume of your workload\. For more information, see [Resizing clusters in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-resize-tutorial) in the *Amazon Redshift Cluster Management Guide*\. 
++ **Resizing** – your evaluation should include increasing the number or types of Amazon Redshift nodes\. Evaluate that the workload throughput before and after a resize meets any variability of the volume of your workload\. For more information, see [Resizing clusters in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-resize-tutorial) in the *Amazon Redshift Management Guide*\. 
 + **Concurrency scaling** – this feature helps you handle variability of traffic volume in your data warehouse\. With concurrency scaling, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\. For more information, see [Working with concurrency scaling](concurrency-scaling.md)\. 
 + **Automatic workload management \(WLM\)** – prioritize your business critical queries over other queries by using automatic WLM\. Try setting up queues based on your workloads \(for example, a queue for ETL and a queue for reporting\)\. Then enable automatic WLM to allocate the concurrency and memory resources dynamically\. For more information, see [Implementing automatic WLM](automatic-wlm.md)\. 
 + **Amazon Redshift Advisor** – the Advisor develops customized recommendations to increase performance and optimize costs by analyzing your workload and usage metrics for your cluster\. Sign in to the Amazon Redshift console to view Advisor recommendations\. For more information, see [Working with recommendations from Amazon Redshift Advisor](advisor.md)\.
@@ -113,7 +113,7 @@ Some of the following techniques for creating query benchmarks might help suppor
   + Node type
   + Load testing duration
   + Concurrency settings
-+ Reduce the cost of your proof of concept by pausing your cluster during off\-hours and weekends\. When a cluster is paused, on\-demand compute billing is suspended\. To run tests on the cluster, resume per\-second billing\. You can also create a schedule to pause and resume your cluster automatically\. For more information, see [Pausing and resuming clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-mgmt-pause-resume-cluster) in the *Amazon Redshift Cluster Management Guide*\. 
++ Reduce the cost of your proof of concept by pausing your cluster during off\-hours and weekends\. When a cluster is paused, on\-demand compute billing is suspended\. To run tests on the cluster, resume per\-second billing\. You can also create a schedule to pause and resume your cluster automatically\. For more information, see [Pausing and resuming clusters](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-mgmt-pause-resume-cluster) in the *Amazon Redshift Management Guide*\. 
 
 At this stage, you're ready to complete your project plan and evaluate results\. 
 
@@ -123,7 +123,7 @@ To help your Amazon Redshift evaluation, see the following:
 + [Service highlights and pricing](https://aws.amazon.com/redshift/) – this product detail page provides the Amazon Redshift value proposition, service highlights, and pricing\.
 + [Amazon Redshift Getting Started Guide](http://docs.aws.amazon.com/redshift/latest/gsg/) – this guide provides a tutorial of using Amazon Redshift to create a sample cluster and work with sample data\.
 + [Getting started with Amazon Redshift Spectrum](c-getting-started-using-spectrum.md) – in this tutorial, you learn how to use Redshift Spectrum to query data directly from files on Amazon S3\. 
-+ [Amazon Redshift management overview](http://docs.aws.amazon.com/redshift/latest/mgmt/overview.html) – this topic in the *Amazon Redshift Cluster Management Guide* provides an overview of Amazon Redshift\. 
++ [Amazon Redshift management overview](http://docs.aws.amazon.com/redshift/latest/mgmt/overview.html) – this topic in the *Amazon Redshift Management Guide* provides an overview of Amazon Redshift\. 
 + Optimize Amazon Redshift for performance with BI tools – consider integration with tools such as [Tableau](https://www.tableau.com/learn/whitepapers/optimize-tableau-redshift-better-deployment), [Power BI](https://aws.amazon.com/blogs/big-data/integrate-power-bi-with-amazon-redshift-for-insights-and-analytics/), and others\. 
 +  [Amazon Redshift Advisor recommendations](advisor-recommendations.md) – contains explanations and details for each Advisor recommendation\. 
 + [What's new in Amazon Redshift](https://aws.amazon.com/redshift/whats-new/) – announcements that help you keep track of new features and enhancements\. 

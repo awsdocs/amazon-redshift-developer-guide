@@ -60,6 +60,7 @@ The following table shows the maximum total result set size for each cluster nod
 |   RA3 4XL multiple nodes   |   3200000   | 
 |   RA3 XLPLUS multiple nodes   |   1800000  | 
 |   RA3 XLPLUS single node   |   64000   | 
+| Amazon Redshift Serverless | 150000 | 
 
 To view the active cursor configuration for a cluster, query the [STV\_CURSOR\_CONFIGURATION](r_STV_CURSOR_CONFIGURATION.md) system table as a superuser\. To view the state of active cursors, query the [STV\_ACTIVE\_CURSORS](r_STV_ACTIVE_CURSORS.md) system table\. Only the rows for a user's own cursors are visible to the user, but a superuser can view all cursors\.
 

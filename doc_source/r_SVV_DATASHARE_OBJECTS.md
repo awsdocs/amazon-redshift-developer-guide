@@ -2,6 +2,8 @@
 
 Use SVV\_DATASHARE\_OBJECTS to view a list of objects in all datashares created on the cluster or shared with the cluster\. 
 
+SVV\_DATASHARE\_OBJECTS is visible only to superusers\. Other users can't see any rows\.
+
 ## Table columns<a name="r_SVV_DATASHARE_OBJECTS-table-columns"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DATASHARE_OBJECTS.html)

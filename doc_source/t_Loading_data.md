@@ -2,6 +2,7 @@
 
 **Topics**
 + [Using a COPY command to load data](t_Loading_tables_with_the_COPY_command.md)
++ [Continuous file ingestion from Amazon S3 \(preview\)](loading-data-copy-job.md)
 + [Updating tables with DML commands](t_Updating_tables_with_DML_commands.md)
 + [Updating and inserting new data](t_updating-inserting-using-staging-tables-.md)
 + [Performing a deep copy](performing-a-deep-copy.md)

@@ -8,7 +8,7 @@ Before you work with Amazon Redshift ML, complete the following prerequisites\.
 
 As an Amazon Redshift administrator, do the following one\-time setup\.
 
-**To perform one\-time cluster setup for Amazon Redshift ML**
+To perform one\-time cluster setup for Amazon Redshift ML 
 
 1. Create a Redshift cluster using the AWS Management Console or the AWS Command Line Interface \(AWS CLI\)\. Make sure to attach the AWS Identity and Access Management \(IAM\) policy while creating the cluster\. For more information about permissions required to use Amazon Redshift ML with Amazon SageMaker, see [Permissions required to use Amazon Redshift machine learning \(ML\) with Amazon SageMaker](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html#iam-permission-ml)\.
 

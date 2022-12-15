@@ -33,8 +33,9 @@ When you accrue credit for concurrency scaling, this credit accrual applies to b
 + It doesn't support COPY from Amazon Redshift Spectrum or Amazon EMR\.
 + It doesn't support write operations on tables with identity columns\.
 + Amazon Redshift supports concurrency scaling for write operations on only Amazon Redshift RA3 nodes, specifically ra3\.16xlarge, ra3\.4xlarge, and ra3\.xlplus\. Concurrency scaling for write operations isn't supported on other node types\.
++ Amazon Redshift concurrency scaling isn't supported for auto refresh for materialized views\. For more information, see [Streaming ingestion](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-streaming-ingestion.html)\.
 
-For more information about concurrency scaling, see the following topics in the *Amazon Redshift Cluster Management Guide*\.
+For more information about concurrency scaling, see the following topics in the *Amazon Redshift Management Guide*\.
 + [Viewing Concurrency Scaling Data](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-concurrency-scaling.html) 
 + [Viewing Cluster Performance During Query Execution](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-query-cluster.html) 
 + [Viewing Query Details](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-query-execution-details.html) 

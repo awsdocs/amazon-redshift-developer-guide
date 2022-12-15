@@ -42,7 +42,7 @@ select pg_timezone_names();
 select pg_timezone_abbrevs();
 ```
 
-See a list of each at [Appendix: Time zone names and abbreviations](appendix-timezone-names.md)\.
+For more information, see [Appendix: Time zone names and abbreviations](appendix-timezone-names.md)\.
 
 ### Using a time zone name<a name="CONVERT_TIMEZONE-using-name"></a>
 

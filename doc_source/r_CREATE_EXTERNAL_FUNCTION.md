@@ -16,7 +16,9 @@ RETURNS data_type
 { VOLATILE | STABLE | IMMUTABLE }   
 LAMBDA 'lambda_fn_name' 
 IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
-RETRY_TIMEOUT milliseconds;
+RETRY_TIMEOUT milliseconds
+MAX_BATCH_ROWS count
+MAX_BATCH_SIZE size [ KB | MB ];
 ```
 
 The following is the syntax for machine learning on Amazon Redshift\. For information about the model\-specific parameters, see [Parameters](r_GRANT.md#r_GRANT-parameters)\.
@@ -77,6 +79,17 @@ The amount of total time in milliseconds that Amazon Redshift uses for the delay
 Instead of retrying immediately for any failed queries, Amazon Redshift performs backoffs and waits for a certain amount of time between retries\. Then Amazon Redshift retries the request to rerun the failed query until the sum of all the delays is equal to or exceeds the RETRY\_TIMEOUT value that you specified\. The default value is 20,000 milliseconds\.  
 When a Lambda function is invoked, Amazon Redshift retries for queries that receive errors such as `TooManyRequestsException`, `EC2ThrottledException`, and `ServiceException`\.   
 You can set the RETRY\_TIMEOUT parameter to 0 milliseconds to prevent any retries for a Lambda UDF\.
+
+MAX\_BATCH\_ROWS *count*  
+ The maximum number of rows that Amazon Redshift sends in a single batch request for a single lambda invocation\.   
+ This parameter's minimum value is 1\. The maximum value is INT\_MAX, or 2,147,483,647\.   
+ This parameter is optional\. The default value is INT\_MAX, or 2,147,483,647\. 
+
+MAX\_BATCH\_SIZE *size* \[ KB \| MB \]   
+ The maximum size of the data payload that Amazon Redshift sends in a single batch request for a single lambda invocation\.   
+ This parameter's minimum value is 1 KB\. The maximum value is 5 MB\.   
+ This parameter's default value is 5 MB\.   
+ KB and MB are optional\. If you don't set the unit of measurement, Amazon Redshift defaults to using KB\. 
 
 ## Examples<a name="r_CREATE_FUNCTION-examples"></a>
 

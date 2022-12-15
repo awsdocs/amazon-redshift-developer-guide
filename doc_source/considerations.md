@@ -1,8 +1,7 @@
 # Data sharing considerations in Amazon Redshift<a name="considerations"></a>
 
-Following are considerations for working with Amazon Redshift data sharing:
-+ Amazon Redshift only supports data sharing on the ra3\.16xlarge, ra3\.4xlarge, and ra3\.xlplus instance types for producer and consumer clusters\.
-+ Amazon Redshift supports data sharing in AWS Regions that RA3 node types are available\.
+Following are considerations for working with Amazon Redshift data sharing\. For information on data sharing limitations, see [Limitations for data sharing](limitations-datashare.md)\.
++ Amazon Redshift only supports data sharing on the ra3\.16xlarge, ra3\.4xlarge, and ra3\.xlplus instance types for producer and consumer clusters and Amazon Redshift Serverless\.
 + Amazon Redshift supports data sharing for clusters with homogeneous encryption configuration\. In other words, you can share data among two or more encrypted Amazon Redshift clusters\. Or you can share data among two or more unencrypted Amazon Redshift clusters for clusters that are within the same AWS account\. When sharing data between encrypted clusters, you can use different encryption keys for each cluster\.
 + For cross\-account and cross\-Region data sharing, both the producer and consumer cluster must be encrypted\.
 + For cross\-Region data sharing, you can create AWS Data Exchange datashares to share licensed data\.

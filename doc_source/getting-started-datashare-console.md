@@ -23,7 +23,7 @@ Use the Amazon Redshift console to manage datashares created in your account or 
 + If you are a producer cluster administrator, you can create datashares, add data consumers, add datashare objects, create databases from datashares, edit datashares, or delete datashares from the **CLUSTERS** tab\. 
 
   From the navigation menu, navigate the **Clusters** tab, choose a cluster from the cluster list\. Then do one of the following:
-  + Choose the **Datashares** tab, choose a datashare from the **Datashares created in my cluster** section\. Then do one of the following:
+  + Choose the **Datashares** tab, choose a datashare from the **Datashares created in my namespace** section\. Then do one of the following:
     + [Creating datashares](create-datashare-console.md)
 
       When a datashare is created, you can add datashare objects or data consumers\. For more information, see [Adding datashare objects to datashares](add-datashare-object-console.md) and [Adding data consumers to datashares](add-data-consumer-console.md)\.

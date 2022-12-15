@@ -66,13 +66,11 @@ You can also create and manage external databases and external tables using Hive
 **Note**  
 We recommend using Amazon Redshift to create and manage external databases and external tables in Redshift Spectrum\.
 
-### Viewing Redshift Spectrum databases in Athena<a name="c-spectrum-athena-external-catalogs"></a>
+### Viewing Redshift Spectrum databases in Athena and AWS Glue<a name="c-spectrum-athena-external-catalogs"></a>
 
-You can create an external database by including the CREATE EXTERNAL DATABASE IF NOT EXISTS clause as part of your CREATE EXTERNAL SCHEMA statement\. In such cases, the external database metadata is stored in your Athena data catalog\. The metadata for external tables that you create qualified by the external schema is also stored in your Athena Data Catalog\. 
+You can create an external database by including the CREATE EXTERNAL DATABASE IF NOT EXISTS clause as part of your CREATE EXTERNAL SCHEMA statement\. In such cases, the external database metadata is stored in your Data Catalog\. The metadata for external tables that you create qualified by the external schema is also stored in your Data Catalog\. 
 
-Athena maintains a Data Catalog for each supported AWS Region\. To view table metadata, log on to the Athena console and choose **Catalog Manager**\. The following example shows the Athena Catalog Manager for the US West \(Oregon\) Region\. 
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/spectrum-athena-catalog.png)
+Athena and AWS Glue maintain a Data Catalog for each supported AWS Region\. To view table metadata, log on to the Athena or AWS Glue console\. In Athena, choose **Data sources**, your AWS Glue, then view the details of your database\. In AWS Glue, choose **Databases**, your external database, then view the details of your database\. 
 
 If you create and manage your external tables using Athena, register the database using CREATE EXTERNAL SCHEMA\. For example, the following command registers the Athena database named `sampledb`\.
 
@@ -96,8 +94,8 @@ schemaname    | tablename        | location
 athena_sample | elb_logs         | s3://athena-examples/elb/plaintext           
 athena_sample | lineitem_1t_csv  | s3://myspectrum/tpch/1000/lineitem_csv                
 athena_sample | lineitem_1t_part | s3://myspectrum/tpch/1000/lineitem_partition          
-spectrum      | sales            | s3://awssampledbuswest2/tickit/spectrum/sales          
-spectrum      | sales_part       | s3://awssampledbuswest2/tickit/spectrum/sales_part
+spectrum      | sales            | s3://redshift-downloads/tickit/spectrum/sales          
+spectrum      | sales_part       | s3://redshift-downloads/tickit/spectrum/sales_part
 ```
 
 ### Registering an Apache Hive metastore database<a name="c-spectrum-hive-metastore"></a>

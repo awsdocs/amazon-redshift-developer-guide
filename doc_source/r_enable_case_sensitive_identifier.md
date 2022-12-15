@@ -10,7 +10,7 @@ A configuration value that determines whether name identifiers of databases, tab
 
 The case of a *username* enclosed in double quotation marks is always preserved regardless of the setting of the `enable_case_sensitive_identifier` configuration option\.
 
-### Examples<a name="w131aac66c45b3b7"></a>
+### Examples<a name="w166aac68c45b3b7"></a>
 
 The following example shows how to create and use case sensitive identifiers for at table and column name\.
 

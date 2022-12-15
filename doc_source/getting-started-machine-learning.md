@@ -5,4 +5,5 @@ Amazon Redshift ML makes it easy for SQL users to create, train, and deploy mach
 **Topics**
 + [Cluster and configure setup for Amazon Redshift ML administration](admin-setup.md)
 + [Using model explainability with Amazon Redshift ML](clarify.md)
-+ [Tutorial: Creating a customer churn model](tutorial_customer_churn.md)
++ [Amazon Redshift ML probability metrics](probability_metrics.md)
++ [Tutorials for Amazon Redshift ML](tutorials_for_amazon_redshift_ml.md)

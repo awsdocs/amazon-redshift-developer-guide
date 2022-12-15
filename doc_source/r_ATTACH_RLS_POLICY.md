@@ -34,9 +34,5 @@ When working with the ATTACH RLS POLICY statement, observe the following:
 The following example attaches a policy on a table to a role\.
 
 ```
-ATTACH POLICY policy_access_self ON employees TO ROLE Employee;
-```
-
-```
 ATTACH RLS POLICY policy_concerts ON tickit_category_redshift TO ROLE analyst, ROLE dbadmin;
 ```

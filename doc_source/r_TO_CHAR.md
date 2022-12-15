@@ -105,13 +105,43 @@ to_char
 (1 row)
 ```
 
-The following example converts a number to a character string\.
+The following example converts a number to a character string with the negative sign at the end\.
 
 ```
 select to_char(-125.8, '999D99S');
 to_char
 ---------
 125.80-
+(1 row)
+```
+
+The following example converts a number to a character string with the currency symbol\.
+
+```
+select to_char(-125.88, '$S999D99');
+to_char
+---------
+$-125.88
+(1 row)
+```
+
+The following example converts a number to a character string using angle brackets for negative numbers\.
+
+```
+select to_char(-125.88, '$999D99PR');
+to_char
+---------
+$<125.88>	
+(1 row)
+```
+
+The following example converts a number to a Roman numeral string\.
+
+```
+select to_char(125, 'RN');
+to_char
+---------
+CXXV	
 (1 row)
 ```
 

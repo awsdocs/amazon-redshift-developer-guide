@@ -19,7 +19,7 @@ ASCII letters in delimited identifiers are case\-insensitive and are folded to l
 
 ## Case\-sensitive identifiers<a name="r_names-case-sensitive-identifiers"></a>
 
-Case\-sensitive identifiers \(also known as mixed\-case identifiers\) can contain both uppercase and lowercase letters\. To use case\-sensitive identifiers, you can set the configuration `enable_case_sensitive_identifier` to `true`\. You can set this configuration for the cluster or for a session\. For more information, see [Default parameter values](https://docs.aws.amazon.com/redshift/latest/mgmt/default-param-group-values.html) in the *Amazon Redshift Cluster Management Guide* and [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)\. 
+Case\-sensitive identifiers \(also known as mixed\-case identifiers\) can contain both uppercase and lowercase letters\. To use case\-sensitive identifiers, you can set the configuration `enable_case_sensitive_identifier` to `true`\. You can set this configuration for the cluster or for a session\. For more information, see [Default parameter values](https://docs.aws.amazon.com/redshift/latest/mgmt/default-param-group-values.html) in the *Amazon Redshift Management Guide* and [enable\_case\_sensitive\_identifier](r_enable_case_sensitive_identifier.md)\. 
 
 ## Examples<a name="r_names-examples"></a>
 

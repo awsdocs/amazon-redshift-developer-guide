@@ -40,32 +40,6 @@ When working with the CREATE RLS POLICY statement, observe the following:
 The following SQL statements create the tables, users, and roles for the CREATE RLS POLICY example\.
 
 ```
-CREATE TABLE employees (
-    full_name VARCHAR(63) NOT NULL,
-    department VARCHAR(63) NOT NULL,
-    age SMALLINT,
-    salary INTEGER,
-    is_manager BOOLEAN
-);
-CREATE USER employee1 PASSWORD 'testemp1';
-CREATE USER employee2 PASSWORD 'testemp2';
-CREATE USER employee3 PASSWORD 'testemp3';
-CREATE USER employee4 PASSWORD 'testemp4';
-CREATE USER employee5 PASSWORD 'testemp5';
-CREATE ROLE Manager;
-CREATE ROLE Employee;
-GRANT Manager to employee3;
-GRANT Manager to employee5;
-CREATE ROLE HR_Manager;
-GRANT HR_Manager to employee5;
-INSERT INTO employees (full_name, department, age, salary, is_manager)VALUES ('employee1', 'Sales', 25, 50000, false),
-    ('employee2', 'Sales', 40, 70000, false),
-    ('employee3', 'Sales', 32, 60000, true),
-    ('employee4', 'HR', 34, 50000, false),
-    ('employee5', 'HR', 41, 60000, true);
-```
-
-```
 -- Create users and roles reference in the policy statements.
 CREATE ROLE analyst;
 
@@ -84,14 +58,6 @@ GRANT ROLE analyst TO alice;
 GRANT ROLE consumer TO joe;
 
 GRANT ALL ON TABLE tickit_category_redshift TO PUBLIC;
-```
-
-The following example creates a policy that allows users to view or update only their records\. Managers can view and update all records\.
-
-```
-CREATE RLS POLICY policy_access_self 
-WITH (full_name VARCHAR(63)) 
-USING ( full_name = current_user OR user_is_member_of(current_user, 'Manager') ) ;
 ```
 
 The following example creates a policy called policy\_concerts\.

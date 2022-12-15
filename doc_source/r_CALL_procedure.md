@@ -71,7 +71,7 @@ We recommend that you upgrade your Java Database Connectivity \(JDBC\) and Open 
 
 You might be able to use your existing driver if your client tool uses driver API operations that pass through the CALL statement to the server\. Output parameters, if any, are returned as a result set of one row\. 
 
-The latest versions of Amazon Redshift JDBC and ODBC drivers have metadata support for stored procedure discovery\. They also have `CallableStatement` support for custom Java applications\. For more information on drivers, see [Connecting to an Amazon Redshift Cluster Using SQL Client Tools](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Cluster Management Guide\.* 
+The latest versions of Amazon Redshift JDBC and ODBC drivers have metadata support for stored procedure discovery\. They also have `CallableStatement` support for custom Java applications\. For more information on drivers, see [Connecting to an Amazon Redshift Cluster Using SQL Client Tools](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Management Guide\.* 
 
 **Important**  
 Currently, you can't use a `refcursor` data type in a stored procedure using a JDBC or ODBC driver\.

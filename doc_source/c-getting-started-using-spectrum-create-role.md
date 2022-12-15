@@ -19,11 +19,11 @@ When you create a role for Amazon Redshift, choose one of the following approach
 
 1. Choose **Create role**\.
 
-1. Choose **AWS service**, and then choose **Redshift**\.
+1. Choose **AWS service** as the trusted entity, and then choose **Redshift** as the use case\.
 
-1. Under **Select your use case**, choose **Redshift \- Customizable** and then choose **Next: Permissions**\.
+1. Under **Use case for other AWS services**, choose **Redshift \- Customizable** and then choose **Next**\.
 
-1. The **Attach permissions policy** page appears\. Choose `AmazonS3ReadOnlyAccess` and `AWSGlueConsoleFullAccess`, if you're using the AWS Glue Data Catalog\. Or choose `AmazonAthenaFullAccess` if you're using the Athena Data Catalog\. Choose **Next: Review**\.
+1. The **Add permissions policy** page appears\. Choose `AmazonS3ReadOnlyAccess` and `AWSGlueConsoleFullAccess`, if you're using the AWS Glue Data Catalog\. Or choose `AmazonAthenaFullAccess` if you're using the Athena Data Catalog\. Choose **Next**\.
 **Note**  
 The `AmazonS3ReadOnlyAccess` policy gives your cluster read\-only access to all Amazon S3 buckets\. To grant access to only the AWS sample data bucket, create a new policy and add the following permissions\.  
 
@@ -37,7 +37,7 @@ The `AmazonS3ReadOnlyAccess` policy gives your cluster read\-only access to all 
                    "s3:Get*",
                    "s3:List*"
                ],
-               "Resource": "arn:aws:s3:::awssampledbuswest2/*"
+               "Resource": "arn:aws:s3:::redshift-downloads/*"
            }
        ]
    }

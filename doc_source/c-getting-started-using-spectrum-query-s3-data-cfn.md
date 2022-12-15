@@ -10,11 +10,9 @@ CloudFormation installs the Redshift Spectrum Getting Started DataLake template 
 
 **To launch your Redshift Spectrum Getting Started DataLake CloudFormation stack**
 
-1. Choose [https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=DataLake&templateURL=https://s3.amazonaws.com/redshift-downloads/docs-downloads/DataLake.yml](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=DataLake&templateURL=https://s3.amazonaws.com/redshift-downloads/docs-downloads/DataLake.yml)\.
+1. Choose [https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=DataLake&templateURL=https://s3.amazonaws.com/redshift-downloads/docs-downloads/DataLake.yml](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=DataLake&templateURL=https://s3.amazonaws.com/redshift-downloads/docs-downloads/DataLake.yml)\. The CloudFormation console opens with the DataLake\.yml template selected\.
 
-   You can also download and customize the Redshift Spectrum Getting Started DataLake CloudFormation [CFN template](https://s3.amazonaws.com/redshift-downloads/docs-downloads/DataLake.yml), then open [AWS CloudFormation](https://aws.amazon.com/cloudformation) and install the customized template\.
-
-   The CloudFormation console opens with the DataLake\.yml template selected\.
+   You can also download and customize the Redshift Spectrum Getting Started DataLake CloudFormation [CFN template](https://s3.amazonaws.com/redshift-downloads/docs-downloads/DataLake.yml), then open CloudFormation console \([https://console\.aws\.amazon\.com/cloudformation](https://console.aws.amazon.com/cloudformation/)\) and create a stack with the customized template\.
 
 1. Choose **Next**\.
 
@@ -108,7 +106,7 @@ XN Limit  (cost=1001055770628.63..1001055770628.65 rows=10 width=31)
                                 Hash Cond: ("outer".derived_col1 = "inner".eventid)                                                                                                       
                                 ->  XN S3 Query Scan sales  (cost=3010.00..5010.50 rows=200000 width=31)                                                                                  
                                       ->  S3 HashAggregate  (cost=3010.00..3010.50 rows=200000 width=16)                                                                                  
-                                            ->  S3 Seq Scan spectrum.sales location:"s3://awssampledbuswest2/tickit/spectrum/sales" format:TEXT  (cost=0.00..2150.00 rows=172000 width=16)
+                                            ->  S3 Seq Scan spectrum.sales location:"s3://redshift-downloads/tickit/spectrum/sales" format:TEXT  (cost=0.00..2150.00 rows=172000 width=16)
                                                   Filter: (pricepaid > 30.00)                                                                                                             
                                 ->  XN Hash  (cost=87.98..87.98 rows=8798 width=4)                                                                                                        
                                       ->  XN Seq Scan on event  (cost=0.00..87.98 rows=8798 width=4)

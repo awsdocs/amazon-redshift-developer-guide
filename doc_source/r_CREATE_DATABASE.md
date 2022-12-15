@@ -12,6 +12,8 @@ CREATE DATABASE database_name [ WITH ]
 [ CONNECTION LIMIT { limit | UNLIMITED } ]
 [ COLLATE { CASE_SENSITIVE | CASE_INSENSITIVE } ]
 [ ISOLATION LEVEL { SERIALIZABLE | SNAPSHOT } ]
+FROM [ DATASHARE datashare_name | ARN '<arn>' ] OF [ ACCOUNT account_id ] NAMESPACE namespace_guid 
+[ WITH DATA CATALOG SCHEMA '<schema>' | WITH NO DATA CATALOG SCHEMA ]
 ```
 
 ## Parameters<a name="r_CREATE_DATABASE-parameters"></a>
@@ -43,6 +45,11 @@ A clause that specifies the isolation level used when queries run against a data
 + SERIALIZABLE isolation – provides full serializability for concurrent transactions\. This is the default for a database created in a provisioned cluster\. For more information, see [Serializable isolation](c_serial_isolation.md)\.
 + SNAPSHOT isolation – provides an isolation level with protection against update and delete conflicts\. This is the default for a database created in a serverless endpoint\. 
 You can view which concurrency model your database is running as follows:   
++ Query the STV\_DB\_ISOLATION\_LEVEL catalog view\. For more information, see [STV\_DB\_ISOLATION\_LEVEL](r_STV_DB_ISOLATION_LEVEL.md)\.
+
+  ```
+  SELECT * FROM stv_db_isolation_level;
+  ```
 + Query the PG\_DATABASE\_INFO view\. 
 
   ```
@@ -54,6 +61,12 @@ In Amazon Redshift databases, both SERIALIZABLE and SNAPSHOT isolation are types
 The following scenario illustrates write skew updates using the SNAPSHOT isolation level\. A table named `Numbers` contains a column named `digits` that contains `0` and `1` values\. Each user's UPDATE statement doesn't overlap the other user\. However, the `0` and `1` values are swapped\. The SQL they run follows this timeline with these results:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_DATABASE.html)
 If the same scenario is run using serializable isolation, then Amazon Redshift terminates user 2 due to a serializable violation and returns error `1023`\. For more information, see [How to fix serializable isolation errors](c_serial_isolation.md#c_serial_isolation-serializable-isolation-troubleshooting)\. In this case, only user 1 can commit successfully\. Not all workloads require serializable isolation as a requirement, in which case snapshot isolation suffices as the target isolation level for your database\.
+
+ARN '<ARN>'  
+The AWS Glue database ARN to use to create the database\.
+
+\[ WITH NO DATA CATALOG SCHEMA \| DATA CATALOG SCHEMA '<schema>' \]  
+Specifies whether to create the database using a schema from the AWS Glue Data Catalog\. Must be used together with the ARN parameter\.
 
 ## Syntax for using CREATE DATABASE with a datashare<a name="r_CREATE_DATABASE-datashare-synopsis"></a>
 

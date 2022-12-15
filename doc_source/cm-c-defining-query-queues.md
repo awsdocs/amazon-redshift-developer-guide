@@ -14,7 +14,7 @@ By default, Amazon Redshift configures the following query queues:
 
   The default queue is initially configured to run five queries concurrently\. You can change the concurrency, timeout, and memory allocation properties for the default queue, but you cannot specify user groups or query groups\. The default queue must be the last queue in the WLM configuration\. Any queries that are not routed to other queues run in the default queue\. 
 
-Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.  
+Query queues are defined in the WLM configuration\. The WLM configuration is an editable parameter \(`wlm_json_configuration`\) in a parameter group, which can be associated with one or more clusters\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Management Guide*\.  
 
 You can add additional query queues to the default WLM configuration, up to a total of eight user queues\. You can configure the following for each query queue: 
 + Concurrency scaling mode 
@@ -37,7 +37,7 @@ You manage which queries are sent to the concurrency scaling cluster by configur
 Queries in a queue run concurrently until they reach the WLM query slot count, or *concurrency* level, defined for that queue\. Subsequent queries then wait in the queue\. 
 
 **Note**  
-WLM concurrency level is different from the number of concurrent user connections that can be made to a cluster\.  For more information, see [Connecting to a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Cluster Management Guide*\.
+WLM concurrency level is different from the number of concurrent user connections that can be made to a cluster\.  For more information, see [Connecting to a Cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) in the *Amazon Redshift Management Guide*\.
 
 In an automatic WLM configuration \(recommended\), the concurrency level is set to **Auto**\. For more information, see [Implementing automatic WLM](automatic-wlm.md)\. 
 

@@ -29,9 +29,5 @@ A clause that indicates not to drop the policy when it is attached to some table
 The following example drops the row\-level security policy\.
 
 ```
-DROP RLS POLICY policy_access_self
-```
-
-```
 DROP RLS POLICY policy_concerts;
 ```

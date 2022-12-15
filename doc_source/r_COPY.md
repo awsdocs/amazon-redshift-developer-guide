@@ -15,6 +15,7 @@ To use the COPY command, you must have [INSERT](r_GRANT.md#grant-insert) privile
 **Topics**
 + [COPY syntax](#r_COPY-syntax)
 + [COPY syntax overview](#r_COPY-syntax-overview)
++ [COPY JOB \(preview\)](r_COPY-JOB.md)
 + [COPY parameter reference](r_COPY-parameters.md)
 + [Usage notes](r_COPY_usage_notes.md)
 + [COPY examples](r_COPY_command_examples.md)
@@ -152,6 +153,7 @@ As it loads the table, COPY attempts to implicitly convert the strings in the so
 Manage the default behavior of the load operation for troubleshooting or to reduce load times by specifying the following parameters\. 
 + [COMPROWS](copy-parameters-data-load.md#copy-comprows) 
 + [COMPUPDATE](copy-parameters-data-load.md#copy-compupdate) 
++ [IGNOREALLERRORS](copy-parameters-data-load.md#copy-ignoreallerrors) 
 + [MAXERROR](copy-parameters-data-load.md#copy-maxerror) 
 + [NOLOAD](copy-parameters-data-load.md#copy-noload) 
 + [STATUPDATE](copy-parameters-data-load.md#copy-statupdate) 

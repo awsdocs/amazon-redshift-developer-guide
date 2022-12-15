@@ -6,7 +6,7 @@ Following are considerations for controlling cross\-account datashare access\.
 + [Managing datashares at different states](#manage-status)
 + [Managing access to data sharing API operations with IAM policies](#iam-policy)
 + [Managing cluster encryption](#encryption)
-+ [Integrating Amazon Redshift data sharing with AWS CloudTrail](cloudtrail.md)
++ [Integrating Amazon Redshift data sharing with AWS CloudTrail](#cloudtrail)
 
 ## Managing datashares at different states<a name="manage-status"></a>
 
@@ -30,7 +30,7 @@ Following describes each datashare status and its required action:
 
 To control the access to the data sharing API operations, use IAM action\-based policies\. For information about how to manage IAM policies, see [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\.
 
-For information on the permissions required to use the data sharing API operations, see [Permissions required to use the data sharing API operations](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html) in the *Amazon Redshift Cluster Management Guide*\.
+For information on the permissions required to use the data sharing API operations, see [Permissions required to use the data sharing API operations](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html) in the *Amazon Redshift Management Guide*\.
 
 To make cross\-account data sharing more secure, you can use a conditional key `ConsumerIdentifier` for the `AuthorizeDataShare` and `DeauthorizeDataShare` API operations\. By doing this, you can explicitly control which AWS accounts can make calls to the two API operations\.
 
@@ -86,6 +86,12 @@ You can allow a producer with a DataShareArn **testshare2** to explicitly share 
 
 To share data across AWS account, both the producer and consumer clusters must be encrypted\.
 
-In Amazon Redshift, you can turn on database encryption for your clusters to help protect data at rest\. When you turn on encryption for a cluster, the data blocks and system metadata are encrypted for the cluster and its snapshots\. You can turn on encryption when you launch your cluster, or you can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption\. For more information about Amazon Redshift database encryption, see [Amazon Redshift database encryption](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html) in the *Amazon Redshift Cluster Management Guide*\.
+In Amazon Redshift, you can turn on database encryption for your clusters to help protect data at rest\. When you turn on encryption for a cluster, the data blocks and system metadata are encrypted for the cluster and its snapshots\. You can turn on encryption when you launch your cluster, or you can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption\. For more information about Amazon Redshift database encryption, see [Amazon Redshift database encryption](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html) in the *Amazon Redshift Management Guide*\.
 
 To protect data in transit, all data is encrypted in transit through the encryption schema of the producer cluster\. The consumer cluster adopts this encryption schema when data is loaded\. The consumer cluster then operates as a normal encrypted cluster\. Communications between the producer and consumer are also encrypted using a shared key schema\. For more information about encryption in transit, [Encryption in transit](https://docs.aws.amazon.com/redshift/latest/mgmt/security-encryption-in-transit.html)\.
+
+## Integrating Amazon Redshift data sharing with AWS CloudTrail<a name="cloudtrail"></a>
+
+ Data sharing is integrated with AWS CloudTrail\. CloudTrail is a service that provides a record of actions taken by a user, a role, or an AWS service in Amazon Redshift\. CloudTrail captures all API calls for data sharing as events\. The calls captured include calls from the AWS CloudTrail console and code calls to the data sharing operations\. For more information about Amazon Redshift integration with AWS CloudTrail, see [Logging with CloudTrail](https://docs.aws.amazon.com/redshift/latest/mgmt/logging-with-cloudtrail.html)\. 
+
+For more information about CloudTrail, see [How CloudTrail works](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/how-cloudtrail-works.html)\.

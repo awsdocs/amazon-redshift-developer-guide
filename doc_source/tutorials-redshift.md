@@ -5,3 +5,4 @@ Follow the steps in these tutorials to learn about Amazon Redshift features:
 + [Tutorial: Querying nested data with Amazon Redshift SpectrumTutorial: Querying nested data with Amazon Redshift Spectrum ](tutorial-query-nested-data.md)
 + [Tutorial: Configuring manual workload management \(WLM\) queues](tutorial-configuring-workload-management.md)
 + [Tutorial: Using spatial SQL functions with Amazon Redshift](spatial-tutorial.md)
++  [Tutorials for Amazon Redshift ML](tutorials_for_amazon_redshift_ml.md) 

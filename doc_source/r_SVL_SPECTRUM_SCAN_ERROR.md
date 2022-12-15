@@ -1,6 +1,6 @@
 # SVL\_SPECTRUM\_SCAN\_ERROR<a name="r_SVL_SPECTRUM_SCAN_ERROR"></a>
 
-You can query the system view SVL\_SPECTRUM\_SCAN\_ERROR to get information about OCR scan errors\. 
+You can query the system view SVL\_SPECTRUM\_SCAN\_ERROR to get information about Redshift Spectrum scan errors\. 
 
 SVL\_SPECTRUM\_SCAN\_ERROR is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
@@ -22,14 +22,14 @@ The query returns results similar to the following\.
 
 ```
    userid  query     location                                      rowid   colname               original_value             modified_value       trigger          action                        action_valueerror_code
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:0     league_name           Barclays Premier League    Barclays Premier Lea UNSPECIFIED      TRUNCATE                                          156
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:0     league_nspi           34595                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:1     league_nspi           34151                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:2     league_name           Barclays Premier League    Barclays Premier Lea UNSPECIFIED      TRUNCATE                                          156
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:2     league_nspi           33223                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:3     league_name           Barclays Premier League    Barclays Premier Lea UNSPECIFIED      TRUNCATE                                          156
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:3     league_nspi           32808                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:4     league_nspi           32790                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:5     league_name           Spanish Primera Division   Spanish Primera Divi UNSPECIFIED      TRUNCATE                                          156
-     100   1574007s3://spectrum-uddh/league/spi_global_rankings.0:6     league_name           Spanish Primera Division   Spanish Primera Divi UNSPECIFIED      TRUNCATE                                          156
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:0     league_name           Barclays Premier League    Barclays Premier Lea UNSPECIFIED      TRUNCATE                                          156
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:0     league_nspi           34595                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:1     league_nspi           34151                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:2     league_name           Barclays Premier League    Barclays Premier Lea UNSPECIFIED      TRUNCATE                                          156
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:2     league_nspi           33223                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:3     league_name           Barclays Premier League    Barclays Premier Lea UNSPECIFIED      TRUNCATE                                          156
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:3     league_nspi           32808                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:4     league_nspi           32790                      32767                UNSPECIFIED      OVERFLOW_VALUE                                    199
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:5     league_name           Spanish Primera Division   Spanish Primera Divi UNSPECIFIED      TRUNCATE                                          156
+     100   1574007   s3://spectrum-uddh/league/spi_global_rankings.0:6     league_name           Spanish Primera Division   Spanish Primera Divi UNSPECIFIED      TRUNCATE                                          156
 ```

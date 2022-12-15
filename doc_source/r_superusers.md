@@ -10,7 +10,7 @@ Amazon Redshift system tables and system views are either visible only to superu
 
 Superusers can view  catalog tables\. For information, see [System catalog tables](c_intro_catalog_views.md)\.
 
-A database superuser bypasses all permission checks\. Be very careful when using a superuser role\. We recommend that you do most of your work as a role that is not a superuser\. Superusers retain all permissions regardless of GRANT and REVOKE commands\.
+A database superuser bypasses all permission checks\. Be careful when using a superuser role\. We recommend that you do most of your work as a role that is not a superuser\. Superusers retain all permissions regardless of GRANT and REVOKE commands\.
 
 To create a new database superuser, log on to the database as a superuser and issue a CREATE USER command or an ALTER USER command with the CREATEUSER permission\.
 

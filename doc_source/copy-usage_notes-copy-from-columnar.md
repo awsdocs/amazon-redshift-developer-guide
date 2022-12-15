@@ -30,11 +30,12 @@ COPY supports columnar formatted data with the following restrictions:
   + Europe \(Paris\) Region \(eu\-west\-3\)
   + Europe \(Stockholm\) Region \(eu\-north\-1\)
   + Middle East \(Bahrain\) Region \(me\-south\-1\)
+  + Middle East \(UAE\) Region \(me\-central\-1\)
   + South America \(São Paulo\) Region \(sa\-east\-1\)
   + AWS GovCloud \(US\-East\) \(us\-gov\-east\-1\)
   + AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
 + The Amazon S3 bucket must be in the same AWS Region as the Amazon Redshift database\. 
-+ To access your Amazon S3 data through a VPC endpoint, set up access using IAM policies and IAM roles as described in [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Cluster Management Guide*\. 
++ To access your Amazon S3 data through a VPC endpoint, set up access using IAM policies and IAM roles as described in [Using Amazon Redshift Spectrum with Enhanced VPC Routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html) in the *Amazon Redshift Management Guide*\. 
 + COPY doesn't automatically apply compression encodings\. 
 + Only the following COPY parameters are supported: 
   + [ACCEPTINVCHARS](copy-parameters-data-conversion.md#copy-acceptinvchars) when copying from an ORC or Parquet file\.

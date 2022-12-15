@@ -6,7 +6,7 @@ When you load compressed data, we recommend that you split the data for each tab
 
 In cases where you have compressed data, we recommend that you split the data for each table into multiple files\. The COPY command can load data from multiple files in parallel\. You can load multiple files by specifying a common prefix, or *prefix key*, for the set, or by explicitly listing the files in a manifest file\.
 
-Split your data into files so that the number of files is a multiple of the number of slices in your cluster\. That way, Amazon Redshift can divide the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For example, each ds2\.xl compute node has two slices, and each ds2\.8xl compute node has 32 slices\. For more information about the number of slices that each node size has, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\. 
+Split your data into files so that the number of files is a multiple of the number of slices in your cluster\. That way, Amazon Redshift can divide the data evenly among the slices\. The number of slices per node depends on the node size of the cluster\. For example, each ds2\.xl compute node has two slices, and each ds2\.8xl compute node has 32 slices\. For more information about the number of slices that each node size has, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Management Guide*\. 
 
 The nodes all participate in running parallel queries, working on data that is distributed as evenly as possible across the slices\. If you have a cluster with two ds2\.xl nodes, you might split your data into four files or some multiple of four\. Amazon Redshift doesn't take file size into account when dividing the workload\. Thus, you need to ensure that the files are roughly the same size, from 1 MB to 1 GB after compression\. 
 
@@ -41,4 +41,4 @@ Follow this general process to load data from Amazon S3, when your data is uncom
 
 For examples of COPY commands, see [COPY examples](r_COPY_command_examples.md)\. For information about data loaded into Amazon Redshift, check the [STL\_LOAD\_COMMITS](r_STL_LOAD_COMMITS.md) and [STL\_LOAD\_ERRORS](r_STL_LOAD_ERRORS.md) system tables\. 
 
-For more information about nodes and the slices contained in each, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Cluster Management Guide*\.
+For more information about nodes and the slices contained in each, see [About clusters and nodes](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes) in the *Amazon Redshift Management Guide*\.

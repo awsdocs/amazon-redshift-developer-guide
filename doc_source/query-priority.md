@@ -29,7 +29,7 @@ In the preceding example, the administrator can enable [concurrency scaling](con
 
 If you have enabled automatic WLM, each queue has a priority value\. Queries are routed to queues based on user groups and query groups\. Start with a queue priority set to `NORMAL`\. Set the priority higher or lower based on the workload associated with the queue's user groups and query groups\. 
 
-You can change the priority of a queue on the Amazon Redshift console\. On the Amazon Redshift console, the **Workload Management** page displays the queues and enables editing of queue properties such as **Priority**\. To set the priority using the CLI or API operations, use the `wlm_json_configuration` parameter\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Cluster Management Guide*\.
+You can change the priority of a queue on the Amazon Redshift console\. On the Amazon Redshift console, the **Workload Management** page displays the queues and enables editing of queue properties such as **Priority**\. To set the priority using the CLI or API operations, use the `wlm_json_configuration` parameter\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) in the *Amazon Redshift Management Guide*\.
 
 The following `wlm_json_configuration` example defines three user groups \(`ingest`, `reporting`, and `analytics`\)\. Queries submitted from users from one of these groups run with priority `highest`, `normal`, and `low`, respectively\.
 

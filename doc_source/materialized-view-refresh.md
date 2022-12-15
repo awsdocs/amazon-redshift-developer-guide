@@ -5,7 +5,7 @@ When you create a materialized view, its contents reflect the state of the under
 Amazon Redshift has two strategies for refreshing a materialized view: 
 + In many cases, Amazon Redshift can perform an incremental refresh\. In an *incremental refresh*, Amazon Redshift quickly identifies the changes to the data in the base tables since the last refresh and updates the data in the materialized view\. Incremental refresh is supported on the following SQL constructs used in the query when defining the materialized view:
   + Constructs that contain the clauses SELECT, FROM, \[INNER\] JOIN, WHERE, GROUP BY, or HAVING\.
-  + Constructs that contain aggregations, such as SUM, MIN, MAX, and COUNT\.
+  + Constructs that contain aggregations, such as SUM, MIN, MAX, AVG, and COUNT\.
   + Most built\-in SQL functions, specifically the ones that are immutable, given that these have the same input arguments and always produce the same output\. 
 + If an incremental refresh isn't possible, then Amazon Redshift performs a full refresh\. A *full refresh* reruns the underlying SQL statement, replacing all of the data in the materialized view\.
 + Amazon Redshift automatically chooses the refresh method for a materialize view depending on the SELECT query used to define the materialized view\. 
@@ -79,9 +79,9 @@ Amazon Redshift currently has the following limitations for incremental refresh 
 Amazon Redshift doesn't support incremental refresh for materialized views that are defined with a query using the following SQL elements:
 + OUTER JOIN \(RIGHT, LEFT, or FULL\)\.
 + The set operations UNION, INTERSECT, EXCEPT, and MINUS\.
-+ The aggregate functions AVG, MEDIAN, PERCENTILE\_CONT, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
++ The aggregate functions MEDIAN, PERCENTILE\_CONT, LISTAGG, STDDEV\_SAMP, STDDEV\_POP, APPROXIMATE COUNT, APPROXIMATE PERCENTILE, and bitwise aggregate functions\.
 **Note**  
-The COUNT and SUM aggregate functions are supported\.
+The COUNT, SUM, and AVG aggregate functions are supported\.
 + DISTINCT aggregate functions, such as DISTINCT COUNT, DISTINCT SUM, and so on\.
 + Window functions\.
 + A query that uses temporary tables for query optimization, such as optimizing common subexpressions\.

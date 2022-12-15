@@ -10,7 +10,7 @@ PG\_CLASS\_INFO shows the following columns in addition to the columns in PG\_CL
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_PG_CLASS_INFO.html)
 
-The RELEFFECTIVEDISTSTYLE column in PG\_CLASS\_INFO indicates the current distribution style for the table\. If the table uses automatic distribution, RELEFFECTIVEDISTSTYLE is 10 or 11, which indicates whether the effective distribution style is AUTO \(ALL\) or AUTO \(EVEN\)\. If the table uses automatic distribution, the distribution style might initially show AUTO \(ALL\), then change to AUTO \(EVEN\) when the table grows\. 
+The RELEFFECTIVEDISTSTYLE column in PG\_CLASS\_INFO indicates the current distribution style for the table\. If the table uses automatic distribution, RELEFFECTIVEDISTSTYLE is 10, 11, or 12, which indicates whether the effective distribution style is AUTO \(ALL\), AUTO \(EVEN\), or AUTO \(KEY\)\. If the table uses automatic distribution, the distribution style might initially show AUTO \(ALL\), then change to AUTO \(EVEN\) when the table grows or AUTO \(KEY\) if a column is found to be useful as a distribution key\. 
 
 The following table gives the distribution style for each value in RELEFFECTIVEDISTSTYLE column: 
 
@@ -22,6 +22,7 @@ The following table gives the distribution style for each value in RELEFFECTIVED
 | 8 | ALL | 
 | 10 | AUTO \(ALL\) | 
 | 11 | AUTO \(EVEN\) | 
+| 12 | AUTO \(KEY\) | 
 
 ## Example<a name="r_PG_CLASS_INFO-example"></a>
 
@@ -33,7 +34,8 @@ CASE WHEN "reldiststyle" = 0 THEN 'EVEN'::text
      WHEN "reldiststyle" = 1 THEN 'KEY'::text 
      WHEN "reldiststyle" = 8 THEN 'ALL'::text 
      WHEN "releffectivediststyle" = 10 THEN 'AUTO(ALL)'::text 
-     WHEN "releffectivediststyle" = 11 THEN 'AUTO(EVEN)'::text ELSE '<<UNKNOWN>>'::text END as diststyle,relcreationtime 
+     WHEN "releffectivediststyle" = 11 THEN 'AUTO(EVEN)'::text 
+     WHEN "releffectivediststyle" = 12 THEN 'AUTO(KEY)'::text ELSE '<<UNKNOWN>>'::text END as diststyle,relcreationtime 
 from pg_class_info a left join pg_namespace b on a.relnamespace=b.oid;
 ```
 
@@ -45,5 +47,6 @@ from pg_class_info a left join pg_namespace b on a.relnamespace=b.oid;
  3638035 | public     | lineitem  |            8 |                     8 | ALL        | 2019-06-13 15:03:01.378538
  3638039 | public     | product   |            9 |                    10 | AUTO(ALL)  | 2019-06-13 15:03:42.691611
  3638041 | public     | shipping  |            9 |                    11 | AUTO(EVEN) | 2019-06-13 15:03:53.69192
-(5 rows)
+ 3638043 | public     | support   |            9 |                    12 | AUTO(KEY)  | 2019-06-13 15:03:59.120695
+(6 rows)
 ```

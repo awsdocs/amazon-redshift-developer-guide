@@ -15,10 +15,12 @@ These are the supported aggregate functions:
 + AVG 
 + COUNT 
 + CUME\_DIST
++ DENSE\_RANK
 + FIRST\_VALUE 
 + LAG 
 + LAST\_VALUE 
 + LEAD 
++ LISTAGG 
 + MAX 
 + MEDIAN 
 + MIN 

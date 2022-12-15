@@ -8,4 +8,4 @@ Use the Private IP addresses when:
 
  Otherwise, use the Public IP addresses\.
 
-For more information about using Amazon Redshift in a VPC, see [Managing Clusters in Virtual Private Cloud \(VPC\)](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-vpc.html) in the *Amazon Redshift Cluster Management Guide*\. 
+For more information about using Amazon Redshift in a VPC, see [Managing Clusters in Virtual Private Cloud \(VPC\)](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-vpc.html) in the *Amazon Redshift Management Guide*\. 
