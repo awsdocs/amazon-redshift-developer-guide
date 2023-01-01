@@ -27,7 +27,7 @@ SELECT cust.c_orders[0].o_orderkey FROM customer_orders_lineitem AS cust;
 You can use the dot and bracket notations in all types of queries, such as filtering, join, and aggregation\. You can use these notations in a query in which there are normally column references\. The following example uses a SELECT statement that filters results\.
 
 ```
-SELECT count(*) FROM customer_orders_lineitem WHERE c_orders[0]. o_orderkey IS NOT NULL;
+SELECT count(*) FROM customer_orders_lineitem WHERE c_orders[0].o_orderkey IS NOT NULL;
 ```
 
 The following example uses the bracket and dot navigation in both GROUP BY and ORDER BY clauses\.
