@@ -1,4 +1,4 @@
-# Limitations and considerations when accessing federated data with Amazon Redshift<a name="federated-limitations"></a>
+# Considerations when accessing federated data with Amazon Redshift<a name="federated-limitations"></a>
 
 Some Amazon Redshift features don't support access to federated data\. You can find related limitations and considerations following\.
 
@@ -14,6 +14,9 @@ The following are limitations and considerations when using federated queries wi
 + Federated queries to RDS MySQL or Aurora MySQL support transaction isolation at the READ COMMITTED level\. 
 + If not specified, Amazon Redshift connects to RDS MySQL or Aurora MySQL on port 3306\. Confirm the MySQL port number before creating an external schema for MySQL\. 
 + When fetching TIMESTAMP and DATE data types from MySQL, zero values are treated as NULL\. 
++ If an Aurora database reader endpoint is used, an "invalid snapshot" error can occur\. This can be avoided by one of the following methods:
+  + Use a specific Aurora instance endpoint \(instead of using the Aurora cluster endpoint\)\. This method uses REPEATABLE READ transaction isolation for the results from the PostgreSQL database\.
+  + Use an Aurora reader endpoint and set `pg_federation_repeatable_read` to false for the session\. This method uses READ COMMITTED transaction isolation for the results from the PostgreSQL database\. For more information about Aurora reader endpoints, see [Types of Aurora endpoints](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Overview.Endpoints.Types) in the *Amazon Aurora User Guide*\. For information about `pg_federation_repeatable_read`, see [pg\_federation\_repeatable\_read](r_pg_federation_repeatable_read.md)\.
 
 The following are considerations for transactions when working with federated queries to PostgreSQL databases:
 + If a query consists of federated tables, the leader node starts a READ ONLY REPEATABLE READ transaction on the remote database\. This transaction remains for the duration of the Amazon Redshift transaction\.

@@ -8,6 +8,8 @@ You can manage the size of files on Amazon S3, and by extension the number of fi
 
 You can unload the result of an Amazon Redshift query to your Amazon S3 data lake in Apache Parquet, an efficient open columnar storage format for analytics\. Parquet format is up to 2x faster to unload and consumes up to 6x less storage in Amazon S3, compared with text formats\. This enables you to save data transformation and enrichment you have done in Amazon S3 into your Amazon S3 data lake in an open format\. You can then analyze your data with Redshift Spectrum and other AWS services such as Amazon Athena, Amazon EMR, and SageMaker\. 
 
+For more information and example scenarios about using the UNLOAD command, see [Unloading data](c_unloading_data.md)\.
+
 ## Syntax<a name="r_UNLOAD-synopsis"></a>
 
 ```
@@ -15,29 +17,30 @@ UNLOAD ('select-statement')
 TO 's3://object-path/name-prefix'
 authorization
 [ option [ ... ] ]
-  
+
 
 where option is
 { [ FORMAT [ AS ] ] CSV | PARQUET | JSON
 | PARTITION BY ( column_name [, ... ] ) [ INCLUDE ]
-| MANIFEST [ VERBOSE ] 
-| HEADER           
-| DELIMITER [ AS ] 'delimiter-char' 
-| FIXEDWIDTH [ AS ] 'fixedwidth-spec'   
+| MANIFEST [ VERBOSE ]
+| HEADER
+| DELIMITER [ AS ] 'delimiter-char'
+| FIXEDWIDTH [ AS ] 'fixedwidth-spec'
 | ENCRYPTED [ AUTO ]
-| BZIP2  
-| GZIP 
+| BZIP2
+| GZIP
 | ZSTD
-| ADDQUOTES 
+| ADDQUOTES
 | NULL [ AS ] 'null-string'
 | ESCAPE
 | ALLOWOVERWRITE
 | CLEANPATH
 | PARALLEL [ { ON | TRUE } | { OFF | FALSE } ]
 | MAXFILESIZE [AS] max-size [ MB | GB ]
-| ROWGROUPSIZE [AS] size [ MB | GB ] 
+| ROWGROUPSIZE [AS] size [ MB | GB ]
 | REGION [AS] 'aws-region' }
-| IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+| IAM_ROLE { default | 'arn:aws:iam::<AWS account-id-1>:role/<role-name>[,arn:aws:iam::<AWS account-id-2>:role/<role-name>][,...]' }
+| EXTENSION extension-name
 ```
 
 ## Parameters<a name="unload-parameters"></a>
@@ -69,10 +72,10 @@ The UNLOAD command needs authorization to write data to Amazon S3\. The UNLOAD c
 
 \[ FORMAT \[AS\] \] CSV \| PARQUET \| JSON  <a name="unload-csv"></a>
 Keywords to specify the unload format to override the default format\.   
-When CSV, unloads to a text file in CSV format using a comma \( , \) character as the default delimiter\. If a field contains delimiters, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\.   
+When CSV, unloads to a text file in CSV format using a comma \( , \) character as the default delimiter\. If a field contains delimiters, double quotation marks, newline characters, or carriage returns, then the field in the unloaded file is enclosed in double quotation marks\. A double quotation mark within a data field is escaped by an additional double quotation mark\. When zero rows are unloaded, Amazon Redshift might write empty Amazon S3 objects\.  
 When PARQUET, unloads to a file in Apache Parquet version 1\.0 format\. By default, each row group is compressed using SNAPPY compression\. For more information about Apache Parquet format, see [Parquet](https://parquet.apache.org/)\.   
-When JSON, unloads to a JSON file with each line containing a JSON object, representing a full record in the query result\. Redshift supports writing nested JSON when the query result contains SUPER columns\. To create a valid JSON object, the name of each column in the query must be unique\. In the JSON file, boolean values are unloaded as `t` or `f`, and NULL values are unloaded as `null`\.  
-The FORMAT and AS keywords are optional\. You can't use CSV with FIXEDWIDTH\. You can't use PARQUET with DELIMITER, FIXEDWIDTH, ADDQUOTES, ESCAPE, NULL AS, HEADER, GZIP, BZIP2, or ZSTD\. PARQUET with ENCRYPTED is only supported with server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\. You can't use JSON with DELIMITER, HEADER, FIXEDWIDTH, ADDQUOTES, ESCAPE, or NULL AS\.
+When JSON, unloads to a JSON file with each line containing a JSON object, representing a full record in the query result\. Redshift supports writing nested JSON when the query result contains SUPER columns\. To create a valid JSON object, the name of each column in the query must be unique\. In the JSON file, boolean values are unloaded as `t` or `f`, and NULL values are unloaded as `null`\. When zero rows are unloaded, Amazon Redshift does not write Amazon S3 objects\.  
+The FORMAT and AS keywords are optional\. You can't use CSV with FIXEDWIDTH or ADDQUOTES\.  You can't use PARQUET with DELIMITER, FIXEDWIDTH, ADDQUOTES, ESCAPE, NULL AS, HEADER, GZIP, BZIP2, or ZSTD\. PARQUET with ENCRYPTED is only supported with server\-side encryption with an AWS Key Management Service key \(SSE\-KMS\)\. You can't use JSON with DELIMITER, HEADER, FIXEDWIDTH, ADDQUOTES, ESCAPE, or NULL AS\.
 
 PARTITION BY \( *column\_name* \[, \.\.\. \] \) \[INCLUDE\]  <a name="unload-partitionby"></a>
 Specifies the partition keys for the unload operation\. UNLOAD automatically partitions output files into partition folders based on the partition key values, following the Apache Hive convention\. For example, a Parquet file that belongs to the partition year 2019 and the month September has the following prefix: `s3://my_bucket_name/my_prefix/year=2019/month=September/000.parquet`\.   
@@ -133,6 +136,7 @@ Places quotation marks around each unloaded data field, so that Amazon Redshift 
  "1","Hello, World" 
 ```
 Without the added quotation marks, the string `Hello, World` would be parsed as two separate fields\.  
+Some output formats do not support ADDQUOTES\.  
 If you use ADDQUOTES, you must specify REMOVEQUOTES in the COPY if you reload the data\.
 
 NULL AS '*null\-string*'   
@@ -184,9 +188,12 @@ Specifies the AWS Region where the target Amazon S3 bucket is located\. REGION i
 The value for *aws\_region* must match an AWS Region listed in the [Amazon Redshift regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) table in the *AWS General Reference*\.  
 By default, UNLOAD assumes that the target Amazon S3 bucket is located in the same AWS Region as the Amazon Redshift cluster\.
 
-IAM\_ROLE \{ default \| 'arn:aws:iam::*<AWS account\-id>*:role/*<role\-name>*'   <a name="unload-iam"></a>
+IAM\_ROLE \{ default \| 'arn:aws:iam::*<AWS account\-id\-1>*:role/*<role\-name>*'   <a name="unload-iam"></a>
 Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the UNLOAD command runs\.  
-Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. If you specify IAM\_ROLE, you can't use ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, SESSION\_TOKEN, or CREDENTIALS\.
+Use the Amazon Resource Name \(ARN\) for an IAM role that your cluster uses for authentication and authorization\. If you specify IAM\_ROLE, you can't use ACCESS\_KEY\_ID and SECRET\_ACCESS\_KEY, SESSION\_TOKEN, or CREDENTIALS\. The IAM\_ROLE can be chained\. For more information, see [Chaining IAM roles](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html#authorizing-redshift-service-chaining-roles) in the *Amazon Redshift Management Guide*\.
+
+EXTENSION '*extension\-name*'  <a name="unload-extension"></a>
+Specifies the file extension to append to the names of the unloaded files\. Amazon Redshift doesn't run any validation, so you must verify that the specified file extension is correct\. If you're using a compression method such as GZIP, you still have to specify `.gz` in the extension parameter\. If you don't provide any extension, Amazon Redshift doesn't add anything to the filename\. If you specify a compression method without providing an extension, Amazon Redshift only adds the compression method's extension to the filename\.
 
 ## Usage notes<a name="unload-usage-notes"></a>
 
@@ -206,15 +213,15 @@ You might encounter loss of precision for floating\-point data that is successiv
 The SELECT query can't use a LIMIT clause in the outer SELECT\. For example, the following UNLOAD statement fails\.
 
 ```
-unload ('select * from venue limit 10') 
+unload ('select * from venue limit 10')
 to 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
 Instead, use a nested LIMIT clause, as in the following example\.
 
 ```
-unload ('select * from venue where venueid in 
-(select venueid from venue order by venueid desc limit 10)') 
+unload ('select * from venue where venueid in
+(select venueid from venue order by venueid desc limit 10)')
 to 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 

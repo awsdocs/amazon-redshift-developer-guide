@@ -29,7 +29,7 @@ Optional\. One or more expressions that define the window\.
 
 ORDER BY *order\_list*   
 Optional\. Defines the columns on which the ranking values are based\. If no PARTITION BY is specified, ORDER BY uses the entire table\. If ORDER BY is omitted, the return value is 1 for all rows\.   
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](c_Window_functions.md#r_Examples_order_by_WF)\. 
 
 ## Return type<a name="c_Supported_data_types_wf_rank"></a>
 
@@ -61,7 +61,7 @@ salesid | qty | rnk
 (11 rows)
 ```
 
-Note that the outer ORDER BY clause in this example includes columns 2 and 1 to make sure that Amazon Redshift returns consistently sorted results each time this query is run\. For example, rows with sales IDs 10001 and 10006 have identical QTY and RNK values\. Ordering the final result set by column 1 ensures that row 10001 always falls before 10006\. For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\.
+Note that the outer ORDER BY clause in this example includes columns 2 and 1 to make sure that Amazon Redshift returns consistently sorted results each time this query is run\. For example, rows with sales IDs 10001 and 10006 have identical QTY and RNK values\. Ordering the final result set by column 1 ensures that row 10001 always falls before 10006\. For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\.
 
 In the following example, the ordering is reversed for the window function \(`order by qty desc`\)\. Now the highest rank value applies to the largest QTY value\. 
 
@@ -87,7 +87,7 @@ order by 2,1;
 (11 rows)
 ```
 
-For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\. 
 
 The following example partitions the table by SELLERID and order each partition by the quantity \(in descending order\) and assign a rank to each row\. The results are sorted after the window function results are applied\. 
 

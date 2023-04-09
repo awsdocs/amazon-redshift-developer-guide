@@ -1,4 +1,4 @@
-# NVL2 expression<a name="r_NVL2"></a>
+# NVL2 function<a name="r_NVL2"></a>
 
 Returns one of two values based on whether a specified expression evaluates to NULL or NOT NULL\.
 
@@ -36,7 +36,7 @@ In the last two cases where the data type of *not\_null\_return\_value* is retur
 
 ## Usage notes<a name="nvl2-usage-notes"></a>
 
-[DECODE expression](r_DECODE_expression.md) can be used in a similar way to NVL2 when the *expression* and *search* parameters are both null\. The difference is that for DECODE, the return will have both the value and the data type of the *result* parameter\. In contrast, for NVL2, the return will have the value of either the *not\_null\_return\_value* or *null\_return\_value* parameter, whichever is selected by the function, but will have the data type of *not\_null\_return\_value*\.
+[DECODE function](r_DECODE_expression.md) can be used in a similar way to NVL2 when the *expression* and *search* parameters are both null\. The difference is that for DECODE, the return will have both the value and the data type of the *result* parameter\. In contrast, for NVL2, the return will have the value of either the *not\_null\_return\_value* or *null\_return\_value* parameter, whichever is selected by the function, but will have the data type of *not\_null\_return\_value*\.
 
 For example, assuming column1 is NULL, the following queries will return the same value\. However, the DECODE return value data type will be INTEGER and the NVL2 return value data type will be VARCHAR\.
 

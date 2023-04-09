@@ -1,11 +1,11 @@
-# is\_smallint function<a name="r_is_smallint"></a>
+# IS\_SMALLINT function<a name="r_is_smallint"></a>
 
-Checks whether a variable is a smallint\. The is\_smallint function returns true for numbers of scale 0 in the 16\-bit range\. The function returns false for any other values, including null and floating point numbers\.
+Checks whether a variable is a SMALLINT\. The IS\_SMALLINT function returns true for numbers of scale 0 in the 16\-bit range\. The function returns false for any other values, including null and floating point numbers\.
 
 ## Syntax<a name="r_is_smallint-synopsis"></a>
 
 ```
-is_smallint (super_expression)
+IS_SMALLINT (super_expression)
 ```
 
 ## Arguments<a name="r_is_smallint-arguments"></a>
@@ -19,7 +19,7 @@ Boolean
 
 ## Example<a name="r_is_smallint_example"></a>
 
-The following query shows an is\_smallint function\.
+The following query shows an IS\_SMALLINT function\.
 
 ```
 CREATE TABLE t(s super);

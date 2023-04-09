@@ -2,7 +2,7 @@
 
 For each group in a query, the LISTAGG window function orders the rows for that group according to the ORDER BY expression, then concatenates the values into a single string\. 
 
-LISTAGG is a compute\-node only function\. The function returns an error if the query doesn't reference a user\-defined table or Amazon Redshift system table\.
+LISTAGG is a compute\-node only function\. The function returns an error if the query doesn't reference a user\-defined table or Amazon Redshift system table\. For more information, see [Querying the catalog tables](c_join_PG.md)\.
 
 ## Syntax<a name="r_WF_LISTAGG-synopsis"></a>
 
@@ -45,7 +45,7 @@ Invalid operation: Result size exceeds LISTAGG limit
 
 ## Examples<a name="r_WF_LISTAGG-examples"></a>
 
-The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\. 
 
 The following example returns a list of seller IDs, ordered by seller ID\. 
 

@@ -74,3 +74,4 @@ You can set table parameters to specify input handling for data being queried in
 + Invalid characters in columns containing VARCHAR, CHAR, and string data\. For more information, see the external table property `invalid_char_handling`\.
 + Replacement character to use when you specify REPLACE for the external table property `invalid_char_handling`\.
 + Cast overflow handling in columns containing integer and decimal data\. For more information, see the external table property `numeric_overflow_handling`\.
++ Surplus\_bytes\_handling to specify input handling for surplus bytes in columns containing varbyte data\. For more information, see the external table property `surplus_bytes_handling`\.

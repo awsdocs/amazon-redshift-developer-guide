@@ -6,9 +6,9 @@ Changes the attributes of a database\.
 
 ```
 ALTER DATABASE database_name
-[ RENAME TO new_name 
+[ RENAME TO new_name
 | OWNER TO new_owner
-| CONNECTION LIMIT { limit | UNLIMITED } 
+| CONNECTION LIMIT { limit | UNLIMITED }
 | COLLATE { CASE_SENSITIVE | CASE_INSENSITIVE } ]
 [ ISOLATION LEVEL { SERIALIZABLE | SNAPSHOT } ]
 ```

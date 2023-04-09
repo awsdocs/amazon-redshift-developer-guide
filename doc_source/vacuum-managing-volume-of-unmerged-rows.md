@@ -2,7 +2,7 @@
 
 If a vacuum operation needs to merge new rows into a table's sorted region, the time required for a vacuum will increase as the table grows larger\. You can improve vacuum performance by reducing the number of rows that must be merged\. 
 
-Prior to a vacuum, a table consists of a sorted region at the head of the table, followed by an unsorted region, which grows whenever rows are added or updated\. When a set of rows is added by a COPY operation, the new set of rows is sorted on the sort key as it is added to the unsorted region at the end of the table\. The new rows are ordered within their own set, but not within the unsorted region\. 
+Before a vacuum, a table consists of a sorted region at the head of the table, followed by an unsorted region, which grows whenever rows are added or updated\. When a set of rows is added by a COPY operation, the new set of rows is sorted on the sort key as it is added to the unsorted region at the end of the table\. The new rows are ordered within their own set, but not within the unsorted region\. 
 
 The following diagram illustrates the unsorted region after two successive COPY operations, where the sort key is CUSTID\. For simplicity, this example shows a compound sort key, but the same principles apply to interleaved sort keys, except that the impact of the unsorted region is greater for interleaved tables\. 
 
@@ -12,7 +12,7 @@ A vacuum restores the table's sort order in two stages:
 
 1. Sort the unsorted region into a newly\-sorted region\. 
 
-   The first stage is relatively cheap, because only the unsorted region is rewritten\. If the range of sort key values of the newly\-sorted region is higher than the existing range, only the new rows need to be rewritten, and the vacuum is complete\. For example, if the sorted region contains ID values 1 to 500 and subsequent copy operations add key values greater than 500, then only the unsorted region needs to be rewritten\. 
+   The first stage is relatively cheap, because only the unsorted region is rewritten\. If the range of sort key values of the newly sorted region is higher than the existing range, only the new rows need to be rewritten, and the vacuum is complete\. For example, if the sorted region contains ID values 1 to 500 and subsequent copy operations add key values greater than 500, then only the unsorted region needs to be rewritten\. 
 
 1. Merge the newly\-sorted region with the previously\-sorted region\. 
 
@@ -46,4 +46,4 @@ where table_name = 'custsales';
  (6 rows)
 ```
 
-The merge\_increments column gives an indication of the amount of data that was merged for each vacuum operation\. If the number of merge increments over consecutive vacuums increases in proportion to the growth in table size, that is an indication that each vacuum operation is remerging an increasing number of rows in the table because the existing and newly sorted regions overlap\. 
+The merge\_increments column gives an indication of the amount of data that was merged for each vacuum operation\. If the number of merge increments over consecutive vacuums increases in proportion to the growth in table size, it indicates that each vacuum operation is remerging an increasing number of rows in the table because the existing and newly sorted regions overlap\. 

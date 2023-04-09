@@ -3,7 +3,7 @@
 Amazon Redshift can automatically sort and perform a VACUUM DELETE operation on tables in the background\. To clean up tables after a load or a series of incremental updates, you can also run the [VACUUM](r_VACUUM_command.md) command, either against the entire database or against individual tables\.
 
 **Note**  
-Only the table owner or a superuser can effectively vacuum a table\. If you don't have owner or superuser privileges for a table, a VACUUM operation that specifies a single table fails\. If you run a VACUUM of the entire database without specifying a table name, the operation completes successfully\. However, the operation has no effect on tables for which you don't have owner or superuser privileges\.   
+Only the table owner or a superuser can effectively vacuum a table\. If you don't have owner or superuser permissions for a table, a VACUUM operation that specifies a single table fails\. If you run a VACUUM of the entire database without specifying a table name, the operation completes successfully\. However, the operation has no effect on tables for which you don't have owner or superuser permissions\.   
 For this reason, we recommend vacuuming individual tables as needed\. We also recommend this approach because vacuuming the entire database is potentially an expensive operation\.
 
 ## Automatic table sort<a name="automatic-table-sort"></a>
@@ -44,15 +44,15 @@ When you perform a delete, the rows are marked for deletion, but not removed\. A
 
 ## VACUUM frequency<a name="vacuum-frequency"></a>
 
-You should vacuum as often as you need to in order to maintain consistent query performance\. Consider these factors when determining how often to run your VACUUM command\. 
+You should vacuum as often as necessary to maintain consistent query performance\. Consider these factors when determining how often to run your VACUUM command:
 + Run VACUUM during time periods when you expect minimal activity on the cluster, such as evenings or during designated database administration windows\. 
 + A large unsorted region results in longer vacuum times\. If you delay vacuuming, the vacuum will take longer because more data has to be reorganized\. 
 + VACUUM is an I/O intensive operation, so the longer it takes for your vacuum to complete, the more impact it will have on concurrent queries and other database operations running on your cluster\. 
-+ VACUUM takes longer for tables that use interleaved sorting\. To evaluate whether interleaved tables need to be re\-sorted, query the [SVV\_INTERLEAVED\_COLUMNS](r_SVV_INTERLEAVED_COLUMNS.md) view\.
++ VACUUM takes longer for tables that use interleaved sorting\. To evaluate whether interleaved tables must be re\-sorted, query the [SVV\_INTERLEAVED\_COLUMNS](r_SVV_INTERLEAVED_COLUMNS.md) view\.
 
 ## Sort stage and merge stage<a name="vacuum-stages"></a>
 
-Amazon Redshift performs a vacuum operation in two stages: first, it sorts the rows in the unsorted region, then, if necessary, it merges the newly sorted rows at the end of the table with the existing rows\. When vacuuming a large table, the vacuum operation proceeds in a series of steps consisting of incremental sorts followed by merges\. If the operation fails or if Amazon Redshift goes off line during the vacuum, the partially vacuumed table or database will be in a consistent state, but you will need to manually restart the vacuum operation\. Incremental sorts are lost, but merged rows that were committed before the failure do not need to be vacuumed again\. If the unsorted region is large, the lost time might be significant\. For more information about the sort and merge stages, see [Managing the volume of merged rows](vacuum-managing-volume-of-unmerged-rows.md)\.
+Amazon Redshift performs a vacuum operation in two stages: first, it sorts the rows in the unsorted region, then, if necessary, it merges the newly sorted rows at the end of the table with the existing rows\. When vacuuming a large table, the vacuum operation proceeds in a series of steps consisting of incremental sorts followed by merges\. If the operation fails or if Amazon Redshift goes offline during the vacuum, the partially vacuumed table or database will be in a consistent state, but you must manually restart the vacuum operation\. Incremental sorts are lost, but merged rows that were committed before the failure do not need to be vacuumed again\. If the unsorted region is large, the lost time might be significant\. For more information about the sort and merge stages, see [Managing the volume of merged rows](vacuum-managing-volume-of-unmerged-rows.md)\.
 
 Users can access tables while they are being vacuumed\. You can perform queries and write operations while a table is being vacuumed, but when DML and a vacuum run concurrently, both might take longer\. If you run UPDATE and DELETE statements during a vacuum, system performance might be reduced\. Incremental merges temporarily block concurrent UPDATE and DELETE operations, and UPDATE and DELETE operations in turn temporarily block incremental merge steps on the affected tables\. DDL operations, such as ALTER TABLE, are blocked until the vacuum operation finishes with the table\.
 

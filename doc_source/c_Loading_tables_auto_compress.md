@@ -16,7 +16,7 @@ Automatic compression chooses RAW encoding if you haven't explicitly defined a t
 
 When the COMPUPDATE parameter is ON, the COPY command applies automatic compression whenever you run the COPY command with an empty target table and all of the table columns either have RAW encoding or no encoding\.
 
-To apply automatic compression to an empty table, regardless of its current compression encodings, run the COPY command with the COMPUPDATE option set to ON\. To disable automatic compression, run the COPY command with the COMPUPDATE option set to OFF\.
+To apply automatic compression to an empty table, regardless of its current compression encodings, run the COPY command with the COMPUPDATE option set to ON\. To turn off automatic compression, run the COPY command with the COMPUPDATE option set to OFF\.
 
 You cannot apply automatic compression to a table that already contains data\.
 
@@ -47,13 +47,13 @@ In this example, assume that the TICKIT database contains a copy of the LISTING 
 
 **To load and automatically compress the table**
 
-1. Ensure that the table is empty\. You can apply automatic compression only to an empty table:
+1. Make sure that the table is empty\. You can apply automatic compression only to an empty table:
 
    ```
    truncate biglist;
    ```
 
-1. Load the table with a single COPY command\. Although the table is empty, some earlier encoding might have been specified\. To ensure that Amazon Redshift performs a compression analysis, set the COMPUPDATE parameter to ON\.
+1. Load the table with a single COPY command\. Although the table is empty, some earlier encoding might have been specified\. To facilitate that Amazon Redshift performs a compression analysis, set the COMPUPDATE parameter to ON\.
 
    ```
    copy biglist from 's3://mybucket/biglist.txt' 

@@ -35,6 +35,12 @@ The following command turns RLS off for the table:
 ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY OFF;
 ```
 
+The following command turns RLS on for the table: 
+
+```
+ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY ON FOR DATASHARES;
+```
+
 ## Rename a column<a name="r_ALTER_TABLE_examples_basic-rename-a-column"></a>
 
 The following command renames the VENUESEATS column in the VENUE table to VENUESIZE: 
@@ -49,14 +55,14 @@ rename column venueseats to venuesize;
 To drop a table constraint, such as a primary key, foreign key, or unique constraint, first find the internal name of the constraint\. Then specify the constraint name in the ALTER TABLE command\. The following example finds the constraints for the CATEGORY table, then drops the primary key with the name `category_pkey`\. 
 
 ```
-select constraint_name, constraint_type 
-from information_schema.table_constraints 
+select constraint_name, constraint_type
+from information_schema.table_constraints
 where constraint_schema ='public'
 and table_name = 'category';
 
 constraint_name | constraint_type
 ----------------+----------------
-category_pkey   | PRIMARY KEY    
+category_pkey   | PRIMARY KEY
 
 alter table category
 drop constraint category_pkey;
@@ -112,7 +118,7 @@ Create a table with an EVEN distribution style\. The SVV\_TABLE\_INFO view shows
 
 ```
 create table inventory(
-  inv_date_sk int4 not null , 
+  inv_date_sk int4 not null ,
   inv_item_sk int4 not null ,
   inv_warehouse_sk int4 not null ,
   inv_quantity_on_hand int4
@@ -156,7 +162,7 @@ Create a table with an EVEN distribution style\. The SVV\_TABLE\_INFO view shows
 
 ```
 create table inventory(
-  inv_date_sk int4 not null , 
+  inv_date_sk int4 not null ,
   inv_item_sk int4 not null ,
   inv_warehouse_sk int4 not null ,
   inv_quantity_on_hand int4

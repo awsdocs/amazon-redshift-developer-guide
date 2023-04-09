@@ -15,7 +15,7 @@ You use this view throughout the tutorial to monitor what happens to queues afte
 
 ### To create the WLM\_QUEUE\_STATE\_VW view<a name="how-to-wlm-create-queue-state-view"></a>
 
-1. Open psql and connect to your TICKIT sample database\. If you do not have this database, see [Prerequisites](tutorial-configuring-workload-management.md#tutorial-wlm-prereq)\.
+1. Open [Amazon Redshift RSQL](https://docs.aws.amazon.com/redshift/latest/mgmt/rsql-query-tool.html) and connect to your TICKIT sample database\. If you do not have this database, see [Prerequisites](tutorial-configuring-workload-management.md#tutorial-wlm-prereq)\.
 
 1. Run the following query to create the WLM\_QUEUE\_STATE\_VW view\.
 
@@ -61,7 +61,7 @@ You use this view throughout the tutorial to monitor the queries that are runnin
 
 ### To create the WLM\_QUERY\_STATE\_VW view<a name="how-to-wlm-create-query-state-view"></a>
 
-1. In psql, run the following query to create the WLM\_QUERY\_STATE\_VW view\.
+1. In RSQL, run the following query to create the WLM\_QUERY\_STATE\_VW view\.
 
    ```
    create view WLM_QUERY_STATE_VW as
@@ -80,17 +80,17 @@ You use this view throughout the tutorial to monitor the queries that are runnin
 
 ## Step 3: Run test queries<a name="tutorial-wlm-run-test-queries"></a>
 
-In this step, you run queries from multiple connections in psql and review the system tables to determine how the queries were routed for processing\. 
+In this step, you run queries from multiple connections in RSQL and review the system tables to determine how the queries were routed for processing\. 
 
-For this step, you need two psql windows open: 
-+ In psql window 1, you run queries that monitor the state of the queues and queries using the views you already created in this tutorial\.
-+ In psql window 2, you run long\-running queries to change the results you find in psql window 1\.
+For this step, you need two RSQL windows open: 
++ In RSQL window 1, you run queries that monitor the state of the queues and queries using the views you already created in this tutorial\.
++ In RSQL window 2, you run long\-running queries to change the results you find in RSQL window 1\.
 
 ### To run the test queries<a name="how-to-wlm-run-test-queries"></a>
 
-1. Open two psql windows\. If you already have one window open, you only need to open a second window\. You can use the same user account for both of these connections\.
+1. Open two RSQL windows\. If you already have one window open, you only need to open a second window\. You can use the same user account for both of these connections\.
 
-1. In psql window 1, run the following query\.
+1. In RSQL window 1, run the following query\.
 
    ```
    select * from wlm_query_state_vw;
@@ -101,7 +101,7 @@ For this step, you need two psql windows open:
 
    This query returns a self\-referential result\. The query that is currently running is the SELECT statement from this view\. A query on this view always returns at least one result\. Compare this result with the result that occurs after starting the long\-running query in the next step\.
 
-1. In psql window 2, run a query from the TICKIT sample database\. This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. In some cases, you might find that the query doesn't run long enough for you to query both views\. In these cases, you can increase the value of the filter on `l.listid `to make it run longer\.
+1. In RSQL window 2, run a query from the TICKIT sample database\. This query should run for approximately a minute so that you have time to explore the results of the WLM\_QUEUE\_STATE\_VW view and the WLM\_QUERY\_STATE\_VW view that you created earlier\. In some cases, you might find that the query doesn't run long enough for you to query both views\. In these cases, you can increase the value of the filter on `l.listid `to make it run longer\.
 **Note**  
 To reduce query execution time and improve system performance, Amazon Redshift caches the results of certain types of queries in memory on the leader node\. When result caching is enabled, subsequent queries run much faster\. To prevent the query from running to quickly, disable result caching for the current session\.
 
@@ -111,13 +111,13 @@ To reduce query execution time and improve system performance, Amazon Redshift c
    set enable_result_cache_for_session to off;
    ```
 
-   In psql window 2, run the following query\.
+   In RSQL window 2, run the following query\.
 
    ```
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid < 100000;
    ```
 
-1. In psql window 1, query WLM\_QUEUE\_STATE\_VW and WLM\_QUERY\_STATE\_VW and compare the results to your earlier results\.
+1. In RSQL window 1, query WLM\_QUEUE\_STATE\_VW and WLM\_QUERY\_STATE\_VW and compare the results to your earlier results\.
 
    ```
    select * from wlm_queue_state_vw;

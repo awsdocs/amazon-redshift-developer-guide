@@ -17,7 +17,7 @@ For the purposes of this tutorial, we run the same long\-running SELECT query\. 
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. Now, query WLM\_QUERY\_STATE\_VW use the admin user account to see how the query is running\.
+1. Now, query WLM\_QUERY\_STATE\_VW with the admin user to see how the query is running\.
 
    ```
    select * from wlm_query_state_vw;
@@ -56,26 +56,26 @@ Next, run queries from different sessions\.
 
 ### To run queries from different sessions<a name="how-to-wlm-run-queries-from-different-sessions"></a>
 
-1. In psql window 1 and 2, run the following to use the test query group\.
+1. In RSQL window 1 and 2, run the following to use the test query group\.
 
    ```
    set query_group to test;
    ```
 
-1. In psql window 1, run the following long\-running query\.
+1. In RSQL window 1, run the following long\-running query\.
 
    ```
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. As the long\-running query is still going in psql window 1, run the following\. These commands increase the slot count to use all the slots for the queue and then start running the long\-running query\.
+1. As the long\-running query is still going in RSQL window 1, run the following\. These commands increase the slot count to use all the slots for the queue and then start running the long\-running query\.
 
    ```
    set wlm_query_slot_count to 2;
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. Open a third psql window and query the views to see the results\.
+1. Open a third RSQL window and query the views to see the results\.
 
    ```
    select * from wlm_queue_state_vw;

@@ -68,7 +68,7 @@ from sales where salesid < 10 group by salesid;
 
 ## Examples<a name="r_WF_PERCENTILE_CONT-examples"></a>
 
-The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\. 
 
 ```
 select sellerid, qty, percentile_cont(0.5) 

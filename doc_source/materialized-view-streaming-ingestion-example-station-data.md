@@ -98,7 +98,7 @@ These steps show you how to configure the materialized view to ingest data\.
        json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'spaceID',true)::varchar(100) as spaceID,
        json_extract_path_text(from_varbyte(kinesis_data, 'utf-8'),'timezone',true)::varchar(30)as timezone,
        json_extract_path_text(from_varbyte(kinesis_data,'utf-8'),'userID',true)::varchar(30) as userID
-       FROM evdata."ev_stream_data"
+       FROM evdata."ev_station_data"
        WHERE LENGTH(kinesis_data) < 65355;
    ```
 

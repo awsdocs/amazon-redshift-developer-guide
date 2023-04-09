@@ -32,6 +32,6 @@ ERROR: group "guest" can't be dropped because the group has a privilege on some 
 If the group has privileges for an object, first revoke the privileges before dropping the group\. The following example revokes all privileges on all tables in the `public` schema from the `GUEST` user group, and then drops the group\. 
 
 ```
-revoke all on all tables in schema public from group guest;  
+revoke all on all tables in schema public from group guest;
 drop group guests;
 ```

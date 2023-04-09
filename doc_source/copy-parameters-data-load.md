@@ -27,7 +27,7 @@ For information about the system table to analyze compression, see [STL\_ANALYZE
 
 IGNOREALLERRORS   <a name="copy-ignoreallerrors"></a>
 You can specify this option to ignore all errors that occur during the load operation\.   
-You can't specify the IGNOREALLERRORS option if you specify the MAXERROR option\. You can't specify the IGNOREALLERRORS option for columnar formats including ORC, Parquet, RCFile, and SequenceFile\.
+You can't specify the IGNOREALLERRORS option if you specify the MAXERROR option\. You can't specify the IGNOREALLERRORS option for columnar formats including ORC and Parquet\.
 
 MAXERROR \[AS\] *error\_count*   <a name="copy-maxerror"></a>
 If the load returns the *error\_count* number of errors or greater, the load fails\. If the load returns fewer errors, it continues and returns an INFO message that states the number of rows that could not be loaded\. Use this parameter to allow loads to continue when certain rows fail to load into the table because of formatting errors or other inconsistencies in the data\.   

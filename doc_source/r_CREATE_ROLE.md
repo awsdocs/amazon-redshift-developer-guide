@@ -1,8 +1,8 @@
 # CREATE ROLE<a name="r_CREATE_ROLE"></a>
 
-Creates a new custom role that is a collection of privileges\.
+Creates a new custom role that is a collection of permissions\. For a list of Amazon Redshift system\-defined roles, see [Amazon Redshift system\-defined roles](r_roles-default.md)\.
 
-## Required privileges<a name="r_CREATE_ROLE-privileges"></a>
+## Required permissions<a name="r_CREATE_ROLE-privileges"></a>
 
 Following are the required privileges for CREATE ROLE\.
 + Superuser

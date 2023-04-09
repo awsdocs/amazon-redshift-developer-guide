@@ -4,7 +4,7 @@ You can return a result set using a cursor or a temp table\.
 
 ## Returning a cursor<a name="stored-procedure-return-cursor"></a>
 
-To return a cursor, create a procedure with an INOUT argument defined with a `refcursor` data type\. When you call the procedure, give the cursor a name, then you can fetch the results from the cursor by name\.
+To return a cursor, create a procedure with an INOUT argument defined with a `refcursor` data type\. When you call the procedure, give the cursor a name\. Then you can fetch the results from the cursor by name\.
 
 The following example creates a procedure named `get_result_set` with an INOUT argument named `rs_out` using the `refcursor` data type\. The procedure opens the cursor using a SELECT statement\.
 

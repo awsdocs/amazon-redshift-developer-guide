@@ -37,13 +37,13 @@ As a producer cluster administrator, follow these steps to share datashares to L
 1. Grant access of the datashare to a Lake Formation administrator account\.
 
    ```
-   GRANT USAGE ON salesshare TO ACCOUNT '1234567890' VIA DATA CATALOG;
+   GRANT USAGE ON DATASHARE salesshare TO ACCOUNT '012345678910' VIA DATA CATALOG;
    ```
 
    To revoke usage, use the following command\.
 
    ```
-   REVOKE USAGE ON salesshare FROM ACCOUNT '1234567890' VIA DATA CATALOG;
+   REVOKE USAGE ON DATASHARE salesshare FROM ACCOUNT '012345678910' VIA DATA CATALOG;
    ```
 
 1. Authorize access to the datashare for Lake Formation by using the `aws redshift authorize-data-share` API operation\. This lets Lake Formation recognize the datashare in the service account and manage associating consumers to the datashare\.
@@ -51,7 +51,7 @@ As a producer cluster administrator, follow these steps to share datashares to L
    ```
    aws redshift authorize-data-share 
    --data-share-arn arn:aws:redshift:us-east-1:{PRODUCER_ACCOUNT}:datashare:{PRODUCER_CLUSTER_NAMESPACE}/salesshare 
-   --consumer-identifier {"LakeFormation/<consumer-account-id>"}
+   --consumer-identifier {"DataCatalog/<consumer-account-id>"}
    ```
 
     To remove authorization from Lake Formation\-managed datashares, use the `aws redshift deauthorize-data-share` API operation\. By doing so, you allow AWS Lake Formation to recognize the datashare in the service account and remove authorization\. 
@@ -59,7 +59,7 @@ As a producer cluster administrator, follow these steps to share datashares to L
    ```
    aws redshift deauthorize-data-share 
    --data-share-arn arn:aws:redshift:us-east-1:{PRODUCER_ACCOUNT}:datashare:{PRODUCER_CLUSTER_NAMESPACE}/salesshare 
-   --consumer-identifier {"LakeFormation/<consumer-account-id>"}
+   --consumer-identifier {"DataCatalog/<consumer-account-id>"}
    ```
 
     At any time, if the producer cluster administrator decides that there is no longer a need to share data with the consumer cluster, they can use DROP DATASHARE to delete the datashare\. The associated permissions and objects in Lake Formation are not automatically deleted\. 

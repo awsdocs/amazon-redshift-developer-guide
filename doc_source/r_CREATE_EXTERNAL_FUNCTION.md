@@ -13,8 +13,8 @@ Following are required privileges for CREATE EXTERNAL FUNCTION:
 ```
 CREATE [ OR REPLACE ] EXTERNAL FUNCTION external_fn_name ( [data_type] [, ...] )
 RETURNS data_type
-{ VOLATILE | STABLE | IMMUTABLE }   
-LAMBDA 'lambda_fn_name' 
+VOLATILE
+LAMBDA 'lambda_fn_name'
 IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’
 RETRY_TIMEOUT milliseconds
 MAX_BATCH_ROWS count
@@ -26,7 +26,7 @@ The following is the syntax for machine learning on Amazon Redshift\. For inform
 ```
 CREATE [ OR REPLACE ] EXTERNAL FUNCTION external_fn_name ( [data_type] [, ...] )
 RETURNS data_type
-{ VOLATILE | STABLE | IMMUTABLE } 
+VOLATILE
 SAGEMAKER'endpoint_name'
 IAM_ROLE { default | ‘arn:aws:iam::<AWS account-id>:role/<role-name>’ };
 ```
@@ -47,18 +47,10 @@ The data type for the input arguments\. For more information, see [Data types](c
 RETURNS *data\_type*  
 The data type of the value returned by the function\. The RETURNS data type can be any standard Amazon Redshift data type\. For more information, see [Python UDF data types](udf-data-types.md)\.
 
-VOLATILE \| STABLE \| IMMUTABLE  
+VOLATILE  
 A clause that informs the query optimizer about the volatility of the function\.   
-To get the best optimization, label your function with the strictest volatility category that is valid for it\. However, if the category is too strict, the optimizer can erroneously skip some calls, resulting in an incorrect result set\. In order of strictness, beginning with the least strict, the volatility categories are as follows:  
-+ VOLATILE
-
-  Given the same arguments, the function can return different results on successive calls, even for the rows in a single statement\. The query optimizer can't make any assumptions about the behavior of a volatile function\. A query that uses a volatile function must reevaluate the function for every input row\.
-+ STABLE
-
-  Given the same arguments, the function is guaranteed to return the same results for all rows processed within a single statement\. The function can return different results when called in different statements\. This category allows the optimizer to optimize multiple calls of the function within a single statement to a single call for the statement\. 
-+ IMMUTABLE
-
-  Given the same arguments, the function always returns the same result, forever\. When a query calls an `IMMUTABLE` function with constant arguments, the optimizer pre\-evaluates the function\.
+Given the same arguments, the function can return different results on successive calls, even for the rows in a single statement\. The query optimizer can't make any assumptions about the behavior of a volatile function\. A query that uses a volatile function must reevaluate the function for every input row\.  
+The STABLE and IMMUTABLE clauses are not currently supported for Lambda UDFs\.
 
 LAMBDA *'lambda\_fn\_name'*   
  The name of the function that Amazon Redshift calls\.  
@@ -97,13 +89,13 @@ Following are examples of using scalar Lambda user\-defined functions \(UDFs\)\.
 
 ### Scalar Lambda UDF example using a Node\.js Lambda function<a name="r_CREATE_FUNCTION-lambda-example-node"></a>
 
-The following example creates an external function called `exfunc_sum` that takes two integers as input arguments\. This function returns the sum as an integer output\. The name of the Lambda function to be called is `lambda_sum`\. The language used for this Lambda function is Node\.js 12\.x\. Make sure to specify the IAM role\. The example uses `'arn:aws:iam::123456789012:user/johndoe'` as the IAM role\. We recommend using the STABLE option\.
+The following example creates an external function called `exfunc_sum` that takes two integers as input arguments\. This function returns the sum as an integer output\. The name of the Lambda function to be called is `lambda_sum`\. The language used for this Lambda function is Node\.js 12\.x\. Make sure to specify the IAM role\. The example uses `'arn:aws:iam::123456789012:user/johndoe'` as the IAM role\.
 
 ```
-CREATE EXTERNAL FUNCTION exfunc_sum(INT,INT) 
-RETURNS INT 
-STABLE 
-LAMBDA 'lambda_sum' 
+CREATE EXTERNAL FUNCTION exfunc_sum(INT,INT)
+RETURNS INT
+VOLATILE
+LAMBDA 'lambda_sum'
 IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-Exfunc-Test';
 ```
 
@@ -115,13 +107,13 @@ The JSON response payload must have the result data in the 'results' field for i
 exports.handler = async (event) => {
     // The 'arguments' field in the request sent to the Lambda function contains the data payload.
     var t1 = event['arguments'];
-    
+
     // 'len(t1)' represents the number of rows in the request payload.
     // The number of results in the response payload should be the same as the number of rows received.
     const resp = new Array(t1.length);
-    
+
     // Iterating over all the rows in the request payload.
-    for (const [i, x] of t1.entries()) 
+    for (const [i, x] of t1.entries())
     {
         var sum = 0;
         // Iterating over all the values in a single row.
@@ -142,7 +134,7 @@ The following example calls the external function with literal values\.
 
 ```
 select exfunc_sum(1,2);
-exfunc_sum 
+exfunc_sum
 ------------
  3
 (1 row)
@@ -154,7 +146,7 @@ The following example creates a table called t\_sum with two columns, c1 and c2,
 CREATE TABLE t_sum(c1 int, c2 int);
 INSERT INTO t_sum VALUES (4,5), (6,7);
 SELECT exfunc_sum(c1,c2) FROM t_sum;
- exfunc_sum 
+ exfunc_sum
 ---------------
  9
  13
@@ -189,7 +181,7 @@ def lambda_handler(event, context):
         # Iterating over all the values in a single row.
         for j, y in enumerate(x):
             resp[i] = y.upper()
-    
+
     time.sleep(3)
     ret = dict()
     ret['results'] = resp
@@ -204,7 +196,7 @@ The first example, following, sets the RETRY\_TIMEOUT attribute for the Lambda U
 ```
 CREATE OR REPLACE EXTERNAL FUNCTION exfunc_upper(varchar)
 RETURNS varchar
-STABLE
+VOLATILE
 LAMBDA 'exfunc_sleep_3'
 IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-Exfunc-Test'
 RETRY_TIMEOUT 0;
@@ -216,7 +208,7 @@ The first SQL query that uses the Lambda UDF runs successfully\.
 
 ```
 select exfunc_upper('Varchar');
- exfunc_upper  
+ exfunc_upper
  --------------
  VARCHAR
 (1 row)
@@ -242,7 +234,7 @@ The second example, following, sets the RETRY\_TIMEOUT attribute for the Lambda 
 ```
 CREATE OR REPLACE EXTERNAL FUNCTION exfunc_upper(varchar)
 RETURNS varchar
-STABLE
+VOLATILE
 LAMBDA 'exfunc_sleep_3'
 IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-Exfunc-Test'
 RETRY_TIMEOUT 3000;
@@ -254,7 +246,7 @@ The first SQL query that runs the Lambda UDF runs successfully\.
 
 ```
 select exfunc_upper('Varchar');
- exfunc_upper  
+ exfunc_upper
  --------------
  VARCHAR
 (1 row)
@@ -264,7 +256,7 @@ The second query runs concurrently, and the Lambda UDF retries until the total d
 
 ```
 select exfunc_upper('Varchar');
- exfunc_upper  
+ exfunc_upper
 --------------
  VARCHAR
 (1 row)
@@ -277,10 +269,10 @@ The following example creates an external function that is named `exfunc_multipl
 The name of the Lambda function that is called is `lambda_multiplication`\. The language used for this Lambda function is Python 3\.8\. Make sure to specify the IAM role\.
 
 ```
-CREATE EXTERNAL FUNCTION exfunc_multiplication(int, int, int) 
-RETURNS INT 
-STABLE 
-LAMBDA 'lambda_multiplication' 
+CREATE EXTERNAL FUNCTION exfunc_multiplication(int, int, int)
+RETURNS INT
+VOLATILE
+LAMBDA 'lambda_multiplication'
 IAM_ROLE 'arn:aws:iam::123456789012:role/Redshift-Exfunc-Test';
 ```
 
@@ -297,7 +289,7 @@ def lambda_handler(event, context):
     # 'len(t1)' represents the number of rows in the request payload.
     # The number of results in the response payload should be the same as the number of rows received.
     resp = [None]*len(t1)
-    
+
     # By default success is set to 'True'.
     success = True
     # Iterating over all rows in the request payload.
@@ -306,7 +298,7 @@ def lambda_handler(event, context):
         # Iterating over all the values in a single row.
         for j, y in enumerate(x):
             mul = mul*y
-            
+
         # Check integer overflow.
         if (mul >= 9223372036854775807 or mul <= -9223372036854775808):
             success = False
@@ -320,7 +312,7 @@ def lambda_handler(event, context):
     else:
         ret['results'] = resp
     ret_json = json.dumps(ret)
-    
+
     return ret_json
 ```
 
@@ -328,7 +320,7 @@ The following example calls the external function with literal values\.
 
 ```
 SELECT exfunc_multiplication(8, 9, 2);
-  exfunc_multiplication 
+  exfunc_multiplication
 ---------------------------
           144
 (1 row)
@@ -340,10 +332,10 @@ The following example creates a table named t\_multi with three columns, c1, c2,
 CREATE TABLE t_multi (c1 int, c2 int, c3 int);
 INSERT INTO t_multi VALUES (2147483647, 2147483647, 4);
 SELECT exfunc_multiplication(c1, c2, c3) FROM t_multi;
-DETAIL:  
+DETAIL:
   -----------------------------------------------
   error:  Integer multiplication overflow
-  code:      32004context:   
+  code:      32004context:
   context:
   query:     38
   location:  exfunc_data.cpp:276

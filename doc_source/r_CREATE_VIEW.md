@@ -72,10 +72,12 @@ To create a late\-binding view, include the WITH NO SCHEMA BINDING clause\. The 
 ```
 create view event_vw as select * from public.event
 with no schema binding;
+```
 
+```
 select * from event_vw limit 1;
-
-eventid | venueid | catid | dateid | eventname     | starttime          
+            
+eventid | venueid | catid | dateid | eventname     | starttime
 --------+---------+-------+--------+---------------+--------------------
       2 |     306 |     8 |   2114 | Boris Godunov | 2008-10-15 20:00:00
 ```
@@ -84,10 +86,12 @@ The following example shows that you can alter an underlying table without recre
 
 ```
 alter table event rename column eventname to title;
+```
 
+```
 select * from event_vw limit 1;
-
-eventid | venueid | catid | dateid | title         | starttime          
+            
+eventid | venueid | catid | dateid | title         | starttime
 --------+---------+-------+--------+---------------+--------------------
       2 |     306 |     8 |   2114 | Boris Godunov | 2008-10-15 20:00:00
 ```
@@ -105,6 +109,8 @@ with no schema binding;
 For more information about creating Redshift Spectrum external tables, including the `SPECTRUM.SALES` table, see [Getting started with Amazon Redshift Spectrum](c-getting-started-using-spectrum.md)\.
 
 ## Examples<a name="r_CREATE_VIEW-examples"></a>
+
+The example commands use a sample set of objects and data called the *TICKIT* database\. For more information, see [Sample database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html)\.
 
 The following command creates a view called *myevent* from a table called EVENT\. 
 

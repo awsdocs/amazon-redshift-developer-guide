@@ -17,6 +17,23 @@ Hierarchical queries process in the following order:
 CONNECT BY connect_by_conditions
 ```
 
+**Note**  
+While START and CONNECT are not reserved words, use delimited identifiers \(double quotation marks\) or AS if you're using START and CONNECT as table aliases in your query to avoid failure at runtime\.
+
+```
+SELECT COUNT(*)
+FROM Employee "start"
+CONNECT BY PRIOR id = manager_id
+START WITH name = 'John'
+```
+
+```
+SELECT COUNT(*)
+FROM Employee AS start
+CONNECT BY PRIOR id = manager_id
+START WITH name = 'John'
+```
+
 ## Parameters<a name="r_CONNECT_BY_parameters"></a>
 
  *start\_with\_conditions*   
@@ -59,15 +76,15 @@ Following is the result of the query\.
 id      name      manager_id
 ------+----------+--------------
   101     John        100
-  102     Jorge       101   
+  102     Jorge       101
   103     Kwaku       101
   110     Liu         101
-  201     Sofía       102   
+  201     Sofía       102
   106     Mateo       102
   110     Nikki       103
   104     Paulo       103
   105     Richard     103
-  120     Saanvi      104   
+  120     Saanvi      104
   200     Shirley     104
   205     Zhang       104
 ```

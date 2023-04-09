@@ -15,14 +15,14 @@ Before you begin, you should have the following in place:
   You will provide commands that the Amazon Redshift cluster will run on the hosts to generate the text output\. After the cluster connects to a host, the COPY command runs the commands, reads the text from the hosts' standard output, and loads the data in parallel into an Amazon Redshift table\. The text output must be in a form that the COPY command can ingest\. For more information, see [Preparing your input data](t_preparing-input-data.md)
 + Access to the hosts from your computer\. 
 
-  For an Amazon EC2 instance, you will use an SSH connection to access the host\. You will need to access the host to add the Amazon Redshift cluster's public key to the host's authorized keys file\.
+  For an Amazon EC2 instance, you will use an SSH connection to access the host\. You must access the host to add the Amazon Redshift cluster's public key to the host's authorized keys file\.
 + A running Amazon Redshift cluster\. 
 
   For information about how to launch a cluster, see [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/)\. 
 
 ## Loading data process<a name="load-from-host-process"></a>
 
-This section walks you through the process of loading data from remote hosts\. The following sections provide the details you need to accomplish each step\.
+This section walks you through the process of loading data from remote hosts\. The following sections provide the details that that you must accomplish in each step\.
 + **[Step 1: Retrieve the cluster public key and cluster node IP addresses](load-from-host-steps-retrieve-key-and-ips.md)**
 
   The public key enables the Amazon Redshift cluster nodes to establish SSH connections to the remote hosts\. You will use the IP address for each cluster node to configure the host security groups or firewall to permit access from your Amazon Redshift cluster using these IP addresses\. 
@@ -31,10 +31,10 @@ This section walks you through the process of loading data from remote hosts\. T
   You add the Amazon Redshift cluster public key to the host's authorized keys file so that the host will recognize the Amazon Redshift cluster and accept the SSH connection\. 
 + **[Step 3: Configure the host to accept all of the Amazon Redshift cluster's IP addresses](load-from-host-steps-configure-security-groups.md)** 
 
-  For Amazon EC2 , modify the instance's security groups to add ingress rules to accept the Amazon Redshift IP addresses\. For other hosts, modify the firewall so that your Amazon Redshift nodes are able to establish SSH connections to the remote host\. 
+  For Amazon EC2, modify the instance's security groups to add input rules to accept the Amazon Redshift IP addresses\. For other hosts, modify the firewall so that your Amazon Redshift nodes are able to establish SSH connections to the remote host\. 
 + **[Step 4: Get the public key for the host](load-from-host-steps-get-the-host-key.md)**
 
-  You can optionally specify that Amazon Redshift should use the public key to identify the host\. You will need to locate the public key and copy the text into your manifest file\. 
+  You can optionally specify that Amazon Redshift should use the public key to identify the host\. You must locate the public key and copy the text into your manifest file\. 
 + **[Step 5: Create a manifest file](load-from-host-steps-create-manifest.md)** 
 
   The manifest is a JSON\-formatted text file with the details Amazon Redshift needs to connect to the hosts and fetch the data\. 

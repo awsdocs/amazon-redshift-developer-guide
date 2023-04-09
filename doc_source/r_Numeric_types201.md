@@ -51,7 +51,8 @@ pricepaid | salesid
  However, results of explicit casts of values selected from tables are not rounded\.
 
 **Note**  
-The maximum positive value that you can insert into a DECIMAL\(19,0\) column is `9223372036854775807` \(263 \-1\)\. The maximum negative value is `-9223372036854775807`\. For example, an attempt to insert the value `9999999999999999999` \(19 nines\) will cause an overflow error\. Regardless of the placement of the decimal point, the largest string that Amazon Redshift can represent as a DECIMAL number is `9223372036854775807`\. For example, the largest value that you can load into a DECIMAL\(19,18\) column is `9.223372036854775807`\. These rules derive from the internal storage of DECIMAL values as 8\-byte integers\. Amazon Redshift recommends that you do not define DECIMAL values with 19 digits of precision unless that precision is necessary\.
+The maximum positive value that you can insert into a DECIMAL\(19,0\) column is `9223372036854775807` \(263 \-1\)\. The maximum negative value is `-9223372036854775807`\. For example, an attempt to insert the value `9999999999999999999` \(19 nines\) will cause an overflow error\. Regardless of the placement of the decimal point, the largest string that Amazon Redshift can represent as a DECIMAL number is `9223372036854775807`\. For example, the largest value that you can load into a DECIMAL\(19,18\) column is `9.223372036854775807`\.  
+These rules are because DECIMAL values with 19 or fewer significant digits of precision are stored internally as 8\-byte integers, while DECIMAL values with 20 to 38 significant digits of precision are stored as 16\-byte integers\. 
 
 ## Notes about using 128\-bit DECIMAL or NUMERIC columns<a name="r_Numeric_types201-notes-about-using-128-bit-decimal-or-numeric-columns"></a>
 
@@ -61,23 +62,6 @@ Do not arbitrarily assign maximum precision to DECIMAL columns unless you are ce
 
 Use the REAL and DOUBLE PRECISION data types to store numeric values with *variable precision*\. These types are *inexact* types, meaning that some values are stored as approximations, such that storing and returning a specific value may result in slight discrepancies\. If you require exact storage and calculations \(such as for monetary amounts\), use the DECIMAL data type\.
 
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/r_Numeric_types201.html)
+REAL represents the single\-precision floating point format, according to the IEEE Standard 754 for Binary Floating\-Point Arithmetic\. It has a precision of about 6 digits, and a range of around 1E\-37 to 1E\+37\. You can also specify this data type as FLOAT4\.
 
-For example, note the results of the following inserts into a REAL column: 
-
-```
-create table real1(realcol real);
-
-insert into real1 values(12345.12345);
-
-insert into real1 values(123456.12345);
-
-select * from real1;
-realcol
----------
-123456
-12345.1
-(2 rows)
-```
-
-These inserted values are truncated to meet the limitation of 6 significant digits of precision for REAL columns\. 
+DOUBLE PRECISION represents the double\-precision floating point format, according to the IEEE Standard 754 for Binary Floating\-Point Arithmetic\. It has a precision of about 15 digits, and a range of around 1E\-307 to 1E\+308\. You can also specify this data type as FLOAT or FLOAT8\.

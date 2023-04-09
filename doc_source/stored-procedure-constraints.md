@@ -24,5 +24,4 @@ The following are limits on stored procedures in Amazon Redshift:
   + VACUUM
   + SET LOCAL
   + ALTER TABLE APPEND
-  + Transaction statements, such as BEGIN and START TRANSACTION\.
 + The `registerOutParameter` method call through the Java Database Connectivity \(JDBC\) driver isn't supported for the `refcursor` data type\.   For an example of using the `refcursor` data type, see [Returning a result set](stored-procedure-result-set.md)\.

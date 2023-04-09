@@ -4,7 +4,7 @@
 
 1. Access the Amazon Redshift Management Console\. 
 
-1. Click the **Clusters** link in the navigation pane\. 
+1. Choose the **Clusters** link in the navigation pane\. 
 
 1. Select your cluster from the list\. 
 
@@ -13,7 +13,7 @@
    Note the **Cluster Public Key** and **Node IP addresses**\. You will use them in later steps\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/dg/images/copy-from-ssh-console-2.png)
 
-   You will use the Private IP addresses in Step 3 to configure the Amazon EC2 host to accept the connection from Amazon Redshift\. 
+   You will use the private IP addresses in Step 3 to configure the Amazon EC2 host to accept the connection from Amazon Redshift\. 
 
 To retrieve the cluster public key and cluster node IP addresses for your cluster using the Amazon Redshift CLI, run the describe\-clusters command\. For example:
 

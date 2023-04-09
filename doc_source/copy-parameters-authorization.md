@@ -44,7 +44,7 @@ For increased flexibility, we recommend using the [IAM_ROLE](#copy-iam-role)  pa
 Optionally, if the [ENCRYPTED](copy-parameters-data-source-s3.md#copy-encrypted) parameter is used, the *credentials\-args* string also provides the encryption key\.  
 The *credentials\-args* string is case\-sensitive and must not contain spaces\.  
 The keywords WITH and AS are optional and are ignored\.  
-You can specify either [role-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based.phrase) or [key-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based.phrase)\. In either case, the IAM role or IAM user must have the permissions required to access the specified AWS resources\. For more information, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\.   
+You can specify either [role-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based.phrase) or [key-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-key-based.phrase)\. In either case, the IAM role or user must have the permissions required to access the specified AWS resources\. For more information, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\.   
 To safeguard your AWS credentials and protect sensitive data, we strongly recommend using role\-based access control\. 
 To specify role\-based access control, provide the *credentials\-args* string in the following format\.  
 

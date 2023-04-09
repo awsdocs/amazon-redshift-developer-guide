@@ -2,7 +2,7 @@
 
 A SQL JOIN clause is used to combine the data from two or more tables based on common fields\. The results might or might not change depending on the join method specified\. For more information about the syntax of a JOIN clause, see [Parameters](r_FROM_clause30.md#r_FROM_clause30-parameters)\. 
 
-The following examples use data from the `TICKIT` sample data\. For more information about the database schema, see [Sample database](c_sampledb.md)\. To learn how to load sample data, see [Using a sample dataset](https://docs.aws.amazon.com/redshift/gsg/sample-data-load.html) in the *Amazon Redshift Getting Started Guide*\.
+The following examples use data from the `TICKIT` sample data\. For more information about the database schema, see [Sample database](c_sampledb.md)\. To learn how to load sample data, see [Using a sample dataset](https://docs.aws.amazon.com/redshift/latest/gsg/sample-data-load.html) in the *Amazon Redshift Getting Started Guide*\.
 
 The following query is an inner join \(without the JOIN keyword\) between the LISTING table and SALES table, where the LISTID from the LISTING table is between 1 and 5\. This query matches LISTID column values in the LISTING table \(the left table\) and SALES table \(the right table\)\. The results show that LISTID 1, 4, and 5 match the criteria\.
 
@@ -117,25 +117,25 @@ order by 1,2;
 
 sales_listid | listing_listid
 -------------+---------------
-1            | 1	
-1            | 2	
-1            | 3	
-1            | 4	
-1            | 5	
-4            | 1	
-4            | 2	
-4            | 3	
-4            | 4	
-4            | 5	
-5            | 1	
-5            | 1	
-5            | 2	
-5            | 2	
-5            | 3	
-5            | 3	
-5            | 4	
-5            | 4	
-5            | 5	
+1            | 1
+1            | 2
+1            | 3
+1            | 4
+1            | 5
+4            | 1
+4            | 2
+4            | 3
+4            | 4
+4            | 5
+5            | 1
+5            | 1
+5            | 2
+5            | 2
+5            | 3
+5            | 3
+5            | 4
+5            | 4
+5            | 5
 5            | 5
 ```
 
@@ -149,10 +149,10 @@ limit 5;
 
 listid | sellerid  | eventid | dateid | numtickets
 -------+-----------+---------+--------+-----------
-113    | 29704     | 4699    | 2075   | 22	
-115    | 39115     | 3513    | 2062   | 14	
-116    | 43314     | 8675    | 1910   | 28	
-118    | 6079      | 1611    | 1862   | 9	
+113    | 29704     | 4699    | 2075   | 22
+115    | 39115     | 3513    | 2062   | 14
+116    | 43314     | 8675    | 1910   | 28
+118    | 6079      | 1611    | 1862   | 9
 163    | 24880     | 8253    | 1888   | 14
 ```
 
@@ -167,10 +167,10 @@ limit 5;
 
 listid | sellerid | eventid | dateid | numtickets
 -------+----------+---------+--------+-----------
-1      | 36861    | 7872    | 1850   | 10	
-4      | 8117     | 4337    | 1970   | 8	
-5      | 1616     | 8647    | 1963   | 4	
-5      | 1616     | 8647    | 1963   | 4	
+1      | 36861    | 7872    | 1850   | 10
+4      | 8117     | 4337    | 1970   | 8
+5      | 1616     | 8647    | 1963   | 4
+5      | 1616     | 8647    | 1963   | 4
 6      | 47402    | 8240    | 2053   | 18
 ```
 

@@ -33,7 +33,7 @@ ORDER BY *order\_list*
 Sorts the rows within each partition\. If no PARTITION BY is specified, ORDER BY uses the entire table\.
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\.
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows within the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](c_Window_functions.md#r_Window_function_synopsis)\.
 
 ## Data types<a name="c_Supported_data_types_wf_count"></a>
 
@@ -67,7 +67,7 @@ salesid | qty | count
 (11 rows)
 ```
 
-For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\. 
 
 The following example shows how the sales ID, quantity, and count of non\-null rows from the beginning of the data window\. \(In the WINSALES table, the QTY\_SHIPPED column contains some NULLs\.\) 
 

@@ -14,13 +14,13 @@ The new table is loaded with data defined by the query in the command\. The tabl
 
 ```
 CREATE [ [ LOCAL ] { TEMPORARY | TEMP } ]
-TABLE table_name     
+TABLE table_name
 [ ( column_name [, ... ] ) ]
 [ BACKUP { YES | NO } ]
-[ table_attributes ]   
-AS query 
+[ table_attributes ]
+AS query
 
-where table_attributes are:  
+where table_attributes are:
 [ DISTSTYLE { AUTO | EVEN | ALL | KEY } ]
 [ DISTKEY( distkey_identifier ) ]
 [ [ COMPOUND | INTERLEAVED ] SORTKEY( column_name [, ...] ) ]

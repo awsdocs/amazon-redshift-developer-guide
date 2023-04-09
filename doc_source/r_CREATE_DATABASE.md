@@ -2,6 +2,8 @@
 
 Creates a new database\.
 
+To create a database, you must be a superuser or have the CREATEDB privilege\.
+
 You can't run CREATE DATABASE within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
 ## Syntax<a name="r_CREATE_DATABASE-synopsis"></a>
@@ -12,7 +14,7 @@ CREATE DATABASE database_name [ WITH ]
 [ CONNECTION LIMIT { limit | UNLIMITED } ]
 [ COLLATE { CASE_SENSITIVE | CASE_INSENSITIVE } ]
 [ ISOLATION LEVEL { SERIALIZABLE | SNAPSHOT } ]
-FROM [ DATASHARE datashare_name | ARN '<arn>' ] OF [ ACCOUNT account_id ] NAMESPACE namespace_guid 
+FROM [ DATASHARE datashare_name | ARN '<arn>' ] OF [ ACCOUNT account_id ] NAMESPACE namespace_guid
 [ WITH DATA CATALOG SCHEMA '<schema>' | WITH NO DATA CATALOG SCHEMA ]
 ```
 
@@ -43,7 +45,7 @@ A clause that specifies whether string search or comparison is CASE\_SENSITIVE o
 ISOLATION LEVEL \{ SERIALIZABLE \| SNAPSHOT \}  
 A clause that specifies the isolation level used when queries run against a database\.  
 + SERIALIZABLE isolation – provides full serializability for concurrent transactions\. This is the default for a database created in a provisioned cluster\. For more information, see [Serializable isolation](c_serial_isolation.md)\.
-+ SNAPSHOT isolation – provides an isolation level with protection against update and delete conflicts\. This is the default for a database created in a serverless endpoint\. 
++ SNAPSHOT isolation – provides an isolation level with protection against update and delete conflicts\. This is the default for a database created in a serverless namespace\. 
 You can view which concurrency model your database is running as follows:   
 + Query the STV\_DB\_ISOLATION\_LEVEL catalog view\. For more information, see [STV\_DB\_ISOLATION\_LEVEL](r_STV_DB_ISOLATION_LEVEL.md)\.
 
@@ -100,9 +102,7 @@ A value that specifies the producer account that the datashare belongs to\.
 
 ## Usage notes for CREATE DATABASE for data sharing<a name="r_CREATE_DATABASE-usage"></a>
 
-As a consumer account administrator, when you use CREATE DATABASE to create databases from datashares within the AWS account, specify the NAMESPACE option\. The ACCOUNT option is optional\.
-
-When you use CREATE DATABASE to create databases from datashares across AWS accounts, specify both the ACCOUNT and NAMESPACE options\.
+As a database superuser, when you use CREATE DATABASE to create databases from datashares within the AWS account, specify the NAMESPACE option\. The ACCOUNT option is optional\. When you use CREATE DATABASE to create databases from datashares across AWS accounts, specify both the ACCOUNT and NAMESPACE from the producer\.
 
 You can create only one consumer database for one datashare on a consumer cluster\. You can't create multiple consumer databases referring to the same datashare\.
 
@@ -138,7 +138,7 @@ For external queries, including Amazon Redshift Spectrum and Aurora PostgreSQL f
 The following example queries a Amazon Redshift Spectrum table:
 
 ```
-SELECT ci_varchar FROM spectrum.test_collation 
+SELECT ci_varchar FROM spectrum.test_collation
 WHERE ci_varchar = 'AMAZON';
 
 ci_varchar
@@ -244,14 +244,14 @@ with owner dwuser;
 To view details about databases, query the PG\_DATABASE\_INFO catalog table\. 
 
 ```
-select datname, datdba, datconnlimit 
+select datname, datdba, datconnlimit
 from pg_database_info
 where datdba > 1;
 
  datname     | datdba | datconnlimit
 -------------+--------+-------------
- admin       |    100 | UNLIMITED   
- reports     |    100 | 100         
+ admin       |    100 | UNLIMITED
+ reports     |    100 | 100
  tickit      |    100 | 100
 ```
 
@@ -275,6 +275,8 @@ The following example creates the `sampledb` database, creates the `T1` table, a
 ```
 create database sampledb collate case_insensitive;
 ```
+
+Connect to the new database that you just created using your SQL client\. When using Amazon Redshift query editor v2, choose the `sampledb` in the **Editor**\. When using RSQL, use a command like the following\.
 
 ```
 \connect sampledb;
@@ -352,7 +354,7 @@ The following example queries the `T1` table with the DISTINCT keyword\.
 
 ```
 SELECT DISTINCT col1 FROM T1;
- 
+
  col1
  ------
  bob
@@ -370,10 +372,10 @@ CREATE TABLE T2 AS SELECT * FROM T1;
 
 ```
 SELECT col1 FROM T1 UNION SELECT col1 FROM T2;
- 
+
  col1
  ------
- john 
+ john
  bob
  Mary
 (3 rows)

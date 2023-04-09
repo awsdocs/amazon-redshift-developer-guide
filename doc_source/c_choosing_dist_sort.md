@@ -6,9 +6,9 @@ If you don't specify a distribution style, Amazon Redshift uses AUTO distributio
 
  **AUTO distribution** 
 
-With AUTO distribution, Amazon Redshift assigns an optimal distribution style based on the size of the table data\. For example, Amazon Redshift initially assigns ALL distribution to a small table, then changes to EVEN distribution when the table grows larger\. When a table is changed from ALL to EVEN distribution, storage utilization might change slightly\. The change in distribution occurs in the background, in a few seconds\. 
+With AUTO distribution, Amazon Redshift assigns an optimal distribution style based on the size of the table data\. For example, if AUTO distribution style is specified, Amazon Redshift initially assigns the ALL distribution style to a small table\. When the table grows larger, Amazon Redshift might change the distribution style to KEY, choosing the primary key \(or a column of the composite primary key\) as the distribution key\. If the table grows larger and none of the columns are suitable to be the distribution key, Amazon Redshift changes the distribution style to EVEN\. The change in distribution style occurs in the background with minimal impact to user queries\. 
 
-When you set DISTSTYLE to AUTO, Amazon Redshift might change the distribution of your table data to have a KEY\-based distribution style\. To view actions that Amazon Redshift automatically performed to alter a table distribution key, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. To view current recommendations regarding altering a table distribution key, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. 
+To view actions that Amazon Redshift automatically performed to alter a table distribution key, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. To view current recommendations regarding altering a table distribution key, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. 
 
 To view the distribution style applied to a table, query the PG\_CLASS\_INFO system catalog view\. For more information, see [Viewing distribution styles](viewing-distribution-styles.md)\. If you don't specify a distribution style with the CREATE TABLE statement, Amazon Redshift applies AUTO distribution\. 
 

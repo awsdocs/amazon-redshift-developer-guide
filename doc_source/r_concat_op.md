@@ -47,7 +47,7 @@ Aaron Dotson
 (10 rows)
 ```
 
- To concatenate columns that might contain nulls, use the [NVL expression](r_NVL_function.md) expression\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
+ To concatenate columns that might contain nulls, use the [NVL function](r_NVL_function.md) expression\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
 
 ```
 select venuename || ' seats ' || nvl(venueseats, 0) 

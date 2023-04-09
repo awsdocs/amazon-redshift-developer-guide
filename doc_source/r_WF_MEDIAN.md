@@ -76,4 +76,4 @@ sellerid	qty	median
 4		40	25.0
 ```
 
-For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\. 

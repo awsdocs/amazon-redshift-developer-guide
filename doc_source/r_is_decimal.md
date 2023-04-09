@@ -1,13 +1,13 @@
-# is\_decimal function<a name="r_is_decimal"></a>
+# IS\_DECIMAL function<a name="r_is_decimal"></a>
 
-Checks whether a value is a decimal\. The is\_decimal function returns true for numbers that are not floating points\. The function returns false for any other values, including null\. 
+Checks whether a value is a DECIMAL\. The IS\_DECIMAL function returns true for numbers that are not floating points\. The function returns false for any other values, including null\. 
 
-The is\_decimal function is a superset of is\_bigint\.
+The IS\_DECIMAL function is a superset of IS\_BIGINT\.
 
 ## Syntax<a name="r_is_decimal-synopsis"></a>
 
 ```
-is_decimal (super_expression)
+IS_DECIMAL (super_expression)
 ```
 
 ## Arguments<a name="r_is_decimal-arguments"></a>
@@ -21,7 +21,7 @@ Boolean
 
 ## Example<a name="r_is_decimal_example"></a>
 
-The following query shows an is\_decimal function\.
+The following query shows an IS\_DECIMAL function\.
 
 ```
 CREATE TABLE t(s super);

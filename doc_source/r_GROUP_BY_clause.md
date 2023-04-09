@@ -7,7 +7,7 @@ The GROUP BY clause identifies the grouping columns for the query\. Grouping col
 ```
 GROUP BY group_by_clause [, ...]
 
-group_by_clause := { 
+group_by_clause := {
     expr |
     GROUPING SETS ( () | group_by_clause [, ...] ) |
     ROLLUP ( expr [, ...] ) |
@@ -59,4 +59,4 @@ listid | eventid | revenue | numtix
 ```
 
  * GROUPING SETS/ROLLUP/CUBE *   
-You can use the aggregation extensions GROUPING SETS, ROLLUP, and CUBE to perform the work of multiple GROUP BY operations in a single statement\. You can only use aggregation extensions on preview clusters or preview serverless workgroups\. For more information on aggregation extensions and related functions, see [Aggregation extensions \(preview\) ](r_GROUP_BY_aggregation-extensions.md)\. 
+You can use the aggregation extensions GROUPING SETS, ROLLUP, and CUBE to perform the work of multiple GROUP BY operations in a single statement\. You can only use aggregation extensions on preview clusters or preview serverless workgroups\. For more information on aggregation extensions and related functions, see [Aggregation extensions ](r_GROUP_BY_aggregation-extensions.md)\. 

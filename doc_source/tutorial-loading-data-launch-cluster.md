@@ -8,7 +8,7 @@ For the exercises in this tutorial, use a four\-node cluster\.
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 **Important**  
-If you use IAM user credentials, make sure that you have the necessary permissions to perform the cluster operations\. For more information, see [Controlling access to IAM users](https://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) in the *Amazon Redshift Management Guide*\.
+Make sure that you have the necessary permissions to perform the cluster operations\. For information on granting the necessary permissions, see [ Authorizing Amazon Redshift to access AWS services](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html)\.
 
 1. At top right, choose the AWS Region in which you want to create the cluster\. For the purposes of this tutorial, choose **US West \(Oregon\)**\.
 

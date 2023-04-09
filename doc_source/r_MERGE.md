@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-|  This is prerelease documentation for the MERGE command, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+|  This is prerelease documentation for the MERGE command, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on April 5, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 **Note**  
 You can create an Amazon Redshift cluster in **Preview** to test new features of Amazon Redshift\. You can't use those features in production or move your **Preview** cluster to a production cluster or a cluster on another track\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
@@ -22,7 +22,7 @@ Enter properties for your workgroup\. We recommend entering a name for the workg
 Choose **Create preview workgroup** to create a workgroup in preview\.
 When your preview workgroup is available, use your SQL client to load and query data\.
 
-Conditionally merges rows from a source table into a target table\. Traditionally, this can only be achieved by using multiple insert, update or delete statements separately\. For more information on the operations that MERGE lets you combine, see [UPDATE](https://docs.aws.amazon.com/redshift/dg/r_UPDATE.html), [DELETE](https://docs.aws.amazon.com/redshift/dg/r_DELETE.html), and [INSERT](https://docs.aws.amazon.com/redshift/dg/r_INSERT.html)\.
+Conditionally merges rows from a source table into a target table\. Traditionally, this can only be achieved by using multiple insert, update or delete statements separately\. For more information on the operations that MERGE lets you combine, see [UPDATE](https://docs.aws.amazon.com/redshift/latest/dg/r_UPDATE.html), [DELETE](https://docs.aws.amazon.com/redshift/latest/dg/r_DELETE.html), and [INSERT](https://docs.aws.amazon.com/redshift/latest/dg/r_INSERT_30.html)\.
 
 ## Syntax<a name="r_MERGE-synopsis"></a>
 

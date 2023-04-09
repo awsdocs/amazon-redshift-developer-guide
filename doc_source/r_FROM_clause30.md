@@ -24,12 +24,12 @@ table_name [ * ] [ [ AS ] alias [ ( column_alias [, ...] ) ] ]
 table_reference [ NATURAL ] join_type table_reference
 [ ON join_condition | USING ( join_column [, ...] ) ]
 table_reference [ PIVOT ] ( aggregate(expr) [ [ AS ] aggregate_alias ]
- FOR column_name IN ( expression [ [ AS ] in_alias [, ...] 
-   ) 
+ FOR column_name IN ( expression [ [ AS ] in_alias [, ...]
+   )
 ) [ [ AS ] in_alias [, ...] ) ] ]
-table_reference [ UNPIVOT [INCLUDE NULLS | EXCLUDE NULLS] ] ( value_column_name FOR name_column_name 
-               IN ( column_reference [ [ AS ] in_alias [, ...] 
-   ) 
+table_reference [ UNPIVOT [INCLUDE NULLS | EXCLUDE NULLS] ] ( value_column_name FOR name_column_name
+               IN ( column_reference [ [ AS ] in_alias [, ...]
+   )
 ) [ [ AS ] alias [(column_alias, ...] ) ] ]
 ```
 

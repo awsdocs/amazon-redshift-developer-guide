@@ -2,7 +2,7 @@
 
 As you plan your database, certain key table design decisions heavily influence overall query performance\. These design choices also have a significant effect on storage requirements, which in turn affects query performance by reducing the number of I/O operations and minimizing the memory required to process queries\.
 
-In this section, you can find a summary of the most important design decisions and presents best practices for optimizing query performance\. [Working with automatic table optimization](t_Creating_tables.md) provides more detailed explanations and examples of table design options\.
+In this section, you can find a summary of the most important design decisions and best practices for optimizing query performance\. [Working with automatic table optimization](t_Creating_tables.md) provides more detailed explanations and examples of table design options\.
 
 **Topics**
 + [Choose the best sort key](c_best-practices-sort-key.md)

@@ -6,7 +6,7 @@ It's useful to know when the last ANALYZE command was run on a table or database
 padb_fetch_sample: select * from table_name
 ```
 
-Query STL\_ANALYZE to view the history of analyze operations\. If Amazon Redshift analyzes a table using automatic analyze, the `is_background` column is set to `t` \(true\)\. Otherwise, it is set to `f` \(false\)\. The following example joins STV\_TBL\_PERM to show the table name and execution details\.
+Query STL\_ANALYZE to view the history of analyze operations\. If Amazon Redshift analyzes a table using automatic analyze, the `is_background` column is set to `t` \(true\)\. Otherwise, it is set to `f` \(false\)\. The following example joins STV\_TBL\_PERM to show the table name and runtime details\.
 
 ```
 select distinct a.xid, trim(t.name) as name, a.status, a.rows, a.modified_rows, a.starttime, a.endtime

@@ -33,7 +33,7 @@ When working with the CREATE RLS POLICY statement, observe the following:
 + Amazon Redshift supports filters that can be part of a WHERE clause of a query\.
 + All policies being attached to a table must have been created with the same table alias\.
 + You don't require SELECT permission on lookup tables\. When you create a policy, Amazon Redshift grants the SELECT permission on the lookup table for the respective policy\. A lookup table is a table object used inside a policy definition\. 
-+ Amazon Redshift row\-level security doesn't support the following object types inside a policy definition: catalog tables, cross\-database relations, external tables, regular views, late\-binding views, materialized views, tables with RLS policies turned on, and temporary tables\.
++ Amazon Redshift row\-level security doesn't support the following object types inside a policy definition: catalog tables, cross\-database relations, external tables, regular views, late\-binding views, tables with RLS policies turned on, and temporary tables\.
 
 ## Examples<a name="r_CREATE_RLS_POLICY-examples"></a>
 

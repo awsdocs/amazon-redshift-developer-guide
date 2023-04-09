@@ -230,3 +230,16 @@ to_char
 
 (10 rows)
 ```
+
+The following example shows formatting for seconds, milliseconds, and microseconds\.
+
+```
+select sysdate,
+to_char(sysdate, 'HH24:MI:SS') as seconds,
+to_char(sysdate, 'HH24:MI:SS.MS') as milliseconds,
+to_char(sysdate, 'HH24:MI:SS:US') as microseconds;
+
+timestamp           | seconds  | milliseconds | microseconds   
+--------------------+----------+--------------+----------------
+2015-04-10 18:45:09 | 18:45:09 | 18:45:09.325 | 18:45:09:325143
+```

@@ -46,11 +46,11 @@ For more information, see [Appendix: Time zone names and abbreviations](appendix
 
 ### Using a time zone name<a name="CONVERT_TIMEZONE-using-name"></a>
 
-If you specify a time zone using a time zone name, CONVERT\_TIMEZONE automatically adjusts for Daylight Saving Time \(DST\), or any other local seasonal protocol, such as Summer Time, Standard Time, or Winter Time, that is in force for that time zone during the date and time specified by '*timestamp*'\. For example, 'Europe/London' represents UTC in the winter and UTC\+1 in the summer\. 
+If you specify a time zone using a time zone name, CONVERT\_TIMEZONE automatically adjusts for Daylight Saving Time \(DST\), or any other local seasonal protocol, such as Summer Time, Standard Time, or Winter Time, that is in force for that time zone during the date and time specified by '*timestamp*'\. For example, 'Europe/London' represents UTC in the winter and adds one hour in the summer\. 
 
 ### Using a time zone abbreviation<a name="CONVERT_TIMEZONE-using-abbrev"></a>
 
-Time zone abbreviations represent a fixed offset from UTC\. If you specify a time zone using a time zone abbreviation, CONVERT\_TIMEZONE uses the fixed offset from UTC and does not adjust for any local seasonal protocol\. For example, ADT \(Atlantic Daylight Time\) always represents UTC\-03, even in winter\. 
+Time zone abbreviations represent a fixed offset from UTC\. If you specify a time zone using a time zone abbreviation, CONVERT\_TIMEZONE uses the fixed offset from UTC and does not adjust for any local seasonal protocol\. 
 
 ### Using POSIX\-style format<a name="CONVERT_TIMEZONE-using-posix"></a>
 

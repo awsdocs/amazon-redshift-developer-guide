@@ -18,11 +18,11 @@ Following are required privileges for CREATE FUNCTION:
 ## Syntax<a name="r_CREATE_FUNCTION-synopsis"></a>
 
 ```
-CREATE [ OR REPLACE ] FUNCTION f_function_name 
+CREATE [ OR REPLACE ] FUNCTION f_function_name
 ( { [py_arg_name  py_arg_data_type |
 sql_arg_data_type } [ , ... ] ] )
 RETURNS data_type
-{ VOLATILE | STABLE | IMMUTABLE }   
+{ VOLATILE | STABLE | IMMUTABLE }
 AS $$
   { python_program | SELECT_clause }
 $$ LANGUAGE { plpythonu | sql }
@@ -102,7 +102,7 @@ create function f_sql_commission (float, float )
   returns float
 stable
 as $$
-  select f_sql_greater ($1, $2)  
+  select f_sql_greater ($1, $2)
 $$ language sql;
 ```
 

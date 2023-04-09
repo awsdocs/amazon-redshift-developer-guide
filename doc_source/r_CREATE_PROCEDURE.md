@@ -16,11 +16,12 @@ Following are required privileges for CREATE PROCEDURE:
 ## Syntax<a name="r_CREATE_PROCEDURE-synopsis"></a>
 
 ```
-CREATE [ OR REPLACE ] PROCEDURE sp_procedure_name 
+CREATE [ OR REPLACE ] PROCEDURE sp_procedure_name  
   ( [ [ argname ] [ argmode ] argtype [, ...] ] )
+[ NONATOMIC ]
 AS $$
   procedure_body
-$$ LANGUAGE plpgsql 
+$$ LANGUAGE plpgsql
 [ { SECURITY INVOKER | SECURITY DEFINER } ]
 [ SET configuration_parameter { TO value | = value } ]
 ```
@@ -66,12 +67,21 @@ A set of valid PL/pgSQL statements\. PL/pgSQL statements augment SQL commands wi
 LANGUAGE *plpgsql*  
 A language value\. Specify `plpgsql`\. You must have permission for usage on language to use `plpgsql`\. For more information, see [GRANT](r_GRANT.md)\. 
 
+NONATOMIC  
+Creates the stored procedure in a nonatomic transaction mode\. NONATOMIC mode automatically commits the statements inside the procedure\. Additionally, when an error occurs inside the NONATOMIC procedure, the error is not re\-thrown if it is handled by an exception block\. For more information, see [Managing transactions](stored-procedure-transaction-management.md) and [RAISE](c_PLpgSQL-statements.md#r_PLpgSQL-messages-errors)\.  
+When you define a stored procedure as `NONATOMIC`, consider the following:  
++ When you nest stored procedure calls, all the procedures must be created in the same transaction mode\.
++ The `SECURITY DEFINER` option and `SET configuration_parameter` option are not supported when creating a procedure in NONATOMIC mode\.
++ Any cursor that is opened \(explicitly or implicitly\) is closed automatically when an implicit commit is processed\. Therefore, you must open an explicit transaction before beginning a cursor loop to ensure that any SQL within the loop's iteration is not implicitly committed\.
+
 SECURITY INVOKER \| SECURITY DEFINER  
+The `SECURITY DEFINER` option is not supported when `NONATOMIC` is specified\.  
 The security mode for the procedure determines the procedure's access privileges at runtime\. The procedure must have permission to access the underlying database objects\.   
 For SECURITY INVOKER mode, the procedure uses the privileges of the user calling the procedure\. The user must have explicit permissions on the underlying database objects\. The default is SECURITY INVOKER\.  
-For SECURITY DEFINER mode, the procedure is run using the database privileges as the procedure's owner\. The user calling the procedure needs execute privilege on the procedure, but doesn't need any privileges on the underlying objects\. 
+For SECURITY DEFINER mode, the procedure uses the privileges of the procedure owner\. The procedure owner is defined as the user that owns the procedure at run time, not necessarily the user that initially defined the procedure\. The user calling the procedure needs execute privilege on the procedure, but doesn't need any privileges on the underlying objects\. 
 
 SET configuration\_parameter \{ TO value \| = value \}  
+These options are not supported when `NONATOMIC` is specified\.  
 The SET clause causes the specified `configuration_parameter` to be set to the specified value when the procedure is entered\. This clause then restores `configuration_parameter` to its earlier value when the procedure exits\. 
 
 ## Examples<a name="r_CREATE_PROCEDURE-examples"></a>

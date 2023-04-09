@@ -4,7 +4,7 @@ These PostgreSQL features are not supported in Amazon Redshift\.
 
 **Important**  
 Do not assume that the semantics of elements that Amazon Redshift and PostgreSQL have in common are identical\. Make sure to consult the *Amazon Redshift Developer Guide * [SQL commands](c_SQL_commands.md) to understand the often subtle differences\.
-+ Only the 8\.x version of the PostgreSQL query tool *psql* is supported\.
++ The query tool *psql* is unsupported\. The [Amazon Redshift RSQL](https://docs.aws.amazon.com/redshift/latest/mgmt/rsql-query-tool.html) client is supported\.
 + Table partitioning \(range and list partitioning\)
 + Tablespaces
 + Constraints

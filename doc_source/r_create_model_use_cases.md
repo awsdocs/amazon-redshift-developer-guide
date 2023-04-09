@@ -9,7 +9,7 @@ The following summarizes the basic options of the CREATE MODEL syntax\.
 ### Simple CREATE MODEL syntax<a name="r_simple-create-model-synposis"></a>
 
 ```
-CREATE MODEL model_name 
+CREATE MODEL model_name
     FROM { table_name | ( select_query ) }
     TARGET column_name
     FUNCTION prediction_function_name
@@ -60,12 +60,12 @@ Then the CREATE MODEL follows your suggestions on the specified aspects, such as
 CREATE MODEL offers more flexibility on the aspects that you can specify and the aspects that Amazon Redshift automatically discovers\.
 
 ```
-CREATE MODEL model_name 
+CREATE MODEL model_name
     FROM { table_name | ( select_statement ) }
     TARGET column_name
     FUNCTION function_name
     IAM_ROLE { default }
-    [ MODEL_TYPE { XGBOOST | MLP | LINEAR_LEARNER} ]              
+    [ MODEL_TYPE { XGBOOST | MLP | LINEAR_LEARNER} ]
     [ PROBLEM_TYPE ( REGRESSION | BINARY_CLASSIFICATION | MULTICLASS_CLASSIFICATION ) ]
     [ OBJECTIVE ( 'MSE' | 'Accuracy' | 'F1' | 'F1Macro' | 'AUC') ]
     SETTINGS (
@@ -105,7 +105,7 @@ KMS\_KEY\_ID 'kms\_key\_id'
 
 ```
 CREATE MODEL customer_churn
-    FROM customer_data 
+    FROM customer_data
     TARGET 'Churn'
     FUNCTION predict_churn
     IAM_ROLE { default }
@@ -168,13 +168,13 @@ As an advanced user who already knows the model type that you want and hyperpara
 ```
 CREATE MODEL model_name
     FROM { table_name | (select_statement ) }
-    TARGET column_name    
+    TARGET column_name
     FUNCTION function_name
     IAM_ROLE { default }
     AUTO OFF
     MODEL_TYPE XGBOOST
-    OBJECTIVE { 'reg:squarederror' | 'reg:squaredlogerror' | 'reg:logistic' | 
-                'reg:pseudohubererror' | 'reg:tweedie' | 'binary:logistic' | 'binary:hinge' | 
+    OBJECTIVE { 'reg:squarederror' | 'reg:squaredlogerror' | 'reg:logistic' |
+                'reg:pseudohubererror' | 'reg:tweedie' | 'binary:logistic' | 'binary:hinge' |
                 'multi:softmax' | 'rank:pairwise' | 'rank:ndcg' }
     HYPERPARAMETERS DEFAULT EXCEPT (
         NUM_ROUND '10',
@@ -211,18 +211,18 @@ The following example prepares data for XGBoost\.
 
 ```
 DROP TABLE IF EXISTS abalone_xgb;
-    
+
     CREATE TABLE abalone_xgb (
-    length_val float, 
-    diameter float, 
+    length_val float,
+    diameter float,
     height float,
-    whole_weight float, 
-    shucked_weight float, 
+    whole_weight float,
+    shucked_weight float,
     viscera_weight float,
-    shell_weight float, 
+    shell_weight float,
     rings int,
     record_number int);
-    
+
     COPY abalone_xgb
     FROM 's3://redshift-downloads/redshift-ml/abalone_xg/'
     REGION 'us-east-1'
@@ -234,7 +234,7 @@ The following example creates an XGBoost model with specified advanced options, 
 
 ```
 DROP MODEL abalone_xgboost_multi_predict_age;
-    
+
     CREATE MODEL abalone_xgboost_multi_predict_age
     FROM ( SELECT length_val,
                   diameter,
@@ -243,7 +243,7 @@ DROP MODEL abalone_xgboost_multi_predict_age;
                   shucked_weight,
                   viscera_weight,
                   shell_weight,
-                  rings 
+                  rings
             FROM abalone_xgb WHERE record_number < 2500 )
     TARGET rings FUNCTION ml_fn_abalone_xgboost_multi_predict_age
     IAM_ROLE default
@@ -258,13 +258,13 @@ DROP MODEL abalone_xgboost_multi_predict_age;
 The following example uses an inference query to predict the age of the fish with a record number greater than 2500\. It uses the function ml\_fn\_abalone\_xgboost\_multi\_predict\_age created from the above command\. 
 
 ```
-select ml_fn_abalone_xgboost_multi_predict_age(length_val, 
-                                                   diameter, 
-                                                   height, 
-                                                   whole_weight, 
-                                                   shucked_weight, 
-                                                   viscera_weight, 
-                                                   shell_weight)+1.5 as age 
+select ml_fn_abalone_xgboost_multi_predict_age(length_val,
+                                                   diameter,
+                                                   height,
+                                                   whole_weight,
+                                                   shucked_weight,
+                                                   viscera_weight,
+                                                   shell_weight)+1.5 as age
     from abalone_xgb where record_number > 2500;
 ```
 
@@ -343,7 +343,7 @@ The following describes the CREATE MODEL syntax for remote inference\.
 
 ```
 CREATE MODEL model_name 
-    FUNCTION function_name ( data_type [, ...] ) 
+    FUNCTION function_name ( data_type [, ...] )
     RETURNS data_type
     SAGEMAKER 'endpoint_name'[:'model_name']
     IAM_ROLE { default };
@@ -448,7 +448,7 @@ CREATE MODEL customers_clusters
     ]'
     HYPERPARAMETERS DEFAULT EXCEPT ( K '5' )
     SETTINGS (S3_BUCKET 'bucket');
-    
+
     select customer_id, customers_cluster(...) from customers;
     customer_id | customers_cluster
     --------------------

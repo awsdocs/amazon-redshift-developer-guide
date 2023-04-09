@@ -20,7 +20,7 @@ OVER ( [ PARTITION BY window_partition ] ORDER BY window_ordering )
 
 IGNORE NULLS   
 An optional specification that indicates that Amazon Redshift should skip null values in the determination of which row to use\. Null values are included if IGNORE NULLS is not listed\.   
-You can use an NVL or COALESCE expression to replace the null values with another value\. For more information, see [NVL expression](r_NVL_function.md)\. 
+You can use an NVL or COALESCE expression to replace the null values with another value\. For more information, see [NVL function](r_NVL_function.md)\. 
 
 RESPECT NULLS   
  Indicates that Amazon Redshift should include null values in the determination of which row to use\. RESPECT NULLS is supported by default if you do not specify IGNORE NULLS\. 

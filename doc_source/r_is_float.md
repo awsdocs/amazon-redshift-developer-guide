@@ -1,13 +1,13 @@
-# is\_float function<a name="r_is_float"></a>
+# IS\_FLOAT function<a name="r_is_float"></a>
 
-Checks whether a value is a floating point number\. The is\_float function returns true for floating point numbers \(float4 and float8\)\. The function returns false for any other values\.
+Checks whether a value is a floating point number\. The IS\_FLOAT function returns true for floating point numbers \(FLOAT4 and FLOAT8\)\. The function returns false for any other values\.
 
-The is\_decimal set and the is\_float set are disjoint\.
+The set of IS\_DECIMAL the set of IS\_FLOAT are disjoint\.
 
 ## Syntax<a name="r_is_float-synopsis"></a>
 
 ```
-is_float (super_expression)
+IS_FLOAT (super_expression)
 ```
 
 ## Arguments<a name="r_is_float-arguments"></a>
@@ -21,7 +21,7 @@ Boolean
 
 ## Example<a name="r_is_float_example"></a>
 
-The following query shows an is\_float function\.
+The following query shows an IS\_FLOAT function\.
 
 ```
 CREATE TABLE t(s super);

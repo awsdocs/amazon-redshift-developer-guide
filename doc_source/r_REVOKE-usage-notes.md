@@ -32,7 +32,7 @@ create external database if not exists;
 ```
 
 ```
-revoke select 
+revoke select
 on external table mySchema.mytable
 from iam_role 'arn:aws:iam::123456789012:role/myGrantee';
 ```
@@ -49,5 +49,5 @@ Only a database superuser can revoke the ASSUMEROLE privilege for users and grou
 To enable the use of the ASSUMEROLE privilege for users and groups, a superuser runs the following statement once on the cluster\. Before granting the ASSUMEROLE privilege to users and groups, a superuser must run the following statement once on the cluster\.  
 
 ```
-revoke assumerole on all from public for all;          
+revoke assumerole on all from public for all;
 ```

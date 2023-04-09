@@ -2,6 +2,8 @@
 
 Lists the relationship between streams and concurrent segments\.
 
+Streams in this context are Amazon Redshift streams\. This system view doesn't pertain to [Streaming ingestion](materialized-view-streaming-ingestion.md)\.
+
 This view is visible to all users\. Superusers can see all rows; regular users can see only their own data\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_STL_STREAM_SEGS-table-columns"></a>

@@ -49,7 +49,7 @@ EXPLAIN
 SELECT D.cint
 FROM fact_tbl F INNER JOIN dim_tbl D ON F.k_dim = D.k
 WHERE F.k_dim / 10 > 0;
-                               QUERY PLAN                               
+                               QUERY PLAN
 ------------------------------------------------------------------------
  XN Hash Join DS_DIST_ALL_NONE  (cost=0.08..0.25 rows=1 width=4)
    Hash Cond: ("outer".k_dim = "inner"."k")
@@ -68,7 +68,7 @@ The following example illustrates an additional Seq Scan below the RLS SecureSca
 EXPLAIN SELECT D.cint
 FROM fact_tbl F INNER JOIN dim_tbl D ON F.k_dim = D.k
 WHERE F.k_dim / 10 > 0;
-                                   QUERY PLAN                                    
+                                   QUERY PLAN
 ---------------------------------------------------------------------------------
  XN Hash Join DS_DIST_ALL_NONE  (cost=0.08..0.25 rows=1 width=4)
    Hash Cond: ("outer".k_dim = "inner"."k")
@@ -89,7 +89,7 @@ The following example illustrates an LF SecureScan node, which you can use to vi
 
 ```
 EXPLAIN
-SELECT * 
+SELECT *
 FROM lf_db.public.t_share
 WHERE a > 1;
 QUERY PLAN

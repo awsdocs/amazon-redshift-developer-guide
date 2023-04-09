@@ -18,11 +18,11 @@ You can't run CREATE EXTERNAL TABLE inside a transaction \(BEGIN … END\)\. For
 
 ```
 CREATE EXTERNAL TABLE
-external_schema.table_name  
+external_schema.table_name
 (column_name data_type [, …] )
-[ PARTITIONED BY (col_name data_type [, … ] )] 
+[ PARTITIONED BY (col_name data_type [, … ] )]
 [ { ROW FORMAT DELIMITED row_format |
-  ROW FORMAT SERDE 'serde_name' 
+  ROW FORMAT SERDE 'serde_name'
   [ WITH SERDEPROPERTIES ( 'property_name' = 'property_value' [, ...] ) ] } ]
 STORED AS file_format
 LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' }
@@ -33,8 +33,8 @@ The following is the syntax for CREATE EXTERNAL TABLE AS\.
 
 ```
 CREATE EXTERNAL TABLE
-external_schema.table_name  
-[ PARTITIONED BY (col_name [, … ] ) ] 
+external_schema.table_name
+[ PARTITIONED BY (col_name [, … ] ) ]
 [ ROW FORMAT DELIMITED row_format ]
 STORED AS file_format
 LOCATION { 's3://bucket/folder/' }
@@ -51,7 +51,7 @@ The maximum length for the table name is 127 bytes; longer names are truncated t
 
 ```
 create external table spectrum_db.spectrum_schema.test (c1 int)
-stored as parquet 
+stored as parquet
 location 's3://mybucket/myfolder/';
 ```
 If the database or schema specified doesn't exist, the table isn't created, and the statement returns an error\. You can't create tables or views in the system databases `template0`, `template1`, and `padb_harvest`\.  
@@ -63,7 +63,7 @@ The name and data type of each column being created\.
 The maximum length for the column name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. You can't specify column names `"$path"` or `"$size"`\. For more information about valid names, see [Names and identifiers](r_names.md)\.  
 By default, Amazon Redshift creates external tables with the pseudocolumns `$path` and `$size`\. You can disable creation of pseudocolumns for a session by setting the `spectrum_enable_pseudo_columns` configuration parameter to `false`\. For more information, see [Pseudocolumns ](r_CREATE_EXTERNAL_TABLE_usage.md#r_CREATE_EXTERNAL_TABLE_usage-pseudocolumns)\.  
 If pseudocolumns are enabled, the maximum number of columns you can define in a single table is 1,598\. If pseudocolumns aren't enabled, the maximum number of columns you can define in a single table is 1,600\.   
-If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_usage.md)\.  
+If you are creating a "wide table," make sure that your list of columns doesn't exceed row\-width boundaries for intermediate results during loads and query processing\. For more information, see [Usage notes](r_CREATE_TABLE_NEW.md#r_CREATE_TABLE_usage)\.  
 For a CREATE EXTERNAL TABLE AS command, a column list is not required, because columns are derived from the query\.
 
  *data\_type*   
@@ -77,7 +77,8 @@ The following [Data types](c_Supported_data_types.md) are supported:
 + BOOLEAN \(BOOL\)
 + CHAR \(CHARACTER\)
 + VARCHAR \(CHARACTER VARYING\)
-+ DATE \(DATE data type can be used only with text, Parquet, or ORC data files, or as a partition column\)
++ VARBYTE \(CHARACTER VARYING\) – can be used with Parquet and ORC data files, and only with non\-partition columns\.
++ DATE – can be used only with text, Parquet, or ORC data files, or as a partition column\.
 + TIMESTAMP
   
 For DATE, you can use the formats as described following\. For month values represented using digits, the following formats are supported:  
@@ -109,7 +110,7 @@ After creating a partitioned table, alter the table using an [ALTER TABLE](r_ALT
 For example, if the table `spectrum.lineitem_part` is defined with `PARTITIONED BY (l_shipdate date)`, run the following ALTER TABLE command to add a partition\.  
 
 ```
-ALTER TABLE spectrum.lineitem_part ADD PARTITION (l_shipdate='1992-01-29') 
+ALTER TABLE spectrum.lineitem_part ADD PARTITION (l_shipdate='1992-01-29')
 LOCATION 's3://spectrum-public/lineitem_partition/l_shipdate=1992-01-29';
 ```
 If you are using CREATE EXTERNAL TABLE AS, you don't need to run ALTER TABLE \.\.\. ADD PARTITION \. Amazon Redshift automatically registers new partitions in the external catalog\. Amazon Redshift also automatically writes corresponding data to partitions in Amazon S3 based on the partition key or keys defined in the table\.  
@@ -246,6 +247,19 @@ SET\_TO\_NULL
 Set invalid characters to null\.  
 DROP\_ROW  
 Set each value in the row to null\.  
+'surplus\_bytes\_handling'='*value*'  
+Specifies how to handle data being loaded that exceeds the length of the data type defined for columns containing VARBYTE data\. By default, Redshift Spectrum sets the value to null for data that exceeds the width of the column\.  
+You can specify the following actions to perform when the query returns data that exceeds the length of the data type:    
+SET\_TO\_NULL  
+Replaces data that exceeds the column width with null\.  
+DISABLED  
+Doesn't perform surplus byte handling\.  
+FAIL  
+Cancels queries that return data exceeding the column width\.  
+DROP\_ROW  
+Drop all rows that contain data exceeding column width\.  
+TRUNCATE  
+Removes the characters that exceed the maximum number of characters defined for the column\.  
 'surplus\_char\_handling'='*value*'  
 Specifies how to handle data being loaded that exceeds the length of the data type defined for columns containing VARCHAR, CHAR, or string data\. By default, Redshift Spectrum sets the value to null for data that exceeds the width of the column\.  
 You can specify the following actions to perform when the query returns data that exceeds the column width:    

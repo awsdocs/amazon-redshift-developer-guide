@@ -24,7 +24,7 @@ The following two examples show the same specification, with the first using num
 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'
 ```
 
-The following example shows fixed\-width sample data that could be loaded into the VENUE table using the above specifications:
+The following example shows fixed\-width sample data that could be loaded into the VENUE table using the preceding specifications:
 
 ```
 1  Toyota Park               Bridgeview  IL0

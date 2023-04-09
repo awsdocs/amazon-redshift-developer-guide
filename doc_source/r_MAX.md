@@ -1,6 +1,6 @@
 # MAX function<a name="r_MAX"></a>
 
- The MAX function returns the maximum value in a set of rows\. DISTINCT or ALL may be used but do not affect the result\. 
+ The MAX function returns the maximum value in a set of rows\. DISTINCT or ALL might be used but do not affect the result\. 
 
 ## Syntax<a name="r_MAX-synopsis"></a>
 

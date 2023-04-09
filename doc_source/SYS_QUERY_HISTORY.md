@@ -38,7 +38,7 @@ Sample output\.
      101 |   760705 |         852337 | 1073832321 | running | tpcds_1t      | 2022-02-15 19:03:19.67849 | 2022-02-15 19:03:19.739811 | f                |        61321 |          0 |              0
 ```
 
-The following query returns the query start time, end time, queue time, elapsed time, and other metadata for a specific query\.
+The following query returns the query start time, end time, queue time, elapsed time, planning time, and other metadata for a specific query\.
 
 ```
 SELECT user_id,
@@ -53,20 +53,21 @@ SELECT user_id,
        elapsed_time,
        queue_time,
        execution_time,
+       planning_time,
        trim(query_text) as query_text
 FROM sys_query_history
-WHERE query_id = 760978;
+WHERE query_id = 3093;
 ```
 
 Sample output\.
 
 ```
- user_id | query_id | transaction_id | session_id | status  | database_name |         start_time         |          end_time          | result_cache_hit | elapsed_time | queue_time | execution_time |         query_text
----------+----------+----------------+------------+---------+---------------+----------------------------+----------------------------+------------------+--------------+------------+----------------+----------------------------
-     100 |   760978 |         853520 | 1073848997 | success | tpcds_1t      | 2022-02-15 19:23:45.173713 | 2022-02-15 19:23:45.294541 | f                |       120828 |          0 |         106418 | select count(*) from item;
+user_id | query_id | transaction_id | session_id |   status   | database_name |         start_time         |          end_time          | result_cache_hit | elapsed_time | queue_time | execution_time | planning_time | query_text
+--------+----------+----------------+------------+------------+---------------+----------------------------+----------------------------+------------------+--------------+------------+----------------+---------------+-------------------------------------
+    106 |     3093 |          11759 | 1073750146 | success    | dev           | 2023-03-16 16:53:17.840214 | 2023-03-16 16:53:18.106588 | f                |       266374 |          0 |         105725 |        136589 | select count(*) from item;
 ```
 
-The following query lists the ten most recent SELECT queries\.
+The following query lists the 10 most recent SELECT queries\.
 
 ```
 SELECT query_id,

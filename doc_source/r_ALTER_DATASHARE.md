@@ -15,19 +15,19 @@ Following are required privileges for ALTER DATASHARE:
 The following syntax illustrates how to add or remove objects to the datashare\.
 
 ```
-ALTER DATASHARE datashare_name { ADD | REMOVE } { 
-TABLE schema.table [, ...] 
-| SCHEMA schema [, ...] 
-| FUNCTION schema.sql_udf (argtype,...) [, ...] 
-| ALL TABLES IN SCHEMA schema [, ...] 
+ALTER DATASHARE datashare_name { ADD | REMOVE } {
+TABLE schema.table [, ...]
+| SCHEMA schema [, ...]
+| FUNCTION schema.sql_udf (argtype,...) [, ...]
+| ALL TABLES IN SCHEMA schema [, ...]
 | ALL FUNCTIONS IN SCHEMA schema [, ...] }
 ```
 
 The following syntax illustrates how to configure the properties of the datashare\.
 
 ```
-ALTER DATASHARE datashare_name { 
-[ SET PUBLICACCESSIBLE [=] TRUE | FALSE ] 
+ALTER DATASHARE datashare_name {
+[ SET PUBLICACCESSIBLE [=] TRUE | FALSE ]
 [ SET INCLUDENEW [=] TRUE | FALSE FOR SCHEMA schema ] }
 ```
 

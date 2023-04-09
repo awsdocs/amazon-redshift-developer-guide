@@ -1,12 +1,12 @@
 # ALTER ROLE<a name="r_ALTER_ROLE"></a>
 
-Renames a role or changes the owner\.
+Renames a role or changes the owner\. For a list of Amazon Redshift system\-defined roles, see [Amazon Redshift system\-defined roles](r_roles-default.md)\.
 
-## Required privileges<a name="r_ALTER_ROLE-privileges"></a>
+## Required permissions<a name="r_ALTER_ROLE-privileges"></a>
 
-Following are the required privileges for ALTER ROLE:
+Following are the required permissions for ALTER ROLE:
 + Superuser
-+ Users with the ALTER ROLE privilege
++ Users with the ALTER ROLE permissions
 
 ## Syntax<a name="r_ALTER_ROLE-synopsis"></a>
 

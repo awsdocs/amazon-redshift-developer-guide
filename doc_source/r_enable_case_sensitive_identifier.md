@@ -4,15 +4,15 @@
 
 true, **false**
 
-### Description<a name="description"></a>
+## Description<a name="r_enable_case_sensitive_identifier-description"></a>
 
 A configuration value that determines whether name identifiers of databases, tables, and columns are case sensitive\. The case of name identifiers is preserved when enclosed within double quotation marks\. When you set `enable_case_sensitive_identifier` to `true`, the case of name identifiers is preserved\. When you set `enable_case_sensitive_identifier` to `false`, the case of name identifiers is not preserved\. 
 
 The case of a *username* enclosed in double quotation marks is always preserved regardless of the setting of the `enable_case_sensitive_identifier` configuration option\.
 
-### Examples<a name="w166aac68c45b3b7"></a>
+## Examples<a name="w186aac70c45b7"></a>
 
-The following example shows how to create and use case sensitive identifiers for at table and column name\.
+The following example shows how to create and use case sensitive identifiers for a table and column name\.
 
 ```
 -- To create and use case sensitive identifiers

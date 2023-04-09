@@ -61,7 +61,7 @@ Don't confuse the use of BEGIN/END for grouping statements in PL/pgSQL with the 
 
 ## Variable declaration<a name="r_PLpgSQL-variable-declaration"></a>
 
-Declare all variables in a block, with the exception of loop variables, in the block's DECLARE section\. Variables can use any valid Amazon Redshift data type\. For supported data types, see [Data types](c_Supported_data_types.md)\. 
+Declare all variables in a block, except for loop variables, in the block's DECLARE section\. Variables can use any valid Amazon Redshift data type\. For supported data types, see [Data types](c_Supported_data_types.md)\. 
 
 PL/pgSQL variables can be any Amazon Redshift supported data type, plus `RECORD` and `refcursor`\. For more information about `RECORD`, see [Record types](#r_PLpgSQL-record-type)\. For more information about `refcursor`, see [Cursors](c_PLpgSQL-statements.md#r_PLpgSQL-cursors)\. 
 
@@ -83,7 +83,7 @@ The loop variable of a FOR loop iterating over a range of integers is automatica
 
 The DEFAULT clause, if given, specifies the initial value assigned to the variable when the block is entered\. If the DEFAULT clause is not given, then the variable is initialized to the SQL NULL value\. The CONSTANT option prevents the variable from being assigned to, so that its value remains constant for the duration of the block\. If NOT NULL is specified, an assignment of a null value results in a runtime error\. All variables declared as NOT NULL must have a non\-null default value specified\.
 
-The default value is evaluated every time the block is entered\. So, for example, assigning `now()` to a variable of type `timestamp` causes the variable to have the time of the current function call, not the time when the function was precompiled\.
+The default value is evaluated every time the block is entered\. For example, assigning `now()` to a variable of type `timestamp` causes the variable to have the time of the current function call, not the time when the function was precompiled\.
 
 ```
 quantity INTEGER DEFAULT 32;
@@ -123,7 +123,7 @@ FOUND is a special variable of type Boolean\. FOUND starts out false within each
 
   Sets FOUND to true if the FOR statement iterates one or more times, and otherwise false\. This applies to all three variants of the FOR statement: integer FOR loops, record\-set FOR loops, and dynamic record\-set FOR loops\. 
 
-  FOUND is set when the FOR loop exits\. Inside the execution of the loop, FOUND isn't modified by the FOR statement\. However, it can be changed by the execution of other statements within the loop body\.
+  FOUND is set when the FOR loop exits\. Inside the runtime of the loop, FOUND isn't modified by the FOR statement\. However, it can be changed by running other statements within the loop body\.
 
 The following shows an example\.
 
@@ -142,7 +142,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-Within an exception handler, the special variable SQLSTATE contains the error code that corresponds to the exception that was raised\. The special variable SQLERRM contains the error message associated with the exception\. These variables are undefined outside exception handlers and throw an error if used\.
+Within an exception handler, the special variable SQLSTATE contains the error code that corresponds to the exception that was raised\. The special variable SQLERRM contains the error message associated with the exception\. These variables are undefined outside exception handlers and display an error if used\.
 
 The following shows an example\.
 

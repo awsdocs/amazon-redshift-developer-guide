@@ -28,40 +28,40 @@ ALTER DEFAULT PRIVILEGES
 
 where grant_or_revoke_clause is one of:
 
-GRANT { { SELECT | INSERT | UPDATE | DELETE | DROP | REFERENCES } [,...] | ALL [ PRIVILEGES ] } 
-	ON TABLES 
-	TO { user_name [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]	 
+GRANT { { SELECT | INSERT | UPDATE | DELETE | DROP | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
+	ON TABLES
+	TO { user_name [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
-GRANT { EXECUTE | ALL [ PRIVILEGES ] } 
-	ON FUNCTIONS 
+GRANT { EXECUTE | ALL [ PRIVILEGES ] }
+	ON FUNCTIONS
 	TO { user_name [ WITH GRANT OPTION ] |  ROLE role_name | GROUP group_name | PUBLIC } [, ...]
-            
-GRANT { EXECUTE | ALL [ PRIVILEGES ] } 
-	ON PROCEDURES 
-	TO { user_name [ WITH GRANT OPTION ] |  ROLE role_name | GROUP group_name | PUBLIC } [, ...]            
 
-REVOKE [ GRANT OPTION FOR ] { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] } 
-	ON TABLES 
+GRANT { EXECUTE | ALL [ PRIVILEGES ] }
+	ON PROCEDURES
+	TO { user_name [ WITH GRANT OPTION ] |  ROLE role_name | GROUP group_name | PUBLIC } [, ...]
+
+REVOKE [ GRANT OPTION FOR ] { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
+	ON TABLES
 	FROM user_name [, ...] [ RESTRICT ]
 
-REVOKE  { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] } 
-	ON TABLES 
+REVOKE  { { SELECT | INSERT | UPDATE | DELETE | REFERENCES } [,...] | ALL [ PRIVILEGES ] }
+	ON TABLES
 	FROM { ROLE role_name | GROUP group_name | PUBLIC } [, ...] [ RESTRICT ]
 
-REVOKE [ GRANT OPTION FOR ] { EXECUTE | ALL [ PRIVILEGES ] } 
-	ON FUNCTIONS 
+REVOKE [ GRANT OPTION FOR ] { EXECUTE | ALL [ PRIVILEGES ] }
+	ON FUNCTIONS
 	FROM user_name [, ...] [ RESTRICT ]
 
-REVOKE { EXECUTE | ALL [ PRIVILEGES ] } 
-	ON FUNCTIONS 
-	FROM { ROLE role_name | GROUP group_name | PUBLIC } [, ...] [ RESTRICT ]       
+REVOKE { EXECUTE | ALL [ PRIVILEGES ] }
+	ON FUNCTIONS
+	FROM { ROLE role_name | GROUP group_name | PUBLIC } [, ...] [ RESTRICT ]
 
-REVOKE [ GRANT OPTION FOR ] { EXECUTE | ALL [ PRIVILEGES ] } 
-	ON PROCEDURES 
-	FROM user_name [, ...] [ RESTRICT ]            
+REVOKE [ GRANT OPTION FOR ] { EXECUTE | ALL [ PRIVILEGES ] }
+	ON PROCEDURES
+	FROM user_name [, ...] [ RESTRICT ]
 
-REVOKE { EXECUTE | ALL [ PRIVILEGES ] } 
-	ON PROCEDURES 
+REVOKE { EXECUTE | ALL [ PRIVILEGES ] }
+	ON PROCEDURES
 	FROM { ROLE role_name | GROUP group_name | PUBLIC } [, ...] [ RESTRICT ]
 ```
 
@@ -123,6 +123,6 @@ alter default privileges in schema sales revoke insert on tables from group sale
 By default, the PUBLIC user group has execute permission for all new user\-defined functions\. To revoke `public` execute permissions for your new functions and then grant execute permission only to the `dev_test` user group, run the following commands\. 
 
 ```
-alter default privileges revoke execute on functions from public; 
+alter default privileges revoke execute on functions from public;
 alter default privileges grant execute on functions to group dev_test;
 ```

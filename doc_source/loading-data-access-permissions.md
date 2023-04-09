@@ -23,11 +23,11 @@ copy customer from 's3://mybucket/mydata'
 iam_role 'arn:aws:iam::12345678901:role/MyRedshiftRole';
 ```
 
-The AWS IAM user must have, at a minimum, the permissions listed in [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\.
+The AWS user must have, at a minimum, the permissions listed in [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\.
 
 ## Key\-based access control<a name="loading-data-access-key-based"></a>
 
-With key\-based access control, you provide the access key ID and secret access key for an IAM user that is authorized to access the AWS resources that contain the data\. 
+With key\-based access control, you provide the access key ID and secret access key for a user that is authorized to access the AWS resources that contain the data\. 
 
 **Note**  
 We strongly recommend using an IAM role for authentication instead of supplying a plain\-text access key ID and secret access key\. If you choose key\-based access control, never use your AWS account \(root\) credentials\. Always create an IAM user and provide that user's access key ID and secret access key\. For steps to create an IAM user, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)\.

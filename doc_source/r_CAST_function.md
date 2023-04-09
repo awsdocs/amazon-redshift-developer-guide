@@ -1,12 +1,14 @@
 # CAST and CONVERT functions<a name="r_CAST_function"></a>
 
-You can do runtime conversions between compatible data types by using the CAST and CONVERT functions\. 
+The CAST function converts one data type to another compatible data type\. For instance, you can convert a string to a date, or a numeric type to a string\. CAST performs a runtime conversion, which means that the conversion doesn't change a value's data type in a source table\. It's changed only in the context of the query\.
 
-Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using the CAST or CONVERT function\. See [Type compatibility and conversion](c_Supported_data_types.md#r_Type_conversion)\. 
+The CONVERT function is very similar to CAST, in that it converts from one data type to another, but it's called differently\. You might prefer it as more readable because it takes two arguments, a type and an expression\. 
+
+Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using CAST or CONVERT\. See [Type compatibility and conversion](c_Supported_data_types.md#r_Type_conversion)\. 
 
 ## CAST<a name="r_CAST_function-cast"></a>
 
-You can use two equivalent syntax forms to cast expressions from one data type to another: 
+Use either of these two equivalent syntax forms to cast expressions from one data type to another\. 
 
 ```
 CAST ( expression AS type )
@@ -26,7 +28,7 @@ One of the supported [Data types](c_Supported_data_types.md)\.
 CAST returns the data type specified by the *type* argument\. 
 
 **Note**  
-Amazon Redshift returns an error if you try to perform a problematic conversion such as the following DECIMAL conversion that loses precision:   
+Amazon Redshift returns an error if you try to perform a problematic conversion, such as a DECIMAL conversion that loses precision, like the following:   
 
 ```
 select 123.456::decimal(2,1);
@@ -59,6 +61,8 @@ CONVERT returns the data type specified by the *type* argument\.
 
 ## Examples<a name="r_CAST_function-examples"></a>
 
+Some of the examples use the sample [TICKIT database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html)\. For more information about setting up sample data, see [Getting started with Amazon Redshift clusters and data loading](https://docs.aws.amazon.com/redshift/latest/gsg/data-loading.html)\.
+
 The following two queries are equivalent\. They both cast a decimal value to an integer: 
 
 ```
@@ -81,6 +85,17 @@ pricepaid
 (1 row)
 ```
 
+The following produces a similar result\. It doesn't require sample data to run: 
+
+```
+select cast(162.00 as integer) as pricepaid;
+
+pricepaid
+-----------
+162
+(1 row)
+```
+
 The following query uses the CONVERT function to return the same result: 
 
 ```
@@ -93,7 +108,7 @@ pricepaid
 (1 row)
 ```
 
-In this example, the values in a timestamp column are cast as dates: 
+In this example, the values in a timestamp column are cast as dates, which results in removing the time from each result:
 
 ```
 select cast(saletime as date), salesid
@@ -112,6 +127,19 @@ from sales order by salesid limit 10;
 2008-07-22 |       9
 2008-08-06 |      10
 (10 rows)
+```
+
+If you didn't use CAST as illustrated in the previous sample, the results would include the time: *2008\-02\-18 02:36:48*\.
+
+The following query casts variable character data to a date\. It doesn't require sample data to run\. 
+
+```
+select cast('2008-02-18 02:36:48' as date) as mysaletime;
+
+mysaletime    
+--------------------
+2008-02-18  
+(1 row)
 ```
 
 In this example, the values in a date column are cast as timestamps: 
@@ -135,6 +163,8 @@ from date order by dateid limit 10;
 (10 rows)
 ```
 
+In a case like the previous sample, you can gain additional control over output formatting by using [TO\_CHAR](https://docs.aws.amazon.com/redshift/latest/dg/r_TO_CHAR.html)\.
+
 In this example, an integer is cast as a character string: 
 
 ```
@@ -142,6 +172,15 @@ select cast(2008 as char(4));
 bpchar
 --------
 2008
+```
+
+In this example, the current date and time is converted to a variable character data type: 
+
+```
+SELECT CONVERT(VARCHAR(30), GETDATE());
+getdate
+---------
+2023-02-02 04:31:16
 ```
 
 In this example, a DECIMAL\(6,3\) value is cast as a DECIMAL\(4,1\) value: 
@@ -153,7 +192,7 @@ numeric
 109.7
 ```
 
-In this example, the PRICEPAID column \(a DECIMAL\(8,2\) column\) in the SALES table is converted to a DECIMAL\(38,2\) column and the values are multiplied by 100000000000000000000\. 
+This example shows a more complex expression\. The PRICEPAID column \(a DECIMAL\(8,2\) column\) in the SALES table is converted to a DECIMAL\(38,2\) column and the values are multiplied by 100000000000000000000: 
 
 ```
 select salesid, pricepaid::decimal(38,2)*100000000000000000000

@@ -81,3 +81,23 @@ dateplus
 (1 row)
 ```
 
+The following subtracts 4 months from February 15, 2023 and the result is October 15, 2022\.
+
+```
+select date '2023-02-15' - interval '4 months';
+
+?column?
+---------------------
+2022-10-15 00:00:00
+```
+
+The following subtracts 4 months from March 31, 2023 and the result is November 30, 2022\. The calculation considers the number of days in a month\.
+
+```
+select date '2023-03-31' - interval '4 months';
+
+?column?
+---------------------
+2022-11-30 00:00:00
+```
+

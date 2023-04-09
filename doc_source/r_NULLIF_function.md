@@ -1,4 +1,4 @@
-# NULLIF expression<a name="r_NULLIF_function"></a>
+# NULLIF function<a name="r_NULLIF_function"></a>
 
 ## Syntax<a name="r_NULLIF_function-synopsis"></a>
 

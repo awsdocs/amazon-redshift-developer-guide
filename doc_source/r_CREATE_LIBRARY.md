@@ -80,9 +80,9 @@ The following two examples install the [urlparse](https://docs.python.org/2/libr
 The following command installs a UDF library named `f_urlparse` from a package that has been uploaded to an Amazon S3 bucket located in the US East Region\.
 
 ```
-create library f_urlparse 
-language plpythonu 
-from 's3://mybucket/urlparse3-1.0.3.zip' 
+create library f_urlparse
+language plpythonu
+from 's3://mybucket/urlparse3-1.0.3.zip'
 credentials 'aws_iam_role=arn:aws:iam::<aws-account-id>:role/<role-name>'
 region as 'us-east-1';
 ```
@@ -92,7 +92,7 @@ The following example installs a library named `f_urlparse` from a library file 
 
 
 ```
-create library f_urlparse 
-language plpythonu 
+create library f_urlparse
+language plpythonu
 from 'https://example.com/packages/urlparse3-1.0.3.zip';
 ```

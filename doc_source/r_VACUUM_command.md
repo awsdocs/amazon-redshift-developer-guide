@@ -29,7 +29,7 @@ Following are required privileges for VACUUM:
 ## Syntax<a name="r_VACUUM_command-synopsis"></a>
 
 ```
-VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX | RECLUSTER ] 
+VACUUM [ FULL | SORT ONLY | DELETE ONLY | REINDEX | RECLUSTER ]
 [ [ table_name ] [ TO threshold PERCENT ] [ BOOST ] ]
 ```
 

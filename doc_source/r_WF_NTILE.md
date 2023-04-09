@@ -25,7 +25,7 @@ Optional\. The range of records for each group in the OVER clause\.
 
 ORDER BY *window\_ordering*   
 Optional\. An expression that sorts the rows within each partition\. If the ORDER BY clause is omitted, the ranking behavior is the same\.  
-If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY does not produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](c_Window_functions.md#r_Examples_order_by_WF)\. 
 
 ## Return type<a name="r_WF_NTILE-return-type"></a>
 

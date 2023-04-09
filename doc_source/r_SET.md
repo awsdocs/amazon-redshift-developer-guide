@@ -9,7 +9,7 @@ You can change the server configuration parameters in several ways\. For more in
 ## Syntax<a name="r_SET-synopsis"></a>
 
 ```
-SET { [ SESSION | LOCAL ] 
+SET { [ SESSION | LOCAL ]
 { SEED | parameter_name } { TO | = }
 { value | 'value' | DEFAULT } |
 SEED TO value }
@@ -18,7 +18,7 @@ SEED TO value }
 The following statement sets the value of a session context variable\.
 
 ```
-SET { [ SESSION | LOCAL ] 
+SET { [ SESSION | LOCAL ]
 variable_name { TO | = }
 { value | 'value'  }
 ```
@@ -67,7 +67,7 @@ This example runs two queries as part of the query group 'priority', then resets
 ```
 set query_group to 'priority';
 select tbl, count(*)from stv_blocklist;
-select query, elapsed, substring from svl_qlog order by query desc limit 5; 
+select query, elapsed, substring from svl_qlog order by query desc limit 5;
 reset query_group;
 ```
 

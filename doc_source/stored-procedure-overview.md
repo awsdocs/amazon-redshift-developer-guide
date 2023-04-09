@@ -1,6 +1,6 @@
 # Creating stored procedures in Amazon Redshift<a name="stored-procedure-overview"></a>
 
-You can define an Amazon Redshift stored procedure using the PostgreSQL procedural language PL/pgSQL to perform a set of SQL queries and logical operations\. The procedure is stored in the database and is available for any user with sufficient privileges to run\.  
+You can define an Amazon Redshift stored procedure using the PostgreSQL procedural language PL/pgSQL to perform a set of SQL queries and logical operations\. The procedure is stored in the database and available for any user with sufficient database privileges\.  
 
 Unlike a user\-defined function \(UDF\), a stored procedure can incorporate data definition language \(DDL\) and data manipulation language \(DML\) in addition to SELECT queries\. A stored procedure doesn't need to return a value\. You can use procedural language, including looping and conditional expressions, to control logical flow\. 
 

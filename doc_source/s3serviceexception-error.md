@@ -1,6 +1,6 @@
 # S3ServiceException errors<a name="s3serviceexception-error"></a>
 
-The most common s3ServiceException errors are caused by an improperly formatted or incorrect credentials string, having your cluster and your bucket in different AWS Regions, and insufficient Amazon S3 privileges\.
+The most common s3ServiceException errors are caused by an improperly formatted or incorrect credentials string, having your cluster and your bucket in different AWS Regions, and insufficient Amazon S3 permissions\.
 
 The section provides troubleshooting information for each type of error\.
 
@@ -18,7 +18,7 @@ Verify that the credentials string does not contain any spaces or line breaks, a
 
 ## Invalid access key ID<a name="invalid-access-key-id-error"></a>
 
-If your access key id does not exist, you will receive the following error message: 
+If your access key ID does not exist, you will receive the following error message: 
 
 ```
 [Amazon](500310) Invalid operation: S3ServiceException:The AWS Access Key Id you provided does not exist in our records.
@@ -53,7 +53,7 @@ Alternatively, you can specify the Region using the [REGION](copy-parameters-dat
 
 ## Access denied<a name="s3-access-denied-error"></a>
 
-The user account identified by the credentials must have LIST and GET access to the Amazon S3 bucket\. If the user does not have sufficient privileges, you will receive the following error message:
+The user identified by the credentials must have LIST and GET access to the Amazon S3 bucket\. If the user does not have sufficient permissions, you will receive the following error message:
 
 ```
 ERROR: S3ServiceException:Access Denied,Status 403,Error AccessDenied

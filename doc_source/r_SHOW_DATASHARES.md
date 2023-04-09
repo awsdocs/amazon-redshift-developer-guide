@@ -24,7 +24,7 @@ The following example displays the inbound and outbound shares in a cluster\.
 SHOW DATASHARES;
 SHOW DATASHARES LIKE 'sales%';
 
-share_name   | share_owner | source_database | consumer_database | share_type | createdate          | is_publicaccessible | share_acl | producer_account |           producer_namespace 
+share_name   | share_owner | source_database | consumer_database | share_type | createdate          | is_publicaccessible | share_acl | producer_account |           producer_namespace
 -------------+-------------+-----------------+-------------------+------------+---------------------+---------------------+-----------+------------------+---------------------------------------
 'salesshare' | 100         | dev             |                   | outbound   | 2020-12-09 01:22:54.| False               |           |   123456789012   | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d
 ```

@@ -14,7 +14,7 @@ Create an Amazon S3 bucket to hold your data files, and then upload the data fil
 **Important**  
 The Amazon S3 bucket that holds the data files must be created in the same AWS Region as your cluster unless you use the [REGION](copy-parameters-data-source-s3.md#copy-region) option to specify the Region in which the Amazon S3 bucket is located\.
 
-Ensure that the S3 IP ranges are added to your allow list\. To learn more about the required S3 IP ranges, see [ Network isolation](https://docs.aws.amazon.com/redshift/latest/mgmt/security-network-isolation.html#network-isolation)\.
+Ensure that the S3 IP ranges are added to your allowlist\. To learn more about the required S3 IP ranges, see [ Network isolation](https://docs.aws.amazon.com/redshift/latest/mgmt/security-network-isolation.html#network-isolation)\.
 
 You can create an Amazon S3 bucket in a specific Region either by selecting the Region when you create the bucket by using the Amazon S3 console, or by specifying an endpoint when you create the bucket using the Amazon S3 API or CLI\.
 

@@ -2,7 +2,7 @@
 
 Use SVV\_DATASHARES to view a list of datashares created on the cluster, and datashares shared with the cluster\. 
 
-SVV\_DATASHARES is visible to superusers, owners of datashares, or users who have the ALTER or USAGE permission on the datashare\. Other users can't see any rows\.
+SVV\_DATASHARES is visible to superusers, owners of datashares, or users who have the ALTER or USAGE privilege on the datashare\. Other users can't see any rows\. For information on the ALTER or USAGE privilege, see [GRANT](r_GRANT.md)\.
 
 ## Table columns<a name="r_SVV_DATASHARES-table-columns"></a>
 

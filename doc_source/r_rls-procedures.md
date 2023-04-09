@@ -1,7 +1,7 @@
 # Creating, attaching, detaching, and dropping RLS policies<a name="r_rls-procedures"></a>
 
 You can perform the following actions:
-+ To create an RLS policy, use the [CREATE RLS POLICY ](r_CREATE_RLS_POLICY.md) command\.
++ To create an RLS policy, use the [CREATE RLS POLICY](r_CREATE_RLS_POLICY.md) command\.
 + To attach an RLS policy on a table to one or more users or roles, use the [ATTACH RLS POLICY ](r_ATTACH_RLS_POLICY.md) command\.
 + To detach a row\-level security policy on a table from one or more users or roles, use the [DETACH RLS POLICY ](r_DETACH_RLS_POLICY.md) command\.
 + To drop an RLS policy for all tables in all databases, use the [DROP RLS POLICY ](r_DROP_RLS_POLICY.md) command\.

@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| This is prerelease documentation for auto\-copy \(SQL COPY JOB\), which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+| This is prerelease documentation for auto\-copy \(SQL COPY JOB\), which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. Public preview will end on May 1, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 Use SYS\_COPY\_JOB to view details of COPY JOB commands\.
 

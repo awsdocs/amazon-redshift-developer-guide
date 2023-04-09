@@ -102,7 +102,7 @@ Amazon Redshift features that support the VARBYTE data type include:
 ## Limitations when using the VARBYTE data type with Amazon Redshift<a name="varbyte-limitations"></a>
 
 The following are limitations when using the VARBYTE data type with Amazon Redshift: 
-+ Amazon Redshift Spectrum doesn't support the VARBYTE data type\. Therefore, you can't create or alter an external table with a VARBYTE column\. 
++ Amazon Redshift Spectrum supports the VARBYTE data type only for Parquet and ORC files\.
 + Amazon Redshift query editor and Amazon Redshift query editor v2 don't yet fully support VARBYTE data type\. Therefore, use a different SQL client when working with VARBYTE expressions\. 
 
   As a workaround to use the query editor, if the length of your data is below 64 KB and the content is valid UTF\-8, you can cast the VARBYTE values to VARCHAR, for example:

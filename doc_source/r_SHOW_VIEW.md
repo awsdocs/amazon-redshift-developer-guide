@@ -31,11 +31,11 @@ show view LA_Venues_v;
 ```
 
 ```
-SELECT venue.venueid, 
-venue.venuename, 
-venue.venuecity, 
-venue.venuestate, 
-venue.venueseats 
+SELECT venue.venueid,
+venue.venuename,
+venue.venuecity,
+venue.venuestate,
+venue.venueseats
 FROM venue WHERE ((venue.venuecity)::text = 'Los Angeles'::text);
 ```
 
@@ -52,9 +52,9 @@ show view public.Sports_v;
 ```
 
 ```
-SELECT category.catid, 
-category.catgroup, 
-category.catname, 
-category.catdesc 
+SELECT category.catid,
+category.catgroup,
+category.catname,
+category.catdesc
 FROM category WHERE ((category.catgroup)::text = 'Sports'::text);
 ```

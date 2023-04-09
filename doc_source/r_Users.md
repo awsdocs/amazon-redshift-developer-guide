@@ -4,15 +4,15 @@ You can create and manage database users using the Amazon Redshift SQL commands 
 
 The drivers authenticate database users based on AWS Identity and Access Management \(IAM\) authentication\. If you already manage user identities outside of AWS, you can use a SAML 2\.0\-compliant identity provider \(IdP\) to manage access to Amazon Redshift resources\. You use an IAM role to configure your IdP and AWS to permit your federated users to generate temporary database credentials and log on to Amazon Redshift databases\. For more information, see [Using IAM authentication to generate database user credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html)\. 
 
-Amazon Redshift user accounts can only be created and dropped by a database superuser\. Users are authenticated when they log on to Amazon Redshift\. They can own databases and database objects \(for example, tables\)\. They can also grant permissions on those objects to users, groups, and schemas to control who has access to which object\. Users with CREATE DATABASE rights can create databases and grant permissions to those databases\. Superusers have database ownership permissions for all databases\.
+Amazon Redshift users can only be created and dropped by a database superuser\. Users are authenticated when they log on to Amazon Redshift\. They can own databases and database objects \(for example, tables\)\. They can also grant permissions on those objects to users, groups, and schemas to control who has access to which object\. Users with CREATE DATABASE rights can create databases and grant permissions to those databases\. Superusers have database ownership permissions for all databases\.
 
 ## Creating, altering, and deleting users<a name="r_Users-creatingaltering-and-deleting-users"></a>
 
-Database users accounts are global across a data warehouse cluster \(and not for each individual database\)\. 
+Database users are global across a data warehouse cluster \(and not for each individual database\)\. 
 +  To create a user, use the [CREATE USER](r_CREATE_USER.md) command\. 
 +  To create a superuser, use the [CREATE USER](r_CREATE_USER.md) command with the CREATEUSER option\. 
 + To remove an existing user, use the [DROP USER](r_DROP_USER.md) command\. 
-+ To change a user account, for example changing a password, use the [ALTER USER](r_ALTER_USER.md) command\. 
++ To change a user, for example changing a password, use the [ALTER USER](r_ALTER_USER.md) command\. 
 + To view a list of users, query the PG\_USER catalog table\.
 
   ```

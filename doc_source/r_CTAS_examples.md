@@ -39,11 +39,11 @@ The result is as follows:
 select "column", type, encoding, distkey, sortkey
 from pg_table_def where tablename = 'eventdistsort';
 
-column   |          type          | encoding | distkey | sortkey 
+column   |          type          | encoding | distkey | sortkey
 ---------+------------------------+----------+---------+-------
-eventid   | integer               | none     | t       | 1      
-venueid   | smallint              | none     | f       | 0      
-dateid    | smallint              | none     | f       | 2      
+eventid   | integer               | none     | t       | 1
+venueid   | smallint              | none     | f       | 0
+dateid    | smallint              | none     | f       | 2
 eventname | character varying(200)| none     | f       | 0
 ```
 
@@ -74,11 +74,11 @@ The table doesn't inherit the sort key from the EVENT table \(EVENTID\) because 
 select "column", type, encoding, distkey, sortkey
 from pg_table_def where tablename = 'eventdisteven';
 
-column    |          type          | encoding | distkey | sortkey 
+column    |          type          | encoding | distkey | sortkey
 ----------+------------------------+----------+---------+---------
-eventid   | integer                | none     | f       | 0       
-venueid   | smallint               | none     | f       | 0       
-dateid    | smallint               | none     | f       | 0       
+eventid   | integer                | none     | f       | 0
+venueid   | smallint               | none     | f       | 0
+dateid    | smallint               | none     | f       | 0
 eventname | character varying(200) | none     | f       | 0
 ```
 
@@ -95,11 +95,11 @@ as select eventid, venueid, dateid, eventname from event;
 select "column", type, encoding, distkey, sortkey
 from pg_table_def where tablename = 'eventdistevensort';
 
-column    |          type          | encoding | distkey | sortkey 
+column    |          type          | encoding | distkey | sortkey
 ----------+------------------------+----------+---------+-------
-eventid   | integer                | none     | f       | 0      
-venueid   | smallint               | none     | f       | 1      
-dateid    | smallint               | none     | f       | 0      
+eventid   | integer                | none     | f       | 0
+venueid   | smallint               | none     | f       | 1
+dateid    | smallint               | none     | f       | 0
 eventname | character varying(200) | none     | f       | 0
 ```
 
@@ -116,12 +116,12 @@ The result is as follows:
 select "column", type, encoding, distkey, sortkey
 from pg_table_def where tablename = 'venuedistevent';
 
- column   |            type             | encoding | distkey | sortkey 
+ column   |            type             | encoding | distkey | sortkey
 ----------+-----------------------------+----------+---------+-------
-eventid   | integer                     | none     | f       | 0      
-venueid   | smallint                    | none     | t       | 0      
-catid     | smallint                    | none     | f       | 0      
-dateid    | smallint                    | none     | f       | 0      
-eventname | character varying(200)      | none     | f       | 0      
+eventid   | integer                     | none     | f       | 0
+venueid   | smallint                    | none     | t       | 0
+catid     | smallint                    | none     | f       | 0
+dateid    | smallint                    | none     | f       | 0
+eventname | character varying(200)      | none     | f       | 0
 starttime | timestamp without time zone | none     | f       | 0
 ```

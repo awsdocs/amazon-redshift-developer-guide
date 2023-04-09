@@ -19,16 +19,22 @@ create group qa_users;
 grant all on schema qa_tickit to group qa_users;
 ```
 
-The following example grants all privileges on the SALES table in the QA\_TICKIT schema to all users in the group QA\_USERS\. 
+The following example grants all privileges on the SALES table in the QA\_TICKIT schema to all users in the group QA\_USERS\.
 
 ```
 grant all on table qa_tickit.sales to group qa_users;
 ```
 
+The following example grants all privileges on the SALES table in the QA\_TICKIT schema to all users in the groups QA\_USERS and RO\_USERS\.
+
+```
+grant all on table qa_tickit.sales to group qa_users, group ro_users;
+```
+
 The following example grants the DROP privilege on the SALES table in the QA\_TICKIT schema to all users in the group QA\_USERS\.
 
 ```
-grant drop on table qa_tickit.sales to group qa_users;
+grant drop on table qa_tickit.sales to group qa_users;>
 ```
 
 The following sequence of commands shows how access to a schema doesn't grant privileges on a table in the schema\. 
@@ -42,19 +48,24 @@ grant all on schema qa_tickit to schema_user;
 set session authorization schema_user;
 select current_user;
 
+
 current_user
 --------------
 schema_user
 (1 row)
 
+
 select count(*) from qa_tickit.test;
 
-ERROR: permission denied for relation test [SQL State=42501] 
+
+ERROR: permission denied for relation test [SQL State=42501]
+
 
 set session authorization dw_user;
 grant select on table qa_tickit.test to schema_user;
 set session authorization schema_user;
 select count(*) from qa_tickit.test;
+
 
 count
 -------
@@ -71,18 +82,25 @@ grant all on view_date to view_user;
 set session authorization view_user;
 select current_user;
 
+
 current_user
 --------------
 view_user
 (1 row)
 
+
 select count(*) from view_date;
+
+
 count
 -------
 365
 (1 row)
 
+
 select count(*) from date;
+
+
 ERROR:  permission denied for relation date
 ```
 
@@ -136,7 +154,7 @@ GRANT USAGE ON SCHEMA sales_schema TO GROUP Analyst_group;
 
 The following are examples of granting the ASSUMEROLE privilege\.
 
-The following example shows the REVOKE statement that a superuser runs once on the cluster to enable the use of the ASSUMEROLE privilege for users and groups\. Then, the superuser grants the ASSUMEROLE privilege to users and groups for the appropriate commands\. For information on enabling the use of the ASSUMEROLE privilege for users and groups, see [Usage notes for granting the ASSUMEROLE privilege ](r_GRANT-usage-notes.md#r_GRANT-usage-notes-assumerole)\.
+The following example shows the REVOKE statement that a superuser runs once on the cluster to enable the use of the ASSUMEROLE privilege for users and groups\. Then, the superuser grants the ASSUMEROLE privilege to users and groups for the appropriate commands\. For information on enabling the use of the ASSUMEROLE privilege for users and groups, see [Usage notes for granting the ASSUMEROLE permission](r_GRANT-usage-notes.md#r_GRANT-usage-notes-assumerole)\.
 
 ```
 revoke assumerole on all from public for all;
@@ -145,7 +163,7 @@ revoke assumerole on all from public for all;
 The following example grants the ASSUMEROLE privilege to the user `reg_user1` for the IAM role `Redshift-S3-Read` to perform COPY operations\. 
 
 ```
-grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-S3-Read' 
+grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-S3-Read'
 to reg_user1 for copy;
 ```
 
@@ -169,14 +187,14 @@ iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/Ro
 The following example grants the ASSUMEROLE privilege to the user `reg_user1` for the IAM role `Redshift-Exfunc` to create external functions\. 
 
 ```
-grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-Exfunc' 
+grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-Exfunc'
 to reg_user1 for external function;
 ```
 
 The following example grants the ASSUMEROLE privilege to the user `reg_user1` for the IAM role `Redshift-model` to create machine learning models\. 
 
 ```
-grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-ML' 
+grant assumerole on 'arn:aws:iam::123456789012:role/Redshift-ML'
 to reg_user1 for create model;
 ```
 

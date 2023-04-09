@@ -16,4 +16,4 @@ The file names must not include asterisks \( \* \) or question marks \( ? \)\.
 **Important**  
 If any of the data files are changed or deleted before the COPY completes, you might have unexpected results, or the COPY operation might fail\. 
 
-1. Note the cluster ID and the master public DNS \(the endpoint for the Amazon EC2 instance that hosts the cluster\)\. You will use that information in later steps\. 
+1. Note the cluster ID and the main public DNS \(the endpoint for the Amazon EC2 instance that hosts the cluster\)\. You will use that information in later steps\. 

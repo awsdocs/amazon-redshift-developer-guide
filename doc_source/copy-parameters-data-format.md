@@ -14,8 +14,6 @@ By default, the COPY command expects the source data to be character\-delimited 
 In addition to the standard data formats, COPY supports the following columnar data formats for COPY from Amazon S3: 
 + [ORC](#copy-orc) 
 + [PARQUET](#copy-parquet) 
-+ [RCFILE](#copy-rcfile) 
-+ [SEQUENCEFILE](#copy-sequencefile) 
 
 COPY from columnar format is supported with certain restriction\. For more information, see [COPY from columnar data formats](copy-usage_notes-copy-from-columnar.md)\. <a name="copy-data-format-parameters"></a>Data format parameters
 
@@ -335,9 +333,3 @@ Loads the data from a file that uses Optimized Row Columnar \(ORC\) file format\
 
 PARQUET  <a name="copy-parquet"></a>
 Loads the data from a file that uses Parquet file format\. 
-
-RCFILE  <a name="copy-rcfile"></a>
-Loads the data from a file that uses RCFile format\. 
-
-SEQUENCEFILE  <a name="copy-sequencefile"></a>
-Loads the data from a file that uses SequenceFile file format\. 

@@ -1,11 +1,11 @@
-# decimal\_scale function<a name="r_decimal_scale"></a>
+# DECIMAL\_SCALE function<a name="r_decimal_scale"></a>
 
 Checks the number of decimal digits to be stored to the right of the decimal point\. The range of the scale is from 0 to the precision point, with a default of 0\.
 
 ## Syntax<a name="r_decimal_scale-synopsis"></a>
 
 ```
-decimal_scale (super_expression)
+DECIMAL_SCALE (super_expression)
 ```
 
 ## Arguments<a name="r_decimal_scale-arguments"></a>
@@ -19,7 +19,7 @@ Integer
 
 ## Example<a name="r_decimal_scale_example"></a>
 
-The following query applies the decimal\_scale function to the table t\.
+The following query applies the DECIMAL\_SCALE function to the table t\.
 
 ```
 CREATE TABLE t(s super);

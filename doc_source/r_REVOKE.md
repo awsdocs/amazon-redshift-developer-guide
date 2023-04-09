@@ -33,7 +33,7 @@ FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 
 
 REVOKE [ GRANT OPTION FOR ]
-EXECUTE 
+EXECUTE
     ON FUNCTION function_name ( [ [ argname ] argtype [, ...] ] ) [, ...]
     FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 [ RESTRICT ]
@@ -47,7 +47,7 @@ REVOKE [ GRANT OPTION FOR ]
 
 
 REVOKE [ GRANT OPTION FOR ]
-USAGE 
+USAGE
     ON LANGUAGE language_name [, ...]
     FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 [ RESTRICT ]
@@ -58,7 +58,7 @@ The following is the syntax for column\-level privileges on Amazon Redshift tabl
 ```
 REVOKE { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES ] ( column_name [,...] ) }
      ON { [ TABLE ] table_name [, ...] }
-     FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...] 
+     FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
      [ RESTRICT ]
 ```
 
@@ -67,7 +67,7 @@ The following is the syntax to revoke the ASSUMEROLE privilege from users and gr
 ```
 REVOKE ASSUMEROLE
     ON { 'iam_role' [, ...]  | default | ALL }
-    FROM { user_name | GROUP group_name | PUBLIC } [, ...]
+    FROM { user_name | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
     FOR { ALL | COPY | UNLOAD | EXTERNAL FUNCTION | CREATE MODEL }
 ```
 
@@ -76,32 +76,32 @@ The following is the syntax for Redshift Spectrum integration with Lake Formatio
 ```
 REVOKE [ GRANT OPTION FOR ]
 { SELECT | ALL [ PRIVILEGES ] } ( column_list )
-    ON EXTERNAL TABLE schema_name.table_name 
-    FROM { IAM_ROLE iam_role } [, ...]  
+    ON EXTERNAL TABLE schema_name.table_name
+    FROM { IAM_ROLE iam_role } [, ...]
 
 REVOKE [ GRANT OPTION FOR ]
 { { SELECT | ALTER | DROP | DELETE | INSERT }  [, ...] | ALL [ PRIVILEGES ] }
-    ON EXTERNAL TABLE schema_name.table_name [, ...] 
+    ON EXTERNAL TABLE schema_name.table_name [, ...]
     FROM { { IAM_ROLE iam_role } [, ...] | PUBLIC }
 
 REVOKE [ GRANT OPTION FOR ]
 { { CREATE | ALTER | DROP }  [, ...] | ALL [ PRIVILEGES ] }
-    ON EXTERNAL SCHEMA schema_name [, ...] 
+    ON EXTERNAL SCHEMA schema_name [, ...]
     FROM { IAM_ROLE iam_role } [, ...]
 ```
 
 The following is the syntax for using REVOKE for datashare privileges for Amazon Redshift\. 
 
 ```
-REVOKE { ALTER | SHARE } ON DATASHARE datashare_name     
+REVOKE { ALTER | SHARE } ON DATASHARE datashare_name
     FROM { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
 The following is the syntax for using REVOKE for datashare usage privileges for Amazon Redshift\. 
 
 ```
-REVOKE USAGE 
-    ON DATASHARE datashare_name 
+REVOKE USAGE
+    ON DATASHARE datashare_name
     FROM NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [ VIA DATA CATALOG ] [, ...]
 ```
 
@@ -148,11 +148,11 @@ The following is the syntax for revoking system privileges to roles on Amazon Re
 ```
 REVOKE
   {
-    { CREATE USER | DROP USER | ALTER USER | 
+    { CREATE USER | DROP USER | ALTER USER |
     CREATE SCHEMA | DROP SCHEMA |
     ALTER DEFAULT PRIVILEGES |
     CREATE TABLE | DROP TABLE | ALTER TABLE |
-    CREATE OR REPLACE FUNCTION | CREATE OR REPLACE EXTERNAL FUNCTION | 
+    CREATE OR REPLACE FUNCTION | CREATE OR REPLACE EXTERNAL FUNCTION |
     DROP FUNCTION |
     CREATE OR REPLACE PROCEDURE | DROP PROCEDURE |
     CREATE OR REPLACE VIEW | DROP VIEW |
@@ -160,7 +160,7 @@ REVOKE
     CREATE DATASHARE | ALTER DATASHARE | DROP DATASHARE |
     CREATE LIBRARY | DROP LIBRARY |
     CREATE ROLE | DROP ROLE
-    TRUNCATE TABLE 
+    TRUNCATE TABLE
     VACUUM | ANALYZE | CANCEL }[, ...]
   }
   | { ALL [ PRIVILEGES ] }
@@ -183,11 +183,6 @@ The following is the syntax for revoking permissions from the specified row\-lev
 
 ```
 REVOKE SELECT ON [ TABLE ] table_name [, ...]
-FROM RLS POLICY policy_name [, ...]
-```
-
-```
-REVOKE EXECUTE ON FUNCTION function_name ( [ [ argname ] argtype [, ...] ] ) [, ...] 
 FROM RLS POLICY policy_name [, ...]
 ```
 
@@ -221,7 +216,7 @@ DROP
 Revokes permission to drop a table\. This permission applies in Amazon Redshift and in an AWS Glue Data Catalog that is enabled for Lake Formation\.
 
 ASSUMEROLE  <a name="assumerole"></a>
-Revokes the permission to run COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL commands from users and groups with a specified role\. 
+Revokes the permission to run COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL commands from users, roles, or groups with a specified role\. 
 
 ON \[ TABLE \] *table\_name*   
 Revokes the specified permissions on a table or a view\. The TABLE keyword is optional\.

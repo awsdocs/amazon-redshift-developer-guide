@@ -1,5 +1,7 @@
 # Performing a merge operation by replacing existing rows<a name="merge-replacing-existing-rows"></a>
 
+When you run the merge operation detailed in the procedure, put all of the steps except for creating and dropping the temporary staging table in a single transaction\. The transaction rolls back if any step fails\. Using a single transaction also reduces the number of commits, which saves time and resources\.
+
 **To perform a merge operation by replacing existing rows**
 
 1. Create a staging table, and then populate it with data to be merged, as shown in the following pseudocode\.

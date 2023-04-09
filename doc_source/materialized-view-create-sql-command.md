@@ -1,13 +1,13 @@
 # CREATE MATERIALIZED VIEW<a name="materialized-view-create-sql-command"></a>
 
-Creates a materialized view based on one or more Amazon Redshift tables or external tables that you can create using Spectrum or federated query\. For information about Spectrum, see [Querying external data using Amazon Redshift Spectrum](c-using-spectrum.md)\. For information about federated query, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
+Creates a materialized view based on one or more Amazon Redshift tables\. You can also base materialized views on external tables created using Spectrum or federated query\. For information about Spectrum, see [Querying external data using Amazon Redshift Spectrum](c-using-spectrum.md)\. For information about federated query, see [Querying data with federated queries in Amazon Redshift](federated-overview.md)\.
 
 ## Syntax<a name="mv_CREATE_MATERIALIZED_VIEW-synopsis"></a>
 
 ```
 CREATE MATERIALIZED VIEW mv_name
 [ BACKUP { YES | NO } ]
-[ table_attributes ]   
+[ table_attributes ]
 [ AUTO REFRESH { YES | NO } ]
 AS query
 ```
@@ -29,7 +29,7 @@ A clause that specifies how the data in the materialized view is distributed, in
 AS *query*  
 A valid `SELECT` statement that defines the materialized view and its content\. The result set from the query defines the columns and rows of the materialized view\. For information about limitations when creating materialized views, see [Limitations](#mv_CREATE_MATERIALIZED_VIEW-limitations)\.  
 Furthermore, specific SQL language constructs used in the query determines whether the materialized view can be incrementally or fully refreshed\. For information about the refresh method, see [REFRESH MATERIALIZED VIEW](materialized-view-refresh-sql-command.md)\. For information about the limitations for incremental refresh, see [Limitations for incremental refresh](materialized-view-refresh-sql-command.md#mv_REFRESH_MARTERIALIZED_VIEW_limitations)\.  
-If the query contains an SQL command that doesn't support incremental refresh, Amazon Redshift displays a message indicating that the materialized view will use a full refresh\. The message may or may not be displayed depending on the SQL client application\. For example, psql displays the message, and a JDBC client may not\. Check the `state` column of the [STV\_MV\_INFO](r_STV_MV_INFO.md) to see the refresh type used by a materialized view\.
+If the query contains an SQL command that doesn't support incremental refresh, Amazon Redshift displays a message indicating that the materialized view will use a full refresh\. The message may or may not be displayed, depending on the SQL client application\. Check the `state` column of the [STV\_MV\_INFO](r_STV_MV_INFO.md) to see the refresh type used by a materialized view\.
 
 AUTO REFRESH  
 A clause that defines whether the materialized view should be automatically refreshed with latest changes from its base tables\. The default value is `NO`\. For more information, see [Refreshing a materialized view](materialized-view-refresh.md)\.
@@ -38,7 +38,7 @@ A clause that defines whether the materialized view should be automatically refr
 
 To create a materialized view, you must have the following privileges:
 + CREATE privileges for a schema\.
-+ Table\-level SELECT privilege on the base tables to create a materialized view\. Even if you have column\-level privileges on specific columns, you can't create a materialized view on only those columns\. 
++ Table\-level or column\-level SELECT privilege on the base tables to create a materialized view\. If you have column\-level privileges on specific columns, you can create a materialized view on only those columns\.
 
 ## DDL updates to materialized views or base tables<a name="materialized-view-ddl"></a>
 
@@ -57,7 +57,7 @@ You can't define a materialized view that references or includes any of the foll
 + The ORDER BY, LIMIT, or OFFSET clause\.
 + Late binding references to base tables\. In other words, any base tables or related columns referenced in the defining SQL query of the materialized view must exist and must be valid\. 
 + Leader node\-only functions: CURRENT\_SCHEMA, CURRENT\_SCHEMAS, HAS\_DATABASE\_PRIVILEGE, HAS\_SCHEMA\_PRIVILEGE, HAS\_TABLE\_PRIVILEGE\.
-+ You can't use the AUTO REFRESH YES option when the materialized view definition includes mutable functions or external schemas\.
++ You can't use the AUTO REFRESH YES option when the materialized view definition includes mutable functions or external schemas\. You also can't use it when you define a materialized view on another materialized view\.
 
 ## Examples<a name="mv_CREATE_MARTERIALIZED_VIEW_examples"></a>
 
@@ -83,7 +83,7 @@ CREATE MATERIALIZED VIEW tickets_mv_max AS
     where    c.catid = e.catid
     and      e.eventid = s.eventid
     group by catgroup;
-    
+
 SELECT name, state FROM STV_MV_INFO;
 ```
 
@@ -100,7 +100,7 @@ The following example creates a materialized view `mv_fq` based on a federated q
 
 ```
 CREATE MATERIALIZED VIEW mv_fq as select firstname, lastname from apg.mv_fq_example;
-            
+
 select firstname, lastname from mv_fq;
  firstname | lastname
 -----------+----------
@@ -113,11 +113,25 @@ The following example shows the definition of a materialized view\.
 
 ```
 SELECT pg_catalog.pg_get_viewdef('mv_sales_vw'::regclass::oid, true);
-    
+
 pg_get_viewdef
 ---------------------------------------------------
 create materialized view mv_sales_vw as select a from t;
 ```
+
+ The following sample shows how to set AUTO REFRESH in the materialized view definition and also specifies a DISTSTYLE\. First, create a simple base table\. 
+
+```
+CREATE TABLE baseball_table (ball int, bat int);
+```
+
+Then, create a materialized view\.
+
+```
+CREATE MATERIALIZED VIEW mv_baseball DISTSTYLE ALL AUTO REFRESH YES AS SELECT ball AS baseball FROM baseball_table;
+```
+
+Now you can query the mv\_baseball materialized view\. To check if AUTO REFRESH is turned on for a materialized view, see [STV\_MV\_INFO](r_STV_MV_INFO.md)\.
 
 For details about materialized view overview and SQL commands used to refresh and drop materialized views, see the following topics:
 + [Creating materialized views in Amazon Redshift](materialized-view-overview.md)

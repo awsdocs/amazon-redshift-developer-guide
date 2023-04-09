@@ -17,14 +17,16 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
-FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL | KINESIS | REDSHIFT }
+FROM { [ DATA CATALOG ] | HIVE METASTORE | POSTGRES | MYSQL | KINESIS | MSK | REDSHIFT }
 [ DATABASE 'database_name' ]
 [ SCHEMA 'schema_name' ]
 [ REGION 'aws-region' ]
 [ URI 'hive_metastore_uri' [ PORT port_number ] ]
 IAM_ROLE { default | 'SESSION' | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
-[ SECRET_ARN 'ssm-secret-arn' ]          
-[ CATALOG_ROLE { 'SESSION' | 'catalog-role-arn-string' } ] 
+[ SECRET_ARN 'ssm-secret-arn' ]
+[ AUTHENTICATION { none | iam } ]
+[ CLUSTER_ARN 'arn:aws:kafka:<region>:<AWS account-id>:cluster/msk/<cluster uuid>' ]
+[ CATALOG_ROLE { 'SESSION' | 'catalog-role-arn-string' } ]
 [ CREATE EXTERNAL DATABASE IF NOT EXISTS ]
 [ CATALOG_ID 'Amazon Web Services account ID containing Glue or Lake Formation database' ]
 ```
@@ -35,7 +37,7 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
 FROM POSTGRES
 DATABASE 'federated_database_name' [SCHEMA 'schema_name']
-URI 'hostname' [ PORT port_number ] 
+URI 'hostname' [ PORT port_number ]
 IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'
 ```
@@ -45,7 +47,7 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] local_schema_name
 FROM MYSQL
-DATABASE 'federated_database_name' 
+DATABASE 'federated_database_name'
 URI 'hostname' [ PORT port_number ]
 IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
 SECRET_ARN 'ssm-secret-arn'
@@ -57,6 +59,16 @@ The following syntax describes the CREATE EXTERNAL SCHEMA command used to refere
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] schema_name
 FROM KINESIS
 IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+```
+
+The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference the Amazon Managed Streaming for Apache Kafka cluster and its topics to ingest from\. CLUSTER\_ARN specifies the Amazon MSK cluster that you’re reading data from\. For more information, see [Streaming ingestion](materialized-view-streaming-ingestion.md)\.
+
+```
+CREATE EXTERNAL SCHEMA [IF NOT EXISTS] schema_name
+FROM MSK
+IAM_ROLE { default | 'arn:aws:iam::<AWS account-id>:role/<role-name>' }
+AUTHENTICATION { none | iam }
+CLUSTER_ARN 'msk-cluster-arn';
 ```
 
 The following syntax describes the CREATE EXTERNAL SCHEMA command used to reference data using a cross\-database query\.
@@ -75,14 +87,15 @@ A clause that indicates that if the specified schema already exists, the command
 local\_schema\_name  
 The name of the new external schema\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
-FROM \[ DATA CATALOG \] \| HIVE METASTORE   
+FROM \[ DATA CATALOG \] \| HIVE METASTORE \| POSTGRES \| MYSQL \| KINESIS \| MSK \| REDSHIFT   
 A keyword that indicates where the external database is located\.   
 DATA CATALOG indicates that the external database is defined in the Athena data catalog or the AWS Glue Data Catalog\.   
 If the external database is defined in an external Data Catalog in a different AWS Region, the REGION parameter is required\. DATA CATALOG is the default\.  
 HIVE METASTORE indicates that the external database is defined in an Apache Hive metastore\. If HIVE METASTORE, is specified, URI is required\.   
 POSTGRES indicates that the external database is defined in RDS PostgreSQL or Aurora PostgreSQL\.  
 MYSQL indicates that the external database is defined in RDS MySQL or Aurora MySQL\.  
-KINESIS indicates that the data source is a stream from Kinesis Data Streams\.
+KINESIS indicates that the data source is a stream from Kinesis Data Streams\.  
+MSK indicates that the data source is a topic from Amazon MSK\.
 
 FROM REDSHIFT  
 A keyword that indicates that the database is located in Amazon Redshift\.
@@ -187,6 +200,15 @@ The account id where the data catalog database is stored\.
 + `IAM_ROLE` to `'SESSION'` and `'CATALOG_ROLE'` set to its default 
 For more information about completing the steps for federated identity, see [Using a federated identity to manage Amazon Redshift access to local resources and Amazon Redshift Spectrum external tables](https://docs.aws.amazon.com/redshift/latest/mgmt/authorization-fas-spectrum.html)\. 
 
+AUTHENTICATION  
+The authentication type defined for streaming ingestion\. Streaming ingestion with authentication types works with Amazon Managed Streaming for Apache Kafka\. The `AUTHENTICATION` types are the following:  
++ **none** – Specifies that there is no authentication step\.
++ **iam** – Specifies IAM authentication\. When you choose this, make sure that the IAM role has permissions for IAM authentication\. For more information about defining the external schema, see [Getting started with streaming ingestion from Amazon Managed Streaming for Apache Kafka](materialized-view-streaming-ingestion-getting-started-MSK.md)\.
+
+
+CLUSTER\_ARN  
+For streaming ingestion, the cluster identifier for the Amazon Managed Streaming for Apache Kafka cluster you're streaming from\. For more information, see [Streaming ingestion](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-streaming-ingestion.html)\.
+
 ## Usage notes<a name="r_CREATE_EXTERNAL_SCHEMA_usage"></a>
 
 For limits when using the Athena data catalog, see [Athena Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#amazon-athena-limits) in the AWS General Reference\.
@@ -210,7 +232,7 @@ The following example creates an external schema using a database in an Athena d
 create external schema spectrum_schema
 from data catalog
 database 'sampledb'
-region 'us-west-2' 
+region 'us-west-2'
 iam_role 'arn:aws:iam::123456789012:role/MySpectrumRole';
 ```
 
@@ -251,8 +273,8 @@ The following example creates an external schema that references an Aurora Postg
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] myRedshiftSchema
 FROM POSTGRES
 DATABASE 'my_aurora_db' SCHEMA 'my_aurora_schema'
-URI 'endpoint to aurora hostname' PORT 5432            
-IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole' 
+URI 'endpoint to aurora hostname' PORT 5432  
+IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole'
 SECRET_ARN 'arn:aws:secretsmanager:us-east-2:123456789012:secret:development/MyTestDatabase-AbCdEf'
 ```
 
@@ -267,8 +289,8 @@ The following example creates an external schema that references an Aurora MySQL
 ```
 CREATE EXTERNAL SCHEMA [IF NOT EXISTS] myRedshiftSchema
 FROM MYSQL
-DATABASE 'my_aurora_db' 
-URI 'endpoint to aurora hostname'        
-IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole' 
+DATABASE 'my_aurora_db'
+URI 'endpoint to aurora hostname'
+IAM_ROLE 'arn:aws:iam::123456789012:role/MyAuroraRole'
 SECRET_ARN 'arn:aws:secretsmanager:us-east-2:123456789012:secret:development/MyTestDatabase-AbCdEf'
 ```

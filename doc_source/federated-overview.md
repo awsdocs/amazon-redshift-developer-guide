@@ -20,4 +20,4 @@ Details about queries sent to the Amazon Aurora PostgreSQL database or Amazon RD
 + [Creating a secret and an IAM role to use federated queries](federated-create-secret-iam-role.md)
 + [Examples of using a federated query](federated_query_example.md)
 + [Data type differences between Amazon Redshift and supported PostgreSQL and MySQL databases](federated-data-types.md)
-+ [Limitations and considerations when accessing federated data with Amazon Redshift](federated-limitations.md)
++ [Considerations when accessing federated data with Amazon Redshift](federated-limitations.md)

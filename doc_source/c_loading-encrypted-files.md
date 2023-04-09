@@ -14,7 +14,7 @@ The COPY command doesn't support the following types of Amazon S3 encryption:
 
 For more information about Amazon S3 encryption, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html) and [Protecting Data Using Client\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html) in the Amazon Simple Storage Service User Guide\.
 
-The [UNLOAD](r_UNLOAD.md) command automatically encrypts files using SSE\-S3\. You can also unload using SSE\-KMS or client\-side encryption with a customer\-managed symmetric key\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)
+The [UNLOAD](r_UNLOAD.md) command automatically encrypts files using SSE\-S3\. You can also unload using SSE\-KMS or client\-side encryption with a customer managed symmetric key\. For more information, see [Unloading encrypted data files](t_unloading_encrypted_files.md)
 
 The COPY command automatically recognizes and loads files encrypted using SSE\-S3 and SSE\-KMS\. You can load files encrypted using a client\-side symmetric root key by specifying the ENCRYPTED option and providing the key value\. For more information, see [Uploading encrypted data to Amazon S3](t_uploading-encrypted-data.md)\.
 

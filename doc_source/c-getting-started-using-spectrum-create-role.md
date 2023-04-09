@@ -84,27 +84,18 @@ The `AmazonS3ReadOnlyAccess` policy gives your cluster read\-only access to all 
 
 1. On the **Review policy** page, for **Name** enter **myspectrum\_policy** to name the policy that you are creating\. Enter a **Description** \(optional\)\. Review the policy **Summary** to see the permissions that are granted by your policy\. Then choose **Create policy** to save your work\.
 
-   After you create a policy, you can create a role and apply the policy\. 
+   After you create a policy, you can provide access to your users\.
 
-1. In the navigation pane of the IAM console, choose **Roles**, and then choose **Create role**\.
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-1. For **Select type of trusted entity**, choose **AWS service**\.
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
 
-1. Choose the Amazon Redshift service to assume this role\.
-
-1. Choose the **Redshift Customizable** use case for your service\. Then choose **Next: Permissions**\.
-
-1. Choose the permissions policy that you created, `myspectrum_policy`, to attach to the role\.
-
-1. Choose **Next: Tagging**\.
-
-1. Choose **Next: Review**\. 
-
-1. For **Role name**, enter the name **myspectrum\_role**\. 
-
-1. \(Optional\) For **Role description**, enter a description for the new role\.
-
-1. Review the role, and then choose **Create role**\.<a name="spectrum-get-started-grant-lake-formation-table"></a>
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.<a name="spectrum-get-started-grant-lake-formation-table"></a>
 
 **To grant SELECT permissions on the table to query in the Lake Formation database**
 

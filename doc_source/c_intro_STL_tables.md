@@ -4,7 +4,7 @@ STL system views are generated from Amazon Redshift log files to provide a histo
 
 These files reside on every node in the data warehouse cluster\. The STL views take the information from the logs and format them into usable views for system administrators\.
 
-To manage disk space, the STL log views only retain approximately two to five days of log history, depending on log usage and available disk space\. If you want to retain the log data, you will need to periodically copy it to other tables or unload it to Amazon S3\.
+**Log retention** – STL system views retain seven days of log history\. Log retention is guaranteed for all cluster sizes and node types, and it isn't affected by changes in cluster workload\. Log retention also isn't affected by cluster status, such as when the cluster is paused\. You have less than seven days of log history only in the case where the cluster is new\. Retaining logs doesn't require any customer action, but if you want to store log data for more than 7 days, you have to periodically copy it to other tables or unload it to Amazon S3\.
 
 **Topics**
 + [STL\_AGGR](r_STL_AGGR.md)

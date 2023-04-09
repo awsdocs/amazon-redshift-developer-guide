@@ -11,8 +11,8 @@ Following are required privileges for CREATE SCHEMA:
 ## Syntax<a name="r_CREATE_SCHEMA-synopsis"></a>
 
 ```
-CREATE SCHEMA [ IF NOT EXISTS ] schema_name [ AUTHORIZATION username ] 
-           [ QUOTA {quota [MB | GB | TB] | UNLIMITED} ] [ schema_element [ ... ] 
+CREATE SCHEMA [ IF NOT EXISTS ] schema_name [ AUTHORIZATION username ]
+           [ QUOTA {quota [MB | GB | TB] | UNLIMITED} ] [ schema_element [ ... ]
 
 CREATE SCHEMA AUTHORIZATION username[ QUOTA {quota [MB | GB | TB] | UNLIMITED} ] [ schema_element [ ... ] ]
 ```

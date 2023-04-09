@@ -1,4 +1,4 @@
-# GREATEST and LEAST<a name="r_GREATEST_LEAST"></a>
+# GREATEST and LEAST functions<a name="r_GREATEST_LEAST"></a>
 
 Returns the largest or smallest value from a list of any number of expressions\.
 
@@ -16,7 +16,7 @@ A comma\-separated list of expressions, such as column names\. The expressions m
 
 ## Returns<a name="r_GREATEST_LEAST-returns"></a>
 
-Returns the data type of the expressions\.
+Returns the greatest \(for GREATEST\) or least for LEAST\) value from the provided list of expressions\.
 
 ## Example<a name="r_GREATEST_LEAST-examples"></a>
 

@@ -1,4 +1,4 @@
-# TO\_DATE<a name="r_TO_DATE_function"></a>
+# TO\_DATE function<a name="r_TO_DATE_function"></a>
 
 TO\_DATE converts a date represented by a character string to a DATE data type\. 
 
@@ -59,7 +59,7 @@ to_date
  The following SQL statement converts the string `20010631` to a date: 
 
 ```
-select to_date('20010631', 'YYYYMMDD', TRUE);
+to_date('20010631', 'YYYYMMDD', TRUE);
 ```
 
 The result is an error because there are only 30 days in June\.

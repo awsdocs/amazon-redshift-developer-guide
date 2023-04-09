@@ -5,7 +5,7 @@ You can use the COPY command to load a table with data from a single Amazon Dyna
 **Important**  
 The Amazon DynamoDB table that provides the data must be created in the same AWS Region as your cluster unless you use the [REGION](copy-parameters-data-source-s3.md#copy-region) option to specify the AWS Region in which the Amazon DynamoDB table is located\.
 
-The COPY command leverages the Amazon Redshift massively parallel processing \(MPP\) architecture to read and load data in parallel from an Amazon DynamoDB table\. You can take maximum advantage of parallel processing by setting distribution styles on your Amazon Redshift tables\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\.
+The COPY command uses the Amazon Redshift massively parallel processing \(MPP\) architecture to read and load data in parallel from an Amazon DynamoDB table\. You can take maximum advantage of parallel processing by setting distribution styles on your Amazon Redshift tables\. For more information, see [Working with data distribution styles](t_Distributing_data.md)\.
 
 **Important**  
 When the COPY command reads data from the Amazon DynamoDB table, the resulting data transfer is part of that table's provisioned throughput\.
@@ -26,7 +26,7 @@ authorization
 readratio '<integer>';
 ```
 
-The values for *authorization* are the AWS credentials needed to access the Amazon DynamoDB table\. If these credentials correspond to an IAM user, that IAM user must have permission to SCAN and DESCRIBE the Amazon DynamoDB table that is being loaded\.
+The values for *authorization* are the AWS credentials needed to access the Amazon DynamoDB table\. If these credentials correspond to a user, that user must have permission to SCAN and DESCRIBE the Amazon DynamoDB table that is being loaded\.
 
 The values for *authorization* provide the AWS authorization your cluster needs to access the Amazon DynamoDB table\. The permission must include SCAN and DESCRIBE for the Amazon DynamoDB table that is being loaded\. For more information about required permissions, see [IAM permissions for COPY, UNLOAD, and CREATE LIBRARY](copy-usage_notes-access-permissions.md#copy-usage_notes-iam-permissions)\. The preferred method for authentication is to specify the IAM\_ROLE parameter and provide the Amazon Resource Name \(ARN\) for an IAM role with the necessary permissions\. For more information, see [Role\-based access control](copy-usage_notes-access-permissions.md#copy-usage_notes-access-role-based)\. 
 

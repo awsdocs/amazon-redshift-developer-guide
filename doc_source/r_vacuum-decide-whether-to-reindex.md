@@ -26,6 +26,6 @@ and interleaved_skew is not null;
 (4 rows)
 ```
 
-The value for `interleaved_skew` is a ratio that indicates the amount of skew\. A value of 1 means there is no skew\. If the skew is greater than 1\.4, a VACUUM REINDEX will usually improve performance unless the skew is inherent in the underlying set\. 
+The value for `interleaved_skew` is a ratio that indicates the amount of skew\. A value of 1 means that there is no skew\. If the skew is greater than 1\.4, a VACUUM REINDEX will usually improve performance unless the skew is inherent in the underlying set\. 
 
 You can use the date value in `last_reindex` to determine how long it has been since the last reindex\. 

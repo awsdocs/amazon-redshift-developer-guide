@@ -1,6 +1,10 @@
 # Managing transactions<a name="stored-procedure-transaction-management"></a>
 
-The default automatic commit behavior causes each SQL command that runs separately to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable isolation](c_serial_isolation.md)\.
+You can create a stored procedure with default transaction management behavior or nonatomic behavior\. 
+
+## Default mode stored procedure transaction management<a name="stored-procedure-transaction-management-default-mode"></a>
+
+The default transaction mode automatic commit behavior causes each SQL command that runs separately to commit individually\. A call to a stored procedure is treated as a single SQL command\. The SQL statements inside a procedure behave as if they are in a transaction block that implicitly begins when the call starts and ends when the call finishes\. A nested call to another procedure is treated like any other SQL statement and operates within the context of the same transaction as the caller\. For more information about automatic commit behavior, see [Serializable isolation](c_serial_isolation.md)\.
 
 However, suppose that you call a stored procedure from within a user specified transaction block \(defined by BEGIN\.\.\.COMMIT\)\. In this case, all statements in the stored procedure run in the context of the user\-specified transaction\. The procedure doesn't commit implicitly on exit\. The caller controls the procedure commit or rollback\.
 
@@ -274,4 +278,187 @@ userid |  xid  | pid  |  type   |                                               
     100 | 10377 | 3089 | QUERY   | Undoing 1 transactions on table 133646 with current xid 10377 : 10377
     100 | 10378 | 3089 | QUERY   | INSERT INTO test_table values ( $1 )
     100 | 10378 | 3089 | UTILITY | COMMIT
+```
+
+## Nonatomic mode stored procedure transaction management<a name="stored-procedure-transaction-management-nonatomic-mode"></a>
+
+A stored procedure created in NONATOMIC mode has different transaction control behavior from a procedure created in default mode\. Similar to the automatic commit behavior of SQL commands outside stored procedures, each SQL statement inside a NONATOMIC procedure runs in its own transaction and commits automatically\. If a user begins an explicit transaction block within a NONATOMIC stored procedure, then the SQL statements within the block do not automatically commit\. The transaction block controls commit or rollback of statements within it\. 
+
+In NONATOMIC stored procedures, you can open an explicit transaction block inside the procedure using the START TRANSACTION statement\. However, if there is already an open transaction block, this statement will do nothing because Amazon Redshift does not support sub transactions\. The previous transaction continues\.
+
+When you work with cursor FOR loops inside a NONATOMIC procedure, make sure you open an explicit transaction block before iterating through the results of a query\. Otherwise, the cursor is closed when the SQL statement inside the loop is automatically committed\.
+
+Some of the considerations when using NONATOMIC mode behavior are as follows:
++ Each SQL statement inside the stored procedure is automatically committed if there is no open transaction block, and the session has autocommit set to ON\.
++ You can issue a COMMIT/ROLLBACK/TRUNCATE statement to end the transaction if the stored procedure is called from within a transaction block\. This is not possible in default mode\.
++ You can issue a START TRANSACTION statement to begin a transaction block inside the stored procedure\.
+
+The following examples demonstrate transaction behavior when working with NONATOMIC stored procedures\. The session for all the following examples has autocommit set to ON\.
+
+In the following example, a NONATOMIC stored procedure has two INSERT statements\. When the procedure is called outside of a transaction block, every INSERT statement within the procedure automatically commits\. 
+
+```
+CREATE TABLE test_table_a(v int); 
+CREATE TABLE test_table_b(v int); 
+
+CREATE OR REPLACE PROCEDURE sp_nonatomic_insert_table_a(a int, b int) NONATOMIC AS
+$$
+BEGIN
+    INSERT INTO test_table_a values (a);
+    INSERT INTO test_table_b values (b);
+END;
+$$ 
+LANGUAGE plpgsql;
+
+Call sp_nonatomic_insert_table_a(1,2);
+
+Select userid, xid, pid, type, trim(text) as stmt_text 
+from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , sequence;
+
+ userid | xid  |    pid     |  type   |               stmt_text                
+--------+------+------------+---------+----------------------------------------
+      1 | 1792 | 1073807554 | UTILITY | Call sp_nonatomic_insert_table_a(1,2);
+      1 | 1792 | 1073807554 | QUERY   | INSERT INTO test_table_a values ( $1 )
+      1 | 1792 | 1073807554 | UTILITY | COMMIT
+      1 | 1793 | 1073807554 | QUERY   | INSERT INTO test_table_b values ( $1 )
+      1 | 1793 | 1073807554 | UTILITY | COMMIT
+(5 rows)
+```
+
+However, when the procedure is called from within a BEGIN\.\.COMMIT block, all the statements are part of the same transaction \(xid=1799\)\. 
+
+```
+Begin;
+  INSERT INTO test_table_a values (10);
+  Call sp_nonatomic_insert_table_a(20,30);
+  INSERT INTO test_table_b values (40);
+Commit; 
+
+Select userid, xid, pid, type, trim(text) as stmt_text 
+from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , sequence;
+
+ userid | xid  |    pid     |  type   |                stmt_text                 
+--------+------+------------+---------+------------------------------------------
+      1 | 1799 | 1073914035 | UTILITY | Begin;
+      1 | 1799 | 1073914035 | QUERY   | INSERT INTO test_table_a values (10);
+      1 | 1799 | 1073914035 | UTILITY | Call sp_nonatomic_insert_table_a(20,30);
+      1 | 1799 | 1073914035 | QUERY   | INSERT INTO test_table_a values ( $1 )
+      1 | 1799 | 1073914035 | QUERY   | INSERT INTO test_table_b values ( $1 )
+      1 | 1799 | 1073914035 | QUERY   | INSERT INTO test_table_b values (40);
+      1 | 1799 | 1073914035 | UTILITY | COMMIT
+(7 rows)
+```
+
+In this example, two INSERT statements are between START TRANSACTION\.\.\.COMMIT\. When the procedure is called outside of a transaction block, the two INSERT statements are in the same transaction \(xid=1866\)\. 
+
+```
+CREATE OR REPLACE PROCEDURE sp_nonatomic_txn_block(a int, b int) NONATOMIC AS
+$$
+BEGIN
+    START TRANSACTION;
+    INSERT INTO test_table_a values (a);
+    INSERT INTO test_table_b values (b);
+    COMMIT;
+END;
+$$ 
+LANGUAGE plpgsql;
+
+Call sp_nonatomic_txn_block(1,2);
+
+Select userid, xid, pid, type, trim(text) as stmt_text 
+from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , sequence;
+
+ userid | xid  |    pid     |  type   |               stmt_text                
+--------+------+------------+---------+----------------------------------------
+      1 | 1865 | 1073823998 | UTILITY | Call sp_nonatomic_txn_block(1,2);
+      1 | 1866 | 1073823998 | QUERY   | INSERT INTO test_table_a values ( $1 )
+      1 | 1866 | 1073823998 | QUERY   | INSERT INTO test_table_b values ( $1 )
+      1 | 1866 | 1073823998 | UTILITY | COMMIT
+(4 rows)
+```
+
+When the procedure is called from within a BEGIN\.\.\.COMMIT block, the START TRANSACTION inside the procedure does nothing because there is already an open transaction\. The COMMIT inside the procedure commits the current transaction \(xid=1876\) and starts a new one\.
+
+```
+Begin;
+  INSERT INTO test_table_a values (10);
+  Call sp_nonatomic_txn_block(20,30);
+  INSERT INTO test_table_b values (40);
+Commit; 
+
+Select userid, xid, pid, type, trim(text) as stmt_text 
+from svl_statementtext where pid = pg_backend_pid() order by xid , starttime , sequence;
+
+ userid | xid  |    pid     |  type   |               stmt_text                
+--------+------+------------+---------+----------------------------------------
+      1 | 1876 | 1073832133 | UTILITY | Begin;
+      1 | 1876 | 1073832133 | QUERY   | INSERT INTO test_table_a values (10);
+      1 | 1876 | 1073832133 | UTILITY | Call sp_nonatomic_txn_block(20,30);
+      1 | 1876 | 1073832133 | QUERY   | INSERT INTO test_table_a values ( $1 )
+      1 | 1876 | 1073832133 | QUERY   | INSERT INTO test_table_b values ( $1 )
+      1 | 1876 | 1073832133 | UTILITY | COMMIT
+      1 | 1878 | 1073832133 | QUERY   | INSERT INTO test_table_b values (40);
+      1 | 1878 | 1073832133 | UTILITY | COMMIT
+(8 rows)
+```
+
+This example shows how to work with cursor loops\. Table test\_table\_a has three values\. The objective is to iterate through the three values and insert them into table test\_table\_b\. If a NONATOMIC stored procedure is created in the following way, it will throw the error cursor "cur1" does not exist after executing INSERT statement in the first loop\. This is because the auto commit of the INSERT closes the open cursor\.
+
+```
+insert into test_table_a values (1), (2), (3);
+
+CREATE OR REPLACE PROCEDURE sp_nonatomic_cursor() NONATOMIC
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  rec RECORD;
+  cur1 cursor for select * from test_table_a order by 1;
+BEGIN
+  open cur1;
+  Loop
+    fetch cur1 into rec;
+    exit when not found;
+    raise info '%', rec.v;
+    insert into test_table_b values (rec.v);
+  End Loop;
+END
+$$;
+
+CALL sp_nonatomic_cursor();
+
+INFO:  1
+ERROR:  cursor "cur1" does not exist
+CONTEXT:  PL/pgSQL function "sp_nonatomic_cursor" line 7 at fetch
+```
+
+To make the cursor loop work, put it between START TRANSACTION\.\.\.COMMIT\.
+
+```
+insert into test_table_a values (1), (2), (3);
+
+CREATE OR REPLACE PROCEDURE sp_nonatomic_cursor() NONATOMIC
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  rec RECORD;
+  cur1 cursor for select * from test_table_a order by 1;
+BEGIN
+  START TRANSACTION;
+  open cur1;
+  Loop
+    fetch cur1 into rec;
+    exit when not found;
+    raise info '%', rec.v;
+    insert into test_table_b values (rec.v);
+  End Loop;
+  COMMIT;
+END
+$$;
+
+CALL sp_nonatomic_cursor();
+
+INFO:  1
+INFO:  2
+INFO:  3
+CALL
 ```

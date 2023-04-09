@@ -34,7 +34,7 @@ event_name varchar(max),
 event_source varchar(max),
 requesttime timestamp,
 useragent varchar(max),
-recipientaccountid bigint) 
+recipientaccountid bigint)
 row format serde 'org.openx.data.jsonserde.JsonSerDe'
 with serdeproperties (
 'dots.in.keys' = 'true',
@@ -68,7 +68,7 @@ select eskind,databasename,esoptions from svv_external_databases order by databa
 ```
 
 ```
-eskind | databasename | esoptions                                                                        
+eskind | databasename | esoptions
 -------+--------------+----------------------------------------------------------------------------------
      1 | default      | {"REGION":"us-west-2","IAM_ROLE":"arn:aws:iam::123456789012:role/mySpectrumRole"}
      1 | sampledb     | {"REGION":"us-west-2","IAM_ROLE":"arn:aws:iam::123456789012:role/mySpectrumRole"}
@@ -84,9 +84,9 @@ select schemaname, tablename, location from svv_external_tables;
 ```
 
 ```
-schemaname | tablename            | location                                               
+schemaname | tablename            | location
 -----------+----------------------+--------------------------------------------------------
-spectrum   | sales                | s3://awssampledbuswest2/tickit/spectrum/sales          
+spectrum   | sales                | s3://awssampledbuswest2/tickit/spectrum/sales
 spectrum   | sales_part           | s3://awssampledbuswest2/tickit/spectrum/sales_partition
 ```
 
@@ -114,13 +114,13 @@ spectrum   | sales     | saletime   | timestamp     |        10 |        0
 To view table partitions, use the following query\.
 
 ```
-select schemaname, tablename, values, location 
+select schemaname, tablename, values, location
 from svv_external_partitions
 where tablename = 'sales_part';
 ```
 
 ```
-schemaname | tablename  | values         | location                                                                
+schemaname | tablename  | values         | location
 -----------+------------+----------------+-------------------------------------------------------------------------
 spectrum   | sales_part | ["2008-01-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
 spectrum   | sales_part | ["2008-02-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
@@ -177,47 +177,47 @@ To add the partitions, run the following ALTER TABLE commands\.
 
 ```
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-01-01') 
+add if not exists partition (saledate='2008-01-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-02-01') 
+add if not exists partition (saledate='2008-02-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-03-01') 
+add if not exists partition (saledate='2008-03-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-03/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-04-01') 
+add if not exists partition (saledate='2008-04-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-04/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-05-01') 
+add if not exists partition (saledate='2008-05-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-05/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-06-01') 
+add if not exists partition (saledate='2008-06-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-06/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-07-01') 
+add if not exists partition (saledate='2008-07-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-07/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-08-01') 
+add if not exists partition (saledate='2008-08-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-08/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-09-01') 
+add if not exists partition (saledate='2008-09-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-09/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-10-01') 
+add if not exists partition (saledate='2008-10-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-10/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-11-01') 
+add if not exists partition (saledate='2008-11-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-11/';
 alter table spectrum.sales_part
-add if not exists partition (saledate='2008-12-01') 
+add if not exists partition (saledate='2008-12-01')
 location 's3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-12/';
 ```
 
 To select data from the partitioned table, run the following query\.
 
 ```
-select top 10 spectrum.sales_part.eventid, sum(spectrum.sales_part.pricepaid) 
+select top 10 spectrum.sales_part.eventid, sum(spectrum.sales_part.pricepaid)
 from spectrum.sales_part, event
 where spectrum.sales_part.eventid = event.eventid
   and spectrum.sales_part.pricepaid > 30
@@ -227,7 +227,7 @@ order by 2 desc;
 ```
 
 ```
-eventid | sum     
+eventid | sum
 --------+---------
     914 | 36173.00
    5478 | 27303.00
@@ -249,7 +249,7 @@ where tablename = 'sales_part';
 ```
 
 ```
-schemaname | tablename  | values         | location                                         
+schemaname | tablename  | values         | location
 -----------+------------+----------------+--------------------------------------------------
 spectrum   | sales_part | ["2008-01-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-01
 spectrum   | sales_part | ["2008-02-01"] | s3://awssampledbuswest2/tickit/spectrum/sales_partition/saledate=2008-02
@@ -272,13 +272,13 @@ The following shows an example of specifying the ROW FORMAT SERDE parameters for
 ```
 create external table spectrum.sales(salesid int, listid int, sellerid int, buyerid int, eventid int, dateid int, qtysold int, pricepaid decimal(8,2), comment VARCHAR(255))
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-WITH SERDEPROPERTIES ('avro.schema.literal'='{\"namespace\": \"dory.sample\",\"name\": \"dory_avro\",\"type\": \"record\", \"fields\": [{\"name\":\"salesid\", \"type\":\"int\"}, 
-{\"name\":\"listid\", \"type\":\"int\"}, 
-{\"name\":\"sellerid\", \"type\":\"int\"}, 
-{\"name\":\"buyerid\", \"type\":\"int\"}, 
-{\"name\":\"eventid\",\"type\":\"int\"}, 
-{\"name\":\"dateid\",\"type\":\"int\"}, 
-{\"name\":\"qtysold\",\"type\":\"int\"}, 
+WITH SERDEPROPERTIES ('avro.schema.literal'='{\"namespace\": \"dory.sample\",\"name\": \"dory_avro\",\"type\": \"record\", \"fields\": [{\"name\":\"salesid\", \"type\":\"int\"},
+{\"name\":\"listid\", \"type\":\"int\"},
+{\"name\":\"sellerid\", \"type\":\"int\"},
+{\"name\":\"buyerid\", \"type\":\"int\"},
+{\"name\":\"eventid\",\"type\":\"int\"},
+{\"name\":\"dateid\",\"type\":\"int\"},
+{\"name\":\"qtysold\",\"type\":\"int\"},
 {\"name\":\"pricepaid\", \"type\": {\"type\": \"bytes\", \"logicalType\": \"decimal\", \"precision\": 8, \"scale\": 2}}, {\"name\":\"comment\",\"type\":\"string\"}]}')
 STORED AS AVRO
 location 's3://mybucket/avro/sales' ;
@@ -383,8 +383,8 @@ CREATE EXTERNAL TABLE schema_spectrum_uddh.soccer_league
   league_spi  decimal(6,2),
   league_nspi integer
 )
-ROW FORMAT DELIMITED 
-    FIELDS TERMINATED BY ',' 
+ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n\l'
 stored as textfile
 LOCATION 's3://spectrum-uddh/league/'
@@ -460,7 +460,7 @@ league_rank	club_name	league_name		league_nspi
 The following example alters the `soccer_league` table to specify the `invalid_char_handling` external table properties to drop rows with unexpected characters\.
 
 ```
-alter table schema_spectrum_uddh.soccer_league 
+alter table schema_spectrum_uddh.soccer_league
 set table properties ('invalid_char_handling'='DROP_ROW','data_cleansing_enabled'='true');
 ```
 

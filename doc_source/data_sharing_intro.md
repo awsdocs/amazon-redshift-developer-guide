@@ -10,6 +10,6 @@ For information about how to get started working with data sharing and manage da
 + [Sharing data at different levels in Amazon Redshift](granularity.md)
 + [Managing data consistency in Amazon Redshift](data_consistency.md)
 + [Accessing shared data in Amazon Redshift](access_shared_data.md)
-+ [Data sharing considerations in Amazon Redshift](considerations.md)
++ [Considerations when using data sharing in Amazon Redshift](considerations.md)
 + [How data sharing works in Amazon Redshift](how_it_works.md)
 + [Controlling access for cross\-account datashares](access-cross-account.md)

@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| This is prerelease documentation for the Lake Formation\-managed datashares feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
+| This is prerelease documentation for the Lake Formation\-managed datashares feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters and workgroups, and not in production environments\. Public preview will end on April 5, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Send feedback on this feature to redshift\-datasharing@amazon\.com\.   | 
 
 **Note**  
 You can create an Amazon Redshift cluster in **Preview** to test new features of Amazon Redshift\. You can't use those features in production or move your **Preview** cluster to a production cluster or a cluster on another track\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
@@ -13,6 +13,13 @@ A banner displays on the **Clusters** list page that introduces preview\. Choose
 Enter properties for your cluster\. Choose the **Preview track** that contains the features you want to test\. We recommend entering a name for the cluster that indicates that it is on a preview track\. Choose options for your cluster, including options labeled as **\-preview**, for the features you want to test\. For general information about creating clusters, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Management Guide*\.
 Choose **Create preview cluster** to create a cluster in preview\.
 When your preview cluster is available, use your SQL client to load and query data\.
+You can create an Amazon Redshift Serverless workgroup in **Preview** to test new features of Amazon Redshift Serverless\. You can't use those features in production or move your **Preview** workgroup to a production workgroup\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
+Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+On the navigation menu, choose **Severless dashboard**, and choose **Workgroup configuration**\. The workgroups for your account in the current AWS Region are listed\. A subset of properties of each workgroup is displayed in columns in the list\.
+A banner displays on the **Workgroups** list page that introduces preview\. Choose the button **Create preview workgroup** to open the create workgroup page\.
+Enter properties for your workgroup\. We recommend entering a name for the workgroup that indicates that it is in preview\. Choose options for your workgroup, including options labeled as **\-preview**, for the features you want to test\. Continue through the pages to enter options for your workgroup and namespace\. For general information about creating workgroups, see [Creating a workgroup with a namespace](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-workgroups-create-workgroup-wizard.html) in the *Amazon Redshift Management Guide*\.
+Choose **Create preview workgroup** to create a workgroup in preview\.
+When your preview workgroup is available, use your SQL client to load and query data\.
 
 When working with the Lake Formation managed Redshift datashares preview, consider the following:
 + You must create new Amazon Redshift clusters with the preview\_2022 maintenance track\. For more information about preview tracks, see [Choosing cluster maintenance tracks](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-mgmt-maintenance-tracks)\.
@@ -22,12 +29,12 @@ When working with the Lake Formation managed Redshift datashares preview, consid
 + For any questions, issues, or feedback related to the preview features during the preview period, email redshift\-datasharing@amazon\.com or open a support case with AWS support\.
 
 This preview is currently available in the following regions:
-+ ap\-northeast\-1
-+ eu\-north\-1
-+ eu\-west\-1
-+ us\-east\-1
-+ us\-east\-2
-+ us\-west\-2
++ US East \(Ohio\) \(us\-east\-2\)
++ US East \(N\. Virginia\) \(us\-east\-1\)
++ US West \(Oregon\) \(us\-west\-2\)
++ Europe \(Ireland\) \(eu\-west\-1\)
++ Asia Pacific \(Tokyo\) \(ap\-northeast\-1\)
++ Europe \(Stockholm\) \(eu\-north\-1\)
 
  Using AWS Lake Formation, you can centrally define and enforce database, table, column, and row\-level access permissions of Amazon Redshift datashares and restrict user access to objects within a datashare\. For example, you might create and manage row\-level security policies on each consumer cluster to restrict access of a database to certain users\. By sharing data through Lake Formation, you can define permissions in Lake Formation and apply those permissions to any datashare and its objects\. For example, if you have a table containing employee information, you can use Lake Formation's column\-level filters to prevent employees who don't work in the HR department from seeing personally identifiable \(PII\), such as a social security number\. Redshift currently doesn't support Lake Formation's cell\-level filters\. For more information about data filters, see [Data filtering and cell\-level security in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/data-filtering.html) in the *AWS Lake Formation Developer Guide*\. 
 
@@ -62,10 +69,10 @@ The following are considerations for sharing Amazon Redshift data via Lake Forma
 + Row\-level filters are unsupported for views\.
 + Column\-level filters are supported for both tables and views\.
 + Cell\-level filters are unsupported\.
-+ If you created and shared a view and its tables to Lake Formation, you can configure filters to manage access of the tables, but policies are applied to objects only if you access them directly\. Amazon Redshift does not apply security policies on objects if you access them through a shared view\.
++ If you created and shared a view and its tables to Lake Formation, you can configure filters to manage access of the tables, but policies are applied to objects only if you access them directly\. Amazon Redshift doesn't apply security policies on objects if you access them through a shared view\.
 + You can't create materialized views based on a table if the table has Lake Formation filters configured\.
 + The Lake Formation administrator must have [ data lake administrator](https://docs.aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#create-data-lake-admin) permissions\.
 + The producer consumer cluster must use the RA3 instance types with the latest Amazon Redshift cluster version to share datashares via Lake Formation\.
 + Both the producer and consumer clusters must be encrypted\.
 + Redshift row\-level and column\-level access control policies implemented in the producer cluster are ignored when the datashare is shared to Lake Formation\. The Lake Formation administrator must configure these policies in Lake Formation\.
-+ Sharing datashares via Lake Formation is only available to IAM users who have access to both Redshift; and Lake Formation\.
++ Sharing datashares via Lake Formation is only available to users who have access to both Redshift and Lake Formation\.

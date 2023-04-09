@@ -19,29 +19,29 @@ ALTER TABLE locks the table for read and write operations until the transaction 
 Following are required privileges for ALTER TABLE:
 + Superuser
 + Users with the ALTER TABLE privilege
-+ Table or schema owner
++ Table owner with the USAGE privilege on the schema
 
 ## Syntax<a name="r_ALTER_TABLE-synopsis"></a>
 
 ```
-ALTER TABLE table_name 
+ALTER TABLE table_name
 {
-ADD table_constraint 
-| DROP CONSTRAINT constraint_name [ RESTRICT | CASCADE ] 
-| OWNER TO new_owner 
-| RENAME TO new_name 
-| RENAME COLUMN column_name TO new_name            
+ADD table_constraint
+| DROP CONSTRAINT constraint_name [ RESTRICT | CASCADE ]
+| OWNER TO new_owner
+| RENAME TO new_name
+| RENAME COLUMN column_name TO new_name
 | ALTER COLUMN column_name TYPE new_data_type
-| ALTER COLUMN column_name ENCODE new_encode_type     
-| ALTER COLUMN column_name ENCODE encode_type, 
-| ALTER COLUMN column_name ENCODE encode_type, .....;      
-| ALTER DISTKEY column_name 
-| ALTER DISTSTYLE ALL       
+| ALTER COLUMN column_name ENCODE new_encode_type
+| ALTER COLUMN column_name ENCODE encode_type,
+| ALTER COLUMN column_name ENCODE encode_type, .....;
+| ALTER DISTKEY column_name
+| ALTER DISTSTYLE ALL
 | ALTER DISTSTYLE EVEN
-| ALTER DISTSTYLE KEY DISTKEY column_name 
-| ALTER DISTSTYLE AUTO             
-| ALTER [COMPOUND] SORTKEY ( column_name [,...] ) 
-| ALTER SORTKEY AUTO 
+| ALTER DISTSTYLE KEY DISTKEY column_name
+| ALTER DISTSTYLE AUTO
+| ALTER [COMPOUND] SORTKEY ( column_name [,...] )
+| ALTER SORTKEY AUTO
 | ALTER SORTKEY NONE
 | ALTER ENCODE AUTO
 | ADD [ COLUMN ] column_name column_type
@@ -53,19 +53,19 @@ ADD table_constraint
 where table_constraint is:
 
 [ CONSTRAINT constraint_name ]
-{ UNIQUE ( column_name [, ... ] )  
-| PRIMARY KEY ( column_name [, ... ] ) 
+{ UNIQUE ( column_name [, ... ] )
+| PRIMARY KEY ( column_name [, ... ] )
 | FOREIGN KEY (column_name [, ... ] )
    REFERENCES  reftable [ ( refcolumn ) ]}
 
 The following options apply only to external tables:
 
-SET LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' } 
+SET LOCATION { 's3://bucket/folder/' | 's3://bucket/manifest_file' }
 | SET FILE FORMAT format |
-| SET TABLE PROPERTIES ('property_name'='property_value') 
-| PARTITION ( partition_column=partition_value [, ...] ) 
-  SET LOCATION { 's3://bucket/folder' |'s3://bucket/manifest_file' } 
-| ADD [IF NOT EXISTS] 
+| SET TABLE PROPERTIES ('property_name'='property_value')
+| PARTITION ( partition_column=partition_value [, ...] )
+  SET LOCATION { 's3://bucket/folder' |'s3://bucket/manifest_file' }
+| ADD [IF NOT EXISTS]
     PARTITION ( partition_column=partition_value [, ...] ) LOCATION { 's3://bucket/folder' |'s3://bucket/manifest_file' }
     [, ... ]
 | DROP PARTITION ( partition_column=partition_value [, ...] )
@@ -85,7 +85,7 @@ ALTER TABLE tablename ALTER DISTSTYLE ALL, ALTER SORTKEY (column_list);
 Amazon Redshift supports the row\-level security control of the ALTER TABLE clause:
 
 ```
-ALTER TABLE tablename ROW LEVEL SECURITY { ON | OFF };
+ALTER TABLE tablename ROW LEVEL SECURITY { ON | OFF } [ FOR DATASHARES ];
 ```
 
 To enable auto\-refreshing of a materialized view, use the following ALTER TABLE command\.
@@ -107,7 +107,7 @@ DROP CONSTRAINT *constraint\_name*
 A clause that drops the named constraint from the table\. To drop a constraint, specify the constraint name, not the constraint type\. To view table constraint names, run the following query\.  
 
 ```
-select constraint_name, constraint_type 
+select constraint_name, constraint_type
 from information_schema.table_constraints;
 ```
 
@@ -185,8 +185,8 @@ When you alter a distribution style to AUTO, the distribution style of the table
 + A small table with DISTSTYLE KEY is converted to AUTO\(ALL\)\. 
 + A large table with DISTSTYLE ALL is converted to AUTO\(EVEN\)\. 
 + A large table with DISTSTYLE EVEN is converted to AUTO\(EVEN\)\. 
-+ A large table with DISTSTYLE KEY is converted to AUTO\(KEY\) and the DISTKEY is preserved\. 
-If Amazon Redshift determines that a new distribution style or key will improve the performance of queries, then Amazon Redshift might change the distribution style or key of your table in the future\.   
++ A large table with DISTSTYLE KEY is converted to AUTO\(KEY\) and the DISTKEY is preserved\. In this case, Amazon Redshift makes no changes to the table\.
+If Amazon Redshift determines that a new distribution style or key will improve the performance of queries, then Amazon Redshift might change the distribution style or key of your table in the future\. For example, Amazon Redshift might convert a table with a DISTSTYLE of AUTO\(KEY\) to AUTO\(EVEN\), or vice versa\.  
 For more information about DISTSTYLE AUTO, see [CREATE TABLE](r_CREATE_TABLE_NEW.md)\.   
 To view the distribution style of a table, query the SVV\_TABLE\_INFO system catalog view\. For more information, see [SVV\_TABLE\_INFO](r_SVV_TABLE_INFO.md)\. To view the Amazon Redshift Advisor recommendations for tables, query the SVV\_ALTER\_TABLE\_RECOMMENDATIONS system catalog view\. For more information, see [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](r_SVV_ALTER_TABLE_RECOMMENDATIONS.md)\. To view the actions taken by Amazon Redshift, query the SVL\_AUTO\_WORKER\_ACTION system catalog view\. For more information, see [SVL\_AUTO\_WORKER\_ACTION](r_SVL_AUTO_WORKER_ACTION.md)\. 
 
@@ -339,5 +339,8 @@ DROP PARTITION \(*partition\_column*=*partition\_value* \[, \.\.\.\] \)
 A clause that drops the specified partition\. Dropping a partition alters only the external table metadata\. The data on Amazon S3 isn't affected\.
 
 ROW LEVEL SECURITY \{ ON \| OFF \}   
-A clause that turns on or off row\-level security for a security policy\.  
-When row\-level security is turned on for a table, you can only read the rows that the row\-level policy permits for access\. When there isn't any policy granting you any access to the table, then you can't see any rows from the table\.
+A clause that turns on or off row\-level security for a table\.  
+When row\-level security is turned on for a table, you can only read the rows that the row\-level security policy permits you to access\. When there isn't any policy granting you access to the table, you can't see any rows from the table\.
+
+FOR DATASHARES  
+A clause that determines whether a table is RLS\-protected over datashares\. By default, a RLS\-protected table is also RLS\-protected over datashares\.

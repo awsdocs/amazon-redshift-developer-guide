@@ -41,7 +41,7 @@ begin;
 
 -- Declare a cursor
 
-declare lollapalooza cursor for 
+declare lollapalooza cursor for
 select eventname, starttime, pricepaid/qtysold as costperticket, qtysold
 from sales, event
 where sales.eventid = event.eventid

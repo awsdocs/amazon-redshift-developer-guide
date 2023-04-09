@@ -11,11 +11,11 @@ DROP USER [ IF EXISTS ] name [, ... ]
 ## Parameters<a name="r_DROP_USER-parameters"></a>
 
 IF EXISTS  
-Clause that indicates that if the specified user account doesn’t exist, the command should make no changes and return a message that the user account doesn't exist, rather than terminating with an error\.  
-This clause is useful when scripting, so the script doesn’t fail if DROP USER runs against a nonexistent user account\.
+Clause that indicates that if the specified user doesn’t exist, the command should make no changes and return a message that the user doesn't exist, rather than terminating with an error\.  
+This clause is useful when scripting, so the script doesn’t fail if DROP USER runs against a nonexistent user\.
 
  *name*   
-Name of the user account to remove\. You can specify multiple user accounts, with a comma separating each account name from the next\.
+Name of the user to remove\. You can specify multiple users, with a comma separating each user name from the next\.
 
 ## Usage notes<a name="r_DROP_USER-notes"></a>
 
@@ -34,27 +34,27 @@ If a user owns an object, first drop the object or change its ownership to anoth
 
 ```
 drop database dwdatabase;
-alter schema dw owner to dwadmin; 
+alter schema dw owner to dwadmin;
 revoke all on table dwtable from dwuser;
 drop user dwuser;
 ```
 
 ## Examples<a name="r_DROP_USER-examples"></a>
 
-The following example drops a user account called danny:
+The following example drops a user called paulo:
 
 ```
-drop user danny;
+drop user paulo;
 ```
 
-The following example drops two user accounts, danny and billybob:
+The following example drops two users, paulo and martha:
 
 ```
-drop user danny, billybob;
+drop user paulo, martha;
 ```
 
-The following example drops the user account danny if it exists, or does nothing and returns a message if it doesn't:
+The following example drops the user paulo if it exists, or does nothing and returns a message if it doesn't:
 
 ```
-drop user if exists danny;
+drop user if exists paulo;
 ```

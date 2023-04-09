@@ -56,7 +56,7 @@ The following example displays the comment on the SALES table\.
 
 ```
 select obj_description('public.sales'::regclass);
-            
+
 obj_description
 -------------------------------------
 This table stores tickets sales data
@@ -78,9 +78,9 @@ The following example displays a comment on the EVENTID column \(column number 5
 
 ```
 select col_description( 'public.sales'::regclass, 5::integer );
-            
+
 col_description
------------------------------------------ 
+-----------------------------------------
 Foreign-key reference to the EVENT table.
 ```
 
@@ -93,28 +93,13 @@ comment on table event is 'Contains listings of individual events.';
 To view comments, query the PG\_DESCRIPTION system catalog\. The following example returns the description for the EVENT table\.
 
 ```
-select * from pg_catalog.pg_description 
+select * from pg_catalog.pg_description
 where objoid =
-(select oid from pg_class where relname = 'event' 
+(select oid from pg_class where relname = 'event'
 and relnamespace =
 (select oid from pg_catalog.pg_namespace where nspname = 'public') );
 
-objoid | classoid | objsubid | description                            
+objoid | classoid | objsubid | description
 -------+----------+----------+----------------------------------------
 116658 |     1259 |        0 | Contains listings of individual events.
-```
-
-The following example uses the psql `\dd` command to view the comments\. Amazon Redshift doesn't support psql directly\. You must run psql commands from the PostgreSQL psql client\. 
-
-**Note**  
-The `\dd` command returns comments only with the psql 8\.x versions\. 
-
-```
-\dd event
-
-Object descriptions
-schema | name | object | description
---------+-------+--------+-----------------------------------------
-public | event | table | Contains listings of individual events.
-(1 row)
 ```

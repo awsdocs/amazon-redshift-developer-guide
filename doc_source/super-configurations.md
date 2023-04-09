@@ -16,16 +16,16 @@ SET cast_super_null_on_error=ON;  --default lax mode for casting
 SET parse_super_null_on_error=OFF;  --default strict mode for ingestion
 ```
 
-## Accessing JSON fields with upper or mixed case field names or attributes<a name="upper-mixed-case"></a>
+## Accessing JSON fields with uppercase and mixedcase field names or attributes<a name="upper-mixed-case"></a>
 
-When your JSON fields are in upper case or mixed case, then you must configure the enable\_case\_sensitive\_identifier to TRUE and wrap the mixed or upper case fields with double quotation marks\.
+When your JSON attribute names are in uppercase or mixedcase, you must be able to navigate SUPER type structures in a case sensitive way\. To do that, you can configure `enable_case_sensitive_identifier` to TRUE and wrap the uppercase and mixedcase attribute names with double quotation marks\. You can also configure `enable_case_sensitive_super_attribute` to TRUE\. In this case, you can use uppercase and mixedcase attribute names in your queries without wrapping them in double quotation marks\.
 
-The following example illustrates how to set the enable\_case\_sensitive\_identifier to query data\.
+The following example illustrates how to set `enable_case_sensitive_identifier` to query data\.
 
 ```
 SET enable_case_sensitive_identifier to TRUE;
  
--- Accessing JSON fields with uppercase and mixed-case names
+-- Accessing JSON attribute names with uppercase and mixedcase names
 SELECT json_table.data."ITEMS"."Name",
        json_table.data."price"
 FROM
@@ -38,14 +38,45 @@ FROM
  
 RESET enable_case_sensitive_identifier;
  
--- After resetting the above configuration, the following query accessing JSON fields with uppercase and mixed-case names should return null (if in lax mode).
+-- After resetting the above configuration, the following query accessing JSON attribute names with uppercase and mixedcase names should return null (if in lax mode).
 SELECT json_table.data."ITEMS"."Name",
        json_table.data."price"
 FROM
   (SELECT json_parse('{"ITEMS":{"Name":"TV"}, "price": 345}') AS data) AS json_table;
 
- name | price
+ name | price 
 ------+-------
+      | 345
+(1 row)
+```
+
+The following example illustrates how to set `enable_case_sensitive_super_attribute` to query data\.
+
+```
+SET enable_case_sensitive_super_attribute to TRUE;
+ -- Accessing JSON attribute names with uppercase and mixedcase names
+ 
+SELECT json_table.data.ITEMS.Name,
+       json_table.data.price 
+FROM
+  (SELECT json_parse('{"ITEMS":{"Name":"TV"}, "price": 345}') AS data) AS json_table;
+
+ name | price
+ -----+-------
+ "TV" | 345
+(1 row)
+
+ RESET enable_case_sensitive_super_attribute;
+ 
+ -- After resetting enable_case_sensitive_super_attribute, the query now returns NULL for ITEMS.Name (if in lax mode).
+ 
+SELECT json_table.data.ITEMS.Name,
+       json_table.data.price 
+FROM
+  (SELECT json_parse('{"ITEMS":{"Name":"TV"}, "price": 345}') AS data) AS json_table;
+
+ name | price
+ -----+-------
       | 345
 (1 row)
 ```

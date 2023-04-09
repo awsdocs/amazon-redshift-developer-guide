@@ -16,7 +16,7 @@ A COPY command is the most efficient way to load a table\. You can also add data
 **Note**  
 Amazon Redshift Spectrum external tables are read\-only\. You can't COPY or INSERT to an external table\.
 
-To access data on other AWS resources, your cluster must have permission to access those resources and to perform the necessary actions to access the data\. You can use Identity and Access Management \(IAM\) to limit the access users have to your cluster resources and data\.
+To access data on other AWS resources, your cluster must have permission to access those resources and to perform the necessary actions to access the data\. You can use AWS Identity and Access Management \(IAM\) to limit the access users have to your cluster resources and data\.
 
 After your initial data load, if you add, modify, or delete a significant amount of data, you should follow up by running a VACUUM command to reorganize your data and reclaim space after deletes\. You should also run an ANALYZE command to update table statistics\.
 

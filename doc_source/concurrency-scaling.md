@@ -1,6 +1,6 @@
 # Working with concurrency scaling<a name="concurrency-scaling"></a>
 
-With the Concurrency Scaling feature, you can support virtually unlimited concurrent users and concurrent queries, with consistently fast query performance\.
+With the Concurrency Scaling feature, you can support thousands of concurrent users and concurrent queries, with consistently fast query performance\.
 
 When you turn on concurrency scaling, Amazon Redshift automatically adds additional cluster capacity to process an increase in both read and write queries\. Users see the most current data, whether the queries run on the main cluster or a concurrency\-scaling cluster\. You're charged for concurrency\-scaling clusters only for the time they're actively running queries\. For more information about pricing, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. 
 

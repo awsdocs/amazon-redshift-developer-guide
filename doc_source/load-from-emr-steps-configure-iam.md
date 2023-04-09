@@ -4,7 +4,7 @@ The users that create the Amazon EMR cluster and run the Amazon Redshift COPY co
 
 **To configure IAM permissions**
 
-1. Add the following permissions for the IAM user that will create the Amazon EMR cluster\.
+1. Add the following permissions for the user that will create the Amazon EMR cluster\.
 
    ```
    ec2:DescribeSecurityGroups
@@ -13,7 +13,7 @@ The users that create the Amazon EMR cluster and run the Amazon Redshift COPY co
    redshift:DescribeClusters
    ```
 
-1. Add the following permission for the IAM role or IAM user that will run the COPY command\.
+1. Add the following permission for the IAM role or user that will run the COPY command\.
 
    ```
    elasticmapreduce:ListInstances

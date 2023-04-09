@@ -13,7 +13,7 @@ Set up Amazon Redshift streaming ingestion for Amazon MSK by performing the foll
 You must have an Amazon MSK source available, before configuring Amazon Redshift streaming ingestion\. If you do not have a source, follow the instructions at [Getting Started Using Amazon MSK](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html)\.
 
 **Note**  
-*Streaming ingestion and Amazon Redshift Serverless* \- The configuration steps in this topic apply to Amazon Redshift Serverless\. For more information, see [Streaming ingestion considerations](materialized-view-streaming-ingestion.md#materialized-view-streaming-ingestion-considerations)\.
+*Streaming ingestion and Amazon Redshift Serverless* \- The configuration steps in this topic apply both to provisioned Amazon Redshift clusters and to Amazon Redshift Serverless\. For more information, see [Streaming ingestion considerations](materialized-view-streaming-ingestion.md#materialized-view-streaming-ingestion-considerations)\.
 
 ## Setting up IAM and performing streaming ingestion from Kafka<a name="materialized-view-streaming-ingestion-getting-started-MSK-setup"></a>
 
@@ -72,6 +72,8 @@ Assuming you have an Amazon MSK cluster available, the first step is to define a
 
 1.  Check your VPC and verify that your Amazon Redshift cluster has a route to get to your Amazon MSK cluster\. The inbound security group rules for your Amazon MSK cluster should allow your Amazon Redshift cluster's security group\. The ports you specify depend on the authentication method used for your cluster, if you use Amazon MSK\. For more information, see [Port information](https://docs.aws.amazon.com/msk/latest/developerguide/port-info.html) and [Access from within AWS but outside the VPC](https://docs.aws.amazon.com/msk/latest/developerguide/aws-access.html)\.
 
+   Note that client authentication with TLS isn't supported for streaming ingestion\. For more information, see [Limitations](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-streaming-ingestion.html#materialized-view-streaming-ingestion-limitations)\.
+
 1. Enable enhanced VPC routing on your Amazon Redshift cluster\. For more information, see [Enabling enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-enabling-cluster.html)\.
 
 1. In Amazon Redshift, create an external schema to map to the Amazon MSK cluster\. 
@@ -84,21 +86,31 @@ Assuming you have an Amazon MSK cluster available, the first step is to define a
    CLUSTER_ARN 'msk-cluster-arn';
    ```
 
-   Note in the `FROM` clause that Amazon MSK denotes that the schema maps data from Managed Kafka Services\.  `CLUSTER_ARN` specifies the Amazon MSK cluster that you’re streaming from\.
+   In the `FROM` clause, Amazon MSK denotes that the schema maps data from Managed Kafka Services\.  
+
+    Streaming ingestion for Amazon MSK provides the following authentication types, when you create the external schema: 
+   + **none** – Specifies that there is no authentication step\.
+   + **iam** – Specifies IAM authentication\. When you choose this, make sure that the IAM role has permissions for IAM authentication\. 
+
+   Additional Amazon MSK authentication methods, such as TLS authentication or a username and password, aren't supported for streaming ingestion\. 
+
+    `CLUSTER_ARN` specifies the Amazon MSK cluster that you’re streaming from\.
 
 1. Create a materialized view to consume the data from the topic\. The following example defines a materialized view with JSON source data\. Note that the following view validates that the data is valid JSON and utf8\. Kafka topic names are case sensitive and can contain both uppercase and lowercase letters\. To use case\-sensitive identifiers, you can set the configuration `enable_case_sensitive_identifier` to `true` at either the session or cluster level\. For more information, see [Names and identifiers](https://docs.aws.amazon.com/redshift/latest/dg/r_names.html) and [r\_enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html)\.
 
    ```
-   CREATE MATERIALIZED VIEW MyView AS
+   CREATE MATERIALIZED VIEW MyView AUTO REFRESH YES AS
    SELECT "kafka_partition", 
     "kafka_offset", 
     "kafka_timestamp_type", 
     "kafka_timestamp", 
     "kafka_key", 
-    JSON_PARSE("kafkavalue") as Data, 
+    JSON_PARSE("kafka_value") as Data, 
     "kafka_headers"
    FROM MySchema.MyTopic;
    ```
+
+   To turn on auto refresh, use `AUTO REFRESH YES`\. The default behavior is manual refresh\. 
 
    Metadata columns include the following:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/materialized-view-streaming-ingestion-getting-started-MSK.html)
@@ -106,13 +118,13 @@ Assuming you have an Amazon MSK cluster available, the first step is to define a
 1. Refresh the view, which invokes Amazon Redshift to read from the topic and load data into the materialized view\.
 
    ```
-   REFRESH MATERIALIZED VIEW my_view;
+   REFRESH MATERIALIZED VIEW MyView;
    ```
 
 1. Query data in the materialized view\.
 
    ```
-   select * from my_view;
+   select * from MyView;
    ```
 
    The materialized view is updated directly from the topic when `REFRESH` is run\. You create a materialized view that maps to the Kafka topic data source\. You can perform filtering and aggregations on the data as part of the materialized view definition\. Your streaming ingestion materialized view \(base materialized view\) can reference only one Kafka topic, but you can create additional materialized views that join with the base materialized view and with other materialized views or tables\.

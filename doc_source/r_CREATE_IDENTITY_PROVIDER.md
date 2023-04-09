@@ -6,7 +6,7 @@ Defines a new identity provider\. Only a superuser can create an identity provid
 
 ```
 CREATE IDENTITY PROVIDER identity_provider_name TYPE type_name
-NAMESPACE namespace_name 
+NAMESPACE namespace_name
  PARAMETERS parameter_string
 ```
 

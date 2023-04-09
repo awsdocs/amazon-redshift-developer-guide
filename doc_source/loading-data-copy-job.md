@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| This is prerelease documentation for auto\-copy \(SQL COPY JOB\), which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+| This is prerelease documentation for auto\-copy \(SQL COPY JOB\), which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. Public preview will end on May 1, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 **Note**  
 You can create an Amazon Redshift cluster in **Preview** to test new features of Amazon Redshift\. You can't use those features in production or move your **Preview** cluster to a production cluster or a cluster on another track\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
@@ -13,7 +13,14 @@ A banner displays on the **Clusters** list page that introduces preview\. Choose
 Enter properties for your cluster\. Choose the **Preview track** that contains the features you want to test\. We recommend entering a name for the cluster that indicates that it is on a preview track\. Choose options for your cluster, including options labeled as **\-preview**, for the features you want to test\. For general information about creating clusters, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Management Guide*\.
 Choose **Create preview cluster** to create a cluster in preview\.
 When your preview cluster is available, use your SQL client to load and query data\.
-Your cluster must be created with the preview track named: `preview_autocopy_2022`\. Use a new cluster for testing, restoring a cluster into this track is not supported\. The autocopy feature is not available with Amazon Redshift Serverless workgroup\.  
+Your cluster must be created with the preview track named: `preview_2022`\. Use a new cluster for testing, restoring a cluster into this track is not supported\. The autocopy feature is not available with Amazon Redshift Serverless workgroup\.  
+You can create an Amazon Redshift Serverless workgroup in **Preview** to test new features of Amazon Redshift Serverless\. You can't use those features in production or move your **Preview** workgroup to a production workgroup\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
+Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+On the navigation menu, choose **Severless dashboard**, and choose **Workgroup configuration**\. The workgroups for your account in the current AWS Region are listed\. A subset of properties of each workgroup is displayed in columns in the list\.
+A banner displays on the **Workgroups** list page that introduces preview\. Choose the button **Create preview workgroup** to open the create workgroup page\.
+Enter properties for your workgroup\. We recommend entering a name for the workgroup that indicates that it is in preview\. Choose options for your workgroup, including options labeled as **\-preview**, for the features you want to test\. Continue through the pages to enter options for your workgroup and namespace\. For general information about creating workgroups, see [Creating a workgroup with a namespace](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-workgroups-create-workgroup-wizard.html) in the *Amazon Redshift Management Guide*\.
+Choose **Create preview workgroup** to create a workgroup in preview\.
+When your preview workgroup is available, use your SQL client to load and query data\.
 This preview is available in the following AWS Regions:  
 US East \(Ohio\) Region \(us\-east\-2\)
 US East \(N\. Virginia\) Region \(us\-east\-1\)

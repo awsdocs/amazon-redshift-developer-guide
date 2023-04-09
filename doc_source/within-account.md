@@ -177,7 +177,7 @@ You can share data for read purposes across different Amazon Redshift clusters w
     salesshare |             |                 |                   | INBOUND    |            |         t           |           |   123456789012   | 13b8833d-17c6-4f16-8fe4-1a018f5ed00d
    ```
 
-1. Create local databases that reference to the datashares\. For more information, see [CREATE DATABASE](r_CREATE_DATABASE.md)\.
+1. As a database superuser, you can create local databases that reference to the datashares\. For more information, see [CREATE DATABASE](r_CREATE_DATABASE.md)\.
 
    ```
    CREATE DATABASE sales_db FROM DATASHARE salesshare OF NAMESPACE '13b8833d-17c6-4f16-8fe4-1a018f5ed00d';

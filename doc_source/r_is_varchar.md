@@ -1,13 +1,13 @@
-# is\_varchar function<a name="r_is_varchar"></a>
+# IS\_VARCHAR function<a name="r_is_varchar"></a>
 
-Checks whether a variable is a varchar\. The is\_varchar function returns true for all strings\. The function returns false for any other values\.
+Checks whether a variable is a VARCHAR\. The IS\_VARCHAR function returns true for all strings\. The function returns false for any other values\.
 
-The is\_varchar function is a superset of the is\_char function\.
+The IS\_VARCHAR function is a superset of the IS\_CHAR function\.
 
 ## Syntax<a name="r_is_varchar-synopsis"></a>
 
 ```
-is_varchar (super_expression)
+IS_VARCHAR (super_expression)
 ```
 
 ## Arguments<a name="r_is_varchar-arguments"></a>
@@ -21,7 +21,7 @@ Boolean
 
 ## Example<a name="r_is_varchar_example"></a>
 
-The following query shows an is\_varchar function\.
+The following query shows an IS\_VARCHAR function\.
 
 ```
 CREATE TABLE t(s super);

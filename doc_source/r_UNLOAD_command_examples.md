@@ -9,7 +9,7 @@ The following example unloads the VENUE table and writes the data to `s3://mybuc
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/' 
+to 's3://mybucket/unload/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
@@ -26,7 +26,7 @@ To better differentiate the output files, you can include a prefix in the locati
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/venue_pipe_' 
+to 's3://mybucket/unload/venue_pipe_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
@@ -87,7 +87,7 @@ The following example unloads the VENUE table and writes the data in JSON format
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/' 
+to 's3://mybucket/unload/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 JSON;
 ```
@@ -116,7 +116,7 @@ The following example unloads the VENUE table and writes the data in CSV format 
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/' 
+to 's3://mybucket/unload/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 CSV;
 ```
@@ -145,7 +145,7 @@ The following example unloads the VENUE table and writes the data in CSV format 
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/' 
+to 's3://mybucket/unload/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 CSV DELIMITER AS '|';
 ```
@@ -184,9 +184,9 @@ manifest;
 The result is these five files:
 
 ```
-s3://mybucket/venue_pipe_0000_part_00 
-s3://mybucket/venue_pipe_0001_part_00 
-s3://mybucket/venue_pipe_0002_part_00 
+s3://mybucket/venue_pipe_0000_part_00
+s3://mybucket/venue_pipe_0001_part_00
+s3://mybucket/venue_pipe_0002_part_00
 s3://mybucket/venue_pipe_0003_part_00
 s3://mybucket/venue_pipe_manifest
 ```
@@ -215,7 +215,7 @@ The following example unloads the VENUE table using the MANIFEST VERBOSE option\
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload_venue_folder/' 
+to 's3://mybucket/unload_venue_folder/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 manifest verbose;
 ```
@@ -256,7 +256,7 @@ The following example unloads VENUE with a header row\.
 
 ```
 unload ('select * from venue where venueseats > 75000')
-to 's3://mybucket/unload/' 
+to 's3://mybucket/unload/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 header
 parallel off;
@@ -278,7 +278,7 @@ By default, the maximum file size is 6\.2 GB\. If the unload data is larger than
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/' 
+to 's3://mybucket/unload/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 maxfilesize 1 gb;
 ```
@@ -291,8 +291,8 @@ The following example unloads the VENUE table and writes the data serially to `s
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/venue_serial_' 
-iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole' 
+to 's3://mybucket/unload/venue_serial_'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 parallel off;
 ```
 
@@ -302,7 +302,7 @@ If the unload data is larger than 6\.2 GB, UNLOAD creates a new file for each 6\
 
 ```
 unload ('select * from lineorder')
-to 's3://mybucket/unload/lineorder_serial_' 
+to 's3://mybucket/unload/lineorder_serial_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 parallel off gzip;
 ```
@@ -320,7 +320,7 @@ To better differentiate the output files, you can include a prefix in the locati
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/unload/venue_pipe_' 
+to 's3://mybucket/unload/venue_pipe_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
@@ -346,7 +346,7 @@ copy loadvenue from 's3://mybucket/venue_pipe_' iam_role 'arn:aws:iam::012345678
 If you used the MANIFEST option to create a manifest file with your unload files, you can load the data using the same manifest file\. You do so with a COPY command with the MANIFEST option\. The following example loads data using a manifest file\.
 
 ```
-copy loadvenue 
+copy loadvenue
 from 's3://mybucket/venue_pipe_manifest' iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 manifest;
 ```
@@ -357,9 +357,9 @@ The following example unloads the VENUE table to a set of encrypted files using 
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/venue_encrypt_kms' 
+to 's3://mybucket/venue_encrypt_kms'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
-kms_key_id '1234abcd-12ab-34cd-56ef-1234567890ab' 
+kms_key_id '1234abcd-12ab-34cd-56ef-1234567890ab'
 manifest
 encrypted;
 ```
@@ -368,9 +368,9 @@ The following example unloads the VENUE table to a set of encrypted files using 
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/venue_encrypt_cmk' 
+to 's3://mybucket/venue_encrypt_cmk'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
-master_symmetric_key 'EXAMPLEMASTERKEYtkbjk/OpCwtYSx/M4/t7DMCDIK722' 
+master_symmetric_key 'EXAMPLEMASTERKEYtkbjk/OpCwtYSx/M4/t7DMCDIK722'
 encrypted;
 ```
 
@@ -381,10 +381,10 @@ To load tables from a set of files that were created by using UNLOAD with the EN
 ```
 create table loadvenue (like venue);
 
-copy loadvenue 
-from 's3://mybucket/venue_encrypt_manifest' 
+copy loadvenue
+from 's3://mybucket/venue_encrypt_manifest'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
-master_symmetric_key 'EXAMPLEMASTERKEYtkbjk/OpCwtYSx/M4/t7DMCDIK722' 
+master_symmetric_key 'EXAMPLEMASTERKEYtkbjk/OpCwtYSx/M4/t7DMCDIK722'
 manifest
 encrypted;
 ```
@@ -393,7 +393,7 @@ encrypted;
 
 ```
 unload ('select venueid, venuename, venueseats from venue')
-to 's3://mybucket/venue_tab_' 
+to 's3://mybucket/venue_tab_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter as '\t';
 ```
@@ -432,10 +432,20 @@ The output data files look like the following\.
 ## Unload VENUE to a set of tab\-delimited GZIP\-compressed files<a name="unload-examples-venue-gzip"></a>
 
 ```
-unload ('select * from venue') 
+unload ('select * from venue')
 to 's3://mybucket/venue_tab_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
-delimiter as '\t' 
+delimiter as '\t'
+gzip;
+```
+
+## Unload VENUE to a GZIP\-compressed text file<a name="unload-examples-venue-extension-gzip"></a>
+
+```
+unload ('select * from venue')
+to 's3://mybucket/venue_tab_'
+iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
+extension 'txt.gz'
 gzip;
 ```
 
@@ -454,8 +464,8 @@ insert into location values (1,'Phoenix, AZ'),(2,'San Diego, CA'),(3,'Chicago, I
 Then, unload the data using the ADDQUOTES option\.
 
 ```
-unload ('select id, location from location') 
-to 's3://mybucket/location_' 
+unload ('select id, location from location')
+to 's3://mybucket/location_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 delimiter ',' addquotes;
 ```
@@ -465,7 +475,7 @@ The unloaded data files look like this:
 ```
 1,"Phoenix, AZ"
 2,"San Diego, CA"
-3,"Chicago, IL" 
+3,"Chicago, IL"
 ...
 ```
 
@@ -477,11 +487,11 @@ The following example unloads the results of a join query that contains a window
 unload ('select venuecity, venuestate, caldate, pricepaid,
 sum(pricepaid) over(partition by venuecity, venuestate
 order by caldate rows between 3 preceding and 3 following) as winsum
-from sales join date on sales.dateid=date.dateid 
+from sales join date on sales.dateid=date.dateid
 join event on event.eventid=sales.eventid
 join venue on event.venueid=venue.venueid
 order by 1,2')
-to 's3://mybucket/tickit/winsum' 
+to 's3://mybucket/tickit/winsum'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole';
 ```
 
@@ -523,8 +533,8 @@ select * from venue where venuestate is null;
 Now, UNLOAD the VENUE table using the NULL AS option to replace null values with the character string '`fred`'\. 
 
 ```
-unload ('select * from venue') 
-to 's3://mybucket/nulls/' 
+unload ('select * from venue')
+to 's3://mybucket/nulls/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 null as 'fred';
 ```
@@ -577,8 +587,8 @@ select * from loadvenuenulls where venuestate is null or venueseats is null;
 You can UNLOAD a table that contains nulls using the default NULL AS behavior and then COPY the data back into a table using the default NULL AS behavior; however, any non\-numeric fields in the target table contain empty strings, not nulls\. By default UNLOAD converts nulls to empty strings \(white space or zero\-length\)\. COPY converts empty strings to NULL for numeric columns, but inserts empty strings into non\-numeric columns\. The following example shows how to perform an UNLOAD followed by a COPY using the default NULL AS behavior\. 
 
 ```
-unload ('select * from venue') 
-to 's3://mybucket/nulls/' 
+unload ('select * from venue')
+to 's3://mybucket/nulls/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole' allowoverwrite;
 
 truncate loadvenuenulls;
@@ -602,8 +612,8 @@ select * from loadvenuenulls where venuestate is null or venueseats is null;
 To load empty strings to non\-numeric columns as NULL, include the EMPTYASNULL or BLANKSASNULL options\. It's OK to use both\.
 
 ```
-unload ('select * from venue') 
-to 's3://mybucket/nulls/' 
+unload ('select * from venue')
+to 's3://mybucket/nulls/'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole' allowoverwrite;
 
 truncate loadvenuenulls;
@@ -633,7 +643,7 @@ By default, UNLOAD doesn't overwrite existing files in the destination bucket\. 
 
 ```
 unload ('select * from venue')
-to 's3://mybucket/venue_pipe_' 
+to 's3://mybucket/venue_pipe_'
 iam_role 'arn:aws:iam::0123456789012:role/MyRedshiftRole'
 manifest allowoverwrite;
 ```

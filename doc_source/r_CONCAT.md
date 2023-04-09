@@ -57,7 +57,7 @@ Thursday, December 25, 2008
 (1 row)
 ```
 
-To concatenate columns that might contain nulls, use the [NVL expression](r_NVL_function.md)\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
+To concatenate columns that might contain nulls, use the [NVL function](r_NVL_function.md)\. The following example uses NVL to return a 0 whenever NULL is encountered\. 
 
 ```
 select concat(venuename, concat(' seats ', nvl(venueseats, 0))) as seating

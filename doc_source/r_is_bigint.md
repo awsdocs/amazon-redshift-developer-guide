@@ -1,13 +1,13 @@
-# is\_bigint function<a name="r_is_bigint"></a>
+# IS\_BIGINT function<a name="r_is_bigint"></a>
 
-Checks whether a value is a bigint\. The is\_bigint function returns true for numbers of scale 0 in the 64\-bit range\. Otherwise, the function returns false for all other values, including null and floating point numbers\.
+Checks whether a value is a BIGINT\. The IS\_BIGINT function returns true for numbers of scale 0 in the 64\-bit range\. Otherwise, the function returns false for all other values, including null and floating point numbers\.
 
-The is\_bigint function is a superset of is\_integer\.
+The IS\_BIGINT function is a superset of IS\_INTEGER\.
 
 ## Syntax<a name="r_is_bigint-synopsis"></a>
 
 ```
-is_bigint (super_expression)
+IS_BIGINT (super_expression)
 ```
 
 ## Arguments<a name="r_is_bigint-arguments"></a>
@@ -21,7 +21,7 @@ Boolean
 
 ## Example<a name="r_is_bigint_example"></a>
 
-The following query shows an is\_bigint function\.
+The following query shows an IS\_BIGINT function\.
 
 ```
 CREATE TABLE t(s super);

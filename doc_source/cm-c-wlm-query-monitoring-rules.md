@@ -17,7 +17,7 @@ You create query monitoring rules as part of your WLM configuration, which you d
 You can create rules using the AWS Management Console or programmatically using JSON\. 
 
 **Note**  
-If you choose to create rules programmatically, we strongly recommend using the console to generate the JSON that you include in the parameter group definition\. For more information, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Configuring Parameter Values Using the AWS CLI](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#configure-parameters-using-the-cli) in the *Amazon Redshift Management Guide*\. 
+If you choose to create rules programmatically, we strongly recommend using the console to generate the JSON that you include in the parameter group definition\. For more information, see  [Creating or modifying a query monitoring rule using the console](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-parameter-groups-console.html#parameter-group-modify-qmr-console)  and [Configuring Parameter Values Using the AWS CLI](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#configure-parameters-using-the-cli) in the *Amazon Redshift Management Guide*\. 
 
 To define a query monitoring rule, you specify the following elements:
 + A rule name – Rule names must be unique within the WLM configuration\. Rule names can be up to 32 alphanumeric characters or underscores, and can't contain spaces or quotation marks\. You can have up to 25 rules per queue, and the total limit for all queues is 25 rules\.
@@ -53,7 +53,7 @@ But we recommend instead that you define an equivalent query monitoring rule tha
 ]
 ```
 
-For steps to create or modify a query monitoring rule, see [Creating or Modifying a Query Monitoring Rule Using the Console](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html#parameter-group-modify-qmr-console) and [Properties in the wlm\_json\_configuration Parameter](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html#wlm-json-config-properties) in the *Amazon Redshift Management Guide*\.
+For steps to create or modify a query monitoring rule, see  [Creating or modifying a query monitoring rule using the console](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-parameter-groups-console.html#parameter-group-modify-qmr-console)  and [Properties in the wlm\_json\_configuration Parameter](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html#wlm-json-config-properties) in the *Amazon Redshift Management Guide*\.
 
 You can find more information about query monitoring rules in the following topics: 
 +  [Query monitoring metrics for Amazon Redshift](#cm-c-wlm-query-monitoring-metrics) 

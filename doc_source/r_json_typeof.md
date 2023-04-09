@@ -1,11 +1,11 @@
-# json\_typeof function<a name="r_json_typeof"></a>
+# JSON\_TYPEOF function<a name="r_json_typeof"></a>
 
 The JSON\_TYPEOF scalar function returns a VARCHAR with values boolean, number, string, object, array, or null, depending on the dynamic type of the SUPER value\. 
 
 ## Syntax<a name="r_json_typeof-synopsis"></a>
 
 ```
-json_typeof (super_expression)
+JSON_TYPEOF (super_expression)
 ```
 
 ## Arguments<a name="r_json_typeof-arguments"></a>
@@ -19,7 +19,7 @@ Varchar
 
 ## Examples<a name="r_json_typeof_example"></a>
 
-The following queries show a json\_typeof function\.
+The following queries show a JSON\_TYPEOF function\.
 
 ```
 SELECT JSON_TYPEOF(ARRAY(1,2));

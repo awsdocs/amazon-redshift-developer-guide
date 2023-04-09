@@ -163,4 +163,4 @@
 
   Use the Amazon Redshift console to create datasets\. For more information, see [Creating data sets on AWS Data Exchange](create-dataset-console.md)\.
 
-  For more information, see [Providing data products on AWS Data Exchange](https://https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html)\.
+  For more information, see [Providing data products on AWS Data Exchange](https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html)\.

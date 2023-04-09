@@ -5,9 +5,9 @@ Performs compression analysis and produces a report with the suggested compressi
 ## Syntax<a name="r_ANALYZE_COMPRESSION-synopsis"></a>
 
 ```
-ANALYZE COMPRESSION 
+ANALYZE COMPRESSION
 [ [ table_name ]
-[ ( column_name [, ...] ) ] ] 
+[ ( column_name [, ...] ) ] ]
 [COMPROWS numrows]
 ```
 
@@ -27,11 +27,11 @@ Number of rows to be used as the sample size for compression analysis\. The acce
 
 ## Usage notes<a name="r_ANALYZE_COMPRESSION_usage_notes"></a>
 
+ANALYZE COMPRESSION acquires an exclusive table lock, which prevents concurrent reads and writes against the table\. Only run the ANALYZE COMPRESSION command when the table is idle\.
+
 Run ANALYZE COMPRESSION to get recommendations for column encoding schemes, based on a sample of the table's contents\. ANALYZE COMPRESSION is an advisory tool and doesn't modify the column encodings of the table\. You can apply the suggested encoding by recreating the table or by creating a new table with the same schema\. Recreating an uncompressed table with appropriate encoding schemes can significantly reduce its on\-disk footprint\. This approach saves disk space and improves query performance for I/O\-bound workloads\.
 
 ANALYZE COMPRESSION skips the actual analysis phase and directly returns the original encoding type on any column that is designated as a SORTKEY\. It does this because range\-restricted scans might perform poorly when SORTKEY columns are compressed much more highly than other columns\.
-
-ANALYZE COMPRESSION acquires an exclusive table lock, which prevents concurrent reads and writes against the table\. Only run the ANALYZE COMPRESSION command when the table is idle\.
 
 ## Examples<a name="r_ANALYZE_COMPRESSION-examples"></a>
 
@@ -42,13 +42,13 @@ analyze compression listing;
 
 Table   | Column         | Encoding | Est_reduction_pct
 --------+----------------+----------+------------------
-listing | listid         | delta    | 75.00            
-listing | sellerid       | delta32k | 38.14            
-listing | eventid        | delta32k | 5.88             
-listing | dateid         | zstd     | 31.73            
-listing | numtickets     | zstd     | 38.41            
-listing | priceperticket | zstd     | 59.48            
-listing | totalprice     | zstd     | 37.90            
+listing | listid         | delta    | 75.00
+listing | sellerid       | delta32k | 38.14
+listing | eventid        | delta32k | 5.88
+listing | dateid         | zstd     | 31.73
+listing | numtickets     | zstd     | 38.41
+listing | priceperticket | zstd     | 59.48
+listing | totalprice     | zstd     | 37.90
 listing | listtime       | zstd     | 13.39
 ```
 
@@ -59,14 +59,14 @@ analyze compression sales(qtysold, commission, saletime);
 
 Table | Column     | Encoding | Est_reduction_pct
 ------+------------+----------+------------------
-sales | salesid    | N/A      | 0.00             
-sales | listid     | N/A      | 0.00             
-sales | sellerid   | N/A      | 0.00             
-sales | buyerid    | N/A      | 0.00             
-sales | eventid    | N/A      | 0.00             
-sales | dateid     | N/A      | 0.00             
-sales | qtysold    | zstd     | 67.14            
-sales | pricepaid  | N/A      | 0.00             
-sales | commission | zstd     | 13.94            
+sales | salesid    | N/A      | 0.00
+sales | listid     | N/A      | 0.00
+sales | sellerid   | N/A      | 0.00
+sales | buyerid    | N/A      | 0.00
+sales | eventid    | N/A      | 0.00
+sales | dateid     | N/A      | 0.00
+sales | qtysold    | zstd     | 67.14
+sales | pricepaid  | N/A      | 0.00
+sales | commission | zstd     | 13.94
 sales | saletime   | zstd     | 13.38
 ```

@@ -6,4 +6,3 @@ You can get started with data sharing by using either the SQL interface or the A
 + [Getting started data sharing using the SQL interface](getting-started-datashare-sql.md)
 + [Getting started data sharing using the console](getting-started-datashare-console.md)
 + [Getting started data sharing with AWS CloudFormation](data-sharing-within-account-CF.md)
-+ [Limitations for data sharing](limitations-datashare.md)

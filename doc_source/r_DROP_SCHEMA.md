@@ -12,7 +12,7 @@ Following are required privileges for DROP SCHEMA:
 ## Syntax<a name="r_DROP_SCHEMA-synopsis"></a>
 
 ```
-DROP SCHEMA [ IF EXISTS ] name [, ...] 
+DROP SCHEMA [ IF EXISTS ] name [, ...]
 [ DROP EXTERNAL DATABASE ]
 [ CASCADE | RESTRICT ]
 ```

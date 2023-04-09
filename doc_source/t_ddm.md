@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-|  This is prerelease documentation for the dynamic data masking feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For inquiries, email redshift\-pm@amazon\.com\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+|  This is prerelease documentation for the dynamic data masking feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on April 5, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For inquiries, email redshift\-pm@amazon\.com\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 ## Creating preview clusters or workgroups for DDM<a name="ddm-preview"></a>
 
@@ -197,3 +197,8 @@ When using dynamic data masking, consider the following:
 +  You can't attach a masking policy that would produce an output incompatible with the target column's type and size\. For example, you can’t attach a masking policy that outputs a 12 character long string to a VARCHAR\(10\) column\. Amazon Redshift supports the following exceptions: 
   +  A masking policy with input type INTN can be attached to a policy with size INTM as long as M < N\. For example, a BIGINT \(INT8\) input policy can be attached to a smallint \(INT4\) column\. 
   +  A masking policy with input type NUMERIC or DECIMAL can always be attached to a FLOAT column\. 
++ When you apply dynamic data masking and row level security policies on the same table, the result cache might not reflect the table's RLS policy\. To prevent this, disable the result cache with the following command: 
+
+  ```
+  SET enable_result_cache_for_session TO off;
+  ```

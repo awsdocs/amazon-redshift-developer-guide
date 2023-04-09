@@ -4,7 +4,7 @@ Use the SUPER data type to store semistructured data or documents as values\.
 
 Semistructured data doesn't conform to the rigid and tabular structure of the relational data model used in SQL databases\. It contains tags that reference distinct entities within the data\. They can contain complex values such as arrays, nested structures, and other complex structures that are associated with serialization formats, such as JSON\. The SUPER data type is a set of schemaless array and structure values that encompass all other scalar types of Amazon Redshift\.
 
-The SUPER data type supports up to 16 MB of data for an individual SUPER field or object\. For more information, see [Ingesting and querying semistructured data in Amazon Redshift](super-overview.md)\.
+The SUPER data type supports up to 16 MB of data for an individual SUPER field or object\. For more information on the SUPER data type, including examples of implementing it in a table, see [Ingesting and querying semistructured data in Amazon Redshift](super-overview.md)\.
 
 The SUPER data type has the following properties:
 + An Amazon Redshift scalar value:

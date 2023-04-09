@@ -75,7 +75,7 @@ The following are examples of revoking the ASSUMEROLE privilege\.
 A superuser must enable the use of the ASSUMEROLE privilege for users and groups by running the following statement once on the cluster: 
 
 ```
-revoke assumerole on all from public for all;          
+revoke assumerole on all from public for all;
 ```
 
 The following statement revokes the ASSUMEROLE privilege from user reg\_user1 on all roles for all operations\. 

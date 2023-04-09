@@ -2,14 +2,14 @@
 
 Stored procedures are commonly used to encapsulate logic for data transformation, data validation, and business\-specific logic\. By combining multiple SQL steps into a stored procedure, you can reduce round trips between your applications and the database\.
 
-For fine\-grained access control, you can create stored procedures to perform functions without giving a user access to the underlying tables\. For example, only the owner or a superuser can truncate a table, and a user needs write permission to insert data into a table\. Instead of granting a user permissions on the underlying tables, you can create a stored procedure that performs the task\. You then give the user permission to run the stored procedure\. 
+For fine\-grained access control, you can create stored procedures to perform functions without giving a user access to the underlying tables\. For example, only the owner or a superuser can truncate a table, and a user needs write privileges to insert data into a table\. Instead of granting a user privileges on the underlying tables, you can create a stored procedure that performs the task\. You then give the user privileges to run the stored procedure\. 
 
-A stored procedure with the DEFINER security attribute runs with the privileges of the stored procedure's owner\. By default, a stored procedure has INVOKER security, which means the procedure uses the permissions of the user that calls the procedure\. 
+A stored procedure with the DEFINER security attribute runs with the privileges of the stored procedure's owner\. By default, a stored procedure has INVOKER security, which means the procedure uses the privileges of the user that calls the procedure\. 
 
 To create a stored procedure, use the [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) command\. To run a procedure, use the [CALL](r_CALL_procedure.md) command\. Examples follow later in this section\.
 
 **Note**  
-Some clients might throw the following error when creating an Amazon Redshift stored procedure\.  
+Some clients might display the following error when creating an Amazon Redshift stored procedure\.  
 
 ```
 ERROR: 42601: [Amazon](500310) unterminated dollar-quoted string at or near "$$
@@ -59,8 +59,8 @@ CALL
 
 **Note**  
  When you write stored procedures, we recommend a best practice for securing sensitive values:   
- Don't hard code any sensitive information in stored procedure logic\. For example, don't assign a user password in a CREATE USER statement in the body of a stored procedure\. This poses a security risk, because hard\-coded values can be recorded as schema metadata in catalog tables\. Instead, pass sensitive values, such as passwords, as arguments to the stored procedure, by means of parameters\.   
-For more information about stored procedures, see [CREATE PROCEDURE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_PROCEDURE.html) and [Creating stored procedures in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html)\. For more information about catalog tables, see [System catalog tables](https://docs.aws.amazon.com/redshift/latest/dg/c_intro_catalog_views.html)\.
+Don't hardcode any sensitive information in stored procedure logic\. For example, don't assign a user password in a CREATE USER statement in the body of a stored procedure\. This poses a security risk, because hardcoded values can be recorded as schema metadata in catalog tables\. Instead, pass sensitive values, such as passwords, as arguments to the stored procedure, by means of parameters\.   
+For more information about stored procedures, see [CREATE PROCEDURE](r_CREATE_PROCEDURE.md) and [Creating stored procedures in Amazon Redshift](stored-procedure-overview.md)\. For more information about catalog tables, see [System catalog tables](c_intro_catalog_views.md)\.
 
 The following example shows a procedure with output arguments\. Arguments are input \(IN\), input and output \(INOUT\), and output \(OUT\)\.
 

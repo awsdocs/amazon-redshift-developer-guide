@@ -6,7 +6,7 @@
 
    Once your subscription starts, you can access licensed Amazon Redshift data that is imported as assets to datasets that contain AWS Data Exchange datashares\.
 
-   For more information on how to get started with using data products that contain AWS Data Exchange datashares, see [Subscribing to data products on AWS Data Exchange](https://https://docs.aws.amazon.com/data-exchange/latest/userguide/subscribe-to-data-sets.html)\.
+   For more information on how to get started with using data products that contain AWS Data Exchange datashares, see [Subscribing to data products on AWS Data Exchange](https://docs.aws.amazon.com/data-exchange/latest/userguide/subscribe-to-data-sets.html)\.
 
 1. On the Amazon Redshift console, create an Amazon Redshift cluster, if needed\.
 

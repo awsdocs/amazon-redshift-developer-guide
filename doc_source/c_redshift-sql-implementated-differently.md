@@ -23,9 +23,6 @@ The following list includes some examples of SQL features that are implemented d
 +  [COPY](r_COPY.md) 
 
   The Amazon Redshift COPY command is highly specialized to enable the loading of data from Amazon S3 buckets and Amazon DynamoDB tables and to facilitate automatic compression\. See the [Loading data](t_Loading_data.md) section and the COPY command reference for details\.
-+  [INSERT](r_INSERT_30.md), [UPDATE](r_UPDATE.md), and [DELETE](r_DELETE.md) 
-
-  WITH is not supported\.
 +  [VACUUM](r_VACUUM_command.md) 
 
   The parameters for VACUUM are entirely different\. For example, the default VACUUM operation in PostgreSQL simply reclaims space and makes it available for re\-use; however, the default VACUUM operation in Amazon Redshift is VACUUM FULL, which reclaims disk space and resorts all rows\.

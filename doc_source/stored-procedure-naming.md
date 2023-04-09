@@ -1,6 +1,6 @@
 # Naming stored procedures<a name="stored-procedure-naming"></a>
 
-If you define a procedure with the same name and different input argument data types, or signature, you create a new procedure\. In other words, the procedure name is overloaded\. For more information, see [Overloading procedure names](#stored-procedure-overloading-name)\. Amazon Redshift doesn't enable procedure overloading based on output arguments\. In other words, you can't have two procedures with the same name and input argument data types but different output argument types\.
+If you define a procedure with the same name and different input argument data types or signature, you create a new procedure\. As a result, the procedure name is overloaded\. For more information, see [Overloading procedure names](#stored-procedure-overloading-name)\. Amazon Redshift doesn't enable procedure overloading based on output arguments\. You can't have two procedures with the same name and input argument data types but different output argument types\.
 
 The owner or a superuser can replace the body of a stored procedure with a new one with the same signature\. To change the signature or return types of a stored procedure, drop the stored procedure and recreate it\. For more information, see [DROP PROCEDURE](r_DROP_PROCEDURE.md) and [CREATE PROCEDURE](r_CREATE_PROCEDURE.md)\.
 
@@ -14,4 +14,4 @@ When you run a procedure, the query engine determines which procedure to call ba
 
 ## Preventing naming conflicts<a name="stored-procedure-name-conflicts"></a>
 
-We recommend that you name all procedures using the prefix `sp_`\. Amazon Redshift reserves the `sp_` prefix exclusively for stored procedures\. By prefixing your procedure names with `sp_`, you ensure that your procedure name won't conflict with any existing or future Amazon Redshift procedure names\. 
+We recommend that you name all procedures using the prefix `sp_`\. Amazon Redshift reserves the `sp_` prefix exclusively for stored procedures\. By prefixing your procedure names with `sp_`, you make sure that your procedure name won't conflict with any existing or future Amazon Redshift procedure name\. 

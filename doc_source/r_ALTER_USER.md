@@ -1,6 +1,6 @@
 # ALTER USER<a name="r_ALTER_USER"></a>
 
-Changes a database user account\.
+Changes a database user\.
 
 ## Required privileges<a name="r_ALTER_USER-privileges"></a>
 
@@ -16,23 +16,23 @@ ALTER USER username [ WITH ] option [, ... ]
 
 where option is
 
-CREATEDB | NOCREATEDB 
-| CREATEUSER | NOCREATEUSER 
+CREATEDB | NOCREATEDB
+| CREATEUSER | NOCREATEUSER
 | SYSLOG ACCESS { RESTRICTED | UNRESTRICTED }
 | PASSWORD { 'password' | 'md5hash' | DISABLE }
-[ VALID UNTIL 'expiration_date' ] 
+[ VALID UNTIL 'expiration_date' ]
 | RENAME TO new_name |
 | CONNECTION LIMIT { limit | UNLIMITED }
 | SESSION TIMEOUT limit | RESET SESSION TIMEOUT
-| SET parameter { TO | = } { value | DEFAULT } 
-| RESET parameter           
+| SET parameter { TO | = } { value | DEFAULT }
+| RESET parameter
 | EXTERNALID external_id
 ```
 
 ## Parameters<a name="r_ALTER_USER-parameters"></a>
 
  *username*   
-Name of the user account\. 
+Name of the user\. 
 
 WITH   
 Optional keyword\. 
@@ -60,7 +60,7 @@ VALID UNTIL '*expiration\_date*'
 Specifies that the password has an expiration date\. Use the value `'infinity'` to avoid having an expiration date\. The valid data type for this parameter is timestamp\. 
 
 RENAME TO   
-Renames the user account\. 
+Renames the user\. 
 
  *new\_name*   
 New name of the user\. For more information about valid names, see [Names and identifiers](r_names.md)\.  

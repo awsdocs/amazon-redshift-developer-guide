@@ -6,7 +6,7 @@ To get started with row\-level security, following are SQL statements that you c
 + Use the ALTER TABLE statement to turn on or off RLS on a table\. For more information, see [ALTER TABLE](r_ALTER_TABLE.md)\.
 + Use the CREATE RLS POLICY statement to create a security policy for one or more tables, and specify one or more users or roles in the policy\. 
 
-  For more information, see [CREATE RLS POLICY ](r_CREATE_RLS_POLICY.md)\.
+  For more information, see [CREATE RLS POLICY](r_CREATE_RLS_POLICY.md)\.
 + Use the ATTACH RLS POLICY statement to attach a policy to one or more relations, to one or more users, or to roles\.
 
   For more information, see [ATTACH RLS POLICY ](r_ATTACH_RLS_POLICY.md)\.

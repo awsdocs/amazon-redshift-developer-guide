@@ -15,7 +15,7 @@ To find an example where the DROP privilege is granted to a group, see GRANT [Ex
 Following are required privileges for DROP TABLE:
 + Superuser
 + Users with the DROP TABLE privilege
-+ Table or schema owner
++ Table owner with the USAGE privilege on the schema
 
 ## Syntax<a name="r_DROP_TABLE-synopsis"></a>
 

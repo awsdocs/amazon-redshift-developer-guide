@@ -7,7 +7,7 @@ Superusers and users or roles that have the sys:secadmin role can detach a maski
 ## Syntax<a name="r_DETACH_MASKING_POLICY-synopsis"></a>
 
 ```
-DETACH MASKING POLICY policy_name 
+DETACH MASKING POLICY policy_name
    ON { table_name }
    ( output_column_names )
    FROM { user_name | ROLE role_name | PUBLIC };

@@ -33,7 +33,7 @@ You can use the COPY command to load data from an Amazon S3 bucket, an Amazon EM
   In some cases, you might need to load files with different prefixes, for example from multiple buckets or folders\. In others, you might need to exclude files that share a prefix\. In these cases, you can use a manifest file\. A *manifest file* explicitly lists each load file and its unique object key\. You use a manifest file to load the PART table later in this tutorial\. 
 <a name="tutorial-loading-syntax-credentials"></a>
 **Credentials**  
-To access the AWS resources that contain the data to load, you must provide AWS access credentials for an AWS user or an IAM user with sufficient privileges\.   These credentials include an IAM role Amazon Resource Name \(ARN\)\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted\.  For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. 
+To access the AWS resources that contain the data to load, you must provide AWS access credentials for a user with sufficient privileges\.   These credentials include an IAM role Amazon Resource Name \(ARN\)\. To load data from Amazon S3, the credentials must include ListBucket and GetObject permissions\. Additional credentials are required if your data is encrypted\.  For more information, see [Authorization parameters](copy-parameters-authorization.md) in the COPY command reference\. For more information about managing access, go to [Managing access permissions to your Amazon S3 resources](https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)\. 
 
 <a name="tutorial-loading-syntax-options.title"></a>Options
 
@@ -118,7 +118,7 @@ For each COPY command, do the following:
 
 In this step, you use the CSV and NULL AS options to load the PART table\. 
 
-The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Split your load data](c_best-practices-use-multiple-files.md)\. 
+The COPY command can load data from multiple files in parallel, which is much faster than loading from a single file\. To demonstrate this principle, the data for each table in this tutorial is split into eight files, even though the files are very small\. In a later step, you compare the time difference between loading from a single file and loading from multiple files\. For more information, see [Loading data files](c_best-practices-use-multiple-files.md)\. 
 <a name="tutorial-loading-key-prefix"></a>
 **Key prefix**  
 You can load from multiple files by specifying a key prefix for the file set, or by explicitly listing the files in a manifest file\. In this step, you use a key prefix\. In a later step, you use a manifest file\. The key prefix `'s3://mybucket/load/part-csv.tbl'` loads the following set of the files in the `load` folder\. 

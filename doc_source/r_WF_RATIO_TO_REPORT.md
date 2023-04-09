@@ -64,4 +64,4 @@ sellerid	qty		ratio_to_report
 3		20.74630000      0.27
 ```
 
-For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\.
+For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\.

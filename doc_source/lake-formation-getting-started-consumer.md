@@ -18,7 +18,7 @@
    CREATE DATABASE lf_db FROM ARN <lake-formation-database-ARN> WITH [NO] DATA CATALOG SCHEMA [<schema>];
    ```
 
-1. Grant permissions on databases and schema references created from the datashares to users and groups in the consumer cluster as needed\. For more information, see [GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) or [REVOKE](https://docs.aws.amazon.com/redshift/latest/dg/r_REVOKE.html)\. Note that users created from the [CREATE USER](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) command cannot access objects in datashare that have been shared to Lake Formation\. Only IAM users with access to both Redshift and Lake Formation can access datashares that have been shared with Lake Formation\. 
+1. Grant permissions on databases and schema references created from the datashares to users and groups in the consumer cluster as needed\. For more information, see [GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) or [REVOKE](https://docs.aws.amazon.com/redshift/latest/dg/r_REVOKE.html)\. Note that users created from the [CREATE USER](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) command cannot access objects in datashare that have been shared to Lake Formation\. Only users with access to both Redshift and Lake Formation can access datashares that have been shared with Lake Formation\. 
 
    ```
    GRANT USAGE ON DATABASE sales_db TO IAM:Bob;

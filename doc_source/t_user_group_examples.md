@@ -1,8 +1,8 @@
 # Example for controlling user and group access<a name="t_user_group_examples"></a>
 
-This example creates user groups and user accounts and then grants them various permissions for an Amazon Redshift database that connects to a web application client\. This example assumes three groups of users: regular users of a web application, power users of a web application, and web developers\.
+This example creates user groups and users and then grants them various permissions for an Amazon Redshift database that connects to a web application client\. This example assumes three groups of users: regular users of a web application, power users of a web application, and web developers\.
 
-1. Create the groups where the user accounts will be assigned\. The following set of commands creates three different user groups: 
+1. Create the groups where the users will be assigned\. The following set of commands creates three different user groups: 
 
    ```
    create group webappusers;
@@ -12,7 +12,7 @@ This example creates user groups and user accounts and then grants them various 
    create group webdevusers;
    ```
 
-1.  Create several database user accounts with different permissions and add them to the groups\.  
+1.  Create several database users with different permissions and add them to the groups\.  
 
    1.  Create two users and add them to the WEBAPPUSERS group:  
 
@@ -24,14 +24,14 @@ This example creates user groups and user accounts and then grants them various 
       in group webappusers;
       ```
 
-   1.  Create an account for a web developer and adds it to the WEBDEVUSERS group:  
+   1.  Create a web developer user and add it to the WEBDEVUSERS group:  
 
       ```
       create user webdevuser1 password 'webDevuser2pass'
       in group webdevusers;
       ```
 
-   1.  Create a superuser account\. This user will have administrative rights to create other users:  
+   1.  Create a superuser\. This user will have administrative rights to create other users:  
 
       ```
       create user webappadmin  password 'webAppadminpass1'

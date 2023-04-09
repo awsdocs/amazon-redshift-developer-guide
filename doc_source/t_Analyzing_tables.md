@@ -15,7 +15,7 @@ To explicitly analyze a table or the entire database, run the [ANALYZE](r_ANALYZ
 
 Amazon Redshift continuously monitors your database and automatically performs analyze operations in the background\. To minimize impact to your system performance, automatic analyze runs during periods when workloads are light\. 
 
-Automatic analyze is enabled by default\. To disable automatic analyze, set the `auto_analyze` parameter to **false** by modifying your cluster's parameter group\. 
+Automatic analyze is enabled by default\. To turn off automatic analyze, set the `auto_analyze` parameter to **false** by modifying your cluster's parameter group\. 
 
 To reduce processing time and improve overall system performance, Amazon Redshift skips automatic analyze for any table where the extent of modifications is small\. 
 
@@ -67,7 +67,7 @@ totalprice     | numeric(8,2)       | mostly32 | f       | 0
 listtime       | timestamp with...  | none     | f       | 0
 ```
 
-If this table is loaded every day with a large number of new records, the LISTID column, which is frequently used in queries as a join key, needs to be analyzed regularly\. If TOTALPRICE and LISTTIME are the frequently used constraints in queries, you can analyze those columns and the distribution key on every weekday\.
+If this table is loaded every day with a large number of new records, the LISTID column, which is frequently used in queries as a join key, must be analyzed regularly\. If TOTALPRICE and LISTTIME are the frequently used constraints in queries, you can analyze those columns and the distribution key on every weekday\.
 
 ```
 analyze listing(listid, totalprice, listtime);
@@ -85,7 +85,7 @@ As a convenient alternative to specifying a column list, you can choose to analy
 
 If none of a table's columns are marked as predicates, ANALYZE includes all of the columns, even when PREDICATE COLUMNS is specified\. If no columns are marked as predicate columns, it might be because the table has not yet been queried\. 
 
-You might choose to use PREDICATE COLUMNS when your workload's query pattern is relatively stable\. When the query pattern is variable, with different columns frequently being used as predicates, using PREDICATE COLUMNS might temporarily result in stale statistics\. Stale statistics can lead to suboptimal query execution plans and long execution times\. However, the next time you run ANALYZE using PREDICATE COLUMNS, the new predicate columns are included\. 
+You might choose to use PREDICATE COLUMNS when your workload's query pattern is relatively stable\. When the query pattern is variable, with different columns frequently being used as predicates, using PREDICATE COLUMNS might temporarily result in stale statistics\. Stale statistics can lead to suboptimal query runtime plans and long runtimes\. However, the next time you run ANALYZE using PREDICATE COLUMNS, the new predicate columns are included\. 
 
 To view details for predicate columns, use the following SQL to create a view named PREDICATE\_COLUMNS\. 
 
@@ -111,7 +111,7 @@ SELECT schema_name, table_name, col_num, col_name,
 FROM predicate_column_info;
 ```
 
-Suppose you run the following query against the LISTING table\. Note that LISTID, LISTTIME, and EVENTID are used in the join, filter, and group by clauses\.
+Suppose that you run the following query against the LISTING table\. Note that LISTID, LISTTIME, and EVENTID are used in the join, filter, and group by clauses\.
 
 ```
 select s.buyerid,l.eventid, sum(l.totalprice)

@@ -8,7 +8,7 @@ If you are an experienced SQL database developer, we strongly recommend that you
 
 If you are new to developing SQL databases, this topic is not the best place to start\. We recommend that you begin by reading [Getting started using databases](https://docs.aws.amazon.com/redshift/latest/gsg/c_intro_to_admin.html) and trying the examples yourself\. 
 
-In this topic, you can find an overview of the most important development principles, along with specific tips, examples, and best practices for implementing those principles\. No single practice can apply to every application\. You should evaluate all of your options before finalizing a database design\. For more information, see [Working with automatic table optimization](t_Creating_tables.md), [Loading data](t_Loading_data.md), [Tuning query performance](c-optimizing-query-performance.md), and the reference chapters\. 
+In this topic, you can find an overview of the most important development principles, along with specific tips, examples, and best practices for implementing those principles\. No single practice can apply to every application\. Evaluate all of your options before finishing a database design\. For more information, see [Working with automatic table optimization](t_Creating_tables.md), [Loading data](t_Loading_data.md), [Tuning query performance](c-optimizing-query-performance.md), and the reference chapters\. 
 
 **Topics**
 + [Conducting a proof of concept for Amazon Redshift](proof-of-concept-playbook.md)

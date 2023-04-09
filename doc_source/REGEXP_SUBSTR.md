@@ -1,6 +1,6 @@
 # REGEXP\_SUBSTR function<a name="REGEXP_SUBSTR"></a>
 
-Returns the characters extracted from a string by searching for a regular expression pattern\. REGEXP\_SUBSTR is similar to the [SUBSTRING function](r_SUBSTRING.md) function, but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX operators](pattern-matching-conditions-posix.md)\.
+Returns characters from a string by searching it for a regular expression pattern\. REGEXP\_SUBSTR is similar to the [SUBSTRING function](r_SUBSTRING.md) function, but lets you search a string for a regular expression pattern\. For more information about regular expressions, see [POSIX operators](pattern-matching-conditions-posix.md)\.
 
 ## Syntax<a name="REGEXP_SUBSTR-synopsis"></a>
 
@@ -11,7 +11,7 @@ REGEXP_SUBSTR ( source_string, pattern [, position [, occurrence [, parameters ]
 ## Arguments<a name="REGEXP_SUBSTR-arguments"></a>
 
  *source\_string*   
-A string expression, such as a column name, to be searched\. 
+A string expression to be searched\. 
 
  *pattern*   
 A string literal that represents a SQL standard regular expression pattern\.
@@ -28,7 +28,9 @@ One or more string literals that indicate how the function matches the pattern\.
 + i – Perform case\-insensitive matching\. 
 + e – Extract a substring using a subexpression\. 
 
-  If *pattern* includes a subexpression, REGEXP\_SUBSTR matches a substring using the first subexpression in *pattern*\. REGEXP\_SUBSTR considers only the first subexpression; additional subexpressions are ignored\. If the pattern doesn't have a subexpression, REGEXP\_SUBSTR ignores the 'e' parameter\. 
+   If *pattern* includes a subexpression, REGEXP\_SUBSTR matches a substring using the first subexpression in *pattern*\. A subexpression is an expression within the pattern that is bracketed with parentheses\. For example, for the pattern `'This is a (\\w+)'` matches the first expression with the string `'This is a '` followed by a word\. Instead of returning *pattern*, REGEXP\_SUBSTR with the `e` parameter returns only the string inside the subexpression\.
+
+  REGEXP\_SUBSTR considers only the first subexpression; additional subexpressions are ignored\. If the pattern doesn't have a subexpression, REGEXP\_SUBSTR ignores the 'e' parameter\. 
 + p – Interpret the pattern with Perl Compatible Regular Expression \(PCRE\) dialect\.
 
 ## Return type<a name="REGEXP_SUBSTR-return-type"></a>
@@ -62,6 +64,16 @@ SELECT regexp_substr('the fox', 'FOX', 1, 1, 'i');
  fox
 ```
 
+The following example returns the first portion of the input that begins with lowercase letters\. This is functionally identical to the same SELECT statement without the `c` parameter\.
+
+```
+SELECT regexp_substr('THE SECRET CODE IS THE LOWERCASE PART OF 1931abc0EZ.', '[a-z]+', 1, 1, 'c');
+
+ regexp_substr
+---------------
+ abc
+```
+
 The following example uses a pattern written in the PCRE dialect to locate words containing at least one number and one lowercase letter\. It uses the `?=` operator, which has a specific look\-ahead connotation in PCRE\. This example returns the portion of the input corresponding to the second such word\.
 
 ```
@@ -80,4 +92,16 @@ SELECT regexp_substr('passwd7 plain A1234 a1234', '(?=[^ ]*[a-z])(?=[^ ]*[0-9])[
  regexp_substr
 ---------------
  A1234
+```
+
+The following example uses a subexpression to find the second string matching the pattern `'this is a (\\w+)'` using case\-insensitive matching\. It returns the subexpression inside the parentheses\.
+
+```
+select regexp_substr(
+               'This is a cat, this is a dog. This is a mouse.',
+               'this is a (\\w+)', 1, 2, 'ie');
+            
+ regexp_substr
+---------------
+ dog
 ```

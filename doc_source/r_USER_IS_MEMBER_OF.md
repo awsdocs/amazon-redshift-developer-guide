@@ -5,7 +5,7 @@ Returns true if the user is a member of a role or group\. Superusers can check t
 ## Syntax<a name="r_USER_IS_MEMBER_OF-synopsis"></a>
 
 ```
-user_is_member_of( user_name,  role_name, group_name)
+user_is_member_of( user_name,  role_name | group_name)
 ```
 
 ## Arguments<a name="r_USER_IS_MEMBER_OF-arguments"></a>

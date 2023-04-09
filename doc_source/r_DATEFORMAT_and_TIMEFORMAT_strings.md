@@ -7,7 +7,7 @@ COPY ...
             DATETIME AS 'MON-DD-YYYY'
 ```
 
-For more information on managing COPY data conversions, see [Data conversion parameters](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-conversion.html)\.
+For more information on managing COPY data conversions, see [Data conversion parameters](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-conversion.html)\. For an example of using TIMEFORMAT, see [Load a timestamp or datestamp](r_COPY_command_examples.md#r_COPY_command_examples-load-a-time-datestamp)\. 
 
 DATEFORMAT and TIMEFORMAT strings can contain datetime separators \(such as '`-`', '`/`', or '`:`'\), as well the datepart and timepart formats in the following table\.
 

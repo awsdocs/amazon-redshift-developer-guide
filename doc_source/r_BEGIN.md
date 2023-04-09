@@ -21,7 +21,8 @@ SERIALIZABLE
 | REPEATABLE READ
 
 Note: READ UNCOMMITTED, READ COMMITTED, and REPEATABLE READ have no
-operational impact and map to SERIALIZABLE in Amazon Redshift.
+operational impact and map to SERIALIZABLE in Amazon Redshift. You can see database isolation levels on your cluster 
+by querying the stv_db_isolation_level table.
 ```
 
 ## Parameters<a name="r_BEGIN-parameters"></a>

@@ -1,13 +1,13 @@
-# is\_scalar function<a name="r_is_scalar"></a>
+# IS\_SCALAR function<a name="r_is_scalar"></a>
 
-Checks whether a variable is a scalar\. The is\_scalar function returns true for any value that is not an array or an object\. The function returns false for any other values, including null\.
+Checks whether a variable is a scalar\. The IS\_SCALAR function returns true for any value that is not an array or an object\. The function returns false for any other values, including null\.
 
-The set of is\_array, is\_object, and is\_scalar cover all values except nulls\.
+The set of IS\_ARRAY, IS\_OBJECT, and IS\_SCALAR cover all values except nulls\.
 
 ## Syntax<a name="r_is_scalar-synopsis"></a>
 
 ```
-is_scalar (super_expression)
+IS_SCALAR (super_expression)
 ```
 
 ## Arguments<a name="r_is_scalar-arguments"></a>
@@ -21,7 +21,7 @@ Boolean
 
 ## Example<a name="r_is_scalar_example"></a>
 
-The following query shows an is\_scalar function\.
+The following query shows an IS\_SCALAR function\.
 
 ```
 CREATE TABLE t(s super);

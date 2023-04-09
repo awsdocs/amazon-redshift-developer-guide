@@ -82,7 +82,7 @@ If you use automatic compression, the COPY command performs two data read operat
 For detailed procedures for using COPY from SSH, see [Loading data from remote hosts](loading-data-from-remote-hosts.md)\.
 
 *authorization*  
-The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for an IAM user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.
+The COPY command needs authorization to access data in another AWS resource, including in Amazon S3, Amazon EMR, Amazon DynamoDB, and Amazon EC2\. You can provide that authorization by referencing an AWS Identity and Access Management \(IAM\) role that is attached to your cluster \(role\-based access control\) or by providing the access credentials for a user \(key\-based access control\)\. For increased security and flexibility, we recommend using IAM role\-based access control\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.
 
 SSH  <a name="copy-ssh"></a>
 A clause that specifies that data is to be loaded from a remote host using the SSH protocol\. If you specify SSH, you must also provide a manifest file using the [s3://copy_from_ssh_manifest_file](#copy-ssh-manifest) argument\.   

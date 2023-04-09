@@ -1,6 +1,6 @@
 # Supported PL/pgSQL statements<a name="c_PLpgSQL-statements"></a>
 
- PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data manipulation language \(DML\) such as COPY, UNLOAD and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
+ PL/pgSQL statements augment SQL commands with procedural constructs, including looping and conditional expressions, to control logical flow\. Most SQL commands can be used, including data manipulation language \(DML\) such as COPY, UNLOAD, and INSERT, and data definition language \(DDL\) such as CREATE TABLE\. For a list of comprehensive SQL commands, see [SQL commands](c_SQL_commands.md)\. In addition, the following PL/pgSQL statements are supported by Amazon Redshift\. 
 
 **Topics**
 + [Assignment](#r_PLpgSQL-assignment)
@@ -473,6 +473,8 @@ Loop statements can take the following forms in the PL/pgSQL language that Amazo
 
 Rather than running a whole query at once, you can set up a cursor\. A *cursor *encapsulates a query and reads the query result a few rows at a time\. One reason for doing this is to avoid memory overrun when the result contains a large number of rows\. Another reason is to return a reference to a cursor that a stored procedure has created, which allows the caller to read the rows\. This approach provides an efficient way to return large row sets from stored procedures\.
 
+To use cursors in a NONATOMIC stored procedure, place the cursor loop between START TRANSACTION\.\.\.COMMIT\.
+
 To set up a cursor, first you declare a cursor variable\. All access to cursors in PL/pgSQL goes through cursor variables, which are always of the special data type `refcursor`\. A `refcursor` data type simply holds a reference to a cursor\. 
 
 You can create a cursor variable by declaring it as a variable of type `refcursor`\. Or, you can use the cursor declaration syntax following\.
@@ -556,7 +558,7 @@ After a cursor has been opened, you can work with it by using the statements des
 
 ## RAISE<a name="r_PLpgSQL-messages-errors"></a>
 
-Use the RAISE statement to report messages and raise errors\.
+Use the `RAISE level` statement to report messages and raise errors\.
 
 ```
 RAISE level 'format' [, variable [, ...]];
@@ -572,6 +574,23 @@ In the following example, the value of `v_job_id` replaces the % in the string\.
 RAISE NOTICE 'Calling cs_create_job(%)', v_job_id;
 ```
 
+Use the `RAISE` statement to re\-throw the exception caught by an exception handling block\. This statement is only valid in exception handling blocks of NONATOMIC mode stored procedures\.
+
+```
+RAISE;
+```
+
 ## Transaction control<a name="r_PLpgSQL-transaction-control"></a>
 
 You can work with transaction control statements in the PL/pgSQL language that Amazon Redshift uses\. For information about using the statements COMMIT, ROLLBACK, and TRUNCATE within a stored procedure, see [Managing transactions](stored-procedure-transaction-management.md)\. 
+
+In NONATOMIC mode stored procedures, use `START TRANSACTION` to start a transaction block\.
+
+```
+START TRANSACTION;
+```
+
+**Note**  
+The PL/pgSQL statement START TRANSACTION is different from the SQL command START TRANSACTION in the following ways:  
+Within stored procedures, START TRANSACTION is not synonymous with BEGIN\.
+The PL/pgSQL statement does not support optional isolation level and access permission keywords\.

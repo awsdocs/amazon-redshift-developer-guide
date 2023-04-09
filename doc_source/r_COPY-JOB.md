@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| This is prerelease documentation for auto\-copy \(SQL COPY JOB\), which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+| This is prerelease documentation for auto\-copy \(SQL COPY JOB\), which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. Public preview will end on May 1, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 For information about using this command in preview, see [Continuous file ingestion from Amazon S3 \(preview\)](loading-data-copy-job.md)\.
 
@@ -62,10 +62,12 @@ COPY JOB DROP job-name
 
 *copy\-command*  
 A COPY command that loads data from Amazon S3 to Amazon Redshift\. The clause contains COPY parameters that define the Amazon S3 bucket, target table, IAM role, and other parameters used when loading data\. All COPY command parameters for an Amazon S3 data load are supported except:  
++ The COPY JOB must be created using a COPY command that points to an empty Amazon S3 folder \(it doesn't contain any files\)\.
 + You cannot specify a COPY command with the MAXERROR or IGNOREALLERRORS options\.
 + You cannot specify a manifest file\. COPY JOB requires a designated Amazon S3 location to monitor for newly created files\.
-+ You cannot specify an Amazon S3 files with the following columnar data formats: ORC, Parquet, RCFile, and SequenceFile\.
++ You cannot specify an Amazon S3 file with the following columnar data formats: ORC and Parquet\.
 + You cannot specify a COPY command with authorization types like Access and Secret keys\. Only COPY commands that use the `IAM_ROLE` parameter for authorization are supported\. For more information, see [Authorization parameters](copy-parameters-authorization.md)\.
++ The COPY JOB doesn't support the default IAM role associated with the cluster\. You must specify the `IAM_ROLE` in the COPY command\. 
 For more information, see [COPY from Amazon S3](copy-parameters-data-source-s3.md)\.
 
 *job\-name*  
@@ -79,8 +81,6 @@ Clause that indicates whether Amazon S3 data is automatically loaded into Amazon
 ## Usage notes<a name="r_COPY-JOB-usage-notes"></a>
 
 The options of the COPY command aren't validated until run time\. For example, an invalid `IAM_ROLE` or an Amazon S3 data source results in runtime errors when the COPY JOB starts\.
-
-The COPY JOB doesn't support the default IAM role associated with the cluster\. You must specify the `IAM_ROLE` in the COPY command\. 
 
 If the cluster is paused, COPY JOBS are not run\.
 

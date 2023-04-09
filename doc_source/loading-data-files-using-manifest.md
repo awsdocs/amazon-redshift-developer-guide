@@ -1,6 +1,6 @@
 # Using a manifest to specify data files<a name="loading-data-files-using-manifest"></a>
 
-You can use a manifest to ensure that the COPY command loads all of the required files, and only the required files, for a data load\. You can use a manifest to load files from different buckets or files that do not share the same prefix\. Instead of supplying an object path for the COPY command, you supply the name of a JSON\-formatted text file that explicitly lists the files to be loaded\. The URL in the manifest must specify the bucket name and full object path for the file, not just a prefix\.
+You can use a manifest to make sure that the COPY command loads all of the required files, and only the required files, for a data load\. You can use a manifest to load files from different buckets or files that do not share the same prefix\. Instead of supplying an object path for the COPY command, you supply the name of a JSON\-formatted text file that explicitly lists the files to be loaded\. The URL in the manifest must specify the bucket name and full object path for the file, not just a prefix\.
 
 For more information about manifest files, see the COPY example [Using a manifest to specify data files](r_COPY_command_examples.md#copy-command-examples-manifest)\.
 

@@ -7,7 +7,7 @@ Superusers and users or roles that have the sys:secadmin role can attach a maski
 ## Syntax<a name="r_ATTACH_MASKING_POLICY-synopsis"></a>
 
 ```
-ATTACH MASKING POLICY policy_name 
+ATTACH MASKING POLICY policy_name
    ON { table_name }
    ( output_columns_names ) [ USING ( input_column_names ) ]
    TO { user_name | ROLE role_name | PUBLIC }

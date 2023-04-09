@@ -13,7 +13,7 @@ Some suggestions for the best approach follow:
 
 1. Choose the largest dimension based on the size of the filtered dataset\. 
 
-   Only the rows that are used in the join need to be distributed, so consider the size of the dataset after filtering, not the size of the table\. 
+   Only the rows that are used in the join must be distributed, so consider the size of the dataset after filtering, not the size of the table\. 
 
 1. Choose a column with high cardinality in the filtered result set\. 
 

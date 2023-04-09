@@ -15,7 +15,7 @@ to_timestamp (timestamp, format, is_strict)
 ## Arguments<a name="r_TO_TIMESTAMP-arguments"></a>
 
 *timestamp*  
-A string that represents a timestamp value in the format specified by *format*\. 
+A string that represents a timestamp value in the format specified by *format*\. If this argument is left as empty, the timestamp value defaults to `0001-01-01 00:00:00`\.
 
 *format*  
 A string literal that defines the format of the *timestamp* value\. Formats that include a time zone \(**TZ**, **tz**, or **OF**\) are not supported as input\. For valid timestamp formats, see [Datetime format strings](r_FORMAT_strings.md)\.

@@ -27,7 +27,7 @@ Optional\. One or more expressions that define the window\.
 
 ORDER BY *order\_list*   
 Optional\. The expression on which the ranking values are based\. If no PARTITION BY is specified, ORDER BY uses the entire table\. If ORDER BY is omitted, the return value is 1 for all rows\.   
-If ORDER BY doesn't produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](r_Examples_order_by_WF.md)\. 
+If ORDER BY doesn't produce a unique ordering, the order of the rows is nondeterministic\. For more information, see [Unique ordering of data for window functions](c_Window_functions.md#r_Examples_order_by_WF)\. 
 
 ## Return type<a name="c_Supported_data_types_wf_dense_rank"></a>
 
@@ -60,7 +60,7 @@ salesid | qty | d_rnk | rnk
 (11 rows)
 ```
 
-Note the difference in rankings assigned to the same set of rows when the DENSE\_RANK and RANK functions are used side by side in the same query\. For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\.
+Note the difference in rankings assigned to the same set of rows when the DENSE\_RANK and RANK functions are used side by side in the same query\. For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\.
 
 The following example partitions the table by SELLERID and orders each partition by the quantity \(in descending order\) and assign a dense rank to each row\. The results are sorted after the window function results are applied\. 
 
@@ -86,4 +86,4 @@ salesid | sellerid | qty | d_rnk
 (11 rows)
 ```
 
- For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\.
+ For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\.

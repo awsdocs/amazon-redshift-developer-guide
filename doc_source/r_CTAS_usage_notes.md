@@ -88,7 +88,7 @@ To view the distribution key and sort key for each table, query the PG\_TABLE\_D
 
 ```
 select * from pg_table_def where tablename like 'sales%';
-            
+
       tablename       |   column   | distkey | sortkey
 ----------------------+------------+---------+---------
  sales                | salesid    | f       |       0
@@ -132,6 +132,10 @@ as
 select eventid, venueid, dateid, eventname
 from event;
 ```
+
+## Compression encoding<a name="r_CTAS_usage_notes_encoding"></a>
+
+ENCODE AUTO is used as the default for tables\. Amazon Redshift automatically manages compression encoding for all columns in the table\.
 
 ## Distribution of incoming data<a name="r_CTAS_usage_notes-distribution-of-incoming-data"></a>
 

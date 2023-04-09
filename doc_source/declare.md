@@ -58,7 +58,7 @@ The following table shows the maximum total result set size for each cluster nod
 |   DC2 Large multiple nodes   |   192000   | 
 |   DC2 8XL multiple nodes   |   3200000   | 
 |   RA3 4XL multiple nodes   |   3200000   | 
-|   RA3 XLPLUS multiple nodes   |   1800000  | 
+|   RA3 XLPLUS multiple nodes   |   1000000  | 
 |   RA3 XLPLUS single node   |   64000   | 
 | Amazon Redshift Serverless | 150000 | 
 
@@ -70,7 +70,7 @@ Because cursors materialize the entire result set on the leader node before begi
 + Use [UNLOAD](r_UNLOAD.md) to export a large table\. When you use UNLOAD, the compute nodes work in parallel to transfer the data directly to data files on Amazon Simple Storage Service\. For more information, see [Unloading data](c_unloading_data.md)\. 
 + Set the JDBC fetch size parameter in your client application\. If you use a JDBC connection and you are encountering client\-side out\-of\-memory errors, you can enable your client to retrieve result sets in smaller batches by setting the JDBC fetch size parameter\. For more information, see [Setting the JDBC fetch size parameter](queries-troubleshooting.md#set-the-JDBC-fetch-size-parameter)\. 
 
-## DECLARE CURSOR example<a name="declare-example"></a>
+## DECLARE CURSOR examples<a name="declare-example"></a>
 
 The following example declares a cursor named LOLLAPALOOZA to select sales information for the Lollapalooza event, and then fetches rows from the result set using the cursor:
 
@@ -81,7 +81,7 @@ begin;
 
 -- Declare a cursor
 
-declare lollapalooza cursor for 
+declare lollapalooza cursor for
 select eventname, starttime, pricepaid/qtysold as costperticket, qtysold
 from sales, event
 where sales.eventid = event.eventid
@@ -112,4 +112,37 @@ fetch next from lollapalooza;
 
 close lollapalooza;
 commit;
+```
+
+The following example loops over a refcursor with all the results from a table:
+
+```
+CREATE TABLE tbl_1 (a int, b int);
+INSERT INTO tbl_1 values (1, 2),(3, 4);
+
+CREATE OR REPLACE PROCEDURE sp_cursor_loop() AS $$
+DECLARE
+    target record;
+    curs1 cursor for select * from tbl_1;
+BEGIN
+    OPEN curs1;
+    LOOP
+        fetch curs1 into target;
+        exit when not found;
+        RAISE INFO 'a %', target.a;
+    END LOOP;
+    CLOSE curs1;
+END;
+$$ LANGUAGE plpgsql;
+
+CALL sp_cursor_loop();
+         
+SELECT message 
+   from svl_stored_proc_messages 
+   where querytxt like 'CALL sp_cursor_loop()%';
+         
+  message
+----------
+      a 1
+      a 3
 ```

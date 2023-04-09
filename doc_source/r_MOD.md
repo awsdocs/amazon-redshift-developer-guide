@@ -1,6 +1,6 @@
 # MOD function<a name="r_MOD"></a>
 
-The MOD function returns a numeric result that is the remainder of two numeric parameters\. The first parameter is divided by the second parameter\. 
+Returns the remainder of two numbers, otherwise known as a *modulo* operation\. To calculate the result, the first parameter is divided by the second\.
 
 ## Syntax<a name="r_MOD-synopsis"></a>
 
@@ -20,7 +20,63 @@ The second parameter is an INTEGER, SMALLINT, BIGINT, or DECIMAL number\. The sa
 
 Valid return types are DECIMAL, INT, SMALLINT, and BIGINT\. The return type of the MOD function is the same numeric type as the input parameters, if both input parameters are the same type\. If either input parameter is an INTEGER, however, the return type will also be an INTEGER\. 
 
-## Example<a name="r_MOD-example"></a>
+## Usage notes<a name="r_MOD-usage-notes"></a>
+
+You can use *%* as a modulo operator\.
+
+## Examples<a name="r_MOD-example"></a>
+
+Some examples use the *TICKIT* sample data set\. For more information, see [Sample database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html)\.
+
+The following example return the remainder when a number is divided by another:
+
+```
+SELECT MOD(10, 4);
+               
+ mod
+------
+ 2
+```
+
+The following example returns a decimal result:
+
+```
+SELECT MOD(10.5, 4);
+               
+ mod
+------
+ 2.5
+```
+
+You can cast parameter values:
+
+```
+SELECT MOD(CAST(16.4 as integer), 5);
+               
+ mod
+------
+ 1
+```
+
+Check if the first parameter is even by dividing it by 2:
+
+```
+SELECT mod(5,2) = 0 as is_even;
+               
+ is_even
+--------
+ false
+```
+
+You can use the *%* as a modulo operator:
+
+```
+SELECT 11 % 4 as remainder;
+               
+ remainder
+-----------
+ 3
+```
 
 The following example returns information for odd\-numbered categories in the CATEGORY table: 
 

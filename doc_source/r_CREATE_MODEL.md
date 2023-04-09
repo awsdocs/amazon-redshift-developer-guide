@@ -51,16 +51,16 @@ When creating a model using the CREATE MODEL statement, follow the order of the 
 ```
 CREATE MODEL model_name
     FROM { table_name | ( select_statement )  | 'job_name' }
-    [ TARGET column_name ]   
+    [ TARGET column_name ]
     FUNCTION function_name ( data_type [, ...] ) 
     IAM_ROLE { default }
     [ AUTO ON / OFF ]
-      -- default is AUTO ON 
+      -- default is AUTO ON
     [ MODEL_TYPE { XGBOOST | MLP | LINEAR_LEARNER | KMEANS } ]
       -- not required for non AUTO OFF case, default is the list of all supported types
-      -- required for AUTO OFF 
+      -- required for AUTO OFF
     [ PROBLEM_TYPE ( REGRESSION | BINARY_CLASSIFICATION | MULTICLASS_CLASSIFICATION ) ]
-      -- not supported when AUTO OFF 
+      -- not supported when AUTO OFF
     [ OBJECTIVE ( 'MSE' | 'Accuracy' | 'F1' | 'F1_Macro' | 'AUC' |
                   'reg:squarederror' | 'reg:squaredlogerror'| 'reg:logistic'|
                   'reg:pseudohubererror' | 'reg:tweedie' | 'binary:logistic' | 'binary:hinge',
@@ -77,7 +77,7 @@ CREATE MODEL model_name
       -- NUM_CLASS is required if objective is multi:softmax (only possible for AUTO OFF)
      [ SETTINGS (
        S3_BUCKET 'bucket',  |
-        -- required 
+        -- required
       KMS_KEY_ID 'kms_string', |
         -- optional
       S3_GARBAGE_COLLECT on / off, |
@@ -85,7 +85,7 @@ CREATE MODEL model_name
       MAX_CELLS integer, |
         -- optional, default is 1,000,000
       MAX_RUNTIME integer (, ...)
-        -- optional, default is 5400 (1.5 hours) 
+        -- optional, default is 5400 (1.5 hours)
     ) ]
 ```
 
@@ -123,7 +123,7 @@ OBJECTIVE \( 'MSE' \| 'Accuracy' \| 'F1' \| 'F1Macro' \| 'AUC' \| 'reg:squareder
 
 ```
 CREATE MODEL customer_churn
-FROM customer_data 
+FROM customer_data
 TARGET 'Churn'
 FUNCTION predict_churn
 IAM_ROLE { default }

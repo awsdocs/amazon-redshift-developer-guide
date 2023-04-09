@@ -8,7 +8,7 @@ First, verify that the database has the WLM configuration that you expect\.
 
 ### To view the query queue configuration<a name="how-to-wlm-view-query-config"></a>
 
-1. Open psql and run the following query\. The query uses the WLM\_QUEUE\_STATE\_VW view you created in [Step 1: Create the WLM\_QUEUE\_STATE\_VW view](tutorial-wlm-understanding-default-processing.md#tutorial-wlm-create-queue-state-view)\. If you already had a session connected to the database prior to the cluster reboot, you need to reconnect\.
+1. Open RSQL and run the following query\. The query uses the WLM\_QUEUE\_STATE\_VW view you created in [Step 1: Create the WLM\_QUEUE\_STATE\_VW view](tutorial-wlm-understanding-default-processing.md#tutorial-wlm-create-queue-state-view)\. If you already had a session connected to the database prior to the cluster reboot, you need to reconnect\.
 
    ```
    select * from wlm_queue_state_vw;
@@ -41,7 +41,7 @@ First, verify that the database has the WLM configuration that you expect\.
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. From the other psql window, run the following query\.
+1. From the other RSQL window, run the following query\.
 
    ```
    select * from wlm_query_state_vw;
@@ -83,11 +83,11 @@ First, verify that the database has the WLM configuration that you expect\.
 
 ## Step 3: Create a database user and group<a name="tutorial-wlm-create-db-user-and-group"></a>
 
-Before you can run any queries in this queue, you need to create the user group in the database and add a user to the group\. Then you log on with psql using the new user’s credentials and run queries\. You need to run queries as a superuser, such as the admin user, to create database users\.
+Before you can run any queries in this queue, you need to create the user group in the database and add a user to the group\. Then you log in with RSQL using the new user’s credentials and run queries\. You need to run queries as a superuser, such as the admin user, to create database users\.
 
 ### To create a new database user and user group<a name="how-to-wlm-create-db-user-and-group"></a>
 
-1. In the database, create a new database user named `adminwlm` by running the following command in a psql window\.
+1. In the database, create a new database user named `adminwlm` by running the following command in an RSQL window\.
 
    ```
    create user adminwlm createuser password '123Admin';
@@ -106,14 +106,14 @@ Next you run a query and route it to the user group queue\. You do this when you
 
 ### To run a query using the user group queue<a name="how-to-wlm-user-group-query"></a>
 
-1. In psql window 2, run the following queries to switch to the `adminwlm` account and run a query as that user\.
+1. In RSQL window 2, run the following queries to switch to the `adminwlm` account and run a query as that user\.
 
    ```
    set session authorization 'adminwlm';
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. In psql window 1, run the following query to see the query queue that the queries are routed to\.
+1. In RSQL window 1, run the following query to see the query queue that the queries are routed to\.
 
    ```
    select * from wlm_query_state_vw;
@@ -126,14 +126,14 @@ Next you run a query and route it to the user group queue\. You do this when you
 
    The queue that this query ran in is queue 2, the `admin` user queue\. Anytime you run queries logged in as this user, they run in queue 2 unless you specify a different query group to use\.  The chosen queue depends on the queue assignment rules\. For more information, see [WLM queue assignment rules](cm-c-wlm-queue-assignment-rules.md)\. 
 
-1. Now run the following query from psql window 2\.
+1. Now run the following query from RSQL window 2\.
 
    ```
    set query_group to test;
    select avg(l.priceperticket*s.qtysold) from listing l, sales s where l.listid <40000;
    ```
 
-1. In psql window 1, run the following query to see the query queue that the queries are routed to\.
+1. In RSQL window 1, run the following query to see the query queue that the queries are routed to\.
 
    ```
    select * from wlm_queue_state_vw;

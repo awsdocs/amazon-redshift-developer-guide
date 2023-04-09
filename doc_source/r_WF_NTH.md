@@ -37,7 +37,7 @@ ORDER BY *window\_ordering*
 Sorts the rows within each partition\. If ORDER BY is omitted, the default frame consists of all rows in the partition\. 
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows in the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\. 
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows in the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](c_Window_functions.md#r_Window_function_synopsis)\. 
 
 The NTH\_VALUE window function supports expressions that use any of the Amazon Redshift data types\. The return type is the same as the type of the *expr*\. 
 

@@ -3,8 +3,6 @@
 COPY can load data from Amazon S3 in the following columnar formats:
 + ORC 
 + Parquet 
-+ RCFile
-+ SequenceFile
 
 COPY supports columnar formatted data with the following restrictions:
 + The cluster must be in one of the following AWS Regions: 
@@ -14,6 +12,7 @@ COPY supports columnar formatted data with the following restrictions:
   + US West \(Oregon\) Region \(us\-west\-2\) 
   + Africa \(Cape Town\) Region \(af\-south\-1\)
   + Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\) 
+  + Asia Pacific \(Melbourne\) Region \(ap\-southeast\-4\) 
   + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
   + Asia Pacific \(Osaka\) Region \(ap\-northeast\-3\)
   + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
@@ -48,10 +47,10 @@ COPY supports columnar formatted data with the following restrictions:
   + [ACCESS\_KEY\_ID, SECRET\_ACCESS\_KEY, and SESSION\_TOKEN](copy-parameters-authorization.md#copy-access-key-id)
   + [EXPLICIT\_IDS](copy-parameters-data-conversion.md#copy-explicit-ids)
 + If COPY encounters an error while loading, the command fails\. ACCEPTANYDATE  and MAXERROR aren't supported for columnar data types\.
-+ Error messages are sent only to the SQL client\. Errors aren't logged in STL\_LOAD\_ERRORS\.
++ Error messages are sent to the SQL client\. Some errors are logged in STL\_LOAD\_ERRORS and STL\_ERROR\.
 + COPY inserts values into the target table's columns in the same order as the columns occur in the columnar data files\. The number of columns in the target table and the number of columns in the data file must match\.
 + If the file you specify for the COPY operation includes one of the following extensions, we decompress the data without the need for adding any parameters: 
   + `.gz`
   + `.snappy`
   + `.bz2`
-+ COPY from the Parquet, ORC, RCFile, and SequenceFile file formats uses Redshift Spectrum and the bucket access\. To use COPY for these formats, be sure there are no IAM policies blocking the use of presigned URLs\. For more information, see [Using Amazon Redshift Spectrum with enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html)\.
++ COPY from the Parquet and ORC file formats uses Redshift Spectrum and the bucket access\. To use COPY for these formats, be sure there are no IAM policies blocking the use of presigned URLs\. For more information, see [Using Amazon Redshift Spectrum with enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/spectrum-enhanced-vpc.html)\.

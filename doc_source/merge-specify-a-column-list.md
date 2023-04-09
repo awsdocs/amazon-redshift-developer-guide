@@ -1,8 +1,10 @@
 # Performing a merge operation by specifying a column list<a name="merge-specify-a-column-list"></a>
 
+When you run the merge operation detailed in the procedure, put all of the steps in a single transaction\. The transaction rolls back if any step fails\. Using a single transaction also reduces the number of commits, which saves time and resources\.
+
 **To perform a merge operation by specifying a column list**
 
-1. Put the entire operation in a single transaction block so that if there is a problem, everything will be rolled back\. 
+1. Put the entire operation in a single transaction block\. 
 
    ```
    begin transaction;
@@ -24,7 +26,7 @@
    + Perform an inner join with the staging table\. 
    + If the distribution key is different from the primary key and the distribution key is not being updated, add a redundant join on the distribution key\. To verify that the query will use a collocated join, run the query with [EXPLAIN](r_EXPLAIN.md) and check for DS\_DIST\_NONE on all of the joins\. For more information, see [Evaluating the query plan](c_data_redistribution.md)
    + If your target table is sorted by timestamp, add a predicate to take advantage of range\-restricted scans on the target table\. For more information, see [Amazon Redshift best practices for designing queries](c_designing-queries-best-practices.md)\.
-   + If you will not use all of the rows in the merge, add a clause to filter the rows that need to be changed\. For example, add an inequality filter on one or more columns to exclude rows that have not changed\.
+   + If you will not use all of the rows in the merge, add a clause to filter the rows that you want to change\. For example, add an inequality filter on one or more columns to exclude rows that have not changed\.
    + Put the update, delete, and insert operations in a single transaction block so that if there is a problem, everything will be rolled back\.
 
     For example: 

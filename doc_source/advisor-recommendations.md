@@ -19,15 +19,15 @@ Amazon Redshift Advisor offers recommendations about how to optimize your Amazon
 
 The COPY command takes advantage of the massively parallel processing \(MPP\) architecture in Amazon Redshift to read and load data in parallel\. It can read files from Amazon S3, DynamoDB tables, and text output from one or more remote hosts\. 
 
-When loading large amounts of data, we strongly recommend using the COPY command to load compressed data files from S3\. Compressing large datasets saves time uploading the files to S3\. COPY can also speed up the load process by uncompressing the files as they are read\. 
+When loading large amounts of data, we strongly recommend using the COPY command to load compressed data files from S3\. Compressing large datasets saves time uploading the files to Amazon S3\. COPY can also speed up the load process by uncompressing the files as they are read\. 
 
 **Analysis**
 
-Long\-running COPY commands that load large uncompressed datasets often have an opportunity for considerable performance improvement\. The Advisor analysis identifies COPY commands that load large uncompressed datasets\. In such a case, Advisor generates a recommendation to implement compression on the source files in S3\. 
+Long\-running COPY commands that load large uncompressed datasets often have an opportunity for considerable performance improvement\. The Advisor analysis identifies COPY commands that load large uncompressed datasets\. In such a case, Advisor generates a recommendation to implement compression on the source files in Amazon S3\. 
 
 **Recommendation**
 
-Ensure that each COPY that loads a significant amount of data, or runs for a significant duration, ingests compressed data objects from S3\. You can identify the COPY commands that load large uncompressed datasets from S3 by running the following SQL command as a superuser\.
+Ensure that each COPY that loads a significant amount of data, or runs for a significant duration, ingests compressed data objects from Amazon S3\. You can identify the COPY commands that load large uncompressed datasets from Amazon S3 by running the following SQL command as a superuser\.
 
 ```
 SELECT
@@ -47,7 +47,7 @@ AND SUM(transfer_size)/(1024*1024) >= 5
 ORDER BY 6 DESC, 5 DESC;
 ```
 
-If the staged data remains in S3 after you load it, which is common in data lake architectures, storing this data in a compressed form can reduce your storage costs\. 
+If the staged data remains in Amazon S3 after you load it, which is common in data lake architectures, storing this data in a compressed form can reduce your storage costs\. 
 
 **Implementation tips**
 + The ideal object size is 1–128 MB after compression\.
@@ -63,7 +63,7 @@ The Advisor analysis reviews all databases on the cluster for active workloads r
 
 **Recommendation**
 
-Consider moving each actively queried database to a separate dedicated cluster\. Using a separate cluster can reduce resource contention and improve query performance\. It can do so because it enables you to set the size for each cluster for the storage, cost, and performance needs of each workload\. Also, unrelated workloads often benefit from different workload management configurations\.
+Consider moving each actively queried database to a separate dedicated cluster\. Using a separate cluster can reduce resource contention and improve query performance\. It can do so because it allows you to set the size for each cluster for the storage, cost, and performance needs of each workload\. Also, unrelated workloads often benefit from different workload management configurations\.
 
 To identify which databases are actively used, you can run this SQL command as a superuser\.
 
@@ -97,12 +97,12 @@ When a queue is configured with more slots than the workload requires, the memor
 **Analysis**
 
 The Advisor analysis reviews workload concurrency requirements to identify query queues with unused slots\. Advisor generates a recommendation to reduce the number of slots in a queue when it finds the following:
-+ A queue with slots that are completely inactive throughout the analysis
-+ A queue with more than four slots that had at least two inactive slots throughout the analysis
++ A queue with slots that are completely inactive throughout the analysis\.
++ A queue with more than four slots that had at least two inactive slots throughout the analysis\.
 
 **Recommendation**
 
-Reducing the configured slots to match peak workload requirements redistributes underutilized memory to active slots\. Consider reducing the configured slot count for queues where the slots have never been fully utilized\. To identify these queues, you can compare the peak hourly slot requirements for each queue by running the following SQL command as a superuser\.
+Reducing the configured slots to match peak workload requirements redistributes underutilized memory to active slots\. Consider reducing the configured slot count for queues where the slots have never been fully used\. To identify these queues, you can compare the peak hourly slot requirements for each queue by running the following SQL command as a superuser\.
 
 ```
 WITH
@@ -139,7 +139,7 @@ When you load data into an empty table with compression encoding declared with t
 
 The Advisor analysis checks for COPY operations that were delayed by automatic compression analysis\. The analysis determines the compression encodings by sampling the data while it's being loaded\. This sampling is similar to that performed by the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command\. 
 
-When you load data as part of a structured process, such as in an overnight extract, transform, load \(ETL\) batch, you can define the compression beforehand\. You can also optimize your table definitions to permanently skip this phase without any negative impacts\.
+When you load data as part of a structured process, such as in an overnight extract, transform, load \(ETL\) batch, you can define the compression beforehand\. You can also optimize your table definitions to skip this phase permanently without any negative impacts\.
 
 **Recommendation**
 
@@ -183,7 +183,7 @@ The COPY command takes advantage of the massively parallel processing \(MPP\) ar
 
 **Analysis**
 
-The Advisor analysis identifies COPY commands that load large datasets contained in a small number of files staged in S3\. Long\-running COPY commands that load large datasets from a few files often have an opportunity for considerable performance improvement\. When Advisor identifies that these COPY commands are taking a significant amount of time, it creates a recommendation to increase parallelism by splitting the data into additional files in S3\. 
+The Advisor analysis identifies COPY commands that load large datasets contained in a small number of files staged in Amazon S3\. Long\-running COPY commands that load large datasets from a few files often have an opportunity for considerable performance improvement\. When Advisor identifies that these COPY commands are taking a significant amount of time, it creates a recommendation to increase parallelism by splitting the data into additional files in Amazon S3\. 
 
 **Recommendation**
 
@@ -195,7 +195,7 @@ In this case, we recommend the following actions, listed in priority order:
 
 1. Optimize COPY commands where the number of files is not a multiple of the number of cluster slices\.
 
-Certain COPY commands load a significant amount of data or run for a significant duration\. For these commands, we recommend that you load a number of data objects from S3 that is equivalent to a multiple of the number of slices in the cluster\. To identify how many S3 objects each COPY command has loaded, run the following SQL code as a superuser\. 
+Certain COPY commands load a significant amount of data or run for a significant duration\. For these commands, we recommend that you load a number of data objects from Amazon S3 that is equivalent to a multiple of the number of slices in the cluster\. To identify how many S3 objects each COPY command has loaded, run the following SQL code as a superuser\. 
 
 ```
 SELECT
@@ -280,7 +280,7 @@ For more information, see [Analyzing tables](t_Analyzing_tables.md)\.
 
 Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA runs short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. SQA only prioritizes queries that are short\-running and are in a user\-defined queue\. With SQA, short\-running queries begin running more quickly and users see results sooner\. 
 
-If you enable SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Working with short query acceleration](wlm-short-query-acceleration.md)\. 
+If you turn on SQA, you can reduce or eliminate workload management \(WLM\) queues that are dedicated to running short queries\. In addition, long\-running queries don't need to contend with short queries for slots in a queue, so you can configure your WLM queues to use fewer query slots\. When you use lower concurrency, query throughput is increased and overall system performance is improved for most workloads\. For more information, see [Working with short query acceleration](wlm-short-query-acceleration.md)\. 
 
 **Analysis**
 
@@ -288,13 +288,13 @@ Advisor checks for workload patterns and reports the number of recent queries wh
 
 **Recommendation**
 
-Modify the WLM configuration to enable SQA\. Amazon Redshift uses a machine learning algorithm to analyze each eligible query\. Predictions improve as SQA learns from your query patterns\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)\. 
+Modify the WLM configuration to turn on SQA\. Amazon Redshift uses a machine learning algorithm to analyze each eligible query\. Predictions improve as SQA learns from your query patterns\. For more information, see [Configuring Workload Management](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)\. 
 
-When you enable SQA, WLM sets the maximum run time for short queries to dynamic by default\. We recommend keeping the dynamic setting for SQA maximum run time\. 
+When you turn on SQA, WLM sets the maximum runtime for short queries to dynamic by default\. We recommend keeping the dynamic setting for SQA maximum runtime\. 
 
 **Implementation tips**
 
-To check whether SQA is enabled, run the following query\. If the query returns a row, then SQA is enabled\.
+To check whether SQA is turned on, run the following query\. If the query returns a row, then SQA is turned on\.
 
 ```
 select * from stv_wlm_service_class_config 
@@ -322,7 +322,7 @@ Redistributing a large table with ALTER TABLE consumes cluster resources and req
 For more information about ALTER DISTSYLE and DISTKEY, see [ALTER TABLE](r_ALTER_TABLE.md)\. 
 
 **Note**  
-If you don't see a recommendation, that doesn't necessarily mean that the current distribution styles are the most appropriate\. Advisor doesn't provide recommendations when there isn't enough data or the expected benefit of redistribution is small\.   
+If you don't see a recommendation that doesn't necessarily mean that the current distribution styles are the most appropriate\. Advisor doesn't provide recommendations when there isn't enough data or the expected benefit of redistribution is small\.   
 Advisor recommendations apply to a particular table and don't necessarily apply to a table that contains a column with the same name\. Tables that share a column name can have different characteristics for those columns unless data inside the tables is the same\.   
 If you see recommendations for staging tables that are created or dropped by ETL jobs, modify your ETL processes to use the Advisor recommended distribution keys\. 
 

@@ -6,7 +6,7 @@ The stack creates a datashare on the cluster that you designate\. The datashare 
 
 If instead you want to start sharing data in an AWS account by running SQL statements to set up a datashare and grant permissions, without using CloudFormation, see [Sharing data within an AWS account](within-account.md)\.
 
-Before running the data sharing CloudFormation stack, you must be logged in with a user that has permission to create an IAM role and a Lambda function\. You also need two Amazon Redshift clusters in the same account\. You use one, the *producer*, to share the sample data, and the other, the *consumer*, to read it\. The primary requirement for these clusters is that each use RA3 nodes\. For additional requirements, see [Data sharing considerations in Amazon Redshift](considerations.md)\.
+Before running the data sharing CloudFormation stack, you must be logged in with a user that has permission to create an IAM role and a Lambda function\. You also need two Amazon Redshift clusters in the same account\. You use one, the *producer*, to share the sample data, and the other, the *consumer*, to read it\. The primary requirement for these clusters is that each use RA3 nodes\. For additional requirements, see [Considerations when using data sharing in Amazon Redshift](considerations.md)\.
 
 For more information about getting started setting up an Amazon Redshift cluster, see [Getting started with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\. For more information about automating setup with CloudFormation, see [What is AWS CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)\.
 

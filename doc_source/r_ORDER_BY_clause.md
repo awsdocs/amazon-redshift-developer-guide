@@ -12,7 +12,7 @@ The ORDER BY clause sorts the result set of a query\.
 
 ```
 [ ORDER BY expression [ ASC | DESC ] ]
-[ NULLS FIRST | NULLS LAST ]  
+[ NULLS FIRST | NULLS LAST ]
 [ LIMIT { count | ALL } ]
 [ OFFSET start ]
 ```

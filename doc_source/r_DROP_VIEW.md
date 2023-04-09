@@ -50,7 +50,7 @@ from event where catid = 1;
 Now, we create a second view called *myeventview*, that is based on the first view *eventview*:
 
 ```
-create view myeventview as 
+create view myeventview as
 select eventname, catid
 from eventview where eventname <> ' ';
 ```

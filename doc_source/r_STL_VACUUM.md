@@ -15,17 +15,20 @@ This view is visible only to superusers\. For more information, see [Visibility 
 The following query reports vacuum statistics for table 108313\. The table was vacuumed following a series of inserts and deletes\. 
 
 ```
-select xid, table_id, status, rows, sortedrows, blocks, eventtime
+select xid, table_id, status, rows, sortedrows, blocks, eventtime,
+                reclaimable_rows, reclaimable_space_mb
 from stl_vacuum where table_id=108313 order by eventtime;
 
- xid   | table_id | status               | rows       | sortedrows | blocks |  eventtime          
--------+----------+----------------------+------------+------------+--------+---------------------
- 14294 |   108313 | Started              | 1950266199 |  400043488 | 280887 |  2016-05-19 17:36:01
- 14294 |   108313 | Finished             |  600099388 |  600099388 |  88978 |  2016-05-19 18:26:13
- 15126 |   108313 | Skipped(sorted>=95%) |  600099388 |  600099388 |  88978 |  2016-05-19 18:26:38
+ xid   | table_id | status                  | rows | sortedrows | blocks |  eventtime           | reclaimable_rows | reclaimable_space_mb 
+-------+----------+-------------------------+------+------------+--------+----------------------+------------------+----------------------
+ 14294 |   108313 | Started                 | 1950 |        408 |     28 |  2016-05-19 17:36:01 |              984 |                   17          
+ 14294 |   108313 | Finished                |  966 |        966 |     11 |  2016-05-19 18:26:13 |                0 |                    0 
+ 15126 |   108313 | Skipped(sorted>=95%)    |  966 |        966 |     11 |  2016-05-19 18:26:38 |                0 |                    0
 ```
 
-At the start of the VACUUM, the table contained 1,950,266,199 rows stored in 280,887 1 MB blocks\. In the delete phase \(transaction 14294\) completed, vacuum reclaimed space for the deleted rows\. The ROWS column shows a value of 400,043,488, and the BLOCKS column has dropped from 280,887 to 88,978\. The vacuum reclaimed 191,909 blocks \(191\.9 GB\) of disk space\.
+At the start of the VACUUM, the table contained 1,950 rows stored in 28 1 MB blocks\. Amazon Redshift estimated it could reclaim 984, or 17 blocks of disk space, with a vacuum operation\.
+
+In the row for the Finished status, the ROWS column shows a value of 966, and the BLOCKS column value is 11, down from 28\. The vacuum reclaimed the estimated amount of disk space, with no reclaimable rows or space remaining after the vacuum operation completed\.
 
 In the sort phase \(transaction 15126\), the vacuum was able to skip the table because the rows were inserted in sort key order\.
 

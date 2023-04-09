@@ -34,7 +34,7 @@ command
 The command that will be run by the host to generate text or binary \(gzip, lzop, or bzip2\) output\. The command can be any command that the user *"host\_user\_name"* has permission to run\. The command can be as simple as printing a file, or it could query a database or launch a script\. The output \(text file, gzip binary file, lzop binary file, or bzip2 binary file\) must be in a form the Amazon Redshift COPY command can ingest\. For more information, see [Preparing your input data](t_preparing-input-data.md)\.
 
 publickey  
-\(Optional\) The public key of the host\. If provided, Amazon Redshift will use the public key to identify the host\. If the public key is not provided, Amazon Redshift will not attempt host identification\. For example, if the remote host's public key is: `ssh-rsa AbcCbaxxx…xxxDHKJ root@amazon.com` enter the following text in the publickey field: `AbcCbaxxx…xxxDHKJ`\. 
+\(Optional\) The public key of the host\. If provided, Amazon Redshift will use the public key to identify the host\. If the public key is not provided, Amazon Redshift will not attempt host identification\. For example, if the remote host's public key is: `ssh-rsa AbcCbaxxx…xxxDHKJ root@amazon.com`, enter the following text in the public key field: `AbcCbaxxx…xxxDHKJ`\. 
 
 mandatory  
 \(Optional\) Indicates whether the COPY command should fail if the connection fails\. The default is `false`\. If Amazon Redshift does not successfully make at least one connection, the COPY command fails\.

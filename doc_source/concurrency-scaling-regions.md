@@ -3,6 +3,7 @@
 Concurrency scaling is available in these AWS Regions: 
 + US East \(N\. Virginia\) Region \(us\-east\-1\)
 + US East \(Ohio\) Region \(us\-east\-2\)
++ AWS GovCloud \(US\-East\)
 + US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
 + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
@@ -16,16 +17,4 @@ Concurrency scaling is available in these AWS Regions:
 + Europe \(London\) Region \(eu\-west\-2\)
 + Europe \(Paris\) Region \(eu\-west\-3\)
 + Europe \(Stockholm\) Region \(eu\-north\-1\) 
-+ South America \(São Paulo\) Region \(sa\-east\-1\)
-
-Concurrency scaling for writes is available only in these AWS Regions: 
-+ US East \(Ohio\) Region \(us\-east\-2\)
-+ US West \(N\. California\) Region \(us\-west\-1\)
-+ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
-+ Europe \(Frankfurt\) Region \(eu\-central\-1\)
-+ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
-+ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
-+ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
-+ Europe \(London\) Region \(eu\-west\-2\)
-+ Europe \(Paris\) Region \(eu\-west\-3\)
 + South America \(São Paulo\) Region \(sa\-east\-1\)

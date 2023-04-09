@@ -33,7 +33,7 @@ A new owner for the stored procedure\.
 The following example changes the name of a procedure from `first_quarter_revenue` to `quarterly_revenue`\.
 
 ```
-ALTER PROCEDURE first_quarter_revenue(volume INOUT bigint, at_price IN numeric, 
+ALTER PROCEDURE first_quarter_revenue(volume INOUT bigint, at_price IN numeric,
  result OUT int) RENAME TO quarterly_revenue;
 ```
 

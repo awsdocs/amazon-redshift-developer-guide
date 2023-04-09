@@ -37,7 +37,7 @@ The results of the FIRST\_VALUE and LAST\_VALUE functions depend on the ordering
 + When the expression evaluates to different values that correspond to the same value in the ORDER BY list\. 
 
  *frame\_clause*   
-If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows in the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](r_Window_function_synopsis.md)\. 
+If an ORDER BY clause is used for an aggregate function, an explicit frame clause is required\. The frame clause refines the set of rows in a function's window, including or excluding sets of rows in the ordered result\. The frame clause consists of the ROWS keyword and associated specifiers\. See [Window function syntax summary](c_Window_functions.md#r_Window_function_synopsis)\. 
 
 ## Data types<a name="c_Supported_data_types_wf_first_value"></a>
 

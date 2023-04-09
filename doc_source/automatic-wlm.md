@@ -2,9 +2,7 @@
 
 With automatic workload management \(WLM\), Amazon Redshift manages query concurrency and memory allocation\. You can create up to eight queues with the service class identifiers 100–107\. Each queue has a priority\. For more information, see [Query priority](query-priority.md)\. 
 
-In contrast, manual WLM requires you to specify values for query concurrency and memory allocation\. The default for manual WLM is concurrency of five queries, and memory is divided equally between all five\. Automatic WLM determines the amount of resources that queries need, and adjusts the concurrency based on the workload\. When queries requiring large amounts of resources are in the system \(for example, hash joins between large tables\), the concurrency is lower\. When lighter queries \(such as inserts, deletes, scans, or simple aggregations\) are submitted, concurrency is higher\. 
-
-For details about how to migrate from manual WLM to automatic WLM, see [Migrating from manual WLM to automatic WLM](cm-c-modifying-wlm-configuration.md#wlm-manual-to-automatic)\.
+Automatic WLM determines the amount of resources that queries need and adjusts the concurrency based on the workload\. When queries requiring large amounts of resources are in the system \(for example, hash joins between large tables\), the concurrency is lower\. When lighter queries \(such as inserts, deletes, scans, or simple aggregations\) are submitted, concurrency is higher\. 
 
 Automatic WLM is separate from short query acceleration \(SQA\) and it evaluates queries differently\. Automatic WLM and SQA work together to allow short running and lightweight queries to complete even while long running, resource intensive queries are active\. For more information about SQA, see [Working with short query acceleration](wlm-short-query-acceleration.md)\. 
 
@@ -60,7 +58,7 @@ select * from stv_wlm_service_class_config
 where service_class >= 100;
 ```
 
-The following query shows the number of queries that went through each query queue \(service class\)\. It also shows the average execution time, the number of queries with wait time at the 90th percentile, and the average wait time\. Automatic WLM queries use service classes 100 to 107\.
+The following query shows the number of queries that went through each query queue \(service class\)\. It also shows the average execution time, the number of queries with wait time at the 90th percentile, and the average wait time\. Automatic WLM queries use service classes 100 through 107\.
 
 ```
 select final_state, service_class, count(*), avg(total_exec_time), 

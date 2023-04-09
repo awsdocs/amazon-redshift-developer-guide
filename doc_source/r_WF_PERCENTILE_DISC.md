@@ -36,7 +36,7 @@ The same data type as the ORDER BY expression in the WITHIN GROUP clause\.
 
 ## Examples<a name="r_WF_PERCENTILE_DISC-examples"></a>
 
-The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Overview example for window functions](c_Window_functions.md#r_Window_function_example)\. 
+The following examples uses the WINSALES table\. For a description of the WINSALES table, see [Sample table for window function examples](c_Window_functions.md#r_Window_function_example)\. 
 
 ```
 select sellerid, qty, percentile_disc(0.5) 

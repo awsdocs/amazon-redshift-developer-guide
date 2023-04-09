@@ -9,5 +9,6 @@
 + [SHA function](SHA.md)
 + [SHA1 function](SHA1.md)
 + [SHA2 function](SHA2.md)
++ [MURMUR3\_32\_HASH](MURMUR3_32_HASH.md)
 
 A hash function is a mathematical function that converts a numerical input value into another value\.

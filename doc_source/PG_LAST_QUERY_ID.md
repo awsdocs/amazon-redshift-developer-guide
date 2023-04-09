@@ -18,7 +18,11 @@ The following query returns the ID of the latest query completed in the current 
 
 ```
 select pg_last_query_id();
+```
 
+Results are the following\.
+
+```
 pg_last_query_id
 ----------------
            5437
@@ -31,7 +35,11 @@ The following query returns the query ID and text of the most recently completed
 select query, trim(querytxt) as sqlquery
 from stl_query
 where query = pg_last_query_id();
+```
 
+Results are the following\.
+
+```
 query | sqlquery
 ------+--------------------------------------------------
  5437 | select name, loadtime from stl_file_scan where loadtime > 1000000;

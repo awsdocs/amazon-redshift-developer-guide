@@ -1,4 +1,4 @@
-# Compress your data files<a name="c_best-practices-compress-data-files"></a>
+# Compressing your data files<a name="c_best-practices-compress-data-files"></a>
 
 When you want to compress large load files, we recommend that you use gzip, lzop, bzip2, or Zstandard to compress them and split the data into multiple smaller files\.
 

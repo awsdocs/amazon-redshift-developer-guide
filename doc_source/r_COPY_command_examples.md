@@ -283,7 +283,7 @@ csv quote as '%';
 
 ## Load VENUE with explicit values for an IDENTITY column<a name="r_COPY_command_examples-load-venue-with-explicit-values-for-an-identity-column"></a>
 
-The following example assumes that when the VENUE table was created that at least one column \(such as the `venueid` column\) was specified to be an IDENTITY column\. This command overrides the default IDENTITY behavior of autogenerating values for an IDENTITY column and instead loads the explicit values from the venue\.txt file\.
+The following example assumes that when the VENUE table was created that at least one column \(such as the `venueid` column\) was specified to be an IDENTITY column\. This command overrides the default IDENTITY behavior of autogenerating values for an IDENTITY column and instead loads the explicit values from the venue\.txt file\. Amazon Redshift does not check if duplicate IDENTITY values are loaded into the table when using the EXLICIT\_IDS option\. 
 
 ```
 copy venue

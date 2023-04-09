@@ -1,6 +1,6 @@
 # MIN function<a name="r_MIN"></a>
 
- The MIN function returns the minimum value in a set of rows\. DISTINCT or ALL may be used but do not affect the result\.
+ The MIN function returns the minimum value in a set of rows\. DISTINCT or ALL might be used but do not affect the result\.
 
 ## Syntax<a name="r_MIN-synopsis"></a>
 

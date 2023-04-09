@@ -26,7 +26,7 @@ Specifies whether the policy is attached to one or more specified users or roles
 
 When working with the ATTACH RLS POLICY statement, observe the following:
 + The table being attached should have all the columns listed in the WITH clause of the policy creation statement\.
-+ Amazon Redshift RLS doesn't support attaching RLS policies to the following objects: catalog tables, cross\-database relations, external tables, regular views, late\-binding views, materialized views, temporary tables, and lookup tables for RLS policies\.
++ Amazon Redshift RLS doesn't support attaching RLS policies to the following objects: catalog tables, cross\-database relations, external tables, regular views, late\-binding views, temporary tables, and lookup tables for RLS policies\.
 + You can't attach a RLS policy to superusers or to a sys:secadmin\.
 
 ## Examples<a name="r_ALTER_RLS_POLICY-examples"></a>

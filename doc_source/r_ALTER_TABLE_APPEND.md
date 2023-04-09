@@ -18,7 +18,7 @@ An ALTER TABLE APPEND command automatically commits immediately upon completion 
 ## Syntax<a name="r_ALTER_TABLE_APPEND-synopsis"></a>
 
 ```
-ALTER TABLE target_table_name APPEND FROM source_table_name 
+ALTER TABLE target_table_name APPEND FROM source_table_name
 [ IGNOREEXTRA | FILLTARGET ]
 ```
 
@@ -76,30 +76,30 @@ First, query the [PG\_TABLE\_DEF](r_PG_TABLE_DEF.md) system catalog table to ver
 
 ```
 select trim(tablename) as table, "column", trim(type) as type,
-encoding, distkey, sortkey, "notnull" 
+encoding, distkey, sortkey, "notnull"
 from pg_table_def where tablename like 'sales%';
 
 table      | column     | type                        | encoding | distkey | sortkey | notnull
 -----------+------------+-----------------------------+----------+---------+---------+--------
-sales      | salesid    | integer                     | lzo      | false   |       0 | true   
-sales      | listid     | integer                     | none     | true    |       1 | true   
-sales      | sellerid   | integer                     | none     | false   |       2 | true   
-sales      | buyerid    | integer                     | lzo      | false   |       0 | true   
-sales      | eventid    | integer                     | mostly16 | false   |       0 | true   
-sales      | dateid     | smallint                    | lzo      | false   |       0 | true   
-sales      | qtysold    | smallint                    | mostly8  | false   |       0 | true   
-sales      | pricepaid  | numeric(8,2)                | delta32k | false   |       0 | false  
-sales      | commission | numeric(8,2)                | delta32k | false   |       0 | false  
-sales      | saletime   | timestamp without time zone | lzo      | false   |       0 | false   
-salesmonth | salesid    | integer                     | lzo      | false   |       0 | true   
-salesmonth | listid     | integer                     | none     | true    |       1 | true   
-salesmonth | sellerid   | integer                     | none     | false   |       2 | true   
-salesmonth | buyerid    | integer                     | lzo      | false   |       0 | true   
-salesmonth | eventid    | integer                     | mostly16 | false   |       0 | true   
-salesmonth | dateid     | smallint                    | lzo      | false   |       0 | true   
-salesmonth | qtysold    | smallint                    | mostly8  | false   |       0 | true   
-salesmonth | pricepaid  | numeric(8,2)                | delta32k | false   |       0 | false  
-salesmonth | commission | numeric(8,2)                | delta32k | false   |       0 | false  
+sales      | salesid    | integer                     | lzo      | false   |       0 | true
+sales      | listid     | integer                     | none     | true    |       1 | true
+sales      | sellerid   | integer                     | none     | false   |       2 | true
+sales      | buyerid    | integer                     | lzo      | false   |       0 | true
+sales      | eventid    | integer                     | mostly16 | false   |       0 | true
+sales      | dateid     | smallint                    | lzo      | false   |       0 | true
+sales      | qtysold    | smallint                    | mostly8  | false   |       0 | true
+sales      | pricepaid  | numeric(8,2)                | delta32k | false   |       0 | false
+sales      | commission | numeric(8,2)                | delta32k | false   |       0 | false
+sales      | saletime   | timestamp without time zone | lzo      | false   |       0 | false
+salesmonth | salesid    | integer                     | lzo      | false   |       0 | true
+salesmonth | listid     | integer                     | none     | true    |       1 | true
+salesmonth | sellerid   | integer                     | none     | false   |       2 | true
+salesmonth | buyerid    | integer                     | lzo      | false   |       0 | true
+salesmonth | eventid    | integer                     | mostly16 | false   |       0 | true
+salesmonth | dateid     | smallint                    | lzo      | false   |       0 | true
+salesmonth | qtysold    | smallint                    | mostly8  | false   |       0 | true
+salesmonth | pricepaid  | numeric(8,2)                | delta32k | false   |       0 | false
+salesmonth | commission | numeric(8,2)                | delta32k | false   |       0 | false
 salesmonth | saletime   | timestamp without time zone | lzo      | false   |       0 | false
 ```
 

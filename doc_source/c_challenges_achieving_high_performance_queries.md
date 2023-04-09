@@ -75,4 +75,4 @@ userid | query  | elapsed  | source_query
 
 The leader node distributes fully optimized compiled code across all of the nodes of a cluster\. Compiling the query decreases the overhead associated with an interpreter and therefore increases the runtime speed, especially for complex queries\. The compiled code is cached and shared across sessions on the same cluster\. As a result, future runs of the same query will be faster, often even with different parameters\. 
 
-The query run engine compiles different code for the JDBC connection protocol and for ODBC and psql \(libq\) connection protocols, so two clients using different protocols will each incur the first\-time cost of compiling the code\. Other clients that use the same protocol, however, will benefit from sharing the cached code\.
+The query run engine compiles different code for the JDBC and ODBC connection protocols, so two clients using different protocols each incur the first\-time cost of compiling the code\. Clients that use the same protocol, however, benefit from sharing the cached code\.

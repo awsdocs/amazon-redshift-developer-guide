@@ -49,7 +49,7 @@ DEALLOCATE prep_insert_plan;
 Prepare a SELECT statement and then run it:
 
 ```
-PREPARE prep_select_plan (int) 
+PREPARE prep_select_plan (int)
 AS select * from prep1 where c1 = $1;
 EXECUTE prep_select_plan (2);
 EXECUTE prep_select_plan (3);

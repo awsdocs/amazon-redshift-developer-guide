@@ -27,18 +27,18 @@ show table sales;
 ```
 
 ```
-CREATE TABLE public.sales ( 
-salesid integer NOT NULL ENCODE az64, 
-listid integer NOT NULL ENCODE az64 distkey, 
-sellerid integer NOT NULL ENCODE az64, 
-buyerid integer NOT NULL ENCODE az64, 
-eventid integer NOT NULL ENCODE az64, 
-dateid smallint NOT NULL, 
-qtysold smallint NOT NULL ENCODE az64, 
-pricepaid numeric(8,2) ENCODE az64, 
-commission numeric(8,2) ENCODE az64, 
-saletime timestamp without time zone ENCODE az64 
-) 
+CREATE TABLE public.sales (
+salesid integer NOT NULL ENCODE az64,
+listid integer NOT NULL ENCODE az64 distkey,
+sellerid integer NOT NULL ENCODE az64,
+buyerid integer NOT NULL ENCODE az64,
+eventid integer NOT NULL ENCODE az64,
+dateid smallint NOT NULL,
+qtysold smallint NOT NULL ENCODE az64,
+pricepaid numeric(8,2) ENCODE az64,
+commission numeric(8,2) ENCODE az64,
+saletime timestamp without time zone ENCODE az64
+)
 DISTSTYLE KEY SORTKEY ( dateid );
 ```
 
@@ -49,11 +49,11 @@ show table public.category;
 ```
 
 ```
-CREATE TABLE public.category ( 
-catid smallint NOT NULL distkey, 
-catgroup character varying(10) ENCODE lzo, 
-catname character varying(10) ENCODE lzo, 
-catdesc character varying(50) ENCODE lzo 
+CREATE TABLE public.category (
+catid smallint NOT NULL distkey,
+catgroup character varying(10) ENCODE lzo,
+catname character varying(10) ENCODE lzo,
+catdesc character varying(50) ENCODE lzo
 ) DISTSTYLE KEY SORTKEY ( catid );
 ```
 

@@ -4,7 +4,7 @@
 
 1. Access the Amazon Redshift Management Console\.
 
-1. Click the **Clusters** link in the navigation pane\.
+1. Choose the **Clusters** link in the navigation pane\.
 
 1. Select your cluster from the list\. 
 
@@ -23,7 +23,7 @@ For example:
 aws redshift describe-clusters --cluster-identifier <cluster-identifier> 
 ```
 
- The response will include the ClusterPublicKey and the list of Private and Public IP addresses, similar to the following: 
+ The response will include the ClusterPublicKey and the list of private and public IP addresses, similar to the following: 
 
 ```
 {

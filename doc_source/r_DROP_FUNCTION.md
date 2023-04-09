@@ -14,7 +14,7 @@ Following are required privileges for DROP FUNCTION:
 ## Syntax<a name="r_DROP_FUNCTION-synopsis"></a>
 
 ```
-DROP FUNCTION name 
+DROP FUNCTION name
 ( [arg_name] arg_type   [, ...] )
 [ CASCADE | RESTRICT ]
 ```

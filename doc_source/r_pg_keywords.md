@@ -2,6 +2,9 @@
 
 The following is a list of Amazon Redshift reserved words\. You can use the reserved words with delimited identifiers \(double quotation marks\)\.
 
+**Note**  
+While START and CONNECT are not reserved words, use delimited identifiers or AS if you're using START and CONNECT as table aliases in your query to avoid failure at runtime\.
+
 For more information, see [Names and identifiers](r_names.md)\. 
 
 ```
@@ -30,6 +33,7 @@ CAST
 CHECK
 COLLATE
 COLUMN
+CONNECT
 CONSTRAINT
 CREATE
 CREDENTIALS
@@ -138,6 +142,7 @@ SNAPSHOT
 SOME
 SYSDATE
 SYSTEM
+START
 TABLE
 TAG
 TDES

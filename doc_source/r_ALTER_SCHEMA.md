@@ -8,6 +8,12 @@ To view the configured schema quotas, see [SVV\_SCHEMA\_QUOTA\_STATE](r_SVV_SCHE
 
 To view the records where schema quotas were exceeded, see [STL\_SCHEMA\_QUOTA\_VIOLATIONS](r_STL_SCHEMA_QUOTA_VIOLATIONS.md)\.
 
+## Required privileges<a name="r_ALTER_SCHEMA-privileges"></a>
+
+Following are required privileges for ALTER SCHEMA:
++ Superuser
++ Owner of the schema
+
 ## Syntax<a name="r_ALTER_SCHEMA-synopsis"></a>
 
 ```

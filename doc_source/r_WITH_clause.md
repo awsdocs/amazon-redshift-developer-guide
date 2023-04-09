@@ -116,7 +116,7 @@ v     10 | Pizza Hut Park             | Frisco          | TX         |          
 The following example shows a WITH clause that produces two tables, named VENUE\_SALES and TOP\_VENUES\. The second WITH query table selects from the first\. In turn, the WHERE clause of the main query block contains a subquery that constrains the TOP\_VENUES table\. 
 
 ```
-with venue_sales as 
+with venue_sales as
 (select venuename, venuecity, sum(pricepaid) as venuename_sales
 from sales, venue, event
 where venue.venueid=event.venueid and event.eventid=sales.eventid
@@ -195,54 +195,17 @@ ERROR:  relation "holidays" does not exist
 
 ## Example: Recursive CTE<a name="r_WITH_clause-recursive-cte-example"></a>
 
-The following is an example of a recursive CTE that returns the number of employees that report directly or indirectly to John\. The recursive query contains a WHERE clause to limit the depth of recursion to less than 4 levels\.
+The following is an example of a recursive CTE that returns the employees who report directly or indirectly to John\. The recursive query contains a WHERE clause to limit the depth of recursion to less than 4 levels\.
 
 ```
-with recursive john_org(id, name, manager_id, level) as
-( select id, name, manager_id, 1 as level
-  from employee
-  where name = 'John'
-  union all
-  select e.id, e.name, e.manager_id, level + 1
-  from employee e, john_org j
-  where e.manager_id = j.id and level < 4 
-  )
- select id, name, manager_id from john_org order by manager_id;
-```
-
-Following is the result of the query\.
-
-```
-    id        name      manager_id
-  ------+-----------+--------------
-   101    John           100
-   102    Jorge          101   
-   103    Kwaku          101
-   110    Liu            101
-   201    Sofía          102   
-   106    Mateo          102
-   110    Nikki          103
-   104    Paulo          103
-   105    Richard        103
-   120    Saanvi         104   
-   200    Shirley        104
-   205    Zhang          104
-```
-
-Following is the table definition for this example\.
-
-```
-create table employee (
+--create and populate the sample table
+  create table employee (
   id int,
   name varchar (20),
   manager_id int
   );
-```
-
-Following are the rows inserted into the table\.
-
-```
-insert into employee(id, name, manager_id)  values
+  
+  insert into employee(id, name, manager_id)  values
 (100, 'Carlos', null),
 (101, 'John', 100),
 (102, 'Jorge', 101),
@@ -256,6 +219,37 @@ insert into employee(id, name, manager_id)  values
 (200, 'Shirley', 104),
 (201, 'Sofía', 102),
 (205, 'Zhang', 104);
+  
+--run the recursive query
+  with recursive john_org(id, name, manager_id, level) as
+( select id, name, manager_id, 1 as level
+  from employee
+  where name = 'John'
+  union all
+  select e.id, e.name, e.manager_id, level + 1 as next_level
+  from employee e, john_org j
+  where e.manager_id = j.id and level < 4
+  )
+ select distinct id, name, manager_id from john_org order by manager_id;
+```
+
+Following is the result of the query\.
+
+```
+    id        name      manager_id
+  ------+-----------+--------------
+   101    John           100
+   102    Jorge          101
+   103    Kwaku          101
+   110    Liu            101
+   201    Sofía          102
+   106    Mateo          102
+   110    Nikki          103
+   104    Paulo          103
+   105    Richard        103
+   120    Saanvi         104
+   200    Shirley        104
+   205    Zhang          104
 ```
 
 Following is an organization chart for John's department\.

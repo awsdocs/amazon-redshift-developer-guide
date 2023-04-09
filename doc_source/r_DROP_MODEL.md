@@ -33,5 +33,5 @@ The name of the model\. The model name in a schema must be unique\.
 The following example drops the model demo\_ml\.customer\_churn\.
 
 ```
-DROP MODEL demo_ml.customer_churn 
+DROP MODEL demo_ml.customer_churn
 ```

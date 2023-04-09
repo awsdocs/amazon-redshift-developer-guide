@@ -1,6 +1,6 @@
 # CREATE USER<a name="r_CREATE_USER"></a>
 
-Creates a new database user account\. You must be a database superuser to run this command\.
+Creates a new database user\. Database users can retrieve data, run commands, and perform other actions in a database, depending on their privileges and roles\. You must be a database superuser to run this command\.
 
 ## Required privileges<a name="r_CREATE_USER-privileges"></a>
 
@@ -11,7 +11,7 @@ Following are required privileges for CREATE USER:
 ## Syntax<a name="r_CREATE_USER-synopsis"></a>
 
 ```
-CREATE USER name [ WITH ] 
+CREATE USER name [ WITH ]
 PASSWORD { 'password' | 'md5hash' | 'sha256hash' | DISABLE }
 [ option [ ... ] ]
 
@@ -30,7 +30,7 @@ CREATEDB | NOCREATEDB
 ## Parameters<a name="r_CREATE_USER-parameters"></a>
 
  *name*   
-The name of the user account to create\. The user name can't be `PUBLIC`\. For more information about valid names, see [Names and identifiers](r_names.md)\.
+The name of the user to create\. The user name can't be `PUBLIC`\. For more information about valid names, see [Names and identifiers](r_names.md)\.
 
 WITH  
 Optional keyword\. WITH is ignored by Amazon Redshift
@@ -56,7 +56,8 @@ To specify an MD5 password, follow these steps:
 
    ```
    select md5('ez' || 'user1');
-   md5                             
+                           
+   md5
    --------------------------------
    153c434b4b77c89e6b94f12c5393af5b
    ```
@@ -67,7 +68,7 @@ To specify an MD5 password, follow these steps:
    create user user1 password 'md5153c434b4b77c89e6b94f12c5393af5b';
    ```
 
-1. Log on to the database using the user name and password\. 
+1. Log on to the database using the sign\-in credentials\. 
 
    For this example, log on as `user1` with password `ez`\. 
 Another secure alternative is to specify an SHA\-256 hash of a password string; or you can provide your own valid SHA\-256 digest and 256\-bit salt that was used to create the digest\.  
@@ -87,14 +88,41 @@ In the following example, Amazon Redshift generates and manages the salt\.
 CREATE USER admin PASSWORD 'sha256|Mypassword1';
 ```
 In the following example, a valid SHA\-256 digest and 256\-bit salt that was used to create the digest are supplied\.  
+To specify a password and hash it with your own salt, follow these steps:  
 
-```
-CREATE USER admin PASSWORD 'sha256|fe95f2bc7c4a111b6f0f7d0b60bfedd1935fb295f8dce1d62708ab8d2f564baf|c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6';
-```
+1. Create a 256\-bit salt\. You can obtain a salt by using any hexadecimal string generator to generate a string 64 characters long\. For this example, the salt is `c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6`\. 
+
+1.  Use the FROM\_HEX function to convert your salt to binary\. This is because the SHA2 function requires the binary representation of the salt\. See the following statement\. 
+
+   ```
+   SELECT FROM_HEX('c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6');
+   ```
+
+1.  Use the CONCAT function to append your salt to your password\. For this example, the password is `Mypassword1`\. See the following statement\. 
+
+   ```
+   SELECT CONCAT('Mypassword1',FROM_HEX('c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6'));
+   ```
+
+1. Use the SHA2 function to create a digest from your password and salt combination\. See the following statement\.
+
+   ```
+   SELECT SHA2(CONCAT('Mypassword1',FROM_HEX('c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6')), 0);
+   ```
+
+1.  Using the digest and salt from the previous steps, create the user\. See the following statement\. 
+
+   ```
+   CREATE USER admin PASSWORD 'sha256|821708135fcc42eb3afda85286dee0ed15c2c461d000291609f77eb113073ec2|c721bff5d9042cf541ff7b9d48fa8a6e545c19a763e3710151f9513038b0f6c6';
+   ```
+
+1. Log on to the database using the sign\-in credentials\.
+
+    For this example, log on as `admin` with password `Mypassword1`\.
 If you set a password in plain text without specifying the hashing function, then an MD5 digest is generated using the username as the salt\. 
 
 CREATEDB \| NOCREATEDB   
-The CREATEDB option allows the new user account to create databases\. The default is NOCREATEDB\.
+The CREATEDB option allows the new user to create databases\. The default is NOCREATEDB\.
 
 CREATEUSER \| NOCREATEUSER   
 The CREATEUSER option creates a superuser with all database privileges, including CREATE USER\. The default is NOCREATEUSER\. For more information, see [Superusers](r_superusers.md)\.
@@ -111,7 +139,7 @@ IN GROUP *groupname*
 Specifies the name of an existing group that the user belongs to\. Multiple group names may be listed\.
 
 VALID UNTIL *abstime*   
-The VALID UNTIL option sets an absolute time after which the user account password is no longer valid\. By default the password has no time limit\.
+The VALID UNTIL option sets an absolute time after which the user's password is no longer valid\. By default the password has no time limit\.
 
 CONNECTION LIMIT \{ *limit* \| UNLIMITED \}   
 The maximum number of database connections the user is permitted to have open concurrently\. The limit isn't enforced for superusers\. Use the UNLIMITED keyword to permit the maximum number of concurrent connections\.  A limit on the number of connections for each database might also apply\. For more information, see [CREATE DATABASE](r_CREATE_DATABASE.md)\. The default is UNLIMITED\. To view current connections, query the [STV\_SESSIONS](r_STV_SESSIONS.md) system view\.  
@@ -139,7 +167,7 @@ The case of a *username* enclosed in double quotation marks is always preserved 
 
 ## Examples<a name="r_CREATE_USER-examples"></a>
 
-The following command creates a user account named dbuser, with the password "abcD1234", database creation privileges, and a connection limit of 30\.
+The following command creates a user named dbuser, with the password "abcD1234", database creation privileges, and a connection limit of 30\.
 
 ```
 create user dbuser with password 'abcD1234' createdb connection limit 30;
@@ -149,10 +177,11 @@ create user dbuser with password 'abcD1234' createdb connection limit 30;
 
 ```
 select * from pg_user_info;
+         
  usename   | usesysid | usecreatedb | usesuper | usecatupd | passwd   | valuntil | useconfig | useconnlimit
 -----------+----------+-------------+----------+-----------+----------+----------+-----------+-------------
- rdsdb     |        1 | true        | true     | true      | ******** | infinity |           |             
- adminuser |      100 | true        | true     | false     | ******** |          |           | UNLIMITED   
+ rdsdb     |        1 | true        | true     | true      | ******** | infinity |           |
+ adminuser |      100 | true        | true     | false     | ******** |          |           | UNLIMITED
  dbuser    |      102 | true        | false    | false     | ******** |          |           | 30
 ```
 
@@ -172,10 +201,15 @@ create user newman with password '@AbC4321!';
 
 ```
 select md5('\\'||'slashpass');
-md5                             
+         
+md5
 --------------------------------
 0c983d1a624280812631c5389e60d48c
- 
+```
+
+Create a user with the md5 password\.
+
+```
 create user slashpass password 'md50c983d1a624280812631c5389e60d48c';
 ```
 
@@ -185,7 +219,7 @@ The following example creates a user named `dbuser` with an idle\-session timeou
 CREATE USER dbuser password 'abcD1234' SESSION TIMEOUT 120;
 ```
 
-The following example creates a user named `bob`\. The namespace is `myco_aad`\.
+The following example creates a user named `bob`\. The namespace is `myco_aad`\. This is only a sample\. To run the command successfully, you must have a registered identity provider\. For more information, see [Native identity provider \(IdP\) federation for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-native-idp.html)\.
 
 ```
 CREATE USER myco_aad:bob EXTERNALID "ABC123" PASSWORD DISABLE;

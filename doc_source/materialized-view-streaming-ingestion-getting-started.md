@@ -5,7 +5,7 @@
  Amazon Redshift streaming ingestion uses a materialized view, which is updated directly from the stream when `REFRESH` is run\. The materialized view maps to the stream data source\. You can perform filtering and aggregations on the stream data as part of the materialized\-view definition\. Your streaming ingestion materialized view \(the *base* materialized view\) can reference only one stream, but you can create additional materialized views that join with the base materialized view and with other materialized views or tables\. 
 
 **Note**  
-*Streaming ingestion and Amazon Redshift Serverless* \- The configuration steps in this topic apply without any update to Amazon Redshift Serverless\. For more information, see [Streaming ingestion considerations](materialized-view-streaming-ingestion.md#materialized-view-streaming-ingestion-considerations)\.
+*Streaming ingestion and Amazon Redshift Serverless* \- The configuration steps in this topic apply both to provisioned Amazon Redshift clusters and to Amazon Redshift Serverless\. For more information, see [Streaming ingestion considerations](materialized-view-streaming-ingestion.md#materialized-view-streaming-ingestion-considerations)\.
 
 Assuming you have a Kinesis Data Streams stream available, the first step is to define a schema in Amazon Redshift with `CREATE EXTERNAL SCHEMA` and to reference a Kinesis Data Streams resource\. Following that, to access data in the stream, define the `STREAM` in a materialized view\. You can store stream records in the semi\-structured `SUPER` format, or define a schema that results in data converted to Redshift data types\. When you query the materialized view, the returned records are a point\-in\-time view of the stream\. 
 
@@ -49,15 +49,19 @@ Assuming you have a Kinesis Data Streams stream available, the first step is to 
    IAM_ROLE { default | 'iam-role-arn' };
    ```
 
-1. Create a materialized view to consume the stream data\. The following example defines a materialized view with JSON source data\. Note that the following view validates the data is valid JSON source and utf8\. Kinesis stream names are case\-sensitive and can contain both uppercase and lowercase letters\. To use case\-sensitive identifiers, you can set the configuration setting `enable_case_sensitive_identifier` to `true` at either the session or cluster level\. For more information, see [Names and identifiers](https://docs.aws.amazon.com/redshift/latest/dg/r_names.html) and [enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html)\.
+    Streaming ingestion for Kinesis Data Streams doesn't require an authentication type\. It uses the IAM role defined in the `CREATE EXTERNAL SCHEMA` statement for making Kinesis Data Streams requests\.  
+
+1. Create a materialized view to consume the stream data\. The following example defines a materialized view with JSON source data\. Note that the following view validates the data is valid JSON source \. Kinesis stream names are case sensitive and can contain both uppercase and lowercase letters\. To use case\-sensitive identifiers, you can set the configuration setting `enable_case_sensitive_identifier` to `true` at either the session or cluster level\. For more information, see [Names and identifiers](https://docs.aws.amazon.com/redshift/latest/dg/r_names.html) and [enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html)\.
 
    ```
-   CREATE MATERIALIZED VIEW my_view AS
-   SELECT ApproximateArrivalTimestamp,
-          JSON_PARSE(from_varbyte(Data, 'utf-8')) as Data
-   FROM schema_one.my_stream_name
-   WHERE is_utf8(Data) AND is_valid_json(from_varbyte(Data, 'utf-8'));
+   CREATE MATERIALIZED VIEW my_view AUTO REFRESH YES AS
+   SELECT approximate_arrival_timestamp,
+   JSON_PARSE(kinesis_data) as Data
+   FROM kds.my_stream_name
+   WHERE CAN_JSON_PARSE(kinesis_data);
    ```
+
+   To turn on auto refresh, use `AUTO REFRESH YES`\. The default behavior is manual refresh\. 
 
    Metadata columns include the following:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/dg/materialized-view-streaming-ingestion-getting-started.html)

@@ -6,7 +6,7 @@ The following limitations apply to nested data:
 + Query and subquery result columns must be scalar\. 
 + If an `OUTER JOIN` expression refers to a nested table, it can refer only to that table and its nested arrays \(and maps\)\. If an `OUTER JOIN` expression doesn't refer to a nested table, it can refer to any number of non\-nested tables\.
 + If a `FROM` clause in a subquery refers to a nested table, it can't refer to any other table\.
-+ If a subquery depends on a nested table that refers to a parent, you can use the parent only in the `FROM` clause\. You can't use the query in any other clauses, such as a `SELECT` or `WHERE` clause\. For example, the following query isn't run\. 
++ If a subquery depends on a nested table that refers to a parent, you can use the parent only in the `FROM` clause\. You can't use the parent in any other clauses, such as a `SELECT` or `WHERE` clause\. For example, the following query isn't run\. 
 
   ```
   SELECT c.name.given 

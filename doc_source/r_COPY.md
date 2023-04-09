@@ -5,7 +5,7 @@ Loads data into a table from data files or from an Amazon DynamoDB table\. The f
 **Note**  
 Amazon Redshift Spectrum external tables are read\-only\. You can't COPY to an external table\.
 
-The COPY command appends the new input data to any existing rows in the table\.
+The COPY command appends the input data as additional rows to the table\.
 
 The maximum size of a single input row from any source is 4 MB\.
 
