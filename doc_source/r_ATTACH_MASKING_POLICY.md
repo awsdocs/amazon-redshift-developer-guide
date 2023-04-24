@@ -1,6 +1,6 @@
 # ATTACH MASKING POLICY<a name="r_ATTACH_MASKING_POLICY"></a>
 
-Attaches an existing dynamic data masking policy to a column\. For more information on dynamic data masking, see [Dynamic data masking \(preview\)](t_ddm.md)\.
+Attaches an existing dynamic data masking policy to a column\. For more information on dynamic data masking, see [Dynamic data masking](t_ddm.md)\.
 
 Superusers and users or roles that have the sys:secadmin role can attach a masking policy\.
 

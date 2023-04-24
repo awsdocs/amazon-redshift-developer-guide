@@ -1,12 +1,12 @@
 # REVOKE<a name="r_REVOKE"></a>
 
-Removes access privileges, such as privileges to create, drop, or update tables, from a user or user group\.
+Removes access permissions, such as permissions to create, drop, or update tables, from a user or user group\.
 
-You can only GRANT or REVOKE USAGE permissions on an external schema to database users and user groups using the ON SCHEMA syntax\. When using ON EXTERNAL SCHEMA with AWS Lake Formation, you can only GRANT and REVOKE privileges to an AWS Identity and Access Management \(IAM\) role\. For the list of privileges, see the syntax\.
+You can only GRANT or REVOKE USAGE permissions on an external schema to database users and user groups using the ON SCHEMA syntax\. When using ON EXTERNAL SCHEMA with AWS Lake Formation, you can only GRANT and REVOKE permissions to an AWS Identity and Access Management \(IAM\) role\. For the list of permissions, see the syntax\.
 
 For stored procedures, USAGE ON LANGUAGE `plpgsql` permissions are granted to PUBLIC by default\. EXECUTE ON PROCEDURE permission is granted only to the owner and superusers by default\.
 
-Specify in the REVOKE command the privileges that you want to remove\. To give privileges, use the [GRANT](r_GRANT.md) command\. 
+Specify in the REVOKE command the permissions that you want to remove\. To give permissions, use the [GRANT](r_GRANT.md) command\. 
 
 ## Syntax<a name="r_REVOKE-synopsis"></a>
 
@@ -53,7 +53,9 @@ USAGE
 [ RESTRICT ]
 ```
 
-The following is the syntax for column\-level privileges on Amazon Redshift tables and views\. 
+### Revoking column\-level permissions for tables<a name="revoke-column-level"></a>
+
+The following is the syntax for column\-level permissions on Amazon Redshift tables and views\. 
 
 ```
 REVOKE { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES ] ( column_name [,...] ) }
@@ -62,7 +64,9 @@ REVOKE { { SELECT | UPDATE } ( column_name [, ...] ) [, ...] | ALL [ PRIVILEGES 
      [ RESTRICT ]
 ```
 
-The following is the syntax to revoke the ASSUMEROLE privilege from users and groups with a specified role\. 
+### Revoking ASSUMEROLE permissions<a name="revoke-assumerole-permissions"></a>
+
+The following is the syntax to revoke the ASSUMEROLE permission from users and groups with a specified role\. 
 
 ```
 REVOKE ASSUMEROLE
@@ -71,7 +75,9 @@ REVOKE ASSUMEROLE
     FOR { ALL | COPY | UNLOAD | EXTERNAL FUNCTION | CREATE MODEL }
 ```
 
-The following is the syntax for Redshift Spectrum integration with Lake Formation\. 
+### Revoking permissions for Redshift Spectrum for Lake Formation<a name="revoke-spectrum-integration-with-lf-permissions"></a>
+
+The following is the syntax for Redshift Spectrum integration with Lake Formation\.
 
 ```
 REVOKE [ GRANT OPTION FOR ]
@@ -90,19 +96,21 @@ REVOKE [ GRANT OPTION FOR ]
     FROM { IAM_ROLE iam_role } [, ...]
 ```
 
-The following is the syntax for using REVOKE for datashare privileges for Amazon Redshift\. 
+### Revoking datashare permissions<a name="revoke-datashare-permissions"></a>
+
+The following is the syntax for using REVOKE for datashare permissions for Amazon Redshift\. 
 
 ```
 REVOKE { ALTER | SHARE } ON DATASHARE datashare_name
-    FROM { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
+ FROM { username [ WITH GRANT OPTION ] | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
-The following is the syntax for using REVOKE for datashare usage privileges for Amazon Redshift\. 
+The following is the syntax for using REVOKE for datashare usage permissions for Amazon Redshift\. 
 
 ```
 REVOKE USAGE
-    ON DATASHARE datashare_name
-    FROM NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [ VIA DATA CATALOG ] [, ...]
+ ON DATASHARE datashare_name
+ FROM NAMESPACE 'namespaceGUID' [, ...] | ACCOUNT 'accountnumber' [ VIA DATA CATALOG ] [, ...]
 ```
 
 The following is an example of how to revoke usage of a datashare from a Lake Formation account\.
@@ -115,10 +123,12 @@ The following is the REVOKE syntax for data\-sharing usage permissions on a spec
 
 ```
 REVOKE USAGE ON { DATABASE shared_database_name [, ...] | SCHEMA shared_schema}
-    FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
+ FROM { username | ROLE role_name | GROUP group_name | PUBLIC } [, ...]
 ```
 
-The following is the syntax for machine learning model privileges on Amazon Redshift\.
+### Revoking machine learning permissions<a name="revoke-model-permissions"></a>
+
+The following is the syntax for machine learning model permissions on Amazon Redshift\.
 
 ```
 REVOKE [ GRANT OPTION FOR ]
@@ -133,7 +143,9 @@ REVOKE [ GRANT OPTION FOR ]
     [ RESTRICT ]
 ```
 
-The following is the syntax for revoking role privileges on Amazon Redshift\.
+### Revoking role permissions<a name="revoke-roles"></a>
+
+The following is the syntax for revoking role permissions on Amazon Redshift\.
 
 ```
 REVOKE [ ADMIN OPTION FOR ] { ROLE role_name } [, ...] FROM { user_name } [, ...]
@@ -143,7 +155,7 @@ REVOKE [ ADMIN OPTION FOR ] { ROLE role_name } [, ...] FROM { user_name } [, ...
 REVOKE { ROLE role_name } [, ...] FROM { ROLE role_name } [, ...]
 ```
 
-The following is the syntax for revoking system privileges to roles on Amazon Redshift\.
+The following is the syntax for revoking system permissions to roles on Amazon Redshift\.
 
 ```
 REVOKE
@@ -167,6 +179,8 @@ REVOKE
 FROM { ROLE role_name } [, ...]
 ```
 
+### Revoking explain permissions for row\-level security policy filters<a name="revoke-role-level"></a>
+
 The following is the syntax for revoking permissions to explain the row\-level security policy filters of a query in the EXPLAIN plan\. You can revoke the privilege using the REVOKE statement\.
 
 ```
@@ -183,7 +197,7 @@ The following is the syntax for revoking permissions from the specified row\-lev
 
 ```
 REVOKE SELECT ON [ TABLE ] table_name [, ...]
-FROM RLS POLICY policy_name [, ...]
+            FROM RLS POLICY policy_name [, ...]
 ```
 
 ## Parameters<a name="r_REVOKE-parameters"></a>
@@ -240,46 +254,46 @@ FROM IAM\_ROLE *iam\_role*   <a name="revoke-from-iam-role"></a>
 Indicates the IAM role losing the permissions\.
 
 ROLE *role\_name*   
-Revokes the privileges from the specified role\.
+Revokes the permissions from the specified role\.
 
 GROUP *group\_name*   
 Revokes the permissions from the specified user group\.
 
 PUBLIC   
-Revokes the specified permissions from all users\. PUBLIC represents a group that always includes all users\. An individual user's privileges consist of the sum of privileges granted to PUBLIC, privileges granted to any groups that the user belongs to, and any privileges granted to the user individually\.  
-Revoking PUBLIC from a Lake Formation external table results in revoking the privilege from the Lake Formation *everyone* group\.
+Revokes the specified permissions from all users\. PUBLIC represents a group that always includes all users\. An individual user's permissions consist of the sum of permissions granted to PUBLIC, permissions granted to any groups that the user belongs to, and any permissions granted to the user individually\.  
+Revoking PUBLIC from a Lake Formation external table results in revoking the permission from the Lake Formation *everyone* group\.
 
 CREATE   
-Depending on the database object, revokes the following privileges from the user or group:  
+Depending on the database object, revokes the following permissions from the user or group:  
 + For databases, using the CREATE clause for REVOKE prevents users from creating schemas within the database\.
-+ For schemas, using the CREATE clause for REVOKE prevents users from creating objects within a schema\. To rename an object, the user must have the CREATE privilege and own the object to be renamed\. 
++ For schemas, using the CREATE clause for REVOKE prevents users from creating objects within a schema\. To rename an object, the user must have the CREATE permission and own the object to be renamed\. 
 By default, all users have CREATE and USAGE permissions on the PUBLIC schema\.
 
 TEMPORARY \| TEMP   
-Revokes the privilege to create temporary tables in the specified database\.  
-By default, users are granted permission to create temporary tables by their automatic membership in the PUBLIC group\. To remove the privilege for any users to create temporary tables, revoke the TEMP permission from the PUBLIC group and then explicitly grant the permission to create temporary tables to specific users or groups of users\.
+Revokes the permission to create temporary tables in the specified database\.  
+By default, users are granted permission to create temporary tables by their automatic membership in the PUBLIC group\. To remove the permission for any users to create temporary tables, revoke the TEMP permission from the PUBLIC group and then explicitly grant the permission to create temporary tables to specific users or groups of users\.
 
 ON DATABASE *db\_name*   
-Revokes the privileges on the specified database\.
+Revokes the permissions on the specified database\.
 
 USAGE   
-Revokes USAGE privileges on objects within a specific schema, which makes these objects inaccessible to users\. Specific actions on these objects must be revoked separately \(such as the EXECUTE privilege on functions\)\.  
-By default, all users have CREATE and USAGE privileges on the PUBLIC schema\.
+Revokes USAGE permissions on objects within a specific schema, which makes these objects inaccessible to users\. Specific actions on these objects must be revoked separately \(such as the EXECUTE permission on functions\)\.  
+By default, all users have CREATE and USAGE permissions on the PUBLIC schema\.
 
 ON SCHEMA *schema\_name*   
-Revokes the privileges on the specified schema\. You can use schema privileges to control the creation of tables; the CREATE privilege for a database only controls the creation of schemas\.
+Revokes the permissions on the specified schema\. You can use schema permissions to control the creation of tables; the CREATE permission for a database only controls the creation of schemas\.
 
 RESTRICT   
-Revokes only those privileges that the user directly granted\. This behavior is the default\.
+Revokes only those permissions that the user directly granted\. This behavior is the default\.
 
 EXECUTE ON PROCEDURE *procedure\_name*   
-Revokes the EXECUTE privilege on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.
+Revokes the EXECUTE permission on a specific stored procedure\. Because stored procedure names can be overloaded, you must include the argument list for the procedure\. For more information, see [Naming stored procedures](stored-procedure-naming.md)\.
 
 EXECUTE ON ALL PROCEDURES IN SCHEMA *procedure\_name*   
-Revokes the specified privileges on all procedures in the referenced schema\.
+Revokes the specified permissions on all procedures in the referenced schema\.
 
 USAGE ON LANGUAGE *language\_name*   
-Revokes the USAGE privilege on a language\. For Python user\-defined functions \(UDFs\), use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.   
+Revokes the USAGE permission on a language\. For Python user\-defined functions \(UDFs\), use `plpythonu`\. For SQL UDFs, use `sql`\. For stored procedures, use `plpgsql`\.   
 To create a UDF, you must have permission for usage on language for SQL or `plpythonu` \(Python\)\. By default, USAGE ON LANGUAGE SQL is granted to PUBLIC\. However, you must explicitly grant USAGE ON LANGUAGE PLPYTHONU to specific users or groups\.   
 To revoke usage for SQL, first revoke usage from PUBLIC\. Then grant usage on SQL only to the specific users or groups permitted to create SQL UDFs\. The following example revokes usage on SQL from PUBLIC then grants usage to the user group `udf_devs`\.   
 
@@ -291,50 +305,58 @@ For more information, see [UDF security and privileges](udf-security-and-privile
 To revoke usage for stored procedures, first revoke usage from PUBLIC\. Then grant usage on `plpgsql` only to the specific users or groups permitted to create stored procedures\. For more information, see [Security and privileges for stored procedures ](stored-procedure-security-and-privileges.md)\. 
 
 FOR \{ ALL \| COPY \| UNLOAD \| EXTERNAL FUNCTION \| CREATE MODEL \} \[, \.\.\.\]  <a name="revoke-for"></a>
-Specifes the SQL command for which the privilege is revoked\. You can specify ALL to revoke the privilege on the COPY, UNLOAD, EXTERNAL FUNCTION, and CREATE MODEL statements\. This clause applies only to revoking the ASSUMEROLE privilege\.
+Specifes the SQL command for which the permission is revoked\. You can specify ALL to revoke the permission on the COPY, UNLOAD, EXTERNAL FUNCTION, and CREATE MODEL statements\. This clause applies only to revoking the ASSUMEROLE permission\.
 
 ALTER  
-Revokes the ALTER privilege for users or user groups that allows those that don't own a datashare to alter the datashare\. This privilege is required to add or remove objects from a datashare, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
+Revokes the ALTER permission for users or user groups that allows those that don't own a datashare to alter the datashare\. This permission is required to add or remove objects from a datashare, or to set the property PUBLICACCESSIBLE\. For more information, see [ALTER DATASHARE](r_ALTER_DATASHARE.md)\.
 
 SHARE  
-Revokes privileges for users and user groups to add consumers to a datashare\. Revoking this privilege is required to stop the particular consumer  from accessing the datashare from its clusters\. 
+Revokes permissions for users and user groups to add consumers to a datashare\. Revoking this permissionis required to stop the particular consumer  from accessing the datashare from its clusters\. 
 
 ON DATASHARE *datashare\_name *  
-Grants the specified privileges on the referenced datashare\.
+Grants the specified permissions on the referenced datashare\.
 
 FROM username  
-Indicates the user losing the privileges\.
+Indicates the user losing the permissions\.
 
 FROM GROUP *group\_name*  
-Indicates the user group losing the privileges\.
+Indicates the user group losing the permissions\.
 
 WITH GRANT OPTION  
-Indicates that the user losing the privileges can in turn revoke the same privileges for others\. You can't revoke WITH GRANT OPTION for a group or for PUBLIC\.  
+Indicates that the user losing the permissions can in turn revoke the same permissions for others\. You can't revoke WITH GRANT OPTION for a group or for PUBLIC\.  
 
 USAGE  
 When USAGE is revoked for a consumer account or namespace within the same account, the specified consumer account or namespace within an account can't access the datashare and the objects of the datashare in read\-only fashion\.   
-Revoking the USAGE privilege revokes the access to a datashare from consumers\. 
+Revoking the USAGE permission revokes the access to a datashare from consumers\. 
 
 FROM NAMESPACE 'clusternamespace GUID'   
-Indicates the namespace in the same account that has consumers losing the privileges to the datashare\. Namespaces use a 128\-bit alphanumeric globally unique identifier \(GUID\)\.
+Indicates the namespace in the same account that has consumers losing the permissions to the datashare\. Namespaces use a 128\-bit alphanumeric globally unique identifier \(GUID\)\.
 
 FROM ACCOUNT 'accountnumber' \[ VIA DATA CATALOG \]  
-Indicates the account number of another account that has the consumers losing the privileges to the datashare\. Specifying ‘VIA DATA CATALOG’ indicates that you are revoking usage of the datashare from a Lake Formation account\. Omitting the account number means that you're revoking from the account that owns the cluster\.
+Indicates the account number of another account that has the consumers losing the permissions to the datashare\. Specifying ‘VIA DATA CATALOG’ indicates that you are revoking usage of the datashare from a Lake Formation account\. Omitting the account number means that you're revoking from the account that owns the cluster\.
 
 ON DATABASE *shared\_database\_name> \[, \.\.\.\]*   <a name="revoke-datashare"></a>
-Revokes the specified usage privileges on the specified database that was created in the specified datashare\.  
+Revokes the specified usage permissions on the specified database that was created in the specified datashare\.  
 
 ON SCHEMA* shared\_schema*   <a name="revoke-datashare"></a>
-Revokes the specified privileges on the specified schema that was created in the specified datashare\.
+Revokes the specified permissions on the specified schema that was created in the specified datashare\.
 
 CREATE MODEL  
-Revokes the CREATE MODEL privilege to create machine learning models in the specified database\.
+Revokes the CREATE MODEL permission to create machine learning models in the specified database\.
 
 ON MODEL *model\_name*  
-Revokes the EXECUTE privilege for a specific model\. 
+Revokes the EXECUTE permission for a specific model\. 
 
 \[ ADMIN OPTION FOR \] \{ role \} \[, \.\.\.\]  
 The role that you revoke from a specified user that has the WITH ADMIN OPTION\.
 
 FROM \{ role \} \[, \.\.\.\]  
 The role that you revoke the specified role from\.
+
+## Usage notes<a name="r_REVOKE-usage-notes-link"></a>
+
+To learn more about the usage notes for REVOKE, see [Usage notes](r_REVOKE-usage-notes.md)\.
+
+## Examples<a name="r_REVOKE-examples-link"></a>
+
+For examples of how to use REVOKE, see [Examples](r_REVOKE-examples.md)\.

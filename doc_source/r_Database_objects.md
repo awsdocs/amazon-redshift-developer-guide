@@ -9,7 +9,7 @@
 + [Schemas](r_Schemas_and_tables.md)
 + [Role\-based access control \(RBAC\)](t_Roles.md)
 + [Row\-level security](t_rls.md)
-+ [Dynamic data masking \(preview\)](t_ddm.md)
++ [Dynamic data masking](t_ddm.md)
 
 You manage database security by controlling which users have access to which database objects\.
 

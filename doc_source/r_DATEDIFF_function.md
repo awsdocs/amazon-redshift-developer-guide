@@ -34,6 +34,37 @@ numweeks
 (1 row)
 ```
 
+The following example finds the difference, in hours, between two literal date values\. When you don't provide the time value for a date, it defaults to 00:00:00\.
+
+```
+select datediff(hour, ''2023-01-01', '2023-01-03 05:04:03');
+            
+date_diff
+----------
+53
+(1 row)
+```
+
+The following example finds the difference, in days, between two dates in the same row of a table\.
+
+```
+select * from date_table;
+
+start_date |   end_date
+-----------+-----------
+2009-01-01 | 2009-03-23
+2023-01-04 | 2024-05-04
+(2 rows)
+
+select datediff(day, start_date, end_date) as duration from date_table;
+         
+duration
+---------
+      81
+     486
+(2 rows)
+```
+
 The following example finds the difference, in number of quarters, between a literal value in the past and today's date\. This example assumes that the current date is June 5, 2008\. You can name date parts in full or abbreviate them\. The default column name for the DATEDIFF function is DATE\_DIFF\. 
 
 ```

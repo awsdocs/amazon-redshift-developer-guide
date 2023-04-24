@@ -1,35 +1,4 @@
-# Dynamic data masking \(preview\)<a name="t_ddm"></a>
-
-
-|  | 
-| --- |
-|  This is prerelease documentation for the dynamic data masking feature, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on April 5, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For inquiries, email redshift\-pm@amazon\.com\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-## Creating preview clusters or workgroups for DDM<a name="ddm-preview"></a>
-
-**Note**  
-You can create an Amazon Redshift cluster in **Preview** to test new features of Amazon Redshift\. You can't use those features in production or move your **Preview** cluster to a production cluster or a cluster on another track\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
-Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-On the navigation menu, choose **Provisioned clusters dashboard**, and choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
-A banner displays on the **Clusters** list page that introduces preview\. Choose the button **Create preview cluster** to open the create cluster page\.
-Enter properties for your cluster\. Choose the **Preview track** that contains the features you want to test\. We recommend entering a name for the cluster that indicates that it is on a preview track\. Choose options for your cluster, including options labeled as **\-preview**, for the features you want to test\. For general information about creating clusters, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Management Guide*\.
-Choose **Create preview cluster** to create a cluster in preview\.
-When your preview cluster is available, use your SQL client to load and query data\.
-Your cluster must be created with the preview track named: preview\_2022\.  
-You can create an Amazon Redshift Serverless workgroup in **Preview** to test new features of Amazon Redshift Serverless\. You can't use those features in production or move your **Preview** workgroup to a production workgroup\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
-Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-On the navigation menu, choose **Severless dashboard**, and choose **Workgroup configuration**\. The workgroups for your account in the current AWS Region are listed\. A subset of properties of each workgroup is displayed in columns in the list\.
-A banner displays on the **Workgroups** list page that introduces preview\. Choose the button **Create preview workgroup** to open the create workgroup page\.
-Enter properties for your workgroup\. We recommend entering a name for the workgroup that indicates that it is in preview\. Choose options for your workgroup, including options labeled as **\-preview**, for the features you want to test\. Continue through the pages to enter options for your workgroup and namespace\. For general information about creating workgroups, see [Creating a workgroup with a namespace](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-workgroups-create-workgroup-wizard.html) in the *Amazon Redshift Management Guide*\.
-Choose **Create preview workgroup** to create a workgroup in preview\.
-When your preview workgroup is available, use your SQL client to load and query data\.
-Dynamic data masking is available in the following AWS Regions:  
-US East \(Ohio\) – us\-east\-2 
- US East \(N\. Virginia\) – us\-east\-1 
- US West \(Oregon\) – us\-west\-2 
-Asia Pacific \(Tokyo\) – ap\-northeast\-1
- Europe \(Ireland\) – eu\-west\-1 
- Europe \(Stockholm\) – eu\-north\-1 
+# Dynamic data masking<a name="t_ddm"></a>
 
 ## Overview<a name="ddm-overview"></a>
 
@@ -86,7 +55,7 @@ Next, create a masking policy to apply to the analytics role\.
 --create a masking policy that fully masks the credit card number
 CREATE MASKING POLICY mask_credit_card_full
 WITH (credit_card VARCHAR(256))
-USING ('000000XXXX0000');
+USING ('000000XXXX0000'::TEXT);
 
 --create a user-defined function that partially obfuscates credit card data
 CREATE FUNCTION REDACT_CREDIT_CARD (credit_card TEXT)
@@ -149,6 +118,22 @@ SET SESSION AUTHORIZATION analytics_user;
 SELECT * FROM credit_cards;
 ```
 
+### Altering a masking policy<a name="ddm-example-alter"></a>
+
+The following section shows how to alter a dynamic data masking policy\.
+
+```
+--reset session authorization to the default
+RESET SESSION AUTHORIZATION;
+
+--alter the mask_credit_card_full policy
+ALTER MASKING POLICY mask_credit_card_full
+USING ('00000000000000'::TEXT);	
+	
+--confirm the full masking policy is in place after altering the policy, and that results are altered from '000000XXXX0000' to '00000000000000'
+SELECT * FROM credit_cards;
+```
+
 ### Detaching and dropping a masking policy<a name="ddm-example-detach"></a>
 
 The following section shows how to detach and drop masking policies by removing all dynamic data masking policies from the table\.
@@ -192,13 +177,33 @@ When using dynamic data masking, consider the following:
   + High cost operations such as calls to external Lambda user defined functions
 
   As such, we recommend that you use simple masking expressions when possible\. 
-+  You can’t alter a masking policy once it has been created\. Instead, you must detach and drop the policy you want to change, then create and attach a new policy with the changes you want\. 
 +  You can use DDM policies for roles with row\-level security policies, but note that RLS policies are applied before DDM\. A dynamic data masking expression will not be able to read a row that was protected by RLS\. For more information on RLS, see [Row\-level security](t_rls.md)\. 
++  When using the [COPY](r_COPY.md) command to copy from parquet to protected target tables, you should explicitly specify columns in the COPY statement\. For more information on mapping columns with COPY, see [Column mapping options](copy-parameters-column-mapping.md)\. 
++  DDM masking policies can attach to lookup tables\. They can't attach to the following relations, nor use them in the USING clause:
+  +  System tables and catalogs 
+  +  External tables 
+  +  Datasharing tables 
+  +  Views, materialized views, and late binding views 
+  +  Cross\-DB relations 
+  +  Temporary tables 
+  +  Correlated queries 
+
+  Following is an example of attaching a masking policy to a lookup table\.
+
+  ```
+  --Create a masking policy referencing a lookup table
+  CREATE MASKING POLICY lookup_mask_credit_card WITH (credit_card TEXT) USING (
+    CASE
+      WHEN
+        credit_card IN (SELECT credit_card_lookup FROM credit_cards_lookup)      
+      THEN '000000XXXX0000'
+      ELSE REDACT_CREDIT_CARD(credit_card)
+      END
+    ); 
+    
+  --Provides access to the lookup table via a policy attached to a role
+  GRANT SELECT ON TABLE credit_cards_lookup TO MASKING POLICY lookup_mask_credit_card;
+  ```
 +  You can't attach a masking policy that would produce an output incompatible with the target column's type and size\. For example, you can’t attach a masking policy that outputs a 12 character long string to a VARCHAR\(10\) column\. Amazon Redshift supports the following exceptions: 
   +  A masking policy with input type INTN can be attached to a policy with size INTM as long as M < N\. For example, a BIGINT \(INT8\) input policy can be attached to a smallint \(INT4\) column\. 
   +  A masking policy with input type NUMERIC or DECIMAL can always be attached to a FLOAT column\. 
-+ When you apply dynamic data masking and row level security policies on the same table, the result cache might not reflect the table's RLS policy\. To prevent this, disable the result cache with the following command: 
-
-  ```
-  SET enable_result_cache_for_session TO off;
-  ```

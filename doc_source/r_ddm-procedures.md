@@ -10,13 +10,20 @@ You can perform the following actions:
   WITH (credit_card varchar(256)) 
   USING (sha2(credit_card + 'testSalt', 256));
   ```
++ To alter an existing DDM policy, use the [ALTER MASKING POLICY](r_ALTER_MASKING_POLICY.md) command\.
+
+  The following is an example of altering an existing masking policy\.
+
+  ```
+  ALTER MASKING POLICY hash_credit
+  USING (sha2(credit_card + 'otherTestSalt', 256));
+  ```
 + To attach a DDM policy on a table to one or more users or roles, use the [ATTACH MASKING POLICY](r_ATTACH_MASKING_POLICY.md) command\.
 
   The following is an example of attaching a masking policy to a column/role pair\.
 
   ```
-   
-  ATTACH MASKING POLICY hash_credit 
+   ATTACH MASKING POLICY hash_credit 
   ON credit_cards (credit_card) 
   TO ROLE science_role 
   PRIORITY 30;
@@ -37,5 +44,5 @@ You can perform the following actions:
   The following is an example of dropping a masking policy from all databases\.
 
   ```
-  DROP MASKING POLICY hash_credit;                  
+  DROP MASKING POLICY hash_credit;  
   ```

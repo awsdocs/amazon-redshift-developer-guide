@@ -2,6 +2,9 @@
 
 SVV views are system views in Amazon Redshift that contain references to STV tables and snapshots for more detailed information\.
 
+**Note**  
+Amazon Redshift reports a WARNING, not an ERROR, if a database response fails for any reason\. Amazon Redshift doesn't send ERROR messages when you're querying objects in a datashare\.
+
 **Topics**
 + [SVV\_ALL\_COLUMNS](r_SVV_ALL_COLUMNS.md)
 + [SVV\_ALL\_SCHEMAS](r_SVV_ALL_SCHEMAS.md)

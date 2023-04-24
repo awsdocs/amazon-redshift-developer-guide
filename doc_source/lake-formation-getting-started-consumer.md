@@ -1,6 +1,6 @@
 # Working with Lake Formation\-managed datashares as a consumer<a name="lake-formation-getting-started-consumer"></a>
 
- After the AWS Lake Formation administrator discovers the datashare invitation and creates a database in the AWS Glue Data Catalog that links to the datashare, the consumer cluster administrator can associate the cluster with the datashare and the database in the AWS Glue Data Catalog, create a database local to the consumer cluster, and assign permissions to users and groups in the Amazon Redshift consumer cluster to start querying\. Follow these steps to set up querying permissions\. 
+ After the AWS Lake Formation administrator discovers the datashare invitation and creates a database in the AWS Glue Data Catalog that links to the datashare, the consumer cluster administrator can associate the cluster with the datashare and the database in the AWS Glue Data Catalog, create a database local to the consumer cluster, and grant access to users and groups in the Amazon Redshift consumer cluster to start querying\. Follow these steps to set up querying permissions\. 
 
 1. On the Amazon Redshift console, create an Redshift cluster to serve as the consumer cluster, if needed\. For information on how to create a cluster, see [ Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster)\.
 
@@ -18,7 +18,7 @@
    CREATE DATABASE lf_db FROM ARN <lake-formation-database-ARN> WITH [NO] DATA CATALOG SCHEMA [<schema>];
    ```
 
-1. Grant permissions on databases and schema references created from the datashares to users and groups in the consumer cluster as needed\. For more information, see [GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) or [REVOKE](https://docs.aws.amazon.com/redshift/latest/dg/r_REVOKE.html)\. Note that users created from the [CREATE USER](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) command cannot access objects in datashare that have been shared to Lake Formation\. Only users with access to both Redshift and Lake Formation can access datashares that have been shared with Lake Formation\. 
+1. Grant access on databases and schema references created from the datashares to users and groups in the consumer cluster as needed\. For more information, see [GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) or [REVOKE](https://docs.aws.amazon.com/redshift/latest/dg/r_REVOKE.html)\. Note that users created from the [CREATE USER](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) command cannot access objects in datashare that have been shared to Lake Formation\. Only users with access to both Redshift and Lake Formation can access datashares that have been shared with Lake Formation\. 
 
    ```
    GRANT USAGE ON DATABASE sales_db TO IAM:Bob;
@@ -49,7 +49,8 @@
    ```
    // Connect to a local cluster database
                
-   // Create a view on shared objects and access it. 
+   // Create a view on shared objects and access it.
+   
    CREATE VIEW sales_data 
    AS SELECT * 
    FROM sales_db.public.tickit_sales_redshift 

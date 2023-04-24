@@ -3,12 +3,10 @@
 You can access the following DDM related system views with the [https://docs.aws.amazon.com/redshift/latest/dg/r_roles-default.html](https://docs.aws.amazon.com/redshift/latest/dg/r_roles-default.html) role:
 +  [SVV\_MASKING\_POLICY](r_SVV_MASKING_POLICY.md) 
 
-   Use the SVV\_MASKING\_POLICY to view all masking policies created on the cluster\. 
+   Use the SVV\_MASKING\_POLICY to view all masking policies created on the cluster or workgroup\. 
 +  [SVV\_ATTACHED\_MASKING\_POLICY](r_SVV_ATTACHED_MASKING_POLICY.md) 
 
   Use the SVV\_ATTACHED\_MASKING\_POLICY to view all the relations and roles/users with policies attached on the currently connected database\.
-
-Only policies created on provisioned clusters appear in these system views\.
 
 Following are some examples of the information that you can find using system views\.
 

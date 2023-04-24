@@ -40,7 +40,7 @@ from iam_role 'arn:aws:iam::123456789012:role/myGrantee';
 **Note**  
 If the IAM role also has the `ALL` permission in an AWS Glue Data Catalog that is enabled for Lake Formation, the `ALL` permission isn't revoked\. Only the `SELECT` permission is revoked\. You can view the Lake Formation permissions in the Lake Formation console\.
 
-## Usage notes for revoking the ASSUMEROLE privilege<a name="r_REVOKE-usage-notes-assumerole"></a>
+## Usage notes for revoking the ASSUMEROLE permission<a name="r_REVOKE-usage-notes-assumerole"></a>
 
 The following usage notes apply to revoking the ASSUMEROLE privilege in Amazon Redshift\. 
 
@@ -50,4 +50,31 @@ To enable the use of the ASSUMEROLE privilege for users and groups, a superuser 
 
 ```
 revoke assumerole on all from public for all;
+```
+
+## Usage notes for revoking machine learning permissions<a name="r_REVOKE-usage-notes-create-model"></a>
+
+You can't directly grant or revoke permissions related to an ML function\. An ML function belongs to an ML model and permissions are controlled through the model\. Instead, you can revoke permissions related to the ML model\. The following example demonstrates how to revoke the run permisison from all users associated with the model `customer_churn`\.
+
+```
+REVOKE EXECUTE ON MODEL customer_churn FROM PUBLIC;
+```
+
+You can also revoke all permissions from a user for the ML model `customer_churn`\.
+
+```
+REVOKE ALL on MODEL customer_churn FROM ml_user;
+```
+
+Granting or revoking the `EXECUTE` permission related to an ML function will fail if there is an ML function in the schema, even if that ML function already has the `EXECUTE` permission through `GRANT EXECUTE ON MODEL`\. We recommend using a separate schema when using the `CREATE MODEL` command to keep the ML functions in a separate schema by themselves\. The following example demonstrates how to do so\.
+
+```
+CREATE MODEL ml_schema.customer_churn
+FROM customer_data
+TARGET churn
+FUNCTION ml_schema.customer_churn_prediction
+IAM_ROLE default
+SETTINGS (
+ S3_BUCKET 'your-s3-bucket'
+);
 ```

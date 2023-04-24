@@ -2,7 +2,7 @@
 
 Use SVV\_RELATION\_PRIVILEGES to view the relation \(tables and views\) permissions that are explicitly granted to users, roles, and groups in the current database\.
 
-SVV\_RELATION\_PRIVILEGES is visible to all users\. Superusers can see all rows\. Regular users who have the ACCESS SYSTEM TABLE permission can see all rows\. Regular users can only see identities to which they have access or for which they are the identities owner\.
+SVV\_RELATION\_PRIVILEGES is visible to all users\. Superusers can see all rows\. Regular users who have the SYSLOG ACCESS permission can see all rows\. Regular users can only see identities to which they have access or for which they are the identities' owner\. For more information, see [Visibility of data in system tables and views](c_visibility-of-data.md)\.
 
 ## Table columns<a name="r_SVV_RELATION_PRIVILEGES-table-columns"></a>
 

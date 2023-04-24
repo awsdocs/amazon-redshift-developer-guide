@@ -5,7 +5,7 @@ If you decide to manually specify column encodings, you might want to test diffe
 **Note**  
 We recommend that you use the COPY command to load data whenever possible, and allow the COPY command to choose the optimal encodings based on your data\. Or you can use the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command to view the suggested encodings for existing data\. For details about applying automatic compression, see [Loading tables with automatic compression](c_Loading_tables_auto_compress.md)\.
 
-To perform a meaningful test of data compression, you need a large number of rows\. For this example, we create a table and insert rows by using a statement that selects from two tables; VENUE and LISTING\. We leave out the WHERE clause that would normally join the two tables\. The result is that *each* row in the VENUE table is joined to *all* of the rows in the LISTING table, for a total of over 32 million rows\. This is known as a Cartesian join and normally is not recommended\. However, for this purpose, it's a convenient method of creating a lot of rows\. If you have an existing table with data that you want to test, you can skip this step\.
+To perform a meaningful test of data compression, you must have a large number of rows\. For this example, we create a table and insert rows by using a statement that selects from two tables; VENUE and LISTING\. We leave out the WHERE clause that would normally join the two tables\. The result is that *each* row in the VENUE table is joined to *all* of the rows in the LISTING table, for a total of over 32 million rows\. This is known as a Cartesian join and normally is not recommended\. However, for this purpose, it's a convenient method of creating many rows\. If you have an existing table with data that you want to test, you can skip this step\.
 
 After we have a table with sample data, we create a table with seven columns\. Each has a different compression encoding: raw, bytedict, lzo, run length, text255, text32k, and zstd\. We populate each column with exactly the same data by running an INSERT command that selects the data from the first table\.
 
@@ -71,7 +71,7 @@ To test compression encodings, do the following:
    order by col;
    ```
 
-   The query returns the following results\. The columns are numbered beginning with zero\. Depending on how your cluster is configured, your result might have different numbers, but the relative sizes should be similar\. You can see that BYTEDICT encoding on the second column produced the best results for this dataset\. This approach has a compression ratio of better than 20:1\. LZO and ZSTD encoding also produced excellent results\. Different data sets produce different results, of course\. When a column contains longer text strings, LZO often produces the best compression results\.
+   The query returns the following results\. The columns are numbered beginning with zero\. Depending on how your cluster is configured, your result might have different numbers, but the relative sizes should be similar\. You can see that BYTEDICT encoding on the second column produced the best results for this dataset\. This approach has a compression ratio of better than 20:1\. LZO and ZSTD encoding also produced excellent results\. Different datasets produce different results, of course\. When a column contains longer text strings, LZO often produces the best compression results\.
 
    ```
     col | max

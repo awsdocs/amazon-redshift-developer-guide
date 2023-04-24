@@ -9,5 +9,4 @@ In this section, you can find a summary of the most important design decisions a
 + [Choose the best distribution style](c_best-practices-best-dist-key.md)
 + [Let COPY choose compression encodings](c_best-practices-use-auto-compression.md)
 + [Define primary key and foreign key constraints](c_best-practices-defining-constraints.md)
-+ [Use the smallest possible column size](c_best-practices-smallest-column-size.md)
 + [Use date/time data types for date columns](c_best-practices-timestamp-date-columns.md)

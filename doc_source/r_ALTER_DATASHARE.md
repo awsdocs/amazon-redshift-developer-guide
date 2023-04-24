@@ -1,6 +1,6 @@
 # ALTER DATASHARE<a name="r_ALTER_DATASHARE"></a>
 
-Changes the definition of a datashare\. You can add objects or remove objects using ALTER DATASHARE\. The owner of the datashare with the required permissions on the datashare objects to be added or removed can alter the datashare\.
+Changes the definition of a datashare\. You can add objects or remove objects using ALTER DATASHARE\. You can only change a datashare in the current database\. Add or remove objects from the associated database to a datashare\. The owner of the datashare with the required permissions on the datashare objects to be added or removed can alter the datashare\.
 
 ## Required privileges<a name="r_ALTER_DATASHARE-privileges"></a>
 

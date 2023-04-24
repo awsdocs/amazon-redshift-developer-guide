@@ -68,7 +68,7 @@ If there is an existing IAM role with permissions to invoke Lambda functions att
 
 The IAM role requires permission to invoke Lambda functions\. While creating the IAM role, provide the permission in one of the following ways:
 + Attach the `AWSLambdaRole` policy on the **Attach permissions policy** page while creating an IAM role\. The `AWSLambdaRole` policy grants permissions to invoke Lambda functions which is the minimal requirement\. For more information and other policies, see [Identity\-based IAM policies for AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/access-control-identity-based.html) in the *AWS Lambda Developer Guide*\.
-+ Create your own custom policy to attach to your IAM role with the `lambda:InvokeFunction` permission of either all resources or a particular Lambda function with the ARN of that function\. For more information on how to create a policy, see [Creating IAM policies](IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\.
++ Create your own custom policy to attach to your IAM role with the `lambda:InvokeFunction` permission of either all resources or a particular Lambda function with the ARN of that function\. For more information on how to create a policy, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\.
 
   The following example policy enables invoking Lambda on a particular Lambda function\.
 

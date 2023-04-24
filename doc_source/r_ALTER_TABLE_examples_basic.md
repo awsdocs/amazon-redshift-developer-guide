@@ -2,7 +2,7 @@
 
 The following examples demonstrate basic usage of the ALTER TABLE command\. 
 
-## Rename a table<a name="r_ALTER_TABLE_examples_basic-rename-a-table"></a>
+## Rename a table or view<a name="r_ALTER_TABLE_examples_basic-rename-a-table"></a>
 
 The following command renames the USERS table to USERS\_BKUP: 
 
@@ -27,18 +27,6 @@ The following commands create a view, then change its owner:
 ```
 create view vdate as select * from date;
 alter table vdate owner to vuser;
-```
-
-The following command turns RLS off for the table: 
-
-```
-ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY OFF;
-```
-
-The following command turns RLS on for the table: 
-
-```
-ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY ON FOR DATASHARES;
 ```
 
 ## Rename a column<a name="r_ALTER_TABLE_examples_basic-rename-a-column"></a>
@@ -127,6 +115,7 @@ create table inventory(
 Insert into inventory values(1,1,1,1);
 
 select "table", "diststyle" from svv_table_info;
+
    table   |   diststyle
 -----------+----------------
  inventory |     EVEN
@@ -138,6 +127,7 @@ Alter the table DISTKEY to `inv_warehouse_sk`\. The SVV\_TABLE\_INFO view shows 
 alter table inventory alter diststyle key distkey inv_warehouse_sk;
 
 select "table", "diststyle" from svv_table_info;
+
    table   |       diststyle
 -----------+-----------------------
  inventory | KEY(inv_warehouse_sk)
@@ -149,6 +139,7 @@ Alter the table DISTKEY to `inv_item_sk`\. The SVV\_TABLE\_INFO view shows the `
 alter table inventory alter distkey inv_item_sk;
 
 select "table", "diststyle" from svv_table_info;
+
    table   |       diststyle
 -----------+-----------------------
  inventory | KEY(inv_item_sk)
@@ -171,6 +162,7 @@ create table inventory(
 Insert into inventory values(1,1,1,1);
 
 select "table", "diststyle" from svv_table_info;
+
    table   |   diststyle
 -----------+----------------
  inventory |     EVEN
@@ -182,6 +174,7 @@ Alter the table DISTSTYLE to ALL\. The SVV\_TABLE\_INFO view shows the changed D
 alter table inventory alter diststyle all;
 
 select "table", "diststyle" from svv_table_info;
+
    table   |   diststyle
 -----------+----------------
  inventory |     ALL
@@ -249,4 +242,18 @@ For this table, the following statement alters the encoding of column c0 to LZO\
 
 ```
 alter table t2 alter column c0 encode lzo;;
+```
+
+## Alter row\-level security control<a name="r_ALTER_TABLE_examples_basic-rls"></a>
+
+The following command turns RLS off for the table: 
+
+```
+ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY OFF;
+```
+
+The following command turns RLS on for the table: 
+
+```
+ALTER TABLE tickit_category_redshift ROW LEVEL SECURITY ON FOR DATASHARES;
 ```

@@ -1,6 +1,6 @@
 # Working with data distribution styles<a name="t_Distributing_data"></a>
 
-When you load data into a table, Amazon Redshift distributes the rows of the table to each of the compute nodes according to the table's distribution style\. When you run a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in choosing a table distribution style is to minimize the impact of the redistribution step by locating the data where it needs to be before the query is run\.
+When you load data into a table, Amazon Redshift distributes the rows of the table to each of the compute nodes according to the table's distribution style\. When you run a query, the query optimizer redistributes the rows to the compute nodes as needed to perform any joins and aggregations\. The goal in choosing a table distribution style is to minimize the impact of the redistribution step by locating the data where it must be before the query is run\.
 
 **Note**  
 This section will introduce you to the principles of data distribution in an Amazon Redshift database\. We recommend that you create your tables with `DISTSTYLE AUTO`\. If you do so, then Amazon Redshift uses automatic table optimization to choose the data distribution style\. For more information, see [Working with automatic table optimization](t_Creating_tables.md)\. The rest of this section provides details about distribution styles\. 
@@ -27,7 +27,7 @@ Some data distribution concepts for Amazon Redshift follow\.
 
  **Data redistribution** 
 
- When you load data into a table, Amazon Redshift distributes the rows of the table to each of the node slices according to the table's distribution style\. As part of a query plan, the optimizer determines where blocks of data need to be located to best run the query\. The data is then physically moved, or redistributed, while the query runs\. Redistribution might involve either sending specific rows to nodes for joining or broadcasting an entire table to all of the nodes\. 
+ When you load data into a table, Amazon Redshift distributes the rows of the table to each of the node slices according to the table's distribution style\. As part of a query plan, the optimizer determines where blocks of data must be located to best run the query\. The data is then physically moved, or redistributed, while the query runs\. Redistribution might involve either sending specific rows to nodes for joining or broadcasting an entire table to all of the nodes\. 
 
  Data redistribution can account for a substantial portion of the cost of a query plan, and the network traffic it generates can affect other database operations and slow overall system performance\. To the extent that you anticipate where best to locate data initially, you can minimize the impact of data redistribution\. 
 

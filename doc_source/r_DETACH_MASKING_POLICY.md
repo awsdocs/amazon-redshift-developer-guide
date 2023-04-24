@@ -1,6 +1,6 @@
 # DETACH MASKING POLICY<a name="r_DETACH_MASKING_POLICY"></a>
 
-Detaches an already attached dynamic data masking policy from a column\. For more information on dynamic data masking, see [Dynamic data masking \(preview\)](t_ddm.md)\.
+Detaches an already attached dynamic data masking policy from a column\. For more information on dynamic data masking, see [Dynamic data masking](t_ddm.md)\.
 
 Superusers and users or roles that have the sys:secadmin role can detach a masking policy\.
 

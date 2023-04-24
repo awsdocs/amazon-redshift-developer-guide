@@ -55,7 +55,7 @@ create table listing(
 	foreign key(dateid) references date(dateid));
 ```
 
-In the following query plan, the Merge Join step for the join on SALES and LISTING shows DS\_DIST\_NONE, which indicates that no redistribution is required for the step\. However, moving up the query plan, the other inner joins show DS\_BCAST\_INNER, which indicates that the inner table is broadcast as part of the query execution\. Because only one pair of tables can be collocated using key distribution, five tables need to be rebroadcast\.
+In the following query plan, the Merge Join step for the join on SALES and LISTING shows DS\_DIST\_NONE, which indicates that no redistribution is required for the step\. However, moving up the query plan, the other inner joins show DS\_BCAST\_INNER, which indicates that the inner table is broadcast as part of the query execution\. Because only one pair of tables can be collocated using key distribution, five tables must be rebroadcast\.
 
 ```
 QUERY PLAN

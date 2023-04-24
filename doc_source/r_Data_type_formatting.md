@@ -1,7 +1,8 @@
 # Data type formatting functions<a name="r_Data_type_formatting"></a>
 
 **Topics**
-+ [CAST and CONVERT functions](r_CAST_function.md)
++ [CAST function](r_CAST_function.md)
++ [CONVERT function](r_CONVERT_function.md)
 + [TO\_CHAR](r_TO_CHAR.md)
 + [TO\_DATE function](r_TO_DATE_function.md)
 + [TO\_NUMBER](r_TO_NUMBER.md)

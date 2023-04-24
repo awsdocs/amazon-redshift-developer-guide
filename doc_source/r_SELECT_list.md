@@ -8,6 +8,8 @@
 
 The SELECT list names the columns, functions, and expressions that you want the query to return\. The list represents the output of the query\. 
 
+For more information about SQL functions, see [SQL functions reference](c_SQL_functions.md)\. For more information about expressions, see [Conditional expressions](c_conditional_expressions.md)\.
+
 ## Syntax<a name="r_SELECT_list-synopsis"></a>
 
 ```

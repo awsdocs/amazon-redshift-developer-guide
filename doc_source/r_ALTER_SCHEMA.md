@@ -1,8 +1,6 @@
 # ALTER SCHEMA<a name="r_ALTER_SCHEMA"></a>
 
-Changes the definition of an existing schema\. Use this command to rename a schema or change the owner of a schema\. 
-
-For example, rename an existing schema to preserve a backup copy of that schema when you plan to create a new version of that schema\. For more information about schemas, see [CREATE SCHEMA](r_CREATE_SCHEMA.md)\. 
+Changes the definition of an existing schema\. Use this command to rename a schema or change the owner of a schema\. For example, rename an existing schema to preserve a backup copy of that schema when you plan to create a new version of that schema\. For more information about schemas, see [CREATE SCHEMA](r_CREATE_SCHEMA.md)\.
 
 To view the configured schema quotas, see [SVV\_SCHEMA\_QUOTA\_STATE](r_SVV_SCHEMA_QUOTA_STATE.md)\.
 
@@ -13,6 +11,8 @@ To view the records where schema quotas were exceeded, see [STL\_SCHEMA\_QUOTA\_
 Following are required privileges for ALTER SCHEMA:
 + Superuser
 + Owner of the schema
+
+When you change a schema name, note that objects using the old name, such as stored procedures or materialized views, must be updated to use the new name\.
 
 ## Syntax<a name="r_ALTER_SCHEMA-synopsis"></a>
 

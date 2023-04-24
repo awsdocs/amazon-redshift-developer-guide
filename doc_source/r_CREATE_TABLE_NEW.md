@@ -18,7 +18,7 @@ CREATE [ [LOCAL ] { TEMPORARY | TEMP } ] TABLE
   | LIKE parent_table [ { INCLUDING | EXCLUDING } DEFAULTS ] }
   [, ... ]  )
 [ BACKUP { YES | NO } ]
-[table_attribute]
+[table_attributes]
 
 where column_attributes are:
   [ DEFAULT default_expr ]
@@ -66,6 +66,11 @@ If you specify a table name that begins with '\# ', the table is created as a te
 
 ```
 create table #newtable (id int);
+```
+You also reference the table with the '\# '\. For example:   
+
+```
+select * from #newtable;
 ```
 The maximum length for the table name is 127 bytes; longer names are truncated to 127 bytes\. You can use UTF\-8 multibyte characters up to a maximum of four bytes\. Amazon Redshift enforces a quota of the number of tables per cluster by node type, including user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Optionally, the table name can be qualified with the database and schema name\. In the following example, the database name is `tickit`, the schema name is `public`, and the table name is `test`\.   
 

@@ -1,14 +1,6 @@
 # ALTER TABLE<a name="r_ALTER_TABLE"></a>
 
-**Topics**
-+ [Required privileges](#r_ALTER_TABLE-privileges)
-+ [Syntax](#r_ALTER_TABLE-synopsis)
-+ [Parameters](#r_ALTER_TABLE-parameters)
-+ [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md)
-+ [ALTER EXTERNAL TABLE examples](r_ALTER_TABLE_external-table.md)
-+ [ALTER TABLE ADD and DROP COLUMN examples](r_ALTER_TABLE_COL_ex-add-drop.md)
-
-Changes the definition of a database table or Amazon Redshift Spectrum external table\. This command updates the values and properties set by CREATE TABLE or CREATE EXTERNAL TABLE\.
+This command changes the definition of a Amazon Redshift table or Amazon Redshift Spectrum external table\. This command updates the values and properties set by [CREATE TABLE](r_CREATE_TABLE_NEW.md) or [CREATE EXTERNAL TABLE](r_CREATE_EXTERNAL_TABLE.md)\.
 
 You can't run ALTER TABLE on an external table within a transaction block \(BEGIN \.\.\. END\)\. For more information about transactions, see [Serializable isolation](c_serial_isolation.md)\. 
 
@@ -16,7 +8,7 @@ ALTER TABLE locks the table for read and write operations until the transaction 
 
 ## Required privileges<a name="r_ALTER_TABLE-privileges"></a>
 
-Following are required privileges for ALTER TABLE:
+The user that alters a table needs the proper privilege for the command to succeed\. Depending on the ALTER TABLE command, one of the following privileges is required\.
 + Superuser
 + Users with the ALTER TABLE privilege
 + Table owner with the USAGE privilege on the schema
@@ -31,7 +23,7 @@ ADD table_constraint
 | OWNER TO new_owner
 | RENAME TO new_name
 | RENAME COLUMN column_name TO new_name
-| ALTER COLUMN column_name TYPE new_data_type
+| ALTER COLUMN column_name TYPE updated_varchar_data_type_size
 | ALTER COLUMN column_name ENCODE new_encode_type
 | ALTER COLUMN column_name ENCODE encode_type,
 | ALTER COLUMN column_name ENCODE encode_type, .....;
@@ -48,7 +40,8 @@ ADD table_constraint
   [ DEFAULT default_expr ]
   [ ENCODE encoding ]
   [ NOT NULL | NULL ] |
-| DROP [ COLUMN ] column_name [ RESTRICT | CASCADE ] }
+| DROP [ COLUMN ] column_name [ RESTRICT | CASCADE ] 
+| ROW LEVEL SECURITY { ON | OFF } [ FOR DATASHARES ]}
 
 where table_constraint is:
 
@@ -82,18 +75,6 @@ ALTER TABLE tablename ALTER SORTKEY (column_list), ALTER DISTSTYLE ALL;
 ALTER TABLE tablename ALTER DISTSTYLE ALL, ALTER SORTKEY (column_list);
 ```
 
-Amazon Redshift supports the row\-level security control of the ALTER TABLE clause:
-
-```
-ALTER TABLE tablename ROW LEVEL SECURITY { ON | OFF } [ FOR DATASHARES ];
-```
-
-To enable auto\-refreshing of a materialized view, use the following ALTER TABLE command\.
-
-```
-ALTER TABLE mv_name ALTER AUTOREFRESH = [TRUE | FALSE]
-```
-
 ## Parameters<a name="r_ALTER_TABLE-parameters"></a>
 
  *table\_name*   
@@ -125,8 +106,8 @@ A clause that renames a table \(or view\) to the value specified in *new\_name*\
 You can't rename a permanent table to a name that begins with '\#'\. A table name beginning with '\#' indicates a temporary table\.  
 You can't rename an external table\.
 
-ALTER COLUMN *column\_name* TYPE *new\_data\_type*   
-A clause that changes the size of a column defined as a VARCHAR data type\. Consider the following limitations:  
+ALTER COLUMN *column\_name* TYPE *updated\_varchar\_data\_type\_size*   
+A clause that changes the size of a column defined as a VARCHAR data type\. This clause only supports altering the size of a VARCHAR data type\. Consider the following limitations:  
 + You can't alter a column with compression encodings BYTEDICT, RUNLENGTH, TEXT255, or TEXT32K\. 
 + You can't decrease the size less than maximum size of existing data\. 
 + You can't alter columns with default values\. 
@@ -340,7 +321,14 @@ A clause that drops the specified partition\. Dropping a partition alters only t
 
 ROW LEVEL SECURITY \{ ON \| OFF \}   
 A clause that turns on or off row\-level security for a table\.  
-When row\-level security is turned on for a table, you can only read the rows that the row\-level security policy permits you to access\. When there isn't any policy granting you access to the table, you can't see any rows from the table\.
+When row\-level security is turned on for a table, you can only read the rows that the row\-level security policy permits you to access\. When there isn't any policy granting you access to the table, you can't see any rows from the table\. For more information, see [Row\-level security](t_rls.md)\.
 
 FOR DATASHARES  
 A clause that determines whether a table is RLS\-protected over datashares\. By default, a RLS\-protected table is also RLS\-protected over datashares\.
+
+## Examples<a name="r_ALTER_TABLE-examples"></a>
+
+For examples that show how to use the ALTER TABLE command, see the following\.
++ [ALTER TABLE examples](r_ALTER_TABLE_examples_basic.md)
++ [ALTER EXTERNAL TABLE examples](r_ALTER_TABLE_external-table.md)
++ [ALTER TABLE ADD and DROP COLUMN examples](r_ALTER_TABLE_COL_ex-add-drop.md)

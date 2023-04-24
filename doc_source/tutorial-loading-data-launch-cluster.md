@@ -7,6 +7,8 @@ For the exercises in this tutorial, use a four\-node cluster\.
 **To create a cluster**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+   Using the navigation menu, choose the **Provisioned clusters dashboard**\.
 **Important**  
 Make sure that you have the necessary permissions to perform the cluster operations\. For information on granting the necessary permissions, see [ Authorizing Amazon Redshift to access AWS services](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html)\.
 

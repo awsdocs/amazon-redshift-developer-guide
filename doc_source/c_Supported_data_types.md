@@ -56,7 +56,7 @@ Note the following compatibility and conversion rules:
 + Different types of character strings are compatible; VARCHAR column strings containing single\-byte data and CHAR column strings are comparable and implicitly convertible\. VARCHAR strings that contain multibyte data are not comparable\. Also, you can convert a character string to a date, time, timestamp, or numeric value if the string is an appropriate literal value; any leading or trailing spaces are ignored\. Conversely, you can convert a date, time, timestamp, or numeric value to a fixed\-length or variable\-length character string\.
 **Note**  
 A character string that you want to cast to a numeric type must contain a character representation of a number\. For example, you can cast the strings `'1.0'` or `'5.9'` to decimal values, but you cannot cast the string `'ABC'` to any numeric type\.
-+ If you compare DECIMAL values with character strings, Amazon Redshift attempts to convert the character string to a DECIMAL value\. When comparing all other numeric values with character strings, the numeric values are converted to character strings\. To enforce the opposite conversion \(for example, converting character strings to integers, or converting DECIMAL values to character strings\), use an explicit function, such as [CAST and CONVERT](r_CAST_function.md)\. 
++ If you compare DECIMAL values with character strings, Amazon Redshift attempts to convert the character string to a DECIMAL value\. When comparing all other numeric values with character strings, the numeric values are converted to character strings\. To enforce the opposite conversion \(for example, converting character strings to integers, or converting DECIMAL values to character strings\), use an explicit function, such as [CAST](r_CAST_function.md)\. 
 + To convert 64\-bit DECIMAL or NUMERIC values to a higher precision, you must use an explicit conversion function such as the CAST or CONVERT functions\. 
 + When converting DATE or TIMESTAMP to TIMESTAMPTZ, or converting TIME to TIMETZ, the time zone is set to the current session time zone\. The session time zone is UTC by default\. For more information about setting the session time zone, see [timezone](r_timezone_config.md)\. 
 + Similarly, TIMESTAMPTZ is converted to DATE, TIME, or TIMESTAMP based on the current session time zone\. The session time zone is UTC by default\. After the conversion, time zone information is dropped\.
@@ -74,8 +74,8 @@ The table following lists the data types that can be converted implicitly in ass
 
 **Note**  
 Implicit conversions between TIMESTAMPTZ, TIMESTAMP, DATE, TIME, TIMETZ, or character strings use the current session time zone\. For information about setting the current time zone, see [timezone](r_timezone_config.md)\.  
-The GEOMETRY and GEOGRAPHY data types can't be implicitly converted to any other data type, except each other\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\.   
-The VARBYTE data type can't be implicitly converted to any other data type\. For more information, see [CAST and CONVERT functions](r_CAST_function.md)\. 
+The GEOMETRY and GEOGRAPHY data types can't be implicitly converted to any other data type, except each other\. For more information, see [CAST function](r_CAST_function.md)\.   
+The VARBYTE data type can't be implicitly converted to any other data type\. For more information, see [CAST function](r_CAST_function.md)\. 
 
 ### Using dynamic typing for the SUPER data type<a name="r_dynamic_typing_SUPER"></a>
 

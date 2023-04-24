@@ -1,26 +1,4 @@
-# MERGE \(preview\)<a name="r_MERGE"></a>
-
-
-|  | 
-| --- |
-|  This is prerelease documentation for the MERGE command, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on April 5, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-**Note**  
-You can create an Amazon Redshift cluster in **Preview** to test new features of Amazon Redshift\. You can't use those features in production or move your **Preview** cluster to a production cluster or a cluster on another track\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
-Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-On the navigation menu, choose **Provisioned clusters dashboard**, and choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
-A banner displays on the **Clusters** list page that introduces preview\. Choose the button **Create preview cluster** to open the create cluster page\.
-Enter properties for your cluster\. Choose the **Preview track** that contains the features you want to test\. We recommend entering a name for the cluster that indicates that it is on a preview track\. Choose options for your cluster, including options labeled as **\-preview**, for the features you want to test\. For general information about creating clusters, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Management Guide*\.
-Choose **Create preview cluster** to create a cluster in preview\.
-When your preview cluster is available, use your SQL client to load and query data\.
-Your cluster must be created with the preview track named: preview\_2022\.  
-You can create an Amazon Redshift Serverless workgroup in **Preview** to test new features of Amazon Redshift Serverless\. You can't use those features in production or move your **Preview** workgroup to a production workgroup\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  
-Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-On the navigation menu, choose **Severless dashboard**, and choose **Workgroup configuration**\. The workgroups for your account in the current AWS Region are listed\. A subset of properties of each workgroup is displayed in columns in the list\.
-A banner displays on the **Workgroups** list page that introduces preview\. Choose the button **Create preview workgroup** to open the create workgroup page\.
-Enter properties for your workgroup\. We recommend entering a name for the workgroup that indicates that it is in preview\. Choose options for your workgroup, including options labeled as **\-preview**, for the features you want to test\. Continue through the pages to enter options for your workgroup and namespace\. For general information about creating workgroups, see [Creating a workgroup with a namespace](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-workgroups-create-workgroup-wizard.html) in the *Amazon Redshift Management Guide*\.
-Choose **Create preview workgroup** to create a workgroup in preview\.
-When your preview workgroup is available, use your SQL client to load and query data\.
+# MERGE<a name="r_MERGE"></a>
 
 Conditionally merges rows from a source table into a target table\. Traditionally, this can only be achieved by using multiple insert, update or delete statements separately\. For more information on the operations that MERGE lets you combine, see [UPDATE](https://docs.aws.amazon.com/redshift/latest/dg/r_UPDATE.html), [DELETE](https://docs.aws.amazon.com/redshift/latest/dg/r_DELETE.html), and [INSERT](https://docs.aws.amazon.com/redshift/latest/dg/r_INSERT_30.html)\.
 
@@ -74,7 +52,29 @@ The expression defining the new value for *col\_name*\.
 +  *target\_table* can't be a system table, catalog table, or external table\. 
 +  *source\_table* and *target\_table* can't be the same table\. 
 +  You can't use the WITH clause in a MERGE statement\. 
-+  Rows in *source\_table* can't match multiple rows in *target\_table*\. 
++  Rows in *target\_table* can't match multiple rows in *source\_table*\. 
+
+  Consider the following example:
+
+  ```
+  CREATE TABLE target (id INT, name CHAR(10));
+  CREATE TABLE source (id INT, name CHAR(10));
+  
+  INSERT INTO target VALUES (1, 'Bob'), (2, 'John');
+  INSERT INTO source VALUES (1, 'Tony'), (1, 'Alice'), (3, 'Bill');
+  
+  MERGE INTO target USING source ON target.id = source.id
+  WHEN MATCHED THEN UPDATE SET id = source.id, name = source.name
+  WHEN NOT MATCHED THEN INSERT VALUES (source.id, source.name);
+  ERROR: Found multiple matches to update the same tuple.
+  
+  MERGE INTO target USING source ON target.id = source.id
+  WHEN MATCHED THEN DELETE
+  WHEN NOT MATCHED THEN INSERT VALUES (source.id, source.name);
+  ERROR: Found multiple matches to update the same tuple.
+  ```
+
+  In both MERGE statements, the operation fails because there are multiple rows in the `source` table with an ID value of `1`\.
 +  *match\_condition* and *expr* can't partially reference SUPER type columns\. For example, if your SUPER type object is an array or a structure, you can't use individual elements of that column for *match\_condition* or *expr*, but you can use the entire column\. 
 
   Consider the following example:
@@ -93,35 +93,6 @@ The expression defining the new value for *col\_name*\.
   ```
 
   For more information on the SUPER type, see [ SUPER type](https://docs.aws.amazon.com/redshift/latest/dg/r_SUPER_type.html)\.
-+  For MERGE statements that contain UPDATE operations, we recommend the following steps for better performance\. 
-  + Define the join columns from *target\_table* as primary keys\.
-  + Make the UPDATE operation update all columns in *target\_table*\.
-  + Keep *expr* the same for the UPDATE and INSERT operations\.
-+ MERGE can remove duplicate values if you have duplicate values in a primary key column\. This is possible because Amazon Redshift doesn't enforce primary key constraints\. For more information, see [ Defining table constraints](https://docs.aws.amazon.com/redshift/latest/dg/t_Defining_constraints.html)\. 
-
-  Consider the following example:
-
-  ```
-  CREATE TABLE target (id INT, name CHAR(10), PRIMARY KEY(id));
-  CREATE TABLE source (id INT, name CHAR(10));
-  
-  INSERT INTO target VALUES (101, 'Bob'), (101, 'John'), (102, 'Susan');
-  INSERT INTO source VALUES (101, 'Tony'), (103, 'Alice');
-  
-  MERGE INTO target USING source ON target.id = source.id
-  WHEN MATCHED THEN UPDATE SET id = source.id, name = source.name
-  WHEN NOT MATCHED THEN INSERT VALUES (source.id, source.name);
-  
-  SELECT * FROM target;
-   id  |    name
-  -----+------------
-   101 | Tony
-   102 | Susan
-   103 | Alice
-  (3 rows)
-  ```
-
-  Before the MERGE statement, there are two distinct rows in *target\_table* with the id value of 101 but differing name values\. After the MERGE statement, only one row with an id of 101 remains\.
 + If *source\_table* is large, defining the join columns from both *target\_table* and *source\_table* as the distribution keys can improve performance\.
 
 ## Examples<a name="sub-examples-merge"></a>

@@ -1,14 +1,14 @@
-# CAST and CONVERT functions<a name="r_CAST_function"></a>
+# CAST function<a name="r_CAST_function"></a>
 
 The CAST function converts one data type to another compatible data type\. For instance, you can convert a string to a date, or a numeric type to a string\. CAST performs a runtime conversion, which means that the conversion doesn't change a value's data type in a source table\. It's changed only in the context of the query\.
 
-The CONVERT function is very similar to CAST, in that it converts from one data type to another, but it's called differently\. You might prefer it as more readable because it takes two arguments, a type and an expression\. 
+The CAST function is very similar to [CONVERT function](r_CONVERT_function.md), in that they both convert one data type to another, but they are called differently\.
 
 Certain data types require an explicit conversion to other data types using the CAST or CONVERT function\. Other data types can be converted implicitly, as part of another command, without using CAST or CONVERT\. See [Type compatibility and conversion](c_Supported_data_types.md#r_Type_conversion)\. 
 
-## CAST<a name="r_CAST_function-cast"></a>
+## Syntax<a name="r_CAST_function-syntax"></a>
 
-Use either of these two equivalent syntax forms to cast expressions from one data type to another\. 
+Use either of these two equivalent syntax forms to cast expressions from one data type to another\.
 
 ```
 CAST ( expression AS type )
@@ -38,26 +38,6 @@ or an INTEGER conversion that causes an overflow:
 ```
 select 12345678::smallint;
 ```
-
-## CONVERT<a name="convert-function"></a>
-
-You can also use the CONVERT function to convert values from one data type to another: 
-
-```
-CONVERT ( type, expression )
-```
-
-## Arguments<a name="r_CAST_function-arguments2"></a>
-
- *type*   
-One of the supported [Data types](c_Supported_data_types.md)\. 
-
- *expression*   
-An expression that evaluates to one or more values, such as a column name or a literal\. Converting null values returns nulls\. The expression cannot contain blank or empty strings\. 
-
-## Return type<a name="r_CAST_function-return-type2"></a>
-
-CONVERT returns the data type specified by the *type* argument\. 
 
 ## Examples<a name="r_CAST_function-examples"></a>
 
@@ -89,18 +69,6 @@ The following produces a similar result\. It doesn't require sample data to run:
 
 ```
 select cast(162.00 as integer) as pricepaid;
-
-pricepaid
------------
-162
-(1 row)
-```
-
-The following query uses the CONVERT function to return the same result: 
-
-```
-select convert(integer, pricepaid)
-from sales where salesid=100;
 
 pricepaid
 -----------
@@ -169,24 +137,17 @@ In this example, an integer is cast as a character string:
 
 ```
 select cast(2008 as char(4));
+
 bpchar
 --------
 2008
-```
-
-In this example, the current date and time is converted to a variable character data type: 
-
-```
-SELECT CONVERT(VARCHAR(30), GETDATE());
-getdate
----------
-2023-02-02 04:31:16
 ```
 
 In this example, a DECIMAL\(6,3\) value is cast as a DECIMAL\(4,1\) value: 
 
 ```
 select cast(109.652 as decimal(4,1));
+
 numeric
 ---------
 109.7
@@ -197,6 +158,7 @@ This example shows a more complex expression\. The PRICEPAID column \(a DECIMAL\
 ```
 select salesid, pricepaid::decimal(38,2)*100000000000000000000
 as value from sales where salesid<10 order by salesid;
+
 
  salesid |           value
 ---------+----------------------------
@@ -220,7 +182,7 @@ SELECT ST_AsText('01010000000000000000001C400000000000002040');
 ```
 
 ```
- st_astext  
+st_astext  
 ------------
  POINT(7 8)
 ```
@@ -231,7 +193,7 @@ SELECT ST_AsText('010100000000000000000014400000000000001840'::geometry);
 ```
 
 ```
- st_astext  
+st_astext  
 ------------
  POINT(5 6)
 ```

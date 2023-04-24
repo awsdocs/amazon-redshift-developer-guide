@@ -6,7 +6,7 @@ The following examples demonstrate how to use ALTER TABLE to add and then drop a
 
 The following example adds a standalone FEEDBACK\_SCORE column to the USERS table\. This column simply contains an integer, and the default value for this column is NULL \(no feedback score\)\. 
 
-First, query the PG\_TABLE\_DEF catalog table to view the USERS table: 
+First, query the PG\_TABLE\_DEF catalog table to view the schema of the USERS table: 
 
 ```
 column        | type                   | encoding | distkey | sortkey
@@ -46,8 +46,11 @@ select feedback_score from users limit 5;
 
 feedback_score
 ----------------
-
-(5 rows)
+NULL
+NULL
+NULL
+NULL
+NULL
 ```
 
 Drop the column to reinstate the original DDL: 

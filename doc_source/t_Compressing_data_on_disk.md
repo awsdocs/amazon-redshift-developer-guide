@@ -11,7 +11,7 @@ You can apply a compression type, or *encoding*, to the columns in a table manua
 **Note**  
 We strongly recommend using the COPY command to apply automatic compression\.
 
-You might choose to apply compression encodings manually if the new table shares the same data characteristics as another table\. Or you might do so if in testing you discover that the compression encodings that are applied during automatic compression are not the best fit for your data\. If you choose to apply compression encodings manually, you can run the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command against an already populated table and use the results to choose compression encodings\.
+You might choose to apply compression encodings manually if the new table shares the same data characteristics as another table\. Or you might do so if you discover in testing that the compression encodings applied during automatic compression are not the best fit for your data\. If you choose to apply compression encodings manually, you can run the [ANALYZE COMPRESSION](r_ANALYZE_COMPRESSION.md) command against an already populated table and use the results to choose compression encodings\.
 
 To apply compression manually, you specify compression encodings for individual columns as part of the CREATE TABLE statement\. The syntax is as follows\.
 

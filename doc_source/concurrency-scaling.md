@@ -24,7 +24,7 @@ When you accrue credit for concurrency scaling, this credit accrual applies to b
 + It doesn't support queries on tables that use interleaved sort keys\.
 + It doesn't support queries on temporary tables\.
 + It doesn't support queries that access external resources that are protected by restrictive network or virtual private cloud \(VPC\) configurations\.
-+ It doesn't support queries that contain Python user\-defined functions \(UDFs\)\.
++ It doesn't support queries that contain Python user\-defined functions \(UDFs\) and Λ UDFs\.
 + It doesn't support queries that access system tables, PostgreSQL catalog tables, or no\-backup tables\.
 + It doesn’t support COPY or UNLOAD queries that access an external resource that has restrictive resource policies\. External resources can include Amazon S3 buckets or DynamoDB tables\. Policies can restrict access to a specific source VPC \(`aws:sourceVpc`\), source VPC endpoint \(`aws:sourceVpce`\), or source IP address \(`aws:SourceIp`\)\. In some cases, you might need to remove policies on an external resource\. Doing this means that COPY or UNLOAD queries accessing the resource are sent to the concurrency\-scaling cluster\.
 + Amazon Redshift concurrency scaling for write operations is not supported for DDL operations, such as CREATE TABLE or ALTER TABLE\.

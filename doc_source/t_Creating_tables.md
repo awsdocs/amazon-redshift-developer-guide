@@ -1,6 +1,6 @@
 # Working with automatic table optimization<a name="t_Creating_tables"></a>
 
-Automatic table optimization is a self\-tuning capability that automatically optimizes the design of tables by applying sort and distribution keys without the need for administrator intervention\. By using automation to tune the design of tables, you can get started more easily and get the fastest performance quickly without needing to invest time to manually tune and implement table optimizations\. 
+Automatic table optimization is a self\-tuning capability that automatically optimizes the design of tables by applying sort and distribution keys without the need for administrator intervention\. By using automation to tune the design of tables, you can get started and get the fastest performance without investing time to manually tune and implement table optimizations\. 
 
 Automatic table optimization continuously observes how queries interact with tables\. It uses advanced artificial intelligence methods to choose sort and distribution keys to optimize performance for the cluster's workload\. If Amazon Redshift determines that applying a key improves cluster performance, tables are automatically altered within hours from the time the cluster was created, with minimal impact to queries\. 
 

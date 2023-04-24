@@ -74,24 +74,51 @@ The following usage notes apply to column\-level privileges on Amazon Redshift t
 
 The following usage notes apply to granting the ASSUMEROLE permission in Amazon Redshift\. 
 
-You use the ASSUMEROLE permission to control IAM role access permissions for database users, roles, or groups on commands such as COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL\. After you grant the ASSUMEROLE privilege to a user, role, or group for an IAM role, the user, role, or group can assume that role when running the command\. The ASSUMEROLE privilege enables you to grant access to the appropriate commands as required\.
+You use the ASSUMEROLE permission to control IAM role access permissions for database users, roles, or groups on commands such as COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL\. After you grant the ASSUMEROLE permission to a user, role, or group for an IAM role, the user, role, or group can assume that role when running the command\. The ASSUMEROLE permission enables you to grant access to the appropriate commands as required\.
 
-Only a database superuser can grant or revoke the ASSUMEROLE privilege for users, roles, and groups\. A superuser always retains the ASSUMEROLE privilege\. 
+Only a database superuser can grant or revoke the ASSUMEROLE permission for users, roles, and groups\. A superuser always retains the ASSUMEROLE permission\.
 
-To enable the use of the ASSUMEROLE privilege for users, roles, and groups, a superuser performs the following two actions:
+To enable the use of the ASSUMEROLE permission for users, roles, and groups, a superuser performs the following two actions:
 + Run the following statement once on the cluster:
 
   ```
   revoke assumerole on all from public for all;
   ```
-+ Grant the ASSUMEROLE privilege to users, roles, and groups for the appropriate commands\.
++ Grant the ASSUMEROLE permission to users, roles, and groups for the appropriate commands\.
 
-You can specify role chaining in the ON clause when granting the ASSUMEROLE privilege\. You use commas to separate roles in a role chain, for example, `Role1,Role2,Role3`\. If role chaining was specified when granting the ASSUMEROLE privilege, you must specify the role chain when performing operations granted by the ASSUMEROLE privilege\. You can't specify individual roles within the role chain when performing operations granted by the ASSUMEROLE privilege\. For example, if a user, role, or group is granted the role chain `Role1,Role2,Role3`, you can't specify only `Role1` to perform operations\. 
+You can specify role chaining in the ON clause when granting the ASSUMEROLE permission\. You use commas to separate roles in a role chain, for example, `Role1,Role2,Role3`\. If role chaining was specified when granting the ASSUMEROLE permission, you must specify the role chain when performing operations granted by the ASSUMEROLE permission\. You can't specify individual roles within the role chain when performing operations granted by the ASSUMEROLE permission\. For example, if a user, role, or group is granted the role chain `Role1,Role2,Role3`, you can't specify only `Role1` to perform operations\. 
 
-If a user attempts to perform a COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL operation and hasn't been granted the ASSUMEROLE privilege, a message similar to the following appears\.
+If a user attempts to perform a COPY, UNLOAD, EXTERNAL FUNCTION, or CREATE MODEL operation and hasn't been granted the ASSUMEROLE permission, a message similar to the following appears\.
 
 ```
 ERROR:  User awsuser does not have ASSUMEROLE permission on IAM role "arn:aws:iam::123456789012:role/RoleA" for COPY 
 ```
 
-To list users that have been granted access to IAM roles and commands through the ASSUMEROLE privilege, see [HAS\_ASSUMEROLE\_PRIVILEGE](r_HAS_ASSUMEROLE_PRIVILEGE.md)\. To list IAM roles and command privileges that have been granted to a user that you specify, see [PG\_GET\_IAM\_ROLE\_BY\_USER](PG_GET_IAM_ROLE_BY_USER.md)\. To list users, roles, and groups that have been granted access to an IAM role that you specify, see [PG\_GET\_GRANTEE\_BY\_IAM\_ROLE](PG_GET_GRANTEE_BY_IAMROLE.md)\.
+To list users that have been granted access to IAM roles and commands through the ASSUMEROLE permission, see [HAS\_ASSUMEROLE\_PRIVILEGE](r_HAS_ASSUMEROLE_PRIVILEGE.md)\. To list IAM roles and command permissions that have been granted to a user that you specify, see [PG\_GET\_IAM\_ROLE\_BY\_USER](PG_GET_IAM_ROLE_BY_USER.md)\. To list users, roles, and groups that have been granted access to an IAM role that you specify, see [PG\_GET\_GRANTEE\_BY\_IAM\_ROLE](PG_GET_GRANTEE_BY_IAMROLE.md)\.
+
+## Usage notes for granting machine learning permissions<a name="r_GRANT-usage-notes-create-model"></a>
+
+You can't directly grant or revoke permissions related to an ML function\. An ML function belongs to an ML model and permissions are controlled through the model\. Instead, you can grant permissions related to the ML model\. The following example demonstrates how to grant permisisons to all users to run the ML function associated with the model `customer_churn`\.
+
+```
+GRANT EXECUTE ON MODEL customer_churn TO PUBLIC;
+```
+
+You can also grant all permissions to to a user for the ML model `customer_churn`\.
+
+```
+GRANT ALL on MODEL customer_churn TO ml_user;
+```
+
+Granting the `EXECUTE` permission related to an ML function will fail if there is an ML function in the schema, even if that ML function already has the `EXECUTE` permission through `GRANT EXECUTE ON MODEL`\. We recommend using a separate schema when using the `CREATE MODEL` command to keep the ML functions in a separate schema by themselves\. The following example demonstrates how to do so\.
+
+```
+CREATE MODEL ml_schema.customer_churn
+FROM customer_data
+TARGET churn
+FUNCTION ml_schema.customer_churn_prediction
+IAM_ROLE default
+SETTINGS (
+ S3_BUCKET 'your-s3-bucket'
+);
+```

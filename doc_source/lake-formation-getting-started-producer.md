@@ -46,7 +46,7 @@ As a producer cluster administrator, follow these steps to share datashares to L
    REVOKE USAGE ON DATASHARE salesshare FROM ACCOUNT '012345678910' VIA DATA CATALOG;
    ```
 
-1. Authorize access to the datashare for Lake Formation by using the `aws redshift authorize-data-share` API operation\. This lets Lake Formation recognize the datashare in the service account and manage associating consumers to the datashare\.
+1. Authorize access to the datashare for Lake Formation by using the `aws redshift authorize-data-share` API operation\. Doing so lets Lake Formation recognize the datashare in the service account and manage associating consumers to the datashare\.
 
    ```
    aws redshift authorize-data-share 
@@ -62,10 +62,10 @@ As a producer cluster administrator, follow these steps to share datashares to L
    --consumer-identifier {"DataCatalog/<consumer-account-id>"}
    ```
 
-    At any time, if the producer cluster administrator decides that there is no longer a need to share data with the consumer cluster, they can use DROP DATASHARE to delete the datashare\. The associated permissions and objects in Lake Formation are not automatically deleted\. 
+    At any time, if the producer cluster administrator decides that there is no longer a need to share data with the consumer cluster, they can use DROP DATASHARE to delete the datashare, deauthorize the datashare, or revoke datashare permissions\. The associated permissions and objects in Lake Formation are not automatically deleted\. 
 
    ```
    DROP DATASHARE salesshare;
    ```
 
-    After authorizing the Lake Formation account to manage the datashare, the Lake Formation administrator can discover the shared datashare and create a database in the AWS Glue Data Catalog linking to the datashare\. The administrator must also create local resources that define how objects within the datashare should map to objects within Lake Formation\. For more information about discovering datashares and creating local resources, see Accepting a datashare invitation from Redshift\. 
+    After authorizing the Lake Formation account to manage the datashare, the Lake Formation administrator can discover the shared datashare and create a database in the AWS Glue Data Catalog linking to the datashare\. The Lake Formation administrator must also create local resources that define how objects within the datashare should map to objects within Lake Formation\. For more information about discovering datashares and creating local resources, see [Managing permissions for data in an Amazon Redshift datashare](https://docs.aws.amazon.com/lake-formation/latest/dg/data-sharing-redshift.html)\. 

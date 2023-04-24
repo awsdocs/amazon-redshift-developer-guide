@@ -53,7 +53,7 @@ CREATE MODEL model_name
     FROM { table_name | ( select_statement )  | 'job_name' }
     [ TARGET column_name ]
     FUNCTION function_name ( data_type [, ...] ) 
-    IAM_ROLE { default }
+    IAM_ROLE { default | 'arn:aws:iam::<account-id>:role/<role-name>' }
     [ AUTO ON / OFF ]
       -- default is AUTO ON
     [ MODEL_TYPE { XGBOOST | MLP | LINEAR_LEARNER | KMEANS } ]
@@ -103,8 +103,8 @@ The name of the column that becomes the prediction target\. The column must exis
 FUNCTION *function\_name* \( *data\_type* \[, \.\.\.\] \)  
 The name of the function to be created and the data types of the input arguments\. You can provide a schema name\.
 
-IAM\_ROLE \{ default \}  
- Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREAT MODEL command runs\.
+IAM\_ROLE \{ default \| 'arn:aws:iam::<account\-id>:role/<role\-name>' \}  
+ Use the default keyword to have Amazon Redshift use the IAM role that is set as default and associated with the cluster when the CREAT MODEL command runs\. Alternatively, you can specify an ARN of an IAM role to use that role\.
 
 \[ AUTO ON / OFF \]  
  Turns on or off CREATE MODEL automatic discovery of preprocessor, algorithm, and hyper\-parameters selection\. 
@@ -126,7 +126,7 @@ CREATE MODEL customer_churn
 FROM customer_data
 TARGET 'Churn'
 FUNCTION predict_churn
-IAM_ROLE { default }
+IAM_ROLE { default | 'arn:aws:iam::<account-id>:role/<role-name>' }
 PROBLEM_TYPE BINARY_CLASSIFICATION
 OBJECTIVE 'F1'
 PREPROCESSORS '[

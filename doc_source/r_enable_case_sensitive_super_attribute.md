@@ -14,7 +14,7 @@ When you enclose an attribute name in double quotation marks and set `enable_cas
 
 For more information on the SUPER data type, see [SUPER type](r_SUPER_type.md) and [Ingesting and querying semistructured data in Amazon Redshift](super-overview.md)\.
 
-## Examples<a name="w186aac70c47b7"></a>
+## Examples<a name="w189aac71c47b7"></a>
 
 The following example shows the results of selecting SUPER values with `enable_case_sensitive_super_attribute` enabled and with it disabled\.
 

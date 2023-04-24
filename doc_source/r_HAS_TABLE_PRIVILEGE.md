@@ -43,3 +43,30 @@ has_table_privilege
 false
 (1 row)
 ```
+
+The following query lists table privileges, including select, insert, update, and delete, using output from the pg\_tables and pg\_user catalog tables\. This is a sample only\. You might have to specify a schema name and table names from your database\. For more information, see [Querying the catalog tables](c_join_PG.md)\.
+
+```
+SELECT 
+     tablename
+     ,usename
+     ,HAS_TABLE_PRIVILEGE(users.usename, tablename, 'select') AS sel
+     ,HAS_TABLE_PRIVILEGE(users.usename, tablename, 'insert') AS ins
+     ,HAS_TABLE_PRIVILEGE(users.usename, tablename, 'update') AS upd
+     ,HAS_TABLE_PRIVILEGE(users.usename, tablename, 'delete') AS del
+FROM
+(SELECT * from pg_tables
+WHERE schemaname = 'public' and tablename in ('event','listing')) as tables
+,(SELECT * FROM pg_user) AS users;
+
+tablename | usename    | sel  | ins  | upd  | del
+-----------------------------------------------------
+event	    john         true   true   true   true	
+event	    sally        false  false  false  false	
+event	    elsa         false  false  false  false	
+listing     john         true	true   true   true	
+listing     sally        false  false  false  false	
+listing     elsa         false  false  false  false
+```
+
+In the sample, the schema name in the WHERE clause limits returned records to tables in the *public* schema\. The query also contains a cross join\. For more information, see [JOIN examples](r_Join_examples.md)\.
