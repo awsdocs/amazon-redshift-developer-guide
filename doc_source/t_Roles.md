@@ -1,9 +1,0 @@
-# Role\-based access control \(RBAC\)<a name="t_Roles"></a>
-
-By using role\-based access control \(RBAC\) to manage database permissions in Amazon Redshift, you can simplify the management of security permissions in Amazon Redshift\. You can secure the access to sensitive data by controlling what users can do both at a broad or fine level\. You can also control user access to tasks that are normally restricted to superusers\. By assigning different permissions to different roles and assigning them to different users, you can have more granular control of user access\.
-
-Users with an assigned role can perform only the tasks that are specified by the assigned role that they are authorized with\. For example, a user with the assigned role that has the CREATE TABLE and DROP TABLE permissions is only authorized to perform those tasks\. You can control user access by granting different levels of security permissions to different users to access the data they require for their work\.
-
-RBAC applies the principle of least permissions to users based on their role requirements, regardless of the types of objects that are involved\. Granting and revoking of permissions is performed at the role level, without the need to update permissions on individual database objects\.
-
-With RBAC, you can create roles with permissions to run commands that used to require superuser permissions\. Users can run these commands, as long as they are authorized with a role that includes these permissions\. Similarly, you can also create roles to limit the access to certain commands, and assign the role to either superusers or users that have been authorized with the role\.

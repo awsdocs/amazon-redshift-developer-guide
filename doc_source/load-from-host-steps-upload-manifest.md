@@ -1,3 +1,0 @@
-# Step 6: Upload the manifest file to an Amazon S3 bucket<a name="load-from-host-steps-upload-manifest"></a>
-
-Upload the manifest file to an Amazon S3 bucket\. If the Amazon S3 bucket does not reside in the same AWS Region as your Amazon Redshift cluster, you must use the [REGION](copy-parameters-data-source-s3.md#copy-region) option to specify the AWS Region in which the manifest is located\. For information about creating an Amazon S3 bucket and uploading a file, see [Amazon Simple Storage Service User Guide](https://docs.aws.amazon.com/AmazonS3/latest/gsg/)\. 

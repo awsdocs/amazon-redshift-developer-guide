@@ -1,8 +1,0 @@
-# Example uses of user\-defined functions \(UDFs\)<a name="udf-example-uses"></a>
-
-You can use user\-defined functions to solve business problems by integrating Amazon Redshift with other components\. Following are some examples of how others have used UDFs for their use cases: 
-+ [Accessing external components using Amazon Redshift Lambda UDFs](http://aws.amazon.com/blogs/big-data/accessing-external-components-using-amazon-redshift-lambda-udfs/) – describes how Amazon Redshift Lambda UDFs work and walks through creating a Lambda UDF\.
-+ [Translate and analyze text using SQL functions with Amazon Redshift, Amazon Translate, and Amazon Comprehend](http://aws.amazon.com/blogs/machine-learning/translate-and-analyze-text-using-sql-functions-with-amazon-redshift-amazon-translate-and-amazon-comprehend/) – provides prebuilt Amazon Redshift Lambda UDFs that you can install with a few clicks to translate, redact, and analyze text fields\.
-+ [Access Amazon Location Service from Amazon Redshift](http://aws.amazon.com/blogs/big-data/access-amazon-location-service-from-amazon-redshift/) – describes how to use Amazon Redshift Lambda UDFs to integrate with Amazon Location Service\.
-+ [Data Tokenization with Amazon Redshift and Protegrity](http://aws.amazon.com/blogs/apn/data-tokenization-with-amazon-redshift-and-protegrity/) – describes how to integrate Amazon Redshift Lambda UDFs with the Protegrity Serverless product\.
-+ [Amazon Redshift UDFs](https://github.com/aws-samples/amazon-redshift-udfs) – a collection of Amazon Redshift SQL, Lambda, and Python UDFs\.

@@ -1,3 +1,0 @@
-# Managing data consistency<a name="managing-data-consistency"></a>
-
-Amazon S3 provides strong read\-after\-write consistency for COPY, UNLOAD, INSERT \(external table\), CREATE EXTERNAL TABLE AS, and Amazon Redshift Spectrum operations on Amazon S3 buckets in all AWS Regions\. In addition, read operations on Amazon S3 Select, Amazon S3 Access Control Lists, Amazon S3 Object Tags, and object metadata \(for example, HEAD object\) are strongly consistent\. For more information about data consistency, see [Amazon S3 Data Consistency Model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel) in the *Amazon Simple Storage Service User Guide*\.
